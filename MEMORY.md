@@ -24,7 +24,7 @@
   - `30-drivers/`
   - `40-research/`
   - `50-retrospectives/`
-  - `60-inbox/` or `70-inbox/`
+  - `60-uncategorized/`
 - `10-domains` = subject-area knowledge.
 - `20-entities` = reusable dossiers on recurring actors/objects.
 - `30-drivers` = reusable causal mechanisms.
