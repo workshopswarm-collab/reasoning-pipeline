@@ -30,3 +30,14 @@ tags: []
 ## Open questions
 
 ## Related notes
+
+## Canonical placement check
+
+Before creating a new canonical entity file, apply:
+- `vault/00-system/governance/canonical-entity-policy.md`
+
+Quick rule:
+- one canonical file per real-world object unless there is a real type distinction
+- stable, durable entities belong in `20-entities`
+- version snapshots, release notes, and transient changes belong in `40-research`
+- archive low-signal or redundant files instead of deleting them
