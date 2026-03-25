@@ -21,3 +21,4 @@ Top-level sections:
 Design rule:
 - keep folders coarse and stable
 - push nuance into frontmatter metadata and QMD retrieval
+- treat canonical dossiers as slow-moving memory; route new information into research artifacts first

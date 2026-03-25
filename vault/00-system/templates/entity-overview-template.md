@@ -6,6 +6,8 @@ entity:
 entity_type:
 status: active
 last_updated:
+review_after:
+freshness: current
 related_entities: []
 related_drivers: []
 tags: []
