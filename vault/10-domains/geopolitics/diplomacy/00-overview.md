@@ -1,0 +1,23 @@
+---
+type: synthesis
+domain: geopolitics
+subdomain: diplomacy
+topic: diplomacy research overview
+date_created: 2026-03-25
+agent: synthesizer
+certainty: medium
+importance: high
+upstream_inputs:
+  - vault/40-research/source-notes/by-domain/geopolitics/2026-03-25-diplomacy-basics.md
+downstream_uses: []
+tags: [domain/geopolitics, subdomain/diplomacy, overview]
+---
+
+# Synthesis summary
+
+Diplomacy research should focus on negotiations, alliances, signaling, summit outcomes, treaty structure, and whether diplomatic processes are reducing or redirecting conflict risk.
+
+## Core conclusions
+
+- Diplomacy is a primary path by which geopolitical risk evolves short of war.
+- Diplomatic signaling often matters before concrete agreement does.
