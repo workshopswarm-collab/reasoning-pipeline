@@ -1,103 +1,54 @@
 # Research Vault
 
-This vault is the canonical human-readable research memory for the reasoning pipeline.
+## TL;DR
 
-It is designed to be understandable by both:
-- humans browsing in Obsidian or Git
-- LLMs retrieving or summarizing with QMD
+This vault is a **layered research-memory system** for a multi-agent reasoning pipeline.
 
----
-
-# What this vault is for
-
-This vault is **not** the forecast ledger and **not** the final decision engine.
-
-Its purpose is to store:
+Use it to store:
 - durable domain knowledge
 - reusable entity dossiers
 - reusable driver notes
 - time-stamped research artifacts
 - source reliability guidance
-- retrospective methodology improvements
+- retrospective lessons
 
-The core objective is to help a multi-agent research swarm answer:
-- what do we know?
-- where did it come from?
-- what objects matter?
-- what mechanisms matter?
-- what changed?
-- which inputs should influence future evaluation?
+Do **not** treat it as:
+- the forecast ledger
+- the final decision engine
+- a place to dump every transient update into canonical notes
+
+**Core rule:** canonical notes change rarely; research notes change often.
+
+---
+
+## What this vault is trying to answer
+
+This vault should help a human or LLM quickly answer:
+- What do we know?
+- Where did it come from?
+- What objects matter?
+- What mechanisms matter?
+- What changed recently?
+- What should influence future evaluation?
 
 Forecast tracking is expected to live in a separate system/agent.
 
 ---
 
-# High-level mental model
+## Fast mental model
 
-Think of the vault as five interacting layers:
+Think of the vault as six layers:
 
-## 1. System layer
-How the memory system works.
-
-Contains:
-- methodology
-- templates
-- source reliability notes
-- canonical memory rules
-
-## 2. Domain layer
-Subject-area background knowledge.
-
-Contains broad topic maps for:
-- crypto
-- culture
-- economics
-- geopolitics
-- politics
-- sports
-- tech-ai
-
-## 3. Entity layer
-Reusable dossiers on recurring objects.
-
-Examples:
-- people
-- countries
-- companies
-- protocols
-- teams
-- leagues
-- parties
-- agencies
-- products
-
-## 4. Driver layer
-Reusable causal mechanisms that recur across many topics.
-
-Examples:
-- regulation
-- media narratives
-- injuries & health
-- macro
-- polling
-- conflicts
-
-## 5. Research layer
-Time-stamped artifacts produced during research.
-
-Examples:
-- source notes
-- agent findings
-- syntheses
-- investigations
-- assumptions
-
-## 6. Retrospective layer
-Backward-looking analysis of what inputs, sources, and methods helped or hurt performance.
+1. **System** — how the memory system works
+2. **Domains** — broad subject-area knowledge
+3. **Entities** — reusable dossiers on important objects
+4. **Drivers** — reusable causal mechanisms
+5. **Research** — time-stamped source notes, findings, syntheses
+6. **Retrospectives** — what helped, what misled, what to improve
 
 ---
 
-# Top-level structure
+## Top-level map
 
 ```text
 vault/
@@ -110,21 +61,20 @@ vault/
   60-uncategorized/
 ```
 
-## `00-system/`
-Use for system rules and meta-knowledge.
+### `00-system/`
+Meta-knowledge about how the vault works.
 
-Includes:
-- `methodology/`
-- `templates/`
-- `source-reliability/`
-- `taxonomies/`
-- `agent-protocols/`
-- `evaluation-criteria/`
+Use for:
+- methodology
+- templates
+- source-reliability notes
+- canonical-memory rules
+- taxonomies / agent protocols / evaluation criteria
 
-## `10-domains/`
-Use for broad subject-area understanding.
+### `10-domains/`
+Broad background knowledge by subject area.
 
-Current major domain coverage includes:
+Current major domains:
 - crypto
 - culture
 - economics
@@ -133,208 +83,203 @@ Current major domain coverage includes:
 - sports
 - tech-ai
 
-Each domain may contain subdomains with `00-overview.md` anchor notes.
+Most important files here are usually `00-overview.md` notes.
 
-## `20-entities/`
-Use for canonical dossiers on recurring objects.
+### `20-entities/`
+Canonical dossiers on recurring objects.
 
-Current entity types include:
-- agencies
-- companies
-- countries
-- leagues
-- organizations
-- parties
+Examples:
 - people
-- players
+- countries
+- companies
+- organizations
+- agencies
 - products
 - protocols
+- parties
 - teams
+- players
+- leagues
 
-## `30-drivers/`
-Use for reusable cross-domain causal mechanisms.
+### `30-drivers/`
+Cross-domain causal mechanisms.
 
-Current strong examples:
+Examples:
 - regulation
 - media-narratives
 - injuries-health
+- macro
+- polling
+- conflicts
 
-## `40-research/`
-Use for time-stamped research artifacts.
+### `40-research/`
+The active evidence layer.
 
-Current intended structure includes:
-- `source-notes/`
-- `agent-findings/`
-- `investigations/`
-- `syntheses/`
-- `evidence-maps/`
-- `assumption-notes/`
+Use for:
+- source notes
+- agent findings
+- syntheses
+- investigations
+- evidence maps
+- assumption notes
 
-## `50-retrospectives/`
-Use for hindsight learning and pipeline improvement.
+### `50-retrospectives/`
+Hindsight and methodology-improvement layer.
 
-## `60-uncategorized/`
-Temporary holding area for notes that are useful but not yet stably categorized.
+### `60-uncategorized/`
+Temporary holding area for useful notes that do not yet have a stable home.
 
 ---
 
-# What the main note types mean
+## What the main note types mean
 
-## `00-overview.md`
-A high-level synthesis anchor for a domain or subdomain.
+### `00-overview.md`
+A fast orientation note for a domain or subdomain.
 
 Purpose:
-- orient quickly
 - summarize what matters
-- list important evidence clusters
+- identify main evidence clusters
 - identify missing information
+- provide a "how to think about this area" anchor
 
-These are not raw source dumps.
-They are the top-level "how to think about this area" notes.
-
-## Entity dossiers
-Usually found under `20-entities/`.
+### Entity dossier
+Usually under `20-entities/`.
 
 Purpose:
-- preserve durable memory about important objects
-- summarize current state, strengths, weaknesses, and open questions
-- act as canonical anchors for retrieval
+- preserve durable memory about an object
+- summarize current state
+- list strengths, weaknesses, and open questions
+- act as the canonical retrieval anchor
 
-## Source notes
-Usually found under `40-research/source-notes/`.
+### Source note
+Usually under `40-research/source-notes/`.
 
 Purpose:
 - preserve provenance
 - record what a source said
-- capture durable extracted facts and why the source matters
+- explain why that source matters
 
-## Agent findings
-Usually found under `40-research/agent-findings/`.
-
-Purpose:
-- hold time-stamped role-specific interpretation from scout / skeptic / quant / analyst / synthesizer style agents
-
-## Syntheses
-Usually found under `40-research/syntheses/` or as overview notes.
+### Agent finding
+Usually under `40-research/agent-findings/`.
 
 Purpose:
-- combine multiple upstream inputs into a structured current interpretation
+- store role-specific interpretation from a research agent
 
-## Retrospective notes
-Used after outcomes are known or methodology has been stress-tested.
+### Synthesis
+Usually under `40-research/syntheses/` or as an overview note.
 
 Purpose:
-- identify what inputs helped
-- identify what inputs misled
-- improve source selection and research process over time
+- combine multiple upstream inputs into a current interpretation
+
+### Retrospective note
+Usually under `50-retrospectives/`.
+
+Purpose:
+- record what inputs helped or hurt
+- improve future source selection and methodology
 
 ---
 
-# Canonical memory policy
+## Canonical vs research memory
 
-This vault distinguishes between:
-- **canonical memory**
-- **research memory**
-
-## Canonical memory
-Canonical memory lives mainly in:
+### Canonical memory
+Lives mainly in:
 - `10-domains/`
 - `20-entities/`
 - `30-drivers/`
 
-These notes are **slow-moving summaries**.
-They should be updated rarely.
+These notes are:
+- slow-moving
+- durable
+- summary-oriented
+- retrieval anchors
 
-## Research memory
-Research memory lives mainly in:
+### Research memory
+Lives mainly in:
 - `40-research/`
 
-These notes are time-stamped, evidence-bearing, and can update frequently.
+These notes are:
+- time-stamped
+- evidence-bearing
+- frequently updated
+- allowed to be noisy and incomplete
 
-## Canonical update rule
-Canonical dossiers should update only when there is:
+### Canonical update rule
+Update canonical notes **only** when there is:
 1. an **extremely material change**, or
 2. an **explicit and repeated conflict of information** that makes the current canonical summary misleading
 
-If new information does **not** meet that threshold, it should remain in the research layer.
+If the threshold is not met, write to the **research layer**, not the canonical layer.
 
-Detailed rules live in:
+Detailed rules:
 - `00-system/methodology/canonical-dossier-update-policy.md`
 - `00-system/methodology/canonical-memory-workflow.md`
 
 ---
 
-# How an LLM should use this vault
+## How an LLM should navigate this vault
 
-If you are an LLM reading this vault, use the following order of operations:
+### If you need fast orientation
+Read in this order:
+1. this `README.md`
+2. relevant `10-domains/.../00-overview.md`
+3. relevant `20-entities/.../*.md`
+4. relevant `30-drivers/.../00-overview.md`
 
-## Step 1: Orient from this README
-Understand:
-- the vault is layered
-- canonical notes are slow-moving
-- research notes are time-stamped
-- this is a provenance-first memory system, not a forecast ledger
-
-## Step 2: Start with canonical anchors
-For broad understanding, read:
-- relevant `10-domains/.../00-overview.md`
-- relevant `20-entities/.../*.md`
-- relevant `30-drivers/.../00-overview.md`
-
-## Step 3: Pull recent evidence from research notes
-If a question depends on recent developments, then read:
+### If you need recent evidence
+Then pull from:
 - `40-research/source-notes/`
 - `40-research/syntheses/`
 - `40-research/agent-findings/`
 
-## Step 4: Respect update discipline
+### If you want to write new information
+Default to the **research layer first**.
 Do not casually rewrite canonical dossiers.
-Prefer writing new information into research artifacts first.
-Only promote into canonical memory when the materiality/conflict threshold is met.
 
 ---
 
-# Current strengths of the vault
+## Current strengths
 
 The vault already has meaningful starter coverage in:
-- major cross-domain backgrounds
-- crypto assets, institutions, and stablecoin/payment infrastructure
+- major cross-domain background notes
+- crypto assets, exchanges, stablecoins, and institutions
 - AI labs, products, leaders, cloud/platform entities
 - geopolitics leaders, countries, and strategic institutions
-- basketball, baseball, football, and some league/team/player coverage
-- source reliability guidance for several key domains
+- basketball, baseball, football, and key teams/players/leagues
+- source-reliability guidance in several areas
 - QMD-compatible retrieval structure
 
 ---
 
-# Current limitations
+## Current limitations
 
-This is still an actively growing memory system.
+This is still a growing system.
 
 Known limitations:
-- some subdomains are broader than they are deep
-- some entity coverage is uneven across domains
-- live-input operational layers are stronger in some areas than others
-- many notes are foundational starter dossiers, not yet full research-grade dossiers
+- some areas are broad but not yet deep
+- entity density is still uneven by domain
+- live-input operational layers are incomplete in some areas
+- many dossiers are foundation-level rather than final research-grade notes
 
-This is expected. The design is intended to scale through:
-- repeated research artifacts
+This is expected.
+The system is meant to improve through:
+- more research artifacts
 - selective canonical promotion
 - periodic retrospective cleanup
 
 ---
 
-# Design rules
+## Design rules
 
 - keep folders coarse and stable
-- push nuance into frontmatter metadata and QMD retrieval
-- treat canonical dossiers as slow-moving memory
+- push nuance into metadata and QMD retrieval
+- keep canonical dossiers slow-moving
 - route new information into research artifacts first
 - preserve provenance whenever possible
-- prefer durable summaries over noisy note churn
+- prefer durable summaries over note churn
 
 ---
 
-# One-line summary
+## One-line summary
 
-**This vault is a layered research-memory system: canonical domain/entity/driver knowledge on top, time-stamped research artifacts underneath, and strict rules preventing casual rewrites of canonical memory.**
+**This vault is a provenance-first research memory: stable domain/entity/driver summaries on top, time-stamped research underneath, and strict rules against casual rewriting of canonical memory.**
