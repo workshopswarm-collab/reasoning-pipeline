@@ -5,8 +5,8 @@ subdomain: exchanges
 entity: coinbase
 entity_type: company
 status: active
-last_updated: 2026-03-25
-related_entities: [circle, usdc, sec, bitcoin, ethereum]
+last_updated: 2026-03-26
+related_entities: [circle, usdc, sec, bitcoin, ethereum, kraken, robinhood]
 related_drivers: [regulation, operational-risk, sentiment]
 tags: [entity/company, entity/coinbase, domain/crypto]
 ---

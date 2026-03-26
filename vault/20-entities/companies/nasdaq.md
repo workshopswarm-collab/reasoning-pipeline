@@ -5,8 +5,8 @@ subdomain: exchanges-and-market-structure
 entity: nasdaq
 entity_type: company
 status: active
-last_updated: 2026-03-25
-related_entities: []
+last_updated: 2026-03-26
+related_entities: [cboe-global-markets, robinhood]
 related_drivers: [macro, sentiment, product-launches]
 tags: [entity/company, entity/nasdaq, domain/economics]
 ---

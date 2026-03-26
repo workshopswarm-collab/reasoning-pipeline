@@ -5,8 +5,8 @@ subdomain: biotech-and-pharma
 entity: eli-lilly
 entity_type: company
 status: active
-last_updated: 2026-03-25
-related_entities: [food-and-drug-administration]
+last_updated: 2026-03-26
+related_entities: [novo-nordisk, food-and-drug-administration]
 related_drivers: [product-launches, legal, operational-risk]
 tags: [entity/company, entity/eli-lilly, domain/tech-ai]
 ---

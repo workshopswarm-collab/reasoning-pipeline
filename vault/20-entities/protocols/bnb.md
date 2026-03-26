@@ -5,8 +5,8 @@ subdomain: protocols
 entity: bnb
 entity_type: protocol
 status: active
-last_updated: 2026-03-25
-related_entities: []
+last_updated: 2026-03-26
+related_entities: [binance]
 related_drivers: [product-launches, regulation, operational-risk]
 tags: [entity/protocol, entity/bnb, domain/crypto]
 ---

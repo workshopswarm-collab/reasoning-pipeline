@@ -5,8 +5,8 @@ subdomain: enterprise-ai-products
 entity: perplexity-api-enterprise
 entity_type: product
 status: active
-last_updated: 2026-03-25
-related_entities: [perplexity-api]
+last_updated: 2026-03-26
+related_entities: [perplexity, perplexity-api]
 related_drivers: [product-launches, partnerships, operational-risk]
 tags: [entity/product, entity/perplexity-api-enterprise, domain/tech-ai]
 ---

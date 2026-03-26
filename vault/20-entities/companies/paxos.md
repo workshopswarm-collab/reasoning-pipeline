@@ -5,8 +5,8 @@ subdomain: stablecoins-and-payments
 entity: paxos
 entity_type: company
 status: active
-last_updated: 2026-03-25
-related_entities: [circle, usdc]
+last_updated: 2026-03-26
+related_entities: [paypal, paypal-usd, circle, usdc]
 related_drivers: [regulation, operational-risk, partnerships]
 tags: [entity/company, entity/paxos, domain/crypto]
 ---

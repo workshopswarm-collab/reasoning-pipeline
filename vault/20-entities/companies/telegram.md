@@ -5,8 +5,8 @@ subdomain: social-media
 entity: telegram
 entity_type: company
 status: active
-last_updated: 2026-03-25
-related_entities: [ton]
+last_updated: 2026-03-26
+related_entities: [pavel-durov, ton]
 related_drivers: [media-narratives, product-launches, regulation]
 tags: [entity/company, entity/telegram, domain/culture, domain/crypto]
 ---

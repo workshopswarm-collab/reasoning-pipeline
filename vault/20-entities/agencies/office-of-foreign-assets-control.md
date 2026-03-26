@@ -5,8 +5,8 @@ subdomain: sanctions-and-economic-statecraft
 entity: office-of-foreign-assets-control
 entity_type: agency
 status: active
-last_updated: 2026-03-25
-related_entities: [u-s-treasury, russia, iran]
+last_updated: 2026-03-26
+related_entities: [united-states, u-s-treasury, russia, iran]
 related_drivers: [sanctions, legal, trade]
 tags: [entity/agency, entity/office-of-foreign-assets-control, domain/geopolitics]
 ---

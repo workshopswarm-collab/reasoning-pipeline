@@ -5,8 +5,8 @@ subdomain: executive-security-coordination
 entity: u-s-national-security-council
 entity_type: agency
 status: active
-last_updated: 2026-03-25
-related_entities: [white-house, u-s-department-of-defense, u-s-department-of-state]
+last_updated: 2026-03-26
+related_entities: [united-states, white-house, u-s-department-of-defense, u-s-department-of-state]
 related_drivers: [conflicts, diplomacy, operational-risk]
 tags: [entity/agency, entity/u-s-national-security-council, domain/geopolitics]
 ---

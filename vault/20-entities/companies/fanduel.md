@@ -5,8 +5,8 @@ subdomain: sports-betting-and-market-structure
 entity: fanduel
 entity_type: company
 status: active
-last_updated: 2026-03-25
-related_entities: []
+last_updated: 2026-03-26
+related_entities: [draftkings, betmgm]
 related_drivers: [regulation, sentiment, seasonality]
 tags: [entity/company, entity/fanduel, domain/sports]
 ---

@@ -5,8 +5,8 @@ subdomain: institutions
 entity: european-union
 entity_type: organization
 status: active
-last_updated: 2026-03-25
-related_entities: [european-central-bank, germany, france, ukraine]
+last_updated: 2026-03-26
+related_entities: [european-commission, european-central-bank, germany, france, ukraine]
 related_drivers: [diplomacy, regulation, macro]
 tags: [entity/organization, entity/european-union, domain/geopolitics, domain/economics]
 ---

@@ -5,8 +5,8 @@ subdomain: gulf-statecraft-and-capital-flows
 entity: united-arab-emirates
 entity_type: country
 status: active
-last_updated: 2026-03-25
-related_entities: [saudi-arabia, united-states]
+last_updated: 2026-03-26
+related_entities: [saudi-arabia, united-states, opec]
 related_drivers: [energy, diplomacy, trade]
 tags: [entity/country, entity/united-arab-emirates, domain/geopolitics]
 ---

@@ -5,8 +5,8 @@ subdomain: energy
 entity: opec
 entity_type: organization
 status: active
-last_updated: 2026-03-25
-related_entities: [saudi-arabia]
+last_updated: 2026-03-26
+related_entities: [saudi-arabia, united-arab-emirates]
 related_drivers: [macro, regulation, conflicts]
 tags: [entity/organization, entity/opec, domain/geopolitics, domain/economics]
 ---

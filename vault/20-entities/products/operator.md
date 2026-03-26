@@ -5,8 +5,8 @@ subdomain: ai-agent-products
 entity: operator
 entity_type: product
 status: active
-last_updated: 2026-03-25
-related_entities: [openai]
+last_updated: 2026-03-26
+related_entities: [openai, chatgpt]
 related_drivers: [product-launches, sentiment, operational-risk]
 tags: [entity/product, entity/operator, domain/tech-ai]
 ---

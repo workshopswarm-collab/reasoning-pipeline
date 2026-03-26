@@ -5,10 +5,20 @@ subdomain: trade-and-industrial-policy
 entity: u-s-trade-representative
 entity_type: agency
 status: active
-last_updated: 2026-03-25
-related_entities: [u-s-treasury, china, european-union]
-related_drivers: [trade, legal, diplomacy]
-tags: [entity/agency, entity/u-s-trade-representative, domain/economics]
+last_updated: 2026-03-26
+related_entities:
+  - united-states
+  - u-s-treasury
+  - china
+  - european-union
+related_drivers:
+  - trade
+  - legal
+  - diplomacy
+tags:
+  - entity/agency
+  - entity/u-s-trade-representative
+  - domain/economics
 ---
 
 # Summary

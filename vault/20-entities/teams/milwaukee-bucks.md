@@ -5,8 +5,8 @@ subdomain: basketball
 entity: milwaukee-bucks
 entity_type: team
 status: active
-last_updated: 2026-03-25
-related_entities: [giannis-antetokounmpo]
+last_updated: 2026-03-26
+related_entities: [nba, giannis-antetokounmpo]
 related_drivers: [injuries-health, leadership-changes]
 tags: [entity/team, entity/milwaukee-bucks, domain/sports, subdomain/basketball]
 ---

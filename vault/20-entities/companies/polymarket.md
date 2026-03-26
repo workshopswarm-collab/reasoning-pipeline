@@ -5,8 +5,8 @@ subdomain: prediction-markets-and-market-structure
 entity: polymarket
 entity_type: company
 status: active
-last_updated: 2026-03-25
-related_entities: [coinbase, circle, usdc]
+last_updated: 2026-03-26
+related_entities: [kalshi, coinbase, circle, usdc]
 related_drivers: [regulation, sentiment, operational-risk]
 tags: [entity/company, entity/polymarket, domain/crypto]
 ---

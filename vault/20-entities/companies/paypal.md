@@ -5,8 +5,8 @@ subdomain: payments-and-digital-finance
 entity: paypal
 entity_type: company
 status: active
-last_updated: 2026-03-25
-related_entities: [visa, stripe, paxos]
+last_updated: 2026-03-26
+related_entities: [visa, stripe, paxos, paypal-usd]
 related_drivers: [partnerships, operational-risk, product-launches]
 tags: [entity/company, entity/paypal, domain/economics]
 ---

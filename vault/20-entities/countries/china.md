@@ -5,8 +5,8 @@ subdomain: countries
 entity: china
 entity_type: country
 status: active
-last_updated: 2026-03-25
-related_entities: [xi-jinping, united-states, taiwan, peoples-bank-of-china, russia]
+last_updated: 2026-03-26
+related_entities: [xi-jinping, united-states, taiwan, peoples-bank-of-china, peoples-liberation-army, russia]
 related_drivers: [conflicts, regulation, macro, product-launches]
 tags: [entity/country, entity/china, domain/geopolitics, domain/economics, domain/tech-ai]
 ---

@@ -5,8 +5,8 @@ subdomain: prediction-markets-and-regulation
 entity: kalshi
 entity_type: company
 status: active
-last_updated: 2026-03-25
-related_entities: [u-s-treasury, sec]
+last_updated: 2026-03-26
+related_entities: [u-s-commodity-futures-trading-commission, u-s-treasury, sec, polymarket]
 related_drivers: [regulation, legal, sentiment]
 tags: [entity/company, entity/kalshi, domain/politics]
 ---

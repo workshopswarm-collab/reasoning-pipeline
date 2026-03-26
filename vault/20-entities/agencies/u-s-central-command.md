@@ -5,8 +5,8 @@ subdomain: military-power-and-regional-escalation
 entity: u-s-central-command
 entity_type: agency
 status: active
-last_updated: 2026-03-25
-related_entities: [u-s-department-of-defense, iran, israel]
+last_updated: 2026-03-26
+related_entities: [united-states, u-s-department-of-defense, iran, israel]
 related_drivers: [conflicts, operational-risk, diplomacy]
 tags: [entity/agency, entity/u-s-central-command, domain/geopolitics]
 ---

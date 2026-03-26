@@ -5,8 +5,8 @@ subdomain: countries
 entity: taiwan
 entity_type: country
 status: active
-last_updated: 2026-03-25
-related_entities: [china, united-states, tsmc]
+last_updated: 2026-03-26
+related_entities: [china, united-states, taiwan-presidency, taiwan-ministry-of-national-defense, tsmc]
 related_drivers: [conflicts, product-launches, diplomacy]
 tags: [entity/country, entity/taiwan, domain/geopolitics, domain/tech-ai]
 ---

@@ -5,8 +5,8 @@ subdomain: biotech-and-pharma
 entity: pfizer
 entity_type: company
 status: active
-last_updated: 2026-03-25
-related_entities: [food-and-drug-administration, national-institutes-of-health]
+last_updated: 2026-03-26
+related_entities: [biontech, food-and-drug-administration, national-institutes-of-health]
 related_drivers: [product-launches, legal, operational-risk]
 tags: [entity/company, entity/pfizer, domain/tech-ai]
 ---

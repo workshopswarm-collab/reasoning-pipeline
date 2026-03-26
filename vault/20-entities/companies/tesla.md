@@ -5,8 +5,8 @@ subdomain: robotics
 entity: tesla
 entity_type: company
 status: active
-last_updated: 2026-03-25
-related_entities: [elon-musk, waymo, xai, spacex]
+last_updated: 2026-03-26
+related_entities: [united-states, elon-musk, waymo, xai, spacex]
 related_drivers: [product-launches, media-narratives, operational-risk]
 tags: [entity/company, entity/tesla, domain/tech-ai]
 ---

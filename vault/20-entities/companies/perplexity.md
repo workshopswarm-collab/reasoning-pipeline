@@ -5,8 +5,8 @@ subdomain: products-and-search
 entity: perplexity
 entity_type: company
 status: active
-last_updated: 2026-03-25
-related_entities: [openai, google-deepmind]
+last_updated: 2026-03-26
+related_entities: [perplexity-pro, perplexity-api, openai, google-deepmind]
 related_drivers: [product-launches, media-narratives]
 tags: [entity/company, entity/perplexity, domain/tech-ai]
 ---

@@ -5,8 +5,8 @@ subdomain: labs
 entity: anthropic
 entity_type: company
 status: active
-last_updated: 2026-03-25
-related_entities: [claude, openai, google-deepmind]
+last_updated: 2026-03-26
+related_entities: [claude, claude-api, openai, google-deepmind]
 related_drivers: [product-launches, regulation, operational-risk]
 tags: [entity/company, entity/anthropic, domain/tech-ai]
 ---

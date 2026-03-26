@@ -5,8 +5,8 @@ subdomain: streaming
 entity: netflix
 entity_type: company
 status: active
-last_updated: 2026-03-25
-related_entities: []
+last_updated: 2026-03-26
+related_entities: [disney, universal-pictures]
 related_drivers: [media-narratives, product-launches, sentiment]
 tags: [entity/company, entity/netflix, domain/culture]
 ---

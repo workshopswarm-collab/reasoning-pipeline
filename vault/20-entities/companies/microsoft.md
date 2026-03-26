@@ -5,8 +5,8 @@ subdomain: products-and-platforms
 entity: microsoft
 entity_type: company
 status: active
-last_updated: 2026-03-25
-related_entities: [satya-nadella, openai, chatgpt]
+last_updated: 2026-03-26
+related_entities: [united-states, satya-nadella, openai, chatgpt]
 related_drivers: [product-launches, regulation, operational-risk]
 tags: [entity/company, entity/microsoft, domain/tech-ai]
 ---

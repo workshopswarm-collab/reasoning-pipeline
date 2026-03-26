@@ -5,8 +5,8 @@ subdomain: platforms-and-founder-governance
 entity: pavel-durov
 entity_type: person
 status: active
-last_updated: 2026-03-25
-related_entities: [telegram]
+last_updated: 2026-03-26
+related_entities: [telegram, ton]
 related_drivers: [legal, operational-risk, sentiment]
 tags: [entity/person, entity/pavel-durov, domain/tech-ai]
 ---

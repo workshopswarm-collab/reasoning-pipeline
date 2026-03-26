@@ -5,8 +5,8 @@ subdomain: labs
 entity: openai
 entity_type: company
 status: active
-last_updated: 2026-03-25
-related_entities: [sam-altman, chatgpt, microsoft, anthropic, google-deepmind]
+last_updated: 2026-03-26
+related_entities: [united-states, sam-altman, chatgpt, openai-api, microsoft, anthropic, google-deepmind]
 related_drivers: [product-launches, regulation, operational-risk]
 tags: [entity/company, entity/openai, domain/tech-ai]
 ---

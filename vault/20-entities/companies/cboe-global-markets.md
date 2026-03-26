@@ -5,8 +5,8 @@ subdomain: exchanges-and-market-structure
 entity: cboe-global-markets
 entity_type: company
 status: active
-last_updated: 2026-03-25
-related_entities: [cme-group]
+last_updated: 2026-03-26
+related_entities: [nasdaq, cme-group]
 related_drivers: [macro, sentiment, regulation]
 tags: [entity/company, entity/cboe-global-markets, domain/economics]
 ---

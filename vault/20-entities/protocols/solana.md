@@ -5,8 +5,8 @@ subdomain: protocols
 entity: solana
 entity_type: protocol
 status: active
-last_updated: 2026-03-25
-related_entities: [ethereum, bitcoin, coinbase]
+last_updated: 2026-03-26
+related_entities: [sol, ethereum, bitcoin, coinbase]
 related_drivers: [product-launches, sentiment, operational-risk]
 tags: [entity/protocol, entity/solana, domain/crypto]
 ---

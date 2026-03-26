@@ -5,8 +5,8 @@ subdomain: generative-media-products
 entity: sora
 entity_type: product
 status: active
-last_updated: 2026-03-25
-related_entities: [openai]
+last_updated: 2026-03-26
+related_entities: [openai, chatgpt]
 related_drivers: [product-launches, sentiment, regulation]
 tags: [entity/product, entity/sora, domain/tech-ai]
 ---

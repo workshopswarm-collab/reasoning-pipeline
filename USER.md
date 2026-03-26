@@ -4,7 +4,6 @@ _Learn about the person you're helping. Update this as you go._
 
 - **Name:** VM
 - **What to call them:** VM
-- **Pronouns:** _(optional)_
 - **Timezone:** America/New_York
 - **Notes:** Working with the assistant in an orchestrator role for a 5-agent quantitative research swarm.
 
@@ -12,6 +11,7 @@ _Learn about the person you're helping. Update this as you go._
 
 - Values succinct, accurate, to-the-point communication.
 - Using the assistant as an executive arbiter and state manager for hierarchical memory, compute optimization, redundancy prevention, and distillation of findings into actionable parameters.
+
 
 ---
 

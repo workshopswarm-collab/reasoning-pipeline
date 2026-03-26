@@ -5,8 +5,8 @@ subdomain: countries
 entity: united-states
 entity_type: country
 status: active
-last_updated: 2026-03-25
-related_entities: [donald-trump, kamala-harris, republican-party, democratic-party, federal-reserve, sec, china]
+last_updated: 2026-03-26
+related_entities: [donald-trump, kamala-harris, republican-party, democratic-party, white-house, federal-reserve, sec, china]
 related_drivers: [macro, regulation, conflicts, polling]
 tags: [entity/country, entity/united-states, domain/geopolitics, domain/politics, domain/economics]
 ---

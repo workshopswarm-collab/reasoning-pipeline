@@ -5,8 +5,8 @@ subdomain: protocols
 entity: ton
 entity_type: protocol
 status: active
-last_updated: 2026-03-25
-related_entities: []
+last_updated: 2026-03-26
+related_entities: [telegram, pavel-durov]
 related_drivers: [product-launches, sentiment]
 tags: [entity/protocol, entity/ton, domain/crypto]
 ---

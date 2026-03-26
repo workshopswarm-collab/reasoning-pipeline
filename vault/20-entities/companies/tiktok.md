@@ -5,8 +5,8 @@ subdomain: social-media
 entity: tiktok
 entity_type: company
 status: active
-last_updated: 2026-03-25
-related_entities: [meta, youtube, alphabet]
+last_updated: 2026-03-26
+related_entities: [bytedance, meta, youtube, alphabet]
 related_drivers: [media-narratives, regulation, sentiment]
 tags: [entity/company, entity/tiktok, domain/culture, domain/tech-ai]
 ---

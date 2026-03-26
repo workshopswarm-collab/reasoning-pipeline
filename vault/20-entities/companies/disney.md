@@ -5,8 +5,8 @@ subdomain: entertainment-and-attention-infrastructure
 entity: disney
 entity_type: company
 status: active
-last_updated: 2026-03-25
-related_entities: [netflix, taylor-swift]
+last_updated: 2026-03-26
+related_entities: [netflix, universal-pictures, taylor-swift]
 related_drivers: [media-narratives, sentiment, product-launches]
 tags: [entity/company, entity/disney, domain/culture]
 ---

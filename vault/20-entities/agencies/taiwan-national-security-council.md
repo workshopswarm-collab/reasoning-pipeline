@@ -5,8 +5,8 @@ subdomain: executive-security-coordination
 entity: taiwan-national-security-council
 entity_type: agency
 status: active
-last_updated: 2026-03-25
-related_entities: [taiwan-presidency, taiwan-ministry-of-national-defense]
+last_updated: 2026-03-26
+related_entities: [taiwan, taiwan-presidency, taiwan-ministry-of-national-defense]
 related_drivers: [conflicts, diplomacy, operational-risk]
 tags: [entity/agency, entity/taiwan-national-security-council, domain/geopolitics]
 ---

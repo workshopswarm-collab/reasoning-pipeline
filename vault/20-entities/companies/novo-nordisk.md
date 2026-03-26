@@ -5,8 +5,8 @@ subdomain: biotech-and-pharma
 entity: novo-nordisk
 entity_type: company
 status: active
-last_updated: 2026-03-25
-related_entities: [food-and-drug-administration]
+last_updated: 2026-03-26
+related_entities: [denmark, eli-lilly, food-and-drug-administration]
 related_drivers: [product-launches, legal, operational-risk]
 tags: [entity/company, entity/novo-nordisk, domain/tech-ai]
 ---

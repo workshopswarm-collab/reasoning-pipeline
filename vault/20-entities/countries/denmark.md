@@ -5,8 +5,8 @@ subdomain: europe-and-nato
 entity: denmark
 entity_type: country
 status: active
-last_updated: 2026-03-25
-related_entities: [greenland, nato, european-union]
+last_updated: 2026-03-26
+related_entities: [greenland, nato, european-union, novo-nordisk]
 related_drivers: [alliances, trade, climate]
 tags: [entity/country, entity/denmark, domain/geopolitics]
 ---

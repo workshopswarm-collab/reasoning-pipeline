@@ -5,8 +5,8 @@ subdomain: products-and-platforms
 entity: alphabet
 entity_type: company
 status: active
-last_updated: 2026-03-25
-related_entities: [sundar-pichai, google-deepmind, gemini, youtube, waymo]
+last_updated: 2026-03-26
+related_entities: [united-states, sundar-pichai, google-deepmind, gemini, youtube, waymo]
 related_drivers: [product-launches, regulation, operational-risk]
 tags: [entity/company, entity/alphabet, domain/tech-ai]
 ---

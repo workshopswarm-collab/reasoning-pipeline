@@ -5,8 +5,8 @@ subdomain: protocols
 entity: bitcoin
 entity_type: protocol
 status: active
-last_updated: 2026-03-25
-related_entities: [ethereum, solana, coinbase]
+last_updated: 2026-03-26
+related_entities: [btc, ethereum, solana, coinbase]
 related_drivers: [macro, regulation, operational-risk]
 tags: [entity/protocol, entity/bitcoin, domain/crypto]
 ---

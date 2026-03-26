@@ -5,8 +5,8 @@ subdomain: market-oversight-and-derivatives-regulation
 entity: u-s-commodity-futures-trading-commission
 entity_type: agency
 status: active
-last_updated: 2026-03-25
-related_entities: [cme-group]
+last_updated: 2026-03-26
+related_entities: [cme-group, kalshi]
 related_drivers: [regulation, macro, legal]
 tags: [entity/agency, entity/u-s-commodity-futures-trading-commission, domain/economics]
 ---

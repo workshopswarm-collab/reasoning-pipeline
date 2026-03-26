@@ -5,8 +5,8 @@ subdomain: social-media
 entity: bytedance
 entity_type: company
 status: active
-last_updated: 2026-03-25
-related_entities: [tiktok]
+last_updated: 2026-03-26
+related_entities: [tiktok, china]
 related_drivers: [media-narratives, regulation, product-launches]
 tags: [entity/company, entity/bytedance, domain/culture, domain/tech-ai]
 ---

@@ -5,8 +5,8 @@ subdomain: state-power-and-alliance-politics
 entity: canada
 entity_type: country
 status: active
-last_updated: 2026-03-25
-related_entities: [mark-carney, pierre-poilievre, liberal-party-of-canada, conservative-party-of-canada, bank-of-canada, united-states]
+last_updated: 2026-03-26
+related_entities: [mark-carney, pierre-poilievre, liberal-party-of-canada, conservative-party-of-canada, elections-canada, bank-of-canada, united-states]
 related_drivers: [trade, diplomacy, energy]
 tags: [entity/country, entity/canada, domain/geopolitics]
 ---
