@@ -43,6 +43,7 @@ Capture what matters. Decisions, context, things to remember. Skip the secrets u
 - When someone says "remember this" → update `memory/YYYY-MM-DD.md` or relevant file
 - When you learn a lesson → update AGENTS.md, TOOLS.md, or the relevant skill
 - When you make a mistake → document it so future-you doesn't repeat it
+- If MEMORY.md or daily memory logs start becoming noisy, duplicative, slow to skim, or cause continuity drift, suggest to your human that it may be time to implement more structured memory management.
 - **Text > Brain** 📝
 
 ## Red Lines
