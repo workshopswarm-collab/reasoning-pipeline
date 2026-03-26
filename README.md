@@ -33,7 +33,7 @@ flowchart TD
  
  subgraph P1[<b>Phase 1: Deep Research</b>]
  O_Dispatch[<b>Orchestrator</b>:<br>Spawns Swarm]:::orchestrator
- Researchers[<b>Research Swarm</b>:<br>Scout, Skeptic, Quant, Analyst]:::swarm
+ Researchers[<b>Research Swarm</b>:<br>Independent Analysts with<br>Diverse Personalities / Priors]:::swarm
  end
 
  subgraph P2[<b>Phase 2: Tactical Decision</b>]
@@ -115,11 +115,13 @@ This is the entry point into the intelligence pipeline.
 ## Phase 1: Deep research
 The **Orchestrator** decides that the market is worth work, scopes the case, and spawns a research swarm.
 
-Typical researcher roles:
-- **Scout** → broad source collection and situational awareness
-- **Skeptic** → adversarial challenge and failure cases
-- **Quant** → numerical framing, implied odds, and statistical context
-- **Analyst** → thesis-building and market interpretation
+The research swarm is best thought of as **multiple independent analysts performing the same general research task under different personalities, priors, and temperaments**, rather than a rigid set of specialist functions.
+
+Examples of useful diversity:
+- more skeptical vs more constructive framing
+- base-rate-heavy vs narrative-heavy interpretation
+- more aggressive vs more conservative weighting
+- faster exploratory vs slower careful synthesis style
 
 Researchers primarily interact with:
 - the **Vault** for qualitative note-taking and provenance
@@ -186,9 +188,9 @@ Owns the control plane:
 
 ### Research swarm
 Owns parallel evidence generation:
-- independent research
-- divergent framing
-- explicit disagreement
+- independent analysis of the same case
+- divergent framing driven by different personalities / priors
+- explicit disagreement and alternative weighting
 - structured findings in `vault/40-research/`
 
 ### Decision-Maker

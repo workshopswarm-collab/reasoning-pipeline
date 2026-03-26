@@ -123,8 +123,8 @@ Do not use for:
 ## `agent-findings/`
 
 Purpose:
-- store role-specific research outputs so later review can compare researchers directly
-- preserve differences in framing, reasoning quality, and source selection across roles
+- store parallel research outputs so later review can compare multiple independent takes on the same case
+- preserve differences in framing, reasoning quality, source selection, and weighting across researcher personalities
 
 Current role folders:
 - `analyst/`
@@ -133,14 +133,17 @@ Current role folders:
 - `skeptic/`
 - `synthesizer/`
 
+Interpret these folders as working labels for recurring research personalities or styles, not as hard specialist job boundaries. The intended pattern is usually several researchers doing broadly the same analysis with different priors, temperaments, or reasoning styles.
+
 Use when:
-- a specific research role is asked to produce a finding, memo, or directional read
-- you want to evaluate that role later against other roles or outcomes
+- multiple independent researchers are asked to analyze the same case from different personalities or priors
+- you want to evaluate those distinct takes later against each other or against outcomes
 
 Good output:
 - explicit claim or conclusion
 - rationale
 - supporting notes referenced via `upstream_inputs`
+- what this researcher weighted differently from another plausible take
 - open questions and caveats
 
 Do not use for:
