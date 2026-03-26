@@ -2,13 +2,23 @@
 
 This workspace is the control plane and memory substrate for a multi-agent prediction-market / quantitative research pipeline.
 
-At a high level, the system is split into two kinds of state:
+At a high level, the system is split into two complementary databases:
 
-- **Vault / markdown memory** → qualitative reasoning, provenance, syntheses, retrospectives, and durable domain/entity/driver knowledge
-- **PostgreSQL** → structured market state, portfolio state, execution state, outcomes, calibration, attribution, and agent-weight data
+- **Vault / Obsidian vault** → the **qualitative database** for reasoning, provenance, syntheses, retrospectives, and durable domain/entity/driver knowledge
+- **PostgreSQL** → the **quantitative database** for market state, portfolio state, execution state, outcomes, calibration, attribution, and agent-weight data
 
-The vault is **not** the forecast ledger or execution engine.
-The database is **not** the human-readable reasoning layer.
+The qualitative database is the human-readable reasoning layer.
+The quantitative database is the structured measurement and state layer.
+
+The Vault is **not** the forecast ledger or execution engine.
+PostgreSQL is **not** the primary home for narrative reasoning, source extraction, or qualitative memory.
+
+In other words:
+
+- if the system needs to answer **why we thought something**, **what evidence we used**, or **what lesson we learned**, that belongs in the **qualitative database**
+- if the system needs to answer **what happened numerically**, **what was executed**, **how an agent performed**, or **what the portfolio state is**, that belongs in the **quantitative database**
+
+This split is intentional. It keeps the system interpretable for humans and LLMs without sacrificing structured evaluation and execution state.
 
 ## Core architecture
 
@@ -124,8 +134,8 @@ Examples of useful diversity:
 - faster exploratory vs slower careful synthesis style
 
 Researchers primarily interact with:
-- the **Vault** for qualitative note-taking and provenance
-- **PostgreSQL** for append-only prediction logs, conviction, and timestamps
+- the **Vault**, which acts as the qualitative database for note-taking, provenance, assumptions, and synthesis inputs
+- **PostgreSQL**, which acts as the quantitative database for append-only prediction logs, conviction, timestamps, and later performance linkage
 
 Researchers should normally write into `vault/40-research/`, not stable canonical layers.
 
@@ -207,18 +217,19 @@ Owns quantitative performance review:
 - cross-lifecycle measurement
 
 ### Vault
-Owns human-readable research memory:
+Owns the **qualitative database**:
 - provenance
 - source notes
 - syntheses
 - assumptions
 - retrospectives
 - stable domains / entities / drivers
+- human-readable causal and contextual memory
 
 Start at `vault/README.md` for the memory-system map.
 
 ### PostgreSQL
-Owns structured quantitative state:
+Owns the **quantitative database**:
 - market metadata
 - researcher prediction logs
 - decision packets
@@ -227,6 +238,7 @@ Owns structured quantitative state:
 - calibration history
 - trust weights
 - portfolio state
+- evaluator-ready structured measurement state
 
 ### Execution environment
 Owns action and accounting:
@@ -237,9 +249,9 @@ Owns action and accounting:
 
 ## Design principles
 
-- **Qualitative and quantitative state stay separate**
-  - Vault = reasoning and provenance
-  - PostgreSQL = structured state and evaluation
+- **Qualitative and quantitative databases stay separate**
+  - Vault = qualitative database for reasoning, provenance, and durable interpretation
+  - PostgreSQL = quantitative database for state, execution, and evaluation
 
 - **Researchers write to research first**
   - new evidence belongs in `vault/40-research/`
@@ -259,7 +271,7 @@ Owns action and accounting:
 
 Current key top-level areas:
 
-- `vault/` → qualitative research memory system
+- `vault/` → qualitative database / research memory system
 - `memory/` → assistant continuity / daily memory
 - `MEMORY.md` → compact long-term assistant memory
 - `qmd.yml` → retrieval/index configuration for the vault
@@ -279,7 +291,7 @@ The live PostgreSQL database itself is runtime infrastructure, not a file that b
 
 ## Current status
 
-This repository currently has a well-developed qualitative memory system in the vault.
-The PostgreSQL-backed quantitative layer and isolated execution layer are the next major architectural expansion.
+This repository currently has a well-developed qualitative database in the Vault.
+The PostgreSQL-backed quantitative database and isolated execution layer are the next major architectural expansion.
 
 That means the vault is already serving as the reasoning substrate, while the structured state / execution system is the major next buildout.
