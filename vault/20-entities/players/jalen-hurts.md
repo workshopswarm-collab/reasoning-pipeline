@@ -1,14 +1,14 @@
 ---
 type: entity_overview
 domain: sports
-subdomain: football
+subdomain: american-football
 entity: jalen-hurts
 entity_type: player
 status: active
 last_updated: 2026-03-25
 related_entities: [nfl, philadelphia-eagles, patrick-mahomes]
 related_drivers: [injuries-health, sentiment]
-tags: [entity/player, entity/jalen-hurts, domain/sports, subdomain/football]
+tags: [entity/player, entity/jalen-hurts, domain/sports, subdomain/american-football]
 ---
 
 # Summary

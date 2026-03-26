@@ -1,7 +1,7 @@
 ---
 type: source_note
 domain: sports
-subdomain: football
+subdomain: american-football
 entity:
 topic: american football basics
 question:
@@ -21,8 +21,9 @@ agent: orchestrator
 related_entities: []
 related_drivers: [injuries-health, seasonality, leadership-changes]
 upstream_inputs: []
-downstream_uses: [vault/10-domains/sports/football/00-overview.md]
-tags: [domain/sports, subdomain/football, source/encyclopedia]---
+downstream_uses: [vault/10-domains/sports/american-football/00-overview.md]
+tags: [domain/sports, subdomain/american-football, source/encyclopedia]
+---
 
 # Summary
 

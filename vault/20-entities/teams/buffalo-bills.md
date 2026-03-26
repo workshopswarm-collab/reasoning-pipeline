@@ -1,14 +1,14 @@
 ---
 type: entity_overview
 domain: sports
-subdomain: football
+subdomain: american-football
 entity: buffalo-bills
 entity_type: team
 status: active
 last_updated: 2026-03-25
 related_entities: [nfl, josh-allen]
 related_drivers: [injuries-health, leadership-changes, sentiment]
-tags: [entity/team, entity/buffalo-bills, domain/sports, subdomain/football]
+tags: [entity/team, entity/buffalo-bills, domain/sports, subdomain/american-football]
 ---
 
 # Summary

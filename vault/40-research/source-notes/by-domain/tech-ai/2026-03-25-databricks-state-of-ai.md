@@ -22,7 +22,8 @@ related_entities: []
 related_drivers: [product-launches, regulation, operational-risk]
 upstream_inputs: []
 downstream_uses: [vault/10-domains/tech-ai/00-overview.md]
-tags: [domain/tech-ai, subdomain/enterprise-adoption, source/industry-report]---
+tags: [domain/tech-ai, subdomain/enterprise-adoption, source/industry-report]
+---
 
 # Summary
 

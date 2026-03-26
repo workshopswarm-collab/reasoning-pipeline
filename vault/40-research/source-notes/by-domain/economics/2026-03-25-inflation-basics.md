@@ -22,7 +22,8 @@ related_entities: []
 related_drivers: [macro, regulation]
 upstream_inputs: []
 downstream_uses: [vault/10-domains/economics/inflation/00-overview.md]
-tags: [domain/economics, subdomain/inflation, source/encyclopedia]---
+tags: [domain/economics, subdomain/inflation, source/encyclopedia]
+---
 
 # Summary
 

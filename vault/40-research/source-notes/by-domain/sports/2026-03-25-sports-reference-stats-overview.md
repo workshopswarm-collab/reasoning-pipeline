@@ -22,7 +22,8 @@ related_entities: []
 related_drivers: [injuries-health, leadership-changes, sentiment]
 upstream_inputs: []
 downstream_uses: [vault/10-domains/sports/00-overview.md]
-tags: [domain/sports, source/stats-database]---
+tags: [domain/sports, source/stats-database]
+---
 
 # Summary
 

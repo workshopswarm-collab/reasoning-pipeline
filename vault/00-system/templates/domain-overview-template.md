@@ -18,6 +18,8 @@ tags: []
 
 # Overview summary
 
+For top-level domain overviews under `vault/10-domains/<domain>/00-overview.md`, normally leave `subdomain:` blank.
+
 State the main orientation point for this domain or subdomain in 1 to 3 sentences.
 
 ## Why this area matters

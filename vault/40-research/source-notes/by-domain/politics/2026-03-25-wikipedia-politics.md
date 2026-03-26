@@ -22,7 +22,8 @@ related_entities: []
 related_drivers: [polling, leadership-changes, legal]
 upstream_inputs: []
 downstream_uses: [vault/10-domains/politics/00-overview.md]
-tags: [domain/politics, source/encyclopedia]---
+tags: [domain/politics, source/encyclopedia]
+---
 
 # Summary
 

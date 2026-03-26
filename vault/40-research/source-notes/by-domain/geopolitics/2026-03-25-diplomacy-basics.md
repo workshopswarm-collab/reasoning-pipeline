@@ -22,7 +22,8 @@ related_entities: []
 related_drivers: [conflicts, regulation]
 upstream_inputs: []
 downstream_uses: [vault/10-domains/geopolitics/diplomacy/00-overview.md]
-tags: [domain/geopolitics, subdomain/diplomacy, source/encyclopedia]---
+tags: [domain/geopolitics, subdomain/diplomacy, source/encyclopedia]
+---
 
 # Summary
 

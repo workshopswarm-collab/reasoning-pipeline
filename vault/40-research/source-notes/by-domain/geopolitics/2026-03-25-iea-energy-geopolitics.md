@@ -22,7 +22,8 @@ related_entities: []
 related_drivers: [conflicts, macro, regulation]
 upstream_inputs: []
 downstream_uses: [vault/10-domains/geopolitics/00-overview.md]
-tags: [domain/geopolitics, subdomain/energy-security, source/policy-analysis]---
+tags: [domain/geopolitics, subdomain/energy-security, source/policy-analysis]
+---
 
 # Summary
 

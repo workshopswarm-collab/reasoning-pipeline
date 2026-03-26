@@ -22,7 +22,8 @@ related_entities: [oklahoma-city-thunder, boston-celtics, los-angeles-lakers, de
 related_drivers: [injuries-health, leadership-changes, sentiment]
 upstream_inputs: []
 downstream_uses: [vault/10-domains/sports/basketball/00-overview.md]
-tags: [domain/sports, subdomain/basketball, source/stats-database]---
+tags: [domain/sports, subdomain/basketball, source/stats-database]
+---
 
 # Summary
 

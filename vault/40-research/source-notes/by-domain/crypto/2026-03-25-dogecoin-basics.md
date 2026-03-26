@@ -21,7 +21,7 @@ agent: orchestrator
 related_entities: [dogecoin]
 related_drivers: [sentiment, media-narratives]
 upstream_inputs: []
-downstream_uses: [vault/10-domains/crypto/protocols/major-assets-overview.md, vault/20-entities/protocols/dogecoin.md]
+downstream_uses: [vault/40-research/syntheses/by-topic/2026-03-25-major-crypto-assets-overview.md, vault/20-entities/protocols/dogecoin.md]
 tags: [domain/crypto, entity/dogecoin, source/protocol-overview]---
 
 # Summary

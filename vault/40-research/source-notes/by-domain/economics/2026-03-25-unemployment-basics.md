@@ -21,8 +21,9 @@ agent: orchestrator
 related_entities: []
 related_drivers: [macro]
 upstream_inputs: []
-downstream_uses: [vault/10-domains/economics/labor/00-overview.md]
-tags: [domain/economics, subdomain/labor, source/encyclopedia]---
+downstream_uses: [vault/10-domains/economics/00-overview.md]
+tags: [domain/economics, subdomain/labor, source/encyclopedia]
+---
 
 # Summary
 

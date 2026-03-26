@@ -1,7 +1,7 @@
 ---
 type: entity_overview
 domain: sports
-subdomain: football
+subdomain: american-football
 entity: nfl
 entity_type: league
 status: active

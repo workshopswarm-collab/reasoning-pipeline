@@ -1,14 +1,14 @@
 ---
 type: entity_overview
 domain: sports
-subdomain: football
+subdomain: american-football
 entity: cincinnati-bengals
 entity_type: team
 status: active
 last_updated: 2026-03-25
 related_entities: [nfl]
 related_drivers: [injuries-health, sentiment]
-tags: [entity/team, entity/cincinnati-bengals, domain/sports, subdomain/football]
+tags: [entity/team, entity/cincinnati-bengals, domain/sports, subdomain/american-football]
 ---
 
 # Summary

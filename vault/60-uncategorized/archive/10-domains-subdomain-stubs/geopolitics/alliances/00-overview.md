@@ -12,7 +12,8 @@ upstream_inputs:
 downstream_uses: []
 related_entities: []
 related_drivers: []
-tags: [domain/geopolitics, subdomain/alliances, overview]---
+tags: [domain/geopolitics, subdomain/alliances, overview]
+---
 
 # Overview summary
 

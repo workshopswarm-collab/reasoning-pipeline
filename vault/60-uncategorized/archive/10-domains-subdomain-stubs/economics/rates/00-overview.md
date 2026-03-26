@@ -12,7 +12,8 @@ upstream_inputs:
 downstream_uses: []
 related_entities: []
 related_drivers: []
-tags: [domain/economics, subdomain/rates, overview]---
+tags: [domain/economics, subdomain/rates, overview]
+---
 
 # Overview summary
 

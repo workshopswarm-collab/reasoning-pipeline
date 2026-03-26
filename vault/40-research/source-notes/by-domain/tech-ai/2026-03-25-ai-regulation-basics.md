@@ -22,7 +22,8 @@ related_entities: []
 related_drivers: [regulation, operational-risk]
 upstream_inputs: []
 downstream_uses: [vault/10-domains/tech-ai/regulation/00-overview.md]
-tags: [domain/tech-ai, subdomain/regulation, source/encyclopedia]---
+tags: [domain/tech-ai, subdomain/regulation, source/encyclopedia]
+---
 
 # Summary
 

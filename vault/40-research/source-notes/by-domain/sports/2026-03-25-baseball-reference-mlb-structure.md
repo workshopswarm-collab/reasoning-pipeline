@@ -22,7 +22,8 @@ related_entities: [toronto-blue-jays, new-york-yankees, los-angeles-dodgers]
 related_drivers: [injuries-health, leadership-changes, seasonality]
 upstream_inputs: []
 downstream_uses: [vault/10-domains/sports/baseball/00-overview.md]
-tags: [domain/sports, subdomain/baseball, source/stats-database]---
+tags: [domain/sports, subdomain/baseball, source/stats-database]
+---
 
 # Summary
 

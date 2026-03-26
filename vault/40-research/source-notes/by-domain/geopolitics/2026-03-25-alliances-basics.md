@@ -21,8 +21,9 @@ agent: orchestrator
 related_entities: [nato, united-states, european-union]
 related_drivers: [conflicts, diplomacy]
 upstream_inputs: []
-downstream_uses: [vault/10-domains/geopolitics/alliances/00-overview.md]
-tags: [domain/geopolitics, subdomain/alliances, source/encyclopedia]---
+downstream_uses: [vault/10-domains/geopolitics/00-overview.md]
+tags: [domain/geopolitics, subdomain/alliances, source/encyclopedia]
+---
 
 # Summary
 

@@ -24,6 +24,7 @@ If you are new to this vault, read in this order:
 Read detailed policy files only when needed:
 - canon vs research / splits / archive rules -> `governance/canonical-entity-policy.md`
 - linkage behavior -> `governance/entity-linkage-framework.md`
+- when a `10-domains/` subdomain file should exist -> `governance/subdomain-overview-policy.md`
 - whether research should be promoted into canon -> `methodology/canonical-memory-workflow.md`
 - exact canonical update threshold -> `methodology/canonical-dossier-update-policy.md`
 - writing a note -> `templates/README.md` and the matching template
@@ -122,6 +123,7 @@ Rules for:
 - what belongs in canon vs research
 - how canonical entities should be split, merged, or archived
 - how `related_entities` and `related_drivers` should behave
+- when `10-domains/` subdomain overviews should be created, kept, or archived
 
 ### `methodology/`
 Workflow for:
@@ -149,6 +151,7 @@ Short reference notes about source classes and metric sources.
 - `governance/README.md`
 - `governance/canonical-entity-policy.md`
 - `governance/entity-linkage-framework.md`
+- `governance/subdomain-overview-policy.md`
 
 ### Read when deciding whether to update canon
 - `methodology/canonical-memory-workflow.md`

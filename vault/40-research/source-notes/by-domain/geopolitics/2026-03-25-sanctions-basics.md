@@ -22,7 +22,8 @@ related_entities: []
 related_drivers: [conflicts, regulation, macro]
 upstream_inputs: []
 downstream_uses: [vault/10-domains/geopolitics/sanctions/00-overview.md]
-tags: [domain/geopolitics, subdomain/sanctions, source/encyclopedia]---
+tags: [domain/geopolitics, subdomain/sanctions, source/encyclopedia]
+---
 
 # Summary
 

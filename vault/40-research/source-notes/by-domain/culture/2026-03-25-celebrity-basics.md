@@ -21,7 +21,7 @@ agent: orchestrator
 related_entities: []
 related_drivers: [media-narratives, sentiment]
 upstream_inputs: []
-downstream_uses: [vault/10-domains/culture/celebrities/00-overview.md]
+downstream_uses: [vault/10-domains/culture/00-overview.md]
 tags: [domain/culture, subdomain/celebrities, source/encyclopedia]---
 
 # Summary

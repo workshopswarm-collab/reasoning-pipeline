@@ -22,7 +22,8 @@ related_entities: []
 related_drivers: [product-launches, operational-risk, conflicts]
 upstream_inputs: []
 downstream_uses: [vault/10-domains/tech-ai/chips-compute/00-overview.md]
-tags: [domain/tech-ai, subdomain/chips-compute, source/encyclopedia]---
+tags: [domain/tech-ai, subdomain/chips-compute, source/encyclopedia]
+---
 
 # Summary
 

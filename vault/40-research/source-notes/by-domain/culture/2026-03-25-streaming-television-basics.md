@@ -21,7 +21,7 @@ agent: orchestrator
 related_entities: [netflix]
 related_drivers: [media-narratives, product-launches]
 upstream_inputs: []
-downstream_uses: [vault/10-domains/culture/streaming/00-overview.md]
+downstream_uses: [vault/10-domains/culture/00-overview.md]
 tags: [domain/culture, subdomain/streaming, source/encyclopedia]---
 
 # Summary

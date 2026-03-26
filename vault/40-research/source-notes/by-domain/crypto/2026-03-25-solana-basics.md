@@ -21,7 +21,7 @@ agent: orchestrator
 related_entities: [solana]
 related_drivers: [product-launches, operational-risk, sentiment]
 upstream_inputs: []
-downstream_uses: [vault/10-domains/crypto/protocols/major-assets-overview.md, vault/20-entities/protocols/solana.md]
+downstream_uses: [vault/40-research/syntheses/by-topic/2026-03-25-major-crypto-assets-overview.md, vault/20-entities/protocols/solana.md]
 tags: [domain/crypto, entity/solana, source/protocol-overview]---
 
 # Summary

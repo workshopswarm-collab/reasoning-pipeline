@@ -21,8 +21,9 @@ agent: orchestrator
 related_entities: [tesla, waymo]
 related_drivers: [product-launches, operational-risk]
 upstream_inputs: []
-downstream_uses: [vault/10-domains/tech-ai/robotics/00-overview.md]
-tags: [domain/tech-ai, subdomain/robotics, source/encyclopedia]---
+downstream_uses: [vault/10-domains/tech-ai/00-overview.md]
+tags: [domain/tech-ai, subdomain/robotics, source/encyclopedia]
+---
 
 # Summary
 

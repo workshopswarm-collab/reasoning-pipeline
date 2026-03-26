@@ -21,8 +21,9 @@ agent: orchestrator
 related_entities: [federal-reserve]
 related_drivers: [macro, regulation]
 upstream_inputs: []
-downstream_uses: [vault/10-domains/economics/housing/00-overview.md]
-tags: [domain/economics, subdomain/housing, source/encyclopedia]---
+downstream_uses: [vault/10-domains/economics/00-overview.md]
+tags: [domain/economics, subdomain/housing, source/encyclopedia]
+---
 
 # Summary
 

@@ -22,7 +22,8 @@ related_entities: [united-states, china]
 related_drivers: [macro, regulation, conflicts]
 upstream_inputs: []
 downstream_uses: [vault/10-domains/economics/trade/00-overview.md]
-tags: [domain/economics, subdomain/trade, source/encyclopedia]---
+tags: [domain/economics, subdomain/trade, source/encyclopedia]
+---
 
 # Summary
 

@@ -22,7 +22,8 @@ related_entities: [saudi-arabia, opec]
 related_drivers: [conflicts, macro, regulation]
 upstream_inputs: []
 downstream_uses: [vault/10-domains/geopolitics/energy/00-overview.md]
-tags: [domain/geopolitics, subdomain/energy, source/encyclopedia]---
+tags: [domain/geopolitics, subdomain/energy, source/encyclopedia]
+---
 
 # Summary
 

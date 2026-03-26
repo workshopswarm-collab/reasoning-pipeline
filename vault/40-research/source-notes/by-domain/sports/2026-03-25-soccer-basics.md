@@ -22,7 +22,8 @@ related_entities: []
 related_drivers: [injuries-health, seasonality, sentiment]
 upstream_inputs: []
 downstream_uses: [vault/10-domains/sports/soccer/00-overview.md]
-tags: [domain/sports, subdomain/soccer, source/encyclopedia]---
+tags: [domain/sports, subdomain/soccer, source/encyclopedia]
+---
 
 # Summary
 

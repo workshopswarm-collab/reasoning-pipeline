@@ -18,6 +18,9 @@ Fresh-instance shortcut:
 
 This folder stores **stable domain overviews**.
 
+For rules on whether a new subdomain folder or `00-overview.md` should exist at all, follow:
+- `vault/00-system/governance/subdomain-overview-policy.md`
+
 Use it to answer:
 - what kind of area is this?
 - what are its main subareas, recurring objects, and background concepts?
@@ -62,9 +65,14 @@ If it is a reusable causal mechanism, put it in `30-drivers/`.
 
 Default structure:
 - one folder per major domain
-- one `00-overview.md` per domain or major subdomain when needed
+- one `00-overview.md` per domain by default
+- top-level domain `00-overview.md` files should normally leave `subdomain:` blank
+- add subdomain folders and subdomain `00-overview.md` files only when the area has distinct structural retrieval value
 - keep folders coarse and stable
 - avoid over-nesting unless coverage actually justifies it
+
+Do not create subdomain files and folders as symmetry placeholders.
+If a topic is still thin, keep it as a section inside the parent domain overview or in `40-research/` until it earns a standalone note.
 
 ## Writing rule
 

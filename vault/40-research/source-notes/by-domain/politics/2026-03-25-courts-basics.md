@@ -22,7 +22,8 @@ related_entities: [supreme-court-of-the-united-states]
 related_drivers: [legal, regulation]
 upstream_inputs: []
 downstream_uses: [vault/10-domains/politics/courts/00-overview.md]
-tags: [domain/politics, subdomain/courts, source/encyclopedia]---
+tags: [domain/politics, subdomain/courts, source/encyclopedia]
+---
 
 # Summary
 

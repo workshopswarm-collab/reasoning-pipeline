@@ -21,7 +21,7 @@ agent: orchestrator
 related_entities: [taylor-swift]
 related_drivers: [media-narratives, product-launches, sentiment]
 upstream_inputs: []
-downstream_uses: [vault/10-domains/culture/music/00-overview.md]
+downstream_uses: [vault/10-domains/culture/00-overview.md]
 tags: [domain/culture, subdomain/music, source/encyclopedia]---
 
 # Summary

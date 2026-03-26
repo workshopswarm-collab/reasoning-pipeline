@@ -17,7 +17,7 @@ upstream_inputs:
   - vault/40-research/source-notes/by-domain/crypto/2026-03-25-ton-basics.md
   - vault/40-research/source-notes/by-domain/crypto/2026-03-25-dogecoin-basics.md
 downstream_uses: []
-tags: [domain/crypto, subdomain/protocols, overview]
+tags: [domain/crypto, subdomain/protocols, type/synthesis, topic/major-assets]
 ---
 
 # Synthesis summary

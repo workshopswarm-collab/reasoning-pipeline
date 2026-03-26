@@ -12,7 +12,8 @@ upstream_inputs:
 downstream_uses: []
 related_entities: []
 related_drivers: []
-tags: [domain/culture, subdomain/celebrities, overview]---
+tags: [domain/culture, subdomain/celebrities, overview]
+---
 
 # Overview summary
 

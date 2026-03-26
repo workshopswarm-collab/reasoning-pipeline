@@ -12,7 +12,8 @@ upstream_inputs:
 downstream_uses: []
 related_entities: []
 related_drivers: []
-tags: [domain/tech-ai, subdomain/robotics, overview]---
+tags: [domain/tech-ai, subdomain/robotics, overview]
+---
 
 # Overview summary
 

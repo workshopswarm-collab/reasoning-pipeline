@@ -22,7 +22,8 @@ related_entities: []
 related_drivers: [macro]
 upstream_inputs: []
 downstream_uses: [vault/10-domains/economics/00-overview.md]
-tags: [domain/economics, driver/macro, source/encyclopedia]---
+tags: [domain/economics, driver/macro, source/encyclopedia]
+---
 
 # Summary
 

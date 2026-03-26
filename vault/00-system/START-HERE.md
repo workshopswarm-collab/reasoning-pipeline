@@ -21,6 +21,7 @@ Use this file if you are a fresh-instance LLM and need the minimum operating mod
 Read these next only if needed:
 - editing canonical entity notes -> `vault/00-system/governance/canonical-entity-policy.md`
 - editing `related_entities` / `related_drivers` -> `vault/00-system/governance/entity-linkage-framework.md`
+- creating or pruning a domain subfolder / subdomain overview -> `vault/00-system/governance/subdomain-overview-policy.md`
 - deciding whether research should be promoted into canon -> `vault/00-system/methodology/canonical-memory-workflow.md`
 - writing a new note -> `vault/00-system/templates/README.md` and the matching template
 

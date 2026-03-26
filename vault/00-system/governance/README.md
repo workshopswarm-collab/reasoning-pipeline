@@ -22,6 +22,7 @@ Fresh-instance shortcut:
 
 - `canonical-entity-policy.md` — primary rule for deciding what belongs in `20-entities/` versus `40-research/`, how to handle splits, and how to prune or archive low-signal material.
 - `entity-linkage-framework.md` — rule for how `related_entities` and `related_drivers` should behave, including the distinction between stable canonical body prose and more fluid graph-maintenance metadata.
+- `subdomain-overview-policy.md` — rule for when `10-domains/` subdomain folders and `00-overview.md` files should be created, rewritten, merged, archived, or avoided.
 
 ## Terminology note
 

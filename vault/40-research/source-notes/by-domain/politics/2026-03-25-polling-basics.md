@@ -22,7 +22,8 @@ related_entities: []
 related_drivers: [polling, sentiment]
 upstream_inputs: []
 downstream_uses: [vault/10-domains/politics/polling/00-overview.md]
-tags: [domain/politics, subdomain/polling, source/encyclopedia]---
+tags: [domain/politics, subdomain/polling, source/encyclopedia]
+---
 
 # Summary
 
