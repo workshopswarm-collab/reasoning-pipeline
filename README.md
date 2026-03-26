@@ -1,4 +1,4 @@
-# Quant Research Swarm Workspace
+# Prediction Quant Reasoning Pipeline Workspace
 
 This workspace is the control plane and memory substrate for a multi-agent prediction-market / quantitative research pipeline.
 
