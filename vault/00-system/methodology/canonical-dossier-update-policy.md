@@ -64,14 +64,16 @@ This is especially relevant when the current dossier's sections are no longer ac
 
 ### Default behavior
 
-Agents should write new information to the research layer, not directly to canonical dossiers.
+Researchers should write new information to the research layer, not directly to canonical dossiers.
 
 ### Canonical write authority
 
 Canonical dossiers should normally be updated only by:
 - orchestrator
-- synthesizer
+- decision-maker
 - a specifically designated canonical-memory maintainer
+
+Researchers may surface update candidates through research notes or dossier update proposals, but should not directly amend stable layers during ordinary pipeline operation.
 
 ### Promotion threshold
 

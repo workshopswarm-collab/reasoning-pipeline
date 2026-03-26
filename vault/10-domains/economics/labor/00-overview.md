@@ -1,19 +1,22 @@
 ---
-type: synthesis
+type: domain_overview
 domain: economics
 subdomain: labor
 topic: labor-market research overview
 date_created: 2026-03-25
-agent: synthesizer
+agent: orchestrator
 certainty: medium-high
 importance: high
 upstream_inputs:
   - vault/40-research/source-notes/by-domain/economics/2026-03-25-unemployment-basics.md
 downstream_uses: []
-tags: [domain/economics, subdomain/labor, overview]
----
+related_entities: []
+related_drivers: []
+tags: [domain/economics, subdomain/labor, overview]---
 
-# Synthesis summary
+# Overview summary
+
+## Why this subdomain matters
 
 Labor research should focus on unemployment, participation, wage pressure, structural mismatch, and how labor data changes policy expectations.
 

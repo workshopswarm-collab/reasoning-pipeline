@@ -6,7 +6,7 @@ entity: coinbase
 entity_type: company
 status: active
 last_updated: 2026-03-25
-related_entities: [circle, usdc]
+related_entities: [circle, usdc, sec, bitcoin, ethereum]
 related_drivers: [regulation, operational-risk, sentiment]
 tags: [entity/company, entity/coinbase, domain/crypto]
 ---
@@ -21,31 +21,35 @@ A public cryptocurrency exchange and infrastructure company with brokerage, cust
 
 ## Why it matters
 
-Coinbase is a bridge institution between crypto-native markets and regulated U.S. finance.
+Coinbase matters because it is one of the clearest bridges between crypto-native market structure and regulated U.S. financial infrastructure. Many crypto adoption, regulatory, listing, custody, and institutional-access questions are partly Coinbase questions.
 
 ## Current state
 
-Research should track trading activity, custody importance, product breadth, regulatory posture, institutional relevance, and dependence on crypto market cycles.
+Research should focus on trading volumes, custody and ETF-related positioning, product breadth, regulatory exposure, fee resilience, and whether Coinbase is strengthening as a platform or remaining overly tied to cyclical trading conditions. It is important to separate crypto-beta revenue from more durable infrastructure relevance.
 
 ## Key strengths
 
-- strongest U.S. exchange legitimacy profile
-- major custody and institutional relevance
-- public-company transparency relative to many crypto peers
+- strongest U.S.-regulated exchange brand in crypto
+- central relevance to custody, institutional access, and regulated market structure
+- useful bridge between crypto-native activity and public-market/institutional interpretation
+- can benefit when regulation rewards compliant or better-capitalized venues
 
 ## Key weaknesses
 
-- earnings and activity remain highly tied to crypto cycle conditions
-- U.S. regulatory exposure is a constant strategic constraint
+- revenue can remain highly cyclical and volume-dependent
+- regulatory and listing decisions can alter business quality quickly
+- public-market visibility can make Coinbase a noisy proxy for crypto as a whole rather than a clean company-specific object
 
 ## Important recent changes
 
-- continues to function as a major public-market proxy for U.S. crypto adoption and market structure
+- Coinbase remains one of the most important crypto companies because U.S. regulatory interpretation and institutional access still repeatedly flow through it
+- current significance depends on whether the business is becoming more infrastructure-like and less purely trading-cycle sensitive
 
 ## Open questions
 
-- how durable its moat is as market structure evolves
-- whether regulation ultimately strengthens or constrains its relative position
+- how durable non-transaction revenue and platform leverage really are
+- whether regulated positioning becomes a long-run moat or just a periodic advantage
+- how much Coinbase’s valuation should depend on crypto volume versus infrastructure centrality
 
 ## Related notes
 

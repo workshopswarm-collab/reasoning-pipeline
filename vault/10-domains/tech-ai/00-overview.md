@@ -1,19 +1,22 @@
 ---
-type: synthesis
+type: domain_overview
 domain: tech-ai
 subdomain: adoption-and-capabilities
 topic: tech-ai domain overview
 date_created: 2026-03-25
-agent: synthesizer
+agent: orchestrator
 certainty: medium
 importance: high
 upstream_inputs:
   - vault/40-research/source-notes/by-domain/tech-ai/2026-03-25-databricks-state-of-ai.md
 downstream_uses: []
-tags: [domain/tech-ai, overview]
----
+related_entities: []
+related_drivers: []
+tags: [domain/tech-ai, overview]---
 
-# Synthesis summary
+# Overview summary
+
+## Why this subdomain matters
 
 Tech & AI research should separate capability progress from adoption, infrastructure, governance, and commercialization.
 

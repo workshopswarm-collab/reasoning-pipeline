@@ -6,7 +6,7 @@ entity: denver-nuggets
 entity_type: team
 status: active
 last_updated: 2026-03-25
-related_entities: [nikola-jokic]
+related_entities: [nba, nikola-jokic]
 related_drivers: [injuries-health, leadership-changes]
 tags: [entity/team, entity/denver-nuggets, domain/sports, subdomain/basketball]
 ---

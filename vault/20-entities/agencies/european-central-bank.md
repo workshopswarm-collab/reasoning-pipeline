@@ -6,7 +6,7 @@ entity: european-central-bank
 entity_type: agency
 status: active
 last_updated: 2026-03-25
-related_entities: [european-union, germany, france]
+related_entities: [european-union, christine-lagarde, germany, france]
 related_drivers: [macro, inflation, trade]
 tags: [entity/agency, entity/european-central-bank, domain/economics]
 ---

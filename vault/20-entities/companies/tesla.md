@@ -6,7 +6,7 @@ entity: tesla
 entity_type: company
 status: active
 last_updated: 2026-03-25
-related_entities: [waymo, xai]
+related_entities: [elon-musk, waymo, xai, spacex]
 related_drivers: [product-launches, media-narratives, operational-risk]
 tags: [entity/company, entity/tesla, domain/tech-ai]
 ---
@@ -21,29 +21,35 @@ An electric-vehicle and energy company increasingly associated with autonomy and
 
 ## Why it matters
 
-Tesla matters because it is one of the clearest cases where product execution, autonomy narrative, and founder-driven attention all move valuation and technological interpretation.
+Tesla matters because it sits at the intersection of EV adoption, industrial execution, autonomy narratives, energy transition branding, and Elon Musk-driven attention. It is one of the clearest companies where product reality and narrative intensity constantly interact.
 
 ## Current state
 
-Research should focus on vehicle demand, margins, autonomy execution, robotaxi/robotics claims, manufacturing scale, and how much narrative is supported by deployment reality.
+Research should focus on vehicle demand, margins, autonomous-driving claims, China exposure, manufacturing execution, regulatory risk, and whether Tesla is being valued primarily as an auto company, AI/autonomy company, or cultural-technology platform. It is important to separate what is shipping from what is being promised.
 
 ## Key strengths
 
-- strong EV brand and manufacturing scale
-- major narrative leverage around autonomy and robotics
+- one of the strongest brand and attention engines in global equities and consumer technology
+- clear relevance across autos, autonomy, energy-transition, and Musk-driven narrative markets
+- useful bridge between operational performance and founder-driven expectation cycles
+- can reshape category perception beyond its own unit economics
 
 ## Key weaknesses
 
-- valuation and narrative can run ahead of realized deployment
-- execution and regulatory risk remain material in autonomy claims
+- narrative intensity can overwhelm sober industrial and margin analysis
+- execution, pricing, and autonomy claims often move on different clocks
+- founder attention can be both a strategic asset and a volatility amplifier
 
 ## Important recent changes
 
-- remains one of the most heavily narrative-sensitive large-cap tech/manufacturing entities
+- Tesla remains one of the most important companies for interpreting the EV and autonomy trade because the market still uses it as both category proxy and founder-narrative vehicle
+- current relevance increasingly depends on whether autonomy and AI framing can sustain valuation support if core auto economics weaken
 
 ## Open questions
 
-- how much of Tesla's robotics/autonomy thesis becomes durable operating reality
+- how much of Tesla’s valuation should be attributed to autos versus autonomy/AI optionality
+- whether current demand and margin dynamics are cyclical, competitive, or structurally weakening
+- how much founder-driven narrative is still additive rather than destabilizing
 
 ## Related notes
 

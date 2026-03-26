@@ -6,7 +6,7 @@ entity: spacex
 entity_type: company
 status: active
 last_updated: 2026-03-25
-related_entities: [xai]
+related_entities: [elon-musk, tesla, xai]
 related_drivers: [product-launches, operational-risk, conflicts]
 tags: [entity/company, entity/spacex, domain/tech-ai, domain/geopolitics]
 ---

@@ -6,7 +6,7 @@ entity: narendra-modi
 entity_type: person
 status: active
 last_updated: 2026-03-25
-related_entities: [india]
+related_entities: [india, united-states, china]
 related_drivers: [macro, diplomacy, media-narratives]
 tags: [entity/person, entity/narendra-modi, domain/geopolitics, domain/politics]
 ---

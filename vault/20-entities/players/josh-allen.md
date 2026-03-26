@@ -6,7 +6,7 @@ entity: josh-allen
 entity_type: player
 status: active
 last_updated: 2026-03-25
-related_entities: [nfl]
+related_entities: [nfl, buffalo-bills, patrick-mahomes]
 related_drivers: [injuries-health, sentiment]
 tags: [entity/player, entity/josh-allen, domain/sports, subdomain/football]
 ---

@@ -4,6 +4,7 @@ domain: crypto
 subdomain: regulation
 entity:
 topic: crypto market structure and regulation
+question:
 driver: regulation
 date_created: 2026-03-25
 source_name: Global Legal Insights
@@ -21,8 +22,7 @@ related_entities: []
 related_drivers: [regulation, institutions]
 upstream_inputs: []
 downstream_uses: [vault/10-domains/crypto/00-overview.md]
-tags: [domain/crypto, driver/regulation, source/legal-overview]
----
+tags: [domain/crypto, driver/regulation, source/legal-overview]---
 
 # Summary
 
@@ -48,6 +48,10 @@ GLI frames 2025 as a major transition year for crypto, emphasizing movement from
 - Specific policy interpretations may reflect a legal-practitioner framing.
 
 ## Why this source may matter
+
+It is useful as a high-level map of the current crypto research terrain: regulation, institutional adoption, jurisdictional divergence, and security risk.
+
+## Possible impact on the question
 
 It is useful as a high-level map of the current crypto research terrain: regulation, institutional adoption, jurisdictional divergence, and security risk.
 

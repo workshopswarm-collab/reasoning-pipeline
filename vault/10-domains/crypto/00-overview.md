@@ -1,19 +1,22 @@
 ---
-type: synthesis
+type: domain_overview
 domain: crypto
 subdomain: market-structure
 topic: crypto domain overview
 date_created: 2026-03-25
-agent: synthesizer
+agent: orchestrator
 certainty: medium
 importance: high
 upstream_inputs:
   - vault/40-research/source-notes/by-domain/crypto/2026-03-25-global-legal-insights-crypto-regulation.md
 downstream_uses: []
-tags: [domain/crypto, overview]
----
+related_entities: []
+related_drivers: []
+tags: [domain/crypto, overview]---
 
-# Synthesis summary
+# Overview summary
+
+## Why this subdomain matters
 
 Crypto research should be organized around a few recurring pillars: protocols and tokens, market structure, regulation, institutional adoption, and security risk.
 

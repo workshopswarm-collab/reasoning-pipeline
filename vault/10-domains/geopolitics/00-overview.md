@@ -1,19 +1,22 @@
 ---
-type: synthesis
+type: domain_overview
 domain: geopolitics
 subdomain: global-power-and-conflict
 topic: geopolitics domain overview
 date_created: 2026-03-25
-agent: synthesizer
+agent: orchestrator
 certainty: medium
 importance: high
 upstream_inputs:
   - vault/40-research/source-notes/by-domain/geopolitics/2026-03-25-iea-energy-geopolitics.md
 downstream_uses: []
-tags: [domain/geopolitics, overview]
----
+related_entities: []
+related_drivers: []
+tags: [domain/geopolitics, overview]---
 
-# Synthesis summary
+# Overview summary
+
+## Why this subdomain matters
 
 Geopolitics research should be built around states, alliances, conflicts, sanctions, diplomacy, and strategic resource systems, especially energy and logistics.
 

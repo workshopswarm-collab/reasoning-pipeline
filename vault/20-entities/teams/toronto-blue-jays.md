@@ -6,7 +6,7 @@ entity: toronto-blue-jays
 entity_type: team
 status: active
 last_updated: 2026-03-25
-related_entities: [vladimir-guerrero-jr]
+related_entities: [mlb, vladimir-guerrero-jr]
 related_drivers: [injuries-health, seasonality, leadership-changes]
 tags: [entity/team, entity/toronto-blue-jays, domain/sports, subdomain/baseball]
 ---

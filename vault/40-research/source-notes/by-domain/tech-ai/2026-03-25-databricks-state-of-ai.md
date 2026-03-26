@@ -4,6 +4,7 @@ domain: tech-ai
 subdomain: enterprise-adoption
 entity:
 topic: state of AI adoption
+question:
 driver: product-launches
 date_created: 2026-03-25
 source_name: Databricks
@@ -21,8 +22,7 @@ related_entities: []
 related_drivers: [product-launches, regulation, operational-risk]
 upstream_inputs: []
 downstream_uses: [vault/10-domains/tech-ai/00-overview.md]
-tags: [domain/tech-ai, subdomain/enterprise-adoption, source/industry-report]
----
+tags: [domain/tech-ai, subdomain/enterprise-adoption, source/industry-report]---
 
 # Summary
 
@@ -47,6 +47,10 @@ This report frames AI as shifting from experimentation into production deploymen
 - It is less useful for open research or frontier-model geopolitics by itself.
 
 ## Why this source may matter
+
+It highlights the operational and adoption variables that often drive tech-and-AI markets more than raw model capability alone.
+
+## Possible impact on the question
 
 It highlights the operational and adoption variables that often drive tech-and-AI markets more than raw model capability alone.
 

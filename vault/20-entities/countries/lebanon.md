@@ -6,7 +6,7 @@ entity: lebanon
 entity_type: country
 status: active
 last_updated: 2026-03-25
-related_entities: [israel, iran]
+related_entities: [israel, iran, israel-defense-forces]
 related_drivers: [conflicts, sentiment, macro]
 tags: [entity/country, entity/lebanon, domain/geopolitics]
 ---

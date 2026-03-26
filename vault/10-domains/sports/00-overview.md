@@ -1,19 +1,22 @@
 ---
-type: synthesis
+type: domain_overview
 domain: sports
 subdomain: leagues-and-performance
 topic: sports domain overview
 date_created: 2026-03-25
-agent: synthesizer
+agent: orchestrator
 certainty: medium-high
 importance: high
 upstream_inputs:
   - vault/40-research/source-notes/by-domain/sports/2026-03-25-sports-reference-stats-overview.md
 downstream_uses: []
-tags: [domain/sports, overview]
----
+related_entities: []
+related_drivers: []
+tags: [domain/sports, overview]---
 
-# Synthesis summary
+# Overview summary
+
+## Why this subdomain matters
 
 Sports research should be structured around leagues, teams, players, schedules, standings, injuries, transactions, and performance metrics.
 

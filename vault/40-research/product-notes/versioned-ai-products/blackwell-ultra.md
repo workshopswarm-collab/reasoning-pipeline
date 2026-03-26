@@ -1,51 +1,52 @@
 ---
-type: entity_overview
+type: product_note
 domain: tech-ai
-subdomain: chips-and-compute-products
+subdomain: ai-infrastructure-products
 entity: blackwell-ultra
-entity_type: product
-status: active
-last_updated: 2026-03-25
-related_entities: [nvidia]
-related_drivers: [product-launches, operational-risk, trade]
-tags: [entity/product, entity/blackwell-ultra, domain/tech-ai]
+topic: versioned infrastructure product note
+driver: product-launches
+date_created: 2026-03-25
+agent: orchestrator
+related_entities: [blackwell, nvidia]
+related_drivers: [product-launches, compute, sentiment]
+upstream_inputs: []
+downstream_uses: []
+tags: [research/product-note, product/blackwell-ultra, domain/tech-ai, status/versioned]
 ---
 
 # Summary
 
-Blackwell Ultra is a high-yield AI compute product because successive accelerator generations remain central to whether AI demand can keep scaling economically.
+Working note for tracking Blackwell Ultra as a specific infrastructure release in NVIDIA’s AI hardware roadmap.
 
-## What this entity is
+## Research focus
 
-A high-end AI compute product tier associated with NVIDIA's advanced accelerator roadmap.
+Track release-specific evidence about performance claims, deployment timing, hyperscaler demand, customer commentary, and whether this release changes commercial expectations for NVIDIA AI infrastructure.
 
-## Why it matters
+## Signals to monitor
 
-Blackwell Ultra matters because more powerful chip tiers shape hyperscaler spend, model economics, and perceptions of where the next compute bottleneck will appear.
+- claimed performance versus practical deployment evidence
+- customer demand and order commentary
+- hyperscaler adoption signals
+- production timing and supply constraints
+- competitive comparison with adjacent accelerator products
 
-## Current state
+## Current hypotheses
 
-Research should focus on performance claims, deployment timing, supply constraints, customer demand, and whether top-tier accelerators are creating real step-changes in AI economics.
+- infrastructure release cycles can move markets before real deployment evidence catches up
+- customer demand perception may matter as much as raw technical claims in the short run
+- version-specific narratives may be overtaken quickly by later roadmap updates
 
-## Key strengths
+## What is uncertain
 
-- direct relevance to compute bottlenecks and hyperscaler capex narratives
-- useful product-level extension of next-generation accelerator competition
-- can materially affect expectations about AI scaling capacity
+- how much of the market reaction reflects real deployment versus forward narrative
+- whether supply and manufacturing constraints alter the commercial impact
+- how long this specific version remains the relevant object of analysis
 
-## Key weaknesses
+## How to use this note later
 
-- roadmap excitement can outrun real deployment and throughput impact
-- product branding can be used more as signaling than as immediate operating reality
-
-## Important recent changes
-
-- remains a useful product-layer entity for advanced AI accelerator competition analysis
-
-## Open questions
-
-- how much future AI scaling will depend on ever-higher-end accelerator tiers versus software efficiency and infrastructure redesign
+Use this file to compare roadmap-period expectations with later evidence on deployment, customer demand, timing, and commercial impact.
 
 ## Related notes
 
-- Blackwell, NVIDIA, and chips-compute notes
+- Canonical context lives in `blackwell` and `nvidia`
+- Add dated roadmap, deployment, and demand observations here as they appear

@@ -4,6 +4,7 @@ domain: crypto
 subdomain: protocols
 entity: bitcoin
 topic: bitcoin protocol basics
+question:
 driver: regulation
 date_created: 2026-03-25
 source_name: Bitcoin / Wikipedia
@@ -21,8 +22,7 @@ related_entities: [bitcoin]
 related_drivers: [regulation, macro, operational-risk]
 upstream_inputs: []
 downstream_uses: [vault/10-domains/crypto/protocols/major-assets-overview.md, vault/20-entities/protocols/bitcoin.md]
-tags: [domain/crypto, entity/bitcoin, source/protocol-overview]
----
+tags: [domain/crypto, entity/bitcoin, source/protocol-overview]---
 
 # Summary
 
@@ -45,6 +45,10 @@ Bitcoin is the original decentralized cryptocurrency, organized around proof-of-
 - Encyclopedia framing is broad and includes mixed historical detail.
 
 ## Why this source may matter
+
+Bitcoin is a canonical anchor asset for macro-sensitive crypto markets, ETF narratives, treasury adoption, and digital-gold debates.
+
+## Possible impact on the question
 
 Bitcoin is a canonical anchor asset for macro-sensitive crypto markets, ETF narratives, treasury adoption, and digital-gold debates.
 

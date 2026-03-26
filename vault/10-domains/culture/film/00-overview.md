@@ -1,19 +1,22 @@
 ---
-type: synthesis
+type: domain_overview
 domain: culture
 subdomain: film
 topic: film research overview
 date_created: 2026-03-25
-agent: synthesizer
+agent: orchestrator
 certainty: medium
 importance: high
 upstream_inputs:
   - vault/40-research/source-notes/by-domain/culture/2026-03-25-box-office-mojo-film-metrics.md
 downstream_uses: []
-tags: [domain/culture, subdomain/film, overview]
----
+related_entities: []
+related_drivers: []
+tags: [domain/culture, subdomain/film, overview]---
 
-# Synthesis summary
+# Overview summary
+
+## Why this subdomain matters
 
 Film research should focus on release timing, wide vs limited distribution, franchise/narrative strength, and how commercial schedule changes interact with audience attention.
 

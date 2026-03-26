@@ -6,7 +6,7 @@ entity: volodymyr-zelenskyy
 entity_type: person
 status: active
 last_updated: 2026-03-25
-related_entities: [ukraine, united-states, european-union]
+related_entities: [ukraine, united-states, european-union, russia]
 related_drivers: [conflicts, diplomacy, media-narratives]
 tags: [entity/person, entity/volodymyr-zelenskyy, domain/geopolitics]
 ---

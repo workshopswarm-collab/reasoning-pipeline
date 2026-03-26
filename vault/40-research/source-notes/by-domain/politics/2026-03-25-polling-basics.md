@@ -4,6 +4,7 @@ domain: politics
 subdomain: polling
 entity:
 topic: polling basics
+question:
 driver: polling
 date_created: 2026-03-25
 source_name: Wikipedia
@@ -21,8 +22,7 @@ related_entities: []
 related_drivers: [polling, sentiment]
 upstream_inputs: []
 downstream_uses: [vault/10-domains/politics/polling/00-overview.md]
-tags: [domain/politics, subdomain/polling, source/encyclopedia]
----
+tags: [domain/politics, subdomain/polling, source/encyclopedia]---
 
 # Summary
 
@@ -36,7 +36,21 @@ Polling is a sampling-based method for estimating public opinion and should be t
 
 ## Why this source may matter
 
-Polling is central to elections and public-opinion markets, but it has to be handled as measurement rather than truth.
+Useful as shared baseline because election research often overreads toplines without grounding in what polls actually measure.
+
+## Possible impact on the question
+
+Helpful when a political market depends on whether polling should be trusted, discounted, or combined with other signals.
+
+## Evidence directly stated by source
+
+- The source directly explains what polling is, how polls are conducted, and what sampling and weighting are trying to accomplish.
+- It supports baseline claims about what polls can and cannot tell you.
+
+## What is uncertain
+
+- It does not by itself tell you whether current polls are accurate, well-designed, or being interpreted properly in a specific race.
+- Polling error and turnout mismatch remain case-specific.
 
 ## Reliability notes
 

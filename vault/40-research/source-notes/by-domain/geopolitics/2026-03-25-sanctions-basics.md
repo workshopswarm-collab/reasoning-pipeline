@@ -4,6 +4,7 @@ domain: geopolitics
 subdomain: sanctions
 entity:
 topic: international sanctions basics
+question:
 driver: conflicts
 date_created: 2026-03-25
 source_name: Wikipedia
@@ -21,8 +22,7 @@ related_entities: []
 related_drivers: [conflicts, regulation, macro]
 upstream_inputs: []
 downstream_uses: [vault/10-domains/geopolitics/sanctions/00-overview.md]
-tags: [domain/geopolitics, subdomain/sanctions, source/encyclopedia]
----
+tags: [domain/geopolitics, subdomain/sanctions, source/encyclopedia]---
 
 # Summary
 
@@ -36,7 +36,21 @@ Sanctions are a major geopolitical mechanism for coercion short of force, affect
 
 ## Why this source may matter
 
-Sanctions are recurring drivers in country, conflict, energy, and trade-related markets.
+Useful as general framing because sanctions questions often get discussed imprecisely without distinguishing design, enforcement, and evasion.
+
+## Possible impact on the question
+
+Helpful when a geopolitical or economic market depends on whether sanctions risk is symbolic, operationally meaningful, or likely to escalate.
+
+## Evidence directly stated by source
+
+- The source directly explains what sanctions are, which instruments are commonly used, and how they are supposed to alter state or commercial behavior.
+- It supports baseline claims about sanctions as a policy tool.
+
+## What is uncertain
+
+- It does not by itself indicate whether sanctions are effective in a given case or how quickly they will bite.
+- Legal design and practical enforcement can diverge sharply.
 
 ## Reliability notes
 

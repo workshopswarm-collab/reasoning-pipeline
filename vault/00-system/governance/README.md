@@ -11,9 +11,21 @@ tags: [system/index, vault/governance]
 
 This folder contains the rules that govern how canonical memory is maintained.
 
+This README is subordinate to `vault/00-system/README.md`. If there is any conflict, follow the higher-level 00-system rules.
+
+Fresh-instance shortcut:
+- read `vault/00-system/START-HERE.md` first
+- read `canonical-entity-policy.md` before `entity-linkage-framework.md`
+- read this folder only when you need canon/research boundary or linkage-policy detail
+
 ## Active policies
 
 - `canonical-entity-policy.md` — primary rule for deciding what belongs in `20-entities/` versus `40-research/`, how to handle splits, and how to prune or archive low-signal material.
+- `entity-linkage-framework.md` — rule for how `related_entities` and `related_drivers` should behave, including the distinction between stable canonical body prose and more fluid graph-maintenance metadata.
+
+## Terminology note
+
+In governance documents, a **dossier** means a canonical entity note in `vault/20-entities/`, not a research note.
 
 ## Scope
 

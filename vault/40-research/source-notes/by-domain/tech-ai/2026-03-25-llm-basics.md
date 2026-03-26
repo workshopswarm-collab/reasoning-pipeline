@@ -4,6 +4,7 @@ domain: tech-ai
 subdomain: models
 entity:
 topic: large language model basics
+question:
 driver: product-launches
 date_created: 2026-03-25
 source_name: Wikipedia
@@ -21,8 +22,7 @@ related_entities: []
 related_drivers: [product-launches, regulation, operational-risk]
 upstream_inputs: []
 downstream_uses: [vault/10-domains/tech-ai/models/00-overview.md]
-tags: [domain/tech-ai, subdomain/models, source/encyclopedia]
----
+tags: [domain/tech-ai, subdomain/models, source/encyclopedia]---
 
 # Summary
 
@@ -36,7 +36,21 @@ Large language models are now the core technical object for many AI markets beca
 
 ## Why this source may matter
 
-LLM markets are not only about raw capability; they are also about training scale, alignment, benchmarking, and product integration.
+Useful as common framing when product and benchmark discussion starts assuming too much unstated technical context.
+
+## Possible impact on the question
+
+Helpful when an AI market depends on whether a product claim reflects a real LLM capability difference or mostly branding and launch framing.
+
+## Evidence directly stated by source
+
+- The source directly explains what large language models are and how training/inference relate to model behavior.
+- It supports baseline claims about the technology category itself.
+
+## What is uncertain
+
+- It does not tell you which model family is best, most profitable, or most durable in adoption.
+- Benchmark quality, workflow utility, and commercial success can diverge widely.
 
 ## Reliability notes
 

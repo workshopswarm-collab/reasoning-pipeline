@@ -6,7 +6,7 @@ entity: boston-celtics
 entity_type: team
 status: active
 last_updated: 2026-03-25
-related_entities: [jayson-tatum]
+related_entities: [nba, jayson-tatum]
 related_drivers: [injuries-health, leadership-changes]
 tags: [entity/team, entity/boston-celtics, domain/sports, subdomain/basketball]
 ---

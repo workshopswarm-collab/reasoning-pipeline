@@ -4,6 +4,7 @@ domain: culture
 subdomain: celebrity-and-media
 entity:
 topic: celebrity culture and media dynamics
+question:
 driver: media-narratives
 date_created: 2026-03-25
 source_name: Wikipedia
@@ -21,8 +22,7 @@ related_entities: []
 related_drivers: [media-narratives, sentiment]
 upstream_inputs: []
 downstream_uses: [vault/10-domains/culture/00-overview.md]
-tags: [domain/culture, driver/media-narratives, source/encyclopedia]
----
+tags: [domain/culture, driver/media-narratives, source/encyclopedia]---
 
 # Summary
 
@@ -46,6 +46,10 @@ This source describes celebrity culture as mass exposure to public figures' pers
 - It explains the phenomenon but does not directly measure narrative impact.
 
 ## Why this source may matter
+
+It helps define culture markets as narrative-driven systems where attention, virality, branding, and audience response can matter as much as fundamentals.
+
+## Possible impact on the question
 
 It helps define culture markets as narrative-driven systems where attention, virality, branding, and audience response can matter as much as fundamentals.
 

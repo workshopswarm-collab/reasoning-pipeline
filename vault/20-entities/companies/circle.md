@@ -6,7 +6,7 @@ entity: circle
 entity_type: company
 status: active
 last_updated: 2026-03-25
-related_entities: [coinbase, tether, usdc]
+related_entities: [usdc, circle-internet-group, coinbase, tether]
 related_drivers: [regulation, macro, product-launches]
 tags: [entity/company, entity/circle, entity/usdc, domain/crypto]
 ---

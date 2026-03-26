@@ -21,30 +21,35 @@ Japan's central bank, responsible for monetary policy and key financial-stabilit
 
 ## Why it matters
 
-The BoJ matters because shifts in Japanese rates and yield control can have global ripple effects across FX, bonds, and risk sentiment.
+The Bank of Japan matters because it sits at the center of yield-curve control legacy, yen sensitivity, inflation normalization, and the challenge of exiting extraordinary monetary accommodation without destabilizing markets. Many Japan and global carry/trade questions are partly BOJ questions.
 
 ## Current state
 
-Research should focus on normalization pace, inflation durability, yen sensitivity, yield-curve dynamics, and whether Japan is exiting exceptional policy or only adjusting at the margin.
+Research should focus on inflation durability, wage growth, yen weakness or strength, normalization pace, bond-market function, and whether the BOJ is moving toward a more normal regime or still constrained by its own long policy history. It is important to separate symbolic policy shifts from real regime change.
 
 ## Key strengths
 
-- strong relevance to FX, rates, and global liquidity narratives
-- useful signal on how long ultra-loose monetary regimes can persist
-- important bridge between domestic Japanese conditions and global capital flows
+- uniquely important institution for understanding Japan’s monetary regime and spillover into global rates and FX
+- strong relevance to yen, carry, bond-market function, and global liquidity interpretation
+- useful bridge between domestic macro normalization and international financial spillovers
+- can move global markets even through small policy adjustments because expectations are so path-dependent
 
 ## Key weaknesses
 
-- policy shifts can be subtle and easy to overinterpret
-- global spillovers can exceed domestic narrative visibility
+- long history of exceptional policy can make true regime change hard to identify cleanly
+- markets can overreact to symbolic tweaks or underreact to real shifts in path
+- domestic inflation and wage signals can remain ambiguous relative to policy urgency
 
 ## Important recent changes
 
-- remains one of the most important central banks for global macro positioning analysis
+- the BOJ remains one of the most important central banks because the transition away from ultra-accommodation, if real, has global implications beyond Japan alone
+- current significance depends on whether normalization is durable enough to alter yen, rates, and carry assumptions structurally
 
 ## Open questions
 
-- how far BoJ normalization can proceed before destabilizing broader market carry and liquidity conditions
+- how durable inflation and wage dynamics really are in Japan
+- whether the BOJ is executing a true regime shift or a cautious symbolic adjustment cycle
+- how much global macro positioning still underestimates BOJ-driven spillover risk
 
 ## Related notes
 

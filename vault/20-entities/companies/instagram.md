@@ -6,7 +6,7 @@ entity: instagram
 entity_type: company
 status: active
 last_updated: 2026-03-25
-related_entities: [meta, facebook, tiktok]
+related_entities: [meta, mark-zuckerberg, facebook, tiktok]
 related_drivers: [media-narratives, sentiment, product-launches]
 tags: [entity/company, entity/instagram, domain/culture]
 ---

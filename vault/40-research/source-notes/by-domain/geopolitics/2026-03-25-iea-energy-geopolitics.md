@@ -4,6 +4,7 @@ domain: geopolitics
 subdomain: energy-security
 entity:
 topic: geopolitical tension and energy security
+question:
 driver: conflicts
 date_created: 2026-03-25
 source_name: International Energy Agency
@@ -21,8 +22,7 @@ related_entities: []
 related_drivers: [conflicts, macro, regulation]
 upstream_inputs: []
 downstream_uses: [vault/10-domains/geopolitics/00-overview.md]
-tags: [domain/geopolitics, subdomain/energy-security, source/policy-analysis]
----
+tags: [domain/geopolitics, subdomain/energy-security, source/policy-analysis]---
 
 # Summary
 
@@ -45,6 +45,10 @@ The IEA argues that geopolitical fragmentation increasingly interacts with energ
 - This is energy-centered geopolitics, not a complete overview of all geopolitical drivers.
 
 ## Why this source may matter
+
+Energy flows, chokepoints, supply resilience, and state industrial capacity are recurring drivers in geopolitical markets.
+
+## Possible impact on the question
 
 Energy flows, chokepoints, supply resilience, and state industrial capacity are recurring drivers in geopolitical markets.
 

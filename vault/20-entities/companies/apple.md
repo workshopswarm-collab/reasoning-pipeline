@@ -6,7 +6,7 @@ entity: apple
 entity_type: company
 status: active
 last_updated: 2026-03-25
-related_entities: [alphabet, microsoft]
+related_entities: [tim-cook, tsmc, alphabet, microsoft]
 related_drivers: [product-launches, regulation, operational-risk]
 tags: [entity/company, entity/apple, domain/tech-ai]
 ---

@@ -1,20 +1,23 @@
 ---
-type: synthesis
+type: domain_overview
 domain: culture
 subdomain: media-and-attention
 topic: culture domain overview
 date_created: 2026-03-25
-agent: synthesizer
+agent: orchestrator
 certainty: medium
 importance: high
 upstream_inputs:
   - vault/40-research/source-notes/by-domain/culture/2026-03-25-wikipedia-celebrity-culture.md
   - vault/40-research/source-notes/by-domain/culture/2026-03-25-wikipedia-streaming-media.md
 downstream_uses: []
-tags: [domain/culture, overview]
----
+related_entities: []
+related_drivers: []
+tags: [domain/culture, overview]---
 
-# Synthesis summary
+# Overview summary
+
+## Why this subdomain matters
 
 Culture markets are usually attention markets. Research should focus on celebrity, narrative propagation, release/distribution infrastructure, audience response, and virality.
 

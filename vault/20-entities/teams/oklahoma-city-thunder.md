@@ -6,7 +6,7 @@ entity: oklahoma-city-thunder
 entity_type: team
 status: active
 last_updated: 2026-03-25
-related_entities: [shai-gilgeous-alexander]
+related_entities: [nba, shai-gilgeous-alexander]
 related_drivers: [injuries-health, leadership-changes]
 tags: [entity/team, entity/oklahoma-city-thunder, domain/sports, subdomain/basketball]
 ---

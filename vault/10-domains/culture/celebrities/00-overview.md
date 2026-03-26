@@ -1,19 +1,22 @@
 ---
-type: synthesis
+type: domain_overview
 domain: culture
 subdomain: celebrities
 topic: celebrity research overview
 date_created: 2026-03-25
-agent: synthesizer
+agent: orchestrator
 certainty: medium
 importance: high
 upstream_inputs:
   - vault/40-research/source-notes/by-domain/culture/2026-03-25-celebrity-basics.md
 downstream_uses: []
-tags: [domain/culture, subdomain/celebrities, overview]
----
+related_entities: []
+related_drivers: []
+tags: [domain/culture, subdomain/celebrities, overview]---
 
-# Synthesis summary
+# Overview summary
+
+## Why this subdomain matters
 
 Celebrity research should focus on public attention, narrative volatility, brand economics, and platform/media amplification.
 

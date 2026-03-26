@@ -1,19 +1,22 @@
 ---
-type: synthesis
+type: domain_overview
 domain: economics
 subdomain: rates
 topic: rates research overview
 date_created: 2026-03-25
-agent: synthesizer
+agent: orchestrator
 certainty: medium-high
 importance: high
 upstream_inputs:
   - vault/40-research/source-notes/by-domain/economics/2026-03-25-interest-rate-basics.md
 downstream_uses: []
-tags: [domain/economics, subdomain/rates, overview]
----
+related_entities: []
+related_drivers: []
+tags: [domain/economics, subdomain/rates, overview]---
 
-# Synthesis summary
+# Overview summary
+
+## Why this subdomain matters
 
 Rates research should focus on policy rates, real-vs-nominal dynamics, transmission into credit and valuation, and how rate expectations reshape macro narratives.
 

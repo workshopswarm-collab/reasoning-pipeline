@@ -6,7 +6,7 @@ entity: vladimir-guerrero-jr
 entity_type: player
 status: active
 last_updated: 2026-03-25
-related_entities: [toronto-blue-jays]
+related_entities: [mlb, toronto-blue-jays, aaron-judge]
 related_drivers: [injuries-health, sentiment]
 tags: [entity/player, entity/vladimir-guerrero-jr, domain/sports, subdomain/baseball]
 ---

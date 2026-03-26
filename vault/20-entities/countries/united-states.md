@@ -6,7 +6,7 @@ entity: united-states
 entity_type: country
 status: active
 last_updated: 2026-03-25
-related_entities: [china, federal-reserve, sec, republican-party, democratic-party]
+related_entities: [donald-trump, kamala-harris, republican-party, democratic-party, federal-reserve, sec, china]
 related_drivers: [macro, regulation, conflicts, polling]
 tags: [entity/country, entity/united-states, domain/geopolitics, domain/politics, domain/economics]
 ---
@@ -21,29 +21,34 @@ A federal republic and global superpower with outsized influence in geopolitics,
 
 ## Why it matters
 
-U.S. institutions, elections, regulation, rates policy, and foreign-policy choices propagate into many other domains.
+The United States matters because it is the central political, macro-financial, military, and technological state anchor for much of the entire vault. Many markets across politics, macro, crypto, AI, and geopolitics ultimately run through U.S. institutions, policy choices, and public sentiment.
 
 ## Current state
 
-Research should focus on institutions, elections, macro policy, capital-market regulation, AI/tech competition, and foreign-policy posture.
+Research should focus on election dynamics, fiscal and monetary interaction, institutional legitimacy, geopolitical posture, industrial policy, and whether domestic polarization is weakening the state’s strategic coherence. It is important to separate long-run structural power from short-run political noise.
 
 ## Key strengths
 
-- unmatched institutional and financial-market centrality
-- deep influence across technology, defense, and global economics
+- unmatched relevance across politics, economics, geopolitics, technology, and markets
+- central institutional anchor for global liquidity, security architecture, and platform regulation
+- unusually strong cross-domain retrieval value because so many forecasts depend on U.S. choices
 
 ## Key weaknesses
 
-- domestic political polarization can create institutional volatility
-- global exposure means many external shocks feed back into U.S. decision-making
+- high salience can make U.S. notes too generic unless linked to specific institutions or mechanisms
+- domestic polarization can distort clean interpretation of state capacity and legitimacy
+- media saturation creates constant risk of overreacting to noise
 
 ## Important recent changes
 
-- remains the core reference state across most market-relevant global questions
+- the United States remains the single most important country entity in the vault because electoral, macro, geopolitical, and AI-platform questions all continue to run through it
+- current relevance is heightened where domestic polarization and global system leadership interact rather than appearing as separate issues
 
 ## Open questions
 
-- how domestic political conflict affects external strategic coherence
+- how much domestic polarization is reducing strategic and institutional coherence
+- whether U.S. macro and political dominance remain mutually reinforcing or increasingly in tension
+- which domains are most vulnerable to a gap between formal power and practical execution
 
 ## Related notes
 

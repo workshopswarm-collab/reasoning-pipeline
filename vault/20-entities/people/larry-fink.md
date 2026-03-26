@@ -6,7 +6,7 @@ entity: larry-fink
 entity_type: person
 status: active
 last_updated: 2026-03-25
-related_entities: [blackrock]
+related_entities: [blackrock, bitcoin, coinbase]
 related_drivers: [macro, sentiment, trade]
 tags: [entity/person, entity/larry-fink, domain/economics]
 ---

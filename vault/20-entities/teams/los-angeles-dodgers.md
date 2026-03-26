@@ -6,7 +6,7 @@ entity: los-angeles-dodgers
 entity_type: team
 status: active
 last_updated: 2026-03-25
-related_entities: [shohei-ohtani, mookie-betts, mlb]
+related_entities: [mlb, shohei-ohtani, mookie-betts]
 related_drivers: [injuries-health, seasonality, sentiment]
 tags: [entity/team, entity/los-angeles-dodgers, domain/sports, subdomain/baseball]
 ---

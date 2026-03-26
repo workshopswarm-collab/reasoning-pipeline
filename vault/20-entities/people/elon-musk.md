@@ -6,7 +6,7 @@ entity: elon-musk
 entity_type: person
 status: active
 last_updated: 2026-03-25
-related_entities: [tesla, spacex, xai]
+related_entities: [tesla, spacex, xai, openai]
 related_drivers: [media-narratives, product-launches, regulation]
 tags: [entity/person, entity/elon-musk, domain/tech-ai, domain/culture]
 ---

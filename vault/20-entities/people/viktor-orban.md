@@ -21,30 +21,35 @@ A major European political leader whose significance comes from durable national
 
 ## Why it matters
 
-Orbán matters because he acts as both a domestic leader and a symbol of internal European resistance to deeper bloc cohesion.
+Orban matters because he is one of the clearest leader-centric political figures in Europe, linking nationalism, institutional entrenchment, EU conflict, and electoral durability in a single person. Many Hungary and EU-friction markets are effectively questions about Orban’s staying power and strategic room.
 
 ## Current state
 
-Research should focus on EU bargaining, domestic control, migration and culture politics, external alignment choices, and whether his model remains durable or increasingly constrained.
+Research should focus on electoral durability, opposition threat, EU pressure, domestic patronage structure, Russia-facing posture, and whether Orban’s governing model is weakening or adapting. It is important to separate headline opposition momentum from institutional entrenchment.
 
 ## Key strengths
 
-- strong relevance to EU cohesion and nationalist-governance analysis
-- useful benchmark for illiberal but durable democratic-backsliding narratives
-- can shape bloc decision-making through strategic veto or friction leverage
+- unusually strong personal centrality to national political system interpretation
+- useful bridge between domestic governance and EU-level conflict
+- can sustain political durability through organizational and institutional advantage rather than only popular enthusiasm
+- central anchor for understanding nationalist-incumbent resilience in Europe
 
 ## Key weaknesses
 
-- symbolic salience can exceed actual structural leverage in some contexts
-- domestic durability may obscure mounting external constraints
+- leader-centric systems can look more stable than they are if institutional fatigue builds below the surface
+- external pressure from EU and economic conditions can interact unpredictably with domestic control
+- public narratives may overread short-run opposition gains or overread regime permanence
 
 ## Important recent changes
 
-- remains a key figure in European cohesion and nationalist-governance analysis
+- Orban remains one of the most consequential European leaders for market interpretation because Hungary’s political model still hinges heavily on his durability
+- current significance depends on whether opposition consolidation and EU pressure are becoming truly binding or remain containable
 
 ## Open questions
 
-- how much longer Orbán-style leverage can shape EU behavior under growing internal and external pressure
+- how durable his governing system remains under stronger opposition challenge
+- whether EU pressure can materially weaken domestic political resilience
+- how much current market interpretation overweights either incumbency permanence or imminent vulnerability
 
 ## Related notes
 

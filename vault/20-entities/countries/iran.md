@@ -6,7 +6,7 @@ entity: iran
 entity_type: country
 status: active
 last_updated: 2026-03-25
-related_entities: [ali-khamenei, israel, saudi-arabia]
+related_entities: [ali-khamenei, israel, saudi-arabia, united-states, israel-defense-forces]
 related_drivers: [conflicts, sanctions, diplomacy]
 tags: [entity/country, entity/iran, domain/geopolitics]
 ---

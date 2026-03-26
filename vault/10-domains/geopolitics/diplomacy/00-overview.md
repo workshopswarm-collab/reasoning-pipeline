@@ -1,19 +1,22 @@
 ---
-type: synthesis
+type: domain_overview
 domain: geopolitics
 subdomain: diplomacy
 topic: diplomacy research overview
 date_created: 2026-03-25
-agent: synthesizer
+agent: orchestrator
 certainty: medium
 importance: high
 upstream_inputs:
   - vault/40-research/source-notes/by-domain/geopolitics/2026-03-25-diplomacy-basics.md
 downstream_uses: []
-tags: [domain/geopolitics, subdomain/diplomacy, overview]
----
+related_entities: []
+related_drivers: []
+tags: [domain/geopolitics, subdomain/diplomacy, overview]---
 
-# Synthesis summary
+# Overview summary
+
+## Why this subdomain matters
 
 Diplomacy research should focus on negotiations, alliances, signaling, summit outcomes, treaty structure, and whether diplomatic processes are reducing or redirecting conflict risk.
 

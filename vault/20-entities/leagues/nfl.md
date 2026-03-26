@@ -6,7 +6,7 @@ entity: nfl
 entity_type: league
 status: active
 last_updated: 2026-03-25
-related_entities: [kansas-city-chiefs, philadelphia-eagles]
+related_entities: [kansas-city-chiefs, philadelphia-eagles, buffalo-bills, patrick-mahomes, jalen-hurts, josh-allen]
 related_drivers: [injuries-health, seasonality, sentiment]
 tags: [entity/league, entity/nfl, domain/sports]
 ---

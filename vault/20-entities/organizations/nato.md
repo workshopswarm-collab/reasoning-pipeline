@@ -6,7 +6,7 @@ entity: nato
 entity_type: organization
 status: active
 last_updated: 2026-03-25
-related_entities: [united-states, european-union, ukraine]
+related_entities: [united-states, european-union, ukraine, russia]
 related_drivers: [conflicts, diplomacy]
 tags: [entity/organization, entity/nato, domain/geopolitics]
 ---

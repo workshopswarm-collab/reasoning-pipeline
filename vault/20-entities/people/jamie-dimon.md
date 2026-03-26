@@ -6,7 +6,7 @@ entity: jamie-dimon
 entity_type: person
 status: active
 last_updated: 2026-03-25
-related_entities: []
+related_entities: [jpmorgan, federal-reserve, united-states]
 related_drivers: [macro, sentiment, operational-risk]
 tags: [entity/person, entity/jamie-dimon, domain/economics]
 ---

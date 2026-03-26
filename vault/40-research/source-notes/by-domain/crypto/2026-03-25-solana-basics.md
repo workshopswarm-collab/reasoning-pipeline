@@ -4,6 +4,7 @@ domain: crypto
 subdomain: protocols
 entity: solana
 topic: solana protocol basics
+question:
 driver: product-launches
 date_created: 2026-03-25
 source_name: Solana Foundation / Solana.com
@@ -21,8 +22,7 @@ related_entities: [solana]
 related_drivers: [product-launches, operational-risk, sentiment]
 upstream_inputs: []
 downstream_uses: [vault/10-domains/crypto/protocols/major-assets-overview.md, vault/20-entities/protocols/solana.md]
-tags: [domain/crypto, entity/solana, source/protocol-overview]
----
+tags: [domain/crypto, entity/solana, source/protocol-overview]---
 
 # Summary
 
@@ -44,6 +44,10 @@ Solana positions itself as a high-performance blockchain optimized for trading, 
 - This is a first-party positioning page with strong promotional bias.
 
 ## Why this source may matter
+
+Solana is a major alternative smart-contract ecosystem and often trades on activity growth, app traction, and performance narratives.
+
+## Possible impact on the question
 
 Solana is a major alternative smart-contract ecosystem and often trades on activity growth, app traction, and performance narratives.
 

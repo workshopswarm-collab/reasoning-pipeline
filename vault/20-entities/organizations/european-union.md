@@ -6,7 +6,7 @@ entity: european-union
 entity_type: organization
 status: active
 last_updated: 2026-03-25
-related_entities: [emmanuel-macron, ukraine]
+related_entities: [european-central-bank, germany, france, ukraine]
 related_drivers: [diplomacy, regulation, macro]
 tags: [entity/organization, entity/european-union, domain/geopolitics, domain/economics]
 ---
@@ -21,29 +21,35 @@ A political and economic union of European member states with major legislative,
 
 ## Why it matters
 
-The EU matters because it changes policy scale: regulation, sanctions, trade, and enlargement become more consequential when coordinated at the union level.
+The European Union matters because it is one of the clearest examples of supranational policy coordination shaping trade, regulation, technology, climate, and geopolitical positioning at scale. Many Europe-facing questions are really questions about whether EU coordination is strong enough to matter in practice.
 
 ## Current state
 
-Research should track internal cohesion, regulatory output, Ukraine support, industrial policy, and how strategic autonomy debates evolve.
+Research should focus on internal cohesion, regulatory enforcement, industrial policy, enlargement and security posture, and whether member-state divergence is weakening collective strategic capacity. It is important to separate headline EU ambition from actual execution across institutions and states.
 
 ## Key strengths
 
-- major regulatory and market-size leverage
-- strong role in sanctions, trade, and diplomacy
+- major regulatory and market-shaping actor across multiple domains
+- unusually important for understanding Europe-level rather than country-level policy leverage
+- strong relevance in tech regulation, climate policy, trade, and rule-setting
+- useful bridge between formal institutions and member-state politics
 
 ## Key weaknesses
 
-- internal member-state divergence can slow execution
-- strategic signaling sometimes outruns implementation coherence
+- collective action problems can weaken execution
+- formal policy ambition can outrun real member-state alignment
+- complexity of institutions can make accountability and timing harder to interpret
 
 ## Important recent changes
 
-- remains central to sanctions, AI regulation, and European security coordination
+- the EU remains a central institutional actor because regulation, trade, industrial policy, and geopolitical coordination continue to run through it
+- its current significance depends on whether strategic ambition is becoming more credible in security and industrial domains, not just in regulation
 
 ## Open questions
 
-- how much strategic coordination the EU can sustain under external and internal stress
+- how durable member-state cohesion is under security, migration, and economic strain
+- whether EU rule-setting continues to be its strongest power or whether industrial and security capacity are becoming equally important
+- how much market interpretation should focus on Brussels institutions versus the largest member states
 
 ## Related notes
 

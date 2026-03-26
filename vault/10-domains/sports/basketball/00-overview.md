@@ -1,19 +1,22 @@
 ---
-type: synthesis
+type: domain_overview
 domain: sports
 subdomain: basketball
 topic: basketball research overview
 date_created: 2026-03-25
-agent: synthesizer
+agent: orchestrator
 certainty: medium-high
 importance: high
 upstream_inputs:
   - vault/40-research/source-notes/by-domain/sports/2026-03-25-basketball-reference-nba-structure.md
 downstream_uses: []
-tags: [domain/sports, subdomain/basketball, overview]
----
+related_entities: []
+related_drivers: []
+tags: [domain/sports, subdomain/basketball, overview]---
 
-# Synthesis summary
+# Overview summary
+
+## Why this subdomain matters
 
 Basketball research should organize around league context, team quality, star-player impact, health/availability, and schedule/playoff positioning.
 

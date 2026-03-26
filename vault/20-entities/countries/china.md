@@ -6,7 +6,7 @@ entity: china
 entity_type: country
 status: active
 last_updated: 2026-03-25
-related_entities: [united-states]
+related_entities: [xi-jinping, united-states, taiwan, peoples-bank-of-china, russia]
 related_drivers: [conflicts, regulation, macro, product-launches]
 tags: [entity/country, entity/china, domain/geopolitics, domain/economics, domain/tech-ai]
 ---
@@ -21,31 +21,34 @@ A major global power whose economic scale, industrial capacity, and political sy
 
 ## Why it matters
 
-China matters because trade, industrial policy, geopolitical tension, and technological competition frequently run through it.
+China matters because it is central to global growth, industrial policy, trade friction, technology competition, supply chains, and geopolitical balance. Many macro, tech, commodity, and geopolitical questions are partly China questions, even when the immediate market surface appears elsewhere.
 
 ## Current state
 
-Research should focus on U.S.-China relations, industrial policy, export controls, growth dynamics, energy/clean-tech scale, and regional security issues.
+Research should focus on growth quality, property and debt stress, industrial policy, U.S.-China competition, export positioning, domestic political control, and whether external tensions are rising faster than internal stabilization. It is important to separate headline stimulus or diplomatic signaling from slower structural constraints.
 
 ## Key strengths
 
-- enormous industrial and manufacturing capacity
-- major role in global trade and supply chains
-- strategic relevance across energy and technology
+- one of the most systemically important countries for global macro and geopolitical interpretation
+- unusually broad relevance across economics, trade, commodities, tech, and security
+- state capacity and industrial coordination can make policy moves highly consequential for global markets
 
 ## Key weaknesses
 
-- geopolitical friction and external dependence risks remain significant
-- domestic policy opacity can complicate interpretation
+- official information quality can be uneven or politically filtered
+- structural problems can be obscured by targeted policy support or ambiguous data
+- market narratives can swing too hard between collapse framing and overconfidence in state control
 
 ## Important recent changes
 
-- continues to be central to great-power and supply-chain competition
+- China remains a central global anchor because growth, industrial competition, and geopolitical rivalry all continue to run through it
+- current relevance is especially high where trade, technology, Taiwan risk, and weak domestic demand interact rather than appearing as separate issues
 
 ## Open questions
 
-- how much strategic decoupling is real versus partial
-- how domestic growth and external competition interact over time
+- whether China can stabilize growth without reigniting the same structural imbalances
+- how durable its industrial and export edge remains under external pressure
+- how much geopolitical risk should be treated as structural rather than episodic in China-related market interpretation
 
 ## Related notes
 

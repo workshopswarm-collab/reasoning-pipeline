@@ -6,7 +6,7 @@ entity: satya-nadella
 entity_type: person
 status: active
 last_updated: 2026-03-25
-related_entities: [microsoft, openai]
+related_entities: [microsoft, openai, chatgpt]
 related_drivers: [product-launches, media-narratives, regulation]
 tags: [entity/person, entity/satya-nadella, domain/tech-ai]
 ---

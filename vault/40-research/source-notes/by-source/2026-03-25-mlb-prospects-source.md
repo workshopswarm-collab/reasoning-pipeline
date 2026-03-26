@@ -4,6 +4,7 @@ domain: sports
 subdomain: baseball
 entity:
 topic: MLB prospects and farm-system context
+question:
 driver: seasonality
 date_created: 2026-03-25
 source_name: MLB Pipeline
@@ -21,8 +22,7 @@ related_entities: []
 related_drivers: [seasonality, sentiment, leadership-changes]
 upstream_inputs: []
 downstream_uses: []
-tags: [source/official-prospects, domain/sports, subdomain/baseball]
----
+tags: [source/official-prospects, domain/sports, subdomain/baseball]---
 
 # Summary
 
@@ -36,7 +36,21 @@ MLB Pipeline is the official league source for prospect rankings, team farm-syst
 
 ## Why this source may matter
 
-It adds a forward-looking layer that complements standings, transactions, and major-league baselines.
+Prospect quality matters for long-horizon team strength, trades, and organizational upside even when the current MLB roster looks thin.
+
+## Possible impact on the question
+
+Useful when a baseball question depends on future roster reinforcement, trade leverage, or long-run organizational quality rather than current standings alone.
+
+## Evidence directly stated by source
+
+- The source directly provides prospect rankings, scouting context, and organizational pipeline information.
+- It supports claims about farm-system quality and top prospect visibility.
+
+## What is uncertain
+
+- Prospect rankings are not guaranteed MLB outcomes, and timelines to impact can shift quickly.
+- Public lists can lag behind internal development or role changes.
 
 ## Reliability notes
 

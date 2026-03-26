@@ -1,51 +1,52 @@
 ---
-type: entity_overview
+type: product_note
 domain: tech-ai
 subdomain: frontier-model-products
 entity: claude-3-7-sonnet
-entity_type: product
-status: active
-last_updated: 2026-03-25
+topic: versioned model note
+driver: product-launches
+date_created: 2026-03-25
+agent: orchestrator
 related_entities: [claude, anthropic]
 related_drivers: [product-launches, sentiment, operational-risk]
-tags: [entity/product, entity/claude-3-7-sonnet, domain/tech-ai]
+upstream_inputs: []
+downstream_uses: []
+tags: [research/product-note, product/claude-3-7-sonnet, domain/tech-ai, status/versioned]
 ---
 
 # Summary
 
-Claude 3.7 Sonnet is a high-yield AI product because model-tier competition, reasoning/performance perceptions, and enterprise usability all matter for platform positioning.
+Working note for tracking Claude 3.7 Sonnet as a specific release in the Claude product line.
 
-## What this entity is
+## Research focus
 
-A specific Claude model product tier positioned for broad usability and strong performance within Anthropic's model lineup.
+Track release-specific evidence about model quality, workflow fit, pricing, reliability, and market perception. This note should help later evaluation of whether release attention translated into durable adoption or commercial significance.
 
-## Why it matters
+## Signals to monitor
 
-Claude 3.7 Sonnet matters because named model tiers increasingly act as product brands that shape developer choice, enterprise integration, and benchmark narratives.
+- benchmark claims versus practical user reports
+- developer and enterprise adoption signals
+- pricing and packaging changes
+- reliability, latency, and workflow fit
+- comparisons versus other current model tiers
 
-## Current state
+## Current hypotheses
 
-Research should focus on performance credibility, enterprise adoption, pricing, reliability, workflow fit, and whether the model is becoming a default choice in practical deployments.
+- named model tiers can matter as temporary product brands in the market
+- perceived reasoning quality and usability may influence preference even when benchmark gaps are noisy
+- release-specific enthusiasm may decay quickly if not supported by durable adoption evidence
 
-## Key strengths
+## What is uncertain
 
-- strong relevance to model-tier product competition
-- useful comparator to OpenAI and Google product tiers
-- helps show whether broad-utility models can command durable demand
+- how much distinct demand attaches to this exact model tier rather than the broader Claude family
+- whether benchmark enthusiasm translates into sustained commercial preference
+- how quickly this version is superseded by newer releases or packaging changes
 
-## Key weaknesses
+## How to use this note later
 
-- product-tier identities can evolve quickly in a fast-moving model market
-- benchmark and anecdotal chatter can outpace hard adoption evidence
-
-## Important recent changes
-
-- remains a useful product-layer entity for frontier-model competition and deployment analysis
-
-## Open questions
-
-- how much long-run value in model competition comes from specific tier branding versus the broader platform ecosystem around it
+Use this file to compare contemporaneous expectations against later evidence on adoption, pricing power, product stickiness, and relative performance versus peer model releases.
 
 ## Related notes
 
-- Claude, Anthropic, and product-launch notes
+- Canonical context lives in `claude` and `anthropic`
+- Add dated launch, benchmark, pricing, or adoption observations here as they appear

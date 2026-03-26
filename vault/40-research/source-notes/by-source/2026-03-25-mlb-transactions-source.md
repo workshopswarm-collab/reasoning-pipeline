@@ -4,6 +4,7 @@ domain: sports
 subdomain: baseball
 entity:
 topic: MLB transactions and injured-list activity
+question:
 driver: injuries-health
 date_created: 2026-03-25
 source_name: MLB Transactions
@@ -21,8 +22,7 @@ related_entities: []
 related_drivers: [injuries-health, leadership-changes]
 upstream_inputs: []
 downstream_uses: []
-tags: [source/official-transactions, domain/sports, subdomain/baseball]
----
+tags: [source/official-transactions, domain/sports, subdomain/baseball]---
 
 # Summary
 
@@ -36,7 +36,21 @@ MLB's transactions page is the official live log for injured-list moves, activat
 
 ## Why this source may matter
 
-It is a direct live-input source for roster health and availability, which are critical in baseball evaluation.
+It is a primary source for confirming whether a roster change actually happened before interpreting its meaning.
+
+## Possible impact on the question
+
+Useful when a baseball market or team read depends on verified roster movement rather than rumor or narrative framing.
+
+## Evidence directly stated by source
+
+- The source directly records official roster moves, call-ups, demotions, signings, and injured-list transactions.
+- It supports claims about what actually changed on a team’s active roster.
+
+## What is uncertain
+
+- Transaction logs do not by themselves explain strategic importance or expected performance impact.
+- Some moves are procedural and low-signal without broader context.
 
 ## Reliability notes
 

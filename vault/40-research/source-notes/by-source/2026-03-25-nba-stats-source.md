@@ -4,6 +4,7 @@ domain: sports
 subdomain: basketball
 entity:
 topic: NBA Stats as official basketball metrics source
+question:
 driver: injuries-health
 date_created: 2026-03-25
 source_name: NBA Stats
@@ -21,8 +22,7 @@ related_entities: []
 related_drivers: [injuries-health, sentiment]
 upstream_inputs: []
 downstream_uses: []
-tags: [source/official-stats, domain/sports, subdomain/basketball]
----
+tags: [source/official-stats, domain/sports, subdomain/basketball]---
 
 # Summary
 
@@ -43,6 +43,10 @@ NBA Stats is the official league statistics layer for player, team, leader, game
 - Presentation pages are dynamic and headline-oriented, so specific figures should be treated as snapshots.
 
 ## Why this source may matter
+
+It is a neutral core source for current basketball metrics and official stat framing.
+
+## Possible impact on the question
 
 It is a neutral core source for current basketball metrics and official stat framing.
 

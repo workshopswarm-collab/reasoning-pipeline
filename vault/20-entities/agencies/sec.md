@@ -6,7 +6,7 @@ entity: sec
 entity_type: agency
 status: active
 last_updated: 2026-03-25
-related_entities: [federal-reserve, coinbase, binance]
+related_entities: [united-states, federal-reserve, coinbase, binance]
 related_drivers: [regulation, legal]
 tags: [entity/agency, entity/sec, domain/politics, domain/crypto]
 ---

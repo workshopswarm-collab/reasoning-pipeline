@@ -4,6 +4,7 @@ domain: culture
 subdomain: streaming
 entity:
 topic: streaming media distribution
+question:
 driver: media-narratives
 date_created: 2026-03-25
 source_name: Wikipedia
@@ -21,8 +22,7 @@ related_entities: []
 related_drivers: [media-narratives, product-launches]
 upstream_inputs: []
 downstream_uses: [vault/10-domains/culture/00-overview.md]
-tags: [domain/culture, subdomain/streaming, source/encyclopedia]
----
+tags: [domain/culture, subdomain/streaming, source/encyclopedia]---
 
 # Summary
 
@@ -45,6 +45,10 @@ Streaming media is now a dominant distribution layer for music, video, and live 
 - This is technical and historical framing, not market-specific audience analytics.
 
 ## Why this source may matter
+
+For culture markets, outcomes often hinge on release timing, platform concentration, and narrative spread through streaming ecosystems.
+
+## Possible impact on the question
 
 For culture markets, outcomes often hinge on release timing, platform concentration, and narrative spread through streaming ecosystems.
 

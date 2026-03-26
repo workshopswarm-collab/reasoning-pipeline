@@ -12,7 +12,9 @@ upstream_inputs: []
 tags: []
 ---
 
-# Dossier update proposal
+# Canonical entity update proposal
+
+Use this template only for proposed updates to a canonical entity note in `vault/20-entities/`.
 
 ## Why this update is being proposed
 

@@ -1,19 +1,22 @@
 ---
-type: synthesis
+type: domain_overview
 domain: economics
 subdomain: macro-foundations
 topic: economics domain overview
 date_created: 2026-03-25
-agent: synthesizer
+agent: orchestrator
 certainty: medium-high
 importance: high
 upstream_inputs:
   - vault/40-research/source-notes/by-domain/economics/2026-03-25-wikipedia-economics.md
 downstream_uses: []
-tags: [domain/economics, overview]
----
+related_entities: []
+related_drivers: []
+tags: [domain/economics, overview]---
 
-# Synthesis summary
+# Overview summary
+
+## Why this subdomain matters
 
 Economics research should center on macro systems, policy transmission, and measurable indicators that move expectations about growth, inflation, labor, rates, and credit.
 

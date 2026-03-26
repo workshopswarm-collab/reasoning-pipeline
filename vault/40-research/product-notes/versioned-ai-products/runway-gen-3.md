@@ -1,51 +1,52 @@
 ---
-type: entity_overview
+type: product_note
 domain: tech-ai
-subdomain: generative-media-products
+subdomain: ai-media-products
 entity: runway-gen-3
-entity_type: product
-status: active
-last_updated: 2026-03-25
+topic: versioned product note
+driver: product-launches
+date_created: 2026-03-25
+agent: orchestrator
 related_entities: [runway]
-related_drivers: [product-launches, sentiment, operational-risk]
-tags: [entity/product, entity/runway-gen-3, domain/tech-ai]
+related_drivers: [product-launches, sentiment, media-narratives]
+upstream_inputs: []
+downstream_uses: []
+tags: [research/product-note, product/runway-gen-3, domain/tech-ai, status/versioned]
 ---
 
 # Summary
 
-Runway Gen-3 is a high-yield AI product because named generative-video model tiers are becoming product brands with direct implications for creator adoption and model competition.
+Working note for tracking Runway Gen-3 as a specific release in the Runway media-model product line.
 
-## What this entity is
+## Research focus
 
-A specific generative-video model/product tier in Runway's media-tool ecosystem.
+Track release-specific evidence about video quality, creator workflow, product differentiation, launch-specific hype, and whether Gen-3 materially changes Runway’s commercial relevance.
 
-## Why it matters
+## Signals to monitor
 
-Runway Gen-3 matters because creator and enterprise trust in generative-video products increasingly depends on the quality and usability of identifiable model tiers.
+- creator adoption and production workflow fit
+- output quality versus adjacent products
+- distribution and monetization implications
+- launch hype versus sustained usage
+- whether this release materially changes Runway’s competitive position
 
-## Current state
+## Current hypotheses
 
-Research should focus on output quality, workflow integration, user adoption, differentiation, and whether named media-model products create durable product preference.
+- creator video products can get strong attention bursts on release
+- workflow reliability and ease of use may matter more than isolated demo quality
+- the exact version may have shorter-lived relevance than the broader Runway platform
 
-## Key strengths
+## What is uncertain
 
-- strong relevance to product-tier competition in generative media
-- useful bridge between frontier media capability and creator workflow adoption
-- helps clarify whether media-AI products are becoming repeatable tools
+- how durable the version-specific advantage is
+- whether creator usage becomes habitual or remains exploratory
+- how much launch excitement maps into real commercial traction
 
-## Key weaknesses
+## How to use this note later
 
-- product tiers can change quickly in a fast-moving category
-- visual demos may outpace recurring production use
-
-## Important recent changes
-
-- remains a useful product-layer entity for generative-video competition and adoption analysis
-
-## Open questions
-
-- how much durable value media-model vendors can keep as video generation quality improves across the category
+Use this file to compare launch-period narratives with later evidence on creator adoption, workflow stickiness, and commercial impact.
 
 ## Related notes
 
-- Runway, Sora, and product-launch notes
+- Canonical context lives in `runway`
+- Add dated creator feedback, launch observations, and product deltas here as they appear

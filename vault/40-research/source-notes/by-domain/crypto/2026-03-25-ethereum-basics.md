@@ -4,6 +4,7 @@ domain: crypto
 subdomain: protocols
 entity: ethereum
 topic: ethereum protocol basics
+question:
 driver: regulation
 date_created: 2026-03-25
 source_name: Ethereum.org
@@ -21,8 +22,7 @@ related_entities: [ethereum]
 related_drivers: [regulation, product-launches, operational-risk]
 upstream_inputs: []
 downstream_uses: [vault/10-domains/crypto/protocols/major-assets-overview.md, vault/20-entities/protocols/ethereum.md]
-tags: [domain/crypto, entity/ethereum, source/protocol-overview]
----
+tags: [domain/crypto, entity/ethereum, source/protocol-overview]---
 
 # Summary
 
@@ -45,6 +45,10 @@ Ethereum is a general-purpose smart-contract blockchain centered on programmable
 - This is an ecosystem-native explanation and naturally optimistic in tone.
 
 ## Why this source may matter
+
+Ethereum is the main anchor for smart-contract platform research, L2 analysis, DeFi, and tokenized-asset infrastructure.
+
+## Possible impact on the question
 
 Ethereum is the main anchor for smart-contract platform research, L2 analysis, DeFi, and tokenized-asset infrastructure.
 

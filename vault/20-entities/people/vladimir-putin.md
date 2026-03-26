@@ -6,7 +6,7 @@ entity: vladimir-putin
 entity_type: person
 status: active
 last_updated: 2026-03-25
-related_entities: [russia, ukraine]
+related_entities: [russia, ukraine, china]
 related_drivers: [conflicts, sanctions, media-narratives]
 tags: [entity/person, entity/vladimir-putin, domain/geopolitics]
 ---

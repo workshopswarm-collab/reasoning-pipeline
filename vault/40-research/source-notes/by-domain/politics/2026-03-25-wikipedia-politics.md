@@ -4,6 +4,7 @@ domain: politics
 subdomain: institutions-and-elections
 entity:
 topic: politics overview
+question:
 driver: polling
 date_created: 2026-03-25
 source_name: Wikipedia
@@ -21,8 +22,7 @@ related_entities: []
 related_drivers: [polling, leadership-changes, legal]
 upstream_inputs: []
 downstream_uses: [vault/10-domains/politics/00-overview.md]
-tags: [domain/politics, source/encyclopedia]
----
+tags: [domain/politics, source/encyclopedia]---
 
 # Summary
 
@@ -44,6 +44,10 @@ Politics is fundamentally about power, decision-making, institutions, and confli
 - This is definitional and broad rather than a specialized elections or polling guide.
 
 ## Why this source may matter
+
+It establishes the broad ontology for politics markets before drilling into polling, institutions, legislation, or court-driven outcomes.
+
+## Possible impact on the question
 
 It establishes the broad ontology for politics markets before drilling into polling, institutions, legislation, or court-driven outcomes.
 

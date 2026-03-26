@@ -6,7 +6,7 @@ entity: nikola-jokic
 entity_type: player
 status: active
 last_updated: 2026-03-25
-related_entities: [denver-nuggets]
+related_entities: [nba, denver-nuggets, lebron-james]
 related_drivers: [injuries-health, leadership-changes]
 tags: [entity/player, entity/nikola-jokic, domain/sports, subdomain/basketball]
 ---

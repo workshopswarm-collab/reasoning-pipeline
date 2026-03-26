@@ -6,7 +6,7 @@ entity: kansas-city-chiefs
 entity_type: team
 status: active
 last_updated: 2026-03-25
-related_entities: [patrick-mahomes, nfl]
+related_entities: [nfl, patrick-mahomes]
 related_drivers: [injuries-health, leadership-changes, sentiment]
 tags: [entity/team, entity/kansas-city-chiefs, domain/sports, subdomain/football]
 ---

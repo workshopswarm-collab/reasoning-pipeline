@@ -6,7 +6,7 @@ entity: golden-state-warriors
 entity_type: team
 status: active
 last_updated: 2026-03-25
-related_entities: [stephen-curry]
+related_entities: [nba, stephen-curry]
 related_drivers: [injuries-health, sentiment]
 tags: [entity/team, entity/golden-state-warriors, domain/sports, subdomain/basketball]
 ---

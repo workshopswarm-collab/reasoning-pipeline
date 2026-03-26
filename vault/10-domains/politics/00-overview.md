@@ -1,19 +1,22 @@
 ---
-type: synthesis
+type: domain_overview
 domain: politics
 subdomain: institutions-and-competition
 topic: politics domain overview
 date_created: 2026-03-25
-agent: synthesizer
+agent: orchestrator
 certainty: medium-high
 importance: high
 upstream_inputs:
   - vault/40-research/source-notes/by-domain/politics/2026-03-25-wikipedia-politics.md
 downstream_uses: []
-tags: [domain/politics, overview]
----
+related_entities: []
+related_drivers: []
+tags: [domain/politics, overview]---
 
-# Synthesis summary
+# Overview summary
+
+## Why this subdomain matters
 
 Politics research should focus on institutions, parties, leaders, elections, legislation, courts, and public opinion as interacting systems of power.
 

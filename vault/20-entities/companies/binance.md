@@ -6,7 +6,7 @@ entity: binance
 entity_type: company
 status: active
 last_updated: 2026-03-25
-related_entities: [bnb]
+related_entities: [bnb, binance-us, sec, coinbase]
 related_drivers: [regulation, operational-risk, sentiment]
 tags: [entity/company, entity/binance, domain/crypto]
 ---

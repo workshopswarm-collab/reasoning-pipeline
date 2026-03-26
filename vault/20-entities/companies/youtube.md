@@ -6,7 +6,7 @@ entity: youtube
 entity_type: company
 status: active
 last_updated: 2026-03-25
-related_entities: [alphabet, tiktok]
+related_entities: [alphabet, tiktok, meta]
 related_drivers: [media-narratives, product-launches, sentiment]
 tags: [entity/company, entity/youtube, domain/culture, domain/tech-ai]
 ---

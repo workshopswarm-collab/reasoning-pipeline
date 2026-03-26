@@ -1,19 +1,22 @@
 ---
-type: synthesis
+type: domain_overview
 domain: tech-ai
 subdomain: regulation
 topic: ai regulation research overview
 date_created: 2026-03-25
-agent: synthesizer
+agent: orchestrator
 certainty: medium
 importance: high
 upstream_inputs:
   - vault/40-research/source-notes/by-domain/tech-ai/2026-03-25-ai-regulation-basics.md
 downstream_uses: []
-tags: [domain/tech-ai, subdomain/regulation, overview]
----
+related_entities: []
+related_drivers: []
+tags: [domain/tech-ai, subdomain/regulation, overview]---
 
-# Synthesis summary
+# Overview summary
+
+## Why this subdomain matters
 
 AI regulation research should focus on jurisdictional divergence, safety requirements, model/deployment thresholds, and whether rules constrain or legitimize adoption.
 

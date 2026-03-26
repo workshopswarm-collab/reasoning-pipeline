@@ -1,19 +1,22 @@
 ---
-type: synthesis
+type: domain_overview
 domain: sports
 subdomain: football
 topic: football research overview
 date_created: 2026-03-25
-agent: synthesizer
+agent: orchestrator
 certainty: medium
 importance: high
 upstream_inputs:
   - vault/40-research/source-notes/by-domain/sports/2026-03-25-american-football-basics.md
 downstream_uses: []
-tags: [domain/sports, subdomain/football, overview]
----
+related_entities: []
+related_drivers: []
+tags: [domain/sports, subdomain/football, overview]---
 
-# Synthesis summary
+# Overview summary
+
+## Why this subdomain matters
 
 Football research should focus on quarterback play, coaching, line quality, injuries, situational efficiency, and schedule/opponent context.
 

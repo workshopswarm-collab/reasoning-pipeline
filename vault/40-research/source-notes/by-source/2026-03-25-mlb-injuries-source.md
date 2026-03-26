@@ -4,6 +4,7 @@ domain: sports
 subdomain: baseball
 entity:
 topic: MLB injuries and availability context
+question:
 driver: injuries-health
 date_created: 2026-03-25
 source_name: MLB Injury Report
@@ -21,8 +22,7 @@ related_entities: []
 related_drivers: [injuries-health, seasonality]
 upstream_inputs: []
 downstream_uses: []
-tags: [source/official-injuries, domain/sports, subdomain/baseball]
----
+tags: [source/official-injuries, domain/sports, subdomain/baseball]---
 
 # Summary
 
@@ -36,7 +36,21 @@ The MLB injuries layer is an official source for tracking player health, injured
 
 ## Why this source may matter
 
-It helps explain why recent results or projections may diverge from baseline team quality.
+Baseball team strength can change materially through attrition, so a reliable injury source is necessary for any forward-looking read.
+
+## Possible impact on the question
+
+Useful when pricing a team or player market where current availability and replacement quality matter more than season-average statistics.
+
+## Evidence directly stated by source
+
+- The source directly reports injured-list placements, injury designations, and availability-related updates.
+- It supports claims about whether a player is currently unavailable or returning.
+
+## What is uncertain
+
+- Return timelines, effectiveness after return, and true team-level impact are often uncertain.
+- Injury labels alone do not capture depth-replacement quality.
 
 ## Reliability notes
 

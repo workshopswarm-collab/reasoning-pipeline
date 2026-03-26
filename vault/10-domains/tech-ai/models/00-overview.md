@@ -1,19 +1,22 @@
 ---
-type: synthesis
+type: domain_overview
 domain: tech-ai
 subdomain: models
 topic: AI models research overview
 date_created: 2026-03-25
-agent: synthesizer
+agent: orchestrator
 certainty: medium
 importance: high
 upstream_inputs:
   - vault/40-research/source-notes/by-domain/tech-ai/2026-03-25-llm-basics.md
 downstream_uses: []
-tags: [domain/tech-ai, subdomain/models, overview]
----
+related_entities: []
+related_drivers: []
+tags: [domain/tech-ai, subdomain/models, overview]---
 
-# Synthesis summary
+# Overview summary
+
+## Why this subdomain matters
 
 AI model research should separate raw capability, benchmark performance, alignment/safety behavior, deployment economics, and product integration.
 

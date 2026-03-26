@@ -6,7 +6,7 @@ entity: tether-holdings
 entity_type: company
 status: active
 last_updated: 2026-03-25
-related_entities: [tether, bitfinex]
+related_entities: [tether, usdt, bitfinex]
 related_drivers: [regulation, operational-risk, macro]
 tags: [entity/company, entity/tether-holdings, domain/crypto]
 ---
@@ -21,30 +21,35 @@ The corporate issuer and operating structure behind USDT, one of crypto's most s
 
 ## Why it matters
 
-Tether Holdings matters because confidence in issuance, reserves, and redemption pathways can affect liquidity across exchanges, DeFi, and crypto risk sentiment broadly.
+Tether Holdings matters because it is the issuer behind one of the most systemically important assets in crypto market plumbing. Questions about stablecoin trust, reserves, liquidity, sanctions exposure, and exchange settlement often reduce to questions about the credibility and resilience of Tether itself.
 
 ## Current state
 
-Research should focus on reserve transparency, regulatory exposure, issuance growth, offshore market dependence, and links to broader crypto liquidity conditions.
+Research should focus on reserve credibility, redemption confidence, regulatory exposure, banking and custody structure, offshore market dependence, and whether trust in Tether is remaining stable under scrutiny. It is important to separate USDT’s market utility from the issuer’s governance and reserve-risk profile.
 
 ## Key strengths
 
-- central role in crypto market plumbing
-- broad reach across exchanges and global dollarized crypto usage
-- major readthrough into market confidence and liquidity
+- central issuer node for one of the most important stablecoins in crypto
+- extremely high relevance to exchange liquidity and offshore crypto settlement
+- useful bridge between asset-level confidence and issuer-level risk
+- can affect the broader crypto market disproportionately through market-plumbing channels
 
 ## Key weaknesses
 
-- persistent transparency and regulatory questions
-- dependence on confidence can create systemic reflexivity
+- reserve transparency and governance questions are structurally persistent
+- confidence can depend on trust under stress rather than only normal-operation utility
+- issuer risk can be underweighted when USDT is functioning smoothly
 
 ## Important recent changes
 
-- remains one of the highest-leverage institutions in crypto market structure despite repeated scrutiny
+- Tether Holdings remains one of the most important crypto companies because USDT is still central to market settlement and liquidity in many venues
+- current significance depends on whether the market continues to treat issuer opacity as tolerable so long as functional redemption confidence holds
 
 ## Open questions
 
-- how resilient market confidence would be under a major transparency or enforcement shock
+- how durable issuer trust remains under tighter regulatory or banking pressure
+- whether transparency and reserve-confidence concerns will ever become binding enough to change broad market behavior
+- how much systemic crypto risk still runs through Tether-specific confidence
 
 ## Related notes
 

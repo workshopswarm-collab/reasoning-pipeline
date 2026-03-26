@@ -1,19 +1,22 @@
 ---
-type: synthesis
+type: domain_overview
 domain: geopolitics
 subdomain: sanctions
 topic: sanctions research overview
 date_created: 2026-03-25
-agent: synthesizer
+agent: orchestrator
 certainty: medium
 importance: high
 upstream_inputs:
   - vault/40-research/source-notes/by-domain/geopolitics/2026-03-25-sanctions-basics.md
 downstream_uses: []
-tags: [domain/geopolitics, subdomain/sanctions, overview]
----
+related_entities: []
+related_drivers: []
+tags: [domain/geopolitics, subdomain/sanctions, overview]---
 
-# Synthesis summary
+# Overview summary
+
+## Why this subdomain matters
 
 Sanctions research should focus on legal basis, enforcement scope, financial and trade channels, and whether imposed costs are likely to alter state or organizational behavior.
 

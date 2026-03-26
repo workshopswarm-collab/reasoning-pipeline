@@ -6,7 +6,7 @@ entity: ali-khamenei
 entity_type: person
 status: active
 last_updated: 2026-03-25
-related_entities: [iran]
+related_entities: [iran, israel, united-states]
 related_drivers: [conflicts, sanctions, legal]
 tags: [entity/person, entity/ali-khamenei, domain/geopolitics]
 ---

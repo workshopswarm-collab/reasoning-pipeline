@@ -6,7 +6,7 @@ entity: los-angeles-lakers
 entity_type: team
 status: active
 last_updated: 2026-03-25
-related_entities: [lebron-james]
+related_entities: [nba, lebron-james]
 related_drivers: [injuries-health, sentiment]
 tags: [entity/team, entity/los-angeles-lakers, domain/sports, subdomain/basketball]
 ---

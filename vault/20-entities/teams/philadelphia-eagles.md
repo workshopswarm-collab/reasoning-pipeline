@@ -6,7 +6,7 @@ entity: philadelphia-eagles
 entity_type: team
 status: active
 last_updated: 2026-03-25
-related_entities: [jalen-hurts, nfl]
+related_entities: [nfl, jalen-hurts]
 related_drivers: [injuries-health, leadership-changes, sentiment]
 tags: [entity/team, entity/philadelphia-eagles, domain/sports, subdomain/football]
 ---

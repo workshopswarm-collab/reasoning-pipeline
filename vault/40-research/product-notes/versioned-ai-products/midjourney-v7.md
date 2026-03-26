@@ -1,51 +1,52 @@
 ---
-type: entity_overview
+type: product_note
 domain: tech-ai
-subdomain: generative-media-products
+subdomain: ai-media-products
 entity: midjourney-v7
-entity_type: product
-status: active
-last_updated: 2026-03-25
+topic: versioned product note
+driver: product-launches
+date_created: 2026-03-25
+agent: orchestrator
 related_entities: [midjourney]
-related_drivers: [product-launches, sentiment, operational-risk]
-tags: [entity/product, entity/midjourney-v7, domain/tech-ai]
+related_drivers: [product-launches, sentiment, media-narratives]
+upstream_inputs: []
+downstream_uses: []
+tags: [research/product-note, product/midjourney-v7, domain/tech-ai, status/versioned]
 ---
 
 # Summary
 
-Midjourney V7 is a high-yield AI product because product-tier iteration in image generation directly affects creator preference, workflow quality, and competitive positioning.
+Working note for tracking Midjourney V7 as a specific release in the Midjourney product line.
 
-## What this entity is
+## Research focus
 
-A specific model/product tier in Midjourney's generative-image ecosystem.
+Track release-specific evidence about image quality claims, creator response, workflow changes, product differentiation, and whether V7 creates durable usage or competitive advantage.
 
-## Why it matters
+## Signals to monitor
 
-Midjourney V7 matters because named media-model releases increasingly act as product brands that can shift creator loyalty and perceived frontier leadership.
+- creator adoption and retention signals
+- visual quality claims and side-by-side comparisons
+- workflow changes versus prior Midjourney releases
+- competitive comparison versus other image-generation products
+- whether launch excitement becomes durable usage advantage
 
-## Current state
+## Current hypotheses
 
-Research should focus on output quality, workflow usability, adoption by creators, differentiation, and whether product-tier upgrades are changing real usage rather than only demo attention.
+- creator tools often see strong release-specific sentiment spikes
+- workflow and ease-of-use can matter as much as raw image quality
+- specific version attention may decay quickly once the next release cycle starts
 
-## Key strengths
+## What is uncertain
 
-- strong relevance to competitive product-tier dynamics in image generation
-- useful bridge between model capability and creator-platform stickiness
-- can reveal whether media-model improvements translate into durable preference
+- how much durable edge this version provides
+- whether creator enthusiasm is broad and sticky or mostly launch-driven
+- how much product differentiation survives the next model cycle
 
-## Key weaknesses
+## How to use this note later
 
-- visual wow-factor can outrun recurring workflow adoption
-- product naming cycles may move faster than durable business differentiation
-
-## Important recent changes
-
-- remains a useful product-layer entity for image-generation competition and adoption analysis
-
-## Open questions
-
-- how much durable advantage media-model versioning can create in a fast-commoditizing image-generation market
+Use this file to compare release-period claims with later evidence on creator retention, product differentiation, and commercial relevance.
 
 ## Related notes
 
-- Midjourney, Runway, and product-launch notes
+- Canonical context lives in `midjourney`
+- Add dated creator feedback, release deltas, and product observations here as they appear

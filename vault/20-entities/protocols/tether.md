@@ -6,7 +6,7 @@ entity: tether
 entity_type: protocol
 status: active
 last_updated: 2026-03-25
-related_entities: [circle, usdc]
+related_entities: [tether-holdings, usdt, circle, usdc]
 related_drivers: [regulation, operational-risk, macro]
 tags: [entity/protocol, entity/tether, entity/usdt, domain/crypto]
 ---

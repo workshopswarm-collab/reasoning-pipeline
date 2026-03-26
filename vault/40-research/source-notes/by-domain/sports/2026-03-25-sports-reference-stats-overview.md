@@ -4,6 +4,7 @@ domain: sports
 subdomain: statistics-and-performance
 entity:
 topic: sports data and competitive structure
+question:
 driver: injuries-health
 date_created: 2026-03-25
 source_name: Sports Reference
@@ -21,8 +22,7 @@ related_entities: []
 related_drivers: [injuries-health, leadership-changes, sentiment]
 upstream_inputs: []
 downstream_uses: [vault/10-domains/sports/00-overview.md]
-tags: [domain/sports, source/stats-database]
----
+tags: [domain/sports, source/stats-database]---
 
 # Summary
 
@@ -45,6 +45,10 @@ Sports Reference demonstrates the core structure of sports research memory: seas
 - The source is infrastructure rather than an explanatory analysis of sports markets.
 
 ## Why this source may matter
+
+It clarifies which recurring objects should exist in sports memory: leagues, teams, players, injuries, schedules, standings, and performance metrics.
+
+## Possible impact on the question
 
 It clarifies which recurring objects should exist in sports memory: leagues, teams, players, injuries, schedules, standings, and performance metrics.
 

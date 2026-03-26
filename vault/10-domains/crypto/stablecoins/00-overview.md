@@ -1,19 +1,22 @@
 ---
-type: synthesis
+type: domain_overview
 domain: crypto
 subdomain: stablecoins
 topic: stablecoins research overview
 date_created: 2026-03-25
-agent: synthesizer
+agent: orchestrator
 certainty: medium
 importance: high
 upstream_inputs:
   - vault/40-research/source-notes/by-domain/crypto/2026-03-25-stablecoin-basics.md
 downstream_uses: []
-tags: [domain/crypto, subdomain/stablecoins, overview]
----
+related_entities: []
+related_drivers: []
+tags: [domain/crypto, subdomain/stablecoins, overview]---
 
-# Synthesis summary
+# Overview summary
+
+## Why this subdomain matters
 
 Stablecoins should be treated as core crypto market infrastructure. Research should focus on reserves, redemptions, regulation, payment usage, trading settlement, and issuer concentration.
 

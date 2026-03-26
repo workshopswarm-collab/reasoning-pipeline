@@ -6,7 +6,7 @@ entity: keir-starmer
 entity_type: person
 status: active
 last_updated: 2026-03-25
-related_entities: [united-kingdom]
+related_entities: [united-kingdom, bank-of-england, european-union]
 related_drivers: [macro, legal, media-narratives]
 tags: [entity/person, entity/keir-starmer, domain/politics]
 ---

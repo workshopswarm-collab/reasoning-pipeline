@@ -6,7 +6,7 @@ entity: amazon
 entity_type: company
 status: active
 last_updated: 2026-03-25
-related_entities: [aws]
+related_entities: [aws, microsoft, openai]
 related_drivers: [product-launches, macro, regulation]
 tags: [entity/company, entity/amazon, domain/tech-ai, domain/economics]
 ---
@@ -21,29 +21,35 @@ A global platform company spanning e-commerce, logistics, cloud computing, media
 
 ## Why it matters
 
-Amazon matters because platform scale, consumer demand, cloud infrastructure, and logistics all create cross-domain relevance in technology and macro consumption analysis.
+Amazon matters because it sits at the intersection of cloud infrastructure, e-commerce, logistics, digital advertising, consumer demand, and increasingly AI distribution through AWS. Many cloud, consumer, and AI-infrastructure questions are partly Amazon questions.
 
 ## Current state
 
-Research should focus on retail demand, logistics efficiency, AWS leverage, advertising/media integration, regulatory scrutiny, and whether platform breadth continues compounding advantage.
+Research should focus on AWS growth quality, retail margin discipline, logistics efficiency, ad business durability, AI infrastructure monetization, and whether Amazon’s scale is producing new leverage or just defending old dominance. It is important to separate cloud and retail dynamics rather than collapsing them into one company narrative.
 
 ## Key strengths
 
-- enormous distribution and logistics footprint
-- strong combination of consumer and infrastructure exposure
+- unusually broad reach across cloud, commerce, logistics, and digital advertising
+- AWS gives Amazon strong relevance to AI infrastructure and enterprise demand
+- scale and operational depth can support durable category influence across multiple sectors
+- useful benchmark for whether large incumbents can turn AI demand into infrastructure revenue
 
 ## Key weaknesses
 
-- regulatory and margin pressures remain structurally important
-- breadth can obscure where real growth or weakness is concentrated
+- breadth can make it harder to isolate which segment is driving valuation and strategic change
+- cloud, retail, and advertising cycles do not always align
+- size and complexity can slow narrative clarity even when the business remains strong
 
 ## Important recent changes
 
-- remains a central platform and infrastructure entity across multiple markets
+- Amazon remains one of the most important companies in the vault because AWS, logistics, and commerce still connect macro, consumer, and AI-infrastructure interpretation
+- current significance increasingly depends on whether cloud and AI demand can reaccelerate growth without exposing weakness in other segments
 
 ## Open questions
 
-- how effectively Amazon converts ecosystem breadth into durable advantage across the next platform cycle
+- how much of Amazon’s next leg depends on AWS and AI infrastructure rather than retail efficiency
+- whether Amazon can sustain platform leverage across so many categories without dilution
+- how much the market under- or overweights the company’s ad and logistics optionality
 
 ## Related notes
 

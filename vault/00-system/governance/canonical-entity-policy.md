@@ -33,6 +33,53 @@ These are valid reasons to maintain separate canonical files:
 - team vs player
 - institution vs leader
 
+### Linkage rule
+
+Canonical notes should follow the `entity-linkage-framework.md` rules for `related_entities` and `related_drivers`.
+
+Use `related_entities` as a curated high-signal neighborhood, not a synonym list or exhaustive graph dump.
+
+Use `related_drivers` to capture the main recurring mechanisms that explain why the note matters.
+
+Important distinction:
+- canonical body content should remain slow-moving and durable
+- linkage metadata may be updated more fluidly when that improves retrieval, navigation, reciprocity, or structural context
+
+A linkage-only update does **not** need to clear the same threshold as a substantive rewrite of the canonical body content, provided the new links remain high-signal and structurally justified.
+
+### Sports-athlete classification rule
+
+Within `vault/20-entities/`:
+
+- use `players/` for people whose primary canonical relevance is as athletes competing in sports
+- use `people/` for non-athlete public figures such as politicians, executives, creators, commentators, and other general public personalities
+- if a person is primarily retrieved because of sports competition, place them in `players/` even though they are literally also a person
+
+This is a retrieval-oriented taxonomy, not a metaphysical one. The goal is to keep sports entities grouped consistently and avoid splitting athletes across both `people/` and `players/`.
+
+Default rule:
+- athlete with sports-market relevance -> `players/`
+- non-athlete public figure -> `people/`
+
+Do not keep both a `people/<name>.md` and `players/<name>.md` file for the same athlete unless there is an explicit, durable non-sports identity split that is clearly justified in the file body.
+
+### Agencies vs organizations classification rule
+
+Within `vault/20-entities/`:
+
+- use `agencies/` for public-sector authorities or formal state bodies
+- use `organizations/` for non-state institutions, multilateral bodies, alliances, foundations, governing bodies, and other institution-like entities that are not ordinary state agencies
+- use `companies/` for for-profit commercial firms, including private labs and venture-backed companies, even when they are culturally discussed like institutions
+
+Default rule:
+- ministry, department, regulator, central bank, court, legislature, military, intelligence service, election authority, or statutory public office -> `agencies/`
+- intergovernmental body, alliance, nonprofit/foundation, standards/governing body, or recurring non-state institution -> `organizations/`
+- private commercial firm -> `companies/`
+
+This is also a retrieval-oriented taxonomy. The goal is to separate state power, non-state institutional coordination, and commercial actors cleanly enough that adjacent entities do not collapse into one bucket.
+
+Do not keep the same entity in both `agencies/` and `organizations/`, or both `organizations/` and `companies/`, unless there is an explicit and durable structural split that is clearly justified in the file body.
+
 ### Not allowed unless explicitly justified in the file body
 
 These should normally be merged or avoided:
@@ -121,6 +168,7 @@ New information should usually go into the research layer first. Only promote it
 
 - the change is durable
 - it materially changes the long-run understanding of the entity
+- recurring and material current information contradicts what is in canonical files.
 - the update improves future retrieval rather than merely reflecting recency
 
 ## Quality bar for canon

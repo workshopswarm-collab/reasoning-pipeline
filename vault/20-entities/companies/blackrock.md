@@ -6,7 +6,7 @@ entity: blackrock
 entity_type: company
 status: active
 last_updated: 2026-03-25
-related_entities: [bitcoin, coinbase]
+related_entities: [larry-fink, bitcoin, coinbase, united-states]
 related_drivers: [macro, regulation, product-launches]
 tags: [entity/company, entity/blackrock, domain/economics, domain/crypto]
 ---

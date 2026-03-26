@@ -4,6 +4,7 @@ domain: economics
 subdomain: macro-foundations
 entity:
 topic: economics overview
+question:
 driver: macro
 date_created: 2026-03-25
 source_name: Wikipedia
@@ -21,8 +22,7 @@ related_entities: []
 related_drivers: [macro]
 upstream_inputs: []
 downstream_uses: [vault/10-domains/economics/00-overview.md]
-tags: [domain/economics, driver/macro, source/encyclopedia]
----
+tags: [domain/economics, driver/macro, source/encyclopedia]---
 
 # Summary
 
@@ -44,6 +44,10 @@ Economics studies production, distribution, and consumption, with major predicti
 - This is broad conceptual framing, not a forecasting manual.
 
 ## Why this source may matter
+
+It provides the basic ontology for macro, rates, labor, growth, and policy-driven prediction markets.
+
+## Possible impact on the question
 
 It provides the basic ontology for macro, rates, labor, growth, and policy-driven prediction markets.
 

@@ -1,10 +1,10 @@
 ---
-type: synthesis
+type: domain_overview
 domain: sports
 subdomain: baseball
 topic: baseball research overview
 date_created: 2026-03-25
-agent: synthesizer
+agent: orchestrator
 certainty: medium-high
 importance: high
 upstream_inputs:
@@ -13,10 +13,13 @@ upstream_inputs:
   - vault/40-research/source-notes/by-source/2026-03-25-mlb-transactions-source.md
   - vault/40-research/source-notes/by-source/2026-03-25-mlb-news-source.md
 downstream_uses: []
-tags: [domain/sports, subdomain/baseball, overview]
----
+related_entities: []
+related_drivers: []
+tags: [domain/sports, subdomain/baseball, overview]---
 
-# Synthesis summary
+# Overview summary
+
+## Why this subdomain matters
 
 Baseball research should organize around league structure, team quality, lineup and rotation strength, player health/availability, transactions, and season-context signals like standings and prospect movement.
 

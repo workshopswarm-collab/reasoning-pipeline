@@ -4,6 +4,7 @@ domain:
 subdomain:
 entity:
 topic:
+question:
 driver:
 date_created:
 source_name:
@@ -33,5 +34,9 @@ tags: []
 ## What is uncertain
 
 ## Why this source may matter
+
+## Possible impact on the question
+
+State how this source could matter to the current market, thesis, or decision flow without over-interpreting beyond what the source directly supports.
 
 ## Reliability notes

@@ -4,6 +4,7 @@ domain: crypto
 subdomain: tokens
 entity: dogecoin
 topic: dogecoin basics
+question:
 driver: sentiment
 date_created: 2026-03-25
 source_name: Dogecoin.com
@@ -21,8 +22,7 @@ related_entities: [dogecoin]
 related_drivers: [sentiment, media-narratives]
 upstream_inputs: []
 downstream_uses: [vault/10-domains/crypto/protocols/major-assets-overview.md, vault/20-entities/protocols/dogecoin.md]
-tags: [domain/crypto, entity/dogecoin, source/protocol-overview]
----
+tags: [domain/crypto, entity/dogecoin, source/protocol-overview]---
 
 # Summary
 
@@ -45,6 +45,10 @@ Dogecoin combines a meme-driven cultural identity with a payment-oriented crypto
 - This is highly community-native framing and not neutral market analysis.
 
 ## Why this source may matter
+
+Dogecoin is a major example of crypto markets where social attention and narrative reflexivity can dominate fundamentals.
+
+## Possible impact on the question
 
 Dogecoin is a major example of crypto markets where social attention and narrative reflexivity can dominate fundamentals.
 

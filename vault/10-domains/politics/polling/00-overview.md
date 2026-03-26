@@ -1,19 +1,22 @@
 ---
-type: synthesis
+type: domain_overview
 domain: politics
 subdomain: polling
 topic: polling research overview
 date_created: 2026-03-25
-agent: synthesizer
+agent: orchestrator
 certainty: medium-high
 importance: high
 upstream_inputs:
   - vault/40-research/source-notes/by-domain/politics/2026-03-25-polling-basics.md
 downstream_uses: []
-tags: [domain/politics, subdomain/polling, overview]
----
+related_entities: []
+related_drivers: []
+tags: [domain/politics, subdomain/polling, overview]---
 
-# Synthesis summary
+# Overview summary
+
+## Why this subdomain matters
 
 Polling research should focus on sample quality, bias, turnout assumptions, trend direction, and how polling interacts with narrative and institutional context.
 

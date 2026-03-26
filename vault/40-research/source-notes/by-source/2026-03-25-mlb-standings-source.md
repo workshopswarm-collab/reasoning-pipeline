@@ -4,6 +4,7 @@ domain: sports
 subdomain: baseball
 entity:
 topic: MLB standings as official current-state source
+question:
 driver: seasonality
 date_created: 2026-03-25
 source_name: MLB Standings
@@ -21,8 +22,7 @@ related_entities: []
 related_drivers: [seasonality, injuries-health]
 upstream_inputs: []
 downstream_uses: []
-tags: [source/official-standings, domain/sports, subdomain/baseball]
----
+tags: [source/official-standings, domain/sports, subdomain/baseball]---
 
 # Summary
 
@@ -36,7 +36,21 @@ MLB standings are the official source for current division, league, and postseas
 
 ## Why this source may matter
 
-Standings are one of the core live inputs for any baseball team or futures-style evaluation.
+It is the cleanest official baseline for current baseball race context and should anchor any discussion of where teams actually stand right now.
+
+## Possible impact on the question
+
+Useful for deciding whether a baseball futures or playoff race narrative is grounded in real current position versus stale perception.
+
+## Evidence directly stated by source
+
+- The source directly publishes current MLB division, league, and playoff-race standings.
+- It directly supports snapshot claims about wins, losses, games back, and current position.
+
+## What is uncertain
+
+- Standings alone do not reveal underlying team quality, health, or schedule-adjusted strength.
+- A snapshot can change quickly during the season, especially in compressed playoff races.
 
 ## Reliability notes
 

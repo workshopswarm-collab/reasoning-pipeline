@@ -13,6 +13,4 @@
 
 - Use CoinGecko for broad cross-asset comparisons and historical market context.
 - Use first-party docs to understand how an ecosystem describes itself.
-- Never rely on one source alone for crypto evaluation; combine market data, protocol context, and regulatory framing.
-
-- For deeper crypto work, combine market data with explorer evidence and onchain fundamentals.
+- Never rely on one source alone for crypto evaluation; combine market data, protocol context, explorer evidence, onchain fundamentals, and regulatory framing.

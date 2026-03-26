@@ -1,19 +1,22 @@
 ---
-type: synthesis
+type: domain_overview
 domain: culture
 subdomain: music
 topic: music research overview
 date_created: 2026-03-25
-agent: synthesizer
+agent: orchestrator
 certainty: medium
 importance: high
 upstream_inputs:
   - vault/40-research/source-notes/by-domain/culture/2026-03-25-music-industry-basics.md
 downstream_uses: []
-tags: [domain/culture, subdomain/music, overview]
----
+related_entities: []
+related_drivers: []
+tags: [domain/culture, subdomain/music, overview]---
 
-# Synthesis summary
+# Overview summary
+
+## Why this subdomain matters
 
 Music research should focus on streaming, touring, release timing, fan intensity, chart/commercial conversion, and artist-level narrative strength.
 

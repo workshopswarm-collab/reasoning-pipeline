@@ -2,11 +2,17 @@
 
 ## TL;DR
 
-This vault is a **layered research-memory system** for a multi-agent reasoning pipeline.
+This vault is a **layered research-memory system** for a multi-role reasoning pipeline.
+
+Authority note:
+- `vault/00-system/` is the highest-priority rule layer inside the vault
+- start with `vault/00-system/START-HERE.md` if you are a fresh-instance LLM
+- lower-level READMEs explain local usage but should not override 00-system rules
+- role permissions are defined in `vault/00-system/README.md`
 
 Use it to store:
 - durable domain knowledge
-- reusable entity dossiers
+- reusable canonical entity dossiers
 - reusable driver notes
 - time-stamped research artifacts
 - source reliability guidance
@@ -20,6 +26,15 @@ Do **not** treat it as:
 **Core rule:** canonical notes change rarely; research notes change often.
 
 ---
+
+## Terminology note
+
+In this vault:
+- a **dossier** means a **canonical entity note** in `vault/20-entities/`
+- a **canonical dossier** is acceptable shorthand for a canonical entity note
+- notes in `vault/40-research/` are **research notes**, not dossiers
+
+Use this distinction consistently so canonical memory and research memory do not blur together.
 
 ## What this vault is trying to answer
 
@@ -41,7 +56,7 @@ Think of the vault as six layers:
 
 1. **System** — how the memory system works
 2. **Domains** — broad subject-area knowledge
-3. **Entities** — reusable dossiers on important objects
+3. **Entities** — reusable canonical entity dossiers on important objects
 4. **Drivers** — reusable causal mechanisms
 5. **Research** — time-stamped source notes, findings, syntheses
 6. **Retrospectives** — what helped, what misled, what to improve
@@ -86,7 +101,7 @@ Current major domains:
 Most important files here are usually `00-overview.md` notes.
 
 ### `20-entities/`
-Canonical dossiers on recurring objects.
+Canonical entity dossiers on recurring objects.
 
 Examples:
 - people
@@ -136,13 +151,15 @@ Temporary holding area for useful notes that do not yet have a stable home.
 ### `00-overview.md`
 A fast orientation note for a domain or subdomain.
 
+In `10-domains/`, these are canonical **domain overviews**, not research-layer syntheses.
+
 Purpose:
 - summarize what matters
 - identify main evidence clusters
 - identify missing information
 - provide a "how to think about this area" anchor
 
-### Entity dossier
+### Canonical entity dossier
 Usually under `20-entities/`.
 
 Purpose:
@@ -166,7 +183,7 @@ Purpose:
 - store role-specific interpretation from a research agent
 
 ### Synthesis
-Usually under `40-research/syntheses/` or as an overview note.
+Usually under `40-research/syntheses/`.
 
 Purpose:
 - combine multiple upstream inputs into a current interpretation
@@ -181,6 +198,28 @@ Purpose:
 ---
 
 ## Canonical vs research memory
+
+## Canonical body vs linkage metadata
+
+Within canonical notes, treat these as two different maintenance surfaces:
+
+### Canonical body content
+- slow-moving
+- durability-focused
+- summary-oriented
+- should update only when the long-run understanding of the entity materially changes
+
+### Linkage metadata
+- mainly `related_entities` and `related_drivers`
+- curated graph/navigation infrastructure
+- allowed to evolve more fluidly than canonical body prose
+- should be updated whenever doing so materially improves retrieval, reciprocity, or structural navigation
+
+Important: more fluid does **not** mean sloppy.
+
+Linkages should still be compact, high-signal, and structurally justified.
+
+Use this distinction so the vault can keep canon prose strict without freezing the graph in an underlinked state.
 
 ### Canonical memory
 Lives mainly in:
@@ -222,9 +261,10 @@ Detailed rules:
 ### If you need fast orientation
 Read in this order:
 1. this `README.md`
-2. relevant `10-domains/.../00-overview.md`
-3. relevant `20-entities/.../*.md`
-4. relevant `30-drivers/.../00-overview.md`
+2. `vault/00-system/START-HERE.md`
+3. `vault/00-system/README.md`
+4. relevant layer README (`20-entities/`, `30-drivers/`, `40-research/`, or `50-retrospectives/`)
+5. relevant `10-domains/.../00-overview.md`, `20-entities/.../*.md`, and `30-drivers/*.md`
 
 ### If you need recent evidence
 Then pull from:
@@ -234,7 +274,7 @@ Then pull from:
 
 ### If you want to write new information
 Default to the **research layer first**.
-Do not casually rewrite canonical dossiers.
+Do not casually rewrite canonical entity notes.
 
 ---
 
@@ -259,7 +299,7 @@ Known limitations:
 - some areas are broad but not yet deep
 - entity density is still uneven by domain
 - live-input operational layers are incomplete in some areas
-- many dossiers are foundation-level rather than final research-grade notes
+- many canonical entity notes are foundation-level rather than final research-grade notes
 
 This is expected.
 The system is meant to improve through:
@@ -273,7 +313,7 @@ The system is meant to improve through:
 
 - keep folders coarse and stable
 - push nuance into metadata and QMD retrieval
-- keep canonical dossiers slow-moving
+- keep canonical entity notes slow-moving
 - route new information into research artifacts first
 - preserve provenance whenever possible
 - prefer durable summaries over note churn

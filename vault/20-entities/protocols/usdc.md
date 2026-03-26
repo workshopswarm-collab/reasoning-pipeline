@@ -6,7 +6,7 @@ entity: usdc
 entity_type: protocol
 status: active
 last_updated: 2026-03-25
-related_entities: [circle, coinbase, tether]
+related_entities: [circle, circle-internet-group, coinbase, tether]
 related_drivers: [regulation, macro, product-launches]
 tags: [entity/protocol, entity/usdc, domain/crypto]
 ---

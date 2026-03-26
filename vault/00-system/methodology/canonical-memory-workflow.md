@@ -12,6 +12,7 @@ Purpose:
 - durable summaries
 - reusable memory
 - stable retrieval anchors
+- domain overviews, entity overviews, and driver notes that should not be confused with research-layer syntheses
 
 ### Research layer
 
@@ -39,10 +40,12 @@ Promote research-layer information into a canonical dossier only when:
 ## Canonical update path
 
 1. gather source notes
-2. gather agent findings
-3. write synthesis if needed
-4. write dossier update proposal
-5. only then update the canonical dossier
+2. gather research findings
+3. write synthesis and evidence map if needed
+4. write dossier update proposal or equivalent promotion note in the research layer
+5. let the decision-maker or orchestrator review the proposal
+6. only then update the canonical dossier
+7. if the case produces methodology or conflict lessons, capture them in `vault/50-retrospectives/`
 
 ## Canonical sections most likely to change
 

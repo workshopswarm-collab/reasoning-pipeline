@@ -1,19 +1,22 @@
 ---
-type: synthesis
+type: domain_overview
 domain: sports
 subdomain: hockey
 topic: hockey research overview
 date_created: 2026-03-25
-agent: synthesizer
+agent: orchestrator
 certainty: medium
 importance: high
 upstream_inputs:
   - vault/40-research/source-notes/by-domain/sports/2026-03-25-hockey-basics.md
 downstream_uses: []
-tags: [domain/sports, subdomain/hockey, overview]
----
+related_entities: []
+related_drivers: []
+tags: [domain/sports, subdomain/hockey, overview]---
 
-# Synthesis summary
+# Overview summary
+
+## Why this subdomain matters
 
 Hockey research should focus on star skater value, goaltending, roster depth, injuries, and how low-scoring variance interacts with playoff structure.
 

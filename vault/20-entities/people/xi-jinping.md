@@ -6,7 +6,7 @@ entity: xi-jinping
 entity_type: person
 status: active
 last_updated: 2026-03-25
-related_entities: [china, taiwan, united-states]
+related_entities: [china, united-states, taiwan]
 related_drivers: [conflicts, regulation, product-launches]
 tags: [entity/person, entity/xi-jinping, domain/geopolitics]
 ---

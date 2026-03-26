@@ -1,51 +1,52 @@
 ---
-type: entity_overview
+type: product_note
 domain: tech-ai
 subdomain: frontier-model-products
 entity: openai-o1
-entity_type: product
-status: active
-last_updated: 2026-03-25
-related_entities: [openai]
+topic: versioned model note
+driver: product-launches
+date_created: 2026-03-25
+agent: orchestrator
+related_entities: [openai, chatgpt]
 related_drivers: [product-launches, sentiment, operational-risk]
-tags: [entity/product, entity/openai-o1, domain/tech-ai]
+upstream_inputs: []
+downstream_uses: []
+tags: [research/product-note, product/openai-o1, domain/tech-ai, status/versioned]
 ---
 
 # Summary
 
-OpenAI o1 is a high-yield AI product because reasoning-style models are central to the narrative around higher-value AI performance and premium product differentiation.
+Working note for tracking OpenAI o1 as a specific reasoning-model release in the OpenAI product stack.
 
-## What this entity is
+## Research focus
 
-A frontier reasoning-oriented AI model product associated with OpenAI's higher-capability offerings.
+Track release-specific evidence on reasoning-model positioning, benchmark narratives, workflow relevance, pricing, packaging, and whether this tier creates distinct commercial demand.
 
-## Why it matters
+## Signals to monitor
 
-o1 matters because reasoning-focused products test whether users and enterprises value model quality improvements enough to change pricing power and workflow adoption.
+- reasoning-performance claims versus practical usage quality
+- pricing and premium-tier packaging
+- workflow fit for high-value use cases
+- benchmark durability versus novelty effects
+- replacement risk from newer model releases
 
-## Current state
+## Current hypotheses
 
-Research should focus on benchmark credibility, practical performance, product packaging, pricing, user segmentation, and whether reasoning-focused capability is producing real commercial advantage.
+- reasoning-focused model tiers may support premium pricing if users perceive a real workflow difference
+- benchmark excitement may not map cleanly to durable product-market fit
+- the exact model name/version may matter less over time than broader OpenAI platform integration
 
-## Key strengths
+## What is uncertain
 
-- strong relevance to frontier-model differentiation and monetization
-- useful signal on whether higher-capability tiers command durable premium demand
-- can shape expectations for the next phase of model competition
+- how much demand attaches to this exact reasoning tier
+- whether the market values reasoning capability enough to sustain distinct premium positioning
+- how quickly this model is superseded by newer releases or packaging shifts
 
-## Key weaknesses
+## How to use this note later
 
-- benchmark and capability narratives can outrun durable product-market fit
-- product identity may evolve quickly in a fast-moving model landscape
-
-## Important recent changes
-
-- remains a useful product-layer entity for reasoning-model commercialization analysis
-
-## Open questions
-
-- how much enduring value users place on reasoning-capability gains once novelty and benchmark attention fade
+Use this file to compare early expectations with later evidence on pricing power, product stickiness, workflow adoption, and relative commercial impact.
 
 ## Related notes
 
-- OpenAI, ChatGPT, and product-launch notes
+- Canonical context lives in `openai` and `chatgpt`
+- Add dated benchmark, launch, pricing, or adoption observations here as they appear

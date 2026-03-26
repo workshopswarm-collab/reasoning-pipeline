@@ -1,19 +1,22 @@
 ---
-type: synthesis
+type: domain_overview
 domain: economics
 subdomain: inflation
 topic: inflation research overview
 date_created: 2026-03-25
-agent: synthesizer
+agent: orchestrator
 certainty: medium-high
 importance: high
 upstream_inputs:
   - vault/40-research/source-notes/by-domain/economics/2026-03-25-inflation-basics.md
 downstream_uses: []
-tags: [domain/economics, subdomain/inflation, overview]
----
+related_entities: []
+related_drivers: []
+tags: [domain/economics, subdomain/inflation, overview]---
 
-# Synthesis summary
+# Overview summary
+
+## Why this subdomain matters
 
 Inflation research should center on price indices, policy transmission, supply/demand shocks, and expectation management.
 

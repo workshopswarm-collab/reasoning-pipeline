@@ -1,19 +1,22 @@
 ---
-type: synthesis
+type: domain_overview
 domain: culture
 subdomain: social-media
 topic: social media research overview
 date_created: 2026-03-25
-agent: synthesizer
+agent: orchestrator
 certainty: medium
 importance: high
 upstream_inputs:
   - vault/40-research/source-notes/by-domain/culture/2026-03-25-social-media-basics.md
 downstream_uses: []
-tags: [domain/culture, subdomain/social-media, overview]
----
+related_entities: []
+related_drivers: []
+tags: [domain/culture, subdomain/social-media, overview]---
 
-# Synthesis summary
+# Overview summary
+
+## Why this subdomain matters
 
 Social-media research should focus on virality, platform mechanics, creator amplification, and how attention converts into durable or fragile narratives.
 

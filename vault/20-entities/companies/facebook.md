@@ -6,7 +6,7 @@ entity: facebook
 entity_type: company
 status: active
 last_updated: 2026-03-25
-related_entities: [meta, instagram]
+related_entities: [meta, mark-zuckerberg, instagram]
 related_drivers: [media-narratives, regulation, sentiment]
 tags: [entity/company, entity/facebook, domain/culture]
 ---

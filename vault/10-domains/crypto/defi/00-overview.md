@@ -1,19 +1,22 @@
 ---
-type: synthesis
+type: domain_overview
 domain: crypto
 subdomain: defi
 topic: defi research overview
 date_created: 2026-03-25
-agent: synthesizer
+agent: orchestrator
 certainty: medium
 importance: high
 upstream_inputs:
   - vault/40-research/source-notes/by-domain/crypto/2026-03-25-defi-basics.md
 downstream_uses: []
-tags: [domain/crypto, subdomain/defi, overview]
----
+related_entities: []
+related_drivers: []
+tags: [domain/crypto, subdomain/defi, overview]---
 
-# Synthesis summary
+# Overview summary
+
+## Why this subdomain matters
 
 DeFi research should focus on lending, DEX activity, collateral structure, stablecoin dependence, smart-contract risk, and whether onchain financial activity is durable or reflexive.
 

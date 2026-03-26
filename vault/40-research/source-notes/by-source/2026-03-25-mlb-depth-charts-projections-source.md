@@ -4,6 +4,7 @@ domain: sports
 subdomain: baseball
 entity:
 topic: MLB projections, playing time, and roster-shape expectations
+question:
 driver: seasonality
 date_created: 2026-03-25
 source_name: FanGraphs Depth Charts
@@ -21,8 +22,7 @@ related_entities: []
 related_drivers: [seasonality, injuries-health, sentiment]
 upstream_inputs: []
 downstream_uses: []
-tags: [source/projections, domain/sports, subdomain/baseball]
----
+tags: [source/projections, domain/sports, subdomain/baseball]---
 
 # Summary
 
@@ -36,7 +36,21 @@ FanGraphs Depth Charts is a high-value projection layer for expected team streng
 
 ## Why this source may matter
 
-It adds a forward-looking neutral baseline that complements historical stats and official current-state sources.
+It helps separate current record from expected roster strength, which is important in baseball where injuries and depth matter heavily.
+
+## Possible impact on the question
+
+Useful when a baseball futures or team-strength question depends on likely roster quality going forward rather than backward-looking results.
+
+## Evidence directly stated by source
+
+- The source directly provides projected lineups, rotations, playing-time assumptions, and model-driven performance expectations.
+- It supports claims about expected roster usage rather than just current standings.
+
+## What is uncertain
+
+- Projections depend on model assumptions, health, and playing-time estimates that can break quickly.
+- Projected depth is not the same thing as realized in-season performance.
 
 ## Reliability notes
 

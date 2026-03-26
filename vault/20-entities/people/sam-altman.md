@@ -6,7 +6,7 @@ entity: sam-altman
 entity_type: person
 status: active
 last_updated: 2026-03-25
-related_entities: [openai, microsoft]
+related_entities: [openai, chatgpt, microsoft]
 related_drivers: [product-launches, media-narratives, regulation]
 tags: [entity/person, entity/sam-altman, domain/tech-ai]
 ---

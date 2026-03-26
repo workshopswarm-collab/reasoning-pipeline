@@ -6,7 +6,7 @@ entity: aaron-judge
 entity_type: player
 status: active
 last_updated: 2026-03-25
-related_entities: [new-york-yankees]
+related_entities: [mlb, new-york-yankees, gerrit-cole, shohei-ohtani]
 related_drivers: [injuries-health, sentiment]
 tags: [entity/player, entity/aaron-judge, domain/sports, subdomain/baseball]
 ---

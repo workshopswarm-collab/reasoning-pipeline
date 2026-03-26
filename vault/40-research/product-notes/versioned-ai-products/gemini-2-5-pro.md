@@ -1,51 +1,52 @@
 ---
-type: entity_overview
+type: product_note
 domain: tech-ai
 subdomain: frontier-model-products
 entity: gemini-2-5-pro
-entity_type: product
-status: active
-last_updated: 2026-03-25
+topic: versioned model note
+driver: product-launches
+date_created: 2026-03-25
+agent: orchestrator
 related_entities: [gemini, alphabet]
 related_drivers: [product-launches, sentiment, operational-risk]
-tags: [entity/product, entity/gemini-2-5-pro, domain/tech-ai]
+upstream_inputs: []
+downstream_uses: []
+tags: [research/product-note, product/gemini-2-5-pro, domain/tech-ai, status/versioned]
 ---
 
 # Summary
 
-Gemini 2.5 Pro is a high-yield AI product because frontier-model competition, Google ecosystem leverage, and premium capability perception all converge around it.
+Working note for tracking Gemini 2.5 Pro as a specific premium-tier release in the Gemini product line.
 
-## What this entity is
+## Research focus
 
-A premium or frontier Gemini model-tier product associated with Google's AI platform.
+Track release-specific evidence on product quality, ecosystem integration, pricing, benchmark narratives, and whether premium-tier positioning creates durable user or enterprise preference.
 
-## Why it matters
+## Signals to monitor
 
-Gemini 2.5 Pro matters because product-tier competition increasingly determines whether model capability can be translated into durable user, developer, and enterprise preference.
+- benchmark claims versus real workflow utility
+- integration advantage inside Google products and developer stack
+- pricing, access tiering, and packaging changes
+- enterprise and developer preference signals
+- comparison with OpenAI and Anthropic premium tiers
 
-## Current state
+## Current hypotheses
 
-Research should focus on product quality, benchmark credibility, integration into Google's ecosystem, pricing, and whether premium-tier capability is building durable competitive edge.
+- premium Gemini tiers may benefit from Google distribution even when model-quality differences are noisy
+- premium-tier branding can matter for enterprise perception in the short run
+- release-specific narratives may be less durable than ecosystem integration advantages
 
-## Key strengths
+## What is uncertain
 
-- direct relevance to frontier-model and premium-product competition
-- useful comparator to OpenAI and Anthropic offerings
-- Google distribution can amplify even marginal model-quality advantages
+- how much value comes from this specific version versus the broader Gemini family
+- whether benchmark or launch excitement leads to durable usage
+- how long this exact version remains market-relevant before replacement
 
-## Key weaknesses
+## How to use this note later
 
-- capability narratives can outrun usage and stickiness evidence
-- product identity may be blurred within broader Gemini branding
-
-## Important recent changes
-
-- remains a useful product-layer entity for model-race and platform-competition analysis
-
-## Open questions
-
-- how much durable advantage premium Gemini tiers can build through ecosystem integration rather than raw model quality alone
+Use this file to compare initial expectations with later evidence on adoption, stickiness, pricing power, and competitive position inside the frontier-model market.
 
 ## Related notes
 
-- Gemini, Alphabet, and product-launch notes
+- Canonical context lives in `gemini` and `alphabet`
+- Add dated benchmark, launch, pricing, or adoption observations here as they appear

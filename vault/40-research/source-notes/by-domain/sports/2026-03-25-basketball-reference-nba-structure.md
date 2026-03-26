@@ -4,6 +4,7 @@ domain: sports
 subdomain: basketball
 entity:
 topic: NBA ecosystem structure and current competitive landscape
+question:
 driver: injuries-health
 date_created: 2026-03-25
 source_name: Basketball Reference
@@ -21,8 +22,7 @@ related_entities: [oklahoma-city-thunder, boston-celtics, los-angeles-lakers, de
 related_drivers: [injuries-health, leadership-changes, sentiment]
 upstream_inputs: []
 downstream_uses: [vault/10-domains/sports/basketball/00-overview.md]
-tags: [domain/sports, subdomain/basketball, source/stats-database]
----
+tags: [domain/sports, subdomain/basketball, source/stats-database]---
 
 # Summary
 
@@ -44,6 +44,10 @@ Basketball Reference is a high-quality structured source for standings, player p
 - Standings snapshots are time-sensitive and should not be treated as permanent facts.
 
 ## Why this source may matter
+
+It is one of the strongest backbone sources for basketball entity dossiers and for connecting current narratives to historical baselines.
+
+## Possible impact on the question
 
 It is one of the strongest backbone sources for basketball entity dossiers and for connecting current narratives to historical baselines.
 

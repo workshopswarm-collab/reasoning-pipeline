@@ -6,7 +6,7 @@ entity: waymo
 entity_type: company
 status: active
 last_updated: 2026-03-25
-related_entities: [alphabet]
+related_entities: [alphabet, tesla]
 related_drivers: [product-launches, regulation, operational-risk]
 tags: [entity/company, entity/waymo, domain/tech-ai]
 ---

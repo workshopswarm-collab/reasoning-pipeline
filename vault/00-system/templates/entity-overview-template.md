@@ -8,8 +8,8 @@ status: active
 last_updated:
 review_after:
 freshness: current
-related_entities: []
-related_drivers: []
+related_entities: []  # use the entity-linkage-framework.md rules; usually 3-8 high-signal links
+related_drivers: []   # usually 2-5 stable drivers from vault/30-drivers/
 tags: []
 ---
 

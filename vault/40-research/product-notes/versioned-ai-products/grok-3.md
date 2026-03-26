@@ -1,51 +1,52 @@
 ---
-type: entity_overview
+type: product_note
 domain: tech-ai
 subdomain: frontier-model-products
 entity: grok-3
-entity_type: product
-status: active
-last_updated: 2026-03-25
+topic: versioned model note
+driver: product-launches
+date_created: 2026-03-25
+agent: orchestrator
 related_entities: [grok, xai]
-related_drivers: [product-launches, sentiment, operational-risk]
-tags: [entity/product, entity/grok-3, domain/tech-ai]
+related_drivers: [product-launches, media-narratives, sentiment]
+upstream_inputs: []
+downstream_uses: []
+tags: [research/product-note, product/grok-3, domain/tech-ai, status/versioned]
 ---
 
 # Summary
 
-Grok-3 is a high-yield AI product because frontier-model competition, benchmark signaling, and xAI's market positioning all converge around it.
+Working note for tracking Grok-3 as a specific release in the Grok / xAI product line.
 
-## What this entity is
+## Research focus
 
-A frontier AI model product within xAI's Grok family, positioned in direct competition with other leading models.
+Track release-specific evidence about launch framing, benchmark claims, user sentiment, product quality, and whether media attention around Grok-3 turns into durable product use or commercial relevance.
 
-## Why it matters
+## Signals to monitor
 
-Grok-3 matters because frontier model releases remain major attention and capability-signaling events that can shift perceptions of competitive standings in AI.
+- launch and benchmark claims
+- social/media attention intensity
+- product differentiation versus other frontier models
+- distribution through xAI/X ecosystem surfaces
+- whether early attention becomes durable product usage
 
-## Current state
+## Current hypotheses
 
-Research should focus on benchmark claims, practical product quality, ecosystem integration, user uptake, and whether product visibility is translating into durable platform relevance.
+- Grok release cycles may receive unusually strong narrative amplification relative to hard evidence
+- distribution and media attention may matter as much as model quality in the short run
+- release-specific hype may fade quickly if product stickiness is weak
 
-## Key strengths
+## What is uncertain
 
-- direct relevance to frontier-model competition and attention cycles
-- useful comparator to OpenAI, Anthropic, and Google offerings
-- can materially affect perceived momentum in the AI race
+- how much durable user preference is attached to this exact version
+- whether launch attention is translating into meaningful adoption
+- how much of the product narrative is performance-driven versus media-driven
 
-## Key weaknesses
+## How to use this note later
 
-- benchmark narratives can outrun durable product or business value
-- public attention may overfocus on branding versus real deployment quality
-
-## Important recent changes
-
-- remains a useful product-layer entity for frontier-model rivalry analysis
-
-## Open questions
-
-- how much long-run value in frontier AI will come from headline model launches versus durable platform, distribution, and enterprise integration advantages
+Use this file to compare launch-period narratives with later evidence on adoption, usage, product quality, and relative performance versus peer releases.
 
 ## Related notes
 
-- Grok, xAI, and product-launch notes
+- Canonical context lives in `grok` and `xai`
+- Add dated launch, benchmark, pricing, or adoption observations here as they appear

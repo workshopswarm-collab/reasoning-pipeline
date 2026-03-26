@@ -6,7 +6,7 @@ entity: united-nations
 entity_type: organization
 status: active
 last_updated: 2026-03-25
-related_entities: [united-states, russia, china, european-union]
+related_entities: [united-states, russia, china, ukraine, israel]
 related_drivers: [diplomacy, conflicts, sanctions]
 tags: [entity/organization, entity/united-nations, domain/geopolitics]
 ---

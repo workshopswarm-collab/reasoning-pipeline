@@ -4,6 +4,7 @@ domain: sports
 subdomain: baseball
 entity:
 topic: MLB ecosystem structure and baseball metrics coverage
+question:
 driver: injuries-health
 date_created: 2026-03-25
 source_name: Baseball Reference
@@ -21,8 +22,7 @@ related_entities: [toronto-blue-jays, new-york-yankees, los-angeles-dodgers]
 related_drivers: [injuries-health, leadership-changes, seasonality]
 upstream_inputs: []
 downstream_uses: [vault/10-domains/sports/baseball/00-overview.md]
-tags: [domain/sports, subdomain/baseball, source/stats-database]
----
+tags: [domain/sports, subdomain/baseball, source/stats-database]---
 
 # Summary
 
@@ -44,6 +44,10 @@ Baseball Reference is the core structured source for MLB seasons, teams, player 
 - Standings and leader snapshots are time-sensitive and should not be treated as permanent facts.
 
 ## Why this source may matter
+
+It is the backbone source for baseball metrics, team history, player baselines, and current standings context.
+
+## Possible impact on the question
 
 It is the backbone source for baseball metrics, team history, player baselines, and current standings context.
 

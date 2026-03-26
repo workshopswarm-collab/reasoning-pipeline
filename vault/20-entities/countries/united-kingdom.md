@@ -6,7 +6,7 @@ entity: united-kingdom
 entity_type: country
 status: active
 last_updated: 2026-03-25
-related_entities: [keir-starmer, european-union, united-states]
+related_entities: [keir-starmer, bank-of-england, european-union, united-states]
 related_drivers: [diplomacy, macro, regulation]
 tags: [entity/country, entity/united-kingdom, domain/geopolitics, domain/economics, domain/politics]
 ---

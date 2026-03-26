@@ -6,7 +6,7 @@ entity: christine-lagarde
 entity_type: person
 status: active
 last_updated: 2026-03-25
-related_entities: [european-central-bank]
+related_entities: [european-central-bank, european-union, france]
 related_drivers: [macro, inflation, sentiment]
 tags: [entity/person, entity/christine-lagarde, domain/economics]
 ---

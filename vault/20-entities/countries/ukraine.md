@@ -21,29 +21,35 @@ A sovereign European country whose security, economy, and diplomacy are deeply s
 
 ## Why it matters
 
-Ukraine matters because it is central to European security, alliance politics, sanctions design, and battlefield-driven geopolitical outcomes.
+Ukraine matters because it is central to European security, Russia-West confrontation, military aid politics, and war-duration risk. Many NATO, sanctions, energy, and escalation markets are partly Ukraine questions because the war remains one of the main organizing conflicts in the geopolitical system.
 
 ## Current state
 
-Research should track military support, domestic resilience, diplomatic options, reconstruction/economic stability, and battlefield developments.
+Research should focus on battlefield sustainability, Western aid durability, political cohesion, reconstruction expectations, manpower and equipment constraints, and whether war aims are hardening or narrowing. It is important to separate symbolic support from materially binding support.
 
 ## Key strengths
 
-- strong international symbolic and coalition relevance
-- centrality in alliance and sanctions policy debates
+- one of the clearest geopolitical focal points in the vault
+- strong cross-readthrough into sanctions, NATO credibility, energy risk, and defense production
+- useful anchor for distinguishing battlefield dynamics from alliance politics
+- central to evaluating whether Western support remains strategically durable
 
 ## Key weaknesses
 
-- high dependence on external support and wartime resilience
-- battlefield uncertainty dominates many downstream evaluations
+- wartime information quality is often noisy or politicized
+- battlefield and diplomatic timelines can diverge sharply
+- market narratives can swing too far between breakthrough optimism and frozen-conflict fatalism
 
 ## Important recent changes
 
-- remains one of the main global conflict and diplomacy focal points
+- Ukraine remains a central geopolitical entity because war sustainability and aid durability continue to shape Europe-wide and global strategic interpretation
+- current significance depends on whether support and war aims remain coherent enough to avoid slow strategic drift
 
 ## Open questions
 
-- how support durability and battlefield conditions interact over time
+- how durable Western support remains under time, cost, and political fatigue
+- whether Ukraine’s strategic position is stabilizing, eroding, or simply becoming more attritional
+- how much current market interpretation underweights long-war dynamics relative to headline battlefield moves
 
 ## Related notes
 

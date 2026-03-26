@@ -6,7 +6,7 @@ entity: aws
 entity_type: company
 status: active
 last_updated: 2026-03-25
-related_entities: [microsoft, openai, anthropic]
+related_entities: [amazon, openai, anthropic, microsoft]
 related_drivers: [product-launches, operational-risk, macro]
 tags: [entity/company, entity/aws, domain/tech-ai]
 ---

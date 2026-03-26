@@ -6,7 +6,7 @@ entity: gerrit-cole
 entity_type: player
 status: active
 last_updated: 2026-03-25
-related_entities: [new-york-yankees]
+related_entities: [mlb, new-york-yankees, aaron-judge]
 related_drivers: [injuries-health, sentiment]
 tags: [entity/player, entity/gerrit-cole, domain/sports, subdomain/baseball]
 ---

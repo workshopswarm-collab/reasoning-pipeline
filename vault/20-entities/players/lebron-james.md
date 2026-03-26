@@ -6,7 +6,7 @@ entity: lebron-james
 entity_type: player
 status: active
 last_updated: 2026-03-25
-related_entities: [los-angeles-lakers]
+related_entities: [nba, los-angeles-lakers, nikola-jokic]
 related_drivers: [injuries-health, sentiment]
 tags: [entity/player, entity/lebron-james, domain/sports, subdomain/basketball]
 ---

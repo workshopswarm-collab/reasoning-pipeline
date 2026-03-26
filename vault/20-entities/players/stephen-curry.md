@@ -6,7 +6,7 @@ entity: stephen-curry
 entity_type: player
 status: active
 last_updated: 2026-03-25
-related_entities: [golden-state-warriors]
+related_entities: [nba, golden-state-warriors, lebron-james]
 related_drivers: [injuries-health, sentiment]
 tags: [entity/player, entity/stephen-curry, domain/sports, subdomain/basketball]
 ---

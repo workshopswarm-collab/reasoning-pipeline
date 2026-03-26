@@ -6,7 +6,7 @@ entity: meta
 entity_type: company
 status: active
 last_updated: 2026-03-25
-related_entities: [instagram, facebook]
+related_entities: [mark-zuckerberg, facebook, instagram, tiktok, youtube]
 related_drivers: [media-narratives, product-launches, regulation]
 tags: [entity/company, entity/meta, domain/culture, domain/tech-ai]
 ---

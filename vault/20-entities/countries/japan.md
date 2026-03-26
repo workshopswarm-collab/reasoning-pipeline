@@ -6,7 +6,7 @@ entity: japan
 entity_type: country
 status: active
 last_updated: 2026-03-25
-related_entities: [united-states, china, taiwan]
+related_entities: [bank-of-japan, united-states, china, taiwan]
 related_drivers: [alliances, trade, energy]
 tags: [entity/country, entity/japan, domain/geopolitics]
 ---

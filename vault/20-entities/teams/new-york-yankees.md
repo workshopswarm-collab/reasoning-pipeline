@@ -6,7 +6,7 @@ entity: new-york-yankees
 entity_type: team
 status: active
 last_updated: 2026-03-25
-related_entities: [aaron-judge, gerrit-cole, mlb]
+related_entities: [mlb, aaron-judge, gerrit-cole]
 related_drivers: [injuries-health, seasonality, sentiment]
 tags: [entity/team, entity/new-york-yankees, domain/sports, subdomain/baseball]
 ---
