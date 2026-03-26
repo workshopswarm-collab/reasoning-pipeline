@@ -128,6 +128,7 @@ You may make linkage-only updates without treating them as full canonical rewrit
 
 ## Folder-specific read path
 
+- working in `10-domains/` -> read `vault/10-domains/README.md`
 - working in `20-entities/` -> read `vault/20-entities/README.md`
 - working in `30-drivers/` -> read `vault/30-drivers/README.md`
 - working in `40-research/` -> read `vault/40-research/README.md`

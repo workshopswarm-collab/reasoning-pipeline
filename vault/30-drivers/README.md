@@ -266,6 +266,11 @@ Good target:
 - `40-research/` = what happened in this case?
 - `50-retrospectives/` = what did the resolved case teach us?
 
+## Template
+
+When creating or substantially rewriting a driver note, use:
+- `vault/00-system/templates/driver-overview-template.md`
+
 ## Writing standard
 
 Prefer concise, reusable guidance over long event histories.

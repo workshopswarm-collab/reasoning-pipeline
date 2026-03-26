@@ -73,7 +73,7 @@ Canonical dossiers should normally be updated only by:
 - decision-maker
 - a specifically designated canonical-memory maintainer
 
-Researchers may surface update candidates through research notes or dossier update proposals, but should not directly amend stable layers during ordinary pipeline operation.
+Researchers may surface update candidates through research notes or canonical entity update proposals, but should not directly amend stable layers during ordinary pipeline operation.
 
 ### Promotion threshold
 

@@ -1,6 +1,8 @@
 ---
-type: dossier_update_proposal
+type: canonical_entity_update_proposal
 target:
+target_path:
+proposal_type: body
 section:
 proposed_by:
 date_created:
@@ -16,9 +18,18 @@ tags: []
 
 Use this template only for proposed updates to a canonical entity note in `vault/20-entities/`.
 
+This is a proposal artifact, not a canonical rewrite.
+
 ## Why this update is being proposed
 
-## What current canonical claim appears outdated or misleading
+## What current canonical claim or linkage appears outdated or misleading
+
+## Proposal type
+
+State whether this is primarily:
+- body content
+- linkage metadata
+- both
 
 ## Evidence for update
 
@@ -30,7 +41,7 @@ Use this template only for proposed updates to a canonical entity note in `vault
 - Repeated agent findings involved:
 - Why this is not just transient noise:
 
-## Proposed replacement language
+## Proposed replacement language or linkage change
 
 ## Why this meets the canonical-update threshold
 

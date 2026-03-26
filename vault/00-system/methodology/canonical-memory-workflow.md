@@ -42,7 +42,7 @@ Promote research-layer information into a canonical dossier only when:
 1. gather source notes
 2. gather research findings
 3. write synthesis and evidence map if needed
-4. write dossier update proposal or equivalent promotion note in the research layer
+4. write canonical entity update proposal or equivalent promotion note in the research layer
 5. let the decision-maker or orchestrator review the proposal
 6. only then update the canonical dossier
 7. if the case produces methodology or conflict lessons, capture them in `vault/50-retrospectives/`
