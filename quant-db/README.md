@@ -1,0 +1,33 @@
+# quant-db/
+
+This directory holds **schema and migration artifacts** for the shared PostgreSQL database used by the prediction pipeline.
+
+It does **not** hold the live PostgreSQL data directory.
+
+The live database cluster is runtime infrastructure and should stay outside the repo.
+
+## Structure
+
+- `schema/` → canonical schema/bootstrap SQL snapshots
+- `migrations/` → ordered SQL migrations applied to a running database
+
+## Intended flow
+
+1. Start a PostgreSQL instance outside the repo
+2. Create local roles/database with `scripts/db/bootstrap_local.sh`
+3. Load connection variables from `.env.postgres.local`
+4. Apply migrations with `scripts/db/apply.sh`
+5. Verify access with `scripts/db/check.sh`
+
+## Current scope
+
+The initial schema is intentionally minimal. It is designed to validate the first end-to-end architecture loop:
+
+- Device B writes market metadata and market snapshots
+- Device A opens cases and coordinates research runs
+- research agents log predictions
+- Device A writes decision packets
+- Device B reads those packets and records paper executions
+- resolved outcomes and retrospectives close the loop
+
+The first migration set is meant to reduce time to deployment, not to fully model the final system on day one.

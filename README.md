@@ -137,7 +137,7 @@ Researchers primarily interact with:
 - the **Vault**, which acts as the qualitative database for note-taking, provenance, assumptions, and synthesis inputs
 - **PostgreSQL**, which acts as the quantitative database for append-only prediction logs, conviction, timestamps, and later performance linkage
 
-Researchers should normally write into `vault/40-research/`, not stable canonical layers.
+Researchers should normally write into `qualitative-db/40-research/`, not stable canonical layers.
 
 ## Phase 2: Tactical decision
 The **Orchestrator** reviews the research outputs and produces a synthesized view.
@@ -201,7 +201,7 @@ Owns parallel evidence generation:
 - independent analysis of the same case
 - divergent framing driven by different personalities / priors
 - explicit disagreement and alternative weighting
-- structured findings in `vault/40-research/`
+- structured findings in `qualitative-db/40-research/`
 
 ### Decision-Maker
 Owns the final suggested action:
@@ -226,7 +226,7 @@ Owns the **qualitative database**:
 - stable domains / entities / drivers
 - human-readable causal and contextual memory
 
-Start at `vault/README.md` for the memory-system map.
+Start at `qualitative-db/README.md` for the memory-system map.
 
 ### PostgreSQL
 Owns the **quantitative database**:
@@ -254,7 +254,7 @@ Owns action and accounting:
   - PostgreSQL = quantitative database for state, execution, and evaluation
 
 - **Researchers write to research first**
-  - new evidence belongs in `vault/40-research/`
+  - new evidence belongs in `qualitative-db/40-research/`
   - stable layers update only under stronger review thresholds
 
 - **Human remains in the loop**
@@ -271,7 +271,7 @@ Owns action and accounting:
 
 Current key top-level areas:
 
-- `vault/` → qualitative database / research memory system
+- `qualitative-db/` → qualitative database / research memory system
 - `memory/` → assistant continuity / daily memory
 - `MEMORY.md` → compact long-term assistant memory
 - `qmd.yml` → retrieval/index configuration for the vault
@@ -280,7 +280,7 @@ Current key top-level areas:
 A likely future structured-data area would be something like:
 
 ```text
-data/
+quant-db/
   README.md
   schema/
   migrations/
