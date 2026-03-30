@@ -1,22 +1,32 @@
 # Pipeline Launch Procedure
 
-This folder contains the launch control-plane for the research swarm.
+This folder is the launch control-plane for the research swarm.
 
-## Current architecture
+## Canonical truth
 
-The canonical runtime surface is now **fixed Discord persona channels**, not auto-created Discord threads.
+- Runtime surface: **fixed Discord persona channels**
+- Handoff primitive: `sessions_send`
+- Stable completion key: `research_run_id`
+- Primary completion path: terminal `update_research_run.py` updates auto-attempt parent finalization
+- Manual repair path: `runtime/scripts/finalize_dispatch_after_swarm.py --file <manifest> --apply`
 
-The flow is:
-1. planner scripts prepare the case, prompts, `research_runs`, and manifest
-2. runtime helpers turn that manifest into one `sessions_send` handoff per persona channel
-3. TUI/main runtime delivers those handoffs into the mapped Discord sessions
-4. successful handoffs patch the corresponding `research_runs` rows to `running`
-5. persona lanes do the actual research work, post visible STARTING/FINISHED updates in their Discord channels when possible, and later mark runs `completed` / `failed`
-6. terminal run updates now auto-attempt the standard finalizer and close the parent case/market when the swarm becomes fully terminal; the manual finalizer remains the safety-net backstop if reconciliation is missed
+Do **not** treat Discord thread creation as part of the current model.
 
-Important nuance:
-- the `sessions_send` handoff itself is an internal OpenClaw session delivery, not a guaranteed visible kickoff post in the Discord channel
-- visible lane activity should come from the persona lane after it receives the assignment
+## End-to-end flow
+
+1. Planner prepares market/case state, prompts, queued `research_runs`, and a dispatch manifest.
+2. Runtime turns the manifest into one `sessions_send` handoff per still-queued persona lane.
+3. Successful handoffs patch the matching `research_runs` rows to `running`.
+4. Persona lanes do the actual research work and, when possible, post visible STARTING/FINISHED lines in Discord.
+5. Persona lanes reconcile completion/failure back into `research_runs`.
+6. Terminal run updates auto-attempt manifest reconciliation and parent case/market closure.
+7. If automatic reconciliation is missed, use the manual finalizer as a repair/backstop step.
+
+## Important nuance
+
+- `sessions_send` confirms **internal OpenClaw session delivery**.
+- It does **not** guarantee a visible kickoff post in Discord.
+- Visible lane activity should come from the persona lane after it receives the assignment.
 
 ## Folder map
 
@@ -27,8 +37,8 @@ Important nuance:
 
 Planner owns deterministic preparation work:
 - select market
-- open case
-- set market status
+- open/fetch case
+- set market pipeline state
 - create queued research runs
 - build persona prompts
 - emit dispatch manifest
@@ -39,19 +49,21 @@ Planner owns deterministic preparation work:
 - `runtime/persona-channel-map.json`
 - `runtime/README.md`
 
-Runtime owns operational delivery work:
-- validate manifest
-- load existing run state for idempotency
-- prepare one `sessions_send` handoff per persona lane
+Runtime owns operational execution work:
+- validate manifests
+- load current run state for idempotency
+- prepare one `sessions_send` handoff per launchable lane
 - patch runs to `running` after successful handoff
-- support completion-state helpers and manifest hygiene
+- reconcile completion/failure state
+- auto-finalize parent case/market when all runs are terminal
+- provide manual repair helpers and manifest hygiene
 
 ## Canonical docs
 
-- `RESEARCH_DISPATCH_SPEC.md` — dispatch/state contract for the fixed-channel model
-- `OPENCLAW_RUNTIME_BRIDGE.md` — planner/runtime boundary for fixed-channel handoff
+- `RESEARCH_DISPATCH_SPEC.md` — state model and dispatch contract
+- `OPENCLAW_RUNTIME_BRIDGE.md` — planner/runtime boundary
 - `RUNTIME_HARNESS_PROCEDURE.md` — exact TUI/runtime handoff loop
-- `DISPATCH_LIVE_SWARM.md` — operator runbook for live launches
+- `DISPATCH_LIVE_SWARM.md` — live operator runbook
 
 ## Canonical scripts
 
@@ -76,7 +88,7 @@ Runtime owns operational delivery work:
 - `runtime/scripts/list_pending_dispatch_manifests.py`
 - `runtime/scripts/archive_dispatch_manifests.py`
 
-## Runtime routing map
+## Routing map
 
 Fixed persona-channel routing lives in:
 - `runtime/persona-channel-map.json`
@@ -88,33 +100,42 @@ Current personas:
 - `risk-manager`
 - `catalyst-hunter`
 
-Each persona maps to one Discord channel session key.
+Each persona maps to one persistent Discord channel session key.
 
 ## Status model
 
-### Market level
-- `pending_research` → queued for future work
-- `researching` → active case in flight
-- `closed` → no longer actively in-flight in the pipeline
+### Market/case level
+- `markets.pipeline_status = pending_research` → queued for future work
+- `markets.pipeline_status = researching` → active case in flight
+- `markets.pipeline_status = closed` → no longer actively in-flight
+- `cases.status = open` → case is active
+- `cases.status = closed` → case has been finalized
 
 ### Run level
-- `queued` → row created, not yet handed off
-- `running` → handoff delivered to the persona channel and run started
+- `queued` → row exists, not yet handed off
+- `running` → handoff delivered and run started
 - `completed` / `failed` → terminal
 
-Important note:
-- `started_at` should reflect the actual handoff/start transition, not row creation time
-- if a lane writes its agent-finding artifact but fails to update the DB, use `runtime/scripts/reconcile_dispatch_from_artifacts.py` as the safety-net reconciler
+### Timestamp rule
+- `started_at` must reflect actual handoff/start, not row creation
 
-## Headless TUI wrapper
+## Safety net
+
+If a lane writes artifacts but fails to reconcile DB state, use:
+- `runtime/scripts/reconcile_dispatch_from_artifacts.py`
+
+If you need full manifest-level repair/audit, use:
+- `runtime/scripts/finalize_dispatch_after_swarm.py --file <manifest> --apply`
+
+## Headless wrapper
 
 Use:
 - `runtime/scripts/prepare_headless_discord_dispatch.py`
 
 It:
-1. selects/open cases when needed
+1. selects/opens a case when needed
 2. emits the canonical manifest
 3. loads existing run state for idempotency
 4. prepares the runtime handoff plan
 5. returns one ready-to-send `sessions_send` step per persona lane
-
+6. includes an optional manual finalizer backstop command

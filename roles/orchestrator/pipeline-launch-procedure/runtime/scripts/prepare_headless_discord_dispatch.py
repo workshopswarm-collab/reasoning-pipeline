@@ -209,8 +209,9 @@ def main() -> int:
                 },
             },
             "next_tool_steps": next_tool_steps,
-            "post_run_finalize_step": {
+            "manual_finalize_backstop_step": {
                 "tool": "exec",
+                "description": "Optional repair step if automatic terminal finalization is missed or you want an explicit post-run audit",
                 "command": f"set -a; source /Users/agent2/.openclaw/workspace/.env; set +a; python3 {FINALIZE_DISPATCH_AFTER_SWARM} --file {manifest_path} --apply --pretty"
             }
         }

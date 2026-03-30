@@ -1,12 +1,12 @@
 # Runtime Harness Procedure
 
-Use this procedure when the TUI/main runtime wants to deliver a prepared dispatch manifest into the fixed Discord persona channels.
+Use this procedure when the TUI/main runtime needs to deliver a prepared dispatch manifest into the fixed Discord persona channels.
 
 ## Goal
 
 Turn a planner-emitted manifest into:
 - one `sessions_send` step per still-queued persona run
-- DB patches for the successfully delivered runs
+- DB patches for successfully delivered runs
 - a concise delivery summary
 
 ## Required helpers
@@ -15,10 +15,12 @@ Turn a planner-emitted manifest into:
 - `runtime/scripts/run_dispatch_runtime.py`
 - `runtime/scripts/runtime_execute_dispatch.py`
 - `runtime/scripts/update_research_run.py`
+- `runtime/scripts/auto_finalize_case_after_terminal_run.py`
+- `runtime/scripts/finalize_dispatch_after_swarm.py`
 
-## Procedure
+## Happy path
 
-### Step 1 — prepare idempotent launch state
+### Step 1 — load idempotent state
 1. load the manifest
 2. load current DB state for the referenced `research_runs`
 3. pass that state into `run_dispatch_runtime.py`
@@ -50,22 +52,30 @@ For each successful delivery:
    - `notes.delivery_target_session_key`
    - `notes.delivery_target_channel_id`
 
-### Step 4 — summarize
-Use the runtime summary object to report:
+### Step 4 — summarize delivery
+Use the runtime summary object to report one of:
 - `delivered_all`
 - `delivered_partial`
-- or `delivery_failed`
+- `delivery_failed`
 
-### Step 5 — standard finalization after the swarm appears done
-Run:
+## Completion/finalization behavior
+
+### Primary path
+- persona lanes reconcile completion/failure through `update_research_run.py`
+- terminal run updates auto-attempt `auto_finalize_case_after_terminal_run.py`
+- if the swarm is fully terminal, that helper:
+  - runs manifest reconciliation
+  - closes the parent case
+  - closes the parent market pipeline state
+
+### Manual backstop
+Use:
 - `runtime/scripts/finalize_dispatch_after_swarm.py --file <manifest> --apply`
 
-This standard finalizer:
-- runs the artifact-vs-DB reconciler
-- returns post-finalization status counts
-- tells you whether all runs are terminal
-
-This remains a safety net, not the primary completion path, but it should now be treated as the standard last step after swarm completion.
+Use the manual finalizer when:
+- artifacts exist but DB state still lags
+- you are repairing older runs created before the auto-finalizer existed
+- you want an explicit post-run audit of terminal counts
 
 ## Retry rule
 
@@ -77,11 +87,11 @@ The fixed-channel runtime should skip any run already marked:
 - `completed`
 - `failed`
 
-## Important note
+## Non-goals
 
 The runtime harness no longer depends on:
 - legacy thread-binding machinery
 - subagent session creation
 - unique per-run child-session routing metadata
 
-The handoff surface is now the fixed Discord persona-channel session map.
+The handoff surface is the fixed Discord persona-channel session map.

@@ -2,17 +2,18 @@
 
 This folder contains the **planner/control-plane** half of the pipeline launch procedure.
 
-## Purpose
+## Canonical truth
 
-Planner scripts do deterministic local preparation work:
-- select the next market
-- open or fetch the case
-- set `markets.pipeline_status`
-- create queued `research_runs`
-- build persona-specific prompts
-- emit the canonical dispatch manifest
+Planner owns deterministic local preparation work.
+Planner does **not** call OpenClaw runtime tools directly.
 
-Planner scripts do **not** call OpenClaw runtime tools directly.
+Planner is responsible for:
+- selecting the next market
+- opening/fetching the case
+- setting `markets.pipeline_status`
+- creating queued `research_runs`
+- building persona-specific prompts
+- emitting the canonical dispatch manifest
 
 ## Layout
 
@@ -31,4 +32,4 @@ Planner scripts do **not** call OpenClaw runtime tools directly.
 ## Boundary
 
 Planner output is the dispatch manifest.
-Execution, channel handoff, and runtime-state reconciliation belong to the sibling `../runtime/` lane.
+Execution, Discord handoff, run-state reconciliation, and finalization belong to the sibling `../runtime/` lane.
