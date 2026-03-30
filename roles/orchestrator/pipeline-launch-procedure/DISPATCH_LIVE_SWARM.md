@@ -4,11 +4,16 @@ Use this procedure when launching the real 5-agent swarm from the OpenClaw agent
 
 ## Goal
 
-Launch the full case swarm using the generated prompt text from `roles/orchestrator/pipeline-launch-procedure/initialize/scripts/build_researcher_prompt.py` rather than a hand-written task string.
+Launch the full case swarm using the generated prompt text from `roles/orchestrator/pipeline-launch-procedure/planner/scripts/build_researcher_prompt.py` rather than a hand-written task string.
 
 This is a **two-phase** process:
 - local Python/Postgres scripts prepare the dispatch plan
-- the OpenClaw runtime executes the actual `sessions_spawn` calls
+- the TUI/main OpenClaw runtime executes the actual `sessions_send` handoffs into fixed Discord persona channels
+
+For headless launches from TUI, prefer the wrapper:
+- `roles/orchestrator/pipeline-launch-procedure/runtime/scripts/prepare_headless_discord_dispatch.py`
+
+That wrapper emits the manifest path plus one prepared `sessions_send` step per persona channel.
 
 See also:
 - `roles/orchestrator/pipeline-launch-procedure/OPENCLAW_RUNTIME_BRIDGE.md`
@@ -20,7 +25,7 @@ See also:
 1. Load case + market context.
 2. Set `markets.pipeline_status = researching`.
 3. Create one `research_runs` row per persona.
-4. For each persona, call `roles/orchestrator/pipeline-launch-procedure/initialize/scripts/build_researcher_prompt.py` with:
+4. For each persona, call `roles/orchestrator/pipeline-launch-procedure/planner/scripts/build_researcher_prompt.py` with:
    - `agent_label`
    - `case_id`
    - `case_key`
@@ -35,38 +40,40 @@ See also:
    - `metadata`
    - `workspace_note_path`
    - optional exact artifact-path overrides if needed
-5. Emit one runtime `spawn_payload` plus one post-spawn DB patch template per persona.
+5. Emit one channel handoff payload plus one post-handoff DB patch template per persona.
 
 Primary planner:
-- `roles/orchestrator/pipeline-launch-procedure/initialize/scripts/dispatch_case_research.py`
+- `roles/orchestrator/pipeline-launch-procedure/planner/scripts/dispatch_case_research.py`
 
 ### Phase 2 — execute the dispatch plan in OpenClaw runtime
 
-6. Hand the manifest to the runtime controller lane.
+6. Hand the manifest to the runtime lane.
 7. Run the thin runtime harness flow using:
-   - `roles/orchestrator/pipeline-launch-procedure/initialize/scripts/run_dispatch_runtime.py`
-8. Use each emitted launchable `spawn_payload` as the literal input to `sessions_spawn`.
-9. After each successful spawn, build the filled post-spawn patch and patch the matching `research_runs` row through `update_research_run.py`, setting the run to `running`.
-10. Fill `research_runs.notes` with runtime metadata from the actual spawn result, especially:
-   - `child_session_key`
-   - `spawn_run_id`
+   - `roles/orchestrator/pipeline-launch-procedure/runtime/scripts/run_dispatch_runtime.py`
+8. Use each emitted launchable `handoff_payload` as the literal input to `sessions_send`.
+9. Remember that this handoff is internal to the persona session and may not itself be visible in Discord.
+10. After each successful handoff, build the filled post-handoff patch and patch the matching `research_runs` row through `update_research_run.py`, setting the run to `running`.
+11. Fill `research_runs.notes` with delivery metadata from the handoff result, especially:
+   - `delivery_target_session_key`
+   - `delivery_target_channel_id`
    - optional `model`
    - optional `thinking`
-11. On child completion events, reconcile each run through:
-   - `roles/orchestrator/pipeline-launch-procedure/initialize/scripts/reconcile_research_run_completion.py`
-12. Finalize launch/completion summaries for Orchestrator.
+12. Persona lanes should post visible lifecycle updates in-channel using the standardized STARTING/FINISHED format.
+13. Completion handling should then reconcile each run back from its fixed persona lane.
+14. If artifacts exist but DB completion is stale, use `runtime/scripts/reconcile_dispatch_from_artifacts.py` as a safety net.
+15. Finalize launch/completion summaries for Orchestrator.
 
-If only some personas launch successfully:
+If only some personas receive handoff successfully:
 - keep successful runs active
 - patch successful runs to `status = running`
-- return `launched_partial`
-- retry only the runs that still lack `notes.child_session_key`
+- return `delivered_partial`
+- retry only the runs that are still `queued`
 
-When spawned personas later complete:
-- resolve them back to `research_runs` by `notes.child_session_key`
+When persona lanes later complete:
+- resolve them back to the corresponding `research_runs` row
 - patch successful runs to `completed`
 - patch errored runs to `failed`
-- use `initialize/scripts/reconcile_research_run_completion.py` as the completion-side helper
+- use runtime-side DB helpers as the completion-side mechanism
 
 ## Default artifact path rules
 
@@ -88,9 +95,9 @@ Filename prefix:
 
 ## Rule
 
-Do not handwrite persona dispatch prompts when `roles/orchestrator/pipeline-launch-procedure/initialize/scripts/build_researcher_prompt.py` is available. The generated prompt is the source of truth because it reflects the latest researcher contract and artifact path rules.
+Do not handwrite persona dispatch prompts when `roles/orchestrator/pipeline-launch-procedure/planner/scripts/build_researcher_prompt.py` is available. The generated prompt is the source of truth because it reflects the latest researcher contract and artifact path rules.
 
-Do not try to make local subprocess Python call `sessions_spawn` directly. The correct pattern is:
+Do not try to make local subprocess Python call `sessions_send` directly. The correct pattern is:
 - planner scripts prepare the dispatch manifest
-- the OpenClaw runtime executes the spawn payloads
-- planner scripts patch DB state using the returned runtime metadata
+- the OpenClaw runtime executes the handoff payloads
+- runtime helpers patch DB state using the returned delivery metadata

@@ -1,196 +1,116 @@
 # Pipeline Launch Procedure
 
-This folder contains the launch control-plane for starting research-swarm case work from the Orchestrator side.
+This folder contains the launch control-plane for the research swarm.
 
-It bridges:
-- market/case state in Postgres
-- prompt generation and run planning in local scripts
-- actual `sessions_spawn` calls in the OpenClaw runtime
-- DB status reconciliation after spawn and completion
+## Current architecture
 
-## What this folder is for
+The canonical runtime surface is now **fixed Discord persona channels**, not auto-created Discord threads.
 
-Use this folder when you want to:
-- select the next market for research
-- open or fetch a case
-- create research run records
-- generate persona-specific prompts
-- build a dispatch manifest
-- launch the swarm through a runtime controller session
-- patch returned runtime metadata into `research_runs`
-- reconcile child completion events back into Postgres
-- summarize launch and completion outcomes
+The flow is:
+1. planner scripts prepare the case, prompts, `research_runs`, and manifest
+2. runtime helpers turn that manifest into one `sessions_send` handoff per persona channel
+3. TUI/main runtime delivers those handoffs into the mapped Discord sessions
+4. successful handoffs patch the corresponding `research_runs` rows to `running`
+5. persona lanes do the actual research work, post visible STARTING/FINISHED updates in their Discord channels, and later mark runs `completed` / `failed`
 
-This folder is the **launch procedure** for getting the research swarm into motion cleanly and keeping runtime state aligned with DB state.
+Important nuance:
+- the `sessions_send` handoff itself is an internal OpenClaw session delivery, not a guaranteed visible kickoff post in the Discord channel
+- visible lane activity should come from the persona lane after it receives the assignment
 
----
+## Folder map
 
-# Mental model
+### Planner lane
+- `planner/scripts/`
+- `planner/prompts/`
+- `planner/README.md`
 
-The system has three layers.
+Planner owns deterministic preparation work:
+- select market
+- open case
+- set market status
+- create queued research runs
+- build persona prompts
+- emit dispatch manifest
 
-## 1. Planner / control-plane layer
-Handled by Python scripts.
+### Runtime lane
+- `runtime/scripts/`
+- `runtime/dispatch-manifests/`
+- `runtime/persona-channel-map.json`
+- `runtime/README.md`
 
-It does the deterministic local work:
-- market selection
-- case creation
-- run creation
-- prompt assembly
-- artifact path planning
-- dispatch manifest emission
+Runtime owns operational delivery work:
+- validate manifest
+- load existing run state for idempotency
+- prepare one `sessions_send` handoff per persona lane
+- patch runs to `running` after successful handoff
+- support completion-state helpers and manifest hygiene
 
-## 2. Runtime controller layer
-Handled inside a dispatch-bounded OpenClaw runtime session.
+## Canonical docs
 
-It does the operational runtime work:
-- validating the manifest
-- determining launchable vs skipped runs
-- calling `sessions_spawn`
-- patching runs to `running`
-- reconciling child completion events to `completed` or `failed`
-- summarizing launch/completion state back to Orchestrator
+- `RESEARCH_DISPATCH_SPEC.md` — dispatch/state contract for the fixed-channel model
+- `OPENCLAW_RUNTIME_BRIDGE.md` — planner/runtime boundary for fixed-channel handoff
+- `RUNTIME_HARNESS_PROCEDURE.md` — exact TUI/runtime handoff loop
+- `DISPATCH_LIVE_SWARM.md` — operator runbook for live launches
 
-## 3. Research worker layer
-Handled by child researcher subagent sessions.
+## Canonical scripts
 
-It does the actual case research and artifact creation.
+### Planner
+- `planner/scripts/select_next_market.py`
+- `planner/scripts/open_case.py`
+- `planner/scripts/set_market_pipeline_status.py`
+- `planner/scripts/create_research_run.py`
+- `planner/scripts/build_researcher_prompt.py`
+- `planner/scripts/dispatch_case_research.py`
 
-Core rule:
-- **Python prepares**
-- **Runtime controller launches and reconciles**
-- **Research workers research**
+### Runtime
+- `runtime/scripts/load_dispatch_existing_state.py`
+- `runtime/scripts/run_dispatch_runtime.py`
+- `runtime/scripts/runtime_execute_dispatch.py`
+- `runtime/scripts/update_research_run.py`
+- `runtime/scripts/reconcile_research_run_completion.py`
+- `runtime/scripts/reconcile_dispatch_from_artifacts.py`
+- `runtime/scripts/prepare_headless_discord_dispatch.py`
+- `runtime/scripts/list_pending_dispatch_manifests.py`
+- `runtime/scripts/archive_dispatch_manifests.py`
 
----
+## Runtime routing map
 
-# Key documents
+Fixed persona-channel routing lives in:
+- `runtime/persona-channel-map.json`
 
-### `RESEARCH_DISPATCH_SPEC.md`
-High-level operating contract for case research.
-Defines personas, required outputs, state model, and the role of vault + Postgres.
+Current personas:
+- `base-rate`
+- `market-implied`
+- `variant-view`
+- `risk-manager`
+- `catalyst-hunter`
 
-### `OPENCLAW_RUNTIME_BRIDGE.md`
-Architecture boundary between local scripts and the OpenClaw runtime.
+Each persona maps to one Discord channel session key.
 
-### `DISPATCH_LIVE_SWARM.md`
-Live procedure for launching the swarm.
+## Status model
 
-### `RUNTIME_HARNESS_PROCEDURE.md`
-Exact runtime launch/reconciliation procedure.
+### Market level
+- `pending_research` → queued for future work
+- `researching` → active case in flight
 
-### `SWARM_RUNTIME_CONTROLLER_SPEC.md`
-Defines the dispatch-bounded runtime controller session, including lifecycle, edge cases, and message contract.
+### Run level
+- `queued` → row created, not yet handed off
+- `running` → handoff delivered to the persona channel and run started
+- `completed` / `failed` → terminal
 
-### `RUNTIME_CONTROLLER_PROMPT.md`
-Minimal instruction block for spawning a runtime controller session.
+Important note:
+- `started_at` should reflect the actual handoff/start transition, not row creation time
+- if a lane writes its agent-finding artifact but fails to update the DB, use `runtime/scripts/reconcile_dispatch_from_artifacts.py` as the safety-net reconciler
 
----
+## Headless TUI wrapper
 
-# Script map
+Use:
+- `runtime/scripts/prepare_headless_discord_dispatch.py`
 
-All scripts live in:
-- `roles/orchestrator/pipeline-launch-procedure/initialize/scripts/`
+It:
+1. selects/open cases when needed
+2. emits the canonical manifest
+3. loads existing run state for idempotency
+4. prepares the runtime handoff plan
+5. returns one ready-to-send `sessions_send` step per persona lane
 
-## Planner/control-plane
-- `select_next_market.py` — select one eligible market
-- `open_case.py` — fetch or create the case record
-- `set_market_pipeline_status.py` — update `markets.pipeline_status`
-- `create_research_run.py` — create one `research_runs` row per persona
-- `build_researcher_prompt.py` — generate the exact prompt for one persona on one case
-- `dispatch_case_research.py` — create runs, build prompts, emit the canonical dispatch manifest
-
-Important defaults in `dispatch_case_research.py`:
-- model defaults to `openai-codex/gpt-5.4`
-- thinking defaults to `medium`
-
-## Runtime-control helpers
-- `runtime_execute_dispatch.py` — validate manifest, prepare launchable/skipped runs, build post-spawn patches, finalize summaries
-- `run_dispatch_runtime.py` — runtime orchestration wrapper around the launch flow
-- `update_research_run.py` — patch one `research_runs` row
-- `reconcile_research_run_completion.py` — reconcile a completion event back into `research_runs` by `notes.child_session_key`
-
----
-
-# Process walkthrough
-
-## Phase 1 — planner preparation
-1. `select_next_market.py`
-2. `open_case.py`
-3. `dispatch_case_research.py --case-id <case_id>`
-
-Output:
-- canonical dispatch manifest
-
-## Phase 2 — runtime control
-4. Orchestrator spawns a **dispatch-bounded runtime controller session** using `RUNTIME_CONTROLLER_PROMPT.md`
-5. The controller validates and prepares the launch plan with `run_dispatch_runtime.py`
-6. The controller calls `sessions_spawn` for each launchable run
-7. After each successful spawn, the controller patches the DB row to `running`
-8. On child completion events, the controller reconciles rows to `completed` or `failed`
-9. The controller sends launch/final summaries back to Orchestrator and exits only after all tracked child runs are terminal and reconciled
-
----
-
-# Status model
-
-## `markets.pipeline_status`
-- `new`
-- `pending_research`
-- `researching`
-- `ignored`
-- `executed`
-- `closed`
-
-## `research_runs.status`
-- `queued`
-- `running`
-- `completed`
-- `failed`
-- `canceled`
-
-Canonical join key between runtime events and DB rows:
-- `research_runs.notes.child_session_key`
-
----
-
-# Partial failures and retries
-
-If some runs launch successfully and others fail:
-- patch successful runs to `running`
-- keep them active
-- return `launched_partial`
-- retry only runs that still lack `notes.child_session_key`
-
-If completion reconciliation fails:
-- preserve recovery data
-- do not silently drop the event
-- retry reconciliation before considering the dispatch cleanly finished
-
----
-
-# End-to-end ownership
-
-## Orchestrator owns
-- market selection
-- case opening
-- manifest generation
-- strategic supervision
-- synthesis
-
-## Runtime controller owns
-- swarm launch
-- spawn-time DB patching
-- completion-time DB reconciliation
-- launch/final summaries
-- exit after reconciliation
-
-## Research workers own
-- research
-- qualitative artifact creation
-- persona-specific analysis
-
----
-
-# One-line summary
-
-This folder contains the launch control-plane for the research swarm: planner scripts prepare the manifest, a dispatch-bounded runtime controller session launches and reconciles the swarm, research workers create the artifacts, and helper scripts keep Postgres state aligned with real runtime state.

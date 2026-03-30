@@ -1,6 +1,6 @@
 # Researcher Base Contract
 
-Use this as the shared operating contract for all researcher subagents.
+Use this as the shared operating contract for all researcher runtime sessions.
 
 ## Mission
 

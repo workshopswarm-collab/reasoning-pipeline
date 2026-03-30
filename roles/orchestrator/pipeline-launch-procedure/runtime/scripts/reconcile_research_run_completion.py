@@ -1,14 +1,11 @@
 #!/usr/bin/env python3
-"""Reconcile a child-session completion event back into research_runs.
+"""Reconcile a run completion back into research_runs.
 
-This script is the completion-side companion to the launch helpers.
-It resolves the target run by notes.child_session_key and patches:
-- status (completed or failed)
-- completed_at when successful completion is indicated
-- notes.dispatch_stage
-- notes.error / notes.completion_summary when provided
-
-Uses PREDQUANT_ORCHESTRATOR_URL by default.
+Current behavior:
+- resolve by `research_run_id`
+- patch status to completed/failed
+- set completed_at for successful completion
+- store completion summary / error in notes
 """
 
 import argparse
@@ -19,6 +16,11 @@ import sys
 from pathlib import Path
 
 DEFAULT_PSQL = "/opt/homebrew/opt/postgresql@16/bin/psql"
+BASE_DIR = Path(__file__).resolve().parent
+RUNTIME_DIR = BASE_DIR.parent
+PIPELINE_DIR = RUNTIME_DIR.parent
+WORKSPACE_ROOT = PIPELINE_DIR.parents[2]
+DEFAULT_ENV_PATH = WORKSPACE_ROOT / ".env"
 
 SQL_LOOKUP = r'''
 WITH input AS (
@@ -36,16 +38,31 @@ SELECT json_build_object(
 )::text
 FROM research_runs rr
 CROSS JOIN input i
-WHERE rr.notes->>'child_session_key' = i.j->>'child_session_key'
+WHERE rr.id = NULLIF(i.j->>'research_run_id', '')::uuid
 ORDER BY rr.created_at DESC
 LIMIT 1;
 '''
 
 
+def maybe_load_workspace_env() -> None:
+    if os.getenv("PREDQUANT_ORCHESTRATOR_URL"):
+        return
+    if not DEFAULT_ENV_PATH.exists():
+        return
+    for raw_line in DEFAULT_ENV_PATH.read_text().splitlines():
+        line = raw_line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        key, value = line.split("=", 1)
+        key = key.strip()
+        value = value.strip().strip('"').strip("'")
+        os.environ.setdefault(key, value)
+
+
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Reconcile completion event to research_runs by child_session_key")
+    parser = argparse.ArgumentParser(description="Reconcile completion event to research_runs")
     parser.add_argument("--file", default="-", help="Path to input JSON file, or - for stdin")
-    parser.add_argument("--child-session-key", help="Child session key from runtime event")
+    parser.add_argument("--research-run-id", required=True, help="Primary completion join key for fixed-channel runs")
     parser.add_argument("--status", choices=["completed", "failed"], help="Final run status")
     parser.add_argument("--error", help="Optional error text when failed")
     parser.add_argument("--completion-summary", help="Optional completion summary text")
@@ -70,16 +87,13 @@ def build_payload(args: argparse.Namespace) -> dict:
     if payload and not isinstance(payload, dict):
         raise ValueError("input JSON must be an object")
     payload = dict(payload or {})
-    if args.child_session_key:
-        payload["child_session_key"] = args.child_session_key
+    payload["research_run_id"] = args.research_run_id
     if args.status:
         payload["status"] = args.status
     if args.error:
         payload["error"] = args.error
     if args.completion_summary:
         payload["completion_summary"] = args.completion_summary
-    if not payload.get("child_session_key"):
-        raise ValueError("child_session_key is required")
     if not payload.get("status"):
         raise ValueError("status is required")
     return payload
@@ -124,6 +138,7 @@ def python_json(script: Path, args: list[str], stdin_payload=None) -> dict:
 
 
 def main() -> int:
+    maybe_load_workspace_env()
     args = parse_args()
     try:
         payload = build_payload(args)
@@ -151,8 +166,7 @@ def main() -> int:
         return 1
 
     output = {
-        "child_session_key": payload["child_session_key"],
-        "matched_research_run_id": lookup["research_run_id"],
+        "research_run_id": lookup["research_run_id"],
         "result": result,
     }
     if args.pretty:

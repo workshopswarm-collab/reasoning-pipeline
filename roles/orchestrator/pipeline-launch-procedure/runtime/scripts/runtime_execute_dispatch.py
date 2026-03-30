@@ -4,17 +4,17 @@
 This script keeps the OpenClaw runtime boundary thin and deterministic.
 It does not call OpenClaw tools itself; instead it:
 - validates a planner-emitted dispatch manifest
-- builds an executable launch plan with idempotency guidance
-- builds filled post-spawn DB patch payloads from actual sessions_spawn metadata
+- builds an executable channel-handoff plan with idempotency guidance
+- builds filled post-handoff DB patch payloads from actual sessions_send metadata
 - finalizes a launch summary from per-run outcomes
 
 Intended pipeline fit:
-- dispatch_case_research.py -> emits manifest
-- OpenClaw runtime -> calls this script with action=prepare
-- OpenClaw runtime -> performs sessions_spawn for each launchable run
-- OpenClaw runtime -> calls this script with action=build-patch per successful spawn
-- OpenClaw runtime -> patches DB via update_research_run.py
-- OpenClaw runtime -> calls this script with action=finalize-summary
+- dispatch_case_research.py -> emits manifest for fixed Discord persona channels
+- OpenClaw runtime in TUI/main -> calls this script with action=prepare
+- OpenClaw runtime in TUI/main -> performs sessions_send for each launchable run
+- OpenClaw runtime in TUI/main -> calls this script with action=build-patch per successful handoff
+- OpenClaw runtime in TUI/main -> patches DB via update_research_run.py
+- OpenClaw runtime in TUI/main -> calls this script with action=finalize-summary
 """
 
 import argparse
@@ -24,7 +24,6 @@ from copy import deepcopy
 from pathlib import Path
 from typing import Optional
 
-
 VALID_PERSONAS = {
     "base-rate",
     "market-implied",
@@ -33,8 +32,7 @@ VALID_PERSONAS = {
     "catalyst-hunter",
 }
 
-
-STATUS_LAUNCHED = "launched"
+STATUS_DELIVERED = "delivered"
 STATUS_SKIPPED = "skipped_existing"
 STATUS_FAILED = "failed"
 RUN_STATUS_QUEUED = "queued"
@@ -52,18 +50,16 @@ def parse_args() -> argparse.Namespace:
         default="validate",
     )
     parser.add_argument("--research-run-id", help="research_run_id for build-patch")
-    parser.add_argument("--child-session-key", help="Returned child session key from sessions_spawn")
-    parser.add_argument("--spawn-run-id", help="Returned spawn run id when available")
-    parser.add_argument("--model", help="Returned or used model label")
-    parser.add_argument("--thinking", help="Returned or used thinking level")
+    parser.add_argument("--target-session-key", help="Target persona-channel session key for build-patch")
+    parser.add_argument("--delivery-channel-id", help="Target Discord channel id for build-patch")
     parser.add_argument(
         "--existing-map-json",
-        help="JSON object keyed by research_run_id with existing runtime state, e.g. {\"<id>\": {\"child_session_key\": \"...\"}}",
+        help=(
+            "JSON object keyed by research_run_id with existing runtime state, e.g. "
+            "{\"<id>\": {\"status\": \"running\", \"delivery_target_session_key\": \"...\"}}"
+        ),
     )
-    parser.add_argument(
-        "--run-results-json",
-        help="JSON array of per-run result objects for finalize-summary",
-    )
+    parser.add_argument("--run-results-json", help="JSON array of per-run result objects for finalize-summary")
     parser.add_argument("--pretty", action="store_true", help="Pretty-print JSON output")
     return parser.parse_args()
 
@@ -106,8 +102,6 @@ def validate_manifest(manifest: dict) -> dict:
     require(case, "case_key")
     require(market, "market_id")
     require(runtime_defaults, "runtime")
-    require(runtime_defaults, "mode")
-    require(runtime_defaults, "cleanup")
 
     normalized_runs = []
     for run in runs:
@@ -119,21 +113,29 @@ def validate_manifest(manifest: dict) -> dict:
             raise ValueError(f"unsupported persona: {persona}")
         require(run, "run_label")
         require(run, "workspace_note_path")
-        spawn = require(run, "spawn")
-        if not isinstance(spawn, dict):
-            raise ValueError("run.spawn must be an object")
-        spawn_payload = require(spawn, "spawn_payload")
-        patch_template = require(spawn, "post_spawn_update_template")
-        if not isinstance(spawn_payload, dict):
-            raise ValueError("spawn_payload must be an object")
+        handoff = require(run, "handoff")
+        if not isinstance(handoff, dict):
+            raise ValueError("run.handoff must be an object")
+        target = require(handoff, "target")
+        handoff_payload = require(handoff, "handoff_payload")
+        patch_template = require(handoff, "post_handoff_update_template")
+        if not isinstance(target, dict):
+            raise ValueError("handoff.target must be an object")
+        if not isinstance(handoff_payload, dict):
+            raise ValueError("handoff_payload must be an object")
         if not isinstance(patch_template, dict):
-            raise ValueError("post_spawn_update_template must be an object")
+            raise ValueError("post_handoff_update_template must be an object")
+        require(target, "channel_id")
+        require(target, "channel_name")
+        require(target, "session_key")
+        require(handoff_payload, "sessionKey")
+        require(handoff_payload, "message")
         require(patch_template, "research_run_id")
         require(patch_template, "status")
         require(patch_template, "workspace_note_path")
         notes = require(patch_template, "notes")
         if not isinstance(notes, dict):
-            raise ValueError("post_spawn_update_template.notes must be an object")
+            raise ValueError("post_handoff_update_template.notes must be an object")
         normalized_runs.append(run)
 
     return {
@@ -155,15 +157,16 @@ def prepare_launch_plan(manifest: dict, existing_map: Optional[dict] = None) -> 
     for run in manifest["runs"]:
         research_run_id = run["research_run_id"]
         existing = existing_map.get(research_run_id) or {}
-        child_session_key = existing.get("child_session_key")
-        if child_session_key:
+        existing_status = existing.get("status")
+        delivery_target_session_key = existing.get("delivery_target_session_key")
+        if existing_status and existing_status != RUN_STATUS_QUEUED:
             skipped_runs.append(
                 {
                     "research_run_id": research_run_id,
                     "persona": run["persona"],
                     "status": STATUS_SKIPPED,
-                    "reason": "existing child_session_key present",
-                    "child_session_key": child_session_key,
+                    "reason": f"existing status is {existing_status}",
+                    "delivery_target_session_key": delivery_target_session_key,
                     "workspace_note_path": run["workspace_note_path"],
                 }
             )
@@ -175,8 +178,9 @@ def prepare_launch_plan(manifest: dict, existing_map: Optional[dict] = None) -> 
                 "persona": run["persona"],
                 "run_label": run["run_label"],
                 "workspace_note_path": run["workspace_note_path"],
-                "spawn_payload": run["spawn"]["spawn_payload"],
-                "post_spawn_update_template": run["spawn"]["post_spawn_update_template"],
+                "target": run["handoff"]["target"],
+                "handoff_payload": run["handoff"]["handoff_payload"],
+                "post_handoff_update_template": run["handoff"]["post_handoff_update_template"],
             }
         )
 
@@ -190,63 +194,61 @@ def prepare_launch_plan(manifest: dict, existing_map: Optional[dict] = None) -> 
         "launchable_runs": launchable_runs,
         "skipped_runs": skipped_runs,
         "operator_instructions": [
-            "launch each launchable run with sessions_spawn using spawn_payload exactly as provided",
-            "after each successful spawn, build a patch payload with action=build-patch",
+            "deliver each launchable run with sessions_send using handoff_payload exactly as provided",
+            "after each successful handoff, build a patch payload with action=build-patch",
             "apply that patch via update_research_run.py",
-            "if some launches fail and some succeed, keep successful launches, record failures, and treat overall dispatch as launched_partial",
-            "on retry, rerun prepare with fresh existing_map_json so already-launched runs are skipped",
+            "if some handoffs fail and some succeed, keep successful handoffs, record failures, and treat overall dispatch as delivered_partial",
+            "on retry, rerun prepare with fresh existing_map_json so non-queued runs are skipped",
         ],
     }
 
 
-def build_patch(manifest: dict, research_run_id: str, child_session_key: str, spawn_run_id=None, model=None, thinking=None) -> dict:
+def build_patch(manifest: dict, research_run_id: str, target_session_key: str, delivery_channel_id: Optional[str] = None) -> dict:
     validate_manifest(manifest)
     for run in manifest["runs"]:
         if run["research_run_id"] == research_run_id:
-            patch = deepcopy(run["spawn"]["post_spawn_update_template"])
+            patch = deepcopy(run["handoff"]["post_handoff_update_template"])
             notes = patch.setdefault("notes", {})
             patch["status"] = RUN_STATUS_RUNNING
-            notes["child_session_key"] = child_session_key
-            notes["spawn_run_id"] = spawn_run_id
+            patch["mark_started"] = True
+            notes["delivery_target_session_key"] = target_session_key
+            if delivery_channel_id:
+                notes["delivery_target_channel_id"] = delivery_channel_id
             notes["dispatch_id"] = manifest["dispatch_id"]
-            notes["dispatch_stage"] = "spawned"
-            if model is not None:
-                notes["model"] = model
-            if thinking is not None:
-                notes["thinking"] = thinking
+            notes["dispatch_stage"] = "persona_channel_running"
             return patch
     raise ValueError(f"research_run_id not found in manifest: {research_run_id}")
 
 
 def finalize_summary(manifest: dict, run_results: list[dict]) -> dict:
     validate_manifest(manifest)
-    launched_count = sum(1 for r in run_results if r.get("status") == STATUS_LAUNCHED)
+    delivered_count = sum(1 for r in run_results if r.get("status") == STATUS_DELIVERED)
     skipped_count = sum(1 for r in run_results if r.get("status") == STATUS_SKIPPED)
     failed_count = sum(1 for r in run_results if r.get("status") == STATUS_FAILED)
 
-    if launched_count > 0 and failed_count == 0:
-        overall_status = "launched_all"
-    elif launched_count > 0 and failed_count > 0:
-        overall_status = "launched_partial"
-    elif launched_count == 0 and failed_count > 0:
-        overall_status = "launch_failed"
+    if delivered_count > 0 and failed_count == 0:
+        overall_status = "delivered_all"
+    elif delivered_count > 0 and failed_count > 0:
+        overall_status = "delivered_partial"
+    elif delivered_count == 0 and failed_count > 0:
+        overall_status = "delivery_failed"
     elif skipped_count == len(run_results) and run_results:
         overall_status = "skipped_all"
     else:
-        overall_status = "launch_failed"
+        overall_status = "delivery_failed"
 
     return {
         "dispatch_id": manifest["dispatch_id"],
         "case_id": manifest["case"]["case_id"],
         "market_id": manifest["market"]["market_id"],
         "status": overall_status,
-        "launched_count": launched_count,
+        "delivered_count": delivered_count,
         "skipped_count": skipped_count,
         "failed_count": failed_count,
         "runs": run_results,
         "retry_guidance": (
-            "retry only failed runs by rerunning prepare/finalize with fresh existing_map_json; already-launched runs should be skipped by child_session_key presence"
-            if overall_status == "launched_partial"
+            "retry only failed runs by rerunning prepare/finalize with fresh existing_map_json; non-queued runs should be skipped"
+            if overall_status == "delivered_partial"
             else None
         ),
     }
@@ -264,15 +266,13 @@ def main() -> int:
         elif args.action == "build-patch":
             if not args.research_run_id:
                 raise ValueError("--research-run-id is required for build-patch")
-            if not args.child_session_key:
-                raise ValueError("--child-session-key is required for build-patch")
+            if not args.target_session_key:
+                raise ValueError("--target-session-key is required for build-patch")
             result = build_patch(
                 manifest,
                 args.research_run_id,
-                args.child_session_key,
-                spawn_run_id=args.spawn_run_id,
-                model=args.model,
-                thinking=args.thinking,
+                args.target_session_key,
+                delivery_channel_id=args.delivery_channel_id,
             )
         else:
             if not args.run_results_json:

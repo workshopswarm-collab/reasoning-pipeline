@@ -1,145 +1,81 @@
 # Runtime Harness Procedure
 
-Use this procedure when the runtime controller session wants to launch a prepared dispatch manifest end-to-end from the OpenClaw runtime.
+Use this procedure when the TUI/main runtime wants to deliver a prepared dispatch manifest into the fixed Discord persona channels.
 
 ## Goal
 
-Provide a thin runtime harness that:
-- accepts a planner-emitted dispatch manifest
-- validates it
-- determines which runs are launchable vs already launched
-- executes `sessions_spawn` for launchable runs
-- patches `research_runs` with returned runtime metadata
-- returns a launch summary
+Turn a planner-emitted manifest into:
+- one `sessions_send` step per still-queued persona run
+- DB patches for the successfully delivered runs
+- a concise delivery summary
 
-This is the runtime half of the dispatch architecture.
+## Required helpers
 
-See also:
-- `roles/orchestrator/pipeline-launch-procedure/OPENCLAW_RUNTIME_BRIDGE.md`
-- `roles/orchestrator/pipeline-launch-procedure/DISPATCH_LIVE_SWARM.md`
-- `roles/orchestrator/pipeline-launch-procedure/initialize/scripts/run_dispatch_runtime.py`
-- `roles/orchestrator/pipeline-launch-procedure/initialize/scripts/runtime_execute_dispatch.py`
+- `runtime/scripts/load_dispatch_existing_state.py`
+- `runtime/scripts/run_dispatch_runtime.py`
+- `runtime/scripts/runtime_execute_dispatch.py`
+- `runtime/scripts/update_research_run.py`
 
-## Core operating model
+## Procedure
 
-- planner scripts prepare the manifest
-- the OpenClaw runtime harness executes the launch loop
-- the harness does not redesign the plan; it executes it literally
-- partial launch success is allowed and should produce `launched_partial`
-- retries should only relaunch runs that still lack `notes.child_session_key`
+### Step 1 — prepare idempotent launch state
+1. load the manifest
+2. load current DB state for the referenced `research_runs`
+3. pass that state into `run_dispatch_runtime.py`
+4. obtain:
+   - validation result
+   - launchable runs
+   - skipped runs
+   - one `sessions_send` payload per launchable run
 
-## Inputs required by the harness
+### Step 2 — execute handoffs
+For each launchable run in order:
+1. call `sessions_send` with `launchable_run.handoff_payload`
+2. if delivery succeeds:
+   - record the known target session key from the payload/target map
+   - treat this as internal delivery into the persona session, not necessarily as a visible Discord kickoff post
+3. if delivery fails:
+   - record the error
+   - continue so partial success can be preserved
 
-1. one dispatch manifest JSON object from:
-   - `roles/orchestrator/pipeline-launch-procedure/initialize/scripts/dispatch_case_research.py`
-2. current per-run runtime state keyed by `research_run_id` for idempotency
-   - at minimum, whether `notes.child_session_key` already exists
-
-## Required runtime sequence
-
-### Step 1 — validate + prepare
-
-Call:
-- `roles/orchestrator/pipeline-launch-procedure/initialize/scripts/run_dispatch_runtime.py`
-
-This returns:
-- manifest validation result
-- launchable runs
-- skipped runs
-- the exact runtime tool loop
-
-### Step 2 — execute launchable runs
-
-For each `launchable_run` in order:
-1. call `sessions_spawn` with `launchable_run.spawn_payload`
-2. if spawn succeeds:
-   - capture returned `child_session_key`
-   - capture returned `spawn_run_id` if available
-3. if spawn fails:
-   - record the failure
-   - continue to the next launchable run
-
-### Step 3 — patch DB after each successful spawn
-
-For each successful spawn:
-1. call `run_dispatch_runtime.py --spawn-results-json ...` or `runtime_execute_dispatch.py --action build-patch` logic to obtain the filled patch payload
-2. apply the patch via:
-   - `roles/orchestrator/pipeline-launch-procedure/initialize/scripts/update_research_run.py`
-3. after this patch, the run should show:
+### Step 3 — build/apply DB patches
+For each successful delivery:
+1. call `run_dispatch_runtime.py` replay mode with the collected handoff results
+2. obtain the per-run patch payloads / update commands
+3. apply each patch via `update_research_run.py`
+4. verify the row now shows:
    - `status = running`
-   - `notes.child_session_key = ...`
-   - `notes.spawn_run_id = ...`
-   - `notes.dispatch_stage = spawned`
-4. if DB patching fails after spawn succeeds:
-   - record this as a failed run for summary purposes
-   - preserve returned runtime metadata in the failure record for recovery
+   - `started_at` set
+   - `notes.dispatch_stage = persona_channel_running`
+   - `notes.delivery_target_session_key`
+   - `notes.delivery_target_channel_id`
 
-### Step 4 — patch DB on completion or failure
+### Step 4 — summarize
+Use the runtime summary object to report:
+- `delivered_all`
+- `delivered_partial`
+- or `delivery_failed`
 
-When a child session later completes:
-- resolve the row via `notes.child_session_key`
-- patch it to `status = completed`
-- set `completed_at`
-- set `notes.dispatch_stage = completed`
-- use `initialize/scripts/reconcile_research_run_completion.py`
+### Step 5 — repair stale artifact/DB mismatches when needed
+If a lane produced its assigned primary artifact but failed to mark the run completed:
+- use `runtime/scripts/reconcile_dispatch_from_artifacts.py`
+- this should be treated as a safety net, not the normal completion path
 
-When a child session errors or terminates:
-- resolve the row via `notes.child_session_key`
-- patch it to `status = failed`
-- store error detail in `notes`
-- set `notes.dispatch_stage = terminated`
-- use `initialize/scripts/reconcile_research_run_completion.py`
+## Retry rule
 
-### Step 5 — finalize summary
+Retries should only re-deliver runs that are still:
+- `status = queued`
 
-After launch attempts and/or completion updates:
-- finalize the summary through `run_dispatch_runtime.py --spawn-results-json ...`
+The fixed-channel runtime should skip any run already marked:
+- `running`
+- `completed`
+- `failed`
 
-Expected overall statuses:
-- `launched_all`
-- `launched_partial`
-- `launch_failed`
-- `skipped_all`
+## Important note
 
-## Partial failure rule
+The runtime harness no longer depends on:
+- legacy thread-binding machinery
+- subagent session creation
+- unique per-run child-session routing metadata
 
-If, for example, 3 of 5 runs launch successfully and 2 fail:
-- keep the 3 successful runs active
-- mark the 2 failed runs as failed launch attempts
-- return overall status `launched_partial`
-- on retry, re-run the prepare step with fresh idempotency state so only failed/unlaunched runs remain launchable
-
-## Idempotency rule
-
-Before launching a run, check whether that run already has:
-- `research_runs.notes.child_session_key`
-
-If present:
-- do not relaunch by default
-- mark the run `skipped_existing`
-
-## Default runtime profile
-
-Unless explicitly overridden by the planner, the swarm should launch with:
-- `model: openai-codex/gpt-5.4`
-- `thinking: medium`
-
-These values should be preserved in the runtime patch notes.
-
-## Can Orchestrator call this end-to-end?
-
-Yes.
-
-Intended model:
-- Orchestrator calls the planner script to produce the manifest
-- Orchestrator hands the manifest to a dispatch-bounded runtime controller session
-- the runtime controller session performs the actual `sessions_spawn` calls
-- the runtime controller session applies the resulting DB patches and obtains the launch/completion summaries
-
-In short:
-- yes, Orchestrator still drives the overall workflow end-to-end
-- but the OpenClaw tool loop and reconciliation ownership live in the runtime controller session, not in plain Python
-
-## One-line operating model
-
-The runtime harness is a thin executor: validate, prepare, spawn, patch to `running`, reconcile completions to `completed`/`failed`, summarize, and retry only the runs that never acquired a child session key.
+The handoff surface is now the fixed Discord persona-channel session map.

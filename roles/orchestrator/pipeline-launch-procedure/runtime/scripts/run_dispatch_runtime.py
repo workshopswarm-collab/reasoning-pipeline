@@ -4,12 +4,12 @@
 This script is the runtime wrapper around the existing pipeline scripts. It is
 still intentionally split from actual OpenClaw tool execution:
 - Python prepares/normalizes the orchestration sequence
-- OpenClaw runtime performs sessions_spawn and receives completion events
+- the TUI/main OpenClaw runtime performs sessions_send into fixed Discord persona channels
 - Python builds DB patches and finalizes summaries
 
 The wrapper supports two operational modes:
 1. plan-only: emit the exact sequence the OpenClaw runtime should execute
-2. replay-results: build DB patch steps + dispatch summary from actual spawn/completion results
+2. replay-results: build DB patch steps + dispatch summary from actual handoff results
 
 This keeps the control plane explicit while fitting the current pipeline.
 """
@@ -22,8 +22,27 @@ import sys
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent
+RUNTIME_DIR = BASE_DIR.parent
+PIPELINE_DIR = RUNTIME_DIR.parent
+WORKSPACE_ROOT = PIPELINE_DIR.parents[2]
+DEFAULT_ENV_PATH = WORKSPACE_ROOT / ".env"
 RUNTIME_HELPER = BASE_DIR / "runtime_execute_dispatch.py"
 UPDATE_RUN = BASE_DIR / "update_research_run.py"
+
+
+def maybe_load_workspace_env() -> None:
+    if os.getenv("PREDQUANT_ORCHESTRATOR_URL"):
+        return
+    if not DEFAULT_ENV_PATH.exists():
+        return
+    for raw_line in DEFAULT_ENV_PATH.read_text().splitlines():
+        line = raw_line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        key, value = line.split("=", 1)
+        key = key.strip()
+        value = value.strip().strip('"').strip("'")
+        os.environ.setdefault(key, value)
 
 
 def parse_args() -> argparse.Namespace:
@@ -34,9 +53,9 @@ def parse_args() -> argparse.Namespace:
         help="JSON object keyed by research_run_id with existing runtime state for idempotency",
     )
     parser.add_argument(
-        "--spawn-results-json",
+        "--handoff-results-json",
         help=(
-            "JSON array of actual runtime spawn results keyed by research_run_id, "
+            "JSON array of actual handoff results keyed by research_run_id, "
             "used to build DB patch commands and finalize summary"
         ),
     )
@@ -88,12 +107,15 @@ def build_update_command(patch_payload: dict, db_url: str) -> list[str]:
         "--workspace-note-path", patch_payload["workspace_note_path"],
         "--notes-json", json.dumps(patch_payload.get("notes", {}), separators=(",", ":")),
     ]
+    if patch_payload.get("mark_started"):
+        cmd.append("--mark-started")
     if db_url:
         cmd.extend(["--db-url", db_url])
     return cmd
 
 
 def main() -> int:
+    maybe_load_workspace_env()
     args = parse_args()
     try:
         manifest = load_json(args.file)
@@ -123,45 +145,44 @@ def main() -> int:
                 {
                     "research_run_id": run["research_run_id"],
                     "persona": run["persona"],
-                    "step": "sessions_spawn",
-                    "payload": run["spawn_payload"],
+                    "step": "sessions_send",
+                    "payload": run["handoff_payload"],
+                    "target": run["target"],
                     "on_success": [
-                        "call runtime_execute_dispatch.py --action build-patch with returned child_session_key and spawn_run_id",
+                        "call runtime_execute_dispatch.py --action build-patch with the delivered target_session_key",
                         "apply resulting patch payload via update_research_run.py",
                     ],
                 }
             )
 
-        if args.spawn_results_json:
-            spawn_results = json.loads(args.spawn_results_json)
-            if not isinstance(spawn_results, list):
-                raise ValueError("spawn_results_json must decode to an array")
+        if args.handoff_results_json:
+            handoff_results = json.loads(args.handoff_results_json)
+            if not isinstance(handoff_results, list):
+                raise ValueError("handoff_results_json must decode to an array")
 
             run_results = []
             patch_steps = []
-            for item in spawn_results:
+            for item in handoff_results:
                 if not isinstance(item, dict):
-                    raise ValueError("each spawn result must be an object")
+                    raise ValueError("each handoff result must be an object")
                 research_run_id = item.get("research_run_id")
                 persona = item.get("persona")
                 status = item.get("status")
                 workspace_note_path = item.get("workspace_note_path")
                 if not research_run_id or not persona or not status:
-                    raise ValueError("each spawn result must include research_run_id, persona, and status")
+                    raise ValueError("each handoff result must include research_run_id, persona, and status")
 
-                if status == "launched":
-                    child_session_key = item.get("child_session_key")
-                    if not child_session_key:
-                        raise ValueError("launched spawn result must include child_session_key")
+                if status == "delivered":
+                    target_session_key = item.get("target_session_key")
+                    if not target_session_key:
+                        raise ValueError("delivered handoff result must include target_session_key")
                     patch_payload = python_json(
                         RUNTIME_HELPER,
                         [
                             "--action", "build-patch",
                             "--research-run-id", research_run_id,
-                            "--child-session-key", child_session_key,
-                            "--spawn-run-id", item.get("spawn_run_id") or "",
-                            "--model", item.get("model") or manifest.get("runtime_defaults", {}).get("model") or "",
-                            "--thinking", item.get("thinking") or manifest.get("runtime_defaults", {}).get("thinking") or "",
+                            "--target-session-key", target_session_key,
+                            "--delivery-channel-id", item.get("delivery_channel_id") or "",
                         ],
                         manifest,
                     )
@@ -179,8 +200,8 @@ def main() -> int:
                         "research_run_id": research_run_id,
                         "persona": persona,
                         "status": status,
-                        "child_session_key": item.get("child_session_key"),
-                        "spawn_run_id": item.get("spawn_run_id"),
+                        "target_session_key": item.get("target_session_key"),
+                        "delivery_channel_id": item.get("delivery_channel_id"),
                         "workspace_note_path": workspace_note_path,
                         "error": item.get("error"),
                     }

@@ -6,10 +6,15 @@ This script owns the Postgres/control-plane half of dispatch:
 - set market pipeline_status=researching
 - create one research_runs row per persona
 - build persona-specific prompt
-- emit an OpenClaw-runtime dispatch manifest for sessions_spawn
-- emit the post-spawn DB patch template for each run
+- emit an OpenClaw-runtime dispatch manifest for channel-routed handoff
+- emit the post-handoff DB patch template for each run
 
-It does not call sessions_spawn directly because OpenClaw tools are only available
+The current intended runtime target is a fixed set of Discord persona channels.
+This planner emits per-persona handoff payloads that route each research run to
+its configured Discord channel session. It does not attempt to send those
+messages directly from Python.
+
+It does not call sessions_send directly because OpenClaw tools are only available
 inside the agent runtime, not from local subprocess Python.
 
 Uses PREDQUANT_ORCHESTRATOR_URL for DB reads/writes.
@@ -24,7 +29,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 DEFAULT_PSQL = "/opt/homebrew/opt/postgresql@16/bin/psql"
-DEFAULT_RUNTIME = "subagent"
+DEFAULT_RUNTIME = "discord-fixed-channel-session"
+DEFAULT_RUNTIME_LABEL = "openclaw-discord-fixed-channel"
 DEFAULT_MODEL = "openai-codex/gpt-5.4"
 DEFAULT_THINKING = "medium"
 DEFAULT_PERSONAS = [
@@ -35,6 +41,10 @@ DEFAULT_PERSONAS = [
     "catalyst-hunter",
 ]
 BASE_DIR = Path(__file__).resolve().parent
+PIPELINE_DIR = BASE_DIR.parent.parent
+RUNTIME_DIR = PIPELINE_DIR / "runtime"
+RUNTIME_SCRIPTS_DIR = RUNTIME_DIR / "scripts"
+PERSONA_CHANNEL_MAP_PATH = RUNTIME_DIR / "persona-channel-map.json"
 
 CASE_SQL = r'''
 WITH input AS (
@@ -72,9 +82,9 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Prepare the full research swarm dispatch plan for one case")
     parser.add_argument("--case-id", required=True, help="Case UUID")
     parser.add_argument("--personas", nargs="*", default=DEFAULT_PERSONAS, help="Persona list")
-    parser.add_argument("--model", default=DEFAULT_MODEL, help="Model for spawned subagents")
-    parser.add_argument("--thinking", default=DEFAULT_THINKING, help="Thinking level for spawned subagents")
-    parser.add_argument("--run-timeout-seconds", type=int, default=0, help="Subagent run timeout")
+    parser.add_argument("--model", default=DEFAULT_MODEL, help="Model for spawned researcher sessions")
+    parser.add_argument("--thinking", default=DEFAULT_THINKING, help="Thinking level for spawned researcher sessions")
+    parser.add_argument("--run-timeout-seconds", type=int, default=0, help="Researcher runtime timeout")
     parser.add_argument("--db-url", default=os.getenv("PREDQUANT_ORCHESTRATOR_URL", ""), help="Postgres connection URL")
     parser.add_argument("--psql", default=os.getenv("PSQL_BIN", DEFAULT_PSQL), help="Path to psql binary")
     parser.add_argument("--pretty", action="store_true", help="Pretty-print JSON result")
@@ -136,6 +146,47 @@ def make_dispatch_id(case_key: str) -> str:
     return f"dispatch-{case_key}-{ts}"
 
 
+def load_persona_channel_map() -> dict:
+    if not PERSONA_CHANNEL_MAP_PATH.exists():
+        raise FileNotFoundError(f"persona channel map not found: {PERSONA_CHANNEL_MAP_PATH}")
+    data = json.loads(PERSONA_CHANNEL_MAP_PATH.read_text())
+    personas = data.get("personas") or {}
+    missing = [persona for persona in DEFAULT_PERSONAS if persona not in personas]
+    if missing:
+        raise ValueError(f"persona channel map missing personas: {', '.join(missing)}")
+    return data
+
+
+def build_channel_handoff_message(*, research_run_id: str, persona: str, case_key: str, channel_name: str, market_title: str, workspace_note_path: str, prompt_text: str) -> str:
+    return "\n".join(
+        [
+            f"Research run assignment for `{research_run_id}`.",
+            "",
+            "You are operating in a fixed persona lane.",
+            f"- persona: {persona}",
+            f"- case_key: {case_key}",
+            f"- market_title: {market_title}",
+            f"- lane: #{channel_name}",
+            f"- research_run_id: {research_run_id}",
+            f"- primary_agent_finding_path: {workspace_note_path}",
+            "",
+            "Treat this message as the canonical assignment for this run.",
+            "Use the prompt below as authoritative for the work to perform.",
+            "",
+            "Required visible channel updates:",
+            "1. As soon as you begin, post this exact format as a visible channel message:",
+            f"   STARTING RESEARCH | market={market_title} | persona={persona} | research_run_id={research_run_id}",
+            "2. After your primary agent-finding is written, post this exact format as a visible channel message:",
+            f"   FINISHED RESEARCH | market={market_title} | persona={persona} | research_run_id={research_run_id} | agent_finding_path={workspace_note_path}",
+            "3. After posting the finished message, update the run to completed using the runtime DB helper (or failed if blocked).",
+            "",
+            "BEGIN_PROMPT",
+            prompt_text,
+            "END_PROMPT",
+        ]
+    )
+
+
 def main() -> int:
     args = parse_args()
     try:
@@ -144,7 +195,7 @@ def main() -> int:
 
         set_status_script = BASE_DIR / "set_market_pipeline_status.py"
         create_run_script = BASE_DIR / "create_research_run.py"
-        update_run_script = BASE_DIR / "update_research_run.py"
+        update_run_script = RUNTIME_SCRIPTS_DIR / "update_research_run.py"
         build_prompt_script = BASE_DIR / "build_researcher_prompt.py"
 
         market_state = python_json(
@@ -154,6 +205,7 @@ def main() -> int:
 
         dispatch_id = make_dispatch_id(case_ctx["case_key"])
         created_at = datetime.now(timezone.utc).isoformat()
+        persona_channel_map = load_persona_channel_map()["personas"]
 
         runs = []
         for persona in args.personas:
@@ -170,7 +222,7 @@ def main() -> int:
                     "--agent-label", persona,
                     "--run-label", f"{persona}-{case_ctx['case_key']}",
                     "--workspace-note-path", workspace_note_path,
-                    "--runtime", "openclaw-subagent",
+                    "--runtime", DEFAULT_RUNTIME_LABEL,
                 ],
             )
 
@@ -185,37 +237,50 @@ def main() -> int:
             }
             prompt_result = python_json(build_prompt_script, ["--pretty"], prompt_payload)
             prompt_text = prompt_result["prompt"]
+            channel_target = persona_channel_map.get(persona)
+            if not channel_target:
+                raise ValueError(f"no channel target configured for persona: {persona}")
 
-            spawn_payload = {
-                "task": prompt_text,
-                "label": f"research-{persona}-{case_ctx['case_key']}",
-                "runtime": DEFAULT_RUNTIME,
-                "mode": "run",
-                "cleanup": "keep",
-                "runTimeoutSeconds": args.run_timeout_seconds,
-                "model": args.model,
-                "thinking": args.thinking,
+            handoff_message = build_channel_handoff_message(
+                research_run_id=create_result["research_run_id"],
+                persona=persona,
+                case_key=case_ctx["case_key"],
+                channel_name=channel_target["channel_name"],
+                market_title=case_ctx["title"],
+                workspace_note_path=workspace_note_path,
+                prompt_text=prompt_text,
+            )
+
+            handoff_payload = {
+                "sessionKey": channel_target["session_key"],
+                "message": handoff_message,
+                "timeoutSeconds": 20,
             }
 
-            post_spawn_update_template = {
+            post_handoff_update_template = {
                 "research_run_id": create_result["research_run_id"],
                 "status": "running",
+                "mark_started": True,
                 "workspace_note_path": workspace_note_path,
                 "notes": {
-                    "child_session_key": "<fill from sessions_spawn result>",
-                    "spawn_run_id": "<fill from sessions_spawn result if available>",
+                    "delivery_target_session_key": channel_target["session_key"],
+                    "delivery_target_channel_id": channel_target["channel_id"],
                     "dispatch_id": dispatch_id,
-                    "dispatch_stage": "spawned",
+                    "dispatch_stage": "persona_channel_running",
+                    "runtime_surface": "discord-fixed-channel",
+                    "channel_name": channel_target["channel_name"],
                     "model": args.model,
                     "thinking": args.thinking,
                 },
             }
 
             notes = {
-                "child_session_key": None,
-                "spawn_run_id": None,
+                "delivery_target_session_key": channel_target["session_key"],
+                "delivery_target_channel_id": channel_target["channel_id"],
                 "dispatch_id": dispatch_id,
-                "dispatch_stage": "awaiting_agent_runtime_spawn",
+                "dispatch_stage": "awaiting_persona_channel_handoff",
+                "runtime_surface": "discord-fixed-channel",
+                "channel_name": channel_target["channel_name"],
                 "model": args.model,
                 "thinking": args.thinking,
             }
@@ -243,10 +308,11 @@ def main() -> int:
                         "evidence_map_path": evidence_map_path,
                     },
                     "research_run": update_result,
-                    "spawn": {
-                        "status": "awaiting_agent_runtime_spawn",
-                        "spawn_payload": spawn_payload,
-                        "post_spawn_update_template": post_spawn_update_template,
+                    "handoff": {
+                        "status": "awaiting_persona_channel_handoff",
+                        "target": channel_target,
+                        "handoff_payload": handoff_payload,
+                        "post_handoff_update_template": post_handoff_update_template,
                     },
                 }
             )
@@ -255,7 +321,7 @@ def main() -> int:
             "dispatch_id": dispatch_id,
             "created_at": created_at,
             "planner": {
-                "script": "roles/orchestrator/pipeline-launch-procedure/initialize/scripts/dispatch_case_research.py",
+                "script": "roles/orchestrator/pipeline-launch-procedure/planner/scripts/dispatch_case_research.py",
                 "version": None,
             },
             "case": {
@@ -276,23 +342,21 @@ def main() -> int:
             },
             "runtime_defaults": {
                 "runtime": DEFAULT_RUNTIME,
-                "mode": "run",
-                "cleanup": "keep",
+                "runtime_label": DEFAULT_RUNTIME_LABEL,
+                "runtime_surface": "discord-fixed-channel",
                 "model": args.model,
                 "thinking": args.thinking,
-                "run_timeout_seconds": args.run_timeout_seconds,
             },
             "pipeline_status": market_state["pipeline_status"],
-            "dispatch_stage": "awaiting_agent_runtime_spawn",
+            "dispatch_stage": "awaiting_persona_channel_handoff",
             "agent_runtime_dispatch_required": True,
             "agent_runtime_steps": [
                 "validate manifest before launch",
-                "for each run, check idempotency against research_runs.notes.child_session_key",
-                "for each eligible run, call sessions_spawn with runs[i].spawn.spawn_payload",
-                "capture the returned child session metadata from sessions_spawn",
-                "build a filled DB patch from runs[i].spawn.post_spawn_update_template",
-                "patch the corresponding research_runs row using update_research_run.py",
-                "if some runs launch and others fail, return launched_partial and retry only failed runs later",
+                "for each run, check idempotency against current research_runs status and prior channel handoff metadata",
+                "for each eligible run, call sessions_send with runs[i].handoff.handoff_payload",
+                "after each successful handoff, build a filled DB patch from runs[i].handoff.post_handoff_update_template",
+                "patch the corresponding research_runs row using update_research_run.py so status becomes running only after the persona channel handoff succeeds",
+                "if some runs launch and others fail, return delivered_partial and retry only failed runs later",
             ],
             "runs": runs,
         }

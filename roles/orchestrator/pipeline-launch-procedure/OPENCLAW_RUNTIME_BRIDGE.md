@@ -1,102 +1,86 @@
 # OpenClaw Runtime Bridge
 
-This document defines the boundary between the local Python/Postgres control-plane scripts and the OpenClaw agent runtime.
+## Purpose
 
-## Why this bridge exists
+Describe the boundary between:
+- planner-side local Python scripts
+- runtime-side OpenClaw tool execution
 
-`dispatch_case_research.py` can do all local work that only needs:
-- Python
-- PostgreSQL
-- prompt assembly
+In the current architecture, the bridge is:
+- planner emits a manifest with fixed-channel handoff payloads
+- runtime executes those payloads with `sessions_send`
+- runtime patches DB state after successful delivery
 
-It cannot directly call `sessions_spawn`, because `sessions_spawn` is an OpenClaw runtime tool, not a subprocess-available Python API.
+## What local Python can do
 
-That boundary is normal and should stay explicit.
+Planner/local Python can:
+- read/write Postgres through `psql`
+- select the next market
+- open the case
+- create queued run rows
+- build prompts
+- write the canonical dispatch manifest
 
-## Recommended architecture
+Planner/local Python cannot call OpenClaw runtime tools directly.
 
-Treat dispatch as a **two-phase operation**.
+## What OpenClaw runtime does
 
-### Phase 1 — local control-plane preparation
-Owned by Python scripts in:
-- `roles/orchestrator/pipeline-launch-procedure/initialize/scripts/`
+The OpenClaw runtime does the operational delivery work:
+1. read the manifest
+2. load existing DB state for idempotency
+3. determine which runs are still launchable (`status = queued`)
+4. call `sessions_send` into each mapped persona channel
+5. patch successful handoffs to `running`
+6. report concise delivery summaries
 
-Responsibilities:
-1. select/open the case
-2. set `markets.pipeline_status`
-3. create one `research_runs` row per persona
-4. build the exact researcher prompt text
-5. emit a runtime dispatch manifest
+## Runtime inputs
 
-Primary script:
-- `dispatch_case_research.py`
+### Manifest
+Produced by:
+- `planner/scripts/dispatch_case_research.py`
 
-### Phase 2 — OpenClaw runtime execution
-Owned by the dispatch-bounded runtime controller session.
+### Existing run-state map
+Produced by:
+- `runtime/scripts/load_dispatch_existing_state.py`
 
-Responsibilities:
-1. iterate through the emitted run manifest
-2. call `sessions_spawn` with each `spawn_payload`
-3. capture returned subagent session metadata
-4. patch the matching `research_runs` row using `update_research_run.py`
-5. mark the run `running`
+### Runtime plan
+Produced by:
+- `runtime/scripts/run_dispatch_runtime.py`
+- `runtime/scripts/runtime_execute_dispatch.py`
 
-## Canonical runtime loop
+## Canonical handoff primitive
 
-The recommended runtime loop now runs through the thin wrapper and dedicated runtime-control lane:
-- `roles/orchestrator/pipeline-launch-procedure/initialize/scripts/run_dispatch_runtime.py`
-- `roles/orchestrator/pipeline-launch-procedure/initialize/scripts/reconcile_research_run_completion.py`
+The current handoff primitive is:
+- `sessions_send`
 
-That wrapper uses:
-- `runtime_execute_dispatch.py --action validate`
-- `runtime_execute_dispatch.py --action prepare`
-- `runtime_execute_dispatch.py --action build-patch`
-- `runtime_execute_dispatch.py --action finalize-summary`
+Not:
+- the old `sessions_spawn` thread-bound launch path
 
-For each launchable run returned by the prepare step:
+Each run now carries:
+- `handoff.target`
+- `handoff.handoff_payload`
+- `handoff.post_handoff_update_template`
 
-1. call `sessions_spawn` with:
-   - `launchable_runs[i].spawn_payload`
-2. capture returned metadata from the spawn result
-3. build the filled DB patch payload for:
-   - `launchable_runs[i].research_run_id`
-4. fill these fields from the actual spawn result when available:
-   - `notes.child_session_key`
-   - `notes.spawn_run_id`
-5. keep `workspace_note_path` equal to the planned primary artifact path
-6. apply the patch through `update_research_run.py`
-7. record a per-run launch result for final summary generation
+## DB patch rule
 
-If some runs launch and others fail:
-- keep successful launches active
-- patch successful runs to `status = running`
-- return `launched_partial`
-- retry only runs that still lack `notes.child_session_key`
+After a successful `sessions_send`, the runtime should apply the corresponding DB patch through:
+- `runtime/scripts/update_research_run.py`
 
-When completion events arrive later:
-- resolve the matching `research_runs` row by `notes.child_session_key`
-- patch to `completed` or `failed`
-- preserve completion/error detail in `notes`
-- use `initialize/scripts/reconcile_research_run_completion.py` as the canonical completion reconciler
+That patch should set:
+- `status = running`
+- `started_at` (if not already set)
+- `notes.dispatch_stage = persona_channel_running`
+- `notes.delivery_target_session_key`
+- `notes.delivery_target_channel_id`
 
-## Why this pattern is recommended
+Important nuance:
+- `sessions_send` confirms internal session delivery
+- it does not by itself guarantee a visible kickoff post in Discord
+- visible STARTING/FINISHED posts should be emitted by the persona lane after it receives the assignment
 
-This split preserves:
-- **provenance** — Postgres preparation is explicit and inspectable
-- **predictable behavior** — the spawn payload is generated once and executed literally
-- **guardrails** — the runtime performs only the prepared spawn + patch steps
+## Completion note
 
-It also avoids faking OpenClaw tool calls from local subprocesses.
+Because the fixed persona channels are persistent lanes, completion should eventually resolve by:
+- `research_run_id`
 
-## Non-goal
-
-Do not try to make local Python scripts call OpenClaw runtime tools directly unless OpenClaw later exposes an official supported local API for that purpose.
-
-For now, the correct boundary is:
-- Python scripts prepare
-- OpenClaw agent runtime spawns
-- Python scripts patch DB state
-
-## One-line operating model
-
-`dispatch_case_research.py` is the dispatch planner; the dispatch-bounded runtime controller session is the dispatch executor.
+not by a unique child subagent session id.

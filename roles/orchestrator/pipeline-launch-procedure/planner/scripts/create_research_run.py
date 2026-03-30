@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
-"""Patch one research_runs row.
+"""Create one research_runs row for a case.
 
-Supports updating:
-- status
-- completed_at (set automatically when --mark-completed is used)
-- workspace_note_path
-- notes (merged into existing notes)
+MVP behavior:
+- accept case_id
+- require agent_label
+- optionally accept run_label, runtime, workspace_note_path, notes
+- insert a queued run with started_at unset until runtime launch actually succeeds
+- return compact JSON
 
 Uses PREDQUANT_ORCHESTRATOR_URL by default.
 """
@@ -18,24 +19,42 @@ import sys
 from pathlib import Path
 
 DEFAULT_PSQL = "/opt/homebrew/opt/postgresql@16/bin/psql"
+DEFAULT_RUNTIME = "openclaw-discord-thread-subagent"
 
 SQL = r'''
 WITH input AS (
   SELECT (:'payload'::jsonb) AS j
 ),
-updated AS (
-  UPDATE research_runs rr
-  SET
-    status = COALESCE(NULLIF(i.j->>'status', ''), rr.status),
-    completed_at = CASE
-      WHEN COALESCE((i.j->>'mark_completed')::boolean, false) THEN NOW()
-      ELSE rr.completed_at
-    END,
-    workspace_note_path = COALESCE(NULLIF(i.j->>'workspace_note_path', ''), rr.workspace_note_path),
-    notes = COALESCE(rr.notes, '{}'::jsonb) || COALESCE(i.j->'notes', '{}'::jsonb)
-  FROM input i
-  WHERE rr.id = NULLIF(i.j->>'research_run_id', '')::uuid
-  RETURNING rr.id, rr.case_id, rr.run_label, rr.agent_label, rr.runtime, rr.status, rr.started_at, rr.completed_at, rr.workspace_note_path, rr.notes, rr.created_at
+resolved_case AS (
+  SELECT c.id
+  FROM cases c
+  CROSS JOIN input i
+  WHERE c.id = NULLIF(i.j->>'case_id', '')::uuid
+  LIMIT 1
+),
+inserted_run AS (
+  INSERT INTO research_runs (
+    case_id,
+    run_label,
+    agent_label,
+    runtime,
+    status,
+    started_at,
+    workspace_note_path,
+    notes
+  )
+  SELECT
+    rc.id,
+    NULLIF(i.j->>'run_label', ''),
+    i.j->>'agent_label',
+    COALESCE(NULLIF(i.j->>'runtime', ''), 'openclaw-discord-thread-subagent'),
+    COALESCE(NULLIF(i.j->>'status', ''), 'queued'),
+    NULL,
+    NULLIF(i.j->>'workspace_note_path', ''),
+    COALESCE(i.j->'notes', '{}'::jsonb)
+  FROM resolved_case rc
+  CROSS JOIN input i
+  RETURNING id, case_id, run_label, agent_label, runtime, status, started_at, workspace_note_path, notes, created_at
 )
 SELECT json_build_object(
   'research_run_id', id,
@@ -45,23 +64,23 @@ SELECT json_build_object(
   'runtime', runtime,
   'status', status,
   'started_at', started_at,
-  'completed_at', completed_at,
   'workspace_note_path', workspace_note_path,
   'notes', notes,
   'created_at', created_at
 )::text
-FROM updated;
+FROM inserted_run;
 '''
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Patch one research run")
+    parser = argparse.ArgumentParser(description="Create one research run for a case")
     parser.add_argument("--file", default="-", help="Path to input JSON file, or - for stdin")
-    parser.add_argument("--research-run-id", help="research_runs UUID")
-    parser.add_argument("--status", help="New run status")
+    parser.add_argument("--case-id", help="Case UUID")
+    parser.add_argument("--agent-label", help="Research persona / agent label")
+    parser.add_argument("--run-label", help="Optional run label")
+    parser.add_argument("--runtime", default=DEFAULT_RUNTIME, help="Runtime label")
     parser.add_argument("--workspace-note-path", help="Primary qualitative artifact path")
     parser.add_argument("--notes-json", help="JSON object merged into notes")
-    parser.add_argument("--mark-completed", action="store_true", help="Set completed_at = NOW()")
     parser.add_argument("--db-url", default=os.getenv("PREDQUANT_ORCHESTRATOR_URL", ""), help="Postgres connection URL")
     parser.add_argument("--psql", default=os.getenv("PSQL_BIN", DEFAULT_PSQL), help="Path to psql binary")
     parser.add_argument("--pretty", action="store_true", help="Pretty-print the JSON result")
@@ -85,19 +104,23 @@ def build_payload(args: argparse.Namespace) -> dict:
 
     payload = dict(payload or {})
 
-    if args.research_run_id:
-        payload["research_run_id"] = args.research_run_id
-    if args.status:
-        payload["status"] = args.status
+    if args.case_id:
+        payload["case_id"] = args.case_id
+    if args.agent_label:
+        payload["agent_label"] = args.agent_label
+    if args.run_label:
+        payload["run_label"] = args.run_label
+    if args.runtime:
+        payload["runtime"] = args.runtime
     if args.workspace_note_path:
         payload["workspace_note_path"] = args.workspace_note_path
     if args.notes_json:
         payload["notes"] = json.loads(args.notes_json)
-    if args.mark_completed:
-        payload["mark_completed"] = True
 
-    if not payload.get("research_run_id"):
-        raise ValueError("research_run_id is required")
+    if not payload.get("case_id"):
+        raise ValueError("case_id is required")
+    if not payload.get("agent_label"):
+        raise ValueError("agent_label is required")
 
     return payload
 
@@ -131,7 +154,7 @@ def run_psql(psql_bin: str, db_url: str, payload: dict) -> dict:
 
     stdout = proc.stdout.strip()
     if not stdout:
-        raise ValueError("research run not found or not updated")
+        raise ValueError("case not found or research run not created")
 
     return json.loads(stdout.splitlines()[-1])
 

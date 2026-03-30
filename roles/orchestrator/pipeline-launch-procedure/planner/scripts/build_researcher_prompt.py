@@ -5,7 +5,7 @@ Reads:
 - researcher_base_contract.md
 - one persona prompt file
 
-Combines them with case/market context into a single task string suitable for sessions_spawn.
+Combines them with case/market context into a single task string suitable for fixed-channel Discord handoff.
 """
 
 import argparse

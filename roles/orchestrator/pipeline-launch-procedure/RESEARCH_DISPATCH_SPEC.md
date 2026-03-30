@@ -1,251 +1,134 @@
 # Research Dispatch Spec
 
-Compact operating contract for Orchestrator-driven case research.
-
 ## Purpose
 
-Connect four things cleanly:
-- market selection in Postgres
-- case orchestration in Postgres
-- independent OpenClaw subagent research runs
-- qualitative artifacts in `qualitative-db/40-research/`
+Define the dispatch/state contract for the current **fixed Discord persona-channel** architecture.
 
-This is a control-plane contract, not a replacement for the vault READMEs.
+This system connects:
+- market/case state in Postgres
+- planner-side prompt generation
+- fixed Discord persona lanes as the runtime surface
+- durable research artifacts in `qualitative-db/40-research/`
 
----
+## Core model
 
-## Core rules
+### Market queue
+Markets waiting for work are represented by:
+- `markets.pipeline_status = pending_research`
 
-1. **One market at a time through active research**
-   - Device B may ingest many markets.
-   - Orchestrator should normally advance only one selected market at a time into active case work.
+### Active market
+When a case is selected and dispatch planning begins:
+- `markets.pipeline_status = researching`
 
-2. **Researchers are independent takes, not rigid specialist microservices**
-   - They analyze the same case with different priors, update styles, and independently informed reactions to the market-implied view.
+### Research runs
+Each selected case produces one `research_runs` row per persona.
 
-3. **Researchers read broad context, but write only case-specific research**
-   - Read from `10-domains/`, `20-entities/`, `30-drivers/`, and relevant existing research.
-   - Normally write only into `qualitative-db/40-research/`.
-   - Do not casually update canon during ordinary case work.
+Current personas:
+- `base-rate`
+- `market-implied`
+- `variant-view`
+- `risk-manager`
+- `catalyst-hunter`
 
-4. **Preserve disagreement**
-   - Do not flatten conflicting views early.
-   - Preserve competing interpretations in `40-research/` and structured predictions in Postgres.
+## Runtime surface
 
-5. **Market price is part of the object of analysis**
-   - Every researcher must inspect the current market-implied probability and explicitly say whether they agree or disagree with it.
+The runtime surface is **not** auto-created Discord threads.
 
-6. **Vault and Postgres are complementary**
-   - Vault = provenance, reasoning, assumptions, evidence, synthesis.
-   - Postgres = operational state, run records, structured predictions, decision state.
+The current runtime surface is:
+- one fixed Discord channel per persona
+- one controller channel for orchestration/monitoring
 
----
+Routing metadata is stored in:
+- `runtime/persona-channel-map.json`
 
-## Researcher personas
+## Required fields per run
 
-Preferred recurring personalities:
-
-### `base-rate`
-- outside view
-- structural priors
-- historical frequency
-- skeptical of overfit narratives
-
-Question: what should I believe before case-specific evidence impresses me?
-
-### `market-implied`
-- starts from live market price as an information-rich prior
-- asks what would make the market reasonable
-- guards against naive anti-market overconfidence
-
-Question: what must be true for the current price to make sense?
-
-### `variant-view`
-- looks for the strongest credible anti-consensus take
-- hunts underweighted mechanisms or neglected evidence
-
-Question: what is the strongest reason the market may be wrong?
-
-### `risk-manager`
-- stress-tests the thesis
-- focuses on hidden assumptions, fragility, and disconfirming evidence
-
-Question: what could break this view badly?
-
-### `catalyst-hunter`
-- focuses on timing and near-term repricing triggers
-- looks for events likely to move the market soon
-
-Question: what changes the market before resolution, and when?
-
----
-
-## Required researcher behavior
-
-Each dispatched run should normally:
-
-1. Read the case prompt and market metadata.
-2. Inspect current market state, especially current price and timing.
-3. Read relevant background context from:
-   - `qualitative-db/10-domains/`
-   - `qualitative-db/20-entities/`
-   - `qualitative-db/30-drivers/`
-4. Research independently using internet access and available tools.
-5. Write case-specific artifacts into `qualitative-db/40-research/`.
-6. Log a structured prediction in Postgres.
-7. Explicitly state agreement/disagreement versus the market-implied probability.
-8. Preserve uncertainty and disagreement rather than collapsing them too early.
-
-Minimum expected outputs per run:
-- one qualitative artifact in `40-research/`
-- one structured prediction log in Postgres
-
----
-
-## Default qualitative output location
-
-Primary default output is an **agent finding** in one of:
-- `qualitative-db/40-research/agent-findings/base-rate/`
-- `qualitative-db/40-research/agent-findings/market-implied/`
-- `qualitative-db/40-research/agent-findings/variant-view/`
-- `qualitative-db/40-research/agent-findings/risk-manager/`
-- `qualitative-db/40-research/agent-findings/catalyst-hunter/`
-
-Researchers should also write in the course of researching:
-- `source-notes/`
-- `assumption-notes/`
-- `evidence-maps/`
-- `product-notes/` only when the research object is genuinely versioned or release-specific
-
-Researchers should not normally write directly to:
-- `10-domains/`
-- `20-entities/`
-- `30-drivers/`
-- `50-retrospectives/`
-
----
-
-## State model
-
-### `markets.pipeline_status`
-- `new`
-- `pending_research`
-- `researching`
-- `ignored`
-- `executed`
-- `closed`
-
-### `cases.status`
-- `open`
-- `closed`
-
-### `research_runs.status`
-- `queued`
-- `running`
-- `completed`
-- `failed`
-- `canceled`
-
-Runtime tracking rule:
-- a run becomes `running` only after the runtime stores `notes.child_session_key`
-- a run becomes `completed` or `failed` when the completion event is reconciled back to the row via `notes.child_session_key`
-
----
-
-## Dispatch flow
-
-1. `roles/orchestrator/pipeline-launch-procedure/initialize/scripts/select_next_market.py` selects one eligible market.
-2. `roles/orchestrator/pipeline-launch-procedure/initialize/scripts/open_case.py` creates or fetches the case.
-3. When real dispatch begins, mark the market `researching`.
-4. `roles/orchestrator/pipeline-launch-procedure/initialize/scripts/dispatch_case_research.py` prepares the dispatch plan:
-   - create a `research_runs` row per persona
-   - build the exact researcher prompt per persona
-   - emit one `sessions_spawn` payload per persona
-   - emit one post-spawn DB patch template per persona
-5. The OpenClaw runtime executes the emitted `sessions_spawn` payloads.
-6. The OpenClaw runtime patches the corresponding `research_runs` rows with runtime/session metadata.
-7. Researchers write `40-research/` artifacts.
-8. Researchers log structured predictions tied to run/case/market.
-9. Orchestrator synthesizes vault outputs + structured predictions.
-10. Decision-maker writes decision packet.
-11. Case is later closed, deferred, or ignored.
-
----
-
-See also:
-- `roles/orchestrator/pipeline-launch-procedure/OPENCLAW_RUNTIME_BRIDGE.md`
-
-## Why the DB run record exists
-
-OpenClaw already provides worker execution.
-The DB run record exists so the pipeline can answer:
-- which personas were dispatched?
-- when did each run start and finish?
-- which subagent session corresponds to which run?
-- which qualitative artifact came from which run?
-- which prediction came from which run?
-- how did each research style perform over time?
-
----
-
-## DB metadata vs vault content
-
-These are **not redundant** with the qualitative database.
-
-### Strong keep
-- `workspace_note_path`
-- `notes.child_session_key`
-
-### Good to keep
-- `notes.spawn_run_id`
-- `notes.model`
-
-### Optional for MVP
-- `notes.thinking`
-
-Reason:
-- the vault stores research content
-- the DB stores runtime identity, structured linkage, and evaluation metadata
-
----
-
-## MVP minimum contract
-
-Per run, record at least:
+At minimum each run should track:
 - `case_id`
 - `run_label`
 - `agent_label`
 - `runtime`
 - `status`
-- `started_at`
+- `started_at` (actual handoff/start time, not row creation)
 - `workspace_note_path`
-- `notes.child_session_key`
+- `notes.dispatch_id`
+- `notes.dispatch_stage`
+- `notes.delivery_target_session_key`
+- `notes.delivery_target_channel_id`
 
-Per researcher, require at least:
-- one `40-research/` artifact
-- one structured prediction log
-- one explicit statement of agreement/disagreement versus market price
+## Dispatch stages
 
----
+Current expected stages:
+- `awaiting_persona_channel_handoff`
+- `persona_channel_running`
+- `completed`
+- `terminated`
 
-## Recommended first swarm
+## Lifecycle rules
 
-Default MVP swarm size: **3 researchers**
+### Planner side
+`dispatch_case_research.py` must:
+1. ensure the market is `researching`
+2. create one queued `research_runs` row per persona
+3. generate one prompt per persona
+4. emit one fixed-channel handoff payload per persona
+5. emit one post-handoff DB patch template per persona
 
-Recommended trio:
-- `base-rate`
-- `variant-view`
-- `risk-manager`
+### Runtime side
+`run_dispatch_runtime.py` / `runtime_execute_dispatch.py` must:
+1. validate the manifest
+2. consult current DB state for idempotency
+3. skip non-queued runs
+4. emit one `sessions_send` handoff step per still-queued run
+5. build one post-handoff DB patch per successful delivery
+6. summarize delivery status as `delivered_all`, `delivered_partial`, or `delivery_failed`
 
-Optional fourth:
-- `catalyst-hunter`
+### Persona-lane behavior
+Each persona lane assignment should require visible lane updates in this standardized format:
+- `STARTING RESEARCH | market=<market title> | persona=<persona> | research_run_id=<id>`
+- `FINISHED RESEARCH | market=<market title> | persona=<persona> | research_run_id=<id> | agent_finding_path=<path>`
 
-Use `market-implied` either:
-- as an additional researcher, or
-- as a lightweight framing pass by Orchestrator before dispatch
+Those visible messages come from the lane after it receives the assignment. The original `sessions_send` handoff itself is internal and may not be visible in Discord.
 
----
+## Running-state rule
 
-## One-line operating model
+A run becomes `running` only after:
+- its handoff message is successfully delivered into the mapped persona channel session
+- and the DB patch is applied
 
-Dispatch a small set of independent researcher personalities on one case at a time, require each to compare its view against the market-implied price, preserve qualitative reasoning in `40-research/`, preserve structured run/prediction state in Postgres, and delay durable canon updates until retrospective review.
+That patch should set:
+- `status = running`
+- `started_at = NOW()` (if not already set)
+- `notes.dispatch_stage = persona_channel_running`
+- `notes.delivery_target_session_key`
+- `notes.delivery_target_channel_id`
+
+## Completion rule
+
+A run becomes `completed` or `failed` only when a runtime-side helper updates the corresponding `research_runs` row.
+
+For the fixed-channel model, the stable join key should be:
+- `research_run_id`
+
+`delivery_target_session_key` is useful metadata, but it is not a unique long-term completion join key because persona channels are persistent lanes reused across runs.
+
+Safety net:
+- if the primary artifact exists but the DB row is still `queued`/`running`, use `runtime/scripts/reconcile_dispatch_from_artifacts.py`
+
+## Default artifact path rules
+
+### Primary finding
+`qualitative-db/40-research/agent-findings/<persona>/<case_key>-<slug>.md`
+
+### Source notes
+Directory:
+`qualitative-db/40-research/source-notes/by-market/`
+
+Filename prefix:
+`<case_key>-<persona>-`
+
+### Assumption note
+`qualitative-db/40-research/assumption-notes/<case_key>-<persona>-assumptions.md`
+
+### Evidence map
+`qualitative-db/40-research/evidence-maps/<case_key>-<persona>-evidence-map.md`
