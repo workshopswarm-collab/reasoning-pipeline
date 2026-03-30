@@ -32,7 +32,7 @@ Primary script:
 - `dispatch_case_research.py`
 
 ### Phase 2 — OpenClaw runtime execution
-Owned by the Orchestrator agent runtime.
+Owned by the dispatch-bounded runtime controller session.
 
 Responsibilities:
 1. iterate through the emitted run manifest
@@ -43,8 +43,9 @@ Responsibilities:
 
 ## Canonical runtime loop
 
-The recommended runtime loop now runs through the thin wrapper:
+The recommended runtime loop now runs through the thin wrapper and dedicated runtime-control lane:
 - `roles/orchestrator/pipeline-launch-procedure/initialize/scripts/run_dispatch_runtime.py`
+- `roles/orchestrator/pipeline-launch-procedure/initialize/scripts/reconcile_research_run_completion.py`
 
 That wrapper uses:
 - `runtime_execute_dispatch.py --action validate`
@@ -98,4 +99,4 @@ For now, the correct boundary is:
 
 ## One-line operating model
 
-`dispatch_case_research.py` is the dispatch planner; the Orchestrator runtime is the dispatch executor.
+`dispatch_case_research.py` is the dispatch planner; the dispatch-bounded runtime controller session is the dispatch executor.

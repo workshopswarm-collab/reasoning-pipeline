@@ -1,12 +1,12 @@
 # Pipeline Launch Procedure
 
-This folder contains the **launch control-plane** for starting research-swarm case work from the Orchestrator side.
+This folder contains the launch control-plane for starting research-swarm case work from the Orchestrator side.
 
 It bridges:
 - market/case state in Postgres
 - prompt generation and run planning in local scripts
 - actual `sessions_spawn` calls in the OpenClaw runtime
-- DB patching and launch summaries after runtime execution
+- DB status reconciliation after spawn and completion
 
 ## What this folder is for
 
@@ -16,20 +16,20 @@ Use this folder when you want to:
 - create research run records
 - generate persona-specific prompts
 - build a dispatch manifest
-- execute the runtime launch loop
+- launch the swarm through a runtime controller session
 - patch returned runtime metadata into `research_runs`
-- summarize launch outcomes, including partial failures
+- reconcile child completion events back into Postgres
+- summarize launch and completion outcomes
 
-This folder is **not** the full prediction workflow.
-It is specifically the **launch procedure** for getting the research swarm into motion cleanly.
+This folder is the **launch procedure** for getting the research swarm into motion cleanly and keeping runtime state aligned with DB state.
 
 ---
 
 # Mental model
 
-The launch system has two halves.
+The system has three layers.
 
-## 1. Planner / control-plane half
+## 1. Planner / control-plane layer
 Handled by Python scripts.
 
 It does the deterministic local work:
@@ -40,49 +40,49 @@ It does the deterministic local work:
 - artifact path planning
 - dispatch manifest emission
 
-## 2. Runtime execution half
-Handled inside the OpenClaw runtime session.
+## 2. Runtime controller layer
+Handled inside a dispatch-bounded OpenClaw runtime session.
 
-It does the runtime-only work:
-- validating the manifest for launch
+It does the operational runtime work:
+- validating the manifest
 - determining launchable vs skipped runs
 - calling `sessions_spawn`
-- capturing returned runtime metadata
-- patching `research_runs`
-- finalizing the launch summary
+- patching runs to `running`
+- reconciling child completion events to `completed` or `failed`
+- summarizing launch/completion state back to Orchestrator
+
+## 3. Research worker layer
+Handled by child researcher subagent sessions.
+
+It does the actual case research and artifact creation.
 
 Core rule:
 - **Python prepares**
-- **OpenClaw runtime spawns**
-- **Python patch helpers normalize and summarize**
+- **Runtime controller launches and reconciles**
+- **Research workers research**
 
 ---
 
-# Folder map
-
-## Top-level docs
-
-### `README.md`
-This file.
-Explains the full launch process and each script's role.
+# Key documents
 
 ### `RESEARCH_DISPATCH_SPEC.md`
 High-level operating contract for case research.
-Defines:
-- persona philosophy
-- run expectations
-- required outputs
-- state model
-- how vault artifacts and Postgres work together
+Defines personas, required outputs, state model, and the role of vault + Postgres.
 
 ### `OPENCLAW_RUNTIME_BRIDGE.md`
-Defines the architectural boundary between local scripts and the OpenClaw runtime.
+Architecture boundary between local scripts and the OpenClaw runtime.
 
 ### `DISPATCH_LIVE_SWARM.md`
-Live procedure for launching the real swarm.
+Live procedure for launching the swarm.
 
 ### `RUNTIME_HARNESS_PROCEDURE.md`
-Explains the thin runtime harness flow and partial-failure handling.
+Exact runtime launch/reconciliation procedure.
+
+### `SWARM_RUNTIME_CONTROLLER_SPEC.md`
+Defines the dispatch-bounded runtime controller session, including lifecycle, edge cases, and message contract.
+
+### `RUNTIME_CONTROLLER_PROMPT.md`
+Minimal instruction block for spawning a runtime controller session.
 
 ---
 
@@ -91,281 +91,106 @@ Explains the thin runtime harness flow and partial-failure handling.
 All scripts live in:
 - `roles/orchestrator/pipeline-launch-procedure/initialize/scripts/`
 
-## `select_next_market.py`
-Purpose:
-- select the next market eligible for orchestrator processing
+## Planner/control-plane
+- `select_next_market.py` — select one eligible market
+- `open_case.py` — fetch or create the case record
+- `set_market_pipeline_status.py` — update `markets.pipeline_status`
+- `create_research_run.py` — create one `research_runs` row per persona
+- `build_researcher_prompt.py` — generate the exact prompt for one persona on one case
+- `dispatch_case_research.py` — create runs, build prompts, emit the canonical dispatch manifest
 
-What it does:
-- looks for markets in `new` or `pending_research`
-- skips markets that already have an open case
-- returns one selected market
-
-Use when:
-- you want the next candidate market from the queue
-
----
-
-## `open_case.py`
-Purpose:
-- fetch or create the case record for one market
-
-What it does:
-- accepts either `market_id` or `(platform, external_market_id)`
-- returns an existing open case if present
-- otherwise creates a new one
-
-Use when:
-- a selected market needs to become an orchestrated case
-
----
-
-## `set_market_pipeline_status.py`
-Purpose:
-- update `markets.pipeline_status`
-
-What it does:
-- changes one market's status such as `new -> researching`
-
-Use when:
-- dispatch begins or other pipeline state changes are needed
-
----
-
-## `create_research_run.py`
-Purpose:
-- create one `research_runs` row for a persona on a case
-
-What it does:
-- inserts a queued run row
-- records the persona, runtime label, artifact path, and notes
-
-Use when:
-- planner is creating the swarm run records before launch
-
----
-
-## `build_researcher_prompt.py`
-Purpose:
-- generate the exact dispatch prompt for one persona on one case
-
-What it does:
-- reads the base contract prompt
-- reads the persona prompt
-- combines them with current case/market context
-- encodes artifact path rules directly into the prompt
-
-Use when:
-- planner needs the literal `task` string for `sessions_spawn`
-
----
-
-## `dispatch_case_research.py`
-Purpose:
-- planner / manifest emitter
-
-What it does:
-- loads case + market context
-- sets `pipeline_status = researching`
-- creates one run per persona
-- builds one prompt per persona
-- emits the canonical dispatch manifest
-
-Important defaults:
-- model defaults to `codex`
+Important defaults in `dispatch_case_research.py`:
+- model defaults to `openai-codex/gpt-5.4`
 - thinking defaults to `medium`
 
-Use when:
-- preparing the launch plan for the swarm
+## Runtime-control helpers
+- `runtime_execute_dispatch.py` — validate manifest, prepare launchable/skipped runs, build post-spawn patches, finalize summaries
+- `run_dispatch_runtime.py` — runtime orchestration wrapper around the launch flow
+- `update_research_run.py` — patch one `research_runs` row
+- `reconcile_research_run_completion.py` — reconcile a completion event back into `research_runs` by `notes.child_session_key`
 
 ---
 
-## `runtime_execute_dispatch.py`
-Purpose:
-- runtime-side manifest helper
-
-What it does:
-- validates manifest structure
-- prepares launchable vs skipped runs
-- builds post-spawn DB patch payloads
-- finalizes launch summary
-
-Use when:
-- the OpenClaw runtime needs deterministic support logic around the launch loop
-
----
-
-## `run_dispatch_runtime.py`
-Purpose:
-- realtime runtime orchestration wrapper
-
-What it does:
-- calls runtime validation and preparation logic
-- emits the exact OpenClaw tool loop to execute
-- accepts actual spawn results
-- builds patch/update steps
-- finalizes the launch summary
-
-Use when:
-- Orchestrator wants to drive the launch end-to-end from the OpenClaw runtime session
-
----
-
-## `update_research_run.py`
-Purpose:
-- patch one `research_runs` row
-
-What it does:
-- updates status
-- merges notes
-- updates primary artifact path
-- optionally marks completion timestamp
-
-Use when:
-- runtime needs to store returned child session metadata or later completion metadata
-
----
-
-# Full process walkthrough
+# Process walkthrough
 
 ## Phase 1 — planner preparation
-
-### Step 1: select a market
-Run:
-- `select_next_market.py`
-
-Output:
-- one eligible market payload
-
-### Step 2: open or fetch the case
-Run:
-- `open_case.py`
-
-Output:
-- one case record
-
-### Step 3: prepare dispatch manifest
-Run:
-- `dispatch_case_research.py --case-id <case_id>`
-
-This will:
-- set market to `researching`
-- create `research_runs`
-- generate prompts
-- emit dispatch manifest JSON
+1. `select_next_market.py`
+2. `open_case.py`
+3. `dispatch_case_research.py --case-id <case_id>`
 
 Output:
 - canonical dispatch manifest
 
----
-
-## Phase 2 — runtime launch execution
-
-### Step 4: validate + prepare runtime launch plan
-Run:
-- `run_dispatch_runtime.py`
-with the manifest
-
-This returns:
-- launchable runs
-- skipped runs
-- runtime tool loop
-
-### Step 5: execute `sessions_spawn`
-Inside the OpenClaw runtime, for each launchable run:
-- call `sessions_spawn` with the emitted `spawn_payload`
-
-### Step 6: patch DB after successful spawn
-For each successful spawn:
-- build the post-spawn patch payload
-- apply it using `update_research_run.py`
-- set `research_runs.status = running`
-- store `notes.child_session_key` and `notes.spawn_run_id`
-
-### Step 7: patch DB on completion
-When a child session completes successfully:
-- resolve the matching run by `notes.child_session_key`
-- patch `research_runs.status = completed`
-- set `completed_at`
-- store `notes.dispatch_stage = completed`
-- use `initialize/scripts/reconcile_research_run_completion.py`
-
-If a child session fails:
-- patch `research_runs.status = failed`
-- store error detail in `notes`
-- set `notes.dispatch_stage = terminated`
-- use `initialize/scripts/reconcile_research_run_completion.py`
-
-### Step 8: finalize summary
-Feed actual spawn/completion results back into:
-- `run_dispatch_runtime.py --spawn-results-json ...`
-
-Output:
-- final launch summary
+## Phase 2 — runtime control
+4. Orchestrator spawns a **dispatch-bounded runtime controller session** using `RUNTIME_CONTROLLER_PROMPT.md`
+5. The controller validates and prepares the launch plan with `run_dispatch_runtime.py`
+6. The controller calls `sessions_spawn` for each launchable run
+7. After each successful spawn, the controller patches the DB row to `running`
+8. On child completion events, the controller reconciles rows to `completed` or `failed`
+9. The controller sends launch/final summaries back to Orchestrator and exits only after all tracked child runs are terminal and reconciled
 
 ---
 
-# Partial-failure handling
+# Status model
 
-If some runs launch successfully and others fail:
-- keep successful runs active
-- record failed launches
-- return dispatch status `launched_partial`
-- on retry, skip runs that already have `notes.child_session_key`
-- retry only the still-unlaunched runs
+## `markets.pipeline_status`
+- `new`
+- `pending_research`
+- `researching`
+- `ignored`
+- `executed`
+- `closed`
 
-This is the intended behavior.
+## `research_runs.status`
+- `queued`
+- `running`
+- `completed`
+- `failed`
+- `canceled`
 
-Example:
-- 3/5 launched
-- 2/5 failed
-- overall result = `launched_partial`
-
----
-
-# Idempotency rule
-
-The main idempotency key is:
+Canonical join key between runtime events and DB rows:
 - `research_runs.notes.child_session_key`
 
-If that field is already present for a run:
-- do not relaunch by default
-- treat it as `skipped_existing`
+---
 
-This prevents duplicate researcher launches.
+# Partial failures and retries
+
+If some runs launch successfully and others fail:
+- patch successful runs to `running`
+- keep them active
+- return `launched_partial`
+- retry only runs that still lack `notes.child_session_key`
+
+If completion reconciliation fails:
+- preserve recovery data
+- do not silently drop the event
+- retry reconciliation before considering the dispatch cleanly finished
 
 ---
 
-# Default runtime profile
+# End-to-end ownership
 
-Unless explicitly overridden, the swarm launch defaults are:
-- `model: codex`
-- `thinking: medium`
+## Orchestrator owns
+- market selection
+- case opening
+- manifest generation
+- strategic supervision
+- synthesis
 
-These defaults are set in:
-- `dispatch_case_research.py`
+## Runtime controller owns
+- swarm launch
+- spawn-time DB patching
+- completion-time DB reconciliation
+- launch/final summaries
+- exit after reconciliation
 
----
-
-# End-to-end orchestration question
-
-## Can Orchestrator run this end-to-end?
-Yes.
-
-Intended flow:
-1. Orchestrator runs the planner scripts
-2. Orchestrator runs the runtime wrapper
-3. Orchestrator performs the `sessions_spawn` loop in the OpenClaw session
-4. Orchestrator applies the DB patch steps
-5. Orchestrator receives the final launch summary
-
-Key boundary:
-- `sessions_spawn` happens in the OpenClaw runtime/session layer
-- not inside plain Python subprocess code
-
-That boundary is intentional.
+## Research workers own
+- research
+- qualitative artifact creation
+- persona-specific analysis
 
 ---
 
 # One-line summary
 
-This folder contains the launch control-plane for the research swarm: planner scripts prepare the manifest, the OpenClaw runtime executes the spawn loop, patch helpers update DB state, and the runtime wrapper summarizes launch outcomes for clean retries and downstream orchestration.
+This folder contains the launch control-plane for the research swarm: planner scripts prepare the manifest, a dispatch-bounded runtime controller session launches and reconciles the swarm, research workers create the artifacts, and helper scripts keep Postgres state aligned with real runtime state.

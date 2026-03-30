@@ -42,16 +42,19 @@ Primary planner:
 
 ### Phase 2 — execute the dispatch plan in OpenClaw runtime
 
-6. Run the thin runtime harness flow using:
+6. Hand the manifest to the runtime controller lane.
+7. Run the thin runtime harness flow using:
    - `roles/orchestrator/pipeline-launch-procedure/initialize/scripts/run_dispatch_runtime.py`
-7. Use each emitted launchable `spawn_payload` as the literal input to `sessions_spawn`.
-8. After each successful spawn, build the filled post-spawn patch and patch the matching `research_runs` row through `update_research_run.py`.
-9. Fill `research_runs.notes` with runtime metadata from the actual spawn result, especially:
+8. Use each emitted launchable `spawn_payload` as the literal input to `sessions_spawn`.
+9. After each successful spawn, build the filled post-spawn patch and patch the matching `research_runs` row through `update_research_run.py`, setting the run to `running`.
+10. Fill `research_runs.notes` with runtime metadata from the actual spawn result, especially:
    - `child_session_key`
    - `spawn_run_id`
    - optional `model`
    - optional `thinking`
-10. Finalize the dispatch summary.
+11. On child completion events, reconcile each run through:
+   - `roles/orchestrator/pipeline-launch-procedure/initialize/scripts/reconcile_research_run_completion.py`
+12. Finalize launch/completion summaries for Orchestrator.
 
 If only some personas launch successfully:
 - keep successful runs active

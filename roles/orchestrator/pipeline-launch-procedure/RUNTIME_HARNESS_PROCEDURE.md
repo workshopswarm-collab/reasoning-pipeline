@@ -1,6 +1,6 @@
 # Runtime Harness Procedure
 
-Use this procedure when the Orchestrator wants to launch a prepared dispatch manifest end-to-end from the OpenClaw runtime.
+Use this procedure when the runtime controller session wants to launch a prepared dispatch manifest end-to-end from the OpenClaw runtime.
 
 ## Goal
 
@@ -121,7 +121,7 @@ If present:
 ## Default runtime profile
 
 Unless explicitly overridden by the planner, the swarm should launch with:
-- `model: codex`
+- `model: openai-codex/gpt-5.4`
 - `thinking: medium`
 
 These values should be preserved in the runtime patch notes.
@@ -132,14 +132,14 @@ Yes.
 
 Intended model:
 - Orchestrator calls the planner script to produce the manifest
-- Orchestrator runs the runtime harness sequence inside the same OpenClaw session
-- the OpenClaw session performs the actual `sessions_spawn` calls
-- the OpenClaw session applies the resulting DB patches and obtains the launch summary
+- Orchestrator hands the manifest to a dispatch-bounded runtime controller session
+- the runtime controller session performs the actual `sessions_spawn` calls
+- the runtime controller session applies the resulting DB patches and obtains the launch/completion summaries
 
 In short:
-- yes, Orchestrator can drive the whole launch end-to-end
-- the OpenClaw tool loop still occurs inside the runtime session, not inside plain Python
+- yes, Orchestrator still drives the overall workflow end-to-end
+- but the OpenClaw tool loop and reconciliation ownership live in the runtime controller session, not in plain Python
 
 ## One-line operating model
 
-The runtime harness is a thin executor: validate, prepare, spawn, patch, summarize, and retry only the runs that never acquired a child session key.
+The runtime harness is a thin executor: validate, prepare, spawn, patch to `running`, reconcile completions to `completed`/`failed`, summarize, and retry only the runs that never acquired a child session key.
