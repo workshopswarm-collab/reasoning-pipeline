@@ -150,10 +150,10 @@ Researchers should not normally write directly to:
 
 ## Dispatch flow
 
-1. `roles/orchestrator/research-pipeline/initialize/scripts/select_next_market.py` selects one eligible market.
-2. `roles/orchestrator/research-pipeline/initialize/scripts/open_case.py` creates or fetches the case.
+1. `roles/orchestrator/pipeline-launch-procedure/initialize/scripts/select_next_market.py` selects one eligible market.
+2. `roles/orchestrator/pipeline-launch-procedure/initialize/scripts/open_case.py` creates or fetches the case.
 3. When real dispatch begins, mark the market `researching`.
-4. `roles/orchestrator/research-pipeline/initialize/scripts/dispatch_case_research.py` prepares the dispatch plan:
+4. `roles/orchestrator/pipeline-launch-procedure/initialize/scripts/dispatch_case_research.py` prepares the dispatch plan:
    - create a `research_runs` row per persona
    - build the exact researcher prompt per persona
    - emit one `sessions_spawn` payload per persona
@@ -169,7 +169,7 @@ Researchers should not normally write directly to:
 ---
 
 See also:
-- `roles/orchestrator/research-pipeline/OPENCLAW_RUNTIME_BRIDGE.md`
+- `roles/orchestrator/pipeline-launch-procedure/OPENCLAW_RUNTIME_BRIDGE.md`
 
 ## Why the DB run record exists
 

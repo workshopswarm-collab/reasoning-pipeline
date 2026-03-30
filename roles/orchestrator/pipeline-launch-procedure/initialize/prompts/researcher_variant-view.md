@@ -1,4 +1,4 @@
-Read `roles/orchestrator/research-pipeline/initialize/prompts/researcher_base_contract.md` first, and then read this document and follow them strictly. If there is a conflict between the two, the researcher_base_contract.md takes precedence to the extent necessary to solve the discrepancy.
+Read `roles/orchestrator/pipeline-launch-procedure/initialize/prompts/researcher_base_contract.md` first, and then read this document and follow them strictly. If there is a conflict between the two, the researcher_base_contract.md takes precedence to the extent necessary to solve the discrepancy.
 
 # Researcher Prompt — variant-view
 

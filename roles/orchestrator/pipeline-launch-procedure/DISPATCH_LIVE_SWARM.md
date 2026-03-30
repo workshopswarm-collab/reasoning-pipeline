@@ -4,14 +4,14 @@ Use this procedure when launching the real 5-agent swarm from the OpenClaw agent
 
 ## Goal
 
-Launch the full case swarm using the generated prompt text from `roles/orchestrator/research-pipeline/initialize/scripts/build_researcher_prompt.py` rather than a hand-written task string.
+Launch the full case swarm using the generated prompt text from `roles/orchestrator/pipeline-launch-procedure/initialize/scripts/build_researcher_prompt.py` rather than a hand-written task string.
 
 This is a **two-phase** process:
 - local Python/Postgres scripts prepare the dispatch plan
 - the OpenClaw runtime executes the actual `sessions_spawn` calls
 
 See also:
-- `roles/orchestrator/research-pipeline/OPENCLAW_RUNTIME_BRIDGE.md`
+- `roles/orchestrator/pipeline-launch-procedure/OPENCLAW_RUNTIME_BRIDGE.md`
 
 ## Required order
 
@@ -20,7 +20,7 @@ See also:
 1. Load case + market context.
 2. Set `markets.pipeline_status = researching`.
 3. Create one `research_runs` row per persona.
-4. For each persona, call `roles/orchestrator/research-pipeline/initialize/scripts/build_researcher_prompt.py` with:
+4. For each persona, call `roles/orchestrator/pipeline-launch-procedure/initialize/scripts/build_researcher_prompt.py` with:
    - `agent_label`
    - `case_id`
    - `case_key`
@@ -38,18 +38,25 @@ See also:
 5. Emit one runtime `spawn_payload` plus one post-spawn DB patch template per persona.
 
 Primary planner:
-- `roles/orchestrator/research-pipeline/initialize/scripts/dispatch_case_research.py`
+- `roles/orchestrator/pipeline-launch-procedure/initialize/scripts/dispatch_case_research.py`
 
 ### Phase 2 — execute the dispatch plan in OpenClaw runtime
 
-6. Use each emitted `spawn_payload` as the literal input to `sessions_spawn`.
-7. After each spawn, patch the matching `research_runs` row using the emitted post-spawn update template.
-8. Fill `research_runs.notes` with runtime metadata from the actual spawn result, especially:
+6. Run the thin runtime harness flow using:
+   - `roles/orchestrator/pipeline-launch-procedure/initialize/scripts/run_dispatch_runtime.py`
+7. Use each emitted launchable `spawn_payload` as the literal input to `sessions_spawn`.
+8. After each successful spawn, build the filled post-spawn patch and patch the matching `research_runs` row through `update_research_run.py`.
+9. Fill `research_runs.notes` with runtime metadata from the actual spawn result, especially:
    - `child_session_key`
    - `spawn_run_id`
    - optional `model`
    - optional `thinking`
-9. Mark the run `running`.
+10. Finalize the dispatch summary.
+
+If only some personas launch successfully:
+- keep successful runs active
+- return `launched_partial`
+- retry only the runs that still lack `notes.child_session_key`
 
 ## Default artifact path rules
 
@@ -71,7 +78,7 @@ Filename prefix:
 
 ## Rule
 
-Do not handwrite persona dispatch prompts when `roles/orchestrator/research-pipeline/initialize/scripts/build_researcher_prompt.py` is available. The generated prompt is the source of truth because it reflects the latest researcher contract and artifact path rules.
+Do not handwrite persona dispatch prompts when `roles/orchestrator/pipeline-launch-procedure/initialize/scripts/build_researcher_prompt.py` is available. The generated prompt is the source of truth because it reflects the latest researcher contract and artifact path rules.
 
 Do not try to make local subprocess Python call `sessions_spawn` directly. The correct pattern is:
 - planner scripts prepare the dispatch manifest

@@ -20,7 +20,7 @@ Treat dispatch as a **two-phase operation**:
 
 ### Phase 1 — local control-plane preparation
 Owned by Python scripts in:
-- `roles/orchestrator/research-pipeline/initialize/scripts/`
+- `roles/orchestrator/pipeline-launch-procedure/initialize/scripts/`
 
 Responsibilities:
 1. select/open the case
@@ -44,18 +44,33 @@ Responsibilities:
 
 ## Canonical runtime loop
 
-For each run returned by `dispatch_case_research.py`:
+The recommended runtime loop now runs through the thin wrapper:
+- `roles/orchestrator/pipeline-launch-procedure/initialize/scripts/run_dispatch_runtime.py`
+
+That wrapper uses:
+- `runtime_execute_dispatch.py --action validate`
+- `runtime_execute_dispatch.py --action prepare`
+- `runtime_execute_dispatch.py --action build-patch`
+- `runtime_execute_dispatch.py --action finalize-summary`
+
+For each launchable run returned by the prepare step:
 
 1. call `sessions_spawn` with:
-   - `runs[i].spawn.spawn_payload`
+   - `launchable_runs[i].spawn_payload`
 2. capture returned metadata from the spawn result
-3. patch the DB row referenced by:
-   - `runs[i].spawn.post_spawn_update_template.research_run_id`
+3. build the filled DB patch payload for:
+   - `launchable_runs[i].research_run_id`
 4. fill these fields from the actual spawn result when available:
    - `notes.child_session_key`
    - `notes.spawn_run_id`
 5. keep `workspace_note_path` equal to the planned primary artifact path
-6. set `research_runs.status = running`
+6. apply the patch through `update_research_run.py`
+7. record a per-run launch result for final summary generation
+
+If some runs launch and others fail:
+- keep successful launches active
+- return `launched_partial`
+- retry only runs that still lack `notes.child_session_key`
 
 ## Why this is the recommended pattern
 
