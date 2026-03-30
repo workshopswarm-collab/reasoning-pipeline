@@ -9,14 +9,13 @@ This document defines the boundary between the local Python/Postgres control-pla
 - PostgreSQL
 - prompt assembly
 
-But it cannot directly call `sessions_spawn`, because `sessions_spawn` is an OpenClaw runtime tool, not a subprocess-available Python API.
+It cannot directly call `sessions_spawn`, because `sessions_spawn` is an OpenClaw runtime tool, not a subprocess-available Python API.
 
-That split is normal.
-It should be made explicit rather than hidden.
+That boundary is normal and should stay explicit.
 
 ## Recommended architecture
 
-Treat dispatch as a **two-phase operation**:
+Treat dispatch as a **two-phase operation**.
 
 ### Phase 1 — local control-plane preparation
 Owned by Python scripts in:
@@ -72,14 +71,14 @@ If some runs launch and others fail:
 - return `launched_partial`
 - retry only runs that still lack `notes.child_session_key`
 
-## Why this is the recommended pattern
+## Why this pattern is recommended
 
 This split preserves:
 - **provenance** — Postgres preparation is explicit and inspectable
-- **predictable behavior** — the spawn payload is generated once and then executed literally
-- **guardrails** — the runtime only performs the exact spawn + patch steps on top of an already prepared plan
+- **predictable behavior** — the spawn payload is generated once and executed literally
+- **guardrails** — the runtime performs only the prepared spawn + patch steps
 
-It also avoids trying to fake OpenClaw tool calls from local subprocesses.
+It also avoids faking OpenClaw tool calls from local subprocesses.
 
 ## Non-goal
 

@@ -2,7 +2,7 @@
 
 This folder contains the **launch control-plane** for starting research-swarm case work from the Orchestrator side.
 
-It is the operational bridge between:
+It bridges:
 - market/case state in Postgres
 - prompt generation and run planning in local scripts
 - actual `sessions_spawn` calls in the OpenClaw runtime
@@ -27,12 +27,12 @@ It is specifically the **launch procedure** for getting the research swarm into 
 
 # Mental model
 
-The launch system is split into two halves.
+The launch system has two halves.
 
 ## 1. Planner / control-plane half
 Handled by Python scripts.
 
-This half does everything that is deterministic and local:
+It does the deterministic local work:
 - market selection
 - case creation
 - run creation
@@ -43,7 +43,7 @@ This half does everything that is deterministic and local:
 ## 2. Runtime execution half
 Handled inside the OpenClaw runtime session.
 
-This half does the work that requires OpenClaw tools:
+It does the runtime-only work:
 - validating the manifest for launch
 - determining launchable vs skipped runs
 - calling `sessions_spawn`
@@ -51,7 +51,7 @@ This half does the work that requires OpenClaw tools:
 - patching `research_runs`
 - finalizing the launch summary
 
-The key rule:
+Core rule:
 - **Python prepares**
 - **OpenClaw runtime spawns**
 - **Python patch helpers normalize and summarize**
@@ -332,21 +332,21 @@ These defaults are set in:
 
 # End-to-end orchestration question
 
-## Can Orchestrator run this from end to end?
+## Can Orchestrator run this end-to-end?
 Yes.
 
-The intended model is:
-1. Orchestrator runs planner scripts
+Intended flow:
+1. Orchestrator runs the planner scripts
 2. Orchestrator runs the runtime wrapper
-3. Orchestrator performs the OpenClaw `sessions_spawn` loop in-session
-4. Orchestrator applies DB patch steps
+3. Orchestrator performs the `sessions_spawn` loop in the OpenClaw session
+4. Orchestrator applies the DB patch steps
 5. Orchestrator receives the final launch summary
 
-The only important boundary is:
-- `sessions_spawn` must still happen in the OpenClaw runtime/session layer
+Key boundary:
+- `sessions_spawn` happens in the OpenClaw runtime/session layer
 - not inside plain Python subprocess code
 
-That is by design.
+That boundary is intentional.
 
 ---
 

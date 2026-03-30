@@ -10,7 +10,7 @@ Provide a thin runtime harness that:
 - determines which runs are launchable vs already launched
 - executes `sessions_spawn` for launchable runs
 - patches `research_runs` with returned runtime metadata
-- returns a final launch summary
+- returns a launch summary
 
 This is the runtime half of the dispatch architecture.
 
@@ -109,15 +109,15 @@ These values should be preserved in the runtime patch notes.
 
 Yes.
 
-The intended model is:
+Intended model:
 - Orchestrator calls the planner script to produce the manifest
-- Orchestrator then runs the runtime harness sequence inside the same OpenClaw session
+- Orchestrator runs the runtime harness sequence inside the same OpenClaw session
 - the OpenClaw session performs the actual `sessions_spawn` calls
-- the OpenClaw session applies the resulting DB patches and obtains the final launch summary
+- the OpenClaw session applies the resulting DB patches and obtains the launch summary
 
-In other words:
+In short:
 - yes, Orchestrator can drive the whole launch end-to-end
-- but the OpenClaw tool loop still occurs inside the runtime session, not inside plain Python
+- the OpenClaw tool loop still occurs inside the runtime session, not inside plain Python
 
 ## One-line operating model
 
