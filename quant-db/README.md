@@ -14,10 +14,10 @@ The live database cluster is runtime infrastructure and should stay outside the 
 ## Intended flow
 
 1. Start a PostgreSQL instance outside the repo
-2. Create local roles/database with `scripts/db/bootstrap_local.sh`
+2. Create local roles/database with `quant-db/scripts/bootstrap_local.sh`
 3. Load connection variables from `.env.postgres.local`
-4. Apply migrations with `scripts/db/apply.sh`
-5. Verify access with `scripts/db/check.sh`
+4. Apply migrations with `quant-db/scripts/apply.sh`
+5. Verify access with `quant-db/scripts/check.sh`
 
 ## Current scope
 

@@ -141,6 +141,13 @@ Templates for:
 - retrospectives
 - canonical entity notes
 - canonical update proposals
+- durable lesson candidates
+
+### `roles-protocols/`
+Role-specific onboarding and permissions briefs for vault agents.
+
+Current key file:
+- `roles-protocols/researcher-operating-protocol.md` — default onboarding and permissions brief for research-swarm subagents working in the vault.
 
 ### `source-reliability/`
 Short reference notes about source classes and metric sources.

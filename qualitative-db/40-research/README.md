@@ -29,7 +29,6 @@ Use it for:
 - research outputs
 - explicit assumptions
 - evidence organization
-- investigation tracking
 - synthesis before canon updates
 
 Do **not** use this folder for stable entity memory. Stable background context belongs in `qualitative-db/20-entities/` and stable domain framing belongs in `qualitative-db/10-domains/`.
@@ -84,7 +83,7 @@ Do **not** silently overwrite one research view with another.
 
 The default workflow is:
 1. preserve both views in `40-research/`
-2. make the disagreement explicit in findings, evidence maps, syntheses, or investigations
+2. make the disagreement explicit in findings, evidence maps, or syntheses
 3. let the decision-maker adjudicate the conflict
 4. record resolved-case lessons in `qualitative-db/50-retrospectives/`
 5. promote durable lessons into stable layers only after final review
@@ -105,7 +104,8 @@ Use when:
 - preserving what the source actually said before interpreting it
 
 Subfolders:
-- `by-source/` = notes organized around a specific source or outlet
+- `by-market/` = default home for case-specific provenance notes created during active market research
+- `by-source/` = notes organized around a specific source or outlet when source-centered retrieval is genuinely the right structure
 - `by-domain/` = reusable source-framework notes useful across a domain
 - `by-entity/` = source notes centered on one recurring entity
 
@@ -114,6 +114,9 @@ Good output:
 - key extracted facts
 - what remains uncertain
 - reliability notes
+
+Default dispatch rule:
+- for active case work, researchers should normally use assigned `source-notes/by-market/` paths and filename conventions rather than inventing alternate locations
 
 Do not use for:
 - final judgment
@@ -126,14 +129,21 @@ Purpose:
 - store parallel research outputs so later review can compare multiple independent takes on the same case
 - preserve differences in framing, reasoning quality, source selection, and weighting across researcher personalities
 
-Current role folders:
-- `analyst/`
-- `quant/`
-- `scout/`
-- `skeptic/`
-- `synthesizer/`
+Current role folders should evolve toward a more general quant-research personality set:
+- `base-rate/`
+- `market-implied/`
+- `variant-view/`
+- `risk-manager/`
+- `catalyst-hunter/`
 
-Interpret these folders as working labels for recurring research personalities or styles, not as hard specialist job boundaries. The intended pattern is usually several researchers doing broadly the same analysis with different priors, temperaments, or reasoning styles.
+Interpret these folders as recurring research personalities or styles, not as hard specialist job boundaries. The intended pattern is usually several researchers doing broadly the same market analysis with different priors, temperaments, update styles, and reactions to the market-implied view.
+
+Suggested role intent:
+- `base-rate/` -> starts from historical frequency, structural priors, and outside-view reasoning
+- `market-implied/` -> treats the live market price as an information-rich prior and asks whether the market is efficiently aggregating evidence
+- `variant-view/` -> explicitly looks for the strongest non-consensus interpretation and where the market may be wrong
+- `risk-manager/` -> focuses on disconfirming evidence, fragility, hidden assumptions, and what would break the thesis
+- `catalyst-hunter/` -> focuses on timing, upcoming information releases, trigger events, and why repricing might happen soon
 
 Use when:
 - multiple independent researchers are asked to analyze the same case from different personalities or priors
@@ -141,10 +151,14 @@ Use when:
 
 Good output:
 - explicit claim or conclusion
+- explicit comparison versus the market-implied view at the current price
 - rationale
 - supporting notes referenced via `upstream_inputs`
 - what this researcher weighted differently from another plausible take
 - open questions and caveats
+
+Default dispatch rule:
+- each researcher run should have one primary assigned `agent-finding` path, and that path should be treated as mandatory rather than advisory
 
 Do not use for:
 - raw source extraction without interpretation
@@ -159,6 +173,7 @@ Purpose:
 Use when:
 - a forecast or thesis depends on specific assumptions
 - you want assumptions to be retrievable separately from the final conclusion
+- the assumptions are material enough to deserve their own object rather than being buried in prose
 
 Examples:
 - an election assumes polling error stays within normal bounds
@@ -170,6 +185,8 @@ Good output:
 - why it matters
 - what would falsify it
 - what downstream notes depend on it
+
+Do not create an assumption note just because assumptions exist in the abstract; create one when separate retrieval and auditability are actually valuable.
 
 ## `evidence-maps/`
 
@@ -201,30 +218,6 @@ Why this matters:
 
 This folder is especially important for later prediction-market grading and research-performance review.
 
-## `investigations/`
-
-Purpose:
-- track active research threads over time
-- maintain a living case file for a question that requires multiple passes
-
-Subfolders:
-- `open/` = active work
-- `paused/` = waiting on more evidence or deprioritized
-- `closed/` = finished or resolved investigations
-
-Use when:
-- a question cannot be answered well in one note
-- multiple source notes, evidence maps, and findings need coordination
-- the thread should survive across sessions
-
-Good output:
-- current question
-- why it matters
-- current status
-- linked source notes / evidence maps / findings
-- next steps
-- closure condition
-
 ## `product-notes/`
 
 Purpose:
@@ -234,6 +227,7 @@ Purpose:
 Use when:
 - the object is too time-bound or version-specific for stable canon
 - you want to compare what was expected at launch versus what happened later
+- the versioned product object itself is a meaningful research object, not just background context for a market
 
 Current subfolder:
 - `versioned-ai-products/`
@@ -247,12 +241,14 @@ Good output:
 
 Do not use for:
 - stable family-level context that belongs in canon
+- ordinary case provenance that should instead live in `source-notes/`
+- the main directional take, which should instead live in `agent-findings/`
 
 ## `syntheses/`
 
 Purpose:
 - combine multiple inputs into a higher-level view
-- distill source notes, findings, investigations, and evidence maps into something reusable
+- distill source notes, findings, and evidence maps into something reusable
 
 Subfolders:
 - `by-entity/`
@@ -271,6 +267,32 @@ Good output:
 Do not use for:
 - raw source extraction
 - one-source notes
+
+## `review-queue/`
+
+Purpose:
+- hold research-layer proposals and handoff artifacts that need Orchestrator review before any stable-layer change
+
+Subfolders:
+- `canonical-update-proposals/`
+- `durable-lesson-candidates/`
+- `drivers-candidates/`
+- `linkage-repair-candidates/`
+
+Use when:
+- a researcher believes canon may need to change, but is not authorized to rewrite it directly
+- a researcher identifies a potentially durable cross-case lesson that should be reviewed before promotion
+- a researcher finds that no existing driver seems relevant enough and wants to propose a driver candidate
+- a researcher spots graph/linkage issues worth fixing later in stable layers
+
+Important:
+- this folder is still part of `40-research/`
+- items here are review artifacts, not canon
+- researchers may write here as part of handoff and proposal workflow
+
+See:
+- `qualitative-db/40-research/review-queue/README.md`
+- `qualitative-db/00-system/roles-protocols/researcher-operating-protocol.md`
 
 ---
 
@@ -302,6 +324,7 @@ A good default research workflow looks like this:
 1. **Read relevant drivers first**
    - identify which recurring forces are likely to matter
    - use `30-drivers/` to avoid shallow or purely headline-driven reasoning
+   - researchers read driver/causal guidance, but do not write to `30-drivers/` during ordinary case work
 
 2. **Collect source notes**
    - capture what sources actually said
@@ -315,13 +338,10 @@ A good default research workflow looks like this:
    - organize the strongest support, contradiction, and uncertainty around the exact claim or market question
    - make update logic explicit
 
-5. **Track longer threads in investigations**
-   - if the question stays open across time, convert it into an investigation file
-
-6. **Write syntheses**
+5. **Write syntheses**
    - compress multiple notes into a reusable view for downstream forecasting or memory updates
 
-7. **Hand off durable lesson candidates and conflict lessons to retrospectives and final review**
+6. **Hand off durable lesson candidates and conflict lessons to retrospectives and final review**
    - if a research pass suggests a durable lesson, make it explicit in `40-research/` and/or `50-retrospectives/`
    - if researchers conflicted, make the conflict type and strongest unresolved issue explicit before handoff
    - the decision-maker decides whether that lesson should update `30-drivers/`, `20-entities/`, or `10-domains/`
@@ -333,10 +353,11 @@ A good default research workflow looks like this:
 When researching:
 
 - start by checking relevant driver files in `30-drivers/`
+- inspect the current market price and treat it as an explicit object of analysis, not just background metadata
+- ask whether your current view agrees or disagrees with the market-implied probability, and why
 - write source notes when reading new material
 - write findings when making a directional interpretation
 - use evidence maps when a market question or claim needs explicit pro/con structure
-- open or update an investigation when the topic will persist across turns
 - write a synthesis when enough material exists to distill
 - make durable lesson candidates explicit, but do not directly update `30-drivers/` during ordinary research work
 
@@ -358,7 +379,6 @@ Avoid:
 - `agent-findings/` = what does this research role think?
 - `assumption-notes/` = what must be true for the view to hold?
 - `evidence-maps/` = how does the evidence push the claim up or down?
-- `investigations/` = what are we actively tracking over time?
 - `product-notes/` = what changed in this specific release/version?
 - `syntheses/` = what is the distilled take after reviewing many inputs?
 - `50-retrospectives/` = what did the resolved case teach us?

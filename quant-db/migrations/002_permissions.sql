@@ -22,7 +22,8 @@ BEGIN
   IF EXISTS (SELECT 1 FROM pg_roles WHERE rolname = 'pq_orchestrator') THEN
     GRANT CONNECT ON DATABASE predquant TO pq_orchestrator;
     GRANT USAGE ON SCHEMA public TO pq_orchestrator;
-    GRANT SELECT ON markets, market_snapshots, outcomes TO pq_orchestrator;
+    GRANT SELECT, UPDATE ON markets TO pq_orchestrator;
+    GRANT SELECT ON market_snapshots, outcomes TO pq_orchestrator;
     GRANT SELECT, INSERT, UPDATE ON cases, research_runs, agent_predictions, retrospectives TO pq_orchestrator;
   END IF;
 END$$;

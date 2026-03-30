@@ -15,6 +15,7 @@ Fresh-instance shortcut:
 - read `qualitative-db/00-system/START-HERE.md` first
 - read this folder only when you are about to create or substantially rewrite a note
 - read only the specific template that matches the note you are writing
+- within a single run, read the matching template once per artifact type, then reuse that structure unless confusion or a major change requires reopening it
 
 Terminology note:
 - in this vault, a **dossier** means a canonical entity note in `qualitative-db/20-entities/`
@@ -78,6 +79,15 @@ These templates are useful outside the default `40-research/` and `50-retrospect
   - for proposing updates to canonical entity notes in `qualitative-db/20-entities/`
   - use when research reveals a stable-layer issue but you do not want to rewrite canon directly
   - default home can be alongside the related research thread or handoff material
+  - preferred review-queue home: `qualitative-db/40-research/review-queue/canonical-update-proposals/`
+
+- `durable-lesson-candidate-template.md`
+  - for surfacing potentially reusable lessons discovered during research before they are promoted into stable layers
+  - default home: `qualitative-db/40-research/review-queue/durable-lesson-candidates/`
+
+- `driver-candidate-template.md`
+  - for proposing a missing or underbuilt market driver when existing `30-drivers/` coverage does not fit well
+  - default home: `qualitative-db/40-research/review-queue/drivers-candidates/`
 
 ## Template roles
 
@@ -107,10 +117,21 @@ These templates are useful outside the default `40-research/` and `50-retrospect
   - stable canonical entity template for `20-entities/`
 - `canonical-entity-update-proposal-template.md`
   - propose updates to canonical entity notes without rewriting canon directly
+- `durable-lesson-candidate-template.md`
+  - propose potentially reusable lessons before promotion into stable layers
+- `driver-candidate-template.md`
+  - propose a missing or underbuilt market driver for review before any canonical driver is created
+- `researcher-task-brief-template.md`
+  - reusable delegation scaffold for research-swarm subagents so role, permissions, read path, and output expectations are explicit
 
 ## Rule
 
 Use the research templates for case work first. Use canonical templates only when the stable-layer threshold has been met.
+
+Lightweight operating rule:
+- before creating or substantially rewriting a real vault artifact, read the matching template
+- do this once per artifact type per run, not before every single note
+- do not apply this rule to scratch reasoning, chat replies, or lightweight status updates
 
 For canonical entity notes, remember the maintenance distinction:
 - body prose is stable canon and should stay higher-bar
