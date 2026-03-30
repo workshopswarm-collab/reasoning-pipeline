@@ -3,13 +3,13 @@
 
 This script is the runtime wrapper around the existing pipeline scripts. It is
 still intentionally split from actual OpenClaw tool execution:
-- Python can prepare/normalize the orchestration sequence
-- OpenClaw runtime must perform sessions_spawn
-- Python can then build DB patches and finalize summary
+- Python prepares/normalizes the orchestration sequence
+- OpenClaw runtime performs sessions_spawn and receives completion events
+- Python builds DB patches and finalizes summaries
 
 The wrapper supports two operational modes:
 1. plan-only: emit the exact sequence the OpenClaw runtime should execute
-2. replay-results: finalize DB patch steps + dispatch summary from actual spawn results
+2. replay-results: build DB patch steps + dispatch summary from actual spawn/completion results
 
 This keeps the control plane explicit while fitting the current pipeline.
 """

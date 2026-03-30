@@ -68,8 +68,15 @@ For each launchable run returned by the prepare step:
 
 If some runs launch and others fail:
 - keep successful launches active
+- patch successful runs to `status = running`
 - return `launched_partial`
 - retry only runs that still lack `notes.child_session_key`
+
+When completion events arrive later:
+- resolve the matching `research_runs` row by `notes.child_session_key`
+- patch to `completed` or `failed`
+- preserve completion/error detail in `notes`
+- use `initialize/scripts/reconcile_research_run_completion.py` as the canonical completion reconciler
 
 ## Why this pattern is recommended
 

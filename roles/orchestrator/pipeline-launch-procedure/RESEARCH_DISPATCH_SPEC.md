@@ -146,6 +146,10 @@ Researchers should not normally write directly to:
 - `failed`
 - `canceled`
 
+Runtime tracking rule:
+- a run becomes `running` only after the runtime stores `notes.child_session_key`
+- a run becomes `completed` or `failed` when the completion event is reconciled back to the row via `notes.child_session_key`
+
 ---
 
 ## Dispatch flow

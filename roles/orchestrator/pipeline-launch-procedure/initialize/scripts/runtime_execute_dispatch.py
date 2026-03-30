@@ -37,6 +37,10 @@ VALID_PERSONAS = {
 STATUS_LAUNCHED = "launched"
 STATUS_SKIPPED = "skipped_existing"
 STATUS_FAILED = "failed"
+RUN_STATUS_QUEUED = "queued"
+RUN_STATUS_RUNNING = "running"
+RUN_STATUS_COMPLETED = "completed"
+RUN_STATUS_FAILED = "failed"
 
 
 def parse_args() -> argparse.Namespace:
@@ -201,6 +205,7 @@ def build_patch(manifest: dict, research_run_id: str, child_session_key: str, sp
         if run["research_run_id"] == research_run_id:
             patch = deepcopy(run["spawn"]["post_spawn_update_template"])
             notes = patch.setdefault("notes", {})
+            patch["status"] = RUN_STATUS_RUNNING
             notes["child_session_key"] = child_session_key
             notes["spawn_run_id"] = spawn_run_id
             notes["dispatch_id"] = manifest["dispatch_id"]

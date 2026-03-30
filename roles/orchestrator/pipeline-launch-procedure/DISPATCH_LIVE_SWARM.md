@@ -55,8 +55,15 @@ Primary planner:
 
 If only some personas launch successfully:
 - keep successful runs active
+- patch successful runs to `status = running`
 - return `launched_partial`
 - retry only the runs that still lack `notes.child_session_key`
+
+When spawned personas later complete:
+- resolve them back to `research_runs` by `notes.child_session_key`
+- patch successful runs to `completed`
+- patch errored runs to `failed`
+- use `initialize/scripts/reconcile_research_run_completion.py` as the completion-side helper
 
 ## Default artifact path rules
 

@@ -65,13 +65,34 @@ For each successful spawn:
 1. call `run_dispatch_runtime.py --spawn-results-json ...` or `runtime_execute_dispatch.py --action build-patch` logic to obtain the filled patch payload
 2. apply the patch via:
    - `roles/orchestrator/pipeline-launch-procedure/initialize/scripts/update_research_run.py`
-3. if DB patching fails after spawn succeeds:
+3. after this patch, the run should show:
+   - `status = running`
+   - `notes.child_session_key = ...`
+   - `notes.spawn_run_id = ...`
+   - `notes.dispatch_stage = spawned`
+4. if DB patching fails after spawn succeeds:
    - record this as a failed run for summary purposes
    - preserve returned runtime metadata in the failure record for recovery
 
-### Step 4 — finalize summary
+### Step 4 — patch DB on completion or failure
 
-After all launch attempts complete:
+When a child session later completes:
+- resolve the row via `notes.child_session_key`
+- patch it to `status = completed`
+- set `completed_at`
+- set `notes.dispatch_stage = completed`
+- use `initialize/scripts/reconcile_research_run_completion.py`
+
+When a child session errors or terminates:
+- resolve the row via `notes.child_session_key`
+- patch it to `status = failed`
+- store error detail in `notes`
+- set `notes.dispatch_stage = terminated`
+- use `initialize/scripts/reconcile_research_run_completion.py`
+
+### Step 5 — finalize summary
+
+After launch attempts and/or completion updates:
 - finalize the summary through `run_dispatch_runtime.py --spawn-results-json ...`
 
 Expected overall statuses:

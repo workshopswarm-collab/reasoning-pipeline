@@ -276,11 +276,27 @@ Inside the OpenClaw runtime, for each launchable run:
 
 ### Step 6: patch DB after successful spawn
 For each successful spawn:
-- build the patch payload
+- build the post-spawn patch payload
 - apply it using `update_research_run.py`
+- set `research_runs.status = running`
+- store `notes.child_session_key` and `notes.spawn_run_id`
 
-### Step 7: finalize summary
-Feed actual spawn results back into:
+### Step 7: patch DB on completion
+When a child session completes successfully:
+- resolve the matching run by `notes.child_session_key`
+- patch `research_runs.status = completed`
+- set `completed_at`
+- store `notes.dispatch_stage = completed`
+- use `initialize/scripts/reconcile_research_run_completion.py`
+
+If a child session fails:
+- patch `research_runs.status = failed`
+- store error detail in `notes`
+- set `notes.dispatch_stage = terminated`
+- use `initialize/scripts/reconcile_research_run_completion.py`
+
+### Step 8: finalize summary
+Feed actual spawn/completion results back into:
 - `run_dispatch_runtime.py --spawn-results-json ...`
 
 Output:

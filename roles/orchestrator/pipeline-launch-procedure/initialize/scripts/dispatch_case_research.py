@@ -25,7 +25,7 @@ from pathlib import Path
 
 DEFAULT_PSQL = "/opt/homebrew/opt/postgresql@16/bin/psql"
 DEFAULT_RUNTIME = "subagent"
-DEFAULT_MODEL = "codex"
+DEFAULT_MODEL = "openai-codex/gpt-5.4"
 DEFAULT_THINKING = "medium"
 DEFAULT_PERSONAS = [
     "base-rate",
