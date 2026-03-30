@@ -157,7 +157,13 @@ def load_persona_channel_map() -> dict:
     return data
 
 
-def build_channel_handoff_message(*, research_run_id: str, persona: str, case_key: str, channel_name: str, market_title: str, workspace_note_path: str, prompt_text: str) -> str:
+def build_visible_markers(*, research_run_id: str, persona: str, market_title: str, workspace_note_path: str) -> tuple[str, str]:
+    start_marker = f"STARTING RESEARCH | market={market_title} | persona={persona} | research_run_id={research_run_id}"
+    finish_marker = f"FINISHED RESEARCH | market={market_title} | persona={persona} | research_run_id={research_run_id} | agent_finding_path={workspace_note_path}"
+    return start_marker, finish_marker
+
+
+def build_channel_handoff_message(*, research_run_id: str, persona: str, case_key: str, channel_name: str, market_title: str, workspace_note_path: str, prompt_text: str, start_marker: str, finish_marker: str) -> str:
     return "\n".join(
         [
             f"Research run assignment for `{research_run_id}`.",
@@ -175,9 +181,9 @@ def build_channel_handoff_message(*, research_run_id: str, persona: str, case_ke
             "",
             "Required visible channel updates:",
             "1. As soon as you begin, post this exact format as a visible channel message:",
-            f"   STARTING RESEARCH | market={market_title} | persona={persona} | research_run_id={research_run_id}",
+            f"   {start_marker}",
             "2. After your primary agent-finding is written, post this exact format as a visible channel message:",
-            f"   FINISHED RESEARCH | market={market_title} | persona={persona} | research_run_id={research_run_id} | agent_finding_path={workspace_note_path}",
+            f"   {finish_marker}",
             "3. After posting the finished message, update the run to completed using the runtime DB helper (or failed if blocked).",
             "",
             "BEGIN_PROMPT",
@@ -241,6 +247,13 @@ def main() -> int:
             if not channel_target:
                 raise ValueError(f"no channel target configured for persona: {persona}")
 
+            start_marker, finish_marker = build_visible_markers(
+                research_run_id=create_result["research_run_id"],
+                persona=persona,
+                market_title=case_ctx["title"],
+                workspace_note_path=workspace_note_path,
+            )
+
             handoff_message = build_channel_handoff_message(
                 research_run_id=create_result["research_run_id"],
                 persona=persona,
@@ -249,6 +262,8 @@ def main() -> int:
                 market_title=case_ctx["title"],
                 workspace_note_path=workspace_note_path,
                 prompt_text=prompt_text,
+                start_marker=start_marker,
+                finish_marker=finish_marker,
             )
 
             handoff_payload = {
@@ -269,6 +284,8 @@ def main() -> int:
                     "dispatch_stage": "persona_channel_running",
                     "runtime_surface": "discord-fixed-channel",
                     "channel_name": channel_target["channel_name"],
+                    "expected_start_marker": start_marker,
+                    "expected_finish_marker": finish_marker,
                     "model": args.model,
                     "thinking": args.thinking,
                 },
@@ -281,6 +298,8 @@ def main() -> int:
                 "dispatch_stage": "awaiting_persona_channel_handoff",
                 "runtime_surface": "discord-fixed-channel",
                 "channel_name": channel_target["channel_name"],
+                "expected_start_marker": start_marker,
+                "expected_finish_marker": finish_marker,
                 "model": args.model,
                 "thinking": args.thinking,
             }

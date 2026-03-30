@@ -11,7 +11,8 @@ The flow is:
 2. runtime helpers turn that manifest into one `sessions_send` handoff per persona channel
 3. TUI/main runtime delivers those handoffs into the mapped Discord sessions
 4. successful handoffs patch the corresponding `research_runs` rows to `running`
-5. persona lanes do the actual research work, post visible STARTING/FINISHED updates in their Discord channels, and later mark runs `completed` / `failed`
+5. persona lanes do the actual research work, post visible STARTING/FINISHED updates in their Discord channels when possible, and later mark runs `completed` / `failed`
+6. terminal run updates now auto-attempt the standard finalizer and close the parent case/market when the swarm becomes fully terminal; the manual finalizer remains the safety-net backstop if reconciliation is missed
 
 Important nuance:
 - the `sessions_send` handoff itself is an internal OpenClaw session delivery, not a guaranteed visible kickoff post in the Discord channel
@@ -67,8 +68,10 @@ Runtime owns operational delivery work:
 - `runtime/scripts/run_dispatch_runtime.py`
 - `runtime/scripts/runtime_execute_dispatch.py`
 - `runtime/scripts/update_research_run.py`
+- `runtime/scripts/auto_finalize_case_after_terminal_run.py`
 - `runtime/scripts/reconcile_research_run_completion.py`
 - `runtime/scripts/reconcile_dispatch_from_artifacts.py`
+- `runtime/scripts/finalize_dispatch_after_swarm.py`
 - `runtime/scripts/prepare_headless_discord_dispatch.py`
 - `runtime/scripts/list_pending_dispatch_manifests.py`
 - `runtime/scripts/archive_dispatch_manifests.py`
@@ -92,6 +95,7 @@ Each persona maps to one Discord channel session key.
 ### Market level
 - `pending_research` → queued for future work
 - `researching` → active case in flight
+- `closed` → no longer actively in-flight in the pipeline
 
 ### Run level
 - `queued` → row created, not yet handed off

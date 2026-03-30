@@ -92,9 +92,7 @@ Those visible messages come from the lane after it receives the assignment. The 
 
 ## Running-state rule
 
-A run becomes `running` only after:
-- its handoff message is successfully delivered into the mapped persona channel session
-- and the DB patch is applied
+A run becomes `running` after its handoff message is successfully delivered into the mapped persona channel session and the DB patch is applied.
 
 That patch should set:
 - `status = running`

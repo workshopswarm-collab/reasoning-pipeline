@@ -66,7 +66,7 @@ Each run now carries:
 After a successful `sessions_send`, the runtime should apply the corresponding DB patch through:
 - `runtime/scripts/update_research_run.py`
 
-That patch should set:
+That post-handoff patch should set:
 - `status = running`
 - `started_at` (if not already set)
 - `notes.dispatch_stage = persona_channel_running`
@@ -76,7 +76,7 @@ That patch should set:
 Important nuance:
 - `sessions_send` confirms internal session delivery
 - it does not by itself guarantee a visible kickoff post in Discord
-- visible STARTING/FINISHED posts should be emitted by the persona lane after it receives the assignment
+- visible STARTING/FINISHED posts should be emitted by the persona lane after it receives the assignment when possible
 
 ## Completion note
 

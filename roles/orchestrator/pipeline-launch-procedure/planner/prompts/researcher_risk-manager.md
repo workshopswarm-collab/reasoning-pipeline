@@ -73,3 +73,8 @@ Your final finding must clearly state:
 - the most important hidden assumptions in the market view
 - the biggest failure mode or underpriced risk
 - what would cause you to revise toward the market or further away from it
+
+## Driver/mechanism lens
+
+You do not need to force driver discovery. But if a downside driver, blocker, or failure mechanism is central to the risk analysis, surface it explicitly in the finding and reflect it in tags/metadata where useful.
+

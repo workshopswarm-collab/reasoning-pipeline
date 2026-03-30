@@ -42,6 +42,7 @@ OPEN_CASE = PLANNER_SCRIPTS_DIR / "open_case.py"
 DISPATCH_CASE_RESEARCH = PLANNER_SCRIPTS_DIR / "dispatch_case_research.py"
 RUN_DISPATCH_RUNTIME = BASE_DIR / "run_dispatch_runtime.py"
 LOAD_DISPATCH_EXISTING_STATE = BASE_DIR / "load_dispatch_existing_state.py"
+FINALIZE_DISPATCH_AFTER_SWARM = BASE_DIR / "finalize_dispatch_after_swarm.py"
 
 
 def parse_args() -> argparse.Namespace:
@@ -208,6 +209,10 @@ def main() -> int:
                 },
             },
             "next_tool_steps": next_tool_steps,
+            "post_run_finalize_step": {
+                "tool": "exec",
+                "command": f"set -a; source /Users/agent2/.openclaw/workspace/.env; set +a; python3 {FINALIZE_DISPATCH_AFTER_SWARM} --file {manifest_path} --apply --pretty"
+            }
         }
     except Exception as exc:  # noqa: BLE001
         print(f"ERROR: {exc}", file=sys.stderr)

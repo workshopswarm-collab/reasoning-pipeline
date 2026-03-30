@@ -11,6 +11,7 @@ This includes:
 - delivering research assignments into fixed Discord persona channels
 - patching `research_runs` to `running`
 - supporting completion reconciliation and run-state helpers
+- auto-attempting case/market finalization after terminal run updates
 - artifact-vs-DB safety-net reconciliation
 - headless TUI -> Discord handoff support
 - manifest retention/archive hygiene
@@ -26,6 +27,7 @@ This includes:
 - `scripts/runtime_execute_dispatch.py`
 - `scripts/run_dispatch_runtime.py`
 - `scripts/update_research_run.py`
+- `scripts/auto_finalize_case_after_terminal_run.py`
 - `scripts/reconcile_research_run_completion.py`
 - `scripts/reconcile_dispatch_from_artifacts.py`
 - `scripts/prepare_headless_discord_dispatch.py`

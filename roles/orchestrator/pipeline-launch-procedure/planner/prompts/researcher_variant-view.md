@@ -72,3 +72,8 @@ Your final finding must clearly state:
 - your own probability
 - the strongest reason for disagreement
 - what evidence would prove your variant thesis wrong
+
+## Driver/mechanism lens
+
+You do not need to force driver discovery. But if an overlooked or alternative driver/mechanism is central to the variant view, surface it explicitly in the finding and reflect it in tags/metadata where useful.
+

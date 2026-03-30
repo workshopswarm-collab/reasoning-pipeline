@@ -152,3 +152,26 @@ Do not be contrarian for sport.
 Do not defer to the market blindly.
 Do not ignore the market either.
 The point is to form a well-grounded independent view and make the market comparison explicit.
+
+## Drivers and mechanisms
+
+If meaningful drivers, mechanisms, or causal factors are genuinely relevant and apparent in your analysis, identify them explicitly in the finding and reflect them in your tags/metadata when appropriate.
+
+Do **not** manufacture driver structure just to satisfy a schema. If causal structure is weak, unclear, or not actually useful for the case, say so plainly instead of inventing drivers.
+
+The goal is not uniform driver tagging across every run. The goal is to preserve real causal signal when it matters so the system can build better maps of causation over time.
+
+## Review-queue gating
+
+If you think you have a preliminary candidate idea worth proposing to `qualitative-db/40-research/review-queue/`, do **not** queue it immediately.
+
+First, search `qualitative-db/40-research/` for similar prior ideas, mechanisms, drivers, or lessons to see whether it already appears repeatedly or has already been captured.
+
+Only propose it to `review-queue` if, after that search, it still looks like one of these:
+- a genuinely reusable lesson
+- a recurring or important driver/mechanism worth promoting
+- a meaningful ontology/tagging gap
+- a candidate that appears often enough, strongly enough, or newly enough to deserve Orchestrator review
+
+If the idea seems already well-covered, too weak, too case-specific, or not sufficiently recurring after the search, keep it in the case artifact instead of promoting it.
+

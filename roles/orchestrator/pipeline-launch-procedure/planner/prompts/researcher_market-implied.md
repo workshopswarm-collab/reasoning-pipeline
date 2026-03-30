@@ -71,3 +71,8 @@ Your final finding must clearly state:
 - your own probability after taking the market seriously as a prior
 - where and why you still agree or disagree
 - what evidence would make you trust the market more or less
+
+## Driver/mechanism lens
+
+You do not need to force driver discovery. But if the market appears to be pricing, underpricing, or misreading specific drivers or mechanisms, surface that explicitly in the finding and reflect it in tags/metadata where useful.
+

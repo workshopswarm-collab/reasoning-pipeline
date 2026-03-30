@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+from __future__ import annotations
+
 """Patch one research_runs row.
 
 Supports updating:
@@ -24,6 +26,8 @@ RUNTIME_DIR = BASE_DIR.parent
 PIPELINE_DIR = RUNTIME_DIR.parent
 WORKSPACE_ROOT = PIPELINE_DIR.parents[2]
 DEFAULT_ENV_PATH = WORKSPACE_ROOT / ".env"
+AUTO_FINALIZER = BASE_DIR / "auto_finalize_case_after_terminal_run.py"
+TERMINAL_STATUSES = {"completed", "failed"}
 
 SQL = r'''
 WITH input AS (
@@ -88,6 +92,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--notes-json", help="JSON object merged into notes")
     parser.add_argument("--mark-started", action="store_true", help="Set started_at = NOW() if not already set")
     parser.add_argument("--mark-completed", action="store_true", help="Set completed_at = NOW()")
+    parser.add_argument("--skip-auto-finalize", action="store_true", help="Do not attempt automatic case/market finalization after terminal updates")
     parser.add_argument("--db-url", default=os.getenv("PREDQUANT_ORCHESTRATOR_URL", ""), help="Postgres connection URL")
     parser.add_argument("--psql", default=os.getenv("PSQL_BIN", DEFAULT_PSQL), help="Path to psql binary")
     parser.add_argument("--pretty", action="store_true", help="Pretty-print the JSON result")
@@ -164,12 +169,58 @@ def run_psql(psql_bin: str, db_url: str, payload: dict) -> dict:
     return json.loads(stdout.splitlines()[-1])
 
 
+def parse_json_lines(raw: str) -> dict:
+    stdout = (raw or "").strip()
+    if not stdout:
+        return {}
+    for line in reversed([line for line in stdout.splitlines() if line.strip()]):
+        try:
+            return json.loads(line)
+        except json.JSONDecodeError:
+            continue
+    return json.loads(stdout)
+
+
+def maybe_auto_finalize(args: argparse.Namespace, result: dict) -> dict | None:
+    if args.skip_auto_finalize or os.getenv("ORCHESTRATOR_SKIP_AUTO_FINALIZE") == "1":
+        return None
+    if result.get("status") not in TERMINAL_STATUSES:
+        return None
+    research_run_id = result.get("research_run_id")
+    if not research_run_id:
+        return None
+
+    proc = subprocess.run(
+        [
+            sys.executable,
+            str(AUTO_FINALIZER),
+            "--research-run-id",
+            research_run_id,
+            "--db-url",
+            args.db_url,
+        ],
+        text=True,
+        capture_output=True,
+    )
+    if proc.returncode != 0:
+        return {
+            "status": "error",
+            "error": proc.stderr.strip() or proc.stdout.strip() or f"{AUTO_FINALIZER.name} failed",
+        }
+    parsed = parse_json_lines(proc.stdout)
+    parsed.setdefault("status", "ok")
+    return parsed
+
+
 def main() -> int:
     maybe_load_workspace_env()
     args = parse_args()
     try:
         payload = build_payload(args)
         result = run_psql(args.psql, args.db_url, payload)
+        auto_finalize = maybe_auto_finalize(args, result)
+        if auto_finalize is not None:
+            result["auto_finalize"] = auto_finalize
     except Exception as exc:  # noqa: BLE001
         print(f"ERROR: {exc}", file=sys.stderr)
         return 1

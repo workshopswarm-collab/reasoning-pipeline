@@ -59,9 +59,13 @@ Primary planner:
    - optional `model`
    - optional `thinking`
 12. Persona lanes should post visible lifecycle updates in-channel using the standardized STARTING/FINISHED format.
-13. Completion handling should then reconcile each run back from its fixed persona lane.
-14. If artifacts exist but DB completion is stale, use `runtime/scripts/reconcile_dispatch_from_artifacts.py` as a safety net.
-15. Finalize launch/completion summaries for Orchestrator.
+13. Persona lanes should post visible lifecycle updates in-channel using the standardized STARTING/FINISHED format when possible.
+14. Completion handling should then reconcile each run back from its fixed persona lane.
+15. Terminal `update_research_run.py` completion/failure updates now auto-attempt dispatch reconciliation and parent case/market finalization.
+16. If that automatic path is missed or you need a manual repair, run:
+   - `runtime/scripts/finalize_dispatch_after_swarm.py --file <manifest> --apply`
+17. The manual finalizer reconciles any artifact-vs-DB lag and returns post-finalization counts.
+18. Finalize launch/completion summaries for Orchestrator.
 
 If only some personas receive handoff successfully:
 - keep successful runs active

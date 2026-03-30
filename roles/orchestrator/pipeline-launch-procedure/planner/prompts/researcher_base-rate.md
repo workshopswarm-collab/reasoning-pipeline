@@ -71,3 +71,8 @@ Your final finding must clearly state:
 - your own probability
 - where and why you disagree or agree
 - the strongest evidence that would move you materially away from the prior
+
+## Driver/mechanism lens
+
+You do not need to force driver discovery. But if recurring structural drivers or mechanisms are clearly relevant to your base-rate analysis, surface them explicitly in the finding and reflect them in tags/metadata where useful.
+

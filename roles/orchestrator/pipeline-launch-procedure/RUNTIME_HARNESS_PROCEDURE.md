@@ -56,10 +56,16 @@ Use the runtime summary object to report:
 - `delivered_partial`
 - or `delivery_failed`
 
-### Step 5 — repair stale artifact/DB mismatches when needed
-If a lane produced its assigned primary artifact but failed to mark the run completed:
-- use `runtime/scripts/reconcile_dispatch_from_artifacts.py`
-- this should be treated as a safety net, not the normal completion path
+### Step 5 — standard finalization after the swarm appears done
+Run:
+- `runtime/scripts/finalize_dispatch_after_swarm.py --file <manifest> --apply`
+
+This standard finalizer:
+- runs the artifact-vs-DB reconciler
+- returns post-finalization status counts
+- tells you whether all runs are terminal
+
+This remains a safety net, not the primary completion path, but it should now be treated as the standard last step after swarm completion.
 
 ## Retry rule
 
