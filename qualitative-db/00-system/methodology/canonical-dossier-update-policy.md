@@ -18,11 +18,12 @@ They should **not** be rewritten for routine news flow.
 1. an **extremely material change**, and/or
 2. an **explicit and repeated conflict of information** that forces the current canonical view to be revised.
 
-If neither condition is met, new information belongs in:
+If neither condition is met, new information belongs in the research layer, usually in:
 - `qualitative-db/40-research/source-notes/`
 - `qualitative-db/40-research/agent-findings/`
-- `qualitative-db/40-research/syntheses/`
-- `qualitative-db/40-research/investigations/`
+- `qualitative-db/40-research/evidence-maps/`
+- `qualitative-db/40-research/product-notes/`
+- `qualitative-db/40-research/review-queue/` when proposing a stable-layer change rather than applying it directly
 
 ## What counts as extremely material
 

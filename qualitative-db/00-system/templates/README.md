@@ -33,13 +33,19 @@ These templates support the quant-research pipeline:
 
 ### `qualitative-db/40-research/`
 
+Current live folders:
 - `source-notes/` -> `source-note-template.md`
 - `agent-findings/` -> `agent-finding-template.md`
 - `assumption-notes/` -> `assumption-note-template.md`
 - `evidence-maps/` -> `evidence-map-template.md`
-- `investigations/` -> `investigation-template.md`
 - `product-notes/` -> `product-note-template.md`
+- `review-queue/` -> proposal/review artifacts; use the matching candidate/proposal template
+
+Conceptual / optional artifact types:
+- `investigations/` -> `investigation-template.md`
 - `syntheses/` -> `synthesis-template.md`
+
+Note: `investigations/` and `syntheses/` remain supported artifact types, but they are not currently present as live top-level folders under `qualitative-db/40-research/` in this repo snapshot.
 
 ### `qualitative-db/50-retrospectives/`
 

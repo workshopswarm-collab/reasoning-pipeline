@@ -5,6 +5,9 @@ This folder holds scripts intended to run on the data-pipeline mini (Device B).
 Current intake / filtering scripts live in:
 - `roles/device-b/intake + filtering/`
 
+This README documents the current repo-local Device B intake path only.
+It does not imply that execution, accounting, or all Device B infrastructure lives in this folder yet.
+
 ## Current scripts
 
 ### `1_intake_filter.py`

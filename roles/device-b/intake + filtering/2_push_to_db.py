@@ -4,11 +4,13 @@ import os
 import sys
 import json
 
-# --- HARDCODE THE TARGET DEVICE A URL HERE ---
-# Replace 'PASSWORD' with the actual password for this database role
-TARGET_DB_URL = "postgresql://pq_deviceb_ingest:DRJDdRpCXfo4EnS17QxJ0cpZDdsOPEYJ@100.68.192.21:5432/predquant"
+# Required environment variable:
+#   PREDQUANT_INGEST_URL=postgresql://pq_deviceb_ingest:***@HOST:5432/predquant
+TARGET_DB_URL = os.environ.get("PREDQUANT_INGEST_URL")
+if not TARGET_DB_URL:
+    print("Error: PREDQUANT_INGEST_URL is not set.", file=sys.stderr)
+    raise SystemExit(1)
 os.environ["PREDQUANT_INGEST_URL"] = TARGET_DB_URL
-# ---------------------------------------------
 
 INTAKE_SCRIPT = "./3_db_ingest_script.py"
 INPUT_JSON_FILE = "filtered_markets.json"

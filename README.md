@@ -272,26 +272,25 @@ Owns action and accounting:
 Current key top-level areas:
 
 - `qualitative-db/` → qualitative database / research memory system
+- `quant-db/` → PostgreSQL schema, migrations, and DB helper scripts for the structured state layer
+- `roles/` → role-specific operating docs, dispatch specs, and device-specific pipeline scripts
 - `memory/` → assistant continuity / daily memory
 - `MEMORY.md` → compact long-term assistant memory
 - `qmd.yml` → retrieval/index configuration for the vault
-- `scripts/` → automation, ETL, reporting, and bridge logic
-
-A likely future structured-data area would be something like:
-
-```text
-quant-db/
-  README.md
-  schema/
-  migrations/
-  views/
-```
 
 The live PostgreSQL database itself is runtime infrastructure, not a file that belongs in git.
 
 ## Current status
 
-This repository currently has a well-developed qualitative database in the Vault.
-The PostgreSQL-backed quantitative database and isolated execution layer are the next major architectural expansion.
+This repository now contains both:
+- a substantial qualitative vault in `qualitative-db/`, and
+- an initial but real quantitative/control-plane scaffold in `quant-db/` and `roles/`
 
-That means the vault is already serving as the reasoning substrate, while the structured state / execution system is the major next buildout.
+What remains early-stage is not the existence of the structured layer, but its operational depth.
+The current Postgres and dispatch stack is sufficient for:
+- schema/bootstrap and migrations
+- market intake and pipeline-state tracking
+- case opening and research-run bookkeeping
+- OpenClaw-runtime dispatch planning and runtime/session metadata handoff
+
+The larger remaining buildout is the downstream execution, accounting, calibration, and evaluation maturity — not the initial presence of the quant/control-plane architecture.

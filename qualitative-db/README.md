@@ -133,10 +133,13 @@ The active evidence layer.
 Use for:
 - source notes
 - agent findings
-- syntheses
-- investigations
+- review-queue proposals
 - evidence maps
 - assumption notes
+- product notes
+
+Important: the current live `40-research/` structure emphasizes `source-notes/`, `agent-findings/`, `assumption-notes/`, `evidence-maps/`, `product-notes/`, and `review-queue/`.
+Historical references to `syntheses/` or `investigations/` should be treated as conceptual artifact types or future/optional folders, not guaranteed live directories.
 
 ### `50-retrospectives/`
 Hindsight and methodology-improvement layer.
@@ -183,7 +186,7 @@ Purpose:
 - store role-specific interpretation from a research agent
 
 ### Synthesis
-Usually under `40-research/syntheses/`.
+Usually represented by a higher-level research artifact in `40-research/`.
 
 Purpose:
 - combine multiple upstream inputs into a current interpretation
@@ -267,10 +270,12 @@ Read in this order:
 5. relevant `10-domains/.../00-overview.md`, `20-entities/.../*.md`, and `30-drivers/*.md`
 
 ### If you need recent evidence
-Then pull from:
+Then pull from current research artifacts such as:
 - `40-research/source-notes/`
-- `40-research/syntheses/`
 - `40-research/agent-findings/`
+- `40-research/evidence-maps/`
+- `40-research/product-notes/`
+- `40-research/review-queue/` when relevant to handoff or promotion proposals
 
 ### If you want to write new information
 Default to the **research layer first**.

@@ -20,7 +20,6 @@ upstream_inputs:
   - qualitative-db/40-research/source-notes/by-domain/crypto/2026-03-25-cardano-basics.md
   - qualitative-db/40-research/source-notes/by-domain/crypto/2026-03-25-ton-basics.md
   - qualitative-db/40-research/source-notes/by-domain/crypto/2026-03-25-dogecoin-basics.md
-  - qualitative-db/40-research/syntheses/by-topic/2026-03-25-major-crypto-assets-overview.md
 downstream_uses: []
 tags: [domain/crypto, subdomain/protocols, overview]
 ---

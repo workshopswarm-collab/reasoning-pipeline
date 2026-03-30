@@ -22,8 +22,11 @@ Purpose:
 - time-stamped inputs
 - source captures
 - agent findings
-- syntheses
-- investigation logs
+- evidence maps
+- product notes
+- review-queue proposals and candidates
+
+Conceptually, additional artifact types such as syntheses or investigations may still be used later, but they are not required as live top-level folders in the current repo snapshot.
 
 ## Default rule
 

@@ -21,7 +21,7 @@ agent: orchestrator
 related_entities: [ethereum]
 related_drivers: [regulation, product-launches, operational-risk]
 upstream_inputs: []
-downstream_uses: [qualitative-db/40-research/syntheses/by-topic/2026-03-25-major-crypto-assets-overview.md, qualitative-db/20-entities/protocols/ethereum.md]
+downstream_uses: [qualitative-db/20-entities/protocols/ethereum.md]
 tags: [domain/crypto, entity/ethereum, source/protocol-overview]---
 
 # Summary

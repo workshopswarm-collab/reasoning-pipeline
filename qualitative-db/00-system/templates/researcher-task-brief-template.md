@@ -56,11 +56,13 @@ Write targets:
 - source extraction -> `qualitative-db/40-research/source-notes/`
 - interpretation -> `qualitative-db/40-research/agent-findings/`
 - pro/con structure -> `qualitative-db/40-research/evidence-maps/`
-- distilled multi-input view -> `qualitative-db/40-research/syntheses/`
+- release/version-specific observations -> `qualitative-db/40-research/product-notes/`
 - canon change proposal -> `qualitative-db/40-research/review-queue/canonical-update-proposals/`
 - durable lesson candidate -> `qualitative-db/40-research/review-queue/durable-lesson-candidates/`
 - driver candidate -> `qualitative-db/40-research/review-queue/drivers-candidates/`
 - linkage repair proposal -> `qualitative-db/40-research/review-queue/linkage-repair-candidates/`
+
+If a multi-input distilled view is needed before canon review, place it in an appropriate current research artifact or reintroduce a synthesis-style note deliberately rather than assuming `qualitative-db/40-research/syntheses/` already exists.
 
 If you believe canon should change, do not rewrite canon directly. Write a proposal for Orchestrator review instead.
 If no existing market driver seems relevant enough, propose a driver candidate instead of forcing a weak fit.

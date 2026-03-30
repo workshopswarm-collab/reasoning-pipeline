@@ -129,7 +129,7 @@ Purpose:
 - store parallel research outputs so later review can compare multiple independent takes on the same case
 - preserve differences in framing, reasoning quality, source selection, and weighting across researcher personalities
 
-Current role folders should evolve toward a more general quant-research personality set:
+Current role folders:
 - `base-rate/`
 - `market-implied/`
 - `variant-view/`
@@ -244,13 +244,13 @@ Do not use for:
 - ordinary case provenance that should instead live in `source-notes/`
 - the main directional take, which should instead live in `agent-findings/`
 
-## `syntheses/`
+## `syntheses/` (optional / not currently instantiated as a live folder)
 
 Purpose:
 - combine multiple inputs into a higher-level view
 - distill source notes, findings, and evidence maps into something reusable
 
-Subfolders:
+Historical/expected subfolders when used:
 - `by-entity/`
 - `by-topic/`
 
@@ -267,6 +267,11 @@ Good output:
 Do not use for:
 - raw source extraction
 - one-source notes
+
+Important:
+- this artifact type is still valid conceptually
+- but `qualitative-db/40-research/syntheses/` is not currently present as a live directory in this repo snapshot
+- if syntheses are revived, they should follow the current 00-system templates and role permissions
 
 ## `review-queue/`
 

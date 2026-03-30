@@ -4,7 +4,7 @@ domain:
 subdomain:
 topic: regulation as a cross-domain driver
 date_created: 2026-03-25
-agent: synthesizer
+agent: orchestrator
 certainty: medium
 importance: high
 upstream_inputs: []
