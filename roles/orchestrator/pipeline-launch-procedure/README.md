@@ -4,20 +4,20 @@ This folder is the launch control-plane for the research swarm.
 
 ## Canonical truth
 
-- Runtime surface: **fixed Discord persona channels**
+- Runtime surface: **fresh Telegram topics**
 - Handoff primitive: `sessions_send`
 - Stable completion key: `research_run_id`
 - Primary completion path: terminal `update_research_run.py` updates auto-attempt parent finalization
 - Manual repair path: `runtime/scripts/finalize_dispatch_after_swarm.py --file <manifest> --apply`
 
-Do **not** treat Discord thread creation as part of the current model.
+Do **not** treat persistent persona lanes as part of the current model.
 
 ## End-to-end flow
 
 1. Planner prepares market/case state, prompts, queued `research_runs`, and a dispatch manifest.
-2. Runtime turns the manifest into one `sessions_send` handoff per still-queued persona lane.
+2. Runtime creates/reuses one controller topic plus one fresh persona topic per queued run, then turns the manifest into one `sessions_send` handoff per still-queued persona topic.
 3. Successful handoffs patch the matching `research_runs` rows to `running`.
-4. Persona lanes do the actual research work and, when possible, post visible STARTING/FINISHED lines in Discord.
+4. Persona topics do the actual research work and, when possible, post visible STARTING/FINISHED lines in Telegram.
 5. Persona lanes reconcile completion/failure back into `research_runs`.
 6. Terminal run updates auto-attempt manifest reconciliation and parent case/market closure.
 7. If automatic reconciliation is missed, use the manual finalizer as a repair/backstop step.
@@ -25,8 +25,8 @@ Do **not** treat Discord thread creation as part of the current model.
 ## Important nuance
 
 - `sessions_send` confirms **internal OpenClaw session delivery**.
-- It does **not** guarantee a visible kickoff post in Discord.
-- Visible lane activity should come from the persona lane after it receives the assignment.
+- It does **not** guarantee a visible kickoff post in Telegram.
+- Visible topic activity should come from the persona topic after it receives the assignment.
 
 ## Folder map
 
@@ -46,7 +46,7 @@ Planner owns deterministic preparation work:
 ### Runtime lane
 - `runtime/scripts/`
 - `runtime/dispatch-manifests/`
-- `runtime/persona-channel-map.json`
+- `runtime/telegram-runtime-config.json`
 - `runtime/README.md`
 
 Runtime owns operational execution work:
@@ -84,14 +84,15 @@ Runtime owns operational execution work:
 - `runtime/scripts/reconcile_research_run_completion.py`
 - `runtime/scripts/reconcile_dispatch_from_artifacts.py`
 - `runtime/scripts/finalize_dispatch_after_swarm.py`
-- `runtime/scripts/prepare_headless_discord_dispatch.py`
+- `runtime/scripts/prepare_headless_telegram_dispatch.py`
+- `runtime/scripts/bootstrap_telegram_topics.py`
 - `runtime/scripts/list_pending_dispatch_manifests.py`
 - `runtime/scripts/archive_dispatch_manifests.py`
 
 ## Routing map
 
-Fixed persona-channel routing lives in:
-- `runtime/persona-channel-map.json`
+Telegram runtime config lives in:
+- `runtime/telegram-runtime-config.json`
 
 Current personas:
 - `base-rate`
@@ -100,7 +101,7 @@ Current personas:
 - `risk-manager`
 - `catalyst-hunter`
 
-Each persona maps to one persistent Discord channel session key.
+Each case creates one fresh Telegram topic per persona plus one controller topic.
 
 ## Status model
 
@@ -130,12 +131,14 @@ If you need full manifest-level repair/audit, use:
 ## Headless wrapper
 
 Use:
-- `runtime/scripts/prepare_headless_discord_dispatch.py`
+- `runtime/scripts/prepare_headless_telegram_dispatch.py`
+- `runtime/scripts/bootstrap_telegram_topics.py`
 
-It:
-1. selects/opens a case when needed
-2. emits the canonical manifest
-3. loads existing run state for idempotency
-4. prepares the runtime handoff plan
-5. returns one ready-to-send `sessions_send` step per persona lane
-6. includes an optional manual finalizer backstop command
+They:
+1. select/open a case when needed
+2. emit the canonical manifest
+3. load existing run state for idempotency
+4. prepare the runtime bootstrap + handoff plan
+5. create or reuse the controller/persona Telegram topics
+6. return one ready-to-send `sessions_send` payload per persona topic
+7. include an optional manual finalizer backstop command

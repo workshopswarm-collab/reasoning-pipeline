@@ -18,6 +18,10 @@ Use it to store:
 - source reliability guidance
 - retrospective lessons
 
+Current runtime note:
+- the live research swarm executes in fresh Telegram topics
+- this vault is the durable output/provenance layer for that runtime, not the execution surface itself
+
 Do **not** treat it as:
 - the forecast ledger
 - the final decision engine

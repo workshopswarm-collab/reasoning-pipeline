@@ -20,6 +20,19 @@ In other words:
 
 This split is intentional. It keeps the system interpretable for humans and LLMs without sacrificing structured evaluation and execution state.
 
+## Current research execution surface
+
+The live research swarm currently executes through **fresh Telegram topics**.
+
+Operationally:
+- planner/control-plane logic lives in this repo
+- OpenClaw runtime creates fresh Telegram topics per case/persona and delivers assignments into those topic sessions
+- researchers do the live work there and write artifacts back into `qualitative-db/40-research/`
+- PostgreSQL tracks market, case, and research-run state
+
+See:
+- `roles/orchestrator/pipeline-launch-procedure/README.md`
+
 ## Core architecture
 
 ```mermaid
@@ -42,7 +55,7 @@ flowchart TD
  direction TB
  
  subgraph P1[<b>Phase 1: Deep Research</b>]
- O_Dispatch[<b>Orchestrator</b>:<br>Spawns Swarm]:::orchestrator
+ O_Dispatch[<b>Orchestrator</b>:<br>Dispatches Telegram Topics]:::orchestrator
  Researchers[<b>Research Swarm</b>:<br>Independent Analysts with<br>Diverse Personalities / Priors]:::swarm
  end
 
@@ -123,7 +136,7 @@ A separate data pipeline identifies a new high-value market event and writes ini
 This is the entry point into the intelligence pipeline.
 
 ## Phase 1: Deep research
-The **Orchestrator** decides that the market is worth work, scopes the case, and spawns a research swarm.
+The **Orchestrator** decides that the market is worth work, scopes the case, and dispatches the research swarm into fresh Telegram persona topics.
 
 The research swarm is best thought of as **multiple independent analysts performing the same general research task under different personalities, priors, and temperaments**, rather than a rigid set of specialist functions.
 
@@ -191,7 +204,7 @@ This is the qualitative learning loop.
 ### Orchestrator
 Owns the control plane:
 - selects cases
-- spawns researchers
+- dispatches researchers into fresh Telegram persona topics
 - synthesizes research
 - triggers retrospectives
 - maintains qualitative memory and promotes durable lessons carefully

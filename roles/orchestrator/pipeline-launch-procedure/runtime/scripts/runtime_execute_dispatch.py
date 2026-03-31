@@ -4,13 +4,14 @@
 This script keeps the OpenClaw runtime boundary thin and deterministic.
 It does not call OpenClaw tools itself; instead it:
 - validates a planner-emitted dispatch manifest
-- builds an executable channel-handoff plan with idempotency guidance
-- builds filled post-handoff DB patch payloads from actual sessions_send metadata
+- builds a Telegram topic bootstrap / handoff plan with idempotency guidance
+- builds filled post-handoff DB patch payloads from resolved topic/session metadata
 - finalizes a launch summary from per-run outcomes
 
 Intended pipeline fit:
-- dispatch_case_research.py -> emits manifest for fixed Discord persona channels
+- dispatch_case_research.py -> emits manifest for fresh Telegram forum topics
 - OpenClaw runtime in TUI/main -> calls this script with action=prepare
+- OpenClaw runtime in TUI/main -> creates controller/persona topics and resolves topic session keys
 - OpenClaw runtime in TUI/main -> performs sessions_send for each launchable run
 - OpenClaw runtime in TUI/main -> calls this script with action=build-patch per successful handoff
 - OpenClaw runtime in TUI/main -> patches DB via update_research_run.py
@@ -50,8 +51,12 @@ def parse_args() -> argparse.Namespace:
         default="validate",
     )
     parser.add_argument("--research-run-id", help="research_run_id for build-patch")
-    parser.add_argument("--target-session-key", help="Target persona-channel session key for build-patch")
-    parser.add_argument("--delivery-channel-id", help="Target Discord channel id for build-patch")
+    parser.add_argument("--target-session-key", help="Resolved Telegram topic session key for build-patch")
+    parser.add_argument("--delivery-chat-id", help="Resolved Telegram chat id for build-patch")
+    parser.add_argument("--delivery-topic-id", help="Resolved Telegram topic id for build-patch")
+    parser.add_argument("--delivery-topic-title", help="Resolved Telegram topic title for build-patch")
+    parser.add_argument("--controller-topic-id", help="Resolved controller topic id for build-patch")
+    parser.add_argument("--controller-topic-title", help="Resolved controller topic title for build-patch")
     parser.add_argument(
         "--existing-map-json",
         help=(
@@ -125,10 +130,14 @@ def validate_manifest(manifest: dict) -> dict:
             raise ValueError("handoff_payload must be an object")
         if not isinstance(patch_template, dict):
             raise ValueError("post_handoff_update_template must be an object")
-        require(target, "channel_id")
-        require(target, "channel_name")
-        require(target, "session_key")
-        require(handoff_payload, "sessionKey")
+        target_kind = require(target, "kind")
+        if target_kind != "telegram_forum_topic":
+            raise ValueError(f"unsupported handoff target kind: {target_kind}")
+        require(target, "chat_id")
+        require(target, "topic_title")
+        require(target, "controller_topic_title")
+        require(handoff_payload, "chatId")
+        require(handoff_payload, "topicTitle")
         require(handoff_payload, "message")
         require(patch_template, "research_run_id")
         require(patch_template, "status")
@@ -194,16 +203,28 @@ def prepare_launch_plan(manifest: dict, existing_map: Optional[dict] = None) -> 
         "launchable_runs": launchable_runs,
         "skipped_runs": skipped_runs,
         "operator_instructions": [
-            "deliver each launchable run with sessions_send using handoff_payload exactly as provided",
-            "after each successful handoff, build a patch payload with action=build-patch",
+            "create the controller topic once for this dispatch and one fresh persona topic per launchable run",
+            "resolve each created persona topic to a Telegram topic session key before calling sessions_send",
+            "inject the resolved sessionKey into handoff_payload at execution time and then deliver with sessions_send",
+            "after each successful handoff, build a patch payload with action=build-patch using the resolved session/topic metadata",
             "apply that patch via update_research_run.py",
             "if some handoffs fail and some succeed, keep successful handoffs, record failures, and treat overall dispatch as delivered_partial",
-            "on retry, rerun prepare with fresh existing_map_json so non-queued runs are skipped",
+            "on retry, rerun prepare with fresh existing_map_json so non-queued runs are skipped and existing topics are reused",
         ],
     }
 
 
-def build_patch(manifest: dict, research_run_id: str, target_session_key: str, delivery_channel_id: Optional[str] = None) -> dict:
+def build_patch(
+    manifest: dict,
+    research_run_id: str,
+    target_session_key: str,
+    *,
+    delivery_chat_id: Optional[str] = None,
+    delivery_topic_id: Optional[str] = None,
+    delivery_topic_title: Optional[str] = None,
+    controller_topic_id: Optional[str] = None,
+    controller_topic_title: Optional[str] = None,
+) -> dict:
     validate_manifest(manifest)
     for run in manifest["runs"]:
         if run["research_run_id"] == research_run_id:
@@ -212,10 +233,18 @@ def build_patch(manifest: dict, research_run_id: str, target_session_key: str, d
             patch["status"] = RUN_STATUS_RUNNING
             patch["mark_started"] = True
             notes["delivery_target_session_key"] = target_session_key
-            if delivery_channel_id:
-                notes["delivery_target_channel_id"] = delivery_channel_id
+            if delivery_chat_id:
+                notes["delivery_target_chat_id"] = delivery_chat_id
+            if delivery_topic_id:
+                notes["delivery_target_topic_id"] = delivery_topic_id
+            if delivery_topic_title:
+                notes["delivery_target_topic_title"] = delivery_topic_title
+            if controller_topic_id:
+                notes["controller_topic_id"] = controller_topic_id
+            if controller_topic_title:
+                notes["controller_topic_title"] = controller_topic_title
             notes["dispatch_id"] = manifest["dispatch_id"]
-            notes["dispatch_stage"] = "persona_channel_running"
+            notes["dispatch_stage"] = "persona_topic_running"
             return patch
     raise ValueError(f"research_run_id not found in manifest: {research_run_id}")
 
@@ -272,7 +301,11 @@ def main() -> int:
                 manifest,
                 args.research_run_id,
                 args.target_session_key,
-                delivery_channel_id=args.delivery_channel_id,
+                delivery_chat_id=args.delivery_chat_id,
+                delivery_topic_id=args.delivery_topic_id,
+                delivery_topic_title=args.delivery_topic_title,
+                controller_topic_id=args.controller_topic_id,
+                controller_topic_title=args.controller_topic_title,
             )
         else:
             if not args.run_results_json:

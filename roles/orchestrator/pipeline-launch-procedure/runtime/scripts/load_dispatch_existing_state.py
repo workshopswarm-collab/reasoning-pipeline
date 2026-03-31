@@ -41,7 +41,11 @@ selected AS (
     rr.notes,
     COALESCE(rr.notes->>'dispatch_stage', '') AS dispatch_stage,
     COALESCE(rr.notes->>'delivery_target_session_key', '') AS delivery_target_session_key,
-    COALESCE(rr.notes->>'delivery_target_channel_id', '') AS delivery_target_channel_id
+    COALESCE(rr.notes->>'delivery_target_chat_id', '') AS delivery_target_chat_id,
+    COALESCE(rr.notes->>'delivery_target_topic_id', '') AS delivery_target_topic_id,
+    COALESCE(rr.notes->>'delivery_target_topic_title', '') AS delivery_target_topic_title,
+    COALESCE(rr.notes->>'controller_topic_id', '') AS controller_topic_id,
+    COALESCE(rr.notes->>'controller_topic_title', '') AS controller_topic_title
   FROM research_runs rr
   JOIN run_ids r ON r.research_run_id = rr.id
 )
@@ -52,7 +56,11 @@ SELECT COALESCE(json_object_agg(id::text, json_build_object(
   'workspace_note_path', workspace_note_path,
   'dispatch_stage', NULLIF(dispatch_stage, ''),
   'delivery_target_session_key', NULLIF(delivery_target_session_key, ''),
-  'delivery_target_channel_id', NULLIF(delivery_target_channel_id, ''),
+  'delivery_target_chat_id', NULLIF(delivery_target_chat_id, ''),
+  'delivery_target_topic_id', NULLIF(delivery_target_topic_id, ''),
+  'delivery_target_topic_title', NULLIF(delivery_target_topic_title, ''),
+  'controller_topic_id', NULLIF(controller_topic_id, ''),
+  'controller_topic_title', NULLIF(controller_topic_title, ''),
   'notes', notes
 )), '{}'::json)::text
 FROM selected;

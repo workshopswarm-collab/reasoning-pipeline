@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+from __future__ import annotations
+
 """Prepare the default research swarm dispatch plan for one case.
 
 This script owns the Postgres/control-plane half of dispatch:
@@ -6,16 +8,18 @@ This script owns the Postgres/control-plane half of dispatch:
 - set market pipeline_status=researching
 - create one research_runs row per persona
 - build persona-specific prompt
-- emit an OpenClaw-runtime dispatch manifest for channel-routed handoff
-- emit the post-handoff DB patch template for each run
+- emit an OpenClaw-runtime dispatch manifest for Telegram topic-routed handoff
+- emit the post-handoff DB patch skeleton for each run
 
-The current intended runtime target is a fixed set of Discord persona channels.
-This planner emits per-persona handoff payloads that route each research run to
-its configured Discord channel session. It does not attempt to send those
-messages directly from Python.
+The current intended runtime target is a fresh set of Telegram forum topics:
+- one controller topic per case
+- one fresh persona topic per persona per case
 
-It does not call sessions_send directly because OpenClaw tools are only available
-inside the agent runtime, not from local subprocess Python.
+This planner emits logical topic targets. Runtime later creates those topics,
+resolves topic session keys, and delivers the kickoff messages.
+
+It does not call runtime tools directly because OpenClaw tools are only
+available inside the agent runtime, not from local subprocess Python.
 
 Uses PREDQUANT_ORCHESTRATOR_URL for DB reads/writes.
 """
@@ -29,8 +33,9 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 DEFAULT_PSQL = "/opt/homebrew/opt/postgresql@16/bin/psql"
-DEFAULT_RUNTIME = "discord-fixed-channel-session"
-DEFAULT_RUNTIME_LABEL = "openclaw-discord-fixed-channel"
+DEFAULT_RUNTIME = "telegram-fresh-topic-session"
+DEFAULT_RUNTIME_LABEL = "openclaw-telegram-forum-topic"
+DEFAULT_RUNTIME_SURFACE = "telegram-forum-topic"
 DEFAULT_MODEL = "openai-codex/gpt-5.4"
 DEFAULT_THINKING = "medium"
 DEFAULT_PERSONAS = [
@@ -44,7 +49,7 @@ BASE_DIR = Path(__file__).resolve().parent
 PIPELINE_DIR = BASE_DIR.parent.parent
 RUNTIME_DIR = PIPELINE_DIR / "runtime"
 RUNTIME_SCRIPTS_DIR = RUNTIME_DIR / "scripts"
-PERSONA_CHANNEL_MAP_PATH = RUNTIME_DIR / "persona-channel-map.json"
+TELEGRAM_RUNTIME_CONFIG_PATH = RUNTIME_DIR / "telegram-runtime-config.json"
 
 CASE_SQL = r'''
 WITH input AS (
@@ -146,15 +151,27 @@ def make_dispatch_id(case_key: str) -> str:
     return f"dispatch-{case_key}-{ts}"
 
 
-def load_persona_channel_map() -> dict:
-    if not PERSONA_CHANNEL_MAP_PATH.exists():
-        raise FileNotFoundError(f"persona channel map not found: {PERSONA_CHANNEL_MAP_PATH}")
-    data = json.loads(PERSONA_CHANNEL_MAP_PATH.read_text())
-    personas = data.get("personas") or {}
-    missing = [persona for persona in DEFAULT_PERSONAS if persona not in personas]
+def load_telegram_runtime_config() -> dict:
+    if not TELEGRAM_RUNTIME_CONFIG_PATH.exists():
+        raise FileNotFoundError(f"telegram runtime config not found: {TELEGRAM_RUNTIME_CONFIG_PATH}")
+    data = json.loads(TELEGRAM_RUNTIME_CONFIG_PATH.read_text())
+    research_group = data.get("research_group") or {}
+    templates = research_group.get("topic_title_templates") or {}
+    if not research_group.get("chat_id"):
+        raise ValueError("telegram runtime config missing research_group.chat_id")
+    if not templates.get("controller"):
+        raise ValueError("telegram runtime config missing controller topic title template")
+    if not templates.get("persona"):
+        raise ValueError("telegram runtime config missing persona topic title template")
+    configured_personas = set(data.get("personas") or DEFAULT_PERSONAS)
+    missing = [persona for persona in DEFAULT_PERSONAS if persona not in configured_personas]
     if missing:
-        raise ValueError(f"persona channel map missing personas: {', '.join(missing)}")
+        raise ValueError(f"telegram runtime config missing personas: {', '.join(missing)}")
     return data
+
+
+def build_topic_title(template: str, *, case_key: str, persona: str | None = None) -> str:
+    return template.format(case_key=case_key, persona=persona or "controller")
 
 
 def build_visible_markers(*, research_run_id: str, persona: str, market_title: str, workspace_note_path: str) -> tuple[str, str]:
@@ -163,26 +180,28 @@ def build_visible_markers(*, research_run_id: str, persona: str, market_title: s
     return start_marker, finish_marker
 
 
-def build_channel_handoff_message(*, research_run_id: str, persona: str, case_key: str, channel_name: str, market_title: str, workspace_note_path: str, prompt_text: str, start_marker: str, finish_marker: str) -> str:
+def build_topic_handoff_message(*, research_run_id: str, persona: str, case_key: str, topic_title: str, controller_topic_title: str, market_title: str, workspace_note_path: str, prompt_text: str, start_marker: str, finish_marker: str) -> str:
     return "\n".join(
         [
             f"Research run assignment for `{research_run_id}`.",
             "",
-            "You are operating in a fixed persona lane.",
+            "You are operating in a fresh Telegram persona topic for this run.",
             f"- persona: {persona}",
             f"- case_key: {case_key}",
             f"- market_title: {market_title}",
-            f"- lane: #{channel_name}",
+            f"- persona_topic: {topic_title}",
+            f"- controller_topic: {controller_topic_title}",
             f"- research_run_id: {research_run_id}",
             f"- primary_agent_finding_path: {workspace_note_path}",
             "",
             "Treat this message as the canonical assignment for this run.",
+            "Treat this topic as self-contained for this run except for the qualitative/quantitative databases and the prompt below.",
             "Use the prompt below as authoritative for the work to perform.",
             "",
-            "Required visible channel updates:",
-            "1. As soon as you begin, post this exact format as a visible channel message:",
+            "Required visible topic updates:",
+            "1. As soon as you begin, post this exact format as a visible topic message:",
             f"   {start_marker}",
-            "2. After your primary agent-finding is written, post this exact format as a visible channel message:",
+            "2. After your primary agent-finding is written, post this exact format as a visible topic message:",
             f"   {finish_marker}",
             "3. After posting the finished message, update the run to completed using the runtime DB helper (or failed if blocked).",
             "",
@@ -211,7 +230,12 @@ def main() -> int:
 
         dispatch_id = make_dispatch_id(case_ctx["case_key"])
         created_at = datetime.now(timezone.utc).isoformat()
-        persona_channel_map = load_persona_channel_map()["personas"]
+        telegram_runtime = load_telegram_runtime_config()
+        research_group = telegram_runtime["research_group"]
+        controller_topic_title = build_topic_title(
+            research_group["topic_title_templates"]["controller"],
+            case_key=case_ctx["case_key"],
+        )
 
         runs = []
         for persona in args.personas:
@@ -220,6 +244,11 @@ def main() -> int:
             source_note_prefix = f"{case_ctx['case_key']}-{persona}"
             assumption_note_path = f"qualitative-db/40-research/assumption-notes/{case_ctx['case_key']}-{persona}-assumptions.md"
             evidence_map_path = f"qualitative-db/40-research/evidence-maps/{case_ctx['case_key']}-{persona}-evidence-map.md"
+            persona_topic_title = build_topic_title(
+                research_group["topic_title_templates"]["persona"],
+                case_key=case_ctx["case_key"],
+                persona=persona,
+            )
 
             create_result = python_json(
                 create_run_script,
@@ -243,9 +272,6 @@ def main() -> int:
             }
             prompt_result = python_json(build_prompt_script, ["--pretty"], prompt_payload)
             prompt_text = prompt_result["prompt"]
-            channel_target = persona_channel_map.get(persona)
-            if not channel_target:
-                raise ValueError(f"no channel target configured for persona: {persona}")
 
             start_marker, finish_marker = build_visible_markers(
                 research_run_id=create_result["research_run_id"],
@@ -254,11 +280,12 @@ def main() -> int:
                 workspace_note_path=workspace_note_path,
             )
 
-            handoff_message = build_channel_handoff_message(
+            handoff_message = build_topic_handoff_message(
                 research_run_id=create_result["research_run_id"],
                 persona=persona,
                 case_key=case_ctx["case_key"],
-                channel_name=channel_target["channel_name"],
+                topic_title=persona_topic_title,
+                controller_topic_title=controller_topic_title,
                 market_title=case_ctx["title"],
                 workspace_note_path=workspace_note_path,
                 prompt_text=prompt_text,
@@ -266,8 +293,17 @@ def main() -> int:
                 finish_marker=finish_marker,
             )
 
+            logical_target = {
+                "kind": "telegram_forum_topic",
+                "chat_id": research_group["chat_id"],
+                "topic_title": persona_topic_title,
+                "controller_topic_title": controller_topic_title,
+                "persona": persona,
+            }
+
             handoff_payload = {
-                "sessionKey": channel_target["session_key"],
+                "chatId": research_group["chat_id"],
+                "topicTitle": persona_topic_title,
                 "message": handoff_message,
                 "timeoutSeconds": 20,
             }
@@ -278,12 +314,13 @@ def main() -> int:
                 "mark_started": True,
                 "workspace_note_path": workspace_note_path,
                 "notes": {
-                    "delivery_target_session_key": channel_target["session_key"],
-                    "delivery_target_channel_id": channel_target["channel_id"],
+                    "delivery_target_chat_id": research_group["chat_id"],
+                    "delivery_target_topic_title": persona_topic_title,
+                    "controller_chat_id": research_group["chat_id"],
+                    "controller_topic_title": controller_topic_title,
                     "dispatch_id": dispatch_id,
-                    "dispatch_stage": "persona_channel_running",
-                    "runtime_surface": "discord-fixed-channel",
-                    "channel_name": channel_target["channel_name"],
+                    "dispatch_stage": "persona_topic_running",
+                    "runtime_surface": DEFAULT_RUNTIME_SURFACE,
                     "expected_start_marker": start_marker,
                     "expected_finish_marker": finish_marker,
                     "model": args.model,
@@ -292,12 +329,13 @@ def main() -> int:
             }
 
             notes = {
-                "delivery_target_session_key": channel_target["session_key"],
-                "delivery_target_channel_id": channel_target["channel_id"],
+                "delivery_target_chat_id": research_group["chat_id"],
+                "delivery_target_topic_title": persona_topic_title,
+                "controller_chat_id": research_group["chat_id"],
+                "controller_topic_title": controller_topic_title,
                 "dispatch_id": dispatch_id,
-                "dispatch_stage": "awaiting_persona_channel_handoff",
-                "runtime_surface": "discord-fixed-channel",
-                "channel_name": channel_target["channel_name"],
+                "dispatch_stage": "awaiting_topic_creation",
+                "runtime_surface": DEFAULT_RUNTIME_SURFACE,
                 "expected_start_marker": start_marker,
                 "expected_finish_marker": finish_marker,
                 "model": args.model,
@@ -328,8 +366,8 @@ def main() -> int:
                     },
                     "research_run": update_result,
                     "handoff": {
-                        "status": "awaiting_persona_channel_handoff",
-                        "target": channel_target,
+                        "status": "awaiting_topic_creation",
+                        "target": logical_target,
                         "handoff_payload": handoff_payload,
                         "post_handoff_update_template": post_handoff_update_template,
                     },
@@ -362,20 +400,24 @@ def main() -> int:
             "runtime_defaults": {
                 "runtime": DEFAULT_RUNTIME,
                 "runtime_label": DEFAULT_RUNTIME_LABEL,
-                "runtime_surface": "discord-fixed-channel",
+                "runtime_surface": DEFAULT_RUNTIME_SURFACE,
+                "chat_id": research_group["chat_id"],
+                "controller_topic_title": controller_topic_title,
                 "model": args.model,
                 "thinking": args.thinking,
             },
             "pipeline_status": market_state["pipeline_status"],
-            "dispatch_stage": "awaiting_persona_channel_handoff",
+            "dispatch_stage": "awaiting_topic_creation",
             "agent_runtime_dispatch_required": True,
             "agent_runtime_steps": [
                 "validate manifest before launch",
-                "for each run, check idempotency against current research_runs status and prior channel handoff metadata",
-                "for each eligible run, call sessions_send with runs[i].handoff.handoff_payload",
+                "for each run, check idempotency against current research_runs status and prior telegram topic metadata",
+                "create the controller topic once for the dispatch and create one fresh persona topic per queued run",
+                "resolve each created topic to a telegram topic session key",
+                "for each eligible run, call sessions_send with the run handoff message after injecting the resolved topic session key",
                 "after each successful handoff, build a filled DB patch from runs[i].handoff.post_handoff_update_template",
-                "patch the corresponding research_runs row using update_research_run.py so status becomes running only after the persona channel handoff succeeds",
-                "if some runs launch and others fail, return delivered_partial and retry only failed runs later",
+                "patch the corresponding research_runs row using update_research_run.py so status becomes running only after topic creation and persona-topic handoff succeed",
+                "if some runs launch and others fail, return delivered_partial and retry only failed queued runs later without creating duplicate topics",
             ],
             "runs": runs,
         }

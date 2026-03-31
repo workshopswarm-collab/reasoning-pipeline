@@ -22,6 +22,10 @@ Terminology note:
 
 This folder is the working research layer.
 
+Runtime note:
+- live research-swarm execution currently happens in fresh Telegram topics
+- `40-research/` is where those runs write durable artifacts, provenance, and auditable case outputs
+
 Use it for:
 - time-indexed observations
 - source extraction

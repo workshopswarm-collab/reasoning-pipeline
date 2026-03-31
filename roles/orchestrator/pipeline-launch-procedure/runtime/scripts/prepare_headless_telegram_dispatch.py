@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
-"""Prepare a headless TUI -> Discord fixed-channel dispatch handoff bundle.
+"""Prepare a headless TUI -> Telegram fresh-topic dispatch bootstrap bundle.
 
 This wrapper does the planner/control-plane work locally and emits a reusable
-bundle that a TUI-side OpenClaw session can execute with `sessions_send` into
-fixed Discord persona channels.
+bundle that a TUI-side OpenClaw session can execute by:
+- creating the controller/persona Telegram topics
+- resolving topic session keys
+- delivering each persona kickoff with `sessions_send`
 
 Supported modes:
 1. Prepare from an existing manifest (`--manifest-path`)
@@ -46,14 +48,14 @@ FINALIZE_DISPATCH_AFTER_SWARM = BASE_DIR / "finalize_dispatch_after_swarm.py"
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Prepare a headless TUI -> Discord fixed-channel dispatch bundle")
+    parser = argparse.ArgumentParser(description="Prepare a headless TUI -> Telegram fresh-topic dispatch bundle")
     parser.add_argument("--manifest-path", help="Use an existing dispatch manifest path instead of preparing a new one")
     parser.add_argument("--case-id", help="Existing case UUID to dispatch")
     parser.add_argument("--market-id", help="Existing market UUID to open/fetch case for")
     parser.add_argument("--personas", nargs="*", default=DEFAULT_PERSONAS, help="Persona list when preparing a new dispatch")
     parser.add_argument("--model", default=DEFAULT_MODEL, help="Model hint recorded in run metadata")
     parser.add_argument("--thinking", default=DEFAULT_THINKING, help="Thinking hint recorded in run metadata")
-    parser.add_argument("--run-timeout-seconds", type=int, default=0, help="Retained for compatibility; not used by fixed channels")
+    parser.add_argument("--run-timeout-seconds", type=int, default=0, help="Retained for compatibility; not used by Telegram topic bootstrap")
     parser.add_argument("--manifest-dir", default=str(DEFAULT_MANIFEST_DIR), help="Directory where prepared manifests should be written")
     parser.add_argument("--db-url", default=os.getenv("PREDQUANT_ORCHESTRATOR_URL", ""), help="Postgres connection URL")
     parser.add_argument("--psql", default=os.getenv("PSQL_BIN", DEFAULT_PSQL), help="Path to psql binary")
@@ -161,10 +163,12 @@ def build_next_tool_steps(prepare_result: dict) -> list[dict[str, Any]]:
             {
                 "research_run_id": run["research_run_id"],
                 "persona": run["persona"],
-                "channel_name": run["target"]["channel_name"],
-                "channel_id": run["target"]["channel_id"],
-                "tool": "sessions_send",
-                **payload,
+                "surface": "telegram-forum-topic",
+                "chat_id": run["target"]["chat_id"],
+                "topic_title": run["target"]["topic_title"],
+                "controller_topic_title": run["target"]["controller_topic_title"],
+                "requires_topic_creation": True,
+                "sessions_send_payload_template": payload,
             }
         )
     return steps
@@ -180,7 +184,7 @@ def main() -> int:
         next_tool_steps = build_next_tool_steps(runtime_preview["prepare"])
 
         result = {
-            "status": "ready_for_fixed_channel_handoff",
+            "status": "ready_for_topic_bootstrap",
             "selection": selection,
             "case": manifest["case"],
             "market": {

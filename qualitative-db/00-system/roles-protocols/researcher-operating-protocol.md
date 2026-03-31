@@ -28,6 +28,10 @@ That means:
 - your job is **not** to act as the decision-maker or canonical-memory maintainer
 - your work should improve provenance, retrieval, comparison, and later synthesis
 
+Runtime note:
+- live swarm execution currently uses fresh Telegram topics as the research surface
+- treat Telegram topics as the runtime workspace and `qualitative-db/40-research/` as the durable artifact/provenance layer
+
 ## Vault purpose
 
 This vault is a **provenance-first qualitative research-memory system** for a multi-agent prediction-market / quant-research pipeline.

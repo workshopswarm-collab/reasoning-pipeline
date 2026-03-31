@@ -38,6 +38,10 @@ Use `00-system/` for:
 - source-reliability guidance
 - system-wide maintenance conventions
 
+Runtime note:
+- the live research swarm currently executes in fresh Telegram topics
+- the vault remains the durable memory/artifact layer, not the execution surface
+
 ## Non-negotiable operating rules
 
 ### 1) Canon vs research

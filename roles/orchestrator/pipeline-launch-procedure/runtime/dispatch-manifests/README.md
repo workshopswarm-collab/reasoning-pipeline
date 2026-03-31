@@ -7,7 +7,7 @@ This directory is the **active handoff queue/history** for planner-emitted dispa
 Keep recent manifests in a stable workspace location so they are:
 - reusable for retries
 - easy to inspect during debugging
-- available to the TUI/runtime handoff layer for fixed Discord persona channels
+- available to the TUI/runtime handoff layer for fresh Telegram topic dispatches
 
 ## Active-queue policy
 

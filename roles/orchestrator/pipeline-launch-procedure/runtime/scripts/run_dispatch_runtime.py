@@ -4,7 +4,7 @@
 This script is the runtime wrapper around the existing pipeline scripts. It is
 still intentionally split from actual OpenClaw tool execution:
 - Python prepares/normalizes the orchestration sequence
-- the TUI/main OpenClaw runtime performs sessions_send into fixed Discord persona channels
+- the TUI/main OpenClaw runtime creates Telegram topics and performs sessions_send into them
 - Python builds DB patches and finalizes summaries
 
 The wrapper supports two operational modes:
@@ -145,11 +145,11 @@ def main() -> int:
                 {
                     "research_run_id": run["research_run_id"],
                     "persona": run["persona"],
-                    "step": "sessions_send",
-                    "payload": run["handoff_payload"],
+                    "step": "telegram_topic_bootstrap_then_sessions_send",
+                    "payload_template": run["handoff_payload"],
                     "target": run["target"],
                     "on_success": [
-                        "call runtime_execute_dispatch.py --action build-patch with the delivered target_session_key",
+                        "call runtime_execute_dispatch.py --action build-patch with the resolved target_session_key and telegram topic metadata",
                         "apply resulting patch payload via update_research_run.py",
                     ],
                 }
@@ -182,7 +182,11 @@ def main() -> int:
                             "--action", "build-patch",
                             "--research-run-id", research_run_id,
                             "--target-session-key", target_session_key,
-                            "--delivery-channel-id", item.get("delivery_channel_id") or "",
+                            "--delivery-chat-id", item.get("delivery_chat_id") or "",
+                            "--delivery-topic-id", item.get("delivery_topic_id") or "",
+                            "--delivery-topic-title", item.get("delivery_topic_title") or "",
+                            "--controller-topic-id", item.get("controller_topic_id") or "",
+                            "--controller-topic-title", item.get("controller_topic_title") or "",
                         ],
                         manifest,
                     )
@@ -201,7 +205,9 @@ def main() -> int:
                         "persona": persona,
                         "status": status,
                         "target_session_key": item.get("target_session_key"),
-                        "delivery_channel_id": item.get("delivery_channel_id"),
+                        "delivery_chat_id": item.get("delivery_chat_id"),
+                        "delivery_topic_id": item.get("delivery_topic_id"),
+                        "delivery_topic_title": item.get("delivery_topic_title"),
                         "workspace_note_path": workspace_note_path,
                         "error": item.get("error"),
                     }

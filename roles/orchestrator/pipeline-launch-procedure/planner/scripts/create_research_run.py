@@ -19,7 +19,7 @@ import sys
 from pathlib import Path
 
 DEFAULT_PSQL = "/opt/homebrew/opt/postgresql@16/bin/psql"
-DEFAULT_RUNTIME = "openclaw-discord-thread-subagent"
+DEFAULT_RUNTIME = "openclaw-telegram-forum-topic"
 
 SQL = r'''
 WITH input AS (
@@ -47,7 +47,7 @@ inserted_run AS (
     rc.id,
     NULLIF(i.j->>'run_label', ''),
     i.j->>'agent_label',
-    COALESCE(NULLIF(i.j->>'runtime', ''), 'openclaw-discord-thread-subagent'),
+    COALESCE(NULLIF(i.j->>'runtime', ''), 'openclaw-telegram-forum-topic'),
     COALESCE(NULLIF(i.j->>'status', ''), 'queued'),
     NULL,
     NULLIF(i.j->>'workspace_note_path', ''),

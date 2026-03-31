@@ -72,6 +72,8 @@ Each run carries:
 - `handoff.handoff_payload`
 - `handoff.post_handoff_update_template`
 
+For Telegram fresh-topic dispatches, `handoff.target` is logical until runtime bootstrap resolves actual topic ids/session keys.
+
 ## DB patch rule
 
 After a successful `sessions_send`, the runtime should apply the matching DB patch through:
@@ -80,18 +82,20 @@ After a successful `sessions_send`, the runtime should apply the matching DB pat
 That post-handoff patch should set:
 - `status = running`
 - `started_at` if missing
-- `notes.dispatch_stage = persona_channel_running`
+- `notes.dispatch_stage = persona_topic_running`
 - `notes.delivery_target_session_key`
-- `notes.delivery_target_channel_id`
+- `notes.delivery_target_chat_id`
+- `notes.delivery_target_topic_id`
+- `notes.delivery_target_topic_title`
 
 Important nuance:
 - `sessions_send` confirms internal session delivery
-- it does not by itself guarantee a visible kickoff post in Discord
+- it does not by itself guarantee a visible kickoff post in Telegram
 - visible STARTING/FINISHED posts should be emitted by the persona lane after it receives the assignment when possible
 
 ## Completion model
 
-Because fixed persona channels are persistent lanes, completion should resolve by:
+Because Telegram topics are transport/session containers, completion should resolve by:
 - `research_run_id`
 
 Not by:

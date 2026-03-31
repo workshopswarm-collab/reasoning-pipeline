@@ -1,6 +1,6 @@
 # Runtime Harness Procedure
 
-Use this procedure when the TUI/main runtime needs to deliver a prepared dispatch manifest into the fixed Discord persona channels.
+Use this procedure when the TUI/main runtime needs to deliver a prepared dispatch manifest into fresh Telegram topics.
 
 ## Goal
 
@@ -30,13 +30,15 @@ Turn a planner-emitted manifest into:
    - skipped runs
    - one `sessions_send` payload per launchable run
 
-### Step 2 — execute handoffs
+### Step 2 — bootstrap topics and execute handoffs
 For each launchable run in order:
-1. call `sessions_send` with `launchable_run.handoff_payload`
-2. if delivery succeeds:
-   - record the known target session key from the payload/target map
-   - treat this as internal delivery into the persona session, not necessarily as a visible Discord kickoff post
-3. if delivery fails:
+1. create/reuse the controller topic once for the dispatch and create/reuse one fresh persona topic per queued run
+2. resolve each persona topic to its Telegram topic session key
+3. call `sessions_send` with the now-resolved `launchable_run.handoff_payload`
+4. if delivery succeeds:
+   - record the resolved target session key plus Telegram chat/topic ids
+   - treat this as internal delivery into the persona topic session, not necessarily as a visible Telegram kickoff post
+5. if delivery fails:
    - record the error
    - continue so partial success can be preserved
 
@@ -48,9 +50,10 @@ For each successful delivery:
 4. verify the row now shows:
    - `status = running`
    - `started_at` set
-   - `notes.dispatch_stage = persona_channel_running`
+   - `notes.dispatch_stage = persona_topic_running`
    - `notes.delivery_target_session_key`
-   - `notes.delivery_target_channel_id`
+   - `notes.delivery_target_chat_id`
+   - `notes.delivery_target_topic_id`
 
 ### Step 4 — summarize delivery
 Use the runtime summary object to report one of:

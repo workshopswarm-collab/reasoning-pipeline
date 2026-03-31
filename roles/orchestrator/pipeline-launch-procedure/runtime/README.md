@@ -8,12 +8,12 @@ Runtime owns everything that happens **after** a dispatch manifest has been prep
 
 That includes:
 - validating/preparing launchable runs
-- delivering research assignments into fixed Discord persona channels
+- delivering research assignments into fresh Telegram topics
 - patching `research_runs` to `running`
 - reconciling completion/failure back into `research_runs`
 - auto-attempting parent case/market finalization after terminal run updates
 - providing artifact-vs-DB repair helpers
-- supporting headless TUI -> Discord handoff flows
+- supporting headless TUI -> Telegram handoff flows
 - keeping the active manifest queue tidy
 
 ## Layout
@@ -31,7 +31,8 @@ That includes:
 - `scripts/reconcile_research_run_completion.py`
 - `scripts/reconcile_dispatch_from_artifacts.py`
 - `scripts/finalize_dispatch_after_swarm.py`
-- `scripts/prepare_headless_discord_dispatch.py`
+- `scripts/prepare_headless_telegram_dispatch.py`
+- `scripts/bootstrap_telegram_topics.py`
 - `scripts/list_pending_dispatch_manifests.py`
 - `scripts/archive_dispatch_manifests.py`
 
@@ -45,15 +46,15 @@ These are best-effort lane messages, not transport-level guarantees.
 
 ## Runtime surface
 
-Discord is the intended runtime surface.
-The current architecture uses fixed Discord persona channels as the researcher lanes and routes work into them with `sessions_send`.
+Telegram forum topics are the intended runtime surface.
+The current architecture creates one fresh controller topic per case and one fresh persona topic per persona per case, then routes work into those topic sessions with `sessions_send`.
 
 Important nuance:
 - the `sessions_send` handoff is internal session delivery
-- it may not itself appear as a visible kickoff post in Discord
-- visible lane activity should come from the persona lane after it receives the assignment
+- it may not itself appear as a visible kickoff post in Telegram
+- visible lane activity should come from the persona topic after it receives the assignment
 
-## Routing map
+## Routing/config
 
-Canonical routing lives in:
-- `roles/orchestrator/pipeline-launch-procedure/runtime/persona-channel-map.json`
+Canonical runtime config lives in:
+- `roles/orchestrator/pipeline-launch-procedure/runtime/telegram-runtime-config.json`

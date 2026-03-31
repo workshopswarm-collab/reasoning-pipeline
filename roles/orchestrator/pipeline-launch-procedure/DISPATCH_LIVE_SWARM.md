@@ -8,10 +8,11 @@ Launch the swarm from the canonical planner-generated prompts, not from hand-wri
 
 This is a two-phase process:
 - local Python/Postgres scripts prepare the dispatch plan
-- the OpenClaw runtime executes the actual `sessions_send` handoffs into fixed Discord persona channels
+- the OpenClaw runtime creates fresh Telegram topics and executes the actual `sessions_send` handoffs into those topic sessions
 
 For headless launches from TUI, prefer:
-- `roles/orchestrator/pipeline-launch-procedure/runtime/scripts/prepare_headless_discord_dispatch.py`
+- `roles/orchestrator/pipeline-launch-procedure/runtime/scripts/prepare_headless_telegram_dispatch.py`
+- `roles/orchestrator/pipeline-launch-procedure/runtime/scripts/bootstrap_telegram_topics.py`
 
 See also:
 - `roles/orchestrator/pipeline-launch-procedure/OPENCLAW_RUNTIME_BRIDGE.md`
@@ -22,7 +23,7 @@ See also:
 2. set `markets.pipeline_status = researching`
 3. create one `research_runs` row per persona
 4. for each persona, call `planner/scripts/build_researcher_prompt.py` with the full market/case context
-5. emit one channel handoff payload plus one post-handoff DB patch template per persona
+5. emit one logical Telegram topic target plus one post-handoff DB patch template per persona
 
 Primary planner:
 - `roles/orchestrator/pipeline-launch-procedure/planner/scripts/dispatch_case_research.py`
@@ -32,18 +33,20 @@ Primary planner:
 6. hand the manifest to the runtime lane
 7. run the thin runtime harness flow using:
    - `roles/orchestrator/pipeline-launch-procedure/runtime/scripts/run_dispatch_runtime.py`
-8. use each emitted `handoff_payload` as the literal input to `sessions_send`
-9. remember that this handoff is internal to the persona session and may not itself be visible in Discord
-10. after each successful handoff, apply the matching `update_research_run.py` patch so the run becomes `running`
-11. write delivery metadata into `research_runs.notes`, especially:
+8. create/reuse the controller topic and one fresh persona topic per queued run
+9. resolve each created topic to its Telegram topic session key, then use each emitted `handoff_payload` as the literal input to `sessions_send`
+10. remember that this handoff is internal to the persona topic session and may not itself be visible in Telegram
+11. after each successful handoff, apply the matching `update_research_run.py` patch so the run becomes `running`
+12. write delivery metadata into `research_runs.notes`, especially:
    - `delivery_target_session_key`
-   - `delivery_target_channel_id`
+   - `delivery_target_chat_id`
+   - `delivery_target_topic_id`
    - optional `model`
    - optional `thinking`
-12. persona lanes should post visible lifecycle updates in-channel when possible using the standardized STARTING/FINISHED format
-13. completion handling should reconcile each run back from its fixed persona lane
-14. terminal `update_research_run.py` completion/failure updates should auto-attempt dispatch reconciliation and parent case/market finalization
-15. if the automatic path is missed or you need a repair/audit step, run:
+13. persona topics should post visible lifecycle updates in-topic when possible using the standardized STARTING/FINISHED format
+14. completion handling should reconcile each run back from its fixed `research_run_id`
+15. terminal `update_research_run.py` completion/failure updates should auto-attempt dispatch reconciliation and parent case/market finalization
+16. if the automatic path is missed or you need a repair/audit step, run:
    - `runtime/scripts/finalize_dispatch_after_swarm.py --file <manifest> --apply`
 16. finalize launch/completion summaries for Orchestrator
 

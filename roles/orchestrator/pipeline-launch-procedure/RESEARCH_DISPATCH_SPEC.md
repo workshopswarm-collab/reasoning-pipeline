@@ -2,17 +2,17 @@
 
 ## Purpose
 
-Define the canonical state model and dispatch contract for the **fixed Discord persona-channel** architecture.
+Define the canonical state model and dispatch contract for the **fresh Telegram topic** architecture.
 
 This spec connects:
 - market/case state in Postgres
 - planner-side prompt generation
-- fixed Discord persona lanes as the runtime surface
+- fresh Telegram topics as the runtime surface
 - durable research artifacts in `qualitative-db/40-research/`
 
 ## Canonical truth
 
-- Runtime surface: fixed Discord persona channels
+- Runtime surface: fresh Telegram topics
 - Handoff primitive: `sessions_send`
 - Stable completion key: `research_run_id`
 - Primary completion path: runtime-side terminal updates
@@ -47,21 +47,22 @@ This spec connects:
 
 ### Dispatch-stage notes
 Expected `notes.dispatch_stage` values:
-- `awaiting_persona_channel_handoff`
-- `persona_channel_running`
+- `awaiting_topic_creation`
+- `awaiting_topic_handoff`
+- `persona_topic_running`
 - `completed`
 - `terminated`
 
 ## Runtime surface
 
-The runtime surface is **not** auto-created Discord threads.
+The runtime surface is **Telegram forum topics**.
 
 The current model is:
-- one fixed Discord channel per persona
-- one controller channel for orchestration/monitoring
+- one fresh controller topic per case
+- one fresh persona topic per persona per case
 
-Routing metadata lives in:
-- `runtime/persona-channel-map.json`
+Routing/config metadata lives in:
+- `runtime/telegram-runtime-config.json`
 
 ## Required fields per run
 
@@ -76,7 +77,9 @@ At minimum each run should track:
 - `notes.dispatch_id`
 - `notes.dispatch_stage`
 - `notes.delivery_target_session_key`
-- `notes.delivery_target_channel_id`
+- `notes.delivery_target_chat_id`
+- `notes.delivery_target_topic_id`
+- `notes.delivery_target_topic_title`
 
 Rule:
 - `started_at` must reflect actual handoff/start time, not row creation time
@@ -88,7 +91,7 @@ Rule:
 1. ensure the market is `researching`
 2. create one queued `research_runs` row per persona
 3. generate one prompt per persona
-4. emit one fixed-channel handoff payload per persona
+4. emit one logical Telegram topic target per persona
 5. emit one post-handoff DB patch template per persona
 
 ### Runtime responsibilities
@@ -118,18 +121,20 @@ A run becomes `running` only after:
 That patch should set:
 - `status = running`
 - `started_at = NOW()` if missing
-- `notes.dispatch_stage = persona_channel_running`
+- `notes.dispatch_stage = persona_topic_running`
 - `notes.delivery_target_session_key`
-- `notes.delivery_target_channel_id`
+- `notes.delivery_target_chat_id`
+- `notes.delivery_target_topic_id`
+- `notes.delivery_target_topic_title`
 
 ## Completion rule
 
 A run becomes `completed` or `failed` only when a runtime-side helper updates the corresponding `research_runs` row.
 
-For the fixed-channel model, the stable join key is:
+For the fresh-topic model, the stable join key is:
 - `research_run_id`
 
-`delivery_target_session_key` is useful metadata, but it is **not** a stable unique completion key because persona channels are persistent and reused across runs.
+`delivery_target_session_key` is useful metadata, but it is **not** the canonical completion key because topic/session transport metadata should remain replaceable without changing the durable run identity.
 
 Terminal run updates should flow through:
 - `runtime/scripts/update_research_run.py`

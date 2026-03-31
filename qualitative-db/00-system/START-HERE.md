@@ -34,6 +34,10 @@ Read these next only if needed:
 - `40-research/` = working research, evidence, and investigations
 - `50-retrospectives/` = after-the-fact lessons and evaluation
 
+Runtime note:
+- live swarm execution currently happens in fresh Telegram topics
+- the vault is where durable research artifacts and provenance are written back
+
 ## First questions to ask
 
 Before editing anything, decide:
