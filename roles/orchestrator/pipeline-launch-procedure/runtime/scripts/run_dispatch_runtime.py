@@ -147,7 +147,7 @@ def main() -> int:
                 {
                     "phase": "fan_out_persona_handoffs",
                     "parallel": True,
-                    "description": "After topic bootstrap, deliver persona kickoffs in parallel where possible.",
+                    "description": "After topic bootstrap, send visible Telegram kickoff posts and internal persona handoffs in parallel where possible.",
                     "run_count": prepare_result.get("launchable_count", 0),
                 },
             ],

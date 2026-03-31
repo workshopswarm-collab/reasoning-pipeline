@@ -5,7 +5,8 @@ This wrapper does the planner/control-plane work locally and emits a reusable
 bundle that a TUI-side OpenClaw session can execute by:
 - creating the controller/persona Telegram topics
 - resolving topic session keys
-- delivering each persona kickoff with `sessions_send`
+- sending visible Telegram kickoff posts into each topic
+- delivering each persona kickoff internally with `sessions_send`
 
 Supported modes:
 1. Prepare from an existing manifest (`--manifest-path`)
@@ -222,7 +223,7 @@ def main() -> int:
             "next_tool_steps": next_tool_steps,
             "parallel_launch_hint": {
                 "parallel": True,
-                "description": "After topic bootstrap, send persona kickoffs in parallel where possible instead of strictly serial launch.",
+                "description": "After topic bootstrap, fan out visible Telegram kickoff posts and internal persona handoffs in parallel where possible instead of strictly serial launch.",
             },
             "manual_finalize_backstop_step": {
                 "tool": "exec",

@@ -34,8 +34,10 @@ Primary planner:
 7. run the thin runtime harness flow using:
    - `roles/orchestrator/pipeline-launch-procedure/runtime/scripts/run_dispatch_runtime.py`
 8. create/reuse the controller topic and one fresh persona topic per queued run
-9. resolve each created topic to its Telegram topic session key, then fan out the emitted persona `handoff_payload` messages in parallel where practical instead of launching strictly one by one
-10. remember that this handoff is internal to the persona topic session and may not itself be visible in Telegram
+9. resolve each created topic to its Telegram topic session key, then fan out both of the following in parallel where practical instead of launching strictly one by one:
+   - a visible Telegram kickoff post via `openclaw message send --channel telegram --target <chatId> --thread-id <topicId> --message ...`
+   - the internal persona `handoff_payload` via `sessions_send`
+10. remember that the `sessions_send` handoff is internal to the persona topic session and is separate from the visible Telegram kickoff post
 11. after each successful handoff, apply the matching `update_research_run.py` patch so the run becomes `running`
 12. write delivery metadata into `research_runs.notes`, especially:
    - `delivery_target_session_key`

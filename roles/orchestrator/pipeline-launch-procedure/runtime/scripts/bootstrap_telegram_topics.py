@@ -20,6 +20,7 @@ It does not call `sessions_send` itself.
 
 import argparse
 import json
+import shlex
 import subprocess
 import sys
 from pathlib import Path
@@ -156,6 +157,19 @@ def materialize_sessions_send_payload(payload_template: dict, session_key: str) 
     return payload
 
 
+def build_visible_send_command(*, chat_id: str, topic_id: str, message: str) -> str:
+    return " ".join(
+        [
+            "openclaw", "message", "send",
+            "--channel", "telegram",
+            "--target", shlex.quote(str(chat_id)),
+            "--thread-id", shlex.quote(str(topic_id)),
+            "--message", shlex.quote(message),
+            "--json",
+        ]
+    )
+
+
 def main() -> int:
     args = parse_args()
     try:
@@ -181,6 +195,16 @@ def main() -> int:
         else:
             controller_topic_title = controller_topic_title or controller_title
 
+        controller_visible_message = (
+            f"SWARM LAUNCH | case_key={(manifest.get('case') or {}).get('case_key')} "
+            f"| market={(manifest.get('market') or {}).get('title')} "
+            f"| dispatch_id={manifest.get('dispatch_id')}"
+        )
+        controller_visible_send_command = (
+            build_visible_send_command(chat_id=chat_id, topic_id=controller_topic_id, message=controller_visible_message)
+            if controller_topic_id else None
+        )
+
         run_plans: list[dict[str, Any]] = []
         for run in launchable:
             research_run_id = run["research_run_id"]
@@ -200,6 +224,15 @@ def main() -> int:
                 topic_title = topic_title or str(target["topic_title"])
 
             session_key = build_session_key(str(target["chat_id"]), topic_id) if topic_id else None
+            visible_kickoff_message = (
+                ((run.get("post_handoff_update_template") or {}).get("notes") or {}).get("expected_start_marker")
+                or ((run.get("post_handoff_update_template") or {}).get("notes") or {}).get("start_marker")
+                or f"STARTING RESEARCH | persona={run['persona']} | research_run_id={research_run_id}"
+            )
+            visible_kickoff_command = (
+                build_visible_send_command(chat_id=str(target["chat_id"]), topic_id=topic_id, message=visible_kickoff_message)
+                if topic_id else None
+            )
             run_plan = {
                 "research_run_id": research_run_id,
                 "persona": run["persona"],
@@ -211,6 +244,9 @@ def main() -> int:
                 "create_topic_command": create_command,
                 "topic_id": topic_id,
                 "session_key": session_key,
+                "visible_kickoff_message": visible_kickoff_message,
+                "visible_kickoff_command": visible_kickoff_command,
+                "visible_finish_message": ((run.get("post_handoff_update_template") or {}).get("notes") or {}).get("expected_finish_marker"),
                 "sessions_send_payload": materialize_sessions_send_payload(payload_template, session_key) if session_key else None,
                 "delivered_result_template": {
                     "research_run_id": research_run_id,
@@ -234,8 +270,15 @@ def main() -> int:
                     {
                         "research_run_id": run["research_run_id"],
                         "persona": run["persona"],
-                        "tool": "sessions_send",
-                        "payload": run["sessions_send_payload"],
+                        "visible_kickoff_step": {
+                            "tool": "exec",
+                            "command": run.get("visible_kickoff_command"),
+                            "description": "Visible Telegram kickoff post for the persona topic.",
+                        } if run.get("visible_kickoff_command") else None,
+                        "internal_handoff_step": {
+                            "tool": "sessions_send",
+                            "payload": run["sessions_send_payload"],
+                        },
                         "delivered_result_template": run.get("delivered_result_template"),
                     }
                 )
@@ -250,11 +293,13 @@ def main() -> int:
                 "topic_title": controller_topic_title,
                 "topic_id": controller_topic_id,
                 "create_command": controller_command,
+                "visible_launch_message": controller_visible_message,
+                "visible_launch_command": controller_visible_send_command,
             },
             "launchable_runs": run_plans,
             "parallel_handoff_group": {
                 "parallel": True,
-                "description": "After topic bootstrap, execute these persona sessions_send handoffs in parallel where possible.",
+                "description": "After topic bootstrap, execute visible Telegram kickoff posts and internal persona handoffs in parallel where possible.",
                 "steps": parallel_steps,
             },
             "replay_hint": {
