@@ -147,8 +147,8 @@ Those helpers now auto-attempt:
 ## Parent-finalization policy
 
 Current policy:
-- if all runs are terminal, close the case/market even if one or more runs failed
-- swarm outcome details should live in case orchestration notes rather than leaving the market stuck in `researching`
+- close the case/market only when all runs are `completed`
+- if some runs fail, keep the parent case/market open for intervention rather than auto-closing it as a successful swarm completion
 
 ## Safety nets
 

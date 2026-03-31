@@ -34,7 +34,7 @@ Primary planner:
 7. run the thin runtime harness flow using:
    - `roles/orchestrator/pipeline-launch-procedure/runtime/scripts/run_dispatch_runtime.py`
 8. create/reuse the controller topic and one fresh persona topic per queued run
-9. resolve each created topic to its Telegram topic session key, then use each emitted `handoff_payload` as the literal input to `sessions_send`
+9. resolve each created topic to its Telegram topic session key, then fan out the emitted persona `handoff_payload` messages in parallel where practical instead of launching strictly one by one
 10. remember that this handoff is internal to the persona topic session and may not itself be visible in Telegram
 11. after each successful handoff, apply the matching `update_research_run.py` patch so the run becomes `running`
 12. write delivery metadata into `research_runs.notes`, especially:
@@ -44,11 +44,12 @@ Primary planner:
    - optional `model`
    - optional `thinking`
 13. persona topics should post visible lifecycle updates in-topic when possible using the standardized STARTING/FINISHED format
-14. completion handling should reconcile each run back from its fixed `research_run_id`
-15. terminal `update_research_run.py` completion/failure updates should auto-attempt dispatch reconciliation and parent case/market finalization
-16. if the automatic path is missed or you need a repair/audit step, run:
+14. between start and finish, persona topics may post brief progress updates sparsely (milestone-based or roughly every 10 minutes while active) so humans can see movement without spamming the runtime surface
+15. completion handling should reconcile each run back from its fixed `research_run_id`
+16. terminal `update_research_run.py` completion/failure updates should auto-attempt dispatch reconciliation and parent case/market finalization
+17. if the automatic path is missed or you need a repair/audit step, run:
    - `runtime/scripts/finalize_dispatch_after_swarm.py --file <manifest> --apply`
-16. finalize launch/completion summaries for Orchestrator
+18. finalize launch/completion summaries for Orchestrator
 
 ## Partial delivery rule
 

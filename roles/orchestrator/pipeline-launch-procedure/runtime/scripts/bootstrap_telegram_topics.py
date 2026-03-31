@@ -12,8 +12,8 @@ Default mode is non-destructive planning:
 - determine whether controller/persona topics can be reused
 - emit topic-create commands plus exact `sessions_send` payloads when topic ids are known
 
-With --apply it will create missing Telegram topics via `openclaw message thread create`
-using the configured Telegram channel, then emit resolved session keys and send payloads.
+With --apply it will create missing Telegram topics via the installed
+Telegram forum-topic provider API, then emit resolved session keys and send payloads.
 
 It does not call `sessions_send` itself.
 """
@@ -29,7 +29,7 @@ BASE_DIR = Path(__file__).resolve().parent
 RUNTIME_DIR = BASE_DIR.parent
 LOAD_EXISTING = BASE_DIR / "load_dispatch_existing_state.py"
 RUNTIME_EXECUTE = BASE_DIR / "runtime_execute_dispatch.py"
-DEFAULT_CHAT_ID = "-5034109564"
+DEFAULT_CHAT_ID = "-1003846500961"
 SESSION_KEY_TEMPLATE = "agent:main:telegram:group:{chat_id}:topic:{topic_id}"
 
 
@@ -50,16 +50,6 @@ def python_json(script: Path, args: list[str], stdin_json: dict | None = None) -
     )
     if proc.returncode != 0:
         raise RuntimeError(proc.stderr.strip() or proc.stdout.strip() or f"{script.name} failed")
-    out = proc.stdout.strip()
-    if not out:
-        return {}
-    return json.loads(out.splitlines()[-1])
-
-
-def shell_json(cmd: list[str]) -> dict:
-    proc = subprocess.run(cmd, text=True, capture_output=True)
-    if proc.returncode != 0:
-        raise RuntimeError(proc.stderr.strip() or proc.stdout.strip() or "command failed")
     out = proc.stdout.strip()
     if not out:
         return {}
@@ -237,6 +227,19 @@ def main() -> int:
             }
             run_plans.append(run_plan)
 
+        parallel_steps = []
+        for run in run_plans:
+            if run.get("sessions_send_payload"):
+                parallel_steps.append(
+                    {
+                        "research_run_id": run["research_run_id"],
+                        "persona": run["persona"],
+                        "tool": "sessions_send",
+                        "payload": run["sessions_send_payload"],
+                        "delivered_result_template": run.get("delivered_result_template"),
+                    }
+                )
+
         result = {
             "status": "topics_bootstrapped" if args.apply else "bootstrap_plan_ready",
             "dispatch_id": manifest.get("dispatch_id"),
@@ -249,6 +252,11 @@ def main() -> int:
                 "create_command": controller_command,
             },
             "launchable_runs": run_plans,
+            "parallel_handoff_group": {
+                "parallel": True,
+                "description": "After topic bootstrap, execute these persona sessions_send handoffs in parallel where possible.",
+                "steps": parallel_steps,
+            },
             "replay_hint": {
                 "script": str(RUNTIME_DIR / "scripts" / "run_dispatch_runtime.py"),
                 "mode": "replay-results",

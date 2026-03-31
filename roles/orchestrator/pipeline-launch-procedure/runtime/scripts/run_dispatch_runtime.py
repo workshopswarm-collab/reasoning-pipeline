@@ -138,6 +138,19 @@ def main() -> int:
             "prepare": prepare_result,
             "runtime_tool_loop_required": True,
             "runtime_tool_loop": [],
+            "runtime_tool_phases": [
+                {
+                    "phase": "bootstrap_topics",
+                    "parallel": False,
+                    "description": "Create/reuse the controller topic once, then create/reuse persona topics for launchable runs.",
+                },
+                {
+                    "phase": "fan_out_persona_handoffs",
+                    "parallel": True,
+                    "description": "After topic bootstrap, deliver persona kickoffs in parallel where possible.",
+                    "run_count": prepare_result.get("launchable_count", 0),
+                },
+            ],
         }
 
         for run in prepare_result["launchable_runs"]:
@@ -146,6 +159,7 @@ def main() -> int:
                     "research_run_id": run["research_run_id"],
                     "persona": run["persona"],
                     "step": "telegram_topic_bootstrap_then_sessions_send",
+                    "parallel_group": "fan_out_persona_handoffs",
                     "payload_template": run["handoff_payload"],
                     "target": run["target"],
                     "on_success": [

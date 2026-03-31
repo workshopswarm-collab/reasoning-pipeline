@@ -205,6 +205,7 @@ def prepare_launch_plan(manifest: dict, existing_map: Optional[dict] = None) -> 
         "operator_instructions": [
             "create the controller topic once for this dispatch and one fresh persona topic per launchable run",
             "resolve each created persona topic to a Telegram topic session key before calling sessions_send",
+            "after topic bootstrap, fan out the resolved persona handoffs in parallel where possible rather than sending them strictly one by one",
             "inject the resolved sessionKey into handoff_payload at execution time and then deliver with sessions_send",
             "after each successful handoff, build a patch payload with action=build-patch using the resolved session/topic metadata",
             "apply that patch via update_research_run.py",

@@ -19,8 +19,9 @@ Do **not** treat persistent persona lanes as part of the current model.
 3. Successful handoffs patch the matching `research_runs` rows to `running`.
 4. Persona topics do the actual research work and, when possible, post visible STARTING/FINISHED lines in Telegram.
 5. Persona lanes reconcile completion/failure back into `research_runs`.
-6. Terminal run updates auto-attempt manifest reconciliation and parent case/market closure.
-7. If automatic reconciliation is missed, use the manual finalizer as a repair/backstop step.
+6. Terminal run updates auto-attempt manifest reconciliation.
+7. Parent case/market closure happens only when the full swarm has completed cleanly.
+8. If automatic reconciliation is missed, use the manual finalizer as a repair/backstop step.
 
 ## Important nuance
 

@@ -6,9 +6,8 @@ Best-effort flow:
 2. If a matching dispatch manifest can be found, run the standard manifest finalizer
    to repair artifact-vs-DB lag.
 3. Reload sibling run counts for the case.
-4. If no sibling runs remain queued/running, close the case and mark the parent
-   market pipeline state `closed` so the DB reflects that the swarm is no longer
-   in flight.
+4. Close the parent case/market only when the full swarm has completed cleanly
+   (all sibling runs are `completed`).
 
 This is intentionally idempotent and safe to call after any terminal run update.
 """
@@ -141,10 +140,7 @@ case_updated AS (
     orchestration_notes = COALESCE(c.orchestration_notes, '{}'::jsonb) || jsonb_build_object(
       'auto_finalized_at', NOW(),
       'swarm_terminal', true,
-      'swarm_outcome', CASE
-        WHEN t.failed_count = 0 THEN 'completed'
-        ELSE 'completed_with_failures'
-      END,
+      'swarm_outcome', 'completed',
       'run_counts', jsonb_build_object(
         'queued', t.queued_count,
         'running', t.running_count,
@@ -157,6 +153,7 @@ case_updated AS (
   WHERE c.id = t.case_id
     AND t.queued_count = 0
     AND t.running_count = 0
+    AND t.completed_count = t.total_count
   RETURNING c.id, c.status, c.closed_at, c.orchestration_notes
 ),
 market_updated AS (
@@ -166,11 +163,13 @@ market_updated AS (
   WHERE m.id = t.market_id
     AND t.queued_count = 0
     AND t.running_count = 0
+    AND t.completed_count = t.total_count
   RETURNING m.id, m.pipeline_status
 )
 SELECT json_build_object(
   'case_updated', EXISTS(SELECT 1 FROM case_updated),
   'market_updated', EXISTS(SELECT 1 FROM market_updated),
+  'all_completed', COALESCE((SELECT completed_count = total_count FROM target LIMIT 1), false),
   'case_status', COALESCE((SELECT status FROM case_updated LIMIT 1), (SELECT case_status FROM target LIMIT 1)),
   'pipeline_status', COALESCE((SELECT pipeline_status FROM market_updated LIMIT 1), (SELECT pipeline_status FROM target LIMIT 1)),
   'counts', json_build_object(

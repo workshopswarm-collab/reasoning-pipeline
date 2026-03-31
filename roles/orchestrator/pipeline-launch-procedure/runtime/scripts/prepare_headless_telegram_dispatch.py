@@ -183,6 +183,7 @@ def main() -> int:
         manifest, runtime_preview, manifest_path, selection = prepare_manifest(args)
         next_tool_steps = build_next_tool_steps(runtime_preview["prepare"])
 
+        bootstrap_command = f"python3 {BASE_DIR / 'bootstrap_telegram_topics.py'} --manifest-path {manifest_path} --apply --pretty"
         result = {
             "status": "ready_for_topic_bootstrap",
             "selection": selection,
@@ -211,8 +212,18 @@ def main() -> int:
                     "launchable_count": runtime_preview["prepare"]["launchable_count"],
                     "skipped_count": runtime_preview["prepare"]["skipped_count"],
                 },
+                "phases": runtime_preview.get("runtime_tool_phases", []),
+            },
+            "bootstrap_step": {
+                "tool": "exec",
+                "description": "Create/reuse the controller topic and persona topics, then resolve ready-to-send session payloads.",
+                "command": bootstrap_command,
             },
             "next_tool_steps": next_tool_steps,
+            "parallel_launch_hint": {
+                "parallel": True,
+                "description": "After topic bootstrap, send persona kickoffs in parallel where possible instead of strictly serial launch.",
+            },
             "manual_finalize_backstop_step": {
                 "tool": "exec",
                 "description": "Optional repair step if automatic terminal finalization is missed or you want an explicit post-run audit",

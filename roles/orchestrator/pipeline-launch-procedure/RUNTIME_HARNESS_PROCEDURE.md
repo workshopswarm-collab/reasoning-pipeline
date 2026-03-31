@@ -34,7 +34,7 @@ Turn a planner-emitted manifest into:
 For each launchable run in order:
 1. create/reuse the controller topic once for the dispatch and create/reuse one fresh persona topic per queued run
 2. resolve each persona topic to its Telegram topic session key
-3. call `sessions_send` with the now-resolved `launchable_run.handoff_payload`
+3. after bootstrap, call `sessions_send` with the now-resolved `launchable_run.handoff_payload` and fan out the persona handoffs in parallel where practical
 4. if delivery succeeds:
    - record the resolved target session key plus Telegram chat/topic ids
    - treat this as internal delivery into the persona topic session, not necessarily as a visible Telegram kickoff post
