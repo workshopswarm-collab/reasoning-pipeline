@@ -18,7 +18,8 @@ from typing import Any
 
 DEFAULT_PSQL = "/opt/homebrew/opt/postgresql@16/bin/psql"
 BASE_DIR = Path(__file__).resolve().parent
-RUNTIME_DIR = BASE_DIR.parent
+SCRIPTS_DIR = BASE_DIR.parent
+RUNTIME_DIR = SCRIPTS_DIR.parent
 PIPELINE_DIR = RUNTIME_DIR.parent
 WORKSPACE_ROOT = PIPELINE_DIR.parents[2]
 DEFAULT_ENV_PATH = WORKSPACE_ROOT / ".env"

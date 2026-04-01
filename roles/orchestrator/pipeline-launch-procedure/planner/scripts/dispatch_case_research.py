@@ -181,6 +181,15 @@ def build_visible_markers(*, research_run_id: str, persona: str, market_title: s
 
 
 def build_topic_handoff_message(*, research_run_id: str, persona: str, case_key: str, topic_title: str, controller_topic_title: str, market_title: str, workspace_note_path: str, prompt_text: str, start_marker: str, finish_marker: str) -> str:
+    completion_cmd = (
+        "python3 roles/orchestrator/pipeline-launch-procedure/runtime/scripts/"
+        f"reconcile_research_run_completion.py --research-run-id {research_run_id} --status completed"
+    )
+    failure_cmd = (
+        "python3 roles/orchestrator/pipeline-launch-procedure/runtime/scripts/"
+        f"reconcile_research_run_completion.py --research-run-id {research_run_id} --status failed --error "
+        '"<brief reason>"'
+    )
     return "\n".join(
         [
             f"Research run assignment for `{research_run_id}`.",
@@ -199,7 +208,11 @@ def build_topic_handoff_message(*, research_run_id: str, persona: str, case_key:
             f"- runtime posts kickoff automatically: {start_marker}",
             "- you may post sparse progress updates only at meaningful milestones or roughly once every 10 minutes max while still active",
             f"- runtime posts the completion marker automatically after successful completion: {finish_marker}",
-            f"- after finishing the actual work, mark `research_run_id={research_run_id}` completed with the runtime DB helper (or failed if blocked)",
+            "",
+            "Terminal state helper (run this via the exec tool from the workspace root):",
+            f"- on success: `{completion_cmd}`",
+            f"- if blocked/failed: `{failure_cmd}`",
+            "- the helper auto-updates research_runs, stamps completed_at for successful completion, and posts the visible FINISHED marker from stored delivery metadata",
             "",
             "BEGIN_PROMPT",
             prompt_text,
@@ -301,7 +314,6 @@ def main() -> int:
                 "chatId": research_group["chat_id"],
                 "topicTitle": persona_topic_title,
                 "message": handoff_message,
-                "timeoutSeconds": 20,
             }
 
             post_handoff_update_template = {
@@ -410,7 +422,7 @@ def main() -> int:
                 "for each run, check idempotency against current research_runs status and prior telegram topic metadata",
                 "create the controller topic once for the dispatch and create one fresh persona topic per queued run",
                 "resolve each created topic to a telegram topic session key",
-                "after topic bootstrap, fan out the eligible persona sessions_send handoffs in parallel where possible",
+                "after topic bootstrap, materialize each topic session if needed and fan out the eligible persona sessions.send handoffs in parallel where possible",
                 "after each successful handoff, build a filled DB patch from runs[i].handoff.post_handoff_update_template",
                 "patch the corresponding research_runs row using update_research_run.py so status becomes running only after topic creation and persona-topic handoff succeed",
                 "if some runs launch and others fail, return delivered_partial and retry only failed queued runs later without creating duplicate topics",

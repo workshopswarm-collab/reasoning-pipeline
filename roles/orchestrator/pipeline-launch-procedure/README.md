@@ -5,31 +5,34 @@ This folder is the launch control-plane for the research swarm.
 ## Canonical truth
 
 - Runtime surface: **fresh Telegram topics**
-- Handoff primitive: `sessions_send`
+- Handoff primitive: Gateway RPC `sessions.send` (normally invoked through the runtime bridge/helper)
 - Stable completion key: `research_run_id`
+- Lifecycle owner for visible STARTING/FINISHED markers: `runtime/scripts/update_research_run.py`
+- Runtime supervision path: `runtime/scripts/run_telegram_swarm_runtime_loop.py`
 - Primary completion path: terminal `update_research_run.py` updates auto-attempt parent finalization
-- Manual repair path: `runtime/scripts/finalize_dispatch_after_swarm.py --file <manifest> --apply`
+- Manual repair path: `runtime/scripts/runrepairs/finalize_dispatch_after_swarm.py --file <manifest> --apply`
 
 Do **not** treat persistent persona lanes as part of the current model.
 
 ## End-to-end flow
 
 1. Planner prepares market/case state, prompts, queued `research_runs`, and a dispatch manifest.
-2. Runtime creates/reuses one controller topic plus one fresh persona topic per queued run, then turns the manifest into one `sessions_send` handoff per still-queued persona topic.
+2. Runtime creates/reuses one controller topic plus one fresh persona topic per queued run, materializes the corresponding topic sessions, and turns the manifest into one `sessions.send` handoff per still-queued persona topic.
 3. Successful handoffs patch the matching `research_runs` rows to `running`.
-4. Persona topics do the actual research work and, when possible, post visible STARTING/FINISHED lines in Telegram.
-5. Persona lanes reconcile completion/failure back into `research_runs`.
-6. Runtime sends visible Telegram kickoff posts and internal topic-session handoffs as separate launch actions.
-7. Successful completion auto-posts the visible finish marker.
+4. `update_research_run.py` treats that `queued -> running` patch as the canonical start transition and auto-posts the visible `STARTING RESEARCH` marker in Telegram.
+5. Persona topics do the actual research work and may post sparse progress updates in-topic when useful.
+6. Completion/failure reconciles back into `research_runs` by `research_run_id`, either from the lane helper or from the runtime watchdog/loop.
+7. `update_research_run.py` treats the `running -> completed` patch as the canonical finish transition and auto-posts the visible `FINISHED RESEARCH` marker.
 8. Terminal run updates auto-attempt manifest reconciliation.
 9. Parent case/market closure happens only when the full swarm has completed cleanly; partial-terminal swarms move to `needs_intervention`.
-10. If automatic reconciliation is missed, use the manual finalizer as a repair/backstop step.
+10. The Telegram swarm runtime loop supervises active `running` lanes, auto-completes stale finished work, sends nudges when needed, and exits automatically once the swarm is done.
+11. If automatic reconciliation is missed, use the manual finalizer as a repair/backstop step.
 
 ## Important nuance
 
-- `sessions_send` confirms **internal OpenClaw session delivery**.
-- It does **not** guarantee a visible kickoff post in Telegram.
-- Visible topic activity should come from the persona topic after it receives the assignment.
+- `sessions.send` confirms **internal OpenClaw session delivery** into the canonical topic session.
+- Visible `STARTING RESEARCH` / `FINISHED RESEARCH` lines are emitted by `update_research_run.py` on state transitions, not as a separate manual kickoff path.
+- Persona topics may still post sparse progress updates after assignment receipt, but lifecycle markers are now state-driven.
 
 ## Folder map
 
@@ -55,11 +58,11 @@ Planner owns deterministic preparation work:
 Runtime owns operational execution work:
 - validate manifests
 - load current run state for idempotency
-- prepare one `sessions_send` handoff per launchable lane
+- materialize Telegram topic sessions and deliver one `sessions.send` handoff per launchable lane
 - patch runs to `running` after successful handoff
 - reconcile completion/failure state
 - auto-finalize parent case/market when all runs are terminal
-- provide manual repair helpers and manifest hygiene
+- provide runtime-loop supervision, manual repair helpers, and manifest hygiene
 
 ## Canonical docs
 
@@ -78,19 +81,26 @@ Runtime owns operational execution work:
 - `planner/scripts/build_researcher_prompt.py`
 - `planner/scripts/dispatch_case_research.py`
 
-### Runtime
-- `runtime/scripts/load_dispatch_existing_state.py`
-- `runtime/scripts/run_dispatch_runtime.py`
-- `runtime/scripts/runtime_execute_dispatch.py`
-- `runtime/scripts/update_research_run.py`
-- `runtime/scripts/auto_finalize_case_after_terminal_run.py`
-- `runtime/scripts/reconcile_research_run_completion.py`
-- `runtime/scripts/reconcile_dispatch_from_artifacts.py`
-- `runtime/scripts/finalize_dispatch_after_swarm.py`
+### Runtime (preferred operator path)
 - `runtime/scripts/prepare_headless_telegram_dispatch.py`
-- `runtime/scripts/bootstrap_telegram_topics.py`
-- `runtime/scripts/list_pending_dispatch_manifests.py`
-- `runtime/scripts/archive_dispatch_manifests.py`
+- `runtime/scripts/launch_dispatch_with_stateful_posts.py`
+- `runtime/scripts/run_telegram_swarm_runtime_loop.py`
+- `runtime/scripts/update_research_run.py`
+- `runtime/scripts/reconcile_research_run_completion.py`
+
+### Runtime (lower-level / repair helpers)
+- `runtime/scripts/internal/openclaw_sessions_send.mjs`
+- `runtime/scripts/internal/auto_finalize_case_after_terminal_run.py`
+- `runtime/scripts/internal/load_dispatch_existing_state.py`
+- `runtime/scripts/internal/run_dispatch_runtime.py`
+- `runtime/scripts/internal/runtime_execute_dispatch.py`
+- `runtime/scripts/internal/bootstrap_telegram_topics.py`
+- `runtime/scripts/internal/telegram_topic_create.py`
+- `runtime/scripts/internal/watchdog_telegram_swarm_runs.py`
+- `runtime/scripts/runrepairs/reconcile_dispatch_from_artifacts.py`
+- `runtime/scripts/runrepairs/finalize_dispatch_after_swarm.py`
+- `runtime/scripts/runrepairs/list_pending_dispatch_manifests.py`
+- `runtime/scripts/runrepairs/archive_dispatch_manifests.py`
 
 ## Routing map
 
@@ -126,22 +136,26 @@ Each case creates one fresh Telegram topic per persona plus one controller topic
 ## Safety net
 
 If a lane writes artifacts but fails to reconcile DB state, use:
-- `runtime/scripts/reconcile_dispatch_from_artifacts.py`
+- `runtime/scripts/runrepairs/reconcile_dispatch_from_artifacts.py`
 
 If you need full manifest-level repair/audit, use:
-- `runtime/scripts/finalize_dispatch_after_swarm.py --file <manifest> --apply`
+- `runtime/scripts/runrepairs/finalize_dispatch_after_swarm.py --file <manifest> --apply`
 
 ## Headless wrapper
 
-Use:
+Preferred headless path:
 - `runtime/scripts/prepare_headless_telegram_dispatch.py`
-- `runtime/scripts/bootstrap_telegram_topics.py`
+- `runtime/scripts/launch_dispatch_with_stateful_posts.py`
 
-They:
-1. select/open a case when needed
-2. emit the canonical manifest
-3. load existing run state for idempotency
-4. prepare the runtime bootstrap + handoff plan
-5. create or reuse the controller/persona Telegram topics
-6. return one ready-to-send `sessions_send` payload per persona topic
-7. include an optional manual finalizer backstop command
+That path:
+1. selects/opens a case when needed
+2. emits the canonical manifest
+3. loads existing run state for idempotency
+4. bootstraps or reuses the controller/persona Telegram topics through internal helpers
+5. materializes topic sessions and delivers the handoff payloads
+6. patches successful deliveries to `running`
+7. auto-posts visible `STARTING RESEARCH` markers through `update_research_run.py`
+8. ensures the runtime loop is running once research begins
+
+Lower-level bootstrap-only step (debugging / repair use):
+- `runtime/scripts/internal/bootstrap_telegram_topics.py`

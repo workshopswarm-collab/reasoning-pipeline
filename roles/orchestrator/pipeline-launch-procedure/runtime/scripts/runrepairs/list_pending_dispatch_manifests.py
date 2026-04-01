@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""List dispatch manifests that still need fixed-channel launch work.
+"""List dispatch manifests that still need runtime launch work.
 
 This is a lightweight helper for the current TUI/runtime handoff loop.
 It scans the manifest directory, looks up the referenced research_runs rows, and
@@ -24,7 +24,8 @@ from typing import Any
 
 DEFAULT_PSQL = "/opt/homebrew/opt/postgresql@16/bin/psql"
 BASE_DIR = Path(__file__).resolve().parent
-RUNTIME_DIR = BASE_DIR.parent
+SCRIPTS_DIR = BASE_DIR.parent
+RUNTIME_DIR = SCRIPTS_DIR.parent
 PIPELINE_DIR = RUNTIME_DIR.parent
 WORKSPACE_ROOT = PIPELINE_DIR.parents[2]
 DEFAULT_MANIFEST_DIR = RUNTIME_DIR / "dispatch-manifests"

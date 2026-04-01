@@ -4,9 +4,9 @@
 This wrapper does the planner/control-plane work locally and emits a reusable
 bundle that a TUI-side OpenClaw session can execute by:
 - creating the controller/persona Telegram topics
-- resolving topic session keys
-- sending visible Telegram kickoff posts into each topic
-- delivering each persona kickoff internally with `sessions_send`
+- resolving and materializing topic session keys
+- delivering each persona kickoff internally with `sessions.send`
+- immediately patching successful deliveries to `running` so lifecycle-linked visible Telegram start posts fire automatically
 
 Supported modes:
 1. Prepare from an existing manifest (`--manifest-path`)
@@ -43,9 +43,9 @@ DEFAULT_PERSONAS = [
 SELECT_NEXT_MARKET = PLANNER_SCRIPTS_DIR / "select_next_market.py"
 OPEN_CASE = PLANNER_SCRIPTS_DIR / "open_case.py"
 DISPATCH_CASE_RESEARCH = PLANNER_SCRIPTS_DIR / "dispatch_case_research.py"
-RUN_DISPATCH_RUNTIME = BASE_DIR / "run_dispatch_runtime.py"
-LOAD_DISPATCH_EXISTING_STATE = BASE_DIR / "load_dispatch_existing_state.py"
-FINALIZE_DISPATCH_AFTER_SWARM = BASE_DIR / "finalize_dispatch_after_swarm.py"
+RUN_DISPATCH_RUNTIME = BASE_DIR / "internal" / "run_dispatch_runtime.py"
+LOAD_DISPATCH_EXISTING_STATE = BASE_DIR / "internal" / "load_dispatch_existing_state.py"
+FINALIZE_DISPATCH_AFTER_SWARM = BASE_DIR / "runrepairs" / "finalize_dispatch_after_swarm.py"
 
 
 def parse_args() -> argparse.Namespace:
@@ -159,7 +159,6 @@ def build_next_tool_steps(prepare_result: dict) -> list[dict[str, Any]]:
     steps = []
     for run in prepare_result.get("launchable_runs", []):
         payload = dict(run["handoff_payload"])
-        payload.setdefault("timeoutSeconds", 20)
         steps.append(
             {
                 "research_run_id": run["research_run_id"],
@@ -184,7 +183,8 @@ def main() -> int:
         manifest, runtime_preview, manifest_path, selection = prepare_manifest(args)
         next_tool_steps = build_next_tool_steps(runtime_preview["prepare"])
 
-        bootstrap_command = f"python3 {BASE_DIR / 'bootstrap_telegram_topics.py'} --manifest-path {manifest_path} --apply --pretty"
+        bootstrap_command = f"python3 {BASE_DIR / 'internal' / 'bootstrap_telegram_topics.py'} --manifest-path {manifest_path} --apply --pretty"
+        launch_command = f"python3 {BASE_DIR / 'launch_dispatch_with_stateful_posts.py'} --manifest-path {manifest_path} --pretty"
         result = {
             "status": "ready_for_topic_bootstrap",
             "selection": selection,
@@ -220,10 +220,15 @@ def main() -> int:
                 "description": "Create/reuse the controller topic and persona topics, then resolve ready-to-send session payloads.",
                 "command": bootstrap_command,
             },
+            "launch_step": {
+                "tool": "exec",
+                "description": "Canonical launch path: bootstrap topics, deliver handoffs, immediately patch successful runs to running, and let lifecycle-linked visible start posts fire automatically.",
+                "command": launch_command,
+            },
             "next_tool_steps": next_tool_steps,
             "parallel_launch_hint": {
                 "parallel": True,
-                "description": "After topic bootstrap, fan out visible Telegram kickoff posts and internal persona handoffs in parallel where possible instead of strictly serial launch.",
+                "description": "Prefer the canonical launch wrapper instead of manual fan-out/replay. If operating manually, successful handoffs must be patched immediately to running via update_research_run.py.",
             },
             "manual_finalize_backstop_step": {
                 "tool": "exec",

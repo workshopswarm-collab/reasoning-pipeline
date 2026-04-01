@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-"""Run the realtime runtime-side orchestration sequence for a dispatch manifest.
+"""Run the runtime-side orchestration planning/replay sequence for a dispatch manifest.
 
-This script is the runtime wrapper around the existing pipeline scripts. It is
-still intentionally split from actual OpenClaw tool execution:
+This script is now primarily a lower-level planning/replay helper underneath the
+preferred stateful launcher. It is still intentionally split from actual
+OpenClaw tool execution:
 - Python prepares/normalizes the orchestration sequence
-- the TUI/main OpenClaw runtime creates Telegram topics and performs sessions_send into them
+- the TUI/main OpenClaw runtime creates Telegram topics, materializes topic sessions, and delivers via `sessions.send`
 - Python builds DB patches and finalizes summaries
 
 The wrapper supports two operational modes:
@@ -22,12 +23,13 @@ import sys
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent
-RUNTIME_DIR = BASE_DIR.parent
+SCRIPTS_DIR = BASE_DIR.parent
+RUNTIME_DIR = SCRIPTS_DIR.parent
 PIPELINE_DIR = RUNTIME_DIR.parent
 WORKSPACE_ROOT = PIPELINE_DIR.parents[2]
 DEFAULT_ENV_PATH = WORKSPACE_ROOT / ".env"
 RUNTIME_HELPER = BASE_DIR / "runtime_execute_dispatch.py"
-UPDATE_RUN = BASE_DIR / "update_research_run.py"
+UPDATE_RUN = SCRIPTS_DIR / "update_research_run.py"
 
 
 def maybe_load_workspace_env() -> None:
@@ -147,7 +149,7 @@ def main() -> int:
                 {
                     "phase": "fan_out_persona_handoffs",
                     "parallel": True,
-                    "description": "After topic bootstrap, send visible Telegram kickoff posts and internal persona handoffs in parallel where possible.",
+                    "description": "After topic bootstrap, deliver internal persona handoffs in parallel where practical, then immediately patch delivered runs to `running` so lifecycle-linked visible start posts fire automatically.",
                     "run_count": prepare_result.get("launchable_count", 0),
                 },
             ],
@@ -158,13 +160,14 @@ def main() -> int:
                 {
                     "research_run_id": run["research_run_id"],
                     "persona": run["persona"],
-                    "step": "telegram_topic_bootstrap_then_sessions_send",
+                    "step": "telegram_topic_bootstrap_then_sessions_send_rpc",
                     "parallel_group": "fan_out_persona_handoffs",
                     "payload_template": run["handoff_payload"],
                     "target": run["target"],
                     "on_success": [
                         "call runtime_execute_dispatch.py --action build-patch with the resolved target_session_key and telegram topic metadata",
-                        "apply resulting patch payload via update_research_run.py",
+                        "apply resulting patch payload via update_research_run.py immediately",
+                        "treat the queued->running patch as the canonical start transition; update_research_run.py will auto-post the visible STARTING marker from stored delivery metadata",
                     ],
                 }
             )

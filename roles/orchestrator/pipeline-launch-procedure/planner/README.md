@@ -32,4 +32,4 @@ Planner is responsible for:
 ## Boundary
 
 Planner output is the dispatch manifest.
-Execution, Discord handoff, run-state reconciliation, and finalization belong to the sibling `../runtime/` lane.
+Execution, Telegram topic/session delivery, run-state reconciliation, lifecycle posting, and finalization belong to the sibling `../runtime/` lane.

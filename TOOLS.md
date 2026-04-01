@@ -35,16 +35,6 @@ Things like:
 
 Skills are shared. Your setup is yours. Keeping them apart means you can update skills without losing your notes, and share skills without leaking your infrastructure.
 
-## Browser Lanes
-
-### OpenClaw managed browser
-
-- Default browser lane: `openclaw`
-- Purpose: persistent agent-owned browser identity, saved sessions, safer automation
-- Status: preferred default for browsing and site logins the agent should retain
-
-Operational rule:
-- Default to `openclaw`
 
 ---
 

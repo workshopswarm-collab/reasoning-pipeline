@@ -10,12 +10,12 @@ It does not call OpenClaw tools itself; instead it:
 
 Intended pipeline fit:
 - dispatch_case_research.py -> emits manifest for fresh Telegram forum topics
-- OpenClaw runtime in TUI/main -> calls this script with action=prepare
+- OpenClaw runtime in TUI/main -> calls this internal helper with action=prepare
 - OpenClaw runtime in TUI/main -> creates controller/persona topics and resolves topic session keys
-- OpenClaw runtime in TUI/main -> performs sessions_send for each launchable run
-- OpenClaw runtime in TUI/main -> calls this script with action=build-patch per successful handoff
+- OpenClaw runtime in TUI/main -> materializes each topic session and delivers via `sessions.send`
+- OpenClaw runtime in TUI/main -> calls this internal helper with action=build-patch per successful handoff
 - OpenClaw runtime in TUI/main -> patches DB via update_research_run.py
-- OpenClaw runtime in TUI/main -> calls this script with action=finalize-summary
+- OpenClaw runtime in TUI/main -> calls this internal helper with action=finalize-summary
 """
 
 import argparse
@@ -204,10 +204,10 @@ def prepare_launch_plan(manifest: dict, existing_map: Optional[dict] = None) -> 
         "skipped_runs": skipped_runs,
         "operator_instructions": [
             "create the controller topic once for this dispatch and one fresh persona topic per launchable run",
-            "resolve each created persona topic to a Telegram topic session key before calling sessions_send",
+            "resolve each created persona topic to its canonical Telegram topic session key before delivery",
+            "materialize the topic session and deliver the internal assignment via sessions.send",
             "after topic bootstrap, fan out the resolved persona launch steps in parallel where possible rather than sending them strictly one by one",
-            "for each persona topic, send a visible Telegram kickoff post with `openclaw message send --channel telegram --thread-id ...` and deliver the internal assignment with sessions_send",
-            "inject the resolved sessionKey into handoff_payload at execution time and then deliver with sessions_send",
+            "treat the queued->running patch as the canonical start transition; update_research_run.py emits the visible STARTING marker from stored delivery metadata",
             "after each successful handoff, build a patch payload with action=build-patch using the resolved session/topic metadata",
             "apply that patch via update_research_run.py",
             "if some handoffs fail and some succeed, keep successful handoffs, record failures, and treat overall dispatch as delivered_partial",

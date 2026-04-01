@@ -10,12 +10,13 @@ Default mode is non-destructive planning:
 - load current run state from Postgres
 - prepare launchable runs with runtime_execute_dispatch.py
 - determine whether controller/persona topics can be reused
-- emit topic-create commands plus exact `sessions_send` payloads when topic ids are known
+- emit topic-create commands plus exact topic-session handoff payloads when topic ids are known
 
 With --apply it will create missing Telegram topics via the installed
-Telegram forum-topic provider API, then emit resolved session keys and send payloads.
+Telegram forum-topic provider API, then emit resolved session keys and handoff payloads.
 
-It does not call `sessions_send` itself.
+It does not call `sessions.send` itself.
+Visible kickoff commands are emitted for compatibility/debugging, but the canonical lifecycle is that visible start messages are posted automatically when the runtime applies the `queued -> running` DB patch through `update_research_run.py`.
 """
 
 import argparse
@@ -27,7 +28,8 @@ from pathlib import Path
 from typing import Any
 
 BASE_DIR = Path(__file__).resolve().parent
-RUNTIME_DIR = BASE_DIR.parent
+SCRIPTS_DIR = BASE_DIR.parent
+RUNTIME_DIR = SCRIPTS_DIR.parent
 LOAD_EXISTING = BASE_DIR / "load_dispatch_existing_state.py"
 RUNTIME_EXECUTE = BASE_DIR / "runtime_execute_dispatch.py"
 TELEGRAM_TOPIC_CREATE = BASE_DIR / "telegram_topic_create.py"
@@ -66,6 +68,11 @@ def load_manifest(path: str) -> dict:
     return json.loads(Path(path).read_text())
 
 
+def write_manifest(path: str, manifest: dict) -> None:
+    target = Path(path)
+    target.write_text(json.dumps(manifest, indent=2, sort_keys=True) + "\n")
+
+
 def research_run_ids(manifest: dict) -> list[str]:
     return [run["research_run_id"] for run in manifest.get("runs", [])]
 
@@ -84,20 +91,38 @@ def prepare_launchable(manifest: dict, existing_map: dict) -> dict:
     )
 
 
-def existing_controller_info(existing_map: dict) -> tuple[str | None, str | None]:
+def manifest_bootstrap_state(manifest: dict) -> dict:
+    raw = manifest.get("bootstrap_state")
+    return raw if isinstance(raw, dict) else {}
+
+
+def existing_controller_info(existing_map: dict, manifest: dict) -> tuple[str | None, str | None]:
     for entry in existing_map.values():
         notes = entry.get("notes") or {}
         topic_id = entry.get("controller_topic_id") or notes.get("controller_topic_id")
         topic_title = entry.get("controller_topic_title") or notes.get("controller_topic_title")
         if topic_id:
             return str(topic_id), (str(topic_title) if topic_title else None)
+    bootstrap = manifest_bootstrap_state(manifest)
+    controller = bootstrap.get("controller_topic") if isinstance(bootstrap.get("controller_topic"), dict) else {}
+    topic_id = controller.get("topic_id")
+    topic_title = controller.get("topic_title")
+    if topic_id:
+        return str(topic_id), (str(topic_title) if topic_title else None)
     return None, None
 
 
-def existing_persona_topic_info(existing: dict, target: dict) -> tuple[str | None, str | None]:
+def existing_persona_topic_info(existing: dict, manifest: dict, research_run_id: str, target: dict) -> tuple[str | None, str | None]:
     notes = existing.get("notes") or {}
     topic_id = existing.get("delivery_target_topic_id") or notes.get("delivery_target_topic_id")
     topic_title = existing.get("delivery_target_topic_title") or notes.get("delivery_target_topic_title") or target.get("topic_title")
+    if topic_id:
+        return (str(topic_id) if topic_id else None), (str(topic_title) if topic_title else None)
+    bootstrap = manifest_bootstrap_state(manifest)
+    runs = bootstrap.get("runs") if isinstance(bootstrap.get("runs"), dict) else {}
+    run_state = runs.get(research_run_id) if isinstance(runs.get(research_run_id), dict) else {}
+    topic_id = run_state.get("topic_id")
+    topic_title = run_state.get("topic_title") or target.get("topic_title")
     return (str(topic_id) if topic_id else None), (str(topic_title) if topic_title else None)
 
 
@@ -166,7 +191,7 @@ def main() -> int:
         chat_id = str(runtime_defaults.get("chat_id") or DEFAULT_CHAT_ID)
         controller_title = str(runtime_defaults.get("controller_topic_title") or f"{manifest.get('case', {}).get('case_key', 'case')} | controller")
 
-        controller_topic_id, controller_topic_title = existing_controller_info(existing_map)
+        controller_topic_id, controller_topic_title = existing_controller_info(existing_map, manifest)
         controller_action = "reuse" if controller_topic_id else "create"
         controller_command = None
         if controller_action == "create":
@@ -194,7 +219,7 @@ def main() -> int:
             target = run["target"]
             payload_template = run["handoff_payload"]
             existing = existing_map.get(research_run_id) or {}
-            topic_id, topic_title = existing_persona_topic_info(existing, target)
+            topic_id, topic_title = existing_persona_topic_info(existing, manifest, research_run_id, target)
             action = "reuse" if topic_id else "create"
             create_command = None
             if action == "create":
@@ -266,6 +291,26 @@ def main() -> int:
                     }
                 )
 
+        if args.apply and controller_topic_id:
+            manifest["bootstrap_state"] = {
+                "chat_id": chat_id,
+                "controller_topic": {
+                    "topic_id": controller_topic_id,
+                    "topic_title": controller_topic_title,
+                },
+                "runs": {
+                    run["research_run_id"]: {
+                        "persona": run["persona"],
+                        "topic_id": run.get("topic_id"),
+                        "topic_title": run.get("topic_title"),
+                        "session_key": run.get("session_key"),
+                    }
+                    for run in run_plans
+                    if run.get("topic_id")
+                },
+            }
+            write_manifest(args.manifest_path, manifest)
+
         result = {
             "status": "topics_bootstrapped" if args.apply else "bootstrap_plan_ready",
             "dispatch_id": manifest.get("dispatch_id"),
@@ -286,9 +331,9 @@ def main() -> int:
                 "steps": parallel_steps,
             },
             "replay_hint": {
-                "script": str(RUNTIME_DIR / "scripts" / "run_dispatch_runtime.py"),
+                "script": str(RUNTIME_DIR / "scripts" / "internal" / "run_dispatch_runtime.py"),
                 "mode": "replay-results",
-                "note": "After executing sessions_send for each run, collect delivered_result_template objects with final status/error and feed them into run_dispatch_runtime.py --mode replay-results --handoff-results-json <...>."
+                "note": "After executing `sessions.send` for each run, collect delivered_result_template objects with final status/error and feed them into internal/run_dispatch_runtime.py --mode replay-results --handoff-results-json <...>."
             },
         }
     except Exception as exc:  # noqa: BLE001

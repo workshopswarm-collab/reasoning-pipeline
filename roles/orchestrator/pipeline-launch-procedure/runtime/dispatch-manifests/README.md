@@ -34,7 +34,7 @@ Otherwise, retire it with explicit human approval.
 ## Helper
 
 Use:
-- `runtime/scripts/archive_dispatch_manifests.py`
+- `runtime/scripts/runrepairs/archive_dispatch_manifests.py`
 
 Default behavior:
 - dry-run only

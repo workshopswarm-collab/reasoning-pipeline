@@ -17,8 +17,9 @@ import sys
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent
+SCRIPTS_DIR = BASE_DIR.parent
 RECONCILE_FROM_ARTIFACTS = BASE_DIR / "reconcile_dispatch_from_artifacts.py"
-LOAD_EXISTING = BASE_DIR / "load_dispatch_existing_state.py"
+LOAD_EXISTING = SCRIPTS_DIR / "internal" / "load_dispatch_existing_state.py"
 
 
 def parse_args() -> argparse.Namespace:

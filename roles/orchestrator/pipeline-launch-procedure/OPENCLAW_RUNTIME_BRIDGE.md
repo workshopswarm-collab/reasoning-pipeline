@@ -13,8 +13,8 @@ Runtime consumes that manifest.
 Runtime owns delivery and lifecycle reconciliation.
 
 In the current architecture:
-- planner emits fixed-channel handoff payloads
-- runtime delivers them with `sessions_send`
+- planner emits fresh-topic handoff payloads inside the dispatch manifest
+- runtime materializes the Telegram topic session and delivers with `sessions.send`
 - runtime patches run state after successful delivery
 - runtime reconciles terminal completion/failure back into `research_runs`
 - runtime auto-attempts parent case/market finalization when the swarm becomes fully terminal
@@ -37,7 +37,7 @@ The OpenClaw runtime owns operational execution:
 1. read the manifest
 2. load existing DB state for idempotency
 3. determine which runs are still launchable (`status = queued`)
-4. call `sessions_send` into each mapped persona channel
+4. create/reuse Telegram topics, materialize their canonical topic sessions, and deliver via `sessions.send`
 5. patch successful handoffs to `running`
 6. reconcile terminal completion/failure updates back into `research_runs`
 7. auto-attempt manifest reconciliation + parent case/market closure when the swarm becomes fully terminal
@@ -51,17 +51,17 @@ Produced by:
 
 ### Existing run-state map
 Produced by:
-- `runtime/scripts/load_dispatch_existing_state.py`
+- `runtime/scripts/internal/load_dispatch_existing_state.py`
 
 ### Runtime plan
 Produced by:
-- `runtime/scripts/run_dispatch_runtime.py`
-- `runtime/scripts/runtime_execute_dispatch.py`
+- `runtime/scripts/internal/run_dispatch_runtime.py`
+- `runtime/scripts/internal/runtime_execute_dispatch.py`
 
 ## Canonical handoff primitive
 
 The current handoff primitive is:
-- `sessions_send`
+- `sessions.send` (normally invoked through the runtime helper / bridge)
 
 Not:
 - `sessions_spawn`
@@ -76,7 +76,7 @@ For Telegram fresh-topic dispatches, `handoff.target` is logical until runtime b
 
 ## DB patch rule
 
-After a successful `sessions_send`, the runtime should apply the matching DB patch through:
+After a successful `sessions.send`, the runtime should immediately apply the matching DB patch through:
 - `runtime/scripts/update_research_run.py`
 
 That post-handoff patch should set:
@@ -88,10 +88,16 @@ That post-handoff patch should set:
 - `notes.delivery_target_topic_id`
 - `notes.delivery_target_topic_title`
 
+Lifecycle coupling rule:
+- the `queued -> running` patch is the canonical start transition
+- `update_research_run.py` should auto-post the visible Telegram `STARTING RESEARCH` marker from the stored delivery metadata during that transition
+- the `running -> completed` patch is the canonical finish transition
+- `update_research_run.py` should auto-post the visible Telegram `FINISHED RESEARCH` marker during that transition
+
 Important nuance:
-- `sessions_send` confirms internal session delivery
-- it does not by itself guarantee a visible kickoff post in Telegram
-- visible STARTING/FINISHED posts should be emitted by the persona lane after it receives the assignment when possible
+- `sessions.send` confirms internal session delivery into the canonical topic session
+- it does not by itself guarantee a visible kickoff post in Telegram unless the running-state patch is applied
+- therefore delivery is not considered operationally complete until the DB patch succeeds
 
 ## Completion model
 
@@ -110,4 +116,4 @@ Canonical completion path:
 ## Manual backstop
 
 If reconciliation is missed, run:
-- `runtime/scripts/finalize_dispatch_after_swarm.py --file <manifest> --apply`
+- `runtime/scripts/runrepairs/finalize_dispatch_after_swarm.py --file <manifest> --apply`

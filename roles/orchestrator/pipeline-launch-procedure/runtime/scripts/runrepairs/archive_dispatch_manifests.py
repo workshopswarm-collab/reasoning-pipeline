@@ -20,7 +20,7 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parents[2]
-DEFAULT_MANIFEST_DIR = BASE_DIR / "runtime" / "dispatch-manifests"
+DEFAULT_MANIFEST_DIR = BASE_DIR / "dispatch-manifests"
 DEFAULT_RETIRE_DIR = Path.home() / ".Trash" / "pipeline-launch-procedure-retired-manifests"
 
 

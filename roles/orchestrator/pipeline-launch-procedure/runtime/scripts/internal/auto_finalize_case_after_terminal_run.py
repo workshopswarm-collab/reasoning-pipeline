@@ -23,9 +23,10 @@ from pathlib import Path
 
 DEFAULT_PSQL = "/opt/homebrew/opt/postgresql@16/bin/psql"
 BASE_DIR = Path(__file__).resolve().parent
-RUNTIME_DIR = BASE_DIR.parent
+SCRIPTS_DIR = BASE_DIR.parent
+RUNTIME_DIR = SCRIPTS_DIR.parent
 DISPATCH_MANIFESTS_DIR = RUNTIME_DIR / "dispatch-manifests"
-FINALIZE_DISPATCH = BASE_DIR / "finalize_dispatch_after_swarm.py"
+FINALIZE_DISPATCH = SCRIPTS_DIR / "runrepairs" / "finalize_dispatch_after_swarm.py"
 PIPELINE_DIR = RUNTIME_DIR.parent
 WORKSPACE_ROOT = PIPELINE_DIR.parents[2]
 DEFAULT_ENV_PATH = WORKSPACE_ROOT / ".env"

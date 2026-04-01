@@ -13,9 +13,10 @@ This spec connects:
 ## Canonical truth
 
 - Runtime surface: fresh Telegram topics
-- Handoff primitive: `sessions_send`
+- Handoff primitive: Gateway RPC `sessions.send` (wrapped by the runtime bridge/helper)
 - Stable completion key: `research_run_id`
 - Primary completion path: runtime-side terminal updates
+- Lifecycle markers: emitted by `update_research_run.py` on `running` / `completed` transitions
 - Parent finalization policy: close the case/market once all sibling runs are terminal
 - Manual repair path: manifest finalizer
 
@@ -97,22 +98,28 @@ Rule:
 5. emit one post-handoff DB patch template per persona
 
 ### Runtime responsibilities
-`run_dispatch_runtime.py` / `runtime_execute_dispatch.py` must:
+`internal/run_dispatch_runtime.py` / `runtime_execute_dispatch.py` must:
 1. validate the manifest
 2. consult current DB state for idempotency
 3. skip non-queued runs
-4. emit one `sessions_send` handoff step per still-queued run
+4. emit one canonical topic-session handoff step per still-queued run
 5. build one post-handoff DB patch per successful delivery
 6. summarize delivery as `delivered_all`, `delivered_partial`, or `delivery_failed`
 
 ### Persona-lane responsibilities
-Each persona lane should, when possible, emit visible lifecycle lines in this exact format:
+Each persona lane should:
+- do the research work in its assigned Telegram topic session
+- write the required artifacts to the assigned paths
+- optionally post sparse progress updates in-topic when useful
+- reconcile completion/failure through the runtime helper when possible
+
+Canonical visible lifecycle lines are still:
 - `STARTING RESEARCH | market=<market title> | persona=<persona> | research_run_id=<id>`
 - `FINISHED RESEARCH | market=<market title> | persona=<persona> | research_run_id=<id> | agent_finding_path=<path>`
 
 Important nuance:
-- those visible lines come from the lane after assignment receipt
-- the original `sessions_send` handoff is internal and may not be visible in Discord
+- those visible lines are emitted by `update_research_run.py` on state transitions
+- the original `sessions.send` handoff is internal and is not itself the visible kickoff post
 
 ## Running-state rule
 
@@ -143,7 +150,7 @@ Terminal run updates should flow through:
 - `runtime/scripts/reconcile_research_run_completion.py`
 
 Those helpers now auto-attempt:
-1. manifest-level reconciliation through `runtime/scripts/finalize_dispatch_after_swarm.py`
+1. manifest-level reconciliation through `runtime/scripts/runrepairs/finalize_dispatch_after_swarm.py`
 2. parent closure when all sibling runs are terminal
 
 ## Parent-finalization policy
@@ -156,11 +163,11 @@ Current policy:
 
 ### Artifact-vs-DB lag
 If the primary artifact exists but the DB row is still `queued` or `running`, use:
-- `runtime/scripts/reconcile_dispatch_from_artifacts.py`
+- `runtime/scripts/runrepairs/reconcile_dispatch_from_artifacts.py`
 
 ### Manual manifest-level repair
 If automatic finalization is missed, run:
-- `runtime/scripts/finalize_dispatch_after_swarm.py --file <manifest> --apply`
+- `runtime/scripts/runrepairs/finalize_dispatch_after_swarm.py --file <manifest> --apply`
 
 ## Default artifact paths
 

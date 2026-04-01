@@ -5,55 +5,57 @@ Use this procedure when the TUI/main runtime needs to deliver a prepared dispatc
 ## Goal
 
 Turn a planner-emitted manifest into:
-- one `sessions_send` step per still-queued persona run
+- one canonical `sessions.send` delivery step per still-queued persona run
 - DB patches for successfully delivered runs
 - a concise delivery summary
 
 ## Required helpers
 
-- `runtime/scripts/load_dispatch_existing_state.py`
-- `runtime/scripts/run_dispatch_runtime.py`
-- `runtime/scripts/runtime_execute_dispatch.py`
+- `runtime/scripts/internal/load_dispatch_existing_state.py`
+- `runtime/scripts/internal/run_dispatch_runtime.py`
+- `runtime/scripts/internal/runtime_execute_dispatch.py`
 - `runtime/scripts/update_research_run.py`
-- `runtime/scripts/auto_finalize_case_after_terminal_run.py`
-- `runtime/scripts/finalize_dispatch_after_swarm.py`
+- `runtime/scripts/internal/auto_finalize_case_after_terminal_run.py`
+- `runtime/scripts/runrepairs/finalize_dispatch_after_swarm.py`
 
 ## Happy path
 
 ### Step 1 — load idempotent state
 1. load the manifest
 2. load current DB state for the referenced `research_runs`
-3. pass that state into `run_dispatch_runtime.py`
+3. pass that state into `internal/run_dispatch_runtime.py`
 4. obtain:
    - validation result
    - launchable runs
    - skipped runs
-   - one `sessions_send` payload per launchable run
+   - one canonical topic-session handoff payload per launchable run
 
 ### Step 2 — bootstrap topics and execute handoffs
 For each launchable run in order:
 1. create/reuse the controller topic once for the dispatch and create/reuse one fresh persona topic per queued run
 2. resolve each persona topic to its Telegram topic session key
-3. after bootstrap, call `sessions_send` with the now-resolved `launchable_run.handoff_payload` and fan out the persona handoffs in parallel where practical
+3. after bootstrap, materialize the canonical topic session if needed, call `sessions.send` with the now-resolved `launchable_run.handoff_payload`, and fan out the persona handoffs in parallel where practical
 4. if delivery succeeds:
-   - record the resolved target session key plus Telegram chat/topic ids
-   - treat this as internal delivery into the persona topic session, not necessarily as a visible Telegram kickoff post
+   - immediately build the corresponding DB patch payload
+   - immediately apply that patch via `update_research_run.py`
+   - treat the `queued -> running` DB patch as the canonical lifecycle transition
+   - let `update_research_run.py` auto-post the visible Telegram `STARTING RESEARCH` marker from stored delivery metadata
 5. if delivery fails:
    - record the error
+   - do not patch the run to `running`
    - continue so partial success can be preserved
 
-### Step 3 — build/apply DB patches
-For each successful delivery:
-1. call `run_dispatch_runtime.py` replay mode with the collected handoff results
-2. obtain the per-run patch payloads / update commands
-3. apply each patch via `update_research_run.py`
-4. verify the row now shows:
+### Step 3 — verify lifecycle patching
+For each successful delivery/patch:
+1. verify the row now shows:
    - `status = running`
    - `started_at` set
    - `notes.dispatch_stage = persona_topic_running`
    - `notes.delivery_target_session_key`
    - `notes.delivery_target_chat_id`
    - `notes.delivery_target_topic_id`
+   - `notes.visible_start_posted_at` when visible start posting succeeds
+2. treat missing `visible_start_posted_at` as a launch-path problem to repair, not as expected behavior
 
 ### Step 4 — summarize delivery
 Use the runtime summary object to report one of:
@@ -75,7 +77,7 @@ Use the runtime summary object to report one of:
 
 ### Manual backstop
 Use:
-- `runtime/scripts/finalize_dispatch_after_swarm.py --file <manifest> --apply`
+- `runtime/scripts/runrepairs/finalize_dispatch_after_swarm.py --file <manifest> --apply`
 
 Use the manual finalizer when:
 - artifacts exist but DB state still lags
@@ -95,8 +97,8 @@ The fixed-channel runtime should skip any run already marked:
 ## Non-goals
 
 The runtime harness no longer depends on:
-- legacy thread-binding machinery
+- legacy Discord/thread-binding machinery
 - subagent session creation
 - unique per-run child-session routing metadata
 
-The handoff surface is the fixed Discord persona-channel session map.
+The handoff surface is the fresh Telegram topic session created or reused for each queued persona run.

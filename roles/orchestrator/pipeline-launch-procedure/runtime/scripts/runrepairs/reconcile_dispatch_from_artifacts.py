@@ -6,8 +6,8 @@ Purpose:
   corresponding `research_runs` row is still `queued` or `running`
 - optionally mark those runs `completed`
 
-This is a safety net for the fixed-channel model when a lane produces artifacts
-but fails to call the DB completion helper.
+This is a safety net for the current Telegram topic-session model when a lane
+produces artifacts but fails to call the DB completion helper.
 """
 
 from __future__ import annotations
@@ -19,9 +19,10 @@ import sys
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent
-LOAD_EXISTING = BASE_DIR / "load_dispatch_existing_state.py"
-RECONCILE_COMPLETION = BASE_DIR / "reconcile_research_run_completion.py"
-WORKSPACE_ROOT = BASE_DIR.parents[3]
+SCRIPTS_DIR = BASE_DIR.parent
+LOAD_EXISTING = SCRIPTS_DIR / "internal" / "load_dispatch_existing_state.py"
+RECONCILE_COMPLETION = SCRIPTS_DIR / "reconcile_research_run_completion.py"
+WORKSPACE_ROOT = BASE_DIR.parents[5]
 
 
 def parse_args() -> argparse.Namespace:
