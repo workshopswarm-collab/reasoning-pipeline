@@ -26,6 +26,8 @@ This spec connects:
   - waiting for work
 - `markets.pipeline_status = researching`
   - selected and actively in flight
+- `markets.pipeline_status = needs_intervention`
+  - swarm is terminal but did not complete cleanly; human/runtime intervention is needed
 - `markets.pipeline_status = closed`
   - no longer actively in the pipeline
 
@@ -148,7 +150,7 @@ Those helpers now auto-attempt:
 
 Current policy:
 - close the case/market only when all runs are `completed`
-- if some runs fail, keep the parent case/market open for intervention rather than auto-closing it as a successful swarm completion
+- if all runs are terminal but one or more did not complete cleanly, set `markets.pipeline_status = needs_intervention` and keep the case open for intervention
 
 ## Safety nets
 

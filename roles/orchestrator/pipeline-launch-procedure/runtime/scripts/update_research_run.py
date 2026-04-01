@@ -18,6 +18,7 @@ import json
 import os
 import subprocess
 import sys
+from datetime import datetime, timezone
 from pathlib import Path
 
 DEFAULT_PSQL = "/opt/homebrew/opt/postgresql@16/bin/psql"
@@ -28,6 +29,7 @@ WORKSPACE_ROOT = PIPELINE_DIR.parents[2]
 DEFAULT_ENV_PATH = WORKSPACE_ROOT / ".env"
 AUTO_FINALIZER = BASE_DIR / "auto_finalize_case_after_terminal_run.py"
 TERMINAL_STATUSES = {"completed", "failed"}
+VISIBLE_FINISH_STATUSES = {"completed"}
 
 SQL = r'''
 WITH input AS (
@@ -181,6 +183,59 @@ def parse_json_lines(raw: str) -> dict:
     return json.loads(stdout)
 
 
+def send_visible_telegram_message(*, chat_id: str, topic_id: str, message: str) -> dict:
+    proc = subprocess.run(
+        [
+            "openclaw",
+            "message",
+            "send",
+            "--channel",
+            "telegram",
+            "--target",
+            str(chat_id),
+            "--thread-id",
+            str(topic_id),
+            "--message",
+            message,
+            "--json",
+        ],
+        text=True,
+        capture_output=True,
+    )
+    if proc.returncode != 0:
+        raise RuntimeError(proc.stderr.strip() or proc.stdout.strip() or "telegram visible send failed")
+    return parse_json_lines(proc.stdout)
+
+
+def maybe_send_visible_finish(args: argparse.Namespace, result: dict) -> dict | None:
+    if result.get("status") not in VISIBLE_FINISH_STATUSES:
+        return None
+    notes = result.get("notes") or {}
+    if notes.get("visible_finish_posted_at"):
+        return {"status": "skipped", "reason": "already_posted"}
+    chat_id = notes.get("delivery_target_chat_id")
+    topic_id = notes.get("delivery_target_topic_id")
+    message = notes.get("expected_finish_marker")
+    if not chat_id or not topic_id or not message:
+        return {"status": "skipped", "reason": "missing_delivery_metadata"}
+    sent = send_visible_telegram_message(chat_id=str(chat_id), topic_id=str(topic_id), message=str(message))
+    sent["status"] = "ok"
+    run_psql(
+        args.psql,
+        args.db_url,
+        {
+            "research_run_id": result.get("research_run_id"),
+            "status": result.get("status"),
+            "workspace_note_path": result.get("workspace_note_path"),
+            "notes": {
+                "visible_finish_posted_at": datetime.now(timezone.utc).isoformat(),
+                "visible_finish_message_id": sent.get("messageId"),
+            },
+        },
+    )
+    return sent
+
+
 def maybe_auto_finalize(args: argparse.Namespace, result: dict) -> dict | None:
     if args.skip_auto_finalize or os.getenv("ORCHESTRATOR_SKIP_AUTO_FINALIZE") == "1":
         return None
@@ -218,6 +273,9 @@ def main() -> int:
     try:
         payload = build_payload(args)
         result = run_psql(args.psql, args.db_url, payload)
+        visible_finish = maybe_send_visible_finish(args, result)
+        if visible_finish is not None:
+            result["visible_finish"] = visible_finish
         auto_finalize = maybe_auto_finalize(args, result)
         if auto_finalize is not None:
             result["auto_finalize"] = auto_finalize

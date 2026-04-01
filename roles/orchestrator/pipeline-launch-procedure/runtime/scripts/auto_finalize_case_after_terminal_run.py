@@ -132,7 +132,7 @@ WITH target AS (
   WHERE rr.id = NULLIF(:'research_run_id', '')::uuid
   LIMIT 1
 ),
-case_updated AS (
+case_completed AS (
   UPDATE cases c
   SET
     status = 'closed',
@@ -156,7 +156,28 @@ case_updated AS (
     AND t.completed_count = t.total_count
   RETURNING c.id, c.status, c.closed_at, c.orchestration_notes
 ),
-market_updated AS (
+case_intervention AS (
+  UPDATE cases c
+  SET orchestration_notes = COALESCE(c.orchestration_notes, '{}'::jsonb) || jsonb_build_object(
+      'auto_finalized_at', NOW(),
+      'swarm_terminal', true,
+      'swarm_outcome', 'needs_intervention',
+      'run_counts', jsonb_build_object(
+        'queued', t.queued_count,
+        'running', t.running_count,
+        'completed', t.completed_count,
+        'failed', t.failed_count,
+        'total', t.total_count
+      )
+    )
+  FROM target t
+  WHERE c.id = t.case_id
+    AND t.queued_count = 0
+    AND t.running_count = 0
+    AND t.completed_count < t.total_count
+  RETURNING c.id, c.status, c.closed_at, c.orchestration_notes
+),
+market_completed AS (
   UPDATE markets m
   SET pipeline_status = 'closed'::processing_status
   FROM target t
@@ -165,13 +186,24 @@ market_updated AS (
     AND t.running_count = 0
     AND t.completed_count = t.total_count
   RETURNING m.id, m.pipeline_status
+),
+market_intervention AS (
+  UPDATE markets m
+  SET pipeline_status = 'needs_intervention'::processing_status
+  FROM target t
+  WHERE m.id = t.market_id
+    AND t.queued_count = 0
+    AND t.running_count = 0
+    AND t.completed_count < t.total_count
+  RETURNING m.id, m.pipeline_status
 )
 SELECT json_build_object(
-  'case_updated', EXISTS(SELECT 1 FROM case_updated),
-  'market_updated', EXISTS(SELECT 1 FROM market_updated),
+  'case_updated', EXISTS(SELECT 1 FROM case_completed) OR EXISTS(SELECT 1 FROM case_intervention),
+  'market_updated', EXISTS(SELECT 1 FROM market_completed) OR EXISTS(SELECT 1 FROM market_intervention),
   'all_completed', COALESCE((SELECT completed_count = total_count FROM target LIMIT 1), false),
-  'case_status', COALESCE((SELECT status FROM case_updated LIMIT 1), (SELECT case_status FROM target LIMIT 1)),
-  'pipeline_status', COALESCE((SELECT pipeline_status FROM market_updated LIMIT 1), (SELECT pipeline_status FROM target LIMIT 1)),
+  'needs_intervention', COALESCE((SELECT completed_count < total_count AND queued_count = 0 AND running_count = 0 FROM target LIMIT 1), false),
+  'case_status', COALESCE((SELECT status FROM case_completed LIMIT 1), (SELECT status FROM case_intervention LIMIT 1), (SELECT case_status FROM target LIMIT 1)),
+  'pipeline_status', COALESCE((SELECT pipeline_status FROM market_completed LIMIT 1), (SELECT pipeline_status FROM market_intervention LIMIT 1), (SELECT pipeline_status FROM target LIMIT 1)),
   'counts', json_build_object(
     'queued', (SELECT queued_count FROM target LIMIT 1),
     'running', (SELECT running_count FROM target LIMIT 1),

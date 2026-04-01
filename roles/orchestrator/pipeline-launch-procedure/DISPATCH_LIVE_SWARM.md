@@ -48,8 +48,9 @@ Primary planner:
 13. persona topics should post visible lifecycle updates in-topic when possible using the standardized STARTING/FINISHED format
 14. between start and finish, persona topics may post brief progress updates sparsely (milestone-based or roughly every 10 minutes while active) so humans can see movement without spamming the runtime surface
 15. completion handling should reconcile each run back from its fixed `research_run_id`
-16. terminal `update_research_run.py` completion/failure updates should auto-attempt dispatch reconciliation and parent case/market finalization
-17. if the automatic path is missed or you need a repair/audit step, run:
+16. successful completion should auto-post the visible Telegram finish marker through `update_research_run.py`
+17. terminal `update_research_run.py` completion/failure updates should auto-attempt dispatch reconciliation and parent case/market finalization
+18. if the automatic path is missed or you need a repair/audit step, run:
    - `runtime/scripts/finalize_dispatch_after_swarm.py --file <manifest> --apply`
 18. finalize launch/completion summaries for Orchestrator
 

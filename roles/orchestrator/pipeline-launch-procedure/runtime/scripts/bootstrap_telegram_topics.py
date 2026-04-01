@@ -30,6 +30,7 @@ BASE_DIR = Path(__file__).resolve().parent
 RUNTIME_DIR = BASE_DIR.parent
 LOAD_EXISTING = BASE_DIR / "load_dispatch_existing_state.py"
 RUNTIME_EXECUTE = BASE_DIR / "runtime_execute_dispatch.py"
+TELEGRAM_TOPIC_CREATE = BASE_DIR / "telegram_topic_create.py"
 DEFAULT_CHAT_ID = "-1003846500961"
 SESSION_KEY_TEMPLATE = "agent:main:telegram:group:{chat_id}:topic:{topic_id}"
 
@@ -58,23 +59,7 @@ def python_json(script: Path, args: list[str], stdin_json: dict | None = None) -
 
 
 def create_forum_topic(chat_id: str, title: str) -> dict:
-    script = f"""
-import {{ createForumTopicTelegram }} from '/opt/homebrew/lib/node_modules/openclaw/dist/plugin-sdk/telegram.js';
-const result = await createForumTopicTelegram({json.dumps(chat_id)}, {json.dumps(title)});
-console.log(JSON.stringify(result));
-"""
-    proc = subprocess.run([
-        "node",
-        "--input-type=module",
-        "--eval",
-        script,
-    ], text=True, capture_output=True)
-    if proc.returncode != 0:
-        raise RuntimeError(proc.stderr.strip() or proc.stdout.strip() or "createForumTopicTelegram failed")
-    out = proc.stdout.strip()
-    if not out:
-        return {}
-    return json.loads(out.splitlines()[-1])
+    return python_json(TELEGRAM_TOPIC_CREATE, ["--chat-id", chat_id, "--title", title])
 
 
 def load_manifest(path: str) -> dict:
@@ -118,14 +103,12 @@ def existing_persona_topic_info(existing: dict, target: dict) -> tuple[str | Non
 
 def build_thread_create_cmd(*, chat_id: str, title: str) -> list[str]:
     return [
-        "node",
-        "--input-type=module",
-        "--eval",
-        (
-            "import { createForumTopicTelegram } from '/opt/homebrew/lib/node_modules/openclaw/dist/plugin-sdk/telegram.js'; "
-            f"const result = await createForumTopicTelegram({json.dumps(str(chat_id))}, {json.dumps(title)}); "
-            "console.log(JSON.stringify(result));"
-        ),
+        sys.executable,
+        str(TELEGRAM_TOPIC_CREATE),
+        "--chat-id",
+        str(chat_id),
+        "--title",
+        title,
     ]
 
 

@@ -9,9 +9,12 @@ Runtime owns everything that happens **after** a dispatch manifest has been prep
 That includes:
 - validating/preparing launchable runs
 - delivering research assignments into fresh Telegram topics
+- emitting visible Telegram kickoff sends alongside internal handoffs
 - patching `research_runs` to `running`
 - reconciling completion/failure back into `research_runs`
+- auto-posting visible completion markers on successful completion
 - auto-attempting parent case/market finalization after terminal run updates
+- emitting watchdog diagnostics for stalled Telegram runs
 - providing artifact-vs-DB repair helpers
 - supporting headless TUI -> Telegram handoff flows
 - keeping the active manifest queue tidy
@@ -33,6 +36,8 @@ That includes:
 - `scripts/finalize_dispatch_after_swarm.py`
 - `scripts/prepare_headless_telegram_dispatch.py`
 - `scripts/bootstrap_telegram_topics.py`
+- `scripts/telegram_topic_create.py`
+- `scripts/watchdog_telegram_swarm_runs.py`
 - `scripts/list_pending_dispatch_manifests.py`
 - `scripts/archive_dispatch_manifests.py`
 

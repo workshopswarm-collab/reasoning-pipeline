@@ -65,11 +65,13 @@ Use the runtime summary object to report one of:
 
 ### Primary path
 - persona lanes reconcile completion/failure through `update_research_run.py`
+- successful completion auto-posts the visible Telegram finish marker
 - terminal run updates auto-attempt `auto_finalize_case_after_terminal_run.py`
-- if the swarm is fully terminal, that helper:
+- if the swarm is fully completed, that helper:
   - runs manifest reconciliation
   - closes the parent case
   - closes the parent market pipeline state
+- if the swarm is terminal but not fully completed, the market moves to `needs_intervention`
 
 ### Manual backstop
 Use:
