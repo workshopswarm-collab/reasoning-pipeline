@@ -33,6 +33,21 @@ Operationally:
 See:
 - `roles/orchestrator/pipeline-launch-procedure/README.md`
 
+## Architecture status note
+
+The diagram below mixes:
+- the **currently live and operator-tested path**, and
+- the **broader target end-to-end architecture**.
+
+Today, the most concretely implemented and tested path is:
+- market metadata and pipeline state in PostgreSQL
+- case opening and `research_runs` creation
+- fresh Telegram-topic swarm dispatch via the OpenClaw runtime
+- researcher artifact output into `qualitative-db/40-research/`
+- run-level completion reconciliation and parent case/market closure
+
+The downstream decision-packet, execution, accounting, evaluator, and trust-weight loops are already represented in the repo schema/docs, but they are comparatively less operationally mature than the research dispatch/control-plane path.
+
 ## Core architecture
 
 ```mermaid

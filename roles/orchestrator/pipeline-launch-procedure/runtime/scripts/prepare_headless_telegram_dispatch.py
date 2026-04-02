@@ -28,6 +28,7 @@ DEFAULT_PSQL = "/opt/homebrew/opt/postgresql@16/bin/psql"
 BASE_DIR = Path(__file__).resolve().parent
 RUNTIME_DIR = BASE_DIR.parent
 PIPELINE_DIR = RUNTIME_DIR.parent
+WORKSPACE_ROOT = PIPELINE_DIR.parents[2]
 PLANNER_SCRIPTS_DIR = PIPELINE_DIR / "planner" / "scripts"
 DEFAULT_MANIFEST_DIR = RUNTIME_DIR / "dispatch-manifests"
 DEFAULT_MODEL = "openai-codex/gpt-5.4"
@@ -233,7 +234,7 @@ def main() -> int:
             "manual_finalize_backstop_step": {
                 "tool": "exec",
                 "description": "Optional repair step if automatic terminal finalization is missed or you want an explicit post-run audit",
-                "command": f"set -a; source /Users/agent2/.openclaw/workspace/.env; set +a; python3 {FINALIZE_DISPATCH_AFTER_SWARM} --file {manifest_path} --apply --pretty"
+                "command": f"set -a; source {WORKSPACE_ROOT / '.env'}; set +a; python3 {FINALIZE_DISPATCH_AFTER_SWARM} --file {manifest_path} --apply --pretty"
             }
         }
     except Exception as exc:  # noqa: BLE001

@@ -29,6 +29,9 @@ from pathlib import Path
 from typing import Any
 
 BASE_DIR = Path(__file__).resolve().parent
+RUNTIME_DIR = BASE_DIR.parent
+PIPELINE_DIR = RUNTIME_DIR.parent
+WORKSPACE_ROOT = PIPELINE_DIR.parents[2]
 BOOTSTRAP_TOPICS = BASE_DIR / "internal" / "bootstrap_telegram_topics.py"
 RUNTIME_HELPER = BASE_DIR / "internal" / "runtime_execute_dispatch.py"
 UPDATE_RUN = BASE_DIR / "update_research_run.py"
@@ -37,7 +40,7 @@ RUNTIME_LOOP = BASE_DIR / "run_telegram_swarm_runtime_loop.py"
 STATE_DIR = BASE_DIR / ".runtime-state"
 RUNTIME_LOOP_PID = STATE_DIR / "telegram_swarm_runtime_loop.pid"
 RUNTIME_LOOP_ERROR = STATE_DIR / "telegram_swarm_runtime_loop.error.json"
-DEFAULT_ENV_PATH = Path("/Users/agent2/.openclaw/workspace/.env")
+DEFAULT_ENV_PATH = WORKSPACE_ROOT / ".env"
 
 
 def maybe_load_workspace_env() -> None:
