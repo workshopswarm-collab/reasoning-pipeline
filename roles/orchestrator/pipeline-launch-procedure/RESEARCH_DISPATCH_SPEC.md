@@ -61,8 +61,9 @@ Expected `notes.dispatch_stage` values:
 The runtime surface is **Telegram forum topics**.
 
 The current model is:
-- one fresh controller topic per case
-- one fresh persona topic per persona per case
+- one persistent controller topic per case
+- one persistent persona topic per persona per case
+- reruns create new attempt rows but should reuse those existing case/persona lanes whenever prior lane metadata exists
 
 Routing/config metadata lives in:
 - `runtime/telegram-runtime-config.json`
@@ -140,8 +141,10 @@ That patch should set:
 
 A run becomes `completed` or `failed` only when a runtime-side helper updates the corresponding `research_runs` row.
 
-For the fresh-topic model, the stable join key is:
+For the persistent-lane / per-attempt model, the stable completion join key is:
 - `research_run_id`
+
+Lane continuity should come from case/persona topic reuse, not from overwriting old attempt rows.
 
 `delivery_target_session_key` is useful metadata, but it is **not** the canonical completion key because topic/session transport metadata should remain replaceable without changing the durable run identity.
 
@@ -172,17 +175,17 @@ If automatic finalization is missed, run:
 ## Default artifact paths
 
 ### Primary finding
-`qualitative-db/40-research/agent-findings/<persona>/<case_key>-<slug>.md`
+`qualitative-db/40-research/cases/<case-key>/analyses/<YYYY-MM-DD>/<dispatch-id>/personas/<persona>.md`
 
 ### Source notes
 Directory:
-`qualitative-db/40-research/source-notes/by-market/`
-
-Filename prefix:
-`<case_key>-<persona>-`
+`qualitative-db/40-research/cases/<case-key>/source-notes/`
 
 ### Assumption note
-`qualitative-db/40-research/assumption-notes/<case_key>-<persona>-assumptions.md`
+`qualitative-db/40-research/cases/<case-key>/analyses/<YYYY-MM-DD>/<dispatch-id>/assumptions/<persona>.md`
 
 ### Evidence map
-`qualitative-db/40-research/evidence-maps/<case_key>-<persona>-evidence-map.md`
+`qualitative-db/40-research/cases/<case-key>/analyses/<YYYY-MM-DD>/<dispatch-id>/evidence/<persona>.md`
+
+### Per-analysis summary
+`qualitative-db/40-research/cases/<case-key>/analyses/<YYYY-MM-DD>/<dispatch-id>/summary.md`

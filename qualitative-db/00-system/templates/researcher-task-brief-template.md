@@ -53,9 +53,10 @@ Output expectations:
 - whether any canon, driver, or linkage proposal should go to review queue
 
 Write targets:
-- source extraction -> `qualitative-db/40-research/source-notes/`
-- interpretation -> `qualitative-db/40-research/agent-findings/`
-- pro/con structure -> `qualitative-db/40-research/evidence-maps/`
+- source extraction -> `qualitative-db/40-research/cases/<case-key>/source-notes/`
+- interpretation -> `qualitative-db/40-research/cases/<case-key>/analyses/<YYYY-MM-DD>/<dispatch-id>/personas/`
+- assumption tracking -> `qualitative-db/40-research/cases/<case-key>/analyses/<YYYY-MM-DD>/<dispatch-id>/assumptions/`
+- pro/con structure -> `qualitative-db/40-research/cases/<case-key>/analyses/<YYYY-MM-DD>/<dispatch-id>/evidence/`
 - release/version-specific observations -> `qualitative-db/40-research/product-notes/`
 - canon change proposal -> `qualitative-db/40-research/review-queue/canonical-update-proposals/`
 - durable lesson candidate -> `qualitative-db/40-research/review-queue/durable-lesson-candidates/`

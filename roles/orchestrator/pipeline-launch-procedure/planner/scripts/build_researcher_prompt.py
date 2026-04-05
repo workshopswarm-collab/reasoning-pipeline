@@ -18,6 +18,7 @@ PROMPTS_DIR = BASE_DIR.parent / "prompts"
 BASE_CONTRACT_PATH = PROMPTS_DIR / "researcher_base_contract.md"
 AGENT_FINDING_TEMPLATE_PATH = WORKSPACE_ROOT / "qualitative-db/00-system/templates/agent-finding-template.md"
 SOURCE_NOTE_TEMPLATE_PATH = WORKSPACE_ROOT / "qualitative-db/00-system/templates/source-note-template.md"
+ASSUMPTION_NOTE_TEMPLATE_PATH = WORKSPACE_ROOT / "qualitative-db/00-system/templates/assumption-note-template.md"
 EVIDENCE_MAP_TEMPLATE_PATH = WORKSPACE_ROOT / "qualitative-db/00-system/templates/evidence-map-template.md"
 PERSONA_FILES = {
     "base-rate": PROMPTS_DIR / "researcher_base-rate.md",
@@ -259,15 +260,20 @@ def build_prompt(payload: dict) -> str:
     metadata = payload.get("metadata") or {}
     url = metadata.get("url")
     workspace_note_path = payload.get("workspace_note_path")
-    source_note_dir = payload.get("source_note_dir") or "qualitative-db/40-research/source-notes/by-market"
-    source_note_prefix = payload.get("source_note_prefix") or f"{case_key}-{agent_label}"
-    assumption_note_path = payload.get("assumption_note_path") or f"qualitative-db/40-research/assumption-notes/{case_key}-{agent_label}-assumptions.md"
-    evidence_map_path = payload.get("evidence_map_path") or f"qualitative-db/40-research/evidence-maps/{case_key}-{agent_label}-evidence-map.md"
+    source_note_dir = payload.get("source_note_dir") or f"qualitative-db/40-research/cases/{case_key}/source-notes"
+    source_note_prefix = payload.get("source_note_prefix") or f"{agent_label}"
+    assumption_note_path = payload.get("assumption_note_path") or f"qualitative-db/40-research/cases/{case_key}/analyses/UNKNOWN-DATE/UNKNOWN-DISPATCH/assumptions/{agent_label}.md"
+    evidence_map_path = payload.get("evidence_map_path") or f"qualitative-db/40-research/cases/{case_key}/analyses/UNKNOWN-DATE/UNKNOWN-DISPATCH/evidence/{agent_label}.md"
+    analysis_summary_path = payload.get("analysis_summary_path") or f"qualitative-db/40-research/cases/{case_key}/analyses/UNKNOWN-DATE/UNKNOWN-DISPATCH/summary.md"
+    case_file_path = payload.get("case_file_path") or f"qualitative-db/40-research/cases/{case_key}/case.md"
+    current_file_path = payload.get("current_file_path") or f"qualitative-db/40-research/cases/{case_key}/current.md"
+    timeline_file_path = payload.get("timeline_file_path") or f"qualitative-db/40-research/cases/{case_key}/timeline.md"
     difficulty_profile = payload.get("difficulty_profile") or {}
     base_contract_rel = BASE_CONTRACT_PATH.relative_to(WORKSPACE_ROOT)
     persona_prompt_rel = PERSONA_FILES[agent_label].relative_to(WORKSPACE_ROOT)
     agent_finding_template_rel = AGENT_FINDING_TEMPLATE_PATH.relative_to(WORKSPACE_ROOT)
     source_note_template_rel = SOURCE_NOTE_TEMPLATE_PATH.relative_to(WORKSPACE_ROOT)
+    assumption_note_template_rel = ASSUMPTION_NOTE_TEMPLATE_PATH.relative_to(WORKSPACE_ROOT)
     evidence_map_template_rel = EVIDENCE_MAP_TEMPLATE_PATH.relative_to(WORKSPACE_ROOT)
     persona_brief = "\n".join(f"- {line}" for line in PERSONA_BRIEFS[agent_label])
     difficulty_lines = ""
@@ -315,6 +321,7 @@ Read only what you need, not the whole repo:
 - vault protocol: `qualitative-db/00-system/roles-protocols/researcher-operating-protocol.md`
 - before writing the main finding, read the finding template once: `{agent_finding_template_rel}`
 - if you create source notes, read once: `{source_note_template_rel}`
+- if you create an assumption note, read once: `{assumption_note_template_rel}`
 - if you create an evidence map, read once: `{evidence_map_template_rel}`
 
 ## Persona focus
@@ -337,9 +344,11 @@ Read only what you need, not the whole repo:
 - write the main agent finding exactly to: `{workspace_note_path}`
 - structure the finding using the agent-finding template headings, including the source-quality assessment, verification impact, reusable lesson signals, and Orchestrator review suggestions sections
 - add extra labeled sections when the checklist for this case requires them
-- if you create source notes, keep them only under: `{source_note_dir}` with filenames starting: `{source_note_prefix}-`
-- if you create an assumption note, use exactly: `{assumption_note_path}`
-- if you create an evidence map, use exactly: `{evidence_map_path}`
+- create at least one substantive source note when external sources materially inform the finding; keep source notes only under: `{source_note_dir}` with filenames starting: `{source_note_prefix}-`
+- when the analysis relies on a nontrivial assumption or tradeoff, write an assumption note to exactly: `{assumption_note_path}`
+- structure any assumption note using the assumption-note template headings from `{assumption_note_template_rel}`
+- when evidence needs explicit netting, conflict framing, or auditability beyond the main note, write an evidence map to exactly: `{evidence_map_path}`
+- treat these as system-managed case surfaces and do not write them yourself unless explicitly told: `{analysis_summary_path}`, `{case_file_path}`, `{current_file_path}`, `{timeline_file_path}`
 - do not invent alternate folders for this case
 
 ## Operating rules

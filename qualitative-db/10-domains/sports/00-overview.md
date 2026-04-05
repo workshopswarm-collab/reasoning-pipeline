@@ -11,8 +11,7 @@ certainty: medium-high
 importance: high
 related_entities: []
 related_drivers: []
-upstream_inputs:
-  - qualitative-db/40-research/source-notes/by-domain/sports/2026-03-25-sports-reference-stats-overview.md
+upstream_inputs: []
 downstream_uses: []
 tags: [domain/sports, overview]
 ---

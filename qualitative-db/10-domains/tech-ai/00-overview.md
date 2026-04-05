@@ -11,8 +11,7 @@ certainty: medium
 importance: high
 related_entities: []
 related_drivers: []
-upstream_inputs:
-  - qualitative-db/40-research/source-notes/by-domain/tech-ai/2026-03-25-databricks-state-of-ai.md
+upstream_inputs: []
 downstream_uses: []
 tags: [domain/tech-ai, overview]
 ---

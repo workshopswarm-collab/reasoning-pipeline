@@ -53,4 +53,4 @@ Research should focus on ETF/product flows, liquidity conditions, macro sensitiv
 
 ## Related notes
 
-- qualitative-db/40-research/source-notes/by-domain/crypto/2026-03-25-bitcoin-basics.md
+- none currently linked in-vault

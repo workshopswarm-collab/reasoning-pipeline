@@ -9,8 +9,7 @@ agent: orchestrator
 status: active
 certainty: medium
 importance: high
-upstream_inputs:
-  - qualitative-db/40-research/source-notes/by-domain/tech-ai/2026-03-25-llm-basics.md
+upstream_inputs: []
 downstream_uses: []
 related_entities: []
 related_drivers: [product-launches, operational-risk, regulation]

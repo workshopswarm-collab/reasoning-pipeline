@@ -11,10 +11,7 @@ certainty: medium-high
 importance: high
 related_entities: []
 related_drivers: [governance, legal, leadership-changes]
-upstream_inputs:
-  - qualitative-db/40-research/source-notes/by-domain/politics/2026-03-25-wikipedia-politics.md
-  - qualitative-db/40-research/source-notes/by-domain/politics/2026-03-25-courts-basics.md
-  - qualitative-db/40-research/source-notes/by-domain/politics/2026-03-25-election-basics.md
+upstream_inputs: []
 downstream_uses: []
 tags: [domain/politics, subdomain/institutions, overview]
 ---
@@ -28,7 +25,6 @@ Institutions is the subdomain of political system architecture: executives, legi
 Institutions matter because they determine who can act, how quickly they can act, what veto points exist, and how formal authority is converted into policy reality. Researchers need a dedicated institutions layer so they do not reduce politics to elections, polling, or leader preferences alone.
 
 ## Core conclusions
-
 
 ## Main evidence clusters
 

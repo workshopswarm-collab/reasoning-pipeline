@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Prepare a headless TUI -> Telegram fresh-topic dispatch bootstrap bundle.
+"""Prepare (without launching) a headless TUI -> Telegram persistent-lane dispatch bootstrap bundle.
 
 This wrapper does the planner/control-plane work locally and emits a reusable
 bundle that a TUI-side OpenClaw session can execute by:
@@ -50,7 +50,7 @@ FINALIZE_DISPATCH_AFTER_SWARM = BASE_DIR / "runrepairs" / "finalize_dispatch_aft
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Prepare a headless TUI -> Telegram fresh-topic dispatch bundle")
+    parser = argparse.ArgumentParser(description="Prepare (without launching) a headless TUI -> Telegram persistent-lane dispatch bundle")
     parser.add_argument("--manifest-path", help="Use an existing dispatch manifest path instead of preparing a new one")
     parser.add_argument("--case-id", help="Existing case UUID to dispatch")
     parser.add_argument("--market-id", help="Existing market UUID to open/fetch case for")
@@ -58,6 +58,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--model", default=DEFAULT_MODEL, help="Model hint recorded in run metadata")
     parser.add_argument("--thinking", default=DEFAULT_THINKING, help="Thinking hint recorded in run metadata")
     parser.add_argument("--run-timeout-seconds", type=int, default=0, help="Retained for compatibility; not used by Telegram topic bootstrap")
+    parser.add_argument("--allow-when-busy", action="store_true", help="Bypass the global sequential-processing gate when auto-selecting the next market")
     parser.add_argument("--manifest-dir", default=str(DEFAULT_MANIFEST_DIR), help="Directory where prepared manifests should be written")
     parser.add_argument("--db-url", default=os.getenv("PREDQUANT_ORCHESTRATOR_URL", ""), help="Postgres connection URL")
     parser.add_argument("--psql", default=os.getenv("PSQL_BIN", DEFAULT_PSQL), help="Path to psql binary")
@@ -124,7 +125,7 @@ def prepare_manifest(args: argparse.Namespace) -> tuple[dict[str, Any], dict[str
             if args.market_id:
                 selection = {"market_id": args.market_id}
             else:
-                selection = python_json(SELECT_NEXT_MARKET, ["--db-url", args.db_url, "--psql", args.psql])
+                selection = python_json(SELECT_NEXT_MARKET, ["--db-url", args.db_url, "--psql", args.psql, *( ["--allow-when-busy"] if args.allow_when_busy else [] )])
             case = python_json(
                 OPEN_CASE,
                 ["--db-url", args.db_url, "--psql", args.psql, "--market-id", selection["market_id"]],

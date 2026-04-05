@@ -11,8 +11,7 @@ certainty: medium
 importance: high
 related_entities: []
 related_drivers: []
-upstream_inputs:
-  - qualitative-db/40-research/source-notes/by-domain/crypto/2026-03-25-global-legal-insights-crypto-regulation.md
+upstream_inputs: []
 downstream_uses: []
 tags: [domain/crypto, overview]
 ---

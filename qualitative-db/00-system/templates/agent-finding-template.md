@@ -1,5 +1,10 @@
 ---
 type: agent_finding
+case_key:
+dispatch_id:
+research_run_id:
+analysis_date:
+persona:
 domain:
 subdomain:
 entity:
@@ -23,10 +28,13 @@ tags: []
 # Claim
 
 State the main research conclusion in plain language.
+Do not restate the full case description or contract background unless it is needed for the actual argument.
+Use `case.md` and the analysis `summary.md` as the stable context surfaces.
 
 ## Market-implied baseline
 
 State the current market-implied probability or closest baseline reference you are comparing against.
+If the baseline moved materially from a prior rerun, mention the change briefly rather than reproducing the full history here.
 
 ## Own probability estimate
 
@@ -43,6 +51,7 @@ Explain how this finding should move interpretation of the market, event, or ope
 ## Key sources used
 
 List the most important sources, notes, or governing source-of-truth surfaces you relied on.
+Prefer linking to case-level `source-notes/` entries where they exist instead of repeating long source summaries here.
 
 Make it legible which sources were:
 - primary vs secondary

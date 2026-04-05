@@ -23,6 +23,9 @@ The live database cluster is runtime infrastructure and should stay outside the 
 
 The initial schema is intentionally minimal. It is designed to validate the first end-to-end architecture loop:
 
+Safety note:
+- `migrations/005_research_run_active_attempt_uniqueness.sql` introduces a partial unique index for active case/persona attempts, but it should only be applied after auditing/cleaning existing duplicate queued/running rows (see `quant-db/scripts/audit_active_research_run_conflicts.py`).
+
 - Device B writes market metadata and market snapshots
 - Device A opens cases and coordinates research runs
 - research runs are handed off into fresh Telegram topics and tracked in PostgreSQL

@@ -4,20 +4,19 @@ This folder is the launch control-plane for the research swarm.
 
 ## Canonical truth
 
-- Runtime surface: **fresh Telegram topics**
+- Runtime surface: **persistent Telegram case/persona topics**
 - Handoff primitive: Gateway RPC `sessions.send` (normally invoked through the runtime bridge/helper)
 - Stable completion key: `research_run_id`
+- Stable lane identity: one controller topic per case plus one persona topic per persona per case
 - Lifecycle owner for visible STARTING/FINISHED markers: `runtime/scripts/update_research_run.py`
 - Runtime supervision path: `runtime/scripts/run_telegram_swarm_runtime_loop.py`
 - Primary completion path: terminal `update_research_run.py` updates auto-attempt parent finalization
 - Manual repair path: `runtime/scripts/runrepairs/finalize_dispatch_after_swarm.py --file <manifest> --apply`
 
-Do **not** treat persistent persona lanes as part of the current model.
-
 ## End-to-end flow
 
 1. Planner prepares market/case state, prompts, queued `research_runs`, and a dispatch manifest.
-2. Runtime creates/reuses one controller topic plus one fresh persona topic per queued run, materializes the corresponding topic sessions, and turns the manifest into one `sessions.send` handoff per still-queued persona topic.
+2. Runtime creates/reuses one controller topic plus one persona topic per case/persona lane, materializes the corresponding topic sessions, and turns the manifest into one `sessions.send` handoff per still-queued persona attempt.
 3. Successful handoffs patch the matching `research_runs` rows to `running`.
 4. `update_research_run.py` treats that `queued -> running` patch as the canonical start transition and auto-posts the visible `STARTING RESEARCH` marker in Telegram.
 5. Persona topics do the actual research work and may post sparse progress updates in-topic when useful.
@@ -82,13 +81,15 @@ Runtime owns operational execution work:
 - `planner/scripts/dispatch_case_research.py`
 
 ### Runtime (preferred operator path)
-- `runtime/scripts/prepare_headless_telegram_dispatch.py`
-- `runtime/scripts/launch_dispatch_with_stateful_posts.py`
+- `runtime/scripts/prepare_and_launch_headless_telegram_dispatch.py`
+- `runtime/scripts/manual_batch_controller.py`
 - `runtime/scripts/run_telegram_swarm_runtime_loop.py`
 - `runtime/scripts/update_research_run.py`
 - `runtime/scripts/reconcile_research_run_completion.py`
 
 ### Runtime (lower-level / repair helpers)
+- `runtime/scripts/prepare_headless_telegram_dispatch.py`
+- `runtime/scripts/launch_dispatch_with_stateful_posts.py`
 - `runtime/scripts/internal/openclaw_sessions_send.mjs`
 - `runtime/scripts/internal/auto_finalize_case_after_terminal_run.py`
 - `runtime/scripts/internal/load_dispatch_existing_state.py`
@@ -144,18 +145,34 @@ If you need full manifest-level repair/audit, use:
 ## Headless wrapper
 
 Preferred headless path:
-- `runtime/scripts/prepare_headless_telegram_dispatch.py`
-- `runtime/scripts/launch_dispatch_with_stateful_posts.py`
+- `runtime/scripts/prepare_and_launch_headless_telegram_dispatch.py`
 
 That path:
 1. selects/opens a case when needed
 2. emits the canonical manifest
-3. loads existing run state for idempotency
+3. resolves the manifest from prepare output or dispatch id
 4. bootstraps or reuses the controller/persona Telegram topics through internal helpers
 5. materializes topic sessions and delivers the handoff payloads
 6. patches successful deliveries to `running`
 7. auto-posts visible `STARTING RESEARCH` markers through `update_research_run.py`
 8. ensures the runtime loop is running once research begins
 
+Use the lower-level two-step path only when you intentionally want to inspect or repair the prepared manifest before launch:
+- `runtime/scripts/prepare_headless_telegram_dispatch.py`
+- `runtime/scripts/launch_dispatch_with_stateful_posts.py`
+
 Lower-level bootstrap-only step (debugging / repair use):
 - `runtime/scripts/internal/bootstrap_telegram_topics.py`
+
+## Canonical live prepare/launch path
+
+For headless live operation, the default combined entrypoint is:
+- `runtime/scripts/prepare_and_launch_headless_telegram_dispatch.py`
+
+Treat this as the normal automation-facing **prepare + launch** step.
+Treat `runtime/scripts/prepare_headless_telegram_dispatch.py` and `runtime/scripts/launch_dispatch_with_stateful_posts.py` as lower-level building blocks and debugging/repair tools.
+
+For manual stepwise operation before enabling unattended automation, use:
+- `runtime/scripts/manual_batch_controller.py`
+
+That harness keeps the current architecture but gives an explicit control loop surface without turning the pipeline into a daemon or cron-driven service.

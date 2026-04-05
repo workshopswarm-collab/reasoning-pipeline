@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
-"""Execute a Telegram fresh-topic dispatch end-to-end with immediate state patching.
+"""Execute a Telegram persistent-lane dispatch end-to-end with immediate state patching.
 
 Canonical runtime behavior:
 1. bootstrap/reuse controller + persona topics

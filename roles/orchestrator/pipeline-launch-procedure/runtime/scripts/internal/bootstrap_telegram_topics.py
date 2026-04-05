@@ -4,7 +4,7 @@ from __future__ import annotations
 """Plan or apply Telegram forum-topic bootstrap for a dispatch manifest.
 
 This helper bridges the remaining runtime seam between a planner-emitted logical
-Telegram-target manifest and the actual fresh-topic execution model.
+Telegram-target manifest and the current persistent-lane execution model.
 
 Default mode is non-destructive planning:
 - load current run state from Postgres

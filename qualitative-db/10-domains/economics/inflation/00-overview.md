@@ -9,8 +9,7 @@ agent: orchestrator
 status: active
 certainty: medium-high
 importance: high
-upstream_inputs:
-  - qualitative-db/40-research/source-notes/by-domain/economics/2026-03-25-inflation-basics.md
+upstream_inputs: []
 downstream_uses: []
 related_entities: []
 related_drivers: [macro, inflation, rates, energy]

@@ -11,8 +11,7 @@ certainty: medium-high
 importance: high
 related_entities: []
 related_drivers: []
-upstream_inputs:
-  - qualitative-db/40-research/source-notes/by-domain/economics/2026-03-25-wikipedia-economics.md
+upstream_inputs: []
 downstream_uses: []
 tags: [domain/economics, overview]
 ---

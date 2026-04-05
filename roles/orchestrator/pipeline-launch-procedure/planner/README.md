@@ -28,6 +28,8 @@ Planner is responsible for:
 - `scripts/create_research_run.py`
 - `scripts/build_researcher_prompt.py`
 - `scripts/dispatch_case_research.py`
+  - supports `--dry-run` to preview rerun/lane/fingerprint behavior without writing DB state or creating run attempts
+  - blocks reruns on closed cases by default; requires `--allow-closed-case-rerun` to intentionally relaunch historical cases
 
 ## Boundary
 

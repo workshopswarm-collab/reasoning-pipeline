@@ -11,8 +11,7 @@ certainty: medium-high
 importance: high
 related_entities: []
 related_drivers: []
-upstream_inputs:
-  - qualitative-db/40-research/source-notes/by-domain/politics/2026-03-25-wikipedia-politics.md
+upstream_inputs: []
 downstream_uses: []
 tags: [domain/politics, overview]
 ---

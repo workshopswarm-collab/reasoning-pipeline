@@ -9,8 +9,7 @@ agent: orchestrator
 status: active
 certainty: medium
 importance: high
-upstream_inputs:
-  - qualitative-db/40-research/source-notes/by-domain/crypto/2026-03-25-defi-basics.md
+upstream_inputs: []
 downstream_uses: []
 related_entities: []
 related_drivers: [liquidity, tokenomics, operational-risk, regulation]

@@ -11,15 +11,7 @@ certainty: medium
 importance: high
 related_entities: []
 related_drivers: [tokenomics, ecosystem-growth, operational-risk, regulation]
-upstream_inputs:
-  - qualitative-db/40-research/source-notes/by-domain/crypto/2026-03-25-bitcoin-basics.md
-  - qualitative-db/40-research/source-notes/by-domain/crypto/2026-03-25-ethereum-basics.md
-  - qualitative-db/40-research/source-notes/by-domain/crypto/2026-03-25-solana-basics.md
-  - qualitative-db/40-research/source-notes/by-domain/crypto/2026-03-25-xrpl-basics.md
-  - qualitative-db/40-research/source-notes/by-domain/crypto/2026-03-25-bnb-basics.md
-  - qualitative-db/40-research/source-notes/by-domain/crypto/2026-03-25-cardano-basics.md
-  - qualitative-db/40-research/source-notes/by-domain/crypto/2026-03-25-ton-basics.md
-  - qualitative-db/40-research/source-notes/by-domain/crypto/2026-03-25-dogecoin-basics.md
+upstream_inputs: []
 downstream_uses: []
 tags: [domain/crypto, subdomain/protocols, overview]
 ---

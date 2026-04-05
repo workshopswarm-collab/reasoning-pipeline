@@ -53,4 +53,4 @@ Research should focus on application quality, trading and memecoin activity, net
 
 ## Related notes
 
-- qualitative-db/40-research/source-notes/by-domain/crypto/2026-03-25-solana-basics.md
+- none currently linked in-vault

@@ -19,7 +19,7 @@ Use it to store:
 - retrospective lessons
 
 Current runtime note:
-- the live research swarm executes in fresh Telegram topics
+- the live research swarm executes in persistent Telegram case/persona topics
 - this vault is the durable output/provenance layer for that runtime, not the execution surface itself
 
 Do **not** treat it as:
@@ -135,14 +135,15 @@ Examples:
 The active evidence layer.
 
 Use for:
+- case-centric analysis history under `cases/`
 - source notes
-- agent findings
+- agent findings / latest views
 - review-queue proposals
 - evidence maps
 - assumption notes
 - product notes
 
-Important: the current live `40-research/` structure emphasizes `source-notes/`, `agent-findings/`, `assumption-notes/`, `evidence-maps/`, `product-notes/`, and `review-queue/`.
+Important: the canonical live `40-research/` structure is moving toward `cases/<case-key>/analyses/<YYYY-MM-DD>/<dispatch-id>/...` for rerun-safe history, while legacy flat folders such as `agent-findings/`, `assumption-notes/`, and `evidence-maps/` may remain as compatibility or latest-view surfaces during migration. Existing historical flat notes should be preserved unless they are already generated compatibility notes.
 Historical references to `syntheses/` or `investigations/` should be treated as conceptual artifact types or future/optional folders, not guaranteed live directories.
 
 ### `50-retrospectives/`
@@ -176,7 +177,7 @@ Purpose:
 - act as the canonical retrieval anchor
 
 ### Source note
-Usually under `40-research/source-notes/`.
+Usually under `40-research/cases/<case-key>/source-notes/`.
 
 Purpose:
 - preserve provenance
@@ -184,7 +185,7 @@ Purpose:
 - explain why that source matters
 
 ### Agent finding
-Usually under `40-research/agent-findings/`.
+Usually under `40-research/cases/<case-key>/analyses/<YYYY-MM-DD>/<dispatch-id>/personas/`.
 
 Purpose:
 - store role-specific interpretation from a research agent
@@ -275,9 +276,10 @@ Read in this order:
 
 ### If you need recent evidence
 Then pull from current research artifacts such as:
-- `40-research/source-notes/`
-- `40-research/agent-findings/`
-- `40-research/evidence-maps/`
+- `40-research/cases/<case-key>/source-notes/`
+- `40-research/cases/<case-key>/analyses/<YYYY-MM-DD>/<dispatch-id>/personas/`
+- `40-research/cases/<case-key>/analyses/<YYYY-MM-DD>/<dispatch-id>/assumptions/`
+- `40-research/cases/<case-key>/analyses/<YYYY-MM-DD>/<dispatch-id>/evidence/`
 - `40-research/product-notes/`
 - `40-research/review-queue/` when relevant to handoff or promotion proposals
 

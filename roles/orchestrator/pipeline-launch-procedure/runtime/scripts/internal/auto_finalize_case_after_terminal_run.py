@@ -38,6 +38,8 @@ WITH target AS (
     rr.case_id,
     rr.status,
     COALESCE(rr.notes->>'dispatch_id', '') AS dispatch_id,
+    COALESCE(c.orchestration_notes->>'active_dispatch_id', '') AS case_active_dispatch_id,
+    COALESCE(NULLIF(c.orchestration_notes->>'active_dispatch_id', ''), NULLIF(rr.notes->>'dispatch_id', '')) AS effective_dispatch_id,
     c.case_key,
     c.status AS case_status,
     c.market_id,
@@ -47,26 +49,46 @@ WITH target AS (
       SELECT COUNT(*) FILTER (WHERE r.status = 'queued')
       FROM research_runs r
       WHERE r.case_id = rr.case_id
+        AND (
+          COALESCE(NULLIF(c.orchestration_notes->>'active_dispatch_id', ''), NULLIF(rr.notes->>'dispatch_id', '')) = ''
+          OR COALESCE(r.notes->>'dispatch_id', '') = COALESCE(NULLIF(c.orchestration_notes->>'active_dispatch_id', ''), NULLIF(rr.notes->>'dispatch_id', ''))
+        )
     ) AS queued_count,
     (
       SELECT COUNT(*) FILTER (WHERE r.status = 'running')
       FROM research_runs r
       WHERE r.case_id = rr.case_id
+        AND (
+          COALESCE(NULLIF(c.orchestration_notes->>'active_dispatch_id', ''), NULLIF(rr.notes->>'dispatch_id', '')) = ''
+          OR COALESCE(r.notes->>'dispatch_id', '') = COALESCE(NULLIF(c.orchestration_notes->>'active_dispatch_id', ''), NULLIF(rr.notes->>'dispatch_id', ''))
+        )
     ) AS running_count,
     (
       SELECT COUNT(*) FILTER (WHERE r.status = 'completed')
       FROM research_runs r
       WHERE r.case_id = rr.case_id
+        AND (
+          COALESCE(NULLIF(c.orchestration_notes->>'active_dispatch_id', ''), NULLIF(rr.notes->>'dispatch_id', '')) = ''
+          OR COALESCE(r.notes->>'dispatch_id', '') = COALESCE(NULLIF(c.orchestration_notes->>'active_dispatch_id', ''), NULLIF(rr.notes->>'dispatch_id', ''))
+        )
     ) AS completed_count,
     (
       SELECT COUNT(*) FILTER (WHERE r.status = 'failed')
       FROM research_runs r
       WHERE r.case_id = rr.case_id
+        AND (
+          COALESCE(NULLIF(c.orchestration_notes->>'active_dispatch_id', ''), NULLIF(rr.notes->>'dispatch_id', '')) = ''
+          OR COALESCE(r.notes->>'dispatch_id', '') = COALESCE(NULLIF(c.orchestration_notes->>'active_dispatch_id', ''), NULLIF(rr.notes->>'dispatch_id', ''))
+        )
     ) AS failed_count,
     (
       SELECT COUNT(*)
       FROM research_runs r
       WHERE r.case_id = rr.case_id
+        AND (
+          COALESCE(NULLIF(c.orchestration_notes->>'active_dispatch_id', ''), NULLIF(rr.notes->>'dispatch_id', '')) = ''
+          OR COALESCE(r.notes->>'dispatch_id', '') = COALESCE(NULLIF(c.orchestration_notes->>'active_dispatch_id', ''), NULLIF(rr.notes->>'dispatch_id', ''))
+        )
     ) AS total_count
   FROM research_runs rr
   JOIN cases c ON c.id = rr.case_id
@@ -78,6 +100,7 @@ SELECT json_build_object(
   'case_id', case_id,
   'status', status,
   'dispatch_id', NULLIF(dispatch_id, ''),
+  'active_dispatch_id', NULLIF(effective_dispatch_id, ''),
   'case_key', case_key,
   'case_status', case_status,
   'market_id', market_id,
@@ -102,30 +125,51 @@ WITH target AS (
     c.case_key,
     c.status AS case_status,
     m.pipeline_status,
+    COALESCE(NULLIF(c.orchestration_notes->>'active_dispatch_id', ''), NULLIF(rr.notes->>'dispatch_id', '')) AS effective_dispatch_id,
     (
       SELECT COUNT(*) FILTER (WHERE r.status = 'queued')
       FROM research_runs r
       WHERE r.case_id = rr.case_id
+        AND (
+          COALESCE(NULLIF(c.orchestration_notes->>'active_dispatch_id', ''), NULLIF(rr.notes->>'dispatch_id', '')) = ''
+          OR COALESCE(r.notes->>'dispatch_id', '') = COALESCE(NULLIF(c.orchestration_notes->>'active_dispatch_id', ''), NULLIF(rr.notes->>'dispatch_id', ''))
+        )
     ) AS queued_count,
     (
       SELECT COUNT(*) FILTER (WHERE r.status = 'running')
       FROM research_runs r
       WHERE r.case_id = rr.case_id
+        AND (
+          COALESCE(NULLIF(c.orchestration_notes->>'active_dispatch_id', ''), NULLIF(rr.notes->>'dispatch_id', '')) = ''
+          OR COALESCE(r.notes->>'dispatch_id', '') = COALESCE(NULLIF(c.orchestration_notes->>'active_dispatch_id', ''), NULLIF(rr.notes->>'dispatch_id', ''))
+        )
     ) AS running_count,
     (
       SELECT COUNT(*) FILTER (WHERE r.status = 'completed')
       FROM research_runs r
       WHERE r.case_id = rr.case_id
+        AND (
+          COALESCE(NULLIF(c.orchestration_notes->>'active_dispatch_id', ''), NULLIF(rr.notes->>'dispatch_id', '')) = ''
+          OR COALESCE(r.notes->>'dispatch_id', '') = COALESCE(NULLIF(c.orchestration_notes->>'active_dispatch_id', ''), NULLIF(rr.notes->>'dispatch_id', ''))
+        )
     ) AS completed_count,
     (
       SELECT COUNT(*) FILTER (WHERE r.status = 'failed')
       FROM research_runs r
       WHERE r.case_id = rr.case_id
+        AND (
+          COALESCE(NULLIF(c.orchestration_notes->>'active_dispatch_id', ''), NULLIF(rr.notes->>'dispatch_id', '')) = ''
+          OR COALESCE(r.notes->>'dispatch_id', '') = COALESCE(NULLIF(c.orchestration_notes->>'active_dispatch_id', ''), NULLIF(rr.notes->>'dispatch_id', ''))
+        )
     ) AS failed_count,
     (
       SELECT COUNT(*)
       FROM research_runs r
       WHERE r.case_id = rr.case_id
+        AND (
+          COALESCE(NULLIF(c.orchestration_notes->>'active_dispatch_id', ''), NULLIF(rr.notes->>'dispatch_id', '')) = ''
+          OR COALESCE(r.notes->>'dispatch_id', '') = COALESCE(NULLIF(c.orchestration_notes->>'active_dispatch_id', ''), NULLIF(rr.notes->>'dispatch_id', ''))
+        )
     ) AS total_count
   FROM research_runs rr
   JOIN cases c ON c.id = rr.case_id
@@ -140,6 +184,7 @@ case_completed AS (
     closed_at = COALESCE(c.closed_at, NOW()),
     orchestration_notes = COALESCE(c.orchestration_notes, '{}'::jsonb) || jsonb_build_object(
       'auto_finalized_at', NOW(),
+      'active_dispatch_id', NULLIF(t.effective_dispatch_id, ''),
       'swarm_terminal', true,
       'swarm_outcome', 'completed',
       'run_counts', jsonb_build_object(
@@ -161,6 +206,7 @@ case_intervention AS (
   UPDATE cases c
   SET orchestration_notes = COALESCE(c.orchestration_notes, '{}'::jsonb) || jsonb_build_object(
       'auto_finalized_at', NOW(),
+      'active_dispatch_id', NULLIF(t.effective_dispatch_id, ''),
       'swarm_terminal', true,
       'swarm_outcome', 'needs_intervention',
       'run_counts', jsonb_build_object(

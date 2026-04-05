@@ -21,6 +21,9 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
+BASE_DIR = Path(__file__).resolve().parent
+GENERATE_LEGACY_LATEST_VIEWS = BASE_DIR / 'generate_legacy_latest_views.py'
+
 DEFAULT_PSQL = "/opt/homebrew/opt/postgresql@16/bin/psql"
 BASE_DIR = Path(__file__).resolve().parent
 RUNTIME_DIR = BASE_DIR.parent
@@ -367,6 +370,23 @@ def main() -> int:
     except Exception as exc:  # noqa: BLE001
         print(f"ERROR: {exc}", file=sys.stderr)
         return 1
+
+    if args.status == 'completed' and GENERATE_LEGACY_LATEST_VIEWS.exists():
+        try:
+            subprocess.run(
+                [
+                    sys.executable,
+                    str(GENERATE_LEGACY_LATEST_VIEWS),
+                    '--research-run-id', args.research_run_id,
+                    '--db-url', args.db_url,
+                    '--psql', args.psql,
+                ],
+                check=False,
+                capture_output=True,
+                text=True,
+            )
+        except Exception:
+            pass
 
     if args.pretty:
         print(json.dumps(result, indent=2, sort_keys=True, default=str))

@@ -53,4 +53,4 @@ Research should focus on Layer 2 migration, fee generation, validator/staking dy
 
 ## Related notes
 
-- qualitative-db/40-research/source-notes/by-domain/crypto/2026-03-25-ethereum-basics.md
+- none currently linked in-vault

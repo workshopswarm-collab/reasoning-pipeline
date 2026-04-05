@@ -11,8 +11,7 @@ certainty: medium-high
 importance: high
 related_entities: []
 related_drivers: [macro, inflation, rates]
-upstream_inputs:
-  - qualitative-db/40-research/source-notes/by-domain/economics/2026-03-25-unemployment-basics.md
+upstream_inputs: []
 downstream_uses: []
 tags: [domain/economics, subdomain/labor, overview]
 ---
@@ -26,7 +25,6 @@ Labor is the subdomain of employment, unemployment, wages, participation, hiring
 Labor matters because it sits at the center of growth, inflation, consumer demand, and central-bank reaction functions. Researchers often need a dedicated orientation layer for the labor market rather than treating payrolls or unemployment as isolated headline prints.
 
 ## Core conclusions
-
 
 ## Main evidence clusters
 

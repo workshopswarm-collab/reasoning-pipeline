@@ -12,7 +12,6 @@ importance: high
 related_entities: []
 related_drivers: [product-launches, partnerships, operational-risk, sentiment]
 upstream_inputs:
-  - qualitative-db/40-research/source-notes/by-domain/tech-ai/2026-03-25-databricks-state-of-ai.md
   - qualitative-db/40-research/product-notes/versioned-ai-products/gemini-2-5-pro.md
   - qualitative-db/40-research/product-notes/versioned-ai-products/claude-3-7-sonnet.md
   - qualitative-db/40-research/product-notes/versioned-ai-products/openai-o1.md
@@ -29,7 +28,6 @@ Products is the subdomain where model capability turns into user-facing or enter
 Products matter because product structure determines adoption, retention, monetization, and switching behavior. Researchers need a dedicated products subdomain so they can separate model-level progress from packaging, release strategy, tiering, platform integration, and workflow fit.
 
 ## Core conclusions
-
 
 ## Main evidence clusters
 

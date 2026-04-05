@@ -33,13 +33,19 @@ These templates support the quant-research pipeline:
 
 ### `qualitative-db/40-research/`
 
-Current live folders:
-- `source-notes/` -> `source-note-template.md`
-- `agent-findings/` -> `agent-finding-template.md`
-- `assumption-notes/` -> `assumption-note-template.md`
-- `evidence-maps/` -> `evidence-map-template.md`
+Canonical live structure:
+- `cases/<case-key>/source-notes/` -> `source-note-template.md`
+- `cases/<case-key>/analyses/<YYYY-MM-DD>/<dispatch-id>/personas/` -> `agent-finding-template.md`
+- `cases/<case-key>/analyses/<YYYY-MM-DD>/<dispatch-id>/assumptions/` -> `assumption-note-template.md`
+- `cases/<case-key>/analyses/<YYYY-MM-DD>/<dispatch-id>/evidence/` -> `evidence-map-template.md`
 - `product-notes/` -> `product-note-template.md`
 - `review-queue/` -> proposal/review artifacts; use the matching candidate/proposal template
+
+Compatibility / legacy flat surfaces may still exist during migration:
+- `source-notes/`
+- `agent-findings/`
+- `assumption-notes/`
+- `evidence-maps/`
 
 Conceptual / optional artifact types:
 - `investigations/` -> `investigation-template.md`

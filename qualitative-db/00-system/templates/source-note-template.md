@@ -1,5 +1,9 @@
 ---
 type: source_note
+case_key:
+dispatch_id:
+analysis_date:
+persona:
 domain:
 subdomain:
 entity:
@@ -26,6 +30,9 @@ tags: []
 ---
 
 # Summary
+
+This is a case-level source note. Keep it focused on the source itself and its relevance.
+Do not repeat the full market/case description unless source interpretation depends on it.
 
 ## Key facts extracted
 

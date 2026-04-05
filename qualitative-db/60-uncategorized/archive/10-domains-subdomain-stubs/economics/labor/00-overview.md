@@ -7,8 +7,7 @@ date_created: 2026-03-25
 agent: orchestrator
 certainty: medium-high
 importance: high
-upstream_inputs:
-  - qualitative-db/40-research/source-notes/by-domain/economics/2026-03-25-unemployment-basics.md
+upstream_inputs: []
 downstream_uses: []
 related_entities: []
 related_drivers: []

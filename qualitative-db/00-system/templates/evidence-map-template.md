@@ -1,5 +1,10 @@
 ---
 type: evidence_map
+case_key:
+dispatch_id:
+research_run_id:
+analysis_date:
+persona:
 domain:
 subdomain:
 entity:
@@ -20,6 +25,8 @@ tags: []
 ---
 
 # Summary
+
+This note is analysis-generation scoped. Use it to show how evidence for this dispatch/run netted out, without repeating the full case overview.
 
 ## Question being evaluated
 

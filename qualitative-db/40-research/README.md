@@ -23,8 +23,9 @@ Terminology note:
 This folder is the working research layer.
 
 Runtime note:
-- live research-swarm execution currently happens in fresh Telegram topics
+- live research-swarm execution currently happens in persistent Telegram case/persona topics
 - `40-research/` is where those runs write durable artifacts, provenance, and auditable case outputs
+- canonical case/rerun history now centers on `40-research/cases/<case-key>/analyses/<YYYY-MM-DD>/<dispatch-id>/...`
 
 Use it for:
 - time-indexed observations
@@ -96,6 +97,23 @@ The default workflow is:
 
 # Folder guide
 
+## `cases/`
+
+Purpose:
+- provide the canonical case-centric surface for rerun-safe research history
+- keep one stable folder per case and one append-only analysis folder per dispatch/rerun
+
+Current canonical pattern:
+- `cases/<case-key>/case.md` = stable case identity / contract surface
+- `cases/<case-key>/current.md` = generated latest/current view
+- `cases/<case-key>/timeline.md` = generated lifecycle summary
+- `cases/<case-key>/source-notes/` = case-level source provenance
+- `cases/<case-key>/analyses/<YYYY-MM-DD>/<dispatch-id>/...` = per-analysis findings / assumptions / evidence
+
+Compatibility note:
+- legacy flat folders such as `agent-findings/`, `assumption-notes/`, and `evidence-maps/` may still exist during migration, but the case-centric `cases/` tree is the canonical write path going forward
+- when safe, Orchestrator can generate non-destructive compatibility/latest-view notes at the old flat paths; existing historical flat notes are preserved unless they are already generated compatibility notes
+
 ## `source-notes/`
 
 Purpose:
@@ -107,11 +125,9 @@ Use when:
 - reading an article, filing, transcript, data page, official source, benchmark page, standings page, company post, or policy document
 - preserving what the source actually said before interpreting it
 
-Subfolders:
-- `by-market/` = default home for case-specific provenance notes created during active market research
-- `by-source/` = notes organized around a specific source or outlet when source-centered retrieval is genuinely the right structure
-- `by-domain/` = reusable source-framework notes useful across a domain
-- `by-entity/` = source notes centered on one recurring entity
+Subfolders / canonical pattern:
+- `cases/<case-key>/source-notes/` = default home for case-specific provenance notes created during active market research
+- legacy flat source-note folders may still exist during migration, including `source-notes/by-market/`, `source-notes/by-source/`, `source-notes/by-domain/`, and `source-notes/by-entity/`
 
 Good output:
 - what the source directly states
@@ -120,7 +136,7 @@ Good output:
 - reliability notes
 
 Default dispatch rule:
-- for active case work, researchers should normally use assigned `source-notes/by-market/` paths and filename conventions rather than inventing alternate locations
+- for active case work, researchers should normally use the assigned `cases/<case-key>/source-notes/` path and filename convention rather than inventing alternate locations
 
 Do not use for:
 - final judgment
@@ -130,8 +146,8 @@ Do not use for:
 ## `agent-findings/`
 
 Purpose:
-- store parallel research outputs so later review can compare multiple independent takes on the same case
-- preserve differences in framing, reasoning quality, source selection, and weighting across researcher personalities
+- compatibility / latest-view surface during migration from flat persona notes to the case-centric `cases/` tree
+- preserve a convenient persona-first view where needed without treating it as canonical history
 
 Current role folders:
 - `base-rate/`

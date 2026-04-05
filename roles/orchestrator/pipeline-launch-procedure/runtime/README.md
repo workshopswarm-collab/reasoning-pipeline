@@ -66,7 +66,12 @@ Lifecycle rule:
 ## Runtime surface
 
 Telegram forum topics are the intended runtime surface.
-The current architecture creates one fresh controller topic per case and one fresh persona topic per persona per case, materializes the canonical topic sessions, and then routes work into those topic sessions with `sessions.send`.
+The current architecture reuses one persistent controller topic per case and one persistent persona topic per persona per case when lane metadata already exists; otherwise it creates the missing topics, materializes the canonical topic sessions, and then routes work into those topic sessions with `sessions.send`.
+
+Operational helpers now include:
+- `scripts/sweep_orphaned_research_runs.py` for stale queued / stranded researching-case repair
+- `scripts/pipeline_anomaly_report.py` for read-only anomaly counts before or during automation
+- `scripts/prepare_and_launch_headless_telegram_dispatch.py` for the safe combined prepare→launch headless path without brittle ad hoc manifest parsing
 
 Important nuance:
 - the `sessions.send` handoff is internal session delivery into the canonical topic session
@@ -78,3 +83,30 @@ Important nuance:
 
 Canonical runtime config lives in:
 - `roles/orchestrator/pipeline-launch-procedure/runtime/telegram-runtime-config.json`
+
+## Canonical headless operational path
+
+For normal live automation, prefer:
+- `scripts/prepare_and_launch_headless_telegram_dispatch.py`
+
+This is the canonical combined **prepare -> launch** entrypoint.
+It safely sequences:
+1. planner/runtime preparation
+2. manifest resolution
+3. live launch through `launch_dispatch_with_stateful_posts.py`
+
+For manual debugging/control without enabling unattended automation, use:
+- `scripts/manual_batch_controller.py`
+
+This exposes explicit subcommands such as:
+- `status`
+- `select-next`
+- `launch-next`
+- `launch-case --case-id <uuid>`
+- `inspect-case --case-ref <uuid|case-key>`
+- `repair-preview`
+- `repair-apply`
+
+Lower-level scripts remain available for debugging, inspection, or repair:
+- `scripts/prepare_headless_telegram_dispatch.py` = prepare only, no launch
+- `scripts/launch_dispatch_with_stateful_posts.py` = launch an already-prepared manifest

@@ -11,6 +11,9 @@ This is a two-phase process:
 - the OpenClaw runtime creates fresh Telegram topics, materializes the canonical topic sessions, and executes the actual `sessions.send` handoffs into those topic sessions
 
 For headless launches from TUI, prefer:
+- `roles/orchestrator/pipeline-launch-procedure/runtime/scripts/prepare_and_launch_headless_telegram_dispatch.py`
+
+Use the older two-step prepare-then-launch path only when you intentionally want to inspect or repair the prepared manifest before launch:
 - `roles/orchestrator/pipeline-launch-procedure/runtime/scripts/prepare_headless_telegram_dispatch.py`
 - `roles/orchestrator/pipeline-launch-procedure/runtime/scripts/launch_dispatch_with_stateful_posts.py`
 
@@ -72,20 +75,20 @@ When persona lanes later complete:
 ## Default artifact paths
 
 ### Primary finding
-`qualitative-db/40-research/agent-findings/<persona>/<case_key>-<slug>.md`
+`qualitative-db/40-research/cases/<case-key>/analyses/<YYYY-MM-DD>/<dispatch-id>/personas/<persona>.md`
 
 ### Source notes
 Directory:
-`qualitative-db/40-research/source-notes/by-market/`
-
-Filename prefix:
-`<case_key>-<persona>-`
+`qualitative-db/40-research/cases/<case-key>/source-notes/`
 
 ### Assumption note
-`qualitative-db/40-research/assumption-notes/<case_key>-<persona>-assumptions.md`
+`qualitative-db/40-research/cases/<case-key>/analyses/<YYYY-MM-DD>/<dispatch-id>/assumptions/<persona>.md`
 
 ### Evidence map
-`qualitative-db/40-research/evidence-maps/<case_key>-<persona>-evidence-map.md`
+`qualitative-db/40-research/cases/<case-key>/analyses/<YYYY-MM-DD>/<dispatch-id>/evidence/<persona>.md`
+
+### Per-analysis summary
+`qualitative-db/40-research/cases/<case-key>/analyses/<YYYY-MM-DD>/<dispatch-id>/summary.md`
 
 ## Rules
 
@@ -101,3 +104,13 @@ Correct pattern:
 - runtime launcher/bootstrap creates or reuses Telegram topics
 - runtime bridge/helper materializes the target topic session and delivers via `sessions.send`
 - runtime helpers patch DB state using the returned delivery metadata
+
+## Preferred combined command
+
+For the normal headless live path, prefer the combined wrapper:
+
+```bash
+python3 roles/orchestrator/pipeline-launch-procedure/runtime/scripts/prepare_and_launch_headless_telegram_dispatch.py   --case-id <CASE_UUID>   --model openai-codex/gpt-5.4   --thinking medium   --pretty
+```
+
+Use the older two-step prepare-then-launch path only when you intentionally want to inspect or edit the prepared manifest before launch.

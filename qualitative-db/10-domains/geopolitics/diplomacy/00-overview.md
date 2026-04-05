@@ -9,8 +9,7 @@ agent: orchestrator
 status: active
 certainty: medium
 importance: high
-upstream_inputs:
-  - qualitative-db/40-research/source-notes/by-domain/geopolitics/2026-03-25-diplomacy-basics.md
+upstream_inputs: []
 downstream_uses: []
 related_entities: []
 related_drivers: [diplomacy, escalation, deterrence]

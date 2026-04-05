@@ -9,11 +9,7 @@ agent: orchestrator
 status: active
 certainty: medium-high
 importance: high
-upstream_inputs:
-  - qualitative-db/40-research/source-notes/by-domain/sports/2026-03-25-baseball-reference-mlb-structure.md
-  - qualitative-db/40-research/source-notes/by-source/2026-03-25-mlb-standings-source.md
-  - qualitative-db/40-research/source-notes/by-source/2026-03-25-mlb-transactions-source.md
-  - qualitative-db/40-research/source-notes/by-source/2026-03-25-mlb-news-source.md
+upstream_inputs: []
 downstream_uses: []
 related_entities: []
 related_drivers: [performance, injuries-health, seasonality, team-dynamics]

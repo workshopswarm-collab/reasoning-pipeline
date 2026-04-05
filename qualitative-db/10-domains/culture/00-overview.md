@@ -11,9 +11,7 @@ certainty: medium
 importance: high
 related_entities: []
 related_drivers: []
-upstream_inputs:
-  - qualitative-db/40-research/source-notes/by-domain/culture/2026-03-25-wikipedia-celebrity-culture.md
-  - qualitative-db/40-research/source-notes/by-domain/culture/2026-03-25-wikipedia-streaming-media.md
+upstream_inputs: []
 downstream_uses: []
 tags: [domain/culture, overview]
 ---

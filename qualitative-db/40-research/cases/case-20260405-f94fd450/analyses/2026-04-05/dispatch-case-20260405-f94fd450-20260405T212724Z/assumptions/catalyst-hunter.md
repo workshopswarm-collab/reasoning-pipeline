@@ -1,0 +1,5 @@
+The core assumption in this catalyst-focused view is that the market's large move toward Yes was primarily triggered by reports of actual March UAE impacts (especially Fujairah / Dubai-area fire reporting) rather than by generic Gulf-war escalation or interception headlines alone.
+
+A second assumption is that consensus-of-credible-reporting for settlement will accept a combination of one strong direct-impact source plus additional contextual corroboration, rather than demanding multiple top-tier outlets each separately restate the full chain of impact + Iran-origin + date/time.
+
+If later review finds that the accessible March UAE reporting was mostly about interceptions, debris, or unattributed 'drone-related' incidents rather than a clearly confirmed Iranian-origin impact on UAE territory, this persona's bullish catalyst read should be downgraded materially.

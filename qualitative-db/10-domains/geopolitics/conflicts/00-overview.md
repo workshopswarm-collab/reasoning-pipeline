@@ -11,10 +11,7 @@ certainty: medium
 importance: high
 related_entities: []
 related_drivers: [conflicts, escalation, deterrence, diplomacy]
-upstream_inputs:
-  - qualitative-db/40-research/source-notes/by-domain/geopolitics/2026-03-25-alliances-basics.md
-  - qualitative-db/40-research/source-notes/by-domain/geopolitics/2026-03-25-diplomacy-basics.md
-  - qualitative-db/40-research/source-notes/by-domain/geopolitics/2026-03-25-sanctions-basics.md
+upstream_inputs: []
 downstream_uses: []
 tags: [domain/geopolitics, subdomain/conflicts, overview]
 ---
@@ -28,7 +25,6 @@ Conflicts is the subdomain of wars, armed confrontations, proxy struggles, cease
 Conflicts matter because they reshape state behavior, alliance commitments, sanctions risk, energy exposure, and global political expectations. Researchers need a dedicated orientation note for conflict structure so they do not collapse military, diplomatic, and informational developments into one undifferentiated crisis narrative.
 
 ## Core conclusions
-
 
 ## Main evidence clusters
 

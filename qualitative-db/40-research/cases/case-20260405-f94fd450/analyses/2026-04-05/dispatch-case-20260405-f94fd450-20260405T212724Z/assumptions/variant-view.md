@@ -1,0 +1,3 @@
+The main nontrivial assumption carrying the variant view is that the market's high price is being supported partly by broad Gulf-war headline salience rather than by a cleanly audited chain showing all contract conditions for the UAE leg. In other words: traders may be directionally right that UAE was under Iranian threat, but still overconfident on this specific market because the contract excludes intercepted missiles/drones and requires clear attribution plus consensus-confirmed timing within the March ET window.
+
+If a strong independent source set later shows an actual Iranian missile/drone impact on UAE territory in March, this assumption breaks and the variant discount should compress sharply.

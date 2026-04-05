@@ -9,8 +9,7 @@ agent: orchestrator
 status: active
 certainty: medium
 importance: high
-upstream_inputs:
-  - qualitative-db/40-research/source-notes/by-domain/culture/2026-03-25-box-office-mojo-film-metrics.md
+upstream_inputs: []
 downstream_uses: []
 related_entities: []
 related_drivers: [media-narratives, product-launches, seasonality]

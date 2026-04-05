@@ -9,8 +9,7 @@ agent: orchestrator
 status: active
 certainty: medium
 importance: high
-upstream_inputs:
-  - qualitative-db/40-research/source-notes/by-domain/crypto/2026-03-25-stablecoin-basics.md
+upstream_inputs: []
 downstream_uses: []
 related_entities: [usdt, usdc, tether-holdings, circle-internet-group, coinbase]
 related_drivers: [liquidity, regulation, operational-risk, trade]

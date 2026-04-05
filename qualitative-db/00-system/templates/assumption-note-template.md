@@ -1,5 +1,10 @@
 ---
 type: assumption_note
+case_key:
+dispatch_id:
+research_run_id:
+analysis_date:
+persona:
 domain:
 subdomain:
 entity:
@@ -20,6 +25,8 @@ tags: []
 ---
 
 # Assumption
+
+This note is analysis-generation scoped. Keep it specific to what this dispatch/run assumed.
 
 State the exact assumption in one sentence.
 
