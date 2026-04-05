@@ -131,14 +131,19 @@ def python_json(script: Path, args: list[str], stdin_payload=None) -> dict:
     lines = [line for line in stdout.splitlines() if line.strip()]
     for line in reversed(lines):
         try:
-            return json.loads(line)
+            parsed = json.loads(line)
         except json.JSONDecodeError:
             continue
+        if isinstance(parsed, dict):
+            return parsed
 
     try:
-        return json.loads(stdout)
+        parsed = json.loads(stdout)
     except json.JSONDecodeError as exc:
         raise RuntimeError(f"{script.name} did not return parseable JSON") from exc
+    if not isinstance(parsed, dict):
+        raise RuntimeError(f"{script.name} returned JSON but not an object")
+    return parsed
 
 
 def note_path(case_key: str, slug, persona: str) -> str:
@@ -231,6 +236,39 @@ def main() -> int:
         create_run_script = BASE_DIR / "create_research_run.py"
         update_run_script = RUNTIME_SCRIPTS_DIR / "update_research_run.py"
         build_prompt_script = BASE_DIR / "build_researcher_prompt.py"
+        classify_difficulty_script = BASE_DIR / "classify_research_difficulty.py"
+        update_case_notes_script = BASE_DIR / "update_case_orchestration_notes.py"
+
+        difficulty_result = python_json(classify_difficulty_script, ["--pretty", "--mode", "hybrid"], case_ctx)
+        difficulty_profile = difficulty_result.get("difficulty_profile") or {}
+        heuristic_summary = difficulty_result.get("heuristic_summary") or {}
+        model_summary = difficulty_result.get("model_summary") or {}
+        created_at = datetime.now(timezone.utc).isoformat()
+
+        difficulty_notes_payload = {
+            "case_id": case_ctx["case_id"],
+            "orchestration_notes": {
+                "difficulty_profile": {
+                    "difficulty_class": difficulty_profile.get("difficulty_class"),
+                    "resolution_risk": difficulty_profile.get("resolution_risk"),
+                    "evidence_floor": difficulty_profile.get("evidence_floor"),
+                    "extra_verification_required": difficulty_profile.get("extra_verification_required"),
+                    "source_of_truth_class": difficulty_profile.get("source_of_truth_class"),
+                    "focus_hints": difficulty_profile.get("focus_hints") or [],
+                },
+                "difficulty_meta": {
+                    "classifier_source": difficulty_profile.get("classifier_source"),
+                    "classifier_model": difficulty_profile.get("classifier_model"),
+                    "classifier_version": difficulty_profile.get("classifier_version"),
+                    "model_used": model_summary.get("used"),
+                    "model_confidence": model_summary.get("model_confidence"),
+                    "heuristic_confidence": heuristic_summary.get("heuristic_confidence"),
+                    "fallback_reason": model_summary.get("fallback_reason"),
+                    "classified_at": created_at,
+                },
+            },
+        }
+        case_notes_result = python_json(update_case_notes_script, ["--pretty"], difficulty_notes_payload)
 
         market_state = python_json(
             set_status_script,
@@ -238,7 +276,6 @@ def main() -> int:
         )
 
         dispatch_id = make_dispatch_id(case_ctx["case_key"])
-        created_at = datetime.now(timezone.utc).isoformat()
         telegram_runtime = load_telegram_runtime_config()
         research_group = telegram_runtime["research_group"]
         controller_topic_title = build_topic_title(
@@ -267,6 +304,7 @@ def main() -> int:
                     "--run-label", f"{persona}-{case_ctx['case_key']}",
                     "--workspace-note-path", workspace_note_path,
                     "--runtime", DEFAULT_RUNTIME_LABEL,
+                    "--notes-json", json.dumps({"difficulty_profile": difficulty_profile}),
                 ],
             )
 
@@ -278,6 +316,7 @@ def main() -> int:
                 "source_note_prefix": source_note_prefix,
                 "assumption_note_path": assumption_note_path,
                 "evidence_map_path": evidence_map_path,
+                "difficulty_profile": difficulty_profile,
             }
             prompt_result = python_json(build_prompt_script, ["--pretty"], prompt_payload)
             prompt_text = prompt_result["prompt"]
@@ -348,6 +387,7 @@ def main() -> int:
                 "expected_finish_marker": finish_marker,
                 "model": args.model,
                 "thinking": args.thinking,
+                "difficulty_profile": difficulty_profile,
             }
 
             update_result = python_json(
@@ -385,6 +425,8 @@ def main() -> int:
         result = {
             "dispatch_id": dispatch_id,
             "created_at": created_at,
+            "difficulty_profile": difficulty_profile,
+            "difficulty_persistence": case_notes_result,
             "planner": {
                 "script": "roles/orchestrator/pipeline-launch-procedure/planner/scripts/dispatch_case_research.py",
                 "version": None,

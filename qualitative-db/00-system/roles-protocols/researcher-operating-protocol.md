@@ -68,9 +68,11 @@ Default rule:
 - possible durable lesson -> candidate in `40-research/review-queue/durable-lesson-candidates`
 - possible missing or underbuilt driver -> candidate in `40-research/review-queue/drivers-candidates`
 
-## Mandatory read path before research
+## Default orientation and selective read path before research
 
-Read in this order before beginning case work:
+Use the runtime assignment prompt as the immediate startup authority for what to read first in a live run.
+
+Default orientation path when you need broader context:
 1. `qualitative-db/README.md`
 2. `qualitative-db/00-system/START-HERE.md`
 3. `qualitative-db/00-system/README.md`
@@ -79,6 +81,10 @@ Read in this order before beginning case work:
 6. relevant `10-domains/.../00-overview.md` notes
 7. relevant `20-entities/.../*.md` notes
 8. relevant `30-drivers/*.md` notes
+
+Working rule:
+- do not reread the full orientation path mechanically on every case if the runtime prompt already scopes the necessary reads
+- expand from the runtime prompt into the broader path when the case requires domain, entity, driver, or canon-boundary context
 
 Read policy detail only when needed:
 - canon/research boundary -> `qualitative-db/00-system/methodology/canonical-memory-workflow.md`
@@ -96,30 +102,36 @@ Template-use rule:
 1. Identify the exact claim, market, or question.
 2. Record the current **market-implied baseline probability** or closest market-implied baseline; this is always relevant and must be considered explicitly.
 3. Identify the most likely active market drivers; do not stop at the first one or two if more seem materially relevant.
-4. Read relevant driver files before broad source collection.
+4. Read relevant driver files before broad source collection when they are likely to matter.
 5. Prefer **credible, recent** sources first, with primary and independent sources prioritized whenever available.
 6. Before writing the first artifact of a given type in the run, read the matching template.
-7. Write source notes for provenance.
-8. Write an agent finding for your interpretation versus the market-implied baseline.
-9. Build an evidence map or synthesis when multi-source reasoning matters.
-10. If no existing market driver seems to fit well, propose a driver candidate in the review queue instead of forcing a bad driver match.
-11. If you discover a likely stable-layer issue, write a proposal or candidate to the review queue instead of editing canon directly.
+7. Preserve provenance in a way that makes the assigned evidence floor legible; for medium/high or audit-sensitive cases, prefer more provenance artifacts rather than too few.
+8. Write source notes whenever they materially help later reviewers see what was checked, especially when the case is medium/high difficulty, disagreement-heavy, or source-sensitive.
+9. Write an agent finding for your interpretation versus the market-implied baseline, using the finding template structure unless the runtime checklist requires additional labeled sections.
+10. Build an evidence map or synthesis when multi-source reasoning matters, conflict is present, or later auditability would otherwise be weak.
+11. If no existing market driver seems to fit well, propose a driver candidate in the review queue instead of forcing a bad driver match.
+12. If you discover a likely stable-layer issue, write a proposal or candidate to the review queue instead of editing canon directly.
 
 ## Research output minimum
 
-A strong researcher output should make the following explicit:
+Core finding requirements for every completed run:
 - exact question / market / claim
 - current market-implied baseline probability or closest market-implied baseline
+- your own probability estimate
 - whether your view agrees or disagrees with that baseline, and why
-- source set used
-- credibility and recency of the key sources
+- strongest supporting evidence
+- strongest counterevidence / disconfirming consideration
+- key assumptions or mechanisms
+- what could still change your mind
+- source set used, with enough source-quality/provenance detail to make the evidence floor auditable
+
+Important but conditional additions when the case or checklist calls for them:
+- explicit resolution / source-of-truth interpretation
+- direct vs contextual evidence distinction
 - key entities
 - key drivers
 - mechanism summary
 - what changed recently
-- strongest pro evidence
-- strongest con evidence
-- unresolved uncertainties
 - confidence / fragility
 - durable lesson candidates
 - whether a canon, linkage, or driver proposal should be reviewed by the Orchestrator
