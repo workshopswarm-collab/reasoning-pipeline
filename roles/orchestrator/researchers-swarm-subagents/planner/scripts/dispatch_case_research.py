@@ -228,6 +228,10 @@ def note_path(case_key: str, created_at: str, dispatch_id: str, persona: str) ->
     return str(analysis_root(case_key, created_at, dispatch_id) / "personas" / f"{persona}.md")
 
 
+def sidecar_path(case_key: str, created_at: str, dispatch_id: str, persona: str) -> str:
+    return str(analysis_root(case_key, created_at, dispatch_id) / "personas" / f"{persona}.sidecar.json")
+
+
 def summary_path(case_key: str, created_at: str, dispatch_id: str) -> str:
     return str(analysis_root(case_key, created_at, dispatch_id) / "summary.md")
 
@@ -632,7 +636,7 @@ def build_visible_markers(*, research_run_id: str, persona: str, market_title: s
     return start_marker, finish_marker
 
 
-def build_topic_handoff_message(*, research_run_id: str, persona: str, case_key: str, topic_title: str, controller_topic_title: str, market_title: str, workspace_note_path: str, prompt_text: str, start_marker: str, finish_marker: str) -> str:
+def build_topic_handoff_message(*, research_run_id: str, persona: str, case_key: str, topic_title: str, controller_topic_title: str, market_title: str, workspace_note_path: str, reasoning_sidecar_path: str, prompt_text: str, start_marker: str, finish_marker: str) -> str:
     completion_cmd = (
         "python3 roles/orchestrator/researchers-swarm-subagents/runtime/scripts/"
         f"reconcile_research_run_completion.py --research-run-id {research_run_id} --status completed"
@@ -651,6 +655,7 @@ def build_topic_handoff_message(*, research_run_id: str, persona: str, case_key:
             f"- persona_topic: {topic_title}",
             f"- controller_topic: {controller_topic_title}",
             f"- primary_agent_finding_path: {workspace_note_path}",
+            f"- reasoning_sidecar_path: {reasoning_sidecar_path}",
             "",
             "Use this topic as the self-contained runtime workspace for this run.",
             "Do not branch into unrelated old case artifacts or extra non-material research once you can defend a directional view.",
@@ -795,6 +800,10 @@ def main() -> int:
             persona: note_path(case_ctx["case_key"], created_at, dispatch_id, persona)
             for persona in args.personas
         }
+        sidecar_paths = {
+            persona: sidecar_path(case_ctx["case_key"], created_at, dispatch_id, persona)
+            for persona in args.personas
+        }
         assumption_paths = {
             persona: assumption_note_path(case_ctx["case_key"], created_at, dispatch_id, persona)
             for persona in args.personas
@@ -825,6 +834,7 @@ def main() -> int:
         runs = []
         for persona in args.personas:
             workspace_note_path = persona_paths[persona]
+            reasoning_sidecar_path = sidecar_paths[persona]
             source_note_dir = source_note_directory(case_ctx["case_key"])
             source_note_prefix_value = source_note_prefix(created_at, persona)
             assumption_note_path_value = assumption_paths[persona]
@@ -875,6 +885,7 @@ def main() -> int:
                 **case_ctx,
                 "agent_label": persona,
                 "workspace_note_path": workspace_note_path,
+                "reasoning_sidecar_path": reasoning_sidecar_path,
                 "source_note_dir": source_note_dir,
                 "source_note_prefix": source_note_prefix_value,
                 "assumption_note_path": assumption_note_path_value,
@@ -905,6 +916,7 @@ def main() -> int:
                 controller_topic_title=controller_topic_title,
                 market_title=case_ctx["title"],
                 workspace_note_path=workspace_note_path,
+                reasoning_sidecar_path=reasoning_sidecar_path,
                 prompt_text=prompt_text,
                 start_marker=start_marker,
                 finish_marker=finish_marker,
@@ -953,6 +965,7 @@ def main() -> int:
                 "qmd_bundle_path": qmd_bundle_path,
                 "qmd_result_paths": qmd_bundle.get("result_paths") or [],
                 "qmd_query_profile": qmd_bundle.get("query_profile") or {},
+                "reasoning_sidecar_path": reasoning_sidecar_path,
             }
             if lane_seed.get("delivery_target_topic_id"):
                 base_notes["delivery_target_topic_id"] = lane_seed["delivery_target_topic_id"]
@@ -999,9 +1012,11 @@ def main() -> int:
                     "persona": persona,
                     "run_label": f"{persona}-{case_ctx['case_key']}",
                     "workspace_note_path": workspace_note_path,
+                    "reasoning_sidecar_path": reasoning_sidecar_path,
                     "expected_auxiliary_paths": {
                         "source_note_directory": source_note_directory,
                         "source_note_prefix": source_note_prefix,
+                        "reasoning_sidecar_path": reasoning_sidecar_path,
                         "assumption_note_path": assumption_note_path,
                         "evidence_map_path": evidence_map_path,
                     },

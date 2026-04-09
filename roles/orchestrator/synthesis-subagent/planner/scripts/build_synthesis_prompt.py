@@ -37,8 +37,8 @@ SYNTHESIZER_FRONTMATTER_FIELDS = [
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Build a synthesis prompt from an extracts-first or raw synthesis bundle")
-    parser.add_argument("--bundle-json", required=True, help="Bundle JSON emitted by build_extracts_synthesis_bundle.py or build_synthesis_bundle.py")
+    parser = argparse.ArgumentParser(description="Build a synthesis prompt from a sidecar-first or raw synthesis bundle")
+    parser.add_argument("--bundle-json", required=True, help="Bundle JSON emitted by build_sidecar_synthesis_bundle.py or build_synthesis_bundle.py")
     parser.add_argument("--out", help="Optional output path for the prompt markdown")
     parser.add_argument("--allow-truth-finding-research", dest="allow_truth_finding_research", action="store_true", help="Permit synthesis-stage truth-finding internet research aimed at improving predictive accuracy")
     parser.add_argument("--no-truth-finding-research", dest="allow_truth_finding_research", action="store_false", help="Disable synthesis-stage truth-finding research guidance")
@@ -169,12 +169,12 @@ def render_raw_persona_reference(lines: list[str], source_bundle: dict[str, Any]
         lines.append("")
 
 
-def render_extracts_bundle(lines: list[str], bundle: dict[str, Any], source_bundle: dict[str, Any] | None) -> None:
-    lines.append("## Extracts-first synthesis substrate")
+def render_sidecar_bundle(lines: list[str], bundle: dict[str, Any], source_bundle: dict[str, Any] | None) -> None:
+    lines.append("## Researcher-sidecar synthesis substrate")
     lines.append("")
-    lines.append("This bundle is extracts-first for navigation efficiency, but the extracts are not canonical truth.")
-    lines.append("Treat each persona reasoning extract as a lossy suggestion about what may matter, what may be fragile, and what deserves scrutiny.")
-    lines.append("The raw persona findings remain the authoritative upstream artifacts, and you should critically compare the extracts against those raw findings before trusting them.")
+    lines.append("This bundle is sidecar-first for navigation efficiency, but the sidecars are not canonical truth.")
+    lines.append("Treat each persona reasoning sidecar as a compact, structured summary of the corresponding raw finding, not as an independent evidentiary source.")
+    lines.append("The raw persona findings remain the authoritative upstream artifacts, and you should critically compare the sidecars against those raw findings before trusting them.")
     lines.append("")
     lines.append(f"- coverage_status: {bundle.get('coverage_status')}")
     lines.append(f"- available_personas: {', '.join(bundle.get('available_personas', [])) or '[none]'}")
@@ -198,17 +198,17 @@ def render_extracts_bundle(lines: list[str], bundle: dict[str, Any], source_bund
         lines.append("- instruction: treat this provisional swarm-vs-market gap as a skepticism aid, not as a conclusion. The larger the provisional edge, the stronger the independent verification bar before trusting it.")
         lines.append("- instruction: if your final range differs materially from the provisional swarm center, explain why in 'Difference from swarm-implied center'.")
     lines.append("")
-    lines.append("## Persona reasoning extracts")
+    lines.append("## Persona reasoning sidecars")
     lines.append("")
-    for extract in bundle.get("extracts", []):
-        payload = extract.get("payload") or {}
-        lines.append(f"### Persona: {extract.get('persona')}")
-        lines.append(f"Extract path: `{extract.get('path')}`")
-        if extract.get("persona_finding_path"):
-            lines.append(f"Raw finding path: `{extract.get('persona_finding_path')}`")
-        lines.append("Critical reading task: decide whether this extract appears faithful, incomplete, distorted, or overconfident relative to the raw finding.")
-        assumption_paths = extract.get("assumption_artifact_paths") or []
-        evidence_paths = extract.get("evidence_artifact_paths") or []
+    for sidecar in bundle.get("sidecars", []):
+        payload = sidecar.get("payload") or {}
+        lines.append(f"### Persona: {sidecar.get('persona')}")
+        lines.append(f"Sidecar path: `{sidecar.get('path')}`")
+        if sidecar.get("persona_finding_path"):
+            lines.append(f"Raw finding path: `{sidecar['persona_finding_path']}`")
+        lines.append("Critical reading task: decide whether this sidecar appears faithful, incomplete, distorted, or overconfident relative to the raw finding.")
+        assumption_paths = sidecar.get("assumption_artifact_paths") or []
+        evidence_paths = sidecar.get("evidence_artifact_paths") or []
         if assumption_paths:
             lines.append(f"Assumption paths: {json.dumps(assumption_paths, ensure_ascii=False)}")
         if evidence_paths:
@@ -220,7 +220,6 @@ def render_extracts_bundle(lines: list[str], bundle: dict[str, Any], source_bund
         lines.append("")
     if source_bundle:
         render_raw_persona_reference(lines, source_bundle, bundle)
-
 
 def render_raw_bundle(lines: list[str], bundle: dict[str, Any]) -> None:
     lines.append("## Raw persona findings")
@@ -250,7 +249,7 @@ def build_prompt(bundle: dict, *, allow_truth_finding_research: bool) -> str:
     truth_finding_policy = TRUTH_FINDING_POLICY_PATH.read_text().strip() if allow_truth_finding_research and TRUTH_FINDING_POLICY_PATH.exists() else ""
     template = SYNDICATED_TEMPLATE_PATH.read_text().strip()
     source_bundle = None
-    if artifact_type == "extracts_synthesis_bundle" and bundle.get("source_bundle_path"):
+    if artifact_type == "sidecar_synthesis_bundle" and bundle.get("source_bundle_path"):
         source_bundle_path = Path(str(bundle["source_bundle_path"]))
         if not source_bundle_path.is_absolute():
             source_bundle_path = WORKSPACE_ROOT / source_bundle_path
@@ -286,8 +285,8 @@ def build_prompt(bundle: dict, *, allow_truth_finding_research: bool) -> str:
     lines.append(indent_block(template))
     lines.append("")
 
-    if artifact_type == "extracts_synthesis_bundle":
-        render_extracts_bundle(lines, bundle, source_bundle)
+    if artifact_type == "sidecar_synthesis_bundle":
+        render_sidecar_bundle(lines, bundle, source_bundle)
     else:
         render_raw_bundle(lines, bundle)
 
@@ -312,8 +311,8 @@ def main() -> None:
         "prompt_path": str(out_path.resolve().relative_to(WORKSPACE_ROOT)),
         "bundle_artifact_type": bundle.get("artifact_type") or "",
         "allow_truth_finding_research": args.allow_truth_finding_research,
-        "extract_count": len(bundle.get("extracts", [])) if bundle.get("artifact_type") == "extracts_synthesis_bundle" else 0,
-        "source_persona_count": len(bundle.get("persona_findings", [])) if bundle.get("artifact_type") != "extracts_synthesis_bundle" else 0,
+        "sidecar_count": len(bundle.get("sidecars", [])) if bundle.get("artifact_type") == "sidecar_synthesis_bundle" else 0,
+        "source_persona_count": len(bundle.get("persona_findings", [])) if bundle.get("artifact_type") != "sidecar_synthesis_bundle" else 0,
     }
     print(json.dumps(summary, indent=2 if args.pretty else None))
 

@@ -307,6 +307,7 @@ def build_prompt(payload: dict) -> str:
     metadata = payload.get("metadata") or {}
     url = metadata.get("url")
     workspace_note_path = payload.get("workspace_note_path")
+    reasoning_sidecar_path = payload.get("reasoning_sidecar_path") or f"qualitative-db/40-research/cases/{case_key}/researcher-analyses/UNKNOWN-DATE/UNKNOWN-DISPATCH/personas/{agent_label}.sidecar.json"
     source_note_dir = payload.get("source_note_dir") or f"qualitative-db/40-research/cases/{case_key}/researcher-source-notes"
     source_note_prefix = payload.get("source_note_prefix") or f"{agent_label}"
     assumption_note_path = payload.get("assumption_note_path") or f"qualitative-db/40-research/cases/{case_key}/researcher-analyses/UNKNOWN-DATE/UNKNOWN-DISPATCH/assumptions/{agent_label}.md"
@@ -391,7 +392,9 @@ Read only what you need, not the whole repo:
 {qmd_section}
 ## Required output
 - write the main agent finding exactly to: `{workspace_note_path}`
+- also write a compact reasoning sidecar JSON exactly to: `{reasoning_sidecar_path}`
 - structure the finding using the agent-finding template headings, including the source-quality assessment, verification impact, reusable lesson signals, and Orchestrator review suggestions sections
+- keep the sidecar faithful to the finding; do not introduce claims in the sidecar that are not supported by the finding
 - for frontmatter linkage fields (`entity`, `driver`, `related_entities`, `related_drivers`), use canonical slugs only when you know them from `qualitative-db/20-entities/` or `qualitative-db/30-drivers/`
 - if you are unsure a linkage is canonical, keep it out of the canonical linkage fields and put it in `proposed_entities` or `proposed_drivers` instead
 - do not invent new canonical entity or driver slugs in the artifact frontmatter
@@ -404,6 +407,46 @@ Read only what you need, not the whole repo:
 - use the same canonical-vs-proposed linkage rule in evidence-map frontmatter when you fill entity/driver linkage fields there
 - treat these as system-managed case surfaces and do not write them yourself unless explicitly told: `{analysis_summary_path}`, `{case_file_path}`, `{current_file_path}`, `{timeline_file_path}`
 - do not invent alternate folders for this case
+
+## Required reasoning sidecar JSON
+Write valid JSON only to `{reasoning_sidecar_path}` using this shape:
+```json
+{{
+  "artifact_type": "persona_reasoning_sidecar",
+  "schema_version": "v1",
+  "persona": "{agent_label}",
+  "main_thesis": "short string",
+  "own_probability": 0.50,
+  "reasoning_mode": ["other"],
+  "key_assumptions": ["short bullet"],
+  "strongest_supports": ["short bullet"],
+  "strongest_disconfirmers": ["short bullet"],
+  "main_logical_chain": ["step 1", "step 2"],
+  "fragility_points": ["short bullet"],
+  "unresolved_ambiguities": ["short bullet"],
+  "timing_relevance": "short string",
+  "source_quality_view": "short string",
+  "what_would_change_view": "short string",
+  "recommended_weight": "low|medium|high",
+  "confidence_in_extract": "low|medium|high",
+  "quote_anchors": ["optional short quote or anchor"],
+  "runtime_metadata": {{
+    "generation_mode": "researcher_sidecar_v1",
+    "case_key": "{case_key}",
+    "dispatch_id": "from your assignment context",
+    "research_run_id": "from your assignment context",
+    "source_persona_finding_path": "{workspace_note_path}",
+    "source_persona_sha256": "sha256 hex of the exact final markdown finding you wrote",
+    "prompt_contract_version": "researcher-sidecar-v1"
+  }}
+}}
+```
+Sidecar rules:
+- keep it compact, structured, and faithful to the final finding
+- `own_probability` should match your final stated probability estimate when one exists
+- use only these reasoning_mode values: `base_rate`, `market_anchor`, `scenario_analysis`, `catalyst_analysis`, `risk_management`, `contract_interpretation`, `variant_hypothesis`, `technical_reference`, `other`
+- after you finish writing the markdown finding, compute the sha256 of that exact markdown file and place it into `runtime_metadata.source_persona_sha256`
+- do not leave placeholder strings like "from your assignment context" in the final sidecar
 
 ## Operating rules
 - treat this run as self-contained except for the current assignment, the vault, and the database

@@ -7,8 +7,6 @@ from common import (
     SYNTHESIZER_ENUMS,
     coerce_string,
     normalize_probability,
-    reasoning_extract_job_input_fingerprint,
-    sha256_text,
 )
 
 TOP_LEVEL_KEYS = {"claim", "frontmatter", "sections"}
@@ -35,7 +33,7 @@ RUNTIME_MANAGED_FIELDS = {
     "relation_to_market",
     "edge_quality",
 }
-REASONING_EXTRACT_REASONING_MODE_ENUM = {
+REASONING_SIDECAR_REASONING_MODE_ENUM = {
     "base_rate",
     "market_anchor",
     "scenario_analysis",
@@ -46,8 +44,8 @@ REASONING_EXTRACT_REASONING_MODE_ENUM = {
     "technical_reference",
     "other",
 }
-REASONING_EXTRACT_CONFIDENCE_ENUM = {"low", "medium", "high"}
-REASONING_EXTRACT_REQUIRED_FIELDS = [
+REASONING_SIDECAR_CONFIDENCE_ENUM = {"low", "medium", "high"}
+REASONING_SIDECAR_REQUIRED_FIELDS = [
     "persona",
     "main_thesis",
     "own_probability",
@@ -64,9 +62,11 @@ REASONING_EXTRACT_REQUIRED_FIELDS = [
     "recommended_weight",
     "confidence_in_extract",
 ]
-REASONING_EXTRACT_OPTIONAL_FIELDS = {
+REASONING_SIDECAR_OPTIONAL_FIELDS = {
     "quote_anchors",
     "runtime_metadata",
+    "artifact_type",
+    "schema_version",
 }
 RECOMMENDED_NONEMPTY_SECTIONS = {
     "Alpha summary",
@@ -80,14 +80,14 @@ RECOMMENDED_NONEMPTY_SECTIONS = {
     "Best countercase",
     "Recommended follow-up",
 }
-
-RUNTIME_METADATA_REQUIRED_FIELDS = {
-    "extraction_mode",
-    "extracted_at",
+REASONING_SIDECAR_RUNTIME_METADATA_REQUIRED_FIELDS = {
+    "generation_mode",
+    "case_key",
+    "dispatch_id",
+    "research_run_id",
     "source_persona_finding_path",
     "source_persona_sha256",
-    "job_input_sha256",
-    "prompt_sha256",
+    "prompt_contract_version",
 }
 
 
@@ -187,29 +187,42 @@ def validate_synthesis_result_payload(payload: Any) -> dict[str, Any]:
     }
 
 
-def reasoning_extract_core_payload(payload: Any) -> Any:
-    if isinstance(payload, dict) and isinstance(payload.get("runtime_metadata"), dict):
-        stripped = dict(payload)
-        stripped.pop("runtime_metadata", None)
-        return stripped
-    return payload
+def reasoning_sidecar_core_payload(payload: Any) -> Any:
+    if not isinstance(payload, dict):
+        return payload
+    stripped = dict(payload)
+    stripped.pop("runtime_metadata", None)
+    stripped.pop("artifact_type", None)
+    stripped.pop("schema_version", None)
+    return stripped
 
 
-def validate_reasoning_extract_payload(payload: Any) -> dict[str, Any]:
+def validate_reasoning_sidecar_payload(payload: Any) -> dict[str, Any]:
     errors: list[str] = []
     warnings: list[str] = []
 
-    payload = reasoning_extract_core_payload(payload)
     if not isinstance(payload, dict):
         return {"ok": False, "errors": ["top-level payload must be a JSON object"], "warnings": []}
 
-    unknown_fields = sorted(set(payload.keys()) - set(REASONING_EXTRACT_REQUIRED_FIELDS) - REASONING_EXTRACT_OPTIONAL_FIELDS)
-    if unknown_fields:
-        warnings.extend(f"unknown reasoning-extract field: {field}" for field in unknown_fields)
+    artifact_type = coerce_string(payload.get("artifact_type"))
+    if artifact_type and artifact_type != "persona_reasoning_sidecar":
+        errors.append(f"invalid artifact_type for reasoning sidecar: {artifact_type}")
 
-    for field in REASONING_EXTRACT_REQUIRED_FIELDS:
-        if field not in payload:
-            errors.append(f"missing reasoning-extract field: {field}")
+    schema_version = coerce_string(payload.get("schema_version"))
+    if schema_version and schema_version != "v1":
+        warnings.append(f"unexpected reasoning sidecar schema_version: {schema_version}")
+
+    core = reasoning_sidecar_core_payload(payload)
+    if not isinstance(core, dict):
+        return {"ok": False, "errors": ["reasoning sidecar core payload must be a JSON object"], "warnings": warnings}
+
+    unknown_fields = sorted(set(core.keys()) - set(REASONING_SIDECAR_REQUIRED_FIELDS) - (REASONING_SIDECAR_OPTIONAL_FIELDS - {"artifact_type", "schema_version", "runtime_metadata"}))
+    if unknown_fields:
+        warnings.extend(f"unknown reasoning-sidecar field: {field}" for field in unknown_fields)
+
+    for field in REASONING_SIDECAR_REQUIRED_FIELDS:
+        if field not in core:
+            errors.append(f"missing reasoning-sidecar field: {field}")
 
     for field in [
         "persona",
@@ -218,15 +231,15 @@ def validate_reasoning_extract_payload(payload: Any) -> dict[str, Any]:
         "source_quality_view",
         "what_would_change_view",
     ]:
-        if field in payload and not isinstance(payload.get(field), str):
+        if field in core and not isinstance(core.get(field), str):
             errors.append(f"field must be a string: {field}")
 
-    own_probability = payload.get("own_probability")
+    own_probability = core.get("own_probability")
     if own_probability not in (None, "") and normalize_probability(own_probability) is None:
         errors.append("own_probability must be blank or a decimal probability in [0,1]")
 
-    reasoning_mode = payload.get("reasoning_mode")
-    if "reasoning_mode" in payload:
+    reasoning_mode = core.get("reasoning_mode")
+    if "reasoning_mode" in core:
         if not isinstance(reasoning_mode, list):
             errors.append("reasoning_mode must be a list")
         else:
@@ -234,7 +247,7 @@ def validate_reasoning_extract_payload(payload: Any) -> dict[str, Any]:
                 if not isinstance(item, str):
                     errors.append("reasoning_mode entries must be strings")
                     continue
-                if item not in REASONING_EXTRACT_REASONING_MODE_ENUM:
+                if item not in REASONING_SIDECAR_REASONING_MODE_ENUM:
                     errors.append(f"invalid reasoning_mode entry: {item}")
 
     for field in [
@@ -245,16 +258,16 @@ def validate_reasoning_extract_payload(payload: Any) -> dict[str, Any]:
         "fragility_points",
         "unresolved_ambiguities",
     ]:
-        value = payload.get(field)
-        if field in payload:
+        value = core.get(field)
+        if field in core:
             if not isinstance(value, list):
                 errors.append(f"field must be a list: {field}")
             elif any(not isinstance(item, str) for item in value):
                 errors.append(f"all entries must be strings: {field}")
             elif not value:
-                warnings.append(f"reasoning-extract list is empty: {field}")
+                warnings.append(f"reasoning-sidecar list is empty: {field}")
 
-    quote_anchors = payload.get("quote_anchors")
+    quote_anchors = core.get("quote_anchors")
     if quote_anchors is not None:
         if not isinstance(quote_anchors, list):
             errors.append("quote_anchors must be a list when present")
@@ -262,65 +275,51 @@ def validate_reasoning_extract_payload(payload: Any) -> dict[str, Any]:
             errors.append("all quote_anchors entries must be strings")
 
     for field in ["recommended_weight", "confidence_in_extract"]:
-        value = coerce_string(payload.get(field))
-        if field in payload and value not in REASONING_EXTRACT_CONFIDENCE_ENUM:
+        value = coerce_string(core.get(field))
+        if field in core and value not in REASONING_SIDECAR_CONFIDENCE_ENUM:
             errors.append(f"invalid enum for {field}: {value or '[blank]'}")
+
+    runtime_metadata = payload.get("runtime_metadata")
+    if not isinstance(runtime_metadata, dict):
+        errors.append("missing runtime_metadata on reasoning sidecar artifact")
+    else:
+        missing_runtime_fields = sorted(field for field in REASONING_SIDECAR_RUNTIME_METADATA_REQUIRED_FIELDS if field not in runtime_metadata)
+        if missing_runtime_fields:
+            errors.extend(f"missing runtime_metadata field: {field}" for field in missing_runtime_fields)
 
     return {
         "ok": not errors,
         "errors": errors,
         "warnings": warnings,
-        "required_fields": list(REASONING_EXTRACT_REQUIRED_FIELDS),
-        "optional_fields": sorted(REASONING_EXTRACT_OPTIONAL_FIELDS),
+        "runtime_metadata": runtime_metadata if isinstance(runtime_metadata, dict) else {},
+        "required_fields": list(REASONING_SIDECAR_REQUIRED_FIELDS),
+        "optional_fields": sorted(REASONING_SIDECAR_OPTIONAL_FIELDS),
     }
 
 
-def validate_reasoning_extract_artifact(payload: Any, *, job: dict[str, Any], prompt_text: str | None = None) -> dict[str, Any]:
-    structural = validate_reasoning_extract_payload(payload)
+def validate_reasoning_sidecar_artifact(payload: Any, *, persona_finding_path: str, source_persona_sha256: str, persona: str | None = None) -> dict[str, Any]:
+    structural = validate_reasoning_sidecar_payload(payload)
     errors = list(structural["errors"])
     warnings = list(structural["warnings"])
 
     if not isinstance(payload, dict):
         return {"ok": False, "errors": errors, "warnings": warnings}
 
-    runtime_metadata = payload.get("runtime_metadata")
-    if not isinstance(runtime_metadata, dict):
-        errors.append("missing runtime_metadata on reasoning extract artifact")
-        return {"ok": False, "errors": errors, "warnings": warnings}
+    runtime_metadata = payload.get("runtime_metadata") or {}
+    if runtime_metadata.get("source_persona_sha256") != source_persona_sha256:
+        errors.append("reasoning sidecar artifact is stale: source_persona_sha256 does not match current persona input")
+    if runtime_metadata.get("source_persona_finding_path") != persona_finding_path:
+        warnings.append("runtime_metadata source_persona_finding_path differs from current persona finding path")
+    if persona is not None and coerce_string(payload.get("persona")) != coerce_string(persona):
+        errors.append("reasoning sidecar persona does not match expected persona")
 
-    missing_runtime_fields = sorted(field for field in RUNTIME_METADATA_REQUIRED_FIELDS if field not in runtime_metadata)
-    if missing_runtime_fields:
-        errors.extend(f"missing runtime_metadata field: {field}" for field in missing_runtime_fields)
-
-    expected_source_sha = job.get("persona_source_sha256") or ""
-    if expected_source_sha and runtime_metadata.get("source_persona_sha256") != expected_source_sha:
-        errors.append("reasoning extract artifact is stale: source_persona_sha256 does not match current persona input")
-
-    expected_job_sha = reasoning_extract_job_input_fingerprint(job)
-    if runtime_metadata.get("job_input_sha256") != expected_job_sha:
-        errors.append("reasoning extract artifact is stale: job_input_sha256 does not match current extraction job input")
-
-    if prompt_text is not None:
-        expected_prompt_sha = sha256_text(prompt_text)
-        if runtime_metadata.get("prompt_sha256") != expected_prompt_sha:
-            errors.append("reasoning extract artifact is stale: prompt_sha256 does not match current extraction prompt")
-
-    expected_source_path = job.get("persona_finding_path") or ""
-    if expected_source_path and runtime_metadata.get("source_persona_finding_path") != expected_source_path:
-        warnings.append("runtime_metadata source_persona_finding_path differs from current job path")
-
-    explicit_prob = normalize_probability(job.get("persona_explicit_probability"))
-    extract_prob = normalize_probability(reasoning_extract_core_payload(payload).get("own_probability") if isinstance(reasoning_extract_core_payload(payload), dict) else None)
-    if explicit_prob is not None and extract_prob is not None:
-        diff = abs(explicit_prob - extract_prob)
-        if diff >= 0.12:
-            errors.append(
-                f"reasoning extract own_probability materially disagrees with explicit raw persona probability ({extract_prob:.4f} vs {explicit_prob:.4f})"
-            )
-        elif diff >= 0.05:
-            warnings.append(
-                f"reasoning extract own_probability differs noticeably from explicit raw persona probability ({extract_prob:.4f} vs {explicit_prob:.4f})"
-            )
+    own_probability = None
+    if isinstance(payload, dict):
+        core_payload = reasoning_sidecar_core_payload(payload)
+        if isinstance(core_payload, dict):
+            own_probability = normalize_probability(core_payload.get("own_probability"))
+    if own_probability is None:
+        warnings.append("reasoning sidecar own_probability is blank or invalid")
 
     return {
         "ok": not errors,

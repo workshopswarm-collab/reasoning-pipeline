@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Small model or realization error could flip the outcome.",
+    "One-decimal official BLS reporting increases threshold sensitivity.",
+    "A late credible preview below threshold would materially weaken the case."
+  ],
+  "key_assumptions": [
+    "The Cleveland Fed nowcast is a major public input to current market pricing.",
+    "The official BLS print will land close enough to the nowcast for the directional edge to survive.",
+    "Traders are pricing the correct seasonally adjusted CPI-U monthly metric."
+  ],
+  "main_logical_chain": [
+    "Start from the 94.65% market-implied prior and ask what would justify it.",
+    "Find that a reputable late-stage public nowcast is above the threshold and metric-aligned.",
+    "Conclude the market is likely efficient in direction but still too aggressive in confidence because threshold risk remains material until the official BLS print."
+  ],
+  "main_thesis": "The market's Yes lean is understandable because a reputable public nowcast is above the threshold, but the current price still looks somewhat overextended versus remaining official-print and threshold risk.",
+  "own_probability": 0.88,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "March 2026 | CPI 0.84 | Updated 04/09",
+    "model reports seasonally adjusted, month-over-month inflation rates",
+    "March 2026 CPI data are scheduled to be released on April 10, 2026, at 8:30 A.M. Eastern Time"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "technical_reference",
+    "scenario_analysis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260409-d9a24086",
+    "dispatch_id": "dispatch-case-20260409-d9a24086-20260409T165631Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "bd395927-510f-48c2-96b9-38cc2cf15695",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260409-d9a24086/researcher-analyses/2026-04-09/dispatch-case-20260409-d9a24086-20260409T165631Z/personas/market-implied.md",
+    "source_persona_sha256": "a083fd42fb7d092d96db89266febcac80e3a215ff4515e890c701aa770509a6a"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality authoritative settlement source plus one strong contextual nowcast, but only medium-low evidence independence for the directional support.",
+  "strongest_disconfirmers": [
+    "The official BLS print is not out yet.",
+    "0.84 is only modestly above the 0.8 threshold on a contract settled to one decimal official reporting.",
+    "Evidence independence is limited because the main public directional support is one prominent nowcast."
+  ],
+  "strongest_supports": [
+    "Cleveland Fed nowcast updated 2026-04-09 shows March 2026 CPI at 0.84 m/m.",
+    "Cleveland Fed states its CPI monthly nowcasts are seasonally adjusted month-over-month.",
+    "BLS is a clean governing source of truth with release timing confirmed for April 10, 2026."
+  ],
+  "timing_relevance": "Very high because the official BLS release is scheduled for the next morning and the market is near resolution.",
+  "unresolved_ambiguities": [
+    "Whether traders have additional private or harder-to-observe information beyond the public nowcast.",
+    "How much rounding-adjacent risk remains between a 0.84 forecast and the final official BLS print."
+  ],
+  "what_would_change_view": "Another independent metric-aligned preview clearly above 0.8 would move me closer to the market; a credible late preview at 0.7 or lower would push me down materially."
+}

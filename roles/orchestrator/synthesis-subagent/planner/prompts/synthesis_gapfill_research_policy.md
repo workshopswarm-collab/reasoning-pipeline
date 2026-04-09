@@ -18,8 +18,8 @@ Use synthesis-stage research to:
 ## Upstream authority and helper artifacts
 
 Treat the raw persona findings as the canonical upstream inputs.
-Treat the reasoning extracts as lossy suggestions that help you decide what to inspect critically.
-Do not assume the extracts are faithful, complete, or correctly weighted.
+Treat the reasoning sidecars as lossy suggestions that help you decide what to inspect critically.
+Do not assume the sidecars are faithful, complete, or correctly weighted.
 
 ## Skepticism rule for swarm-vs-market edges
 

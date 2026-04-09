@@ -7,14 +7,14 @@ It should run through dedicated subagents that Orchestrator wakes explicitly.
 
 ## Dedicated roles
 
-### Persona reasoning extraction
-- one dedicated extraction subagent per persona extraction run
-- launched or resumed by Orchestrator for that extraction task
-- responsible only for producing one reasoning-extract JSON payload
+### Researcher reasoning sidecars
+- each researcher lane writes one companion sidecar JSON next to its main persona finding
+- Orchestrator validates those sidecars before synthesis promotion
+- the sidecars serve as the structured synthesis substrate, but not as canonical truth
 
 ### Final synthesis
 - one dedicated synthesis subagent per dispatch synthesis run
-- launched or resumed by Orchestrator after the extracts-synthesis bundle is ready
+- launched or resumed by Orchestrator after the sidecar-synthesis bundle is ready
 - responsible only for producing one final synthesis JSON payload
 
 ## Separation of responsibility
@@ -36,5 +36,5 @@ Extraction/synthesis subagents own:
 This keeps:
 - Orchestrator deterministic and stateful
 - reasoning workers fresh-context and task-bounded
-- extraction and synthesis separate from one another
+- researcher output and synthesis separate from one another
 - execution closer to the researcher-swarm architecture

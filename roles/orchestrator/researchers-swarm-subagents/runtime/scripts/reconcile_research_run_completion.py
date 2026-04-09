@@ -9,6 +9,7 @@ Current behavior:
 """
 
 import argparse
+import hashlib
 import json
 import os
 import subprocess
@@ -20,11 +21,16 @@ BASE_DIR = Path(__file__).resolve().parent
 RUNTIME_DIR = BASE_DIR.parent
 PIPELINE_DIR = RUNTIME_DIR.parent
 WORKSPACE_ROOT = PIPELINE_DIR.parents[2]
+SYNTHESIS_SUBAGENT_DIR = WORKSPACE_ROOT / "roles/orchestrator/synthesis-subagent"
+if str(SYNTHESIS_SUBAGENT_DIR) not in sys.path:
+    sys.path.insert(0, str(SYNTHESIS_SUBAGENT_DIR))
 DEFAULT_ENV_PATH = WORKSPACE_ROOT / ".env"
 VALIDATE_LINKAGES_SCRIPT = BASE_DIR / "validate_research_artifact_linkages.py"
 UPSERT_PROPOSED_DRIVER_OCCURRENCES_SCRIPT = BASE_DIR / "upsert_proposed_driver_occurrences.py"
 ASYNC_PROPOSED_DRIVER_REVIEW_WORKER = BASE_DIR / "run_async_proposed_driver_review.py"
 ASYNC_PROPOSED_DRIVER_REVIEW_STATE_DIR = BASE_DIR / ".runtime-state" / "proposed-driver-review"
+
+from validation import validate_reasoning_sidecar_artifact, validate_reasoning_sidecar_payload  # noqa: E402
 
 SQL_LOOKUP = r'''
 WITH input AS (
@@ -86,6 +92,17 @@ def load_json(path_str: str):
     return json.loads(raw)
 
 
+def sha256_text(text: str) -> str:
+    return hashlib.sha256(text.encode("utf-8")).hexdigest()
+
+
+def reasoning_sidecar_path_for(workspace_note_path: str) -> str:
+    path = Path(workspace_note_path)
+    if path.suffix == ".md":
+        return str(path.with_suffix(".sidecar.json"))
+    return str(path) + ".sidecar.json"
+
+
 def build_payload(args: argparse.Namespace) -> dict:
     payload = load_json(args.file)
     if payload and not isinstance(payload, dict):
@@ -101,6 +118,74 @@ def build_payload(args: argparse.Namespace) -> dict:
     if not payload.get("status"):
         raise ValueError("status is required")
     return payload
+
+
+def validate_required_reasoning_sidecar(lookup: dict) -> dict:
+    workspace_note_rel = lookup.get("workspace_note_path") or ""
+    if not workspace_note_rel:
+        raise ValueError("workspace_note_path is required for completed research runs")
+    workspace_note_abs = Path(workspace_note_rel)
+    if not workspace_note_abs.is_absolute():
+        workspace_note_abs = WORKSPACE_ROOT / workspace_note_abs
+    sidecar_rel = reasoning_sidecar_path_for(workspace_note_rel)
+    sidecar_abs = Path(sidecar_rel)
+    if not sidecar_abs.is_absolute():
+        sidecar_abs = WORKSPACE_ROOT / sidecar_abs
+    if not workspace_note_abs.exists():
+        raise FileNotFoundError(f"workspace note missing: {workspace_note_rel}")
+    if not sidecar_abs.exists():
+        raise FileNotFoundError(f"reasoning sidecar missing: {sidecar_rel}")
+    sidecar_payload = json.loads(sidecar_abs.read_text())
+    validation = validate_reasoning_sidecar_payload(sidecar_payload)
+    if not validation.get("ok"):
+        raise ValueError(f"reasoning sidecar structurally invalid for completed run: {validation.get('errors') or []}")
+    expected_persona = str(lookup.get("agent_label") or "").strip()
+    if expected_persona and str(sidecar_payload.get("persona") or "").strip() != expected_persona:
+        raise ValueError(f"reasoning sidecar persona mismatch: expected {expected_persona}, got {sidecar_payload.get('persona')!r}")
+    return {
+        "path": sidecar_rel,
+        "warnings": validation.get("warnings") or [],
+        "payload": sidecar_payload,
+    }
+
+
+def sync_reasoning_sidecar_metadata(lookup: dict, required_sidecar: dict) -> dict:
+    workspace_note_rel = lookup.get("workspace_note_path") or ""
+    workspace_note_abs = Path(workspace_note_rel)
+    if not workspace_note_abs.is_absolute():
+        workspace_note_abs = WORKSPACE_ROOT / workspace_note_abs
+    sidecar_rel = required_sidecar["path"]
+    sidecar_abs = Path(sidecar_rel)
+    if not sidecar_abs.is_absolute():
+        sidecar_abs = WORKSPACE_ROOT / sidecar_abs
+    persona_text = workspace_note_abs.read_text()
+    current_sha = sha256_text(persona_text)
+    payload = dict(required_sidecar.get("payload") or json.loads(sidecar_abs.read_text()))
+    runtime_metadata = dict(payload.get("runtime_metadata") or {})
+    changed = False
+    if runtime_metadata.get("source_persona_finding_path") != workspace_note_rel:
+        runtime_metadata["source_persona_finding_path"] = workspace_note_rel
+        changed = True
+    if runtime_metadata.get("source_persona_sha256") != current_sha:
+        runtime_metadata["source_persona_sha256"] = current_sha
+        changed = True
+    if changed:
+        payload["runtime_metadata"] = runtime_metadata
+        sidecar_abs.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n")
+    validation = validate_reasoning_sidecar_artifact(
+        payload,
+        persona_finding_path=workspace_note_rel,
+        source_persona_sha256=current_sha,
+        persona=lookup.get("agent_label"),
+    )
+    if not validation.get("ok"):
+        raise ValueError(f"reasoning sidecar invalid after sync: {validation.get('errors') or []}")
+    return {
+        "path": sidecar_rel,
+        "warnings": validation.get("warnings") or [],
+        "metadata_synced": changed,
+        "payload": payload,
+    }
 
 
 def run_psql(psql_bin: str, db_url: str, payload: dict, sql: str) -> dict:
@@ -217,6 +302,9 @@ def main() -> int:
     try:
         payload = build_payload(args)
         lookup = run_psql(args.psql, args.db_url, payload, SQL_LOOKUP)
+        required_sidecar = None
+        if payload["status"] == "completed":
+            required_sidecar = validate_required_reasoning_sidecar(lookup)
         update_script = Path(__file__).resolve().parent / "update_research_run.py"
         notes = {
             "dispatch_stage": "completed" if payload["status"] == "completed" else "terminated",
@@ -225,6 +313,12 @@ def main() -> int:
             notes["error"] = payload["error"]
         if payload.get("completion_summary"):
             notes["completion_summary"] = payload["completion_summary"]
+        if required_sidecar is not None:
+            notes["reasoning_sidecar"] = {
+                "path": required_sidecar["path"],
+                "status": "required_present_and_structurally_valid",
+                "warnings": required_sidecar["warnings"],
+            }
 
         result = update_research_run_record(
             update_script,
@@ -238,6 +332,14 @@ def main() -> int:
 
         enrichment_notes: dict = {}
         enrichment_result = None
+        if required_sidecar is not None:
+            enrichment_notes["reasoning_sidecar_validation"] = {
+                "status": "ok",
+                "path": required_sidecar["path"],
+                "warnings": required_sidecar["warnings"],
+                "metadata_synced": False,
+            }
+
         if payload["status"] == "completed" and lookup.get("workspace_note_path") and VALIDATE_LINKAGES_SCRIPT.exists():
             try:
                 validation_result = python_json(
@@ -257,6 +359,22 @@ def main() -> int:
                     "status": "error",
                     "error": str(linkage_exc),
                 }
+            if required_sidecar is not None:
+                try:
+                    required_sidecar = sync_reasoning_sidecar_metadata(lookup, required_sidecar)
+                    enrichment_notes["reasoning_sidecar_validation"] = {
+                        "status": "ok",
+                        "path": required_sidecar["path"],
+                        "warnings": required_sidecar["warnings"],
+                        "metadata_synced": required_sidecar.get("metadata_synced", False),
+                    }
+                except Exception as sidecar_sync_exc:  # noqa: BLE001
+                    enrichment_notes["reasoning_sidecar_validation"] = {
+                        "status": "error",
+                        "path": required_sidecar["path"],
+                        "metadata_synced": required_sidecar.get("metadata_synced", False),
+                        "error": str(sidecar_sync_exc),
+                    }
             if UPSERT_PROPOSED_DRIVER_OCCURRENCES_SCRIPT.exists():
                 try:
                     occurrence_result = python_json(

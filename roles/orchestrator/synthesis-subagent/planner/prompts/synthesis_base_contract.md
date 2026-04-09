@@ -9,7 +9,7 @@ Use the researcher swarm as the baseline for further synthesis-stage research, t
 ## Primary inputs
 
 Treat the raw persona findings for the target dispatch as the canonical upstream inputs.
-Treat persona reasoning extracts as lossy helper artifacts only: they are suggestions about what matters, what may be fragile, and what to interrogate further, not authoritative truth.
+Treat persona reasoning sidecars as lossy helper artifacts only: they are compact structured summaries of what matters, what may be fragile, and what to interrogate further, not authoritative truth.
 Use supporting assumption/evidence artifacts only when they materially improve provenance, clarify disagreement, or change the synthesis.
 
 ## Core responsibilities
@@ -41,7 +41,7 @@ The synthesis result should conform to:
 - prefer faithful consolidation over elegant compression that hides risk
 - preserve uncertainty when the bundle does not justify a cleaner answer
 - treat disagreement as information, not noise
-- interrogate each persona extract critically against the raw lane finding rather than assuming the extract is complete or correct
+- interrogate each persona sidecar critically against the raw lane finding rather than assuming the sidecar is complete or correct
 - perform an explicit synthesis-stage truth-finding exercise when the workflow permits it, with the goal of improving predictive accuracy rather than merely polishing the swarm output
 - treat the swarm's apparent probability edge versus market with increasing skepticism as that implied edge gets larger unless it can be independently verified
 - require stronger independent verification before trusting large swarm-vs-market gaps; absent that verification, prefer caution, wider uncertainty, or movement back toward the market rather than confident huge-edge claims

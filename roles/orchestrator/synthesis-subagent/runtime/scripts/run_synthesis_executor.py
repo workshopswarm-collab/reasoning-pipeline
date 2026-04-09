@@ -509,7 +509,7 @@ def main() -> None:
         if status_exists:
             with locked_status(status_path) as status_payload:
                 status_payload.update({
-                    "extracts_bundle_path": relative_to_workspace(bundle_path),
+                    "structured_bundle_path": relative_to_workspace(bundle_path),
                     "synthesis_prompt_path": relative_to_workspace(prompt_path),
                     "result_json": relative_to_workspace(result_path),
                     "final_artifact_path": outputs["render"]["artifact_path"],

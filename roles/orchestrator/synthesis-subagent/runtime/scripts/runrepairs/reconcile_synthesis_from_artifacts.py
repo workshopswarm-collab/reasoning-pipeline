@@ -2,8 +2,8 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
-import subprocess
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -22,12 +22,11 @@ from common import (  # noqa: E402
     case_decision_handoff_path_for,
     case_synthesis_markdown_path_for,
     load_json,
-    reasoning_extract_prompt_path_for,
     relative_to_workspace,
     runtime_json_path_for,
 )
 from status import set_overall_status, update_request, write_status_file  # noqa: E402
-from validation import validate_reasoning_extract_artifact  # noqa: E402
+from validation import validate_reasoning_sidecar_artifact  # noqa: E402
 
 
 def parse_args() -> argparse.Namespace:
@@ -43,34 +42,50 @@ def process_running(pid: Any) -> bool:
         pid_int = int(pid)
     except (TypeError, ValueError):
         return False
+    import subprocess
     proc = subprocess.run(["ps", "-p", str(pid_int), "-o", "pid="], capture_output=True, text=True)
     return bool(proc.stdout.strip())
+
+
+def sha256_text(text: str) -> str:
+    return hashlib.sha256(text.encode("utf-8")).hexdigest()
 
 
 def main() -> int:
     args = parse_args()
     status_path = Path(args.status_file).expanduser().resolve()
     status = load_json(status_path)
-    jobs_path = WORKSPACE_ROOT / status["jobs_path"]
-    jobs_payload = load_json(jobs_path)
-    jobs_by_persona = {job["persona"]: job for job in jobs_payload.get("jobs", [])}
+    bundle_path = WORKSPACE_ROOT / status["bundle_path"]
+    bundle = load_json(bundle_path)
+    persona_entries = {str(entry.get("persona") or ""): entry for entry in bundle.get("persona_findings", [])}
 
     repaired_requests: list[dict[str, Any]] = []
     current_personas: list[str] = []
     pending_personas: list[str] = []
     failed_personas: list[str] = []
 
-    for req in status.get("extraction_subagent_requests") or []:
-        persona = req.get("persona") or ""
-        job = jobs_by_persona.get(persona)
-        if not job:
+    for req in status.get("reasoning_sidecar_requests") or []:
+        persona = str(req.get("persona") or "")
+        entry = persona_entries.get(persona)
+        if not entry:
             failed_personas.append(persona)
-            repaired_requests.append({"persona": persona, "state": "missing_job"})
+            repaired_requests.append({"persona": persona, "state": "missing_bundle_persona"})
             continue
-        extract_path = WORKSPACE_ROOT / req["artifact_path"]
-        prompt_path = WORKSPACE_ROOT / reasoning_extract_prompt_path_for(jobs_path, persona)
-        if extract_path.exists() and prompt_path.exists():
-            validation = validate_reasoning_extract_artifact(load_json(extract_path), job=job, prompt_text=prompt_path.read_text())
+        sidecar_path = WORKSPACE_ROOT / req["artifact_path"]
+        finding_path_rel = str(entry.get("path") or "")
+        finding_path = WORKSPACE_ROOT / finding_path_rel
+        if sidecar_path.exists() and finding_path.exists():
+            try:
+                payload = load_json(sidecar_path)
+                persona_text = finding_path.read_text()
+                validation = validate_reasoning_sidecar_artifact(
+                    payload,
+                    persona_finding_path=finding_path_rel,
+                    source_persona_sha256=sha256_text(persona_text),
+                    persona=persona,
+                )
+            except Exception as exc:  # noqa: BLE001
+                validation = {"ok": False, "errors": [str(exc)], "warnings": []}
             if validation["ok"]:
                 state = "current"
                 current_personas.append(persona)
@@ -79,17 +94,17 @@ def main() -> int:
                         "status": "completed",
                         "artifact_state": "current",
                         "artifact_validation_errors": [],
-                        "artifact_validation_warnings": validation["warnings"],
+                        "artifact_validation_warnings": validation.get("warnings", []),
                     })
             else:
-                state = "stale"
+                state = "invalid"
                 pending_personas.append(persona)
                 if args.apply:
                     update_request(status, persona, {
-                        "status": "ready",
-                        "artifact_state": "stale",
-                        "artifact_validation_errors": validation["errors"],
-                        "artifact_validation_warnings": validation["warnings"],
+                        "status": "missing",
+                        "artifact_state": "invalid",
+                        "artifact_validation_errors": validation.get("errors", []),
+                        "artifact_validation_warnings": validation.get("warnings", []),
                     })
             repaired_requests.append({"persona": persona, "state": state, "errors": validation.get("errors", []), "warnings": validation.get("warnings", [])})
         else:
@@ -97,7 +112,7 @@ def main() -> int:
             repaired_requests.append({"persona": persona, "state": "missing"})
             if args.apply:
                 update_request(status, persona, {
-                    "status": "ready",
+                    "status": "missing",
                     "artifact_state": "missing",
                 })
 
@@ -119,15 +134,13 @@ def main() -> int:
     final_pid = status.get("final_synthesis_pid")
     final_process_running = process_running(final_pid)
 
-    inferred_status = status.get("status", "ready_for_reasoning_extracts")
-    if failed_personas:
-        inferred_status = "reasoning_extracts_failed"
-    elif final_artifacts_present:
+    inferred_status = status.get("status", "waiting_for_reasoning_sidecars")
+    if final_artifacts_present:
         inferred_status = "synthesis_completed"
     elif status.get("status") == "final_synthesis_launched" and final_pid and not final_process_running:
         inferred_status = "final_synthesis_failed"
-    elif pending_personas:
-        inferred_status = "ready_for_reasoning_extracts"
+    elif pending_personas or failed_personas:
+        inferred_status = "waiting_for_reasoning_sidecars"
     else:
         inferred_status = "ready_for_final_synthesis"
 
@@ -148,8 +161,8 @@ def main() -> int:
         }
 
     if args.apply:
-        status["ready_personas"] = current_personas
-        status["pending_personas"] = pending_personas
+        status["ready_sidecar_personas"] = current_personas
+        status["pending_sidecar_personas"] = pending_personas
         status["final_artifact_path"] = relative_to_workspace(dispatch_artifact_path) if dispatch_artifact_path.exists() else status.get("final_artifact_path", "")
         status["final_sidecar_path"] = relative_to_workspace(dispatch_sidecar_path) if dispatch_sidecar_path.exists() else status.get("final_sidecar_path", "")
         status["final_decision_handoff_path"] = relative_to_workspace(dispatch_handoff_path) if dispatch_handoff_path.exists() else status.get("final_decision_handoff_path", "")

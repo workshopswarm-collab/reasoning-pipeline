@@ -21,6 +21,7 @@ from common import (  # noqa: E402
     normalize_probability,
     parse_frontmatter,
     relative_to_workspace,
+    sha256_text,
     write_json,
 )
 
@@ -58,6 +59,7 @@ def load_markdown_artifact(path: Path) -> dict[str, Any]:
         "frontmatter": dict(frontmatter or {}),
         "body": body,
         "summary": extract_first_nonempty_paragraph(body),
+        "sha256": sha256_text(text),
     }
 
 
@@ -84,11 +86,24 @@ def main() -> None:
     manifest = load_json(manifest_path) if manifest_path.exists() else {}
     expected_personas = expected_personas_from_manifest(manifest)
 
-    persona_files = sorted(persona_dir.glob("*.md"))
+    persona_files = sorted(path for path in persona_dir.glob("*.md") if not path.name.endswith(".sidecar.md"))
     persona_entries = []
+    source_sidecar_paths: list[str] = []
+    missing_sidecars: list[str] = []
     for path in persona_files:
         entry = load_markdown_artifact(path)
-        entry["persona"] = path.stem
+        persona = path.stem
+        sidecar_path = path.with_suffix(".sidecar.json")
+        sidecar_payload = None
+        if sidecar_path.exists():
+            sidecar_payload = load_json(sidecar_path)
+            source_sidecar_paths.append(relative_to_workspace(sidecar_path))
+        else:
+            missing_sidecars.append(persona)
+        entry["persona"] = persona
+        entry["reasoning_sidecar_path"] = relative_to_workspace(sidecar_path)
+        entry["reasoning_sidecar_exists"] = sidecar_path.exists()
+        entry["reasoning_sidecar"] = sidecar_payload
         persona_entries.append(entry)
 
     source_personas = [entry["persona"] for entry in persona_entries]
@@ -139,9 +154,13 @@ def main() -> None:
         "source_persona_count": len(source_personas),
         "missing_persona_count": len(missing_personas),
         "source_finding_paths": [entry["path"] for entry in persona_entries],
+        "source_sidecar_paths": source_sidecar_paths,
+        "sidecar_count": len(source_sidecar_paths),
+        "missing_sidecars": missing_sidecars,
+        "missing_sidecar_count": len(missing_sidecars),
         "source_supporting_artifacts": supporting_paths,
         "supporting_artifact_count": len(supporting_paths),
-        "upstream_inputs": [path for path in [relative_to_workspace(manifest_path)] if manifest_path.exists()] + [entry["path"] for entry in persona_entries],
+        "upstream_inputs": [path for path in [relative_to_workspace(manifest_path)] if manifest_path.exists()] + [entry["path"] for entry in persona_entries] + source_sidecar_paths,
         "downstream_uses": [],
         "synthesis_method": "dispatch_bundle_v1",
         "synthesis_status": "bundle_built",
@@ -164,8 +183,11 @@ def main() -> None:
         "source_persona_count": len(source_personas),
         "missing_persona_count": len(missing_personas),
         "supporting_artifact_count": len(supporting_paths),
+        "sidecar_count": len(source_sidecar_paths),
+        "missing_sidecar_count": len(missing_sidecars),
         "source_personas": source_personas,
         "missing_personas": missing_personas,
+        "missing_sidecars": missing_sidecars,
     }
     print(json.dumps(output, indent=2 if args.pretty else None))
 

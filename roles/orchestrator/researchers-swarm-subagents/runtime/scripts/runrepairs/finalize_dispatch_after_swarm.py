@@ -72,7 +72,7 @@ def main() -> int:
             try:
                 kickoff_result = python_json(
                     KICKOFF_SYNTHESIS,
-                    ["--dispatch-id", dispatch_id, "--launch-extractors"],
+                    ["--dispatch-id", dispatch_id, "--build-full"],
                 )
             except Exception as exc:  # noqa: BLE001
                 kickoff_error = str(exc)

@@ -44,8 +44,7 @@ def locked_status(path: Path) -> Iterator[dict[str, Any]]:
 
 
 TERMINAL_STATUSES = {
-    "reasoning_extracts_failed",
-    "extracts_bundle_failed",
+    "sidecar_bundle_failed",
     "synthesis_prompt_failed",
     "synthesis_lane_bootstrap_failed",
     "final_synthesis_failed",
@@ -55,7 +54,8 @@ TERMINAL_STATUSES = {
 
 def request_status_counts(status: dict[str, Any]) -> dict[str, int]:
     counts: dict[str, int] = {}
-    for req in status.get("extraction_subagent_requests") or []:
+    requests = status.get("reasoning_sidecar_requests") or status.get("extraction_subagent_requests") or []
+    for req in requests:
         key = str(req.get("status") or "unknown")
         counts[key] = counts.get(key, 0) + 1
     return counts
@@ -111,7 +111,8 @@ def set_overall_status(status: dict[str, Any], value: str, *, stage: str, messag
 
 
 def find_request(status: dict[str, Any], persona: str) -> dict[str, Any] | None:
-    for req in status.get("extraction_subagent_requests") or []:
+    requests = status.get("reasoning_sidecar_requests") or status.get("extraction_subagent_requests") or []
+    for req in requests:
         if req.get("persona") == persona:
             return req
     return None
@@ -120,7 +121,7 @@ def find_request(status: dict[str, Any], persona: str) -> dict[str, Any] | None:
 def update_request(status: dict[str, Any], persona: str, patch: dict[str, Any]) -> dict[str, Any]:
     req = find_request(status, persona)
     if req is None:
-        raise KeyError(f"persona not found in extraction_subagent_requests: {persona}")
+        raise KeyError(f"persona not found in request list: {persona}")
     req.update(patch)
     status["request_status_counts"] = request_status_counts(status)
     return req

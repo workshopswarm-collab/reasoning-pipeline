@@ -15,10 +15,8 @@ SYNDICATED_RUNTIME_METADATA_TEMPLATE_PATH = TEMPLATES_DIR / "syndicated-finding-
 RESEARCH_CASES_ROOT = WORKSPACE_ROOT / "qualitative-db" / "40-research" / "cases"
 RESEARCHERS_SWARM_ROOT = WORKSPACE_ROOT / "roles" / "orchestrator" / "researchers-swarm-subagents"
 DISPATCH_MANIFEST_ROOT = RESEARCHERS_SWARM_ROOT / "runtime" / "dispatch-manifests"
-SYNTHESIS_REASONING_EXTRACTS_DIRNAME = "synthesis-reasoning-extracts"
 CASE_SYNTHESIS_DIRNAME = "synthesizer-agent"
 CASE_DECISION_HANDOFF_FILENAME = "decision-handoff.md"
-EXTRACTION_SUBAGENT_LABEL_PREFIX = "synthesis-extract"
 SYNTHESIS_SUBAGENT_LABEL_PREFIX = "synthesis-final"
 
 DECISION_HEADER_ORDER = [
@@ -372,18 +370,6 @@ def extract_first_nonempty_paragraph(body: str) -> str:
     return paragraphs[0] if paragraphs else ""
 
 
-def synthesis_reasoning_extract_dir_for(dispatch_dir: Path) -> Path:
-    return dispatch_dir / SYNTHESIS_REASONING_EXTRACTS_DIRNAME
-
-
-def synthesis_reasoning_extract_path_for(dispatch_dir: Path, persona: str) -> Path:
-    return synthesis_reasoning_extract_dir_for(dispatch_dir) / f"{persona}.json"
-
-
-def reasoning_extract_prompt_path_for(jobs_path: Path, persona: str) -> Path:
-    return jobs_path.with_name(f"reasoning-extract-{persona}-prompt.md")
-
-
 def case_timeline_path_for(case_key: str) -> Path:
     return RESEARCH_CASES_ROOT / case_key / "timeline.md"
 
@@ -425,11 +411,6 @@ def case_decision_handoff_path_for(case_key: str) -> Path:
     return case_synthesis_dir_for(case_key) / CASE_DECISION_HANDOFF_FILENAME
 
 
-def extraction_subagent_label(dispatch_id: str, persona: str) -> str:
-    safe_persona = persona.replace('/', '-').replace(' ', '-').strip('-')
-    return f"{EXTRACTION_SUBAGENT_LABEL_PREFIX}:{dispatch_id}:{safe_persona}"
-
-
 def synthesis_subagent_label(dispatch_id: str) -> str:
     return f"{SYNTHESIS_SUBAGENT_LABEL_PREFIX}:{dispatch_id}"
 
@@ -444,20 +425,3 @@ def telegram_topic_session_key(chat_id: Any, topic_id: Any) -> str:
     return f"agent:main:telegram:chat:{chat}:topic:{topic}"
 
 
-def reasoning_extract_job_input_fingerprint(job: dict[str, Any]) -> str:
-    fingerprint_payload = {
-        "case_key": job.get("case_key", ""),
-        "dispatch_id": job.get("dispatch_id", ""),
-        "analysis_date": job.get("analysis_date", ""),
-        "question": job.get("question", ""),
-        "market_implied_probability": job.get("market_implied_probability"),
-        "persona": job.get("persona", ""),
-        "persona_finding_path": job.get("persona_finding_path", ""),
-        "persona_frontmatter": job.get("persona_frontmatter") or {},
-        "persona_summary": job.get("persona_summary", ""),
-        "persona_body": job.get("persona_body", ""),
-        "support_mode": job.get("support_mode", ""),
-        "assumption_artifacts": job.get("assumption_artifacts") or [],
-        "evidence_artifacts": job.get("evidence_artifacts") or [],
-    }
-    return sha256_json(fingerprint_payload)

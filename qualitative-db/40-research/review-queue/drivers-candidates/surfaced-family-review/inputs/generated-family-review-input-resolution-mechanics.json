@@ -1,6 +1,12 @@
 {
   "canonical_driver_context": [
     {
+      "aliases": [],
+      "driver_slug": "sentiment",
+      "summary": "Sentiment captures whether the crowd’s tone, optimism, fear, or enthusiasm is amplifying or suppressing prices, expectations, and interpretation beyond hard fundamentals.",
+      "why_included": "related_driver"
+    },
+    {
       "aliases": [
         "consistency",
         "system-reliability",
@@ -19,6 +25,12 @@
       "driver_slug": "operational-risk",
       "summary": "Operational-risk captures whether execution failures, outages, controls problems, logistical breakdowns, or internal process weaknesses can materially disrupt outcomes.",
       "why_included": "related_driver"
+    },
+    {
+      "aliases": [],
+      "driver_slug": "macro",
+      "summary": "Macro captures the broad growth, inflation, rates, labor, and financial-conditions environment that shapes many seemingly separate markets at once.",
+      "why_included": "related_driver"
     }
   ],
   "family_label": "resolution mechanics",
@@ -26,8 +38,8 @@
     {
       "family_label": "publication timing",
       "family_slug": "publication-timing",
-      "overlap_score": 1.5,
-      "reason": "co-mentioned-driver"
+      "overlap_score": 1.75,
+      "reason": "candidate-token+co-mentioned-driver"
     },
     {
       "family_label": "resolution mapping",
@@ -43,16 +55,67 @@
     }
   ],
   "family_slug": "resolution-mechanics",
-  "generated_at": "2026-04-09T07:49:49Z",
+  "generated_at": "2026-04-09T17:13:28Z",
   "heuristic_summary": {
     "canon_coverage_driver": null,
     "canon_coverage_status": "novel",
-    "distinct_cases": 2,
-    "distinct_personas": 2,
-    "raw_candidate_count": 4,
-    "total_occurrences": 7
+    "distinct_cases": 3,
+    "distinct_personas": 3,
+    "raw_candidate_count": 7,
+    "total_occurrences": 15
   },
   "raw_candidates": [
+    {
+      "candidate_label": "bls-rounding-threshold-risk",
+      "candidate_slug": "bls-rounding-threshold-risk",
+      "canonical_driver_suggestions": [],
+      "case_keys": [
+        "case-20260409-d9a24086"
+      ],
+      "distinct_cases": 1,
+      "distinct_personas": 1,
+      "label_variants": [
+        "bls-rounding-threshold-risk"
+      ],
+      "occurrences": 3,
+      "personas": [
+        "market-implied"
+      ],
+      "related_canonical_drivers": [
+        "macro",
+        "sentiment"
+      ],
+      "related_entities": [
+        "bureau-of-labor-statistics"
+      ],
+      "sample_occurrences": [
+        {
+          "artifact_kind": "assumption",
+          "artifact_path": "qualitative-db/40-research/cases/case-20260409-d9a24086/researcher-analyses/2026-04-09/dispatch-case-20260409-d9a24086-20260409T165631Z/assumptions/market-implied.md",
+          "case_key": "case-20260409-d9a24086",
+          "label": "bls-rounding-threshold-risk",
+          "persona": "market-implied",
+          "source": "db"
+        },
+        {
+          "artifact_kind": "evidence",
+          "artifact_path": "qualitative-db/40-research/cases/case-20260409-d9a24086/researcher-analyses/2026-04-09/dispatch-case-20260409-d9a24086-20260409T165631Z/evidence/market-implied.md",
+          "case_key": "case-20260409-d9a24086",
+          "label": "bls-rounding-threshold-risk",
+          "persona": "market-implied",
+          "source": "db"
+        },
+        {
+          "artifact_kind": "persona",
+          "artifact_path": "qualitative-db/40-research/cases/case-20260409-d9a24086/researcher-analyses/2026-04-09/dispatch-case-20260409-d9a24086-20260409T165631Z/personas/market-implied.md",
+          "case_key": "case-20260409-d9a24086",
+          "label": "bls-rounding-threshold-risk",
+          "persona": "market-implied",
+          "source": "db"
+        }
+      ],
+      "source_candidate_note": "qualitative-db/40-research/review-queue/drivers-candidates/candidate-notes/generated-driver-candidate-bls-rounding-threshold-risk.md"
+    },
     {
       "candidate_label": "crypto-price-threshold-resolution",
       "candidate_slug": "crypto-price-threshold-resolution",
@@ -104,6 +167,57 @@
       "source_candidate_note": "qualitative-db/40-research/review-queue/drivers-candidates/candidate-notes/generated-driver-candidate-crypto-price-threshold-resolution.md"
     },
     {
+      "candidate_label": "threshold-resolution-risk",
+      "candidate_slug": "threshold-resolution-risk",
+      "canonical_driver_suggestions": [],
+      "case_keys": [
+        "case-20260409-d9a24086"
+      ],
+      "distinct_cases": 1,
+      "distinct_personas": 1,
+      "label_variants": [
+        "threshold-resolution-risk"
+      ],
+      "occurrences": 3,
+      "personas": [
+        "risk-manager"
+      ],
+      "related_canonical_drivers": [
+        "operational-risk",
+        "reliability"
+      ],
+      "related_entities": [
+        "bureau-of-labor-statistics"
+      ],
+      "sample_occurrences": [
+        {
+          "artifact_kind": "assumption",
+          "artifact_path": "qualitative-db/40-research/cases/case-20260409-d9a24086/researcher-analyses/2026-04-09/dispatch-case-20260409-d9a24086-20260409T165631Z/assumptions/risk-manager.md",
+          "case_key": "case-20260409-d9a24086",
+          "label": "threshold-resolution-risk",
+          "persona": "risk-manager",
+          "source": "db"
+        },
+        {
+          "artifact_kind": "evidence",
+          "artifact_path": "qualitative-db/40-research/cases/case-20260409-d9a24086/researcher-analyses/2026-04-09/dispatch-case-20260409-d9a24086-20260409T165631Z/evidence/risk-manager.md",
+          "case_key": "case-20260409-d9a24086",
+          "label": "threshold-resolution-risk",
+          "persona": "risk-manager",
+          "source": "db"
+        },
+        {
+          "artifact_kind": "persona",
+          "artifact_path": "qualitative-db/40-research/cases/case-20260409-d9a24086/researcher-analyses/2026-04-09/dispatch-case-20260409-d9a24086-20260409T165631Z/personas/risk-manager.md",
+          "case_key": "case-20260409-d9a24086",
+          "label": "threshold-resolution-risk",
+          "persona": "risk-manager",
+          "source": "db"
+        }
+      ],
+      "source_candidate_note": "qualitative-db/40-research/review-queue/drivers-candidates/candidate-notes/generated-driver-candidate-threshold-resolution-risk.md"
+    },
+    {
       "candidate_label": "intraday-volatility",
       "candidate_slug": "intraday-volatility",
       "canonical_driver_suggestions": [],
@@ -146,6 +260,48 @@
         }
       ],
       "source_candidate_note": "qualitative-db/40-research/review-queue/drivers-candidates/candidate-notes/generated-driver-candidate-intraday-volatility.md"
+    },
+    {
+      "candidate_label": "nowcast-dispersion",
+      "candidate_slug": "nowcast-dispersion",
+      "canonical_driver_suggestions": [],
+      "case_keys": [
+        "case-20260409-d9a24086"
+      ],
+      "distinct_cases": 1,
+      "distinct_personas": 1,
+      "label_variants": [
+        "nowcast-dispersion"
+      ],
+      "occurrences": 2,
+      "personas": [
+        "catalyst-hunter"
+      ],
+      "related_canonical_drivers": [
+        "reliability"
+      ],
+      "related_entities": [
+        "bureau-of-labor-statistics"
+      ],
+      "sample_occurrences": [
+        {
+          "artifact_kind": "assumption",
+          "artifact_path": "qualitative-db/40-research/cases/case-20260409-d9a24086/researcher-analyses/2026-04-09/dispatch-case-20260409-d9a24086-20260409T165631Z/assumptions/catalyst-hunter.md",
+          "case_key": "case-20260409-d9a24086",
+          "label": "nowcast-dispersion",
+          "persona": "catalyst-hunter",
+          "source": "db"
+        },
+        {
+          "artifact_kind": "persona",
+          "artifact_path": "qualitative-db/40-research/cases/case-20260409-d9a24086/researcher-analyses/2026-04-09/dispatch-case-20260409-d9a24086-20260409T165631Z/personas/catalyst-hunter.md",
+          "case_key": "case-20260409-d9a24086",
+          "label": "nowcast-dispersion",
+          "persona": "catalyst-hunter",
+          "source": "db"
+        }
+      ],
+      "source_candidate_note": "qualitative-db/40-research/review-queue/drivers-candidates/candidate-notes/generated-driver-candidate-nowcast-dispersion.md"
     },
     {
       "candidate_label": "exchange-specific settlement mechanics",
@@ -229,5 +385,5 @@
     ],
     "instruction": "Review whether this family grouping is coherent, whether it is already covered by canon, and what action is most appropriate."
   },
-  "source_index_generated_at": "2026-04-09T07:49:49Z"
+  "source_index_generated_at": "2026-04-09T17:13:28Z"
 }

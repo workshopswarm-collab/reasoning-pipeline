@@ -14,16 +14,16 @@ if str(SUBAGENT_DIR) not in sys.path:
     sys.path.insert(0, str(SUBAGENT_DIR))
 
 from common import WORKSPACE_ROOT, relative_to_workspace  # noqa: E402
-from status import append_stage_event, load_status_file, locked_status, process_running, set_overall_status, write_status_file  # noqa: E402
+from status import load_status_file, locked_status, process_running, set_overall_status, write_status_file  # noqa: E402
 
-BUILD_EXTRACTS_BUNDLE = SUBAGENT_DIR / "planner" / "scripts" / "build_extracts_synthesis_bundle.py"
+BUILD_SIDECAR_BUNDLE = SUBAGENT_DIR / "planner" / "scripts" / "build_sidecar_synthesis_bundle.py"
 BUILD_SYNTHESIS_PROMPT = SUBAGENT_DIR / "planner" / "scripts" / "build_synthesis_prompt.py"
 BOOTSTRAP_SYNTHESIS_LANE = SUBAGENT_DIR / "runtime" / "scripts" / "bootstrap_synthesis_telegram_lane.py"
 RUN_SYNTHESIS = SUBAGENT_DIR / "runtime" / "scripts" / "run_synthesis_executor.py"
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Launch final synthesis once all reasoning extracts are ready")
+    parser = argparse.ArgumentParser(description="Launch final synthesis once all researcher sidecars are ready")
     parser.add_argument("--status-file", required=True)
     parser.add_argument("--timeout-seconds", type=float, default=360.0)
     parser.add_argument("--pretty", action="store_true")
@@ -63,57 +63,54 @@ def main() -> None:
         }, indent=2 if args.pretty else None))
         return
 
-    requests = status.get("extraction_subagent_requests") or []
-    failed = [req.get("persona") for req in requests if req.get("status") == "failed"]
-    if failed:
-        set_overall_status(status, "reasoning_extracts_failed", stage="synthesis_promotion", message="One or more reasoning extracts failed; refusing to continue to final synthesis", extra={"failed_personas": failed})
-        write_status_file(status_path, status)
-        print(json.dumps({
-            "ok": False,
-            "status": status.get("status"),
-            "failed_personas": failed,
-            "status_file": relative_to_workspace(status_path),
-        }, indent=2 if args.pretty else None))
-        raise SystemExit(1)
-
-    missing = [req.get("persona") for req in requests if req.get("artifact_path") and not (WORKSPACE_ROOT / req["artifact_path"]).exists()]
-    incomplete = [req.get("persona") for req in requests if req.get("status") not in {"completed", "already_present"}]
-    if missing or incomplete:
-        set_overall_status(status, "waiting_for_reasoning_extracts", stage="synthesis_promotion", message="Waiting for all reasoning extracts to be current before final synthesis", extra={"waiting_for_personas": sorted(set((missing or []) + (incomplete or [])))})
+    sidecar_requests = status.get("reasoning_sidecar_requests") or []
+    missing_sidecars = [req.get("persona") for req in sidecar_requests if req.get("artifact_path") and not (WORKSPACE_ROOT / req["artifact_path"]).exists()]
+    incomplete_sidecars = [req.get("persona") for req in sidecar_requests if req.get("status") not in {"completed", "already_present"}]
+    if missing_sidecars or incomplete_sidecars:
+        waiting = sorted(set((missing_sidecars or []) + (incomplete_sidecars or [])))
+        set_overall_status(status, "waiting_for_reasoning_sidecars", stage="synthesis_promotion", message="Waiting for all researcher sidecars before final synthesis", extra={"waiting_for_personas": waiting})
         write_status_file(status_path, status)
         print(json.dumps({
             "ok": True,
             "status": status.get("status"),
-            "waiting_for_personas": sorted(set((missing or []) + (incomplete or []))),
+            "waiting_for_personas": waiting,
             "status_file": relative_to_workspace(status_path),
         }, indent=2 if args.pretty else None))
         return
 
-    try:
-        extracts_summary = run_json([
-            sys.executable,
-            str(BUILD_EXTRACTS_BUNDLE),
-            "--bundle-json",
-            str(WORKSPACE_ROOT / status["bundle_path"]),
-            "--jobs-json",
-            str(WORKSPACE_ROOT / status["jobs_path"]),
-            *( ["--pretty"] if args.pretty else [] ),
-        ])
-    except Exception as exc:  # noqa: BLE001
-        set_overall_status(status, "extracts_bundle_failed", stage="synthesis_promotion", message="Failed to build extracts-synthesis bundle", extra={"error": str(exc)})
-        write_status_file(status_path, status)
-        raise
-    extracts_bundle_path = extracts_summary["extracts_bundle_path"]
+    structured_bundle_path = status.get("structured_bundle_path") or ""
+    if not structured_bundle_path:
+        try:
+            sidecar_summary = run_json([
+                sys.executable,
+                str(BUILD_SIDECAR_BUNDLE),
+                "--bundle-json",
+                str(WORKSPACE_ROOT / status["bundle_path"]),
+                *( ["--pretty"] if args.pretty else [] ),
+            ])
+        except Exception as exc:  # noqa: BLE001
+            set_overall_status(status, "sidecar_bundle_failed", stage="synthesis_promotion", message="Failed to build sidecar-synthesis bundle", extra={"error": str(exc)})
+            write_status_file(status_path, status)
+            raise
+        structured_bundle_path = sidecar_summary["sidecar_bundle_path"]
+        status.update({
+            "structured_bundle_path": structured_bundle_path,
+            "structured_bundle_artifact_type": "sidecar_synthesis_bundle",
+        })
+
     try:
         prompt_summary = run_json([
             sys.executable,
             str(BUILD_SYNTHESIS_PROMPT),
             "--bundle-json",
-            str(WORKSPACE_ROOT / extracts_bundle_path),
+            str(WORKSPACE_ROOT / structured_bundle_path),
             *( ["--pretty"] if args.pretty else [] ),
         ])
     except Exception as exc:  # noqa: BLE001
-        status.update({"extracts_bundle_path": extracts_bundle_path})
+        status.update({
+            "structured_bundle_path": structured_bundle_path,
+            "structured_bundle_artifact_type": "sidecar_synthesis_bundle",
+        })
         set_overall_status(status, "synthesis_prompt_failed", stage="synthesis_promotion", message="Failed to build synthesis prompt", extra={"error": str(exc)})
         write_status_file(status_path, status)
         raise
@@ -129,7 +126,11 @@ def main() -> None:
         ])
         status = load_status_file(status_path)
     except Exception as exc:  # noqa: BLE001
-        status.update({"extracts_bundle_path": extracts_bundle_path, "synthesis_prompt_path": synthesis_prompt_path})
+        status.update({
+            "structured_bundle_path": structured_bundle_path,
+            "structured_bundle_artifact_type": "sidecar_synthesis_bundle",
+            "synthesis_prompt_path": synthesis_prompt_path,
+        })
         set_overall_status(status, "synthesis_lane_bootstrap_failed", stage="synthesis_promotion", message="Failed to create or reuse dedicated Telegram synthesis lane", extra={"error": str(exc)})
         write_status_file(status_path, status)
         raise
@@ -137,7 +138,8 @@ def main() -> None:
     session_key = status.get("synthesis_target_session_key") or ""
     if not session_key:
         status.update({
-            "extracts_bundle_path": extracts_bundle_path,
+            "structured_bundle_path": structured_bundle_path,
+            "structured_bundle_artifact_type": "sidecar_synthesis_bundle",
             "synthesis_prompt_path": synthesis_prompt_path,
         })
         set_overall_status(status, "ready_for_final_synthesis", stage="synthesis_promotion", message="Final synthesis is ready but no synthesis target session is configured")
@@ -146,7 +148,7 @@ def main() -> None:
             "ok": True,
             "status": status.get("status"),
             "reason": "missing_synthesis_target_session_key",
-            "extracts_bundle_path": extracts_bundle_path,
+            "structured_bundle_path": structured_bundle_path,
             "synthesis_prompt_path": synthesis_prompt_path,
             "status_file": relative_to_workspace(status_path),
         }, indent=2 if args.pretty else None))
@@ -158,7 +160,7 @@ def main() -> None:
         "--dispatch-id",
         status["dispatch_id"],
         "--bundle-json",
-        str(WORKSPACE_ROOT / extracts_bundle_path),
+        str(WORKSPACE_ROOT / structured_bundle_path),
         "--status-file",
         str(status_path),
         "--session-key",
@@ -193,7 +195,8 @@ def main() -> None:
             }, indent=2 if args.pretty else None))
             return
         status.update({
-            "extracts_bundle_path": extracts_bundle_path,
+            "structured_bundle_path": structured_bundle_path,
+            "structured_bundle_artifact_type": "sidecar_synthesis_bundle",
             "synthesis_prompt_path": synthesis_prompt_path,
             "final_synthesis_launch_log_path": relative_to_workspace(log_path),
             "final_synthesis_pid": proc.pid,
@@ -205,7 +208,7 @@ def main() -> None:
         "status": status.get("status"),
         "dispatch_id": status.get("dispatch_id"),
         "session_key": session_key,
-        "extracts_bundle_path": extracts_bundle_path,
+        "structured_bundle_path": structured_bundle_path,
         "synthesis_prompt_path": synthesis_prompt_path,
         "launch_log_path": relative_to_workspace(log_path),
         "pid": proc.pid,

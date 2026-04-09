@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "One-decimal threshold sensitivity.",
+    "Dependence on one official rounded print.",
+    "Potential unseen consensus data outside this run."
+  ],
+  "key_assumptions": [
+    "The market's 94.65% price overstates certainty relative to the unresolved official release.",
+    "Threshold and rounding risk between 0.7% and 0.8% are materially relevant.",
+    "No strong independent nowcast stack was verified in this run to justify near-certainty."
+  ],
+  "main_logical_chain": [
+    "Verify the contract settles on the official BLS seasonally adjusted CPI-U monthly print for March 2026.",
+    "Check BLS release mechanics and confirm seasonal adjustment is central to the metric.",
+    "Compare the unresolved threshold contract to the 94.65% market price.",
+    "Haircut confidence because the market is near-certain before the authoritative one-print release and no strong independent forecast stack was verified."
+  ],
+  "main_thesis": "The market is directionally plausible but too confident pre-release for a one-print 0.8% threshold contract settled by the official BLS seasonally adjusted CPI-U figure.",
+  "own_probability": 0.78,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "My risk-manager view is 78% for yes",
+    "the main risk is overconfidence before that source publishes",
+    "the contract resolves on one official BLS seasonally adjusted CPI-U monthly figure rounded to one decimal place"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "risk_management",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260409-d9a24086",
+    "dispatch_id": "dispatch-case-20260409-d9a24086-20260409T165631Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "944c1d53-703a-409c-879d-4c3348385e9a",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260409-d9a24086/researcher-analyses/2026-04-09/dispatch-case-20260409-d9a24086-20260409T165631Z/personas/risk-manager.md",
+    "source_persona_sha256": "5fe2ae09c4b1de684602b9414e308d1b4a8ce571557df252c61c1f4d16c8cd0a"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Very strong authoritative source quality for settlement mechanics, but only medium-low independence for directional forecasting because the extra verification pass mostly confirmed mechanics rather than adding an independent forecast source.",
+  "strongest_disconfirmers": [
+    "The market may already reflect independent macro nowcasts or desk previews not retrieved in this run.",
+    "A genuinely hot underlying month could clear 0.8% decisively, making threshold fragility less important."
+  ],
+  "strongest_supports": [
+    "BLS is the explicit governing source and the contract mechanics are clear.",
+    "Seasonal adjustment is explicitly the relevant short-term series and the contract uses it.",
+    "Hot inflation is directionally plausible even if near-certainty looks too high."
+  ],
+  "timing_relevance": "The market resolves on the April 10, 2026 BLS release, so most remaining uncertainty is concentrated in a single imminent data print.",
+  "unresolved_ambiguities": [
+    "Whether credible independent previews cluster above 0.8% ahead of release.",
+    "How much of current pricing is informed by genuine forecast consensus versus market overconfidence."
+  ],
+  "what_would_change_view": "A credible independent consensus or multiple macro desk previews clustering at 0.8%+ would move the estimate materially toward the market; clustering near 0.6%-0.7% would move it further away."
+}
