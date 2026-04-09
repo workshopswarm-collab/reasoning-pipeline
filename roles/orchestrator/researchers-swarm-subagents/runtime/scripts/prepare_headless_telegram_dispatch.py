@@ -109,6 +109,22 @@ def persist_manifest(manifest_dir: Path, manifest: dict[str, Any]) -> Path:
     return manifest_path
 
 
+def preflight_dispatch_case_research(*, args: argparse.Namespace, case_id: str) -> dict[str, Any]:
+    return python_json(
+        DISPATCH_CASE_RESEARCH,
+        [
+            "--case-id", case_id,
+            "--db-url", args.db_url,
+            "--psql", args.psql,
+            "--model", args.model,
+            "--thinking", args.thinking,
+            "--run-timeout-seconds", str(args.run_timeout_seconds),
+            *( ["--personas", *args.personas] if args.personas else []),
+            "--dry-run",
+        ],
+    )
+
+
 def prepare_manifest(args: argparse.Namespace) -> tuple[dict[str, Any], dict[str, Any], Path, dict[str, Any] | None]:
     selection = None
     manifest_dir = Path(args.manifest_dir).expanduser().resolve()
@@ -131,6 +147,7 @@ def prepare_manifest(args: argparse.Namespace) -> tuple[dict[str, Any], dict[str
                 ["--db-url", args.db_url, "--psql", args.psql, "--market-id", selection["market_id"]],
             )
 
+        preflight = preflight_dispatch_case_research(args=args, case_id=case["case_id"])
         manifest = python_json(
             DISPATCH_CASE_RESEARCH,
             [
@@ -154,6 +171,7 @@ def prepare_manifest(args: argparse.Namespace) -> tuple[dict[str, Any], dict[str
             "--existing-map-json", json.dumps(existing_map, separators=(",", ":")),
         ],
     )
+    prepare_preview["preflight"] = preflight
     return manifest, prepare_preview, manifest_path, selection
 
 

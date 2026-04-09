@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+from __future__ import annotations
+
 """Build a compact persona-specific researcher prompt for one case.
 
 The runtime prompt is intentionally concise to reduce drift and startup overhead.

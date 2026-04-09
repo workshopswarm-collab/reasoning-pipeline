@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+from __future__ import annotations
+
 """Reconcile a run completion back into research_runs.
 
 Current behavior:

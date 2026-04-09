@@ -123,6 +123,7 @@ def main() -> int:
             "prepare_returncode": prepare_proc.returncode,
             "prepare_stdout": prepare_proc.stdout,
             "prepare_stderr": prepare_proc.stderr,
+            "prepare_result": prepare_result,
         }
         print(json.dumps(error_payload, indent=2 if args.pretty else None))
         return prepare_proc.returncode
