@@ -3,6 +3,7 @@ type: entity_overview
 domain: geopolitics
 subdomain: regional-conflict-and-state-capacity
 entity: ethiopia
+aliases: [Federal Democratic Republic of Ethiopia]
 entity_type: country
 status: active
 last_updated: 2026-03-25

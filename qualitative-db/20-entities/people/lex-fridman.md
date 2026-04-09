@@ -3,6 +3,7 @@ type: entity_overview
 domain: culture
 subdomain: media-and-tech-attention
 entity: lex-fridman
+aliases: [Lex Friedman]
 entity_type: person
 status: active
 last_updated: 2026-03-25

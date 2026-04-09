@@ -2,7 +2,7 @@
 type: entity_overview
 domain: politics
 subdomain: courts
-entity: supreme-court-of-the-united-states
+entity: supreme-court-of-the-united-stataliases: [SCOTUS]es]
 entity_type: agency
 status: active
 last_updated: 2026-03-25

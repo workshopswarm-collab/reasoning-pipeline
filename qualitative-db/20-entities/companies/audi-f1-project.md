@@ -3,6 +3,7 @@ type: entity_overview
 domain: sports
 subdomain: formula-one
 entity: audi-f1-project
+aliases: [Audi F1]
 entity_type: company
 status: active
 last_updated: 2026-03-25

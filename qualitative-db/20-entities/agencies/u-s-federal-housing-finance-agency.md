@@ -2,7 +2,7 @@
 type: entity_overview
 domain: economics
 subdomain: housing-finance-and-systemic-risk
-entity: u-s-federal-housing-finance-agency
+entity: u-s-federal-housing-finance-agenaliases: [United States Federal Housing Finance Agency, FHFA]FA]
 entity_type: agency
 status: active
 last_updated: 2026-03-25

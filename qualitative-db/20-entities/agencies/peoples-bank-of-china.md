@@ -3,6 +3,7 @@ type: entity_overview
 domain: economics
 subdomain: macro-and-financial-governance
 entity: peoples-bank-of-china
+aliases: [People's Bank of China, PBOC]
 entity_type: agency
 status: active
 last_updated: 2026-03-25

@@ -3,6 +3,7 @@ type: entity_overview
 domain: politics
 subdomain: electoral-and-state-power
 entity: pedro-sanchez
+aliases: [Pedro Sánchez]
 entity_type: person
 status: active
 last_updated: 2026-03-25

@@ -2,7 +2,7 @@
 type: entity_overview
 domain: politics
 subdomain: electoral-and-state-power
-entity: justin-trudeau
+entity: justin-trudeu]
 entity_type: person
 status: active
 last_updated: 2026-03-25

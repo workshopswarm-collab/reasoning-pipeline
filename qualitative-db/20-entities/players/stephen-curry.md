@@ -3,6 +3,7 @@ type: entity_overview
 domain: sports
 subdomain: basketball
 entity: stephen-curry
+aliases: [Steph Curry]
 entity_type: player
 status: active
 last_updated: 2026-03-25

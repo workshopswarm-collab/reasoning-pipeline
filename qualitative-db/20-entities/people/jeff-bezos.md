@@ -2,7 +2,7 @@
 type: entity_overview
 domain: tech-ai
 subdomain: founders-and-platform-power
-entity: jeff-bezos
+entity: jeff-bezs]
 entity_type: person
 status: active
 last_updated: 2026-03-25

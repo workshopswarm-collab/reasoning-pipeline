@@ -3,6 +3,7 @@ type: entity_overview
 domain: crypto
 subdomain: stablecoins
 entity: usdc
+aliases: [USD Coin]
 entity_type: protocol
 status: active
 last_updated: 2026-03-25

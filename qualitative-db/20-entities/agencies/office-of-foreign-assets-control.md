@@ -2,7 +2,7 @@
 type: entity_overview
 domain: geopolitics
 subdomain: sanctions-and-economic-statecraft
-entity: office-of-foreign-assets-control
+entity: office-of-foreign-assets-contraliases: [OFAC]AC]
 entity_type: agency
 status: active
 last_updated: 2026-03-26

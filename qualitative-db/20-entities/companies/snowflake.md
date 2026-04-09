@@ -3,6 +3,7 @@ type: entity_overview
 domain: tech-ai
 subdomain: data-infrastructure-and-ai-adoption
 entity: snowflake
+aliases: [SNOW]
 entity_type: company
 status: active
 last_updated: 2026-03-25

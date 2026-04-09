@@ -2,7 +2,7 @@
 type: entity_overview
 domain: geopolitics
 subdomain: intelligence-and-risk-assessment
-entity: u-s-office-of-the-director-of-national-intelligence
+entity: u-s-office-of-the-director-of-national-intelligenaliases: [United States Office of the Director of National Intelligence, ODNI]NI]
 entity_type: agency
 status: active
 last_updated: 2026-03-25

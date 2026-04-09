@@ -3,6 +3,7 @@ type: entity_overview
 domain: geopolitics
 subdomain: regional-balancing-and-state-capacity
 entity: thailand
+aliases: [Kingdom of Thailand]
 entity_type: country
 status: active
 last_updated: 2026-03-25

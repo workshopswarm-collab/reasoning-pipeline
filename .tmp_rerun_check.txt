@@ -1,0 +1,56 @@
+=== allow-closed-case-rerun ===
+153:     parser.add_argument("--model", default=DEFAULT_MODEL, help="Model for spawned researcher sessions")
+154:     parser.add_argument("--thinking", default=DEFAULT_THINKING, help="Thinking level for spawned researcher sessions")
+155:     parser.add_argument("--run-timeout-seconds", type=int, default=0, help="Researcher runtime timeout")
+156:     parser.add_argument("--allow-closed-case-rerun", action="store_true", help="Permit dispatch preparation against a closed historical case")
+157:     parser.add_argument("--dry-run", action="store_true", help="Compute the dispatch/rerun plan without writing DB state or creating attempt rows")
+158:     parser.add_argument("--db-url", default=os.getenv("PREDQUANT_ORCHESTRATOR_URL", ""), help="Postgres connection URL")
+159:     parser.add_argument("--psql", default=os.getenv("PSQL_BIN", DEFAULT_PSQL), help="Path to psql binary")
+160:     parser.add_argument("--pretty", action="store_true", help="Pretty-print JSON result")
+161:     return parser.parse_args()
+162: 
+163: 
+164: def run_sql(psql_bin: str, db_url: str, payload: dict, sql: str) -> dict:
+=== attempt_number ===
+NOT FOUND
+=== research_runs ( ===
+NOT FOUND
+=== notes = { ===
+875:                 "message": handoff_message,
+876:             }
+877: 
+878:             base_notes = {
+879:                 "delivery_target_chat_id": lane_seed.get("delivery_target_chat_id") or research_group["chat_id"],
+880:                 "delivery_target_topic_title": persona_topic_title,
+881:                 "controller_chat_id": lane_seed.get("controller_chat_id") or research_group["chat_id"],
+882:                 "controller_topic_title": controller_topic_title,
+883:                 "dispatch_id": dispatch_id,
+884:                 "dispatch_stage": "awaiting_topic_reuse_or_creation",
+885:                 "runtime_surface": DEFAULT_RUNTIME_SURFACE,
+886:                 "expected_start_marker": start_marker,
+=== fingerprint ===
+515:     return f"dryrun-{case_key}-{persona}"
+516: 
+517: 
+518: def build_lane_fingerprint(case_ctx: dict) -> dict:
+519:     return {
+520:         "case_id": case_ctx.get("case_id"),
+521:         "market_id": case_ctx.get("market_id"),
+522:         "platform": case_ctx.get("platform"),
+523:         "external_market_id": case_ctx.get("external_market_id"),
+524:         "outcome_type": case_ctx.get("outcome_type"),
+525:     }
+526: 
+=== superseded ===
+124: updated AS (
+125:   UPDATE research_runs rr
+126:   SET
+127:     status = 'superseded',
+128:     notes = COALESCE(rr.notes, '{}'::jsonb) || jsonb_build_object(
+129:       'dispatch_stage', 'superseded_before_rerun',
+130:       'superseded_at', NOW(),
+131:       'superseded_by_dispatch_id', NULLIF(i.j->>'dispatch_id', ''),
+132:       'superseded_reason', 'new_dispatch_preflight',
+133:       'superseded_from_status', rr.status
+134:     )
+135:   FROM input i

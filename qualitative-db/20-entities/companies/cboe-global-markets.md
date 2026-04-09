@@ -3,6 +3,7 @@ type: entity_overview
 domain: economics
 subdomain: exchanges-and-market-structure
 entity: cboe-global-markets
+aliases: [CBOE]
 entity_type: company
 status: active
 last_updated: 2026-03-26

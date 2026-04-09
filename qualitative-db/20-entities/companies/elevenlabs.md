@@ -2,7 +2,7 @@
 type: entity_overview
 domain: tech-ai
 subdomain: ai-media-and-voice-products
-entity: elevenlabs
+entity: elevenlas]
 entity_type: company
 status: active
 last_updated: 2026-03-25

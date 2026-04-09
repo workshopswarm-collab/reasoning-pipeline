@@ -3,6 +3,7 @@ type: entity_overview
 domain: politics
 subdomain: diplomacy-and-state-power
 entity: antony-blinken
+aliases: [Tony Blinken]
 entity_type: person
 status: active
 last_updated: 2026-03-25

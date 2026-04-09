@@ -39,7 +39,7 @@ Only tariffs which are in effect will qualify. Tariffs which are paused, or whic
 This market's primary resolution source will be official information from the Trump administration, however a consensus of credible information will also be used.
 
 ## Case surfaces
-- `current.md` = latest/current analysis pointers
+- `researcher-swarm-current.md` = latest/current researcher swarm pointers
 - `timeline.md` = programmatic lifecycle summary
-- `source-notes/` = case-level source provenance across analyses
-- `analyses/<YYYY-MM-DD>/<dispatch-id>/...` = append-only analysis generations
+- `researcher-source-notes/` = case-level source provenance across analyses
+- `researcher-analyses/<YYYY-MM-DD>/<dispatch-id>/...` = append-only analysis generations

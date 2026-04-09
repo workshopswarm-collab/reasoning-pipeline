@@ -3,6 +3,7 @@ type: entity_overview
 domain: geopolitics
 subdomain: energy-and-regional-state-power
 entity: algeria
+aliases: [People's Democratic Republic of Algeria]
 entity_type: country
 status: active
 last_updated: 2026-03-25

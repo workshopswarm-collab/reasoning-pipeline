@@ -2,7 +2,7 @@
 type: entity_overview
 domain: economics
 subdomain: financial-regulation-and-market-conduct
-entity: financial-conduct-authority
+entity: financial-conduct-authorialiases: [FCA]CA]
 entity_type: agency
 status: active
 last_updated: 2026-03-25

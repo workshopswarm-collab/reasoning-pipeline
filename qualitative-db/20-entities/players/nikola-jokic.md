@@ -3,6 +3,7 @@ type: entity_overview
 domain: sports
 subdomain: basketball
 entity: nikola-jokic
+aliases: [Nikola Jokić, Jokic]
 entity_type: player
 status: active
 last_updated: 2026-03-26

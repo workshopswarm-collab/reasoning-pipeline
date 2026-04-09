@@ -3,6 +3,7 @@ type: entity_overview
 domain: geopolitics
 subdomain: indo-pacific-security-and-balancing
 entity: philippines
+aliases: [Republic of the Philippines]
 entity_type: country
 status: active
 last_updated: 2026-03-25

@@ -2,7 +2,7 @@
 type: entity_overview
 domain: geopolitics
 subdomain: earth-systems-and-resource-intelligence
-entity: u-s-geological-survey
+entity: u-s-geological-survaliases: [United States Geological Survey, USGS]GS]
 entity_type: agency
 status: active
 last_updated: 2026-03-25

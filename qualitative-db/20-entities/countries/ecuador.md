@@ -3,6 +3,7 @@ type: entity_overview
 domain: geopolitics
 subdomain: regional-security-and-state-capacity
 entity: ecuador
+aliases: [Republic of Ecuador]
 entity_type: country
 status: active
 last_updated: 2026-03-25

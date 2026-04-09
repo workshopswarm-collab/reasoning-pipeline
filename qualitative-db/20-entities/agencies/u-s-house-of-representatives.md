@@ -2,7 +2,7 @@
 type: entity_overview
 domain: politics
 subdomain: legislative-power
-entity: u-s-house-of-representatives
+entity: u-s-house-of-representativaliases: [United States House of Representatives, House of Representatives]es]
 entity_type: agency
 status: active
 last_updated: 2026-03-25

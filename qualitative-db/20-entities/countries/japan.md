@@ -3,6 +3,7 @@ type: entity_overview
 domain: geopolitics
 subdomain: state-power-and-alliance-politics
 entity: japan
+aliases: [Nippon]
 entity_type: country
 status: active
 last_updated: 2026-03-25

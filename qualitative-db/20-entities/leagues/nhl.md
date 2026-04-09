@@ -3,6 +3,7 @@ type: entity_overview
 domain: sports
 subdomain: hockey
 entity: nhl
+aliases: [NHL, National Hockey League]
 entity_type: league
 status: active
 last_updated: 2026-03-25

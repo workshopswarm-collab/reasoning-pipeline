@@ -3,6 +3,7 @@ type: entity_overview
 domain: tech-ai
 subdomain: labs
 entity: sam-altman
+aliases: [Samuel Altman]
 entity_type: person
 status: active
 last_updated: 2026-03-25

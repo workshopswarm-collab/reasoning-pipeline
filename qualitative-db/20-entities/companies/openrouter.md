@@ -2,7 +2,7 @@
 type: entity_overview
 domain: tech-ai
 subdomain: model-routing-and-platform-infrastructure
-entity: openrouter
+entity: openroutr]
 entity_type: company
 status: active
 last_updated: 2026-03-25

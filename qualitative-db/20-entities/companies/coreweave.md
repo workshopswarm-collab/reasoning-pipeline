@@ -2,7 +2,7 @@
 type: entity_overview
 domain: tech-ai
 subdomain: compute-and-cloud-infrastructure
-entity: coreweave
+entity: coreweaaliases: [Inc.]c.]
 entity_type: company
 status: active
 last_updated: 2026-03-25

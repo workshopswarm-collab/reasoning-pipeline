@@ -2,7 +2,7 @@
 type: entity_overview
 domain: politics
 subdomain: transport-safety-and-state-capacity
-entity: federal-aviation-administration
+entity: federal-aviation-administratialiases: [FAA]AA]
 entity_type: agency
 status: active
 last_updated: 2026-03-25

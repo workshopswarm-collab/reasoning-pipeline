@@ -3,6 +3,7 @@ type: entity_overview
 domain: tech-ai
 subdomain: leadership
 entity: satya-nadella
+aliases: [Satya]
 entity_type: person
 status: active
 last_updated: 2026-03-25

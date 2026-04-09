@@ -3,6 +3,7 @@ type: entity_overview
 domain: crypto
 subdomain: stablecoins-and-market-structure
 entity: tether-holdings
+aliases: [Tether Holdings Limited]
 entity_type: company
 status: active
 last_updated: 2026-03-26

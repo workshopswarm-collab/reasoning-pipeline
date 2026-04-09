@@ -2,7 +2,7 @@
 type: entity_overview
 domain: economics
 subdomain: financial-stability-and-regulation
-entity: financial-stability-oversight-council
+entity: financial-stability-oversight-councaliases: [FSOC]OC]
 entity_type: agency
 status: active
 last_updated: 2026-03-25

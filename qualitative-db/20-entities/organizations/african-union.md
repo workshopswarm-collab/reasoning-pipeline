@@ -2,7 +2,7 @@
 type: entity_overview
 domain: geopolitics
 subdomain: regional-bloc-politics
-entity: african-union
+entity: african-unialiases: [AU]on]
 entity_type: organization
 status: active
 last_updated: 2026-03-25

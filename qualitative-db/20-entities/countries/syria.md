@@ -3,6 +3,7 @@ type: entity_overview
 domain: geopolitics
 subdomain: conflict-and-state-fragmentation
 entity: syria
+aliases: [Syrian Arab Republic]
 entity_type: country
 status: active
 last_updated: 2026-03-25

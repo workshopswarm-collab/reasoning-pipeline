@@ -3,6 +3,7 @@ type: entity_overview
 domain: geopolitics
 subdomain: climate-governance-and-scientific-legitimacy
 entity: intergovernmental-panel-on-climate-change
+aliases: [IPCC]
 entity_type: organization
 status: active
 last_updated: 2026-03-25

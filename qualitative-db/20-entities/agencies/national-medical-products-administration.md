@@ -2,7 +2,7 @@
 type: entity_overview
 domain: politics
 subdomain: regulation-and-public-health
-entity: national-medical-products-administration
+entity: national-medical-products-administratialiases: [NMPA]on]
 entity_type: agency
 status: active
 last_updated: 2026-03-25

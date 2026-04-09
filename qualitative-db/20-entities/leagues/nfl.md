@@ -3,6 +3,7 @@ type: entity_overview
 domain: sports
 subdomain: american-football
 entity: nfl
+aliases: [NFL, National Football League]
 entity_type: league
 status: active
 last_updated: 2026-03-25

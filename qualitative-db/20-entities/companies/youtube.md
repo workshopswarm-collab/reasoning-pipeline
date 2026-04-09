@@ -2,7 +2,7 @@
 type: entity_overview
 domain: culture
 subdomain: streaming-and-video
-entity: youtube
+entity: youtue]
 entity_type: company
 status: active
 last_updated: 2026-03-25

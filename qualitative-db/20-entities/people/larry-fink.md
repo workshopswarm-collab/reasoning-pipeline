@@ -3,6 +3,7 @@ type: entity_overview
 domain: economics
 subdomain: finance-and-capital-allocation
 entity: larry-fink
+aliases: [Laurence Fink]
 entity_type: person
 status: active
 last_updated: 2026-03-25

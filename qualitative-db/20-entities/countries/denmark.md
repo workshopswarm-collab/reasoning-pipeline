@@ -3,6 +3,7 @@ type: entity_overview
 domain: geopolitics
 subdomain: europe-and-nato
 entity: denmark
+aliases: [Kingdom of Denmark]
 entity_type: country
 status: active
 last_updated: 2026-03-26

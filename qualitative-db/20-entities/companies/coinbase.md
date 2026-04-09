@@ -3,6 +3,7 @@ type: entity_overview
 domain: crypto
 subdomain: exchanges
 entity: coinbase
+aliases: [COIN]
 entity_type: company
 status: active
 last_updated: 2026-03-26

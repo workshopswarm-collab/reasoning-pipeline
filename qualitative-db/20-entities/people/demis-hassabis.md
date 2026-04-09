@@ -3,6 +3,7 @@ type: entity_overview
 domain: tech-ai
 subdomain: leadership
 entity: demis-hassabis
+aliases: [Sir Demis Hassabis]
 entity_type: person
 status: active
 last_updated: 2026-03-25

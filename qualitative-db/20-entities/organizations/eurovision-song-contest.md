@@ -3,6 +3,7 @@ type: entity_overview
 domain: culture
 subdomain: music-and-live-events
 entity: eurovision-song-contest
+aliases: [Eurovision]
 entity_type: organization
 status: active
 last_updated: 2026-03-25

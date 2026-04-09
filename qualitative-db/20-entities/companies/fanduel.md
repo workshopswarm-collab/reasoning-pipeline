@@ -2,7 +2,7 @@
 type: entity_overview
 domain: sports
 subdomain: sports-betting-and-market-structure
-entity: fanduel
+entity: fandul]
 entity_type: company
 status: active
 last_updated: 2026-03-26

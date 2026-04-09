@@ -3,6 +3,7 @@ type: entity_overview
 domain: geopolitics
 subdomain: countries
 entity: taiwan
+aliases: [Republic of China, ROC]
 entity_type: country
 status: active
 last_updated: 2026-03-26

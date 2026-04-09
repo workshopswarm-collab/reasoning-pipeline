@@ -2,7 +2,7 @@
 type: entity_overview
 domain: politics
 subdomain: electoral-and-state-power
-entity: giorgia-meloni
+entity: giorgia-meloi]
 entity_type: person
 status: active
 last_updated: 2026-03-25

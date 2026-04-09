@@ -3,6 +3,7 @@ type: entity_overview
 domain: politics
 subdomain: elections
 entity: donald-trump
+aliases: [Donald J. Trump]
 entity_type: person
 status: active
 last_updated: 2026-03-25

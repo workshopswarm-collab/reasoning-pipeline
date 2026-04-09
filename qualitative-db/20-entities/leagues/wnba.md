@@ -3,6 +3,7 @@ type: entity_overview
 domain: sports
 subdomain: basketball
 entity: wnba
+aliases: [WNBA, Women's National Basketball Association]
 entity_type: league
 status: active
 last_updated: 2026-03-25

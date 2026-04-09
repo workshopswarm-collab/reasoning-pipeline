@@ -2,7 +2,7 @@
 type: entity_overview
 domain: economics
 subdomain: financial-regulation-and-market-oversight
-entity: european-securities-and-markets-authority
+entity: european-securities-and-markets-authorialiases: [ESMA]MA]
 entity_type: agency
 status: active
 last_updated: 2026-03-25

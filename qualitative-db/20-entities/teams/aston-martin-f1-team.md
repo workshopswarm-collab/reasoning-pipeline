@@ -3,6 +3,7 @@ type: entity_overview
 domain: sports
 subdomain: formula-one
 entity: aston-martin-f1-team
+aliases: [Aston Martin]
 entity_type: team
 status: active
 last_updated: 2026-03-25

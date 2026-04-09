@@ -10,7 +10,7 @@
 ## System purpose
 
 - The overall system exists to support a **multi-agent prediction-market / quant research workflow** rather than to act as a generic note dump or forecast ledger.
-- Its job is to turn noisy incoming information into **organized, auditable, retrieval-friendly research memory** that improves final market decisions.
+- Its job is to turn noisy incoming information into **organized, auditable, retrieval-friendly research memory** that improves final market decisions for betting on prediction markets and achieving sustainable alpha.
 - The system should help answer:
   - what do we know?
   - where did it come from?

@@ -2,7 +2,7 @@
 type: entity_overview
 domain: tech-ai
 subdomain: space-and-infrastructure
-entity: spacex
+entity: spacX]
 entity_type: company
 status: active
 last_updated: 2026-03-25

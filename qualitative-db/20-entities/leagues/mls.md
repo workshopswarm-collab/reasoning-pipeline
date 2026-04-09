@@ -3,6 +3,7 @@ type: entity_overview
 domain: sports
 subdomain: soccer
 entity: mls
+aliases: [MLS, Major League Soccer]
 entity_type: league
 status: active
 last_updated: 2026-03-25

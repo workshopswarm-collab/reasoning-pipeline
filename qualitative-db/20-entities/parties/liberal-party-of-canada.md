@@ -3,6 +3,7 @@ type: entity_overview
 domain: politics
 subdomain: electoral-and-party-competition
 entity: liberal-party-of-canada
+aliases: [Liberal Party, LPC]
 entity_type: party
 status: active
 last_updated: 2026-03-25

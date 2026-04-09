@@ -2,7 +2,7 @@
 type: entity_overview
 domain: economics
 subdomain: asset-management-and-digital-products
-entity: franklin-templeton
+entity: franklin-templetaliases: [BEN]EN]
 entity_type: company
 status: active
 last_updated: 2026-03-25

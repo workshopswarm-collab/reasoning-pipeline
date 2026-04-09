@@ -3,6 +3,7 @@ type: entity_overview
 domain: politics
 subdomain: europe-and-national-context
 entity: spain
+aliases: [Kingdom of Spain]
 entity_type: country
 status: active
 last_updated: 2026-03-25

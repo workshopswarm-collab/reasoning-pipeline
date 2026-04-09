@@ -2,7 +2,7 @@
 type: entity_overview
 domain: tech-ai
 subdomain: data-platforms-and-ai-adoption
-entity: databricks
+entity: databricaliases: [Inc.]c.]
 entity_type: company
 status: active
 last_updated: 2026-03-25

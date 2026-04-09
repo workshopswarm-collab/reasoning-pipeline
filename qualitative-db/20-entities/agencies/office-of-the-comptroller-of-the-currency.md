@@ -2,7 +2,7 @@
 type: entity_overview
 domain: economics
 subdomain: banking-regulation-and-financial-stability
-entity: office-of-the-comptroller-of-the-currency
+entity: office-of-the-comptroller-of-the-currenaliases: [OCC]CC]
 entity_type: agency
 status: active
 last_updated: 2026-03-25

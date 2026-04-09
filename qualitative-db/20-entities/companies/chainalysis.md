@@ -2,7 +2,7 @@
 type: entity_overview
 domain: crypto
 subdomain: compliance-and-onchain-intelligence
-entity: chainalysis
+entity: chainalyss]
 entity_type: company
 status: active
 last_updated: 2026-03-25

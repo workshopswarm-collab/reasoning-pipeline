@@ -2,7 +2,7 @@
 type: entity_overview
 domain: tech-ai
 subdomain: generative-media-and-model-platforms
-entity: stability-ai
+entity: stability-I]
 entity_type: company
 status: active
 last_updated: 2026-03-25

@@ -3,6 +3,7 @@ type: entity_overview
 domain: geopolitics
 subdomain: resources-and-governance
 entity: bolivia
+aliases: [Plurinational State of Bolivia]
 entity_type: country
 status: active
 last_updated: 2026-03-25

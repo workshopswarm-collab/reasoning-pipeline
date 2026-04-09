@@ -2,7 +2,7 @@
 type: entity_overview
 domain: geopolitics
 subdomain: space-and-industrial-capacity
-entity: european-space-agency
+entity: european-space-agenaliases: [ESA]cy]
 entity_type: organization
 status: active
 last_updated: 2026-03-25

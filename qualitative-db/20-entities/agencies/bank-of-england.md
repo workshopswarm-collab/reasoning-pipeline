@@ -2,7 +2,7 @@
 type: entity_overview
 domain: economics
 subdomain: macro-and-financial-governance
-entity: bank-of-england
+entity: bank-of-englaaliases: [BoE]nd]
 entity_type: agency
 status: active
 last_updated: 2026-03-26

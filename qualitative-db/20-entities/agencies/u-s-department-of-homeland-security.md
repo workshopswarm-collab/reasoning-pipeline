@@ -2,7 +2,7 @@
 type: entity_overview
 domain: politics
 subdomain: security-and-state-capacity
-entity: u-s-department-of-homeland-security
+entity: u-s-department-of-homeland-securialiases: [United States Department of Homeland Security, DHS]HS]
 entity_type: agency
 status: active
 last_updated: 2026-03-25

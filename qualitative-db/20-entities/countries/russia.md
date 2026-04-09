@@ -3,6 +3,7 @@ type: entity_overview
 domain: geopolitics
 subdomain: countries
 entity: russia
+aliases: [Russian Federation]
 entity_type: country
 status: active
 last_updated: 2026-03-25

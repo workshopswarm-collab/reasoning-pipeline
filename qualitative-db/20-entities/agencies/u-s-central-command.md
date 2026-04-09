@@ -2,7 +2,7 @@
 type: entity_overview
 domain: geopolitics
 subdomain: military-power-and-regional-escalation
-entity: u-s-central-command
+entity: u-s-central-commaaliases: [CENTCOM, United States Central Command]nd]
 entity_type: agency
 status: active
 last_updated: 2026-03-26

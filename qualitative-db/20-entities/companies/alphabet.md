@@ -3,6 +3,7 @@ type: entity_overview
 domain: tech-ai
 subdomain: products-and-platforms
 entity: alphabet
+aliases: [GOOGL, GOOG]
 entity_type: company
 status: active
 last_updated: 2026-03-26

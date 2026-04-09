@@ -3,6 +3,7 @@ type: entity_overview
 domain: economics
 subdomain: policy-benchmarking-and-global-governance
 entity: organization-for-economic-co-operation-and-development
+aliases: [OECD, Organisation for Economic Co-operation and Development]
 entity_type: organization
 status: active
 last_updated: 2026-03-25

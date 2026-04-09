@@ -3,6 +3,7 @@ type: entity_overview
 domain: geopolitics
 subdomain: energy-and-mediation-politics
 entity: qatar
+aliases: [State of Qatar]
 entity_type: country
 status: active
 last_updated: 2026-03-25

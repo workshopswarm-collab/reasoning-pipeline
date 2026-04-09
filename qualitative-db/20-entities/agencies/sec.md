@@ -3,6 +3,7 @@ type: entity_overview
 domain: politics
 subdomain: institutions
 entity: sec
+aliases: [SEC, Securities and Exchange Commission, U.S. Securities and Exchange Commission]
 entity_type: agency
 status: active
 last_updated: 2026-03-25

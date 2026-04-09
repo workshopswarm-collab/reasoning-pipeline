@@ -3,6 +3,7 @@ type: entity_overview
 domain: geopolitics
 subdomain: regional-power-and-commodity-politics
 entity: brazil
+aliases: [Federative Republic of Brazil]
 entity_type: country
 status: active
 last_updated: 2026-03-25

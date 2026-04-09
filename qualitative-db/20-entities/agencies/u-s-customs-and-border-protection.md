@@ -2,7 +2,7 @@
 type: entity_overview
 domain: politics
 subdomain: border-and-state-capacity
-entity: u-s-customs-and-border-protection
+entity: u-s-customs-and-border-protectialiases: [United States Customs and Border Protection, CBP]BP]
 entity_type: agency
 status: active
 last_updated: 2026-03-25

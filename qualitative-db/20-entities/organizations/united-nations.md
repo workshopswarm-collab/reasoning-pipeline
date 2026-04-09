@@ -2,7 +2,7 @@
 type: entity_overview
 domain: geopolitics
 subdomain: multilateral-governance
-entity: united-nations
+entity: united-natioaliases: [UN]ns]
 entity_type: organization
 status: active
 last_updated: 2026-03-25

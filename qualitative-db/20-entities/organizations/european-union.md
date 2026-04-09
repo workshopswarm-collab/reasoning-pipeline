@@ -2,7 +2,7 @@
 type: entity_overview
 domain: geopolitics
 subdomain: institutions
-entity: european-union
+entity: european-unialiases: [EU]on]
 entity_type: organization
 status: active
 last_updated: 2026-03-26

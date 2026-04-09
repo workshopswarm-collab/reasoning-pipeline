@@ -3,6 +3,7 @@ type: entity_overview
 domain: geopolitics
 subdomain: regional-stability-and-state-capacity
 entity: egypt
+aliases: [Arab Republic of Egypt]
 entity_type: country
 status: active
 last_updated: 2026-03-25

@@ -3,6 +3,7 @@ type: entity_overview
 domain: geopolitics
 subdomain: state-power-and-cross-strait-risk
 entity: taiwan-presidency
+aliases: [Presidential Office of Taiwan]
 entity_type: agency
 status: active
 last_updated: 2026-03-26

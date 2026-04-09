@@ -2,7 +2,7 @@
 type: entity_overview
 domain: politics
 subdomain: legal-and-institutional-power
-entity: u-s-department-of-justice
+entity: u-s-department-of-justialiases: [United States Department of Justice, DOJ]OJ]
 entity_type: agency
 status: active
 last_updated: 2026-03-25

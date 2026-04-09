@@ -2,7 +2,7 @@
 type: entity_overview
 domain: politics
 subdomain: food-systems-and-state-capacity
-entity: food-safety-and-inspection-service
+entity: food-safety-and-inspection-servialiases: [FSIS]ce]
 entity_type: agency
 status: active
 last_updated: 2026-03-25

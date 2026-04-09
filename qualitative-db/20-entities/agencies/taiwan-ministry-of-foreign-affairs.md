@@ -3,6 +3,7 @@ type: entity_overview
 domain: geopolitics
 subdomain: diplomacy-and-state-signaling
 entity: taiwan-ministry-of-foreign-affairs
+aliases: [Taiwan MOFA]
 entity_type: agency
 status: active
 last_updated: 2026-03-25

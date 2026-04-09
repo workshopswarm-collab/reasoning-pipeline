@@ -3,6 +3,7 @@ type: entity_overview
 domain: tech-ai
 subdomain: cloud-and-enterprise-infrastructure
 entity: oracle
+aliases: [ORCL]
 entity_type: company
 status: active
 last_updated: 2026-03-25

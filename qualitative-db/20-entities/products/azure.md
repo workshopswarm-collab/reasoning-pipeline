@@ -3,6 +3,7 @@ type: entity_overview
 domain: tech-ai
 subdomain: cloud
 entity: azure
+aliases: [Microsoft Azure]
 entity_type: product
 status: active
 last_updated: 2026-03-25

@@ -2,7 +2,7 @@
 type: entity_overview
 domain: politics
 subdomain: fiscal-governance-and-executive-control
-entity: u-s-office-of-management-and-budget
+entity: u-s-office-of-management-and-budgaliases: [United States Office of Management and Budget, OMB]MB]
 entity_type: agency
 status: active
 last_updated: 2026-03-25

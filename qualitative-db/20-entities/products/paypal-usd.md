@@ -2,7 +2,7 @@
 type: entity_overview
 domain: crypto
 subdomain: stablecoins-and-payments
-entity: paypal-usd
+entity: paypal-ualiases: [PYUSD]SD]
 entity_type: product
 status: active
 last_updated: 2026-03-25

@@ -2,7 +2,7 @@
 type: entity_overview
 domain: tech-ai
 subdomain: labs
-entity: openai
+entity: openaliases: [Inc.]c.]
 entity_type: company
 status: active
 last_updated: 2026-03-26

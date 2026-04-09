@@ -61,6 +61,7 @@ Do **not** turn the body into a rolling news log.
 Fields such as:
 - `related_entities`
 - `related_drivers`
+- `aliases`
 
 are part of the vault's **graph/navigation layer**.
 
@@ -74,6 +75,8 @@ Important:
 - linkage metadata is **not** an excuse for graph spam
 - linkage metadata is **not** an exhaustive ontology export
 - linkage metadata is **not** a substitute for writing good canonical body content
+- `aliases` should contain only high-confidence alternative labels, common casing variants, or obvious shorthand that should normalize to this canonical entity
+- `aliases` should not be used to smuggle speculative taxonomy decisions into the graph
 
 ## Practical rule
 

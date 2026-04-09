@@ -3,6 +3,7 @@ type: entity_overview
 domain: geopolitics
 subdomain: regional-stability-and-mediation
 entity: jordan
+aliases: [Hashemite Kingdom of Jordan]
 entity_type: country
 status: active
 last_updated: 2026-03-25

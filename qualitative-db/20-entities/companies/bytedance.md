@@ -3,6 +3,7 @@ type: entity_overview
 domain: culture
 subdomain: social-media
 entity: bytedance
+aliases: [ByteDance Ltd.]
 entity_type: company
 status: active
 last_updated: 2026-03-26

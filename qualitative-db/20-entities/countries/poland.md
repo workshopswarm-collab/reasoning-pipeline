@@ -3,6 +3,7 @@ type: entity_overview
 domain: geopolitics
 subdomain: european-security-and-frontline-politics
 entity: poland
+aliases: [Republic of Poland]
 entity_type: country
 status: active
 last_updated: 2026-03-25

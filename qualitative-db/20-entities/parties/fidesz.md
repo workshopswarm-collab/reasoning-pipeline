@@ -3,6 +3,7 @@ type: entity_overview
 domain: politics
 subdomain: electoral-and-party-competition
 entity: fidesz
+aliases: [Fidesz – Hungarian Civic Alliance]
 entity_type: party
 status: active
 last_updated: 2026-03-25

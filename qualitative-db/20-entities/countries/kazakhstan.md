@@ -3,6 +3,7 @@ type: entity_overview
 domain: geopolitics
 subdomain: central-asia-energy-and-balancing
 entity: kazakhstan
+aliases: [Republic of Kazakhstan]
 entity_type: country
 status: active
 last_updated: 2026-03-25

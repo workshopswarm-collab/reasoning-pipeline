@@ -2,7 +2,7 @@
 type: entity_overview
 domain: geopolitics
 subdomain: military-and-security-institutions
-entity: israel-defense-forces
+entity: israel-defense-forcaliases: [IDF]es]
 entity_type: agency
 status: active
 last_updated: 2026-03-25

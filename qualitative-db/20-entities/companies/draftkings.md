@@ -3,6 +3,7 @@ type: entity_overview
 domain: sports
 subdomain: sports-betting-and-market-structure
 entity: draftkings
+aliases: [DKNG]
 entity_type: company
 status: active
 last_updated: 2026-03-26

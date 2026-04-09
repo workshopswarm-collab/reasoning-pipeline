@@ -3,6 +3,7 @@ type: entity_overview
 domain: geopolitics
 subdomain: regional-balancing-and-trade
 entity: morocco
+aliases: [Kingdom of Morocco]
 entity_type: country
 status: active
 last_updated: 2026-03-25

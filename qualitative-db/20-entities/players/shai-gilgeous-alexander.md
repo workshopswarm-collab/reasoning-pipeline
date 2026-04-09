@@ -2,7 +2,7 @@
 type: entity_overview
 domain: sports
 subdomain: basketball
-entity: shai-gilgeous-alexander
+entity: shai-gilgeous-alexandaliases: [SGA]GA]
 entity_type: player
 status: active
 last_updated: 2026-03-26

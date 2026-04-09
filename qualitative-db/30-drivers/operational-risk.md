@@ -1,6 +1,8 @@
 ---
 type: driver_overview
 domain: cross-domain
+driver: operational-risk
+aliases: [execution-risk, operations-risk, process-risk]
 status: active
 last_updated: 2026-03-26
 related_entities: []

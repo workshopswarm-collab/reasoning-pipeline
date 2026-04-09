@@ -3,6 +3,7 @@ type: entity_overview
 domain: sports
 subdomain: tennis
 entity: wta-tour
+aliases: [WTA]
 entity_type: league
 status: active
 last_updated: 2026-03-25

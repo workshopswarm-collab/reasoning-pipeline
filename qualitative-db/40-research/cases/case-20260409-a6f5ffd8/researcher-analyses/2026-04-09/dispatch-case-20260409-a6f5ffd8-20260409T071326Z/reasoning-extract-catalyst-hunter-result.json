@@ -1,0 +1,56 @@
+{
+  "persona": "catalyst-hunter",
+  "main_thesis": "Yes at 0.91; the edge is mainly contract-timing clarity plus a >$1,000 observed buffer above 70,000, with the decisive catalyst being the exact Binance settlement minute rather than new macro news.",
+  "own_probability": 0.91,
+  "reasoning_mode": [
+    "market_anchor",
+    "catalyst_analysis",
+    "contract_interpretation",
+    "technical_reference"
+  ],
+  "key_assumptions": [
+    "Relevant settlement candle is the Binance 1m candle opening at 16:00:00 UTC (= 12:00 ET).",
+    "No extraordinary selloff pushes BTC below 70,000 before or during the settlement minute.",
+    "Binance BTCUSDT spot remains the uncontested settlement surface without reinterpretation."
+  ],
+  "strongest_supports": [
+    "Polymarket rules explicitly name Binance BTC/USDT 1m candle at 12:00 ET as source of truth.",
+    "ET-to-UTC conversion was explicitly verified: 12:00 ET = 16:00:00 UTC on 2026-04-09.",
+    "Direct Binance API check showed BTC around 71,032.89, above the 70,000 strike.",
+    "Recent sampled 1m closes were all above 71,000, implying no immediate erosion of the cushion.",
+    "For a narrow authoritative-source contract, exact candle timing matters more than broad narrative."
+  ],
+  "strongest_disconfirmers": [
+    "BTC can move more than $1,000 intraday in minutes, so a sharp selloff could still flip the result.",
+    "Operational interpretation error around candle labeling or ET/UTC conversion could erase the apparent edge."
+  ],
+  "main_logical_chain": [
+    "Start from market price: 0.785 implies 78.5%.",
+    "Check contract mechanics first because settlement depends on one exact Binance minute candle.",
+    "Verify timezone mapping: noon ET on this date equals 16:00 UTC.",
+    "Identify the decisive catalyst as the arrival of the 16:00:00-16:00:59 UTC Binance candle.",
+    "Check direct Binance prices/klines: BTC is trading above 71,000, leaving roughly a $1,000+ buffer over the strike.",
+    "Given clear mechanics and current buffer, a Yes outcome is more likely than the market implies unless a sharp late drop occurs."
+  ],
+  "fragility_points": [
+    "Very short-horizon BTC volatility could overwhelm the current buffer.",
+    "The thesis depends heavily on correct interpretation of Binance candle-open/candle-close semantics.",
+    "The edge is operational/mechanical more than structural, so it may disappear if timing interpretation is wrong."
+  ],
+  "unresolved_ambiguities": [
+    "Whether any market participant or UI convention could still create confusion about which Binance candle counts.",
+    "The note uses a near-resolution API sample, not an archived exact settlement-candle capture in the extract itself."
+  ],
+  "timing_relevance": "Extremely high. The persona treats this primarily as a countdown-to-settlement-minute market: the key repricing catalyst is the Binance 16:00:00-16:00:59 UTC candle itself, with price behavior into that minute dominating the view.",
+  "source_quality_view": "High-quality setup for this contract type: primary source is direct Binance API data for 1m klines/ticker; secondary/contextual source is Polymarket rules. Evidence independence is medium, and source-of-truth ambiguity is low after timezone and candle-mechanics verification.",
+  "what_would_change_view": "BTC falling back toward 70,200-70,000 near settlement; evidence that Polymarket/Binance labels the relevant candle differently than assumed; or a late volatility shock large enough to erase the buffer.",
+  "recommended_weight": "high",
+  "confidence_in_extract": "high",
+  "quote_anchors": [
+    "\"My directional view is Yes, with an estimated 91% probability\"",
+    "\"the key catalyst is not a macro news event but the arrival of the exact settlement minute\"",
+    "\"12:00 ET = 16:00 UTC\"",
+    "\"the relevant candle is the Binance 1-minute kline that opens at 16:00:00 UTC\"",
+    "\"BTC can move more than $1,000 intraday in minutes\""
+  ]
+}

@@ -3,6 +3,7 @@ type: entity_overview
 domain: sports
 subdomain: baseball
 entity: aaron-judge
+aliases: [Judge]
 entity_type: player
 status: active
 last_updated: 2026-03-25

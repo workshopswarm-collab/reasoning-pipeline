@@ -3,6 +3,7 @@ type: entity_overview
 domain: crypto
 subdomain: infrastructure
 entity: chainlink
+aliases: [LINK]
 entity_type: protocol
 status: active
 last_updated: 2026-03-25

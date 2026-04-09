@@ -62,6 +62,16 @@ Use for proposed market drivers when:
 
 These are review artifacts, not new canonical drivers.
 
+Operational note:
+- top-level index: `qualitative-db/40-research/review-queue/drivers-candidates/generated-index.md`
+- generated raw candidate notes now live in `qualitative-db/40-research/review-queue/drivers-candidates/candidate-notes/` with filenames like `generated-driver-candidate-<slug>.md`
+- LLM-assisted family review outputs live in `qualitative-db/40-research/review-queue/drivers-candidates/surfaced-family-review/`
+  - top-level LLM family index: `qualitative-db/40-research/review-queue/drivers-candidates/surfaced-family-review/LLM-proposed-family-index.md`
+  - markdown review notes: `qualitative-db/40-research/review-queue/drivers-candidates/surfaced-family-review/review-notes/`
+  - JSON input packets: `qualitative-db/40-research/review-queue/drivers-candidates/surfaced-family-review/inputs/`
+- generated notes aggregate recurring `proposed_drivers` across case artifacts to help promotion review
+- manually-authored review notes may still coexist alongside generated notes when a human wants to add interpretation or promotion rationale
+
 ### `linkage-repair-candidates/`
 
 Use for proposed graph/navigation repairs such as:

@@ -3,6 +3,7 @@ type: entity_overview
 domain: politics
 subdomain: elections
 entity: democratic-party
+aliases: [Democrats]
 entity_type: party
 status: active
 last_updated: 2026-03-25

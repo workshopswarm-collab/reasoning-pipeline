@@ -3,11 +3,12 @@ type: entity_overview
 domain: sports
 subdomain: formula-one
 entity: formula-1
+aliases: [F1, Formula One]
 entity_type: organization
 status: active
 last_updated: 2026-03-25
 related_entities: [red-bull-racing, mercedes, ferrari, mclaren, max-verstappen, lando-norris, charles-leclerc, george-russell]
-related_drivers: [championships, performance, regulations, media-narratives]
+related_drivers: [championships, performance, regulation, media-narratives]
 tags: [entity/organization, entity/formula-1, domain/sports]
 ---
 

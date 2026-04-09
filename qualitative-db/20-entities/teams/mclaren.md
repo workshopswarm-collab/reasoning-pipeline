@@ -3,6 +3,7 @@ type: entity_overview
 domain: sports
 subdomain: formula-one
 entity: mclaren
+aliases: [McLaren F1 Team]
 entity_type: team
 status: active
 last_updated: 2026-03-25

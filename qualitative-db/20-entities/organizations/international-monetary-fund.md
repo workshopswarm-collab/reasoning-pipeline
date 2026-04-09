@@ -2,7 +2,7 @@
 type: entity_overview
 domain: economics
 subdomain: macro-and-crisis-finance
-entity: international-monetary-fund
+entity: international-monetary-fualiases: [IMF]MF]
 entity_type: organization
 status: active
 last_updated: 2026-03-25

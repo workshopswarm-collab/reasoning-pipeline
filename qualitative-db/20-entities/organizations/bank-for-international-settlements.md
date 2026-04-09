@@ -2,7 +2,7 @@
 type: entity_overview
 domain: economics
 subdomain: central-bank-coordination-and-financial-stability
-entity: bank-for-international-settlements
+entity: bank-for-international-settlemenaliases: [BIS]IS]
 entity_type: organization
 status: active
 last_updated: 2026-03-25

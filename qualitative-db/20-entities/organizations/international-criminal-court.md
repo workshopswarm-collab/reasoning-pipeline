@@ -2,7 +2,7 @@
 type: entity_overview
 domain: geopolitics
 subdomain: international-law-and-legitimacy
-entity: international-criminal-court
+entity: international-criminal-coualiases: [ICC]rt]
 entity_type: organization
 status: active
 last_updated: 2026-03-25

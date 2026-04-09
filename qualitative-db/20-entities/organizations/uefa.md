@@ -3,6 +3,7 @@ type: entity_overview
 domain: sports
 subdomain: soccer
 entity: uefa
+aliases: [UEFA, Union of European Football Associations]
 entity_type: organization
 status: active
 last_updated: 2026-03-25

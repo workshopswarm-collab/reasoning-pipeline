@@ -3,6 +3,7 @@ type: entity_overview
 domain: crypto
 subdomain: market-structure-and-executive-power
 entity: brian-armstrong
+aliases: [Brian T. Armstrong]
 entity_type: person
 status: active
 last_updated: 2026-03-25

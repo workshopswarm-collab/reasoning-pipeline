@@ -3,6 +3,7 @@ type: entity_overview
 domain: geopolitics
 subdomain: intelligence-and-state-security
 entity: ministry-of-state-security-of-the-peoples-republic-of-china
+aliases: [MSS, Ministry of State Security]
 entity_type: agency
 status: active
 last_updated: 2026-03-25

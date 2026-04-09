@@ -2,7 +2,7 @@
 type: entity_overview
 domain: crypto
 subdomain: exchanges-and-regulated-access
-entity: gemini-exchange
+entity: gemini-exchane]
 entity_type: company
 status: active
 last_updated: 2026-03-25

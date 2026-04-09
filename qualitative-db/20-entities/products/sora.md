@@ -3,6 +3,7 @@ type: entity_overview
 domain: tech-ai
 subdomain: generative-media-products
 entity: sora
+aliases: [OpenAI Sora]
 entity_type: product
 status: active
 last_updated: 2026-03-26

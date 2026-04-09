@@ -2,7 +2,7 @@
 type: entity_overview
 domain: geopolitics
 subdomain: diplomacy-and-state-signaling
-entity: u-s-department-of-state
+entity: u-s-department-of-staaliases: [United States Department of State, State Department]nt]
 entity_type: agency
 status: active
 last_updated: 2026-03-25

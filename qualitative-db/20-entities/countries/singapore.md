@@ -3,6 +3,7 @@ type: entity_overview
 domain: geopolitics
 subdomain: finance-trade-and-strategic-balancing
 entity: singapore
+aliases: [Republic of Singapore]
 entity_type: country
 status: active
 last_updated: 2026-03-25

@@ -3,6 +3,7 @@ type: entity_overview
 domain: geopolitics
 subdomain: countries
 entity: israel
+aliases: [State of Israel]
 entity_type: country
 status: active
 last_updated: 2026-03-25

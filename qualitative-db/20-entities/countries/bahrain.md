@@ -3,6 +3,7 @@ type: entity_overview
 domain: geopolitics
 subdomain: gulf-security-and-financial-balancing
 entity: bahrain
+aliases: [Kingdom of Bahrain]
 entity_type: country
 status: active
 last_updated: 2026-03-25

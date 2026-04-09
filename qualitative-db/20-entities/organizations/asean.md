@@ -3,6 +3,7 @@ type: entity_overview
 domain: geopolitics
 subdomain: regional-bloc-politics
 entity: asean
+aliases: [ASEAN, Association of Southeast Asian Nations]
 entity_type: organization
 status: active
 last_updated: 2026-03-25

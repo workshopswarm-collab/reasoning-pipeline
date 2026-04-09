@@ -2,7 +2,7 @@
 type: entity_overview
 domain: politics
 subdomain: transport-safety-and-regulation
-entity: national-highway-traffic-safety-administration
+entity: national-highway-traffic-safety-administratialiases: [NHTSA]SA]
 entity_type: agency
 status: active
 last_updated: 2026-03-25

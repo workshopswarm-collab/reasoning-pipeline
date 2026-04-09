@@ -2,7 +2,7 @@
 type: entity_overview
 domain: politics
 subdomain: public-health-and-state-capacity
-entity: u-s-department-of-health-and-human-services
+entity: u-s-department-of-health-and-human-servicaliases: [United States Department of Health and Human Services, HHS]HS]
 entity_type: agency
 status: active
 last_updated: 2026-03-25

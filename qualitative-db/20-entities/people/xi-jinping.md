@@ -3,6 +3,7 @@ type: entity_overview
 domain: geopolitics
 subdomain: leaders
 entity: xi-jinping
+aliases: [Xi]
 entity_type: person
 status: active
 last_updated: 2026-03-25

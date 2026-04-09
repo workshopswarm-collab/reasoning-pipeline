@@ -2,7 +2,7 @@
 type: entity_overview
 domain: economics
 subdomain: trade-and-industrial-policy
-entity: u-s-trade-representative
+entity: u-s-trade-representatialiases: [United States Trade Representative, USTR]TR]
 entity_type: agency
 status: active
 last_updated: 2026-03-26

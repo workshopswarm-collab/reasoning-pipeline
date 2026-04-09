@@ -3,6 +3,7 @@ type: entity_overview
 domain: sports
 subdomain: soccer
 entity: kylian-mbappe
+aliases: [Kylian Mbappé]
 entity_type: player
 status: active
 last_updated: 2026-03-25

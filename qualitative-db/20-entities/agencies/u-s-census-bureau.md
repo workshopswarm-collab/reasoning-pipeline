@@ -2,7 +2,7 @@
 type: entity_overview
 domain: economics
 subdomain: macro-data-and-demographic-indicators
-entity: u-s-census-bureau
+entity: u-s-census-burealiases: [United States Census Bureau, Census Bureau]au]
 entity_type: agency
 status: active
 last_updated: 2026-03-25

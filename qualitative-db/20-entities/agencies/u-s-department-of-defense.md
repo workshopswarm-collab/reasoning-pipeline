@@ -2,7 +2,7 @@
 type: entity_overview
 domain: geopolitics
 subdomain: defense-and-deterrence
-entity: u-s-department-of-defense
+entity: u-s-department-of-defenaliases: [United States Department of Defense, DoD, DOD, Pentagon]on]
 entity_type: agency
 status: active
 last_updated: 2026-03-25

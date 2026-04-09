@@ -3,6 +3,7 @@ type: entity_overview
 domain: sports
 subdomain: soccer
 entity: bayern-munich
+aliases: [FC Bayern Munich, Bayern]
 entity_type: team
 status: active
 last_updated: 2026-03-25

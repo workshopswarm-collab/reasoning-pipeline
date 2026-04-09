@@ -2,7 +2,7 @@
 type: entity_overview
 domain: crypto
 subdomain: payments-and-onramps
-entity: moonpay
+entity: moonpy]
 entity_type: company
 status: active
 last_updated: 2026-03-25

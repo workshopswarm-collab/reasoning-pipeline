@@ -3,6 +3,7 @@ type: entity_overview
 domain: geopolitics
 subdomain: countries
 entity: turkey
+aliases: [Türkiye, Turkiye]
 entity_type: country
 status: active
 last_updated: 2026-03-25

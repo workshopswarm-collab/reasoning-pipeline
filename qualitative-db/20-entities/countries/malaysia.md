@@ -3,6 +3,7 @@ type: entity_overview
 domain: geopolitics
 subdomain: regional-balancing-and-trade
 entity: malaysia
+aliases: [Federation of Malaysia]
 entity_type: country
 status: active
 last_updated: 2026-03-25

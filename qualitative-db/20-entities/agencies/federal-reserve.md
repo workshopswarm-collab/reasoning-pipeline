@@ -2,7 +2,7 @@
 type: entity_overview
 domain: economics
 subdomain: rates
-entity: federal-reserve
+entity: federal-reseraliases: [Fed, Federal Reserve System]em]
 entity_type: agency
 status: active
 last_updated: 2026-03-26

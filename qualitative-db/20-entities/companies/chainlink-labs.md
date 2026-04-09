@@ -2,7 +2,7 @@
 type: entity_overview
 domain: crypto
 subdomain: oracle-and-data-infrastructure
-entity: chainlink-labs
+entity: chainlink-laaliases: [Inc.]c.]
 entity_type: company
 status: active
 last_updated: 2026-03-25

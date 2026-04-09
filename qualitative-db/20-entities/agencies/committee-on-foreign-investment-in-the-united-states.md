@@ -2,7 +2,7 @@
 type: entity_overview
 domain: economics
 subdomain: industrial-policy-and-national-security
-entity: committee-on-foreign-investment-in-the-united-states
+entity: committee-on-foreign-investment-in-the-united-stataliases: [CFIUS]US]
 entity_type: agency
 status: active
 last_updated: 2026-03-25

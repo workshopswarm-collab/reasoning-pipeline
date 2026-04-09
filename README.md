@@ -31,7 +31,8 @@ Operationally:
 - PostgreSQL tracks market, case, and research-run state
 
 See:
-- `roles/orchestrator/pipeline-launch-procedure/README.md`
+- `roles/orchestrator/researchers-swarm-subagents/README.md`
+- `roles/orchestrator/synthesis-subagent/README.md`
 
 ## Architecture status note
 

@@ -3,6 +3,7 @@ type: entity_overview
 domain: geopolitics
 subdomain: regional-instability-and-energy-politics
 entity: venezuela
+aliases: [Bolivarian Republic of Venezuela]
 entity_type: country
 status: active
 last_updated: 2026-03-25

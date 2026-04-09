@@ -1,6 +1,8 @@
 ---
 type: driver_overview
 domain: cross-domain
+driver: reliability
+aliases: [consistency, system-reliability, operational-consistency]
 status: active
 last_updated: 2026-03-26
 related_entities: []

@@ -2,7 +2,7 @@
 type: entity_overview
 domain: politics
 subdomain: populism-and-party-competition
-entity: geert-wilders
+entity: geert-wildes]
 entity_type: person
 status: active
 last_updated: 2026-03-25

@@ -3,6 +3,7 @@ type: entity_overview
 domain: culture
 subdomain: music
 entity: spotify
+aliases: [SPOT]
 entity_type: company
 status: active
 last_updated: 2026-03-25

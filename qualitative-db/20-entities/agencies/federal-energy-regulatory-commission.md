@@ -2,7 +2,7 @@
 type: entity_overview
 domain: economics
 subdomain: energy-regulation-and-infrastructure
-entity: federal-energy-regulatory-commission
+entity: federal-energy-regulatory-commissialiases: [FERC]RC]
 entity_type: agency
 status: active
 last_updated: 2026-03-25

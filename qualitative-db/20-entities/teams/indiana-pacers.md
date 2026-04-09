@@ -3,6 +3,7 @@ type: entity_overview
 domain: sports
 subdomain: basketball
 entity: indiana-pacers
+aliases: [Pacers]
 entity_type: team
 status: active
 last_updated: 2026-03-26

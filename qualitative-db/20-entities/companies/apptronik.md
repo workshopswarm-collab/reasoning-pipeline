@@ -2,7 +2,7 @@
 type: entity_overview
 domain: tech-ai
 subdomain: robotics-and-embodied-ai
-entity: apptronik
+entity: apptronaliases: [Inc.]c.]
 entity_type: company
 status: active
 last_updated: 2026-03-25

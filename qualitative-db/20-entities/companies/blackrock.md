@@ -3,6 +3,7 @@ type: entity_overview
 domain: economics
 subdomain: institutions
 entity: blackrock
+aliases: [BLK]
 entity_type: company
 status: active
 last_updated: 2026-03-25

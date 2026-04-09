@@ -3,6 +3,7 @@ type: entity_overview
 domain: geopolitics
 subdomain: state-capacity-and-emerging-markets
 entity: bangladesh
+aliases: [People's Republic of Bangladesh]
 entity_type: country
 status: active
 last_updated: 2026-03-25

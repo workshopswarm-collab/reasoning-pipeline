@@ -2,7 +2,7 @@
 type: entity_overview
 domain: politics
 subdomain: regulation-and-public-health
-entity: food-and-drug-administration
+entity: food-and-drug-administratialiases: [FDA]DA]
 entity_type: agency
 status: active
 last_updated: 2026-03-25

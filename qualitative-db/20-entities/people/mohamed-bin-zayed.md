@@ -2,7 +2,7 @@
 type: entity_overview
 domain: politics
 subdomain: leadership-and-state-transformation
-entity: mohamed-bin-zayed
+entity: mohamed-bin-zayaliases: [MBZ, Mohammed bin Zayed]ed]
 entity_type: person
 status: active
 last_updated: 2026-03-25

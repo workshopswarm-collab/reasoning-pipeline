@@ -2,7 +2,7 @@
 type: entity_overview
 domain: geopolitics
 subdomain: regional-bloc-politics
-entity: organization-of-american-states
+entity: organization-of-american-stataliases: [OAS]es]
 entity_type: organization
 status: active
 last_updated: 2026-03-25

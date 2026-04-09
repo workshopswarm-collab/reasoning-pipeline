@@ -2,7 +2,7 @@
 type: entity_overview
 domain: crypto
 subdomain: exchanges
-entity: kraken
+entity: krakaliases: [Kraken Exchange]ge]
 entity_type: company
 status: active
 last_updated: 2026-03-25

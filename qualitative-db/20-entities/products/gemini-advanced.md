@@ -3,6 +3,7 @@ type: entity_overview
 domain: tech-ai
 subdomain: ai-consumer-products
 entity: gemini-advanced
+aliases: [Google Gemini Advanced]
 entity_type: product
 status: active
 last_updated: 2026-03-25

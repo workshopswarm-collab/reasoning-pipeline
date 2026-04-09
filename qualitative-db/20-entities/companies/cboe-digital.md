@@ -3,6 +3,7 @@ type: entity_overview
 domain: crypto
 subdomain: regulated-market-structure
 entity: cboe-digital
+aliases: [Cboe Digital Markets]
 entity_type: company
 status: active
 last_updated: 2026-03-25

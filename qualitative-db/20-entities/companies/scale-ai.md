@@ -2,7 +2,7 @@
 type: entity_overview
 domain: tech-ai
 subdomain: data-infrastructure-and-model-development
-entity: scale-ai
+entity: scale-I]
 entity_type: company
 status: active
 last_updated: 2026-03-25

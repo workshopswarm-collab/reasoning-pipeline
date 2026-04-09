@@ -3,6 +3,7 @@ type: entity_overview
 domain: economics
 subdomain: trade-and-industrial-policy
 entity: ministry-of-commerce-of-the-peoples-republic-of-china
+aliases: [MOFCOM, Ministry of Commerce of China]
 entity_type: agency
 status: active
 last_updated: 2026-03-25

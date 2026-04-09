@@ -3,6 +3,7 @@ type: entity_overview
 domain: geopolitics
 subdomain: alliance-and-regional-security
 entity: south-korea
+aliases: [Republic of Korea, ROK]
 entity_type: country
 status: active
 last_updated: 2026-03-25

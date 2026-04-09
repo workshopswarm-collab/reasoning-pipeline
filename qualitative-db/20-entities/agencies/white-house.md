@@ -2,7 +2,7 @@
 type: entity_overview
 domain: politics
 subdomain: executive-power
-entity: white-house
+entity: white-houaliases: [The White House]se]
 entity_type: agency
 status: active
 last_updated: 2026-03-25

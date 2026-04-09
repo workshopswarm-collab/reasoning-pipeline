@@ -3,6 +3,7 @@ type: entity_overview
 domain: politics
 subdomain: elections
 entity: republican-party
+aliases: [GOP]
 entity_type: party
 status: active
 last_updated: 2026-03-25

@@ -2,7 +2,7 @@
 type: entity_overview
 domain: crypto
 subdomain: stablecoins-and-market-structure
-entity: circle-internet-group
+entity: circle-internet-grop]
 entity_type: company
 status: active
 last_updated: 2026-03-26

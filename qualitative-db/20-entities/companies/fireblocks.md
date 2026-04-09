@@ -3,6 +3,7 @@ type: entity_overview
 domain: crypto
 subdomain: custody-and-institutional-infrastructure
 entity: fireblocks
+aliases: [Fireblocks Inc.]
 entity_type: company
 status: active
 last_updated: 2026-03-25

@@ -3,6 +3,7 @@ type: entity_overview
 domain: geopolitics
 subdomain: executive-security-coordination
 entity: taiwan-national-security-council
+aliases: [Taiwan NSC]
 entity_type: agency
 status: active
 last_updated: 2026-03-26

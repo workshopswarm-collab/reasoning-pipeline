@@ -3,6 +3,7 @@ type: entity_overview
 domain: geopolitics
 subdomain: conflict-and-statehood
 entity: palestine
+aliases: [State of Palestine]
 entity_type: country
 status: active
 last_updated: 2026-03-25

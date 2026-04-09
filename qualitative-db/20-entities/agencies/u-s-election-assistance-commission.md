@@ -2,7 +2,7 @@
 type: entity_overview
 domain: politics
 subdomain: elections-and-state-capacity
-entity: u-s-election-assistance-commission
+entity: u-s-election-assistance-commissialiases: [United States Election Assistance Commission, EAC]AC]
 entity_type: agency
 status: active
 last_updated: 2026-03-25

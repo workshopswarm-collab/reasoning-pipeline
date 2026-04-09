@@ -3,6 +3,7 @@ type: entity_overview
 domain: crypto
 subdomain: exchange-linked-networks
 entity: base
+aliases: [Base chain]
 entity_type: product
 status: active
 last_updated: 2026-03-25

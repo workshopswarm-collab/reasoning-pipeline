@@ -3,6 +3,7 @@ type: entity_overview
 domain: crypto
 subdomain: market-structure-and-trading-infrastructure
 entity: hyperliquid
+aliases: [Hyperliquid L1]
 entity_type: protocol
 status: active
 last_updated: 2026-03-25

@@ -2,7 +2,7 @@
 type: entity_overview
 domain: crypto
 subdomain: protocols
-entity: ethereum-foundation
+entity: ethereum-foundatialiases: [EF]on]
 entity_type: organization
 status: active
 last_updated: 2026-03-25

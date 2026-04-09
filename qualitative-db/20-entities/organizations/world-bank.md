@@ -2,7 +2,7 @@
 type: entity_overview
 domain: economics
 subdomain: development-finance-and-global-governance
-entity: world-bank
+entity: world-bak]
 entity_type: organization
 status: active
 last_updated: 2026-03-25

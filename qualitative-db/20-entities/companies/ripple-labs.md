@@ -3,6 +3,7 @@ type: entity_overview
 domain: crypto
 subdomain: payments-and-regulated-market-structure
 entity: ripple-labs
+aliases: [Ripple]
 entity_type: company
 status: active
 last_updated: 2026-03-25

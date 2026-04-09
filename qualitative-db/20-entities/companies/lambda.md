@@ -3,6 +3,7 @@ type: entity_overview
 domain: tech-ai
 subdomain: compute-and-cloud-infrastructure
 entity: lambda
+aliases: [Lambda Labs]
 entity_type: company
 status: active
 last_updated: 2026-03-25

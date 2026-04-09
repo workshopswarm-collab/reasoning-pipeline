@@ -3,6 +3,7 @@ type: entity_overview
 domain: sports
 subdomain: formula-one
 entity: mercedes
+aliases: [Mercedes-AMG Petronas]
 entity_type: team
 status: active
 last_updated: 2026-03-25

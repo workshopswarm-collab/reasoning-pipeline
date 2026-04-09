@@ -3,6 +3,7 @@ type: entity_overview
 domain: tech-ai
 subdomain: chips-compute
 entity: tsmc
+aliases: [Taiwan Semiconductor Manufacturing Company, TSMC, TSM]
 entity_type: company
 status: active
 last_updated: 2026-03-26

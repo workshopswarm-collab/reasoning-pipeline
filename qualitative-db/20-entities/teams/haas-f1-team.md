@@ -3,6 +3,7 @@ type: entity_overview
 domain: sports
 subdomain: formula-one
 entity: haas-f1-team
+aliases: [Haas]
 entity_type: team
 status: active
 last_updated: 2026-03-25

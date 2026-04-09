@@ -2,7 +2,7 @@
 type: entity_overview
 domain: crypto
 subdomain: market-structure-and-regulation
-entity: binance-us
+entity: binance-S]
 entity_type: company
 status: active
 last_updated: 2026-03-25

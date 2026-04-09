@@ -2,7 +2,7 @@
 type: entity_overview
 domain: economics
 subdomain: healthcare-finance-and-state-capacity
-entity: centers-for-medicare-and-medicaid-services
+entity: centers-for-medicare-and-medicaid-servicaliases: [CMS]MS]
 entity_type: agency
 status: active
 last_updated: 2026-03-25

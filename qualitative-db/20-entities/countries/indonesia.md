@@ -3,6 +3,7 @@ type: entity_overview
 domain: geopolitics
 subdomain: emerging-markets-and-indo-pacific-balance
 entity: indonesia
+aliases: [Republic of Indonesia]
 entity_type: country
 status: active
 last_updated: 2026-03-25

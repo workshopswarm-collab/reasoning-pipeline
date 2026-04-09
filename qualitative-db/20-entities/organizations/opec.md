@@ -3,6 +3,7 @@ type: entity_overview
 domain: geopolitics
 subdomain: energy
 entity: opec
+aliases: [OPEC, Organization of the Petroleum Exporting Countries]
 entity_type: organization
 status: active
 last_updated: 2026-03-26

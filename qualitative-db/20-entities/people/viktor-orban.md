@@ -3,6 +3,7 @@ type: entity_overview
 domain: politics
 subdomain: leadership-and-illiberal-governance
 entity: viktor-orban
+aliases: [Orbán, Orban]
 entity_type: person
 status: active
 last_updated: 2026-03-25

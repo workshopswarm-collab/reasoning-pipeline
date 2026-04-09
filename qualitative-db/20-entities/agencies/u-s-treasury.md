@@ -2,7 +2,7 @@
 type: entity_overview
 domain: economics
 subdomain: fiscal-and-financial-governance
-entity: u-s-treasury
+entity: u-s-treasuy]
 entity_type: agency
 status: active
 last_updated: 2026-03-25

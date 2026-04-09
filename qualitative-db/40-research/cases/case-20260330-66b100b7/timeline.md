@@ -6,4 +6,4 @@ legacy_imported: true
 ---
 
 # Timeline
-- 2026-04-05T22:53:45Z — legacy backfill imported analysis `dispatch-case-20260330-66b100b7-20260330T195159Z` with summary `qualitative-db/40-research/cases/case-20260330-66b100b7/analyses/2026-03-30/dispatch-case-20260330-66b100b7-20260330T195159Z/summary.md`.
+- 2026-04-05T22:53:45Z — legacy backfill imported analysis `dispatch-case-20260330-66b100b7-20260330T195159Z` with summary `qualitative-db/40-research/cases/case-20260330-66b100b7/researcher-analyses/2026-03-30/dispatch-case-20260330-66b100b7-20260330T195159Z/summary.md`.

@@ -3,6 +3,7 @@ type: entity_overview
 domain: geopolitics
 subdomain: european-governance-and-regulation
 entity: ursula-von-der-leyen
+aliases: [VDL]
 entity_type: person
 status: active
 last_updated: 2026-03-25

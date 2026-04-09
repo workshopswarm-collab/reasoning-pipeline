@@ -3,6 +3,7 @@ type: entity_overview
 domain: crypto
 subdomain: mining-and-market-structure
 entity: cleanspark
+aliases: [CLSK]
 entity_type: company
 status: active
 last_updated: 2026-03-25

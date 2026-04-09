@@ -3,6 +3,7 @@ type: entity_overview
 domain: economics
 subdomain: asset-management-and-digital-products
 entity: dws
+aliases: [DWS Group, DWS]
 entity_type: company
 status: active
 last_updated: 2026-03-25

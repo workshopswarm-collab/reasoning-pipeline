@@ -3,6 +3,7 @@ type: entity_overview
 domain: politics
 subdomain: electoral-and-state-power
 entity: lula-da-silva
+aliases: [Lula]
 entity_type: person
 status: active
 last_updated: 2026-03-25

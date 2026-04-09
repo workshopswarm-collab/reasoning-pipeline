@@ -3,6 +3,7 @@ type: entity_overview
 domain: geopolitics
 subdomain: small-state-balancing-and-state-capacity
 entity: nepal
+aliases: [Federal Democratic Republic of Nepal]
 entity_type: country
 status: active
 last_updated: 2026-03-25

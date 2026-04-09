@@ -3,6 +3,7 @@ type: entity_overview
 domain: geopolitics
 subdomain: alliances
 entity: nato
+aliases: [NATO, North Atlantic Treaty Organization]
 entity_type: organization
 status: active
 last_updated: 2026-03-26

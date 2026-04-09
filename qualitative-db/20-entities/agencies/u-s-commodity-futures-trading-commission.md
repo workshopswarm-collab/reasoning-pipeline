@@ -2,7 +2,7 @@
 type: entity_overview
 domain: economics
 subdomain: market-oversight-and-derivatives-regulation
-entity: u-s-commodity-futures-trading-commission
+entity: u-s-commodity-futures-trading-commissialiases: [United States Commodity Futures Trading Commission, CFTC]TC]
 entity_type: agency
 status: active
 last_updated: 2026-03-26

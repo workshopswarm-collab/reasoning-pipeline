@@ -3,6 +3,7 @@ type: entity_overview
 domain: crypto
 subdomain: scaling-and-market-structure
 entity: polygon-zkevm
+aliases: [zkEVM]
 entity_type: protocol
 status: active
 last_updated: 2026-03-25

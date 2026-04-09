@@ -2,7 +2,7 @@
 type: entity_overview
 domain: politics
 subdomain: security-and-state-capacity
-entity: u-s-secret-service
+entity: u-s-secret-servialiases: [United States Secret Service, Secret Service]ce]
 entity_type: agency
 status: active
 last_updated: 2026-03-25

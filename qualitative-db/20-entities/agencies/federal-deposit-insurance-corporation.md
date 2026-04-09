@@ -2,7 +2,7 @@
 type: entity_overview
 domain: economics
 subdomain: banking-regulation-and-financial-stability
-entity: federal-deposit-insurance-corporation
+entity: federal-deposit-insurance-corporatialiases: [FDIC]IC]
 entity_type: agency
 status: active
 last_updated: 2026-03-25

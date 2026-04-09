@@ -19,9 +19,9 @@ They should **not** be rewritten for routine news flow.
 2. an **explicit and repeated conflict of information** that forces the current canonical view to be revised.
 
 If neither condition is met, new information belongs in the research layer, usually in:
-- `qualitative-db/40-research/cases/<case-key>/source-notes/`
-- `qualitative-db/40-research/cases/<case-key>/analyses/<YYYY-MM-DD>/<dispatch-id>/personas/`
-- `qualitative-db/40-research/cases/<case-key>/analyses/<YYYY-MM-DD>/<dispatch-id>/evidence/`
+- `qualitative-db/40-research/cases/<case-key>/researcher-source-notes/`
+- `qualitative-db/40-research/cases/<case-key>/researcher-analyses/<YYYY-MM-DD>/<dispatch-id>/personas/`
+- `qualitative-db/40-research/cases/<case-key>/researcher-analyses/<YYYY-MM-DD>/<dispatch-id>/evidence/`
 - `qualitative-db/40-research/product-notes/`
 - `qualitative-db/40-research/review-queue/` when proposing a stable-layer change rather than applying it directly
 

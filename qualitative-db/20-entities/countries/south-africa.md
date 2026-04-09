@@ -3,6 +3,7 @@ type: entity_overview
 domain: geopolitics
 subdomain: emerging-markets-and-regional-power
 entity: south-africa
+aliases: [Republic of South Africa]
 entity_type: country
 status: active
 last_updated: 2026-03-25

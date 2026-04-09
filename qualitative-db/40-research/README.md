@@ -25,7 +25,7 @@ This folder is the working research layer.
 Runtime note:
 - live research-swarm execution currently happens in persistent Telegram case/persona topics
 - `40-research/` is where those runs write durable artifacts, provenance, and auditable case outputs
-- canonical case/rerun history now centers on `40-research/cases/<case-key>/analyses/<YYYY-MM-DD>/<dispatch-id>/...`
+- canonical case/rerun history now centers on `40-research/cases/<case-key>/researcher-analyses/<YYYY-MM-DD>/<dispatch-id>/...`
 
 Use it for:
 - time-indexed observations
@@ -105,16 +105,16 @@ Purpose:
 
 Current canonical pattern:
 - `cases/<case-key>/case.md` = stable case identity / contract surface
-- `cases/<case-key>/current.md` = generated latest/current view
+- `cases/<case-key>/researcher-swarm-current.md` = generated latest/current view
 - `cases/<case-key>/timeline.md` = generated lifecycle summary
-- `cases/<case-key>/source-notes/` = case-level source provenance
-- `cases/<case-key>/analyses/<YYYY-MM-DD>/<dispatch-id>/...` = per-analysis findings / assumptions / evidence
+- `cases/<case-key>/researcher-source-notes/` = case-level source provenance
+- `cases/<case-key>/researcher-analyses/<YYYY-MM-DD>/<dispatch-id>/...` = per-analysis findings / assumptions / evidence
 
 Compatibility note:
 - legacy flat folders such as `agent-findings/`, `assumption-notes/`, and `evidence-maps/` may still exist during migration, but the case-centric `cases/` tree is the canonical write path going forward
 - when safe, Orchestrator can generate non-destructive compatibility/latest-view notes at the old flat paths; existing historical flat notes are preserved unless they are already generated compatibility notes
 
-## `source-notes/`
+## `researcher-source-notes/`
 
 Purpose:
 - capture what a source said
@@ -126,8 +126,8 @@ Use when:
 - preserving what the source actually said before interpreting it
 
 Subfolders / canonical pattern:
-- `cases/<case-key>/source-notes/` = default home for case-specific provenance notes created during active market research
-- legacy flat source-note folders may still exist during migration, including `source-notes/by-market/`, `source-notes/by-source/`, `source-notes/by-domain/`, and `source-notes/by-entity/`
+- `cases/<case-key>/researcher-source-notes/` = default home for case-specific provenance notes created during active market research
+- legacy flat source-note folders have been retired from the canonical case workflow
 
 Good output:
 - what the source directly states
@@ -136,7 +136,7 @@ Good output:
 - reliability notes
 
 Default dispatch rule:
-- for active case work, researchers should normally use the assigned `cases/<case-key>/source-notes/` path and filename convention rather than inventing alternate locations
+- for active case work, researchers should normally use the assigned `cases/<case-key>/researcher-source-notes/` path and filename convention rather than inventing alternate locations
 
 Do not use for:
 - final judgment
@@ -261,7 +261,7 @@ Good output:
 
 Do not use for:
 - stable family-level context that belongs in canon
-- ordinary case provenance that should instead live in `source-notes/`
+- ordinary case provenance that should instead live in `researcher-source-notes/`
 - the main directional take, which should instead live in `agent-findings/`
 
 ## `syntheses/` (optional / not currently instantiated as a live folder)
@@ -302,6 +302,12 @@ Subfolders:
 - `canonical-update-proposals/`
 - `durable-lesson-candidates/`
 - `drivers-candidates/`
+  - top-level index: `drivers-candidates/generated-index.md`
+  - generated raw candidate notes: `drivers-candidates/candidate-notes/`
+  - generated LLM family review outputs: `drivers-candidates/surfaced-family-review/`
+    - top-level LLM family index: `drivers-candidates/surfaced-family-review/LLM-proposed-family-index.md`
+    - markdown review notes: `drivers-candidates/surfaced-family-review/review-notes/`
+    - input packets: `drivers-candidates/surfaced-family-review/inputs/`
 - `linkage-repair-candidates/`
 
 Use when:
@@ -400,7 +406,7 @@ Avoid:
 
 - `20-entities/` = what is the thing?
 - `30-drivers/` = what recurring force moves outcomes?
-- `source-notes/` = what did the source say?
+- `researcher-source-notes/` = what did the source say?
 - `agent-findings/` = what does this research role think?
 - `assumption-notes/` = what must be true for the view to hold?
 - `evidence-maps/` = how does the evidence push the claim up or down?

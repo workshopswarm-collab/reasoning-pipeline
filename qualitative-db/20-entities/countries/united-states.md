@@ -2,7 +2,7 @@
 type: entity_overview
 domain: geopolitics
 subdomain: countries
-entity: united-states
+entity: united-stataliases: [United States of America, USA, U.S., US, America]ca]
 entity_type: country
 status: active
 last_updated: 2026-03-26

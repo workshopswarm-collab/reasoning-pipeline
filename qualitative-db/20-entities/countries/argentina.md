@@ -3,6 +3,7 @@ type: entity_overview
 domain: geopolitics
 subdomain: emerging-markets-and-macro-stress
 entity: argentina
+aliases: [Argentine Republic]
 entity_type: country
 status: active
 last_updated: 2026-03-25

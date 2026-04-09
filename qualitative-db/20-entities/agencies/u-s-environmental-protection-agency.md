@@ -2,7 +2,7 @@
 type: entity_overview
 domain: politics
 subdomain: environmental-regulation-and-state-capacity
-entity: u-s-environmental-protection-agency
+entity: u-s-environmental-protection-agenaliases: [United States Environmental Protection Agency, EPA]PA]
 entity_type: agency
 status: active
 last_updated: 2026-03-25

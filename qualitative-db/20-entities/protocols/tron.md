@@ -2,7 +2,7 @@
 type: entity_overview
 domain: crypto
 subdomain: protocols-and-payments
-entity: tron
+entity: trn]
 entity_type: protocol
 status: active
 last_updated: 2026-03-25

@@ -2,7 +2,7 @@
 type: entity_overview
 domain: economics
 subdomain: food-systems-and-rural-policy
-entity: u-s-department-of-agriculture
+entity: u-s-department-of-agricultualiases: [United States Department of Agriculture, USDA]DA]
 entity_type: agency
 status: active
 last_updated: 2026-03-25

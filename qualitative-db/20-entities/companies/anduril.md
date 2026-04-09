@@ -3,6 +3,7 @@ type: entity_overview
 domain: tech-ai
 subdomain: defense-tech-and-autonomy
 entity: anduril
+aliases: [Anduril Industries]
 entity_type: company
 status: active
 last_updated: 2026-03-25

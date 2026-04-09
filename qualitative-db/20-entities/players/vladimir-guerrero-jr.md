@@ -2,7 +2,7 @@
 type: entity_overview
 domain: sports
 subdomain: baseball
-entity: vladimir-guerrero-jr
+entity: vladimir-guerrero-aliases: [Vlad Guerrero Jr., Vlad Jr.]r.]
 entity_type: player
 status: active
 last_updated: 2026-03-25

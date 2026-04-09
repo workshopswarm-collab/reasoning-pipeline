@@ -3,6 +3,7 @@ type: entity_overview
 domain: geopolitics
 subdomain: countries
 entity: germany
+aliases: [Federal Republic of Germany]
 entity_type: country
 status: active
 last_updated: 2026-03-25

@@ -3,6 +3,7 @@ type: entity_overview
 domain: geopolitics
 subdomain: military-power-and-deterrence
 entity: peoples-liberation-army
+aliases: [PLA, People's Liberation Army]
 entity_type: agency
 status: active
 last_updated: 2026-03-25

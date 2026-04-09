@@ -3,6 +3,7 @@ type: entity_overview
 domain: geopolitics
 subdomain: commodities-and-governance
 entity: chile
+aliases: [Republic of Chile]
 entity_type: country
 status: active
 last_updated: 2026-03-25

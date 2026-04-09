@@ -3,6 +3,7 @@ type: entity_overview
 domain: crypto
 subdomain: institutional-adoption-and-market-structure
 entity: spot-ethereum-etf
+aliases: [spot ETH ETF]
 entity_type: product
 status: active
 last_updated: 2026-03-25

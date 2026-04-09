@@ -2,7 +2,7 @@
 type: entity_overview
 domain: politics
 subdomain: labor-and-state-capacity
-entity: u-s-national-labor-relations-board
+entity: u-s-national-labor-relations-boaaliases: [United States National Labor Relations Board, NLRB]RB]
 entity_type: agency
 status: active
 last_updated: 2026-03-25

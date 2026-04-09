@@ -3,6 +3,7 @@ type: entity_overview
 domain: politics
 subdomain: economic-populism-and-party-competition
 entity: elizabeth-warren
+aliases: [Elizabeth A. Warren]
 entity_type: person
 status: active
 last_updated: 2026-03-25

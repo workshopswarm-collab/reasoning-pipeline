@@ -2,7 +2,7 @@
 type: entity_overview
 domain: crypto
 subdomain: protocols
-entity: solana
+entity: solaa]
 entity_type: protocol
 status: active
 last_updated: 2026-03-26

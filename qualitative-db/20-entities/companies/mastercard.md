@@ -3,6 +3,7 @@ type: entity_overview
 domain: economics
 subdomain: payments-and-digital-finance
 entity: mastercard
+aliases: [MA]
 entity_type: company
 status: active
 last_updated: 2026-03-25

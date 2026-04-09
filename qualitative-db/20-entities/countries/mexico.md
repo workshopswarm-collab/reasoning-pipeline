@@ -3,6 +3,7 @@ type: entity_overview
 domain: geopolitics
 subdomain: north-american-political-economy
 entity: mexico
+aliases: [United Mexican States]
 entity_type: country
 status: active
 last_updated: 2026-03-25

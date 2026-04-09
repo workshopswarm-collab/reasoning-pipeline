@@ -3,6 +3,7 @@ type: entity_overview
 domain: crypto
 subdomain: tokens
 entity: btc
+aliases: [Bitcoin, BTC]
 entity_type: token
 status: active
 last_updated: 2026-03-25

@@ -2,7 +2,7 @@
 type: entity_overview
 domain: economics
 subdomain: business-formation-and-state-capacity
-entity: u-s-small-business-administration
+entity: u-s-small-business-administratialiases: [United States Small Business Administration, SBA]BA]
 entity_type: agency
 status: active
 last_updated: 2026-03-25

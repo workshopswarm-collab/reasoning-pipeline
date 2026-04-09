@@ -2,7 +2,7 @@
 type: entity_overview
 domain: geopolitics
 subdomain: energy-and-industrial-policy
-entity: u-s-department-of-energy
+entity: u-s-department-of-eneraliases: [United States Department of Energy, DOE]OE]
 entity_type: agency
 status: active
 last_updated: 2026-03-25

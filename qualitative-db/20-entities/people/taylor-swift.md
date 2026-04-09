@@ -3,6 +3,7 @@ type: entity_overview
 domain: culture
 subdomain: music
 entity: taylor-swift
+aliases: [Taylor Alison Swift]
 entity_type: person
 status: active
 last_updated: 2026-03-25

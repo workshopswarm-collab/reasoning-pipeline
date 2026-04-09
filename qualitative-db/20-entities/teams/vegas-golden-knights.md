@@ -3,6 +3,7 @@ type: entity_overview
 domain: sports
 subdomain: hockey
 entity: vegas-golden-knights
+aliases: [Golden Knights]
 entity_type: team
 status: active
 last_updated: 2026-03-25

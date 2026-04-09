@@ -3,6 +3,7 @@ type: entity_overview
 domain: crypto
 subdomain: tokens
 entity: avax
+aliases: [AVAX, Avalanche]
 entity_type: token
 status: active
 last_updated: 2026-03-25

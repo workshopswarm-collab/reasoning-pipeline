@@ -3,6 +3,7 @@ type: entity_overview
 domain: crypto
 subdomain: institutional-market-structure
 entity: galaxy-digital
+aliases: [GLXY]
 entity_type: company
 status: active
 last_updated: 2026-03-25

@@ -3,6 +3,7 @@ type: entity_overview
 domain: tech-ai
 subdomain: platforms-and-founder-governance
 entity: pavel-durov
+aliases: [Pavel Valeryevich Durov]
 entity_type: person
 status: active
 last_updated: 2026-03-26

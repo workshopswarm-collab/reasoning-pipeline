@@ -3,6 +3,7 @@ type: entity_overview
 domain:
 subdomain:
 entity:
+aliases: []  # optional; usually 0-3 only. Add only if the alias materially improves retrieval or normalization.
 entity_type:
 status: active
 last_updated:
@@ -10,7 +11,7 @@ review_after:
 freshness: current
 related_entities: []  # use the entity-linkage-framework.md rules; usually 3-8 high-signal links
 related_drivers: []   # usually 2-5 stable drivers from qualitative-db/30-drivers/
-tags: []
+tags: []  # include entity/<type> and entity/<slug>; add domain tags when useful
 ---
 
 # Summary
@@ -41,3 +42,4 @@ Quick rule:
 - stable, durable entities belong in `20-entities`
 - version snapshots, release notes, and transient changes belong in `40-research`
 - archive low-signal or redundant files instead of deleting them
+- include `aliases` only when a small set of high-signal alternative forms would materially improve retrieval or normalization; use only dominant abbreviations, stock tickers, official alternate names, transliterations, or clearly established shorthand, and omit trivial restatements, ambiguous short codes, generic institutional labels, and non-unique first-name or surname forms

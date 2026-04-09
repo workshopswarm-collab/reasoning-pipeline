@@ -1,0 +1,66 @@
+{
+  "persona": "variant-view",
+  "main_thesis": "The variant view is a rules-and-path thesis rather than a bearish BTC thesis: after auditing timestamp/candle mechanics, the market still looks Yes because BTC was already just above 71k and only needed to avoid about a 1.5% drop into the exact noon-ET Binance 1m close.",
+  "own_probability": 0.84,
+  "reasoning_mode": [
+    "market_anchor",
+    "contract_interpretation",
+    "variant_hypothesis",
+    "technical_reference",
+    "scenario_analysis"
+  ],
+  "key_assumptions": [
+    "Noon ET on Apr. 9 maps to the 16:00 UTC Binance 1-minute bar",
+    "Binance web chart settlement surface is aligned enough with Binance API kline semantics to audit the contract",
+    "No intraday downside shock pushes the resolving 1-minute close below 70000"
+  ],
+  "strongest_supports": [
+    "Live Binance BTCUSDT read was about 71051-71057 during the run",
+    "Spot sat roughly $1,051 above the 70,000 threshold, about a 1.5% cushion",
+    "Recent 1-minute Binance bars around the check time were consistently above 71k",
+    "Binance is the named governing settlement source, reducing venue ambiguity"
+  ],
+  "strongest_disconfirmers": [
+    "BTC can move more than 1.5% intraday before noon ET",
+    "Market resolves on one exact 1-minute close, so a localized selloff/wick could still produce No",
+    "Residual ambiguity remains around exact bar labeling between Binance UI reference and API semantics"
+  ],
+  "main_logical_chain": [
+    "Start from market at 78.5% Yes",
+    "Audit contract mechanics because this is a narrow time-specific Binance settlement market",
+    "Confirm ET-to-UTC mapping and Binance kline open/close semantics",
+    "Check live Binance price, book ticker, server time, and recent 1m bars",
+    "Observe BTC already above threshold by about 1.5% several hours before resolution",
+    "Conclude remaining risk is mainly intraday price-path risk, so lean modestly more bullish than market at 84%"
+  ],
+  "fragility_points": [
+    "One-minute candle interpretation is critical",
+    "A small timing misread could point to the wrong resolving bar",
+    "A sharp intraday wick near noon ET could overturn an otherwise bullish day",
+    "Thesis depends more on path into resolution than on broad BTC fundamentals"
+  ],
+  "unresolved_ambiguities": [
+    "Whether Polymarket's reference to the Binance web chart could differ slightly from REST API bar labeling",
+    "Residual low-to-medium source-of-truth ambiguity concentrated in exact bar-label interpretation"
+  ],
+  "timing_relevance": "Extremely high: the view hinges on the exact noon-ET Binance 1-minute candle, mapped to 16:00:00-16:00:59.999 UTC/12:00:00-12:00:59.999 ET, and on whether BTC stays above 70,000 at that single close.",
+  "source_quality_view": "High-quality primary evidence from the named settlement source (Binance docs and live endpoints), with Polymarket rules as the main contextual source; independence is low-to-medium by design because the direct evidence comes from the governing source, and source-of-truth ambiguity is low-to-medium rather than zero.",
+  "what_would_change_view": "A fresh Binance read near noon ET showing BTCUSDT near/below 70,300, evidence that the relevant candle is labeled differently than the open-time interpretation, or a sudden macro/crypto shock causing more than a 1.5% drawdown before noon ET.",
+  "recommended_weight": "high",
+  "confidence_in_extract": "high",
+  "quote_anchors": [
+    "\"The strongest credible variant view is not a bearish one but a rules-and-path one\"",
+    "\"the market only needs to avoid a roughly 1.5% drop by the exact noon-ET resolving minute\"",
+    "\"A one-minute misread or a sharp intraday wick into the noon ET bar is basically the only real path to No from here\"",
+    "\"I roughly agree with the market but am somewhat more bullish than the 78.5% baseline\""
+  ],
+  "runtime_metadata": {
+    "extraction_mode": "live_session",
+    "extracted_at": "2026-04-09T07:27:11.878869Z",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260409-a6f5ffd8/researcher-analyses/2026-04-09/dispatch-case-20260409-a6f5ffd8-20260409T071326Z/personas/variant-view.md",
+    "source_persona_sha256": "988d802827331f5d2b5a8c92a7b3dc704a86d4f70f28c8cd786b4586ff49ae08",
+    "job_input_sha256": "01077b8b983efb102d79b7f0d9f9816158c1601b0658cd41f839ffc7ea614b10",
+    "prompt_sha256": "ddffa1a79af8f32b41c5a6a1dc59dda1b818a3bda2dd068599cfcd4ac4c92b5b",
+    "source_explicit_probability": 0.84
+  }
+}

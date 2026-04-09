@@ -2,7 +2,7 @@
 type: entity_overview
 domain: geopolitics
 subdomain: gulf-statecraft-and-capital-flows
-entity: united-arab-emirates
+entity: united-arab-emirataliases: [UAE, U.A.E.]E.]
 entity_type: country
 status: active
 last_updated: 2026-03-26

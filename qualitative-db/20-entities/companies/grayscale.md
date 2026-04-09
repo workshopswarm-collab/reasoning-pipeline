@@ -3,6 +3,7 @@ type: entity_overview
 domain: crypto
 subdomain: institutions
 entity: grayscale
+aliases: [Grayscale Investments]
 entity_type: company
 status: active
 last_updated: 2026-03-25

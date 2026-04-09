@@ -3,6 +3,7 @@ type: entity_overview
 domain: sports
 subdomain: soccer
 entity: premier-league
+aliases: [EPL, English Premier League]
 entity_type: league
 status: active
 last_updated: 2026-03-25

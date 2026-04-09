@@ -3,6 +3,7 @@ type: entity_overview
 domain: tech-ai
 subdomain: biotech-and-pharma
 entity: johnson-and-johnson
+aliases: [J&J, JNJ]
 entity_type: company
 status: active
 last_updated: 2026-03-25

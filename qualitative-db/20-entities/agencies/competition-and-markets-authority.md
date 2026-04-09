@@ -2,7 +2,7 @@
 type: entity_overview
 domain: economics
 subdomain: competition-policy-and-market-power
-entity: competition-and-markets-authority
+entity: competition-and-markets-authorialiases: [CMA]MA]
 entity_type: agency
 status: active
 last_updated: 2026-03-25

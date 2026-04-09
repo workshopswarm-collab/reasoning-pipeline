@@ -3,6 +3,7 @@ type: entity_overview
 domain: geopolitics
 subdomain: countries
 entity: saudi-arabia
+aliases: [Kingdom of Saudi Arabia, KSA]
 entity_type: country
 status: active
 last_updated: 2026-03-25

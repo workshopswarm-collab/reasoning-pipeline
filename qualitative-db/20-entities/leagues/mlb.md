@@ -3,6 +3,7 @@ type: entity_overview
 domain: sports
 subdomain: baseball
 entity: mlb
+aliases: [MLB, Major League Baseball]
 entity_type: league
 status: active
 last_updated: 2026-03-25

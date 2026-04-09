@@ -2,7 +2,7 @@
 type: entity_overview
 domain: sports
 subdomain: formula-one
-entity: kimi-antonelli
+entity: kimi-antonelaliases: [Andrea Kimi Antonelli]li]
 entity_type: player
 status: active
 last_updated: 2026-03-25

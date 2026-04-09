@@ -35,6 +35,8 @@ Examples:
 - seasonality
 - leadership-changes
 
+Driver notes may also carry an optional `aliases` field for high-confidence synonymous labels or obvious shorthand that should normalize to the same canonical driver.
+
 ## What this folder is for in the pipeline
 
 `30-drivers/` is the causal layer between:
@@ -137,6 +139,7 @@ When writing to `40-research/`:
 - reference only the drivers that are actually active in the case
 - prefer existing driver names over inventing new ones
 - keep driver labels stable and simple
+- use a canonical driver slug when you know it; if you only have a case-local phrase, record it as a proposed driver rather than pretending it is canonical
 - if a new mechanism seems important, record it in the research note as a candidate driver, but do not create a new driver file directly
 
 Examples:

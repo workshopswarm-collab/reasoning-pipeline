@@ -2,7 +2,7 @@
 type: entity_overview
 domain: sports
 subdomain: formula-one
-entity: carlos-sainz-jr
+entity: carlos-sainz-aliases: [Carlos Sainz]nz]
 entity_type: player
 status: active
 last_updated: 2026-03-25

@@ -3,6 +3,7 @@ type: entity_overview
 domain: crypto
 subdomain: stablecoins-and-payments
 entity: paxos
+aliases: [Paxos Trust Company]
 entity_type: company
 status: active
 last_updated: 2026-03-26

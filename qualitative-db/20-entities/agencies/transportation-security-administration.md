@@ -2,7 +2,7 @@
 type: entity_overview
 domain: politics
 subdomain: transport-security-and-state-capacity
-entity: transportation-security-administration
+entity: transportation-security-administratialiases: [TSA]SA]
 entity_type: agency
 status: active
 last_updated: 2026-03-25

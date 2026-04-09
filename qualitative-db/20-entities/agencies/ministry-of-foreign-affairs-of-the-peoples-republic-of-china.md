@@ -3,6 +3,7 @@ type: entity_overview
 domain: geopolitics
 subdomain: diplomacy-and-state-signaling
 entity: ministry-of-foreign-affairs-of-the-peoples-republic-of-china
+aliases: [MFA China, Chinese Foreign Ministry, Ministry of Foreign Affairs of China]
 entity_type: agency
 status: active
 last_updated: 2026-03-25

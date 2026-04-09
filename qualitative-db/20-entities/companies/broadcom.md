@@ -3,6 +3,7 @@ type: entity_overview
 domain: tech-ai
 subdomain: chips-and-compute
 entity: broadcom
+aliases: [AVGO]
 entity_type: company
 status: active
 last_updated: 2026-03-25

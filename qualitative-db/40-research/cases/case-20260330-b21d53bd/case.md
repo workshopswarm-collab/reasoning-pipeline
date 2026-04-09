@@ -33,7 +33,7 @@ If the reported value falls exactly between two brackets, then this market will 
 The resolution source for this market will be the Bloomberg Billionaires Index Elon Musk Profile (https://www.bloomberg.com/billionaires/profiles/elon-r-musk/?embedded-checkout=true), specifically the datapoint for March 31, 2026, once the data is finalized. If this resolution source is not available, another credible resolution source will be used.
 
 ## Case surfaces
-- `current.md` = latest/current analysis pointers
+- `researcher-swarm-current.md` = latest/current researcher swarm pointers
 - `timeline.md` = programmatic lifecycle summary
-- `source-notes/` = case-level source provenance across analyses
-- `analyses/<YYYY-MM-DD>/<dispatch-id>/...` = append-only analysis generations
+- `researcher-source-notes/` = case-level source provenance across analyses
+- `researcher-analyses/<YYYY-MM-DD>/<dispatch-id>/...` = append-only analysis generations

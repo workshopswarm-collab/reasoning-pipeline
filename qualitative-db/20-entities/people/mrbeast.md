@@ -3,6 +3,7 @@ type: entity_overview
 domain: culture
 subdomain: creators-and-attention-markets
 entity: mrbeast
+aliases: [MrBeast, Jimmy Donaldson]
 entity_type: person
 status: active
 last_updated: 2026-03-25

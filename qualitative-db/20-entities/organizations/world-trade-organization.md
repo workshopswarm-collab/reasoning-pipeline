@@ -2,7 +2,7 @@
 type: entity_overview
 domain: economics
 subdomain: trade-and-global-governance
-entity: world-trade-organization
+entity: world-trade-organizatialiases: [WTO]TO]
 entity_type: organization
 status: active
 last_updated: 2026-03-25

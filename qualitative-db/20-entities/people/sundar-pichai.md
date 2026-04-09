@@ -3,6 +3,7 @@ type: entity_overview
 domain: tech-ai
 subdomain: leadership
 entity: sundar-pichai
+aliases: [Sundar]
 entity_type: person
 status: active
 last_updated: 2026-03-25

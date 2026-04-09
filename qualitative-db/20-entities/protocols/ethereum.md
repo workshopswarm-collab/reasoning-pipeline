@@ -2,7 +2,7 @@
 type: entity_overview
 domain: crypto
 subdomain: protocols
-entity: ethereum
+entity: etherealiases: [ETH, Ether]er]
 entity_type: protocol
 status: active
 last_updated: 2026-03-26

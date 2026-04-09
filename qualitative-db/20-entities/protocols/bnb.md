@@ -3,6 +3,7 @@ type: entity_overview
 domain: crypto
 subdomain: protocols
 entity: bnb
+aliases: [BNB Chain]
 entity_type: protocol
 status: active
 last_updated: 2026-03-26

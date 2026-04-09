@@ -3,6 +3,7 @@ type: entity_overview
 domain: geopolitics
 subdomain: defense-and-deterrence
 entity: taiwan-ministry-of-national-defense
+aliases: [Taiwan MND]
 entity_type: agency
 status: active
 last_updated: 2026-03-25

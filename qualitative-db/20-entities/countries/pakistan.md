@@ -3,6 +3,7 @@ type: entity_overview
 domain: geopolitics
 subdomain: regional-instability-and-state-capacity
 entity: pakistan
+aliases: [Islamic Republic of Pakistan]
 entity_type: country
 status: active
 last_updated: 2026-03-25

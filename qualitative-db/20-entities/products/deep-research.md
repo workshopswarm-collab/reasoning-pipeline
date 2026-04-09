@@ -2,7 +2,7 @@
 type: entity_overview
 domain: tech-ai
 subdomain: agentic-and-research-products
-entity: deep-research
+entity: deep-researh]
 entity_type: product
 status: active
 last_updated: 2026-03-26

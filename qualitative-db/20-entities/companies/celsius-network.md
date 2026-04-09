@@ -3,6 +3,7 @@ type: entity_overview
 domain: crypto
 subdomain: market-structure-and-scandal
 entity: celsius-network
+aliases: [Celsius]
 entity_type: company
 status: active
 last_updated: 2026-03-25

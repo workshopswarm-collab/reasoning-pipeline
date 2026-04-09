@@ -2,7 +2,7 @@
 type: entity_overview
 domain: geopolitics
 subdomain: intelligence-and-risk-assessment
-entity: u-s-intelligence-community
+entity: u-s-intelligence-communialiases: [United States Intelligence Community, IC]IC]
 entity_type: agency
 status: active
 last_updated: 2026-03-25

@@ -3,6 +3,7 @@ type: entity_overview
 domain: tech-ai
 subdomain: platform-leadership-and-consumer-tech
 entity: tim-cook
+aliases: [Timothy Cook]
 entity_type: person
 status: active
 last_updated: 2026-03-25

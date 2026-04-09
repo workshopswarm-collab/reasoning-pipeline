@@ -3,6 +3,7 @@ type: entity_overview
 domain: geopolitics
 subdomain: regional-instability-and-resource-politics
 entity: peru
+aliases: [Republic of Peru]
 entity_type: country
 status: active
 last_updated: 2026-03-25

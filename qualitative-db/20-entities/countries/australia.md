@@ -3,6 +3,7 @@ type: entity_overview
 domain: geopolitics
 subdomain: indo-pacific-alliance-politics
 entity: australia
+aliases: [Commonwealth of Australia]
 entity_type: country
 status: active
 last_updated: 2026-03-25

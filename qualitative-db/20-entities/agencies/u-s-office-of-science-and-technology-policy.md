@@ -2,7 +2,7 @@
 type: entity_overview
 domain: tech-ai
 subdomain: science-policy-and-executive-coordination
-entity: u-s-office-of-science-and-technology-policy
+entity: u-s-office-of-science-and-technology-polialiases: [United States Office of Science and Technology Policy, OSTP]TP]
 entity_type: agency
 status: active
 last_updated: 2026-03-25

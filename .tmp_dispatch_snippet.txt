@@ -1,0 +1,17 @@
+510:     ts = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+511:     return f"dispatch-{case_key}-{ts}"
+512: 
+513: 
+514: def make_dry_run_research_run_id(case_key: str, persona: str) -> str:
+515:     return f"dryrun-{case_key}-{persona}"
+516: 
+517: 
+518: def build_lane_fingerprint(case_ctx: dict) -> dict:
+519:     return {
+520:         "case_id": case_ctx.get("case_id"),
+521:         "market_id": case_ctx.get("market_id"),
+522:         "platform": case_ctx.get("platform"),
+523:         "external_market_id": case_ctx.get("external_market_id"),
+524:         "outcome_type": case_ctx.get("outcome_type"),
+525:     }
+526: 

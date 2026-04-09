@@ -3,6 +3,7 @@ type: entity_overview
 domain: politics
 subdomain: legislative-fiscal-power
 entity: u-s-house-ways-and-means-committee
+aliases: [House Ways and Means Committee, Ways and Means Committee]
 entity_type: agency
 status: active
 last_updated: 2026-03-25

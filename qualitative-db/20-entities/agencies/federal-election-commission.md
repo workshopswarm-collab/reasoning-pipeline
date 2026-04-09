@@ -2,7 +2,7 @@
 type: entity_overview
 domain: politics
 subdomain: elections-and-campaign-governance
-entity: federal-election-commission
+entity: federal-election-commissialiases: [FEC]EC]
 entity_type: agency
 status: active
 last_updated: 2026-03-25

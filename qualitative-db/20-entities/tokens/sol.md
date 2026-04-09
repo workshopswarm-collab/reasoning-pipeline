@@ -3,6 +3,7 @@ type: entity_overview
 domain: crypto
 subdomain: tokens
 entity: sol
+aliases: [SOL, Solana]
 entity_type: token
 status: active
 last_updated: 2026-03-25

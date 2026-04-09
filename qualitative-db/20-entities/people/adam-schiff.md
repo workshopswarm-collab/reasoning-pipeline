@@ -3,6 +3,7 @@ type: entity_overview
 domain: politics
 subdomain: legislative-and-party-power
 entity: adam-schiff
+aliases: [Adam B. Schiff]
 entity_type: person
 status: active
 last_updated: 2026-03-25

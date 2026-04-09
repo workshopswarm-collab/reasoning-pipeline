@@ -2,7 +2,7 @@
 type: entity_overview
 domain: politics
 subdomain: electoral-and-institutional-politics
-entity: robert-f-kennedy-jr
+entity: robert-f-kennedy-aliases: [RFK Jr., RFKJr]Jr]
 entity_type: person
 status: active
 last_updated: 2026-03-25

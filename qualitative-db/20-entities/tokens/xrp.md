@@ -3,6 +3,7 @@ type: entity_overview
 domain: crypto
 subdomain: tokens
 entity: xrp
+aliases: [XRP, Ripple]
 entity_type: token
 status: active
 last_updated: 2026-03-25

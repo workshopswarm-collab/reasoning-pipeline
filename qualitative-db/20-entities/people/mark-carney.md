@@ -3,6 +3,7 @@ type: entity_overview
 domain: politics
 subdomain: leadership-and-macro-governance
 entity: mark-carney
+aliases: [Mark J. Carney]
 entity_type: person
 status: active
 last_updated: 2026-03-25

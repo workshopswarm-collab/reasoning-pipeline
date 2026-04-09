@@ -2,7 +2,7 @@
 type: entity_overview
 domain: politics
 subdomain: executive-power-and-party-competition
-entity: ron-desantis
+entity: ron-desants]
 entity_type: person
 status: active
 last_updated: 2026-03-25

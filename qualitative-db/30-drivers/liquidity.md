@@ -1,6 +1,8 @@
 ---
 type: driver_overview
 domain: economics
+driver: liquidity
+aliases: [market-liquidity, market depth, depth]
 status: active
 last_updated: 2026-03-26
 related_entities: []

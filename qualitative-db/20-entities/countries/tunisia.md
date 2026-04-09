@@ -3,6 +3,7 @@ type: entity_overview
 domain: geopolitics
 subdomain: state-fragility-and-regional-governance
 entity: tunisia
+aliases: [Republic of Tunisia]
 entity_type: country
 status: active
 last_updated: 2026-03-25

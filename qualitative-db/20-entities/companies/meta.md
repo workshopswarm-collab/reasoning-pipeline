@@ -3,6 +3,7 @@ type: entity_overview
 domain: culture
 subdomain: social-media
 entity: meta
+aliases: [Meta Platforms, META]
 entity_type: company
 status: active
 last_updated: 2026-03-26

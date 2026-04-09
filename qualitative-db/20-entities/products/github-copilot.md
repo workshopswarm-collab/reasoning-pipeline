@@ -2,7 +2,7 @@
 type: entity_overview
 domain: tech-ai
 subdomain: developer-ai-products
-entity: github-copilot
+entity: github-copilt]
 entity_type: product
 status: active
 last_updated: 2026-03-25

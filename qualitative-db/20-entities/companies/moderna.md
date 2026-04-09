@@ -3,6 +3,7 @@ type: entity_overview
 domain: tech-ai
 subdomain: biotech-and-platform-innovation
 entity: moderna
+aliases: [MRNA]
 entity_type: company
 status: active
 last_updated: 2026-03-25

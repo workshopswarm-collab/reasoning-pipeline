@@ -2,7 +2,7 @@
 type: entity_overview
 domain: politics
 subdomain: public-health-and-research-capacity
-entity: national-institutes-of-health
+entity: national-institutes-of-healaliases: [NIH]IH]
 entity_type: agency
 status: active
 last_updated: 2026-03-25

@@ -3,6 +3,7 @@ type: entity_overview
 domain: geopolitics
 subdomain: leaders
 entity: vladimir-putin
+aliases: [Vladimir Vladimirovich Putin]
 entity_type: person
 status: active
 last_updated: 2026-03-25

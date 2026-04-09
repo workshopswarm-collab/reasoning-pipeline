@@ -3,6 +3,7 @@ type: entity_overview
 domain: economics
 subdomain: derivatives-and-market-structure
 entity: cme-group
+aliases: [CME, Chicago Mercantile Exchange]
 entity_type: company
 status: active
 last_updated: 2026-03-25

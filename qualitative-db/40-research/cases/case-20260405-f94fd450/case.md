@@ -43,7 +43,7 @@ The resolution source will be a consensus of credible reporting.
 If the date/time of a strike cannot be confirmed by a consensus of credible reporting by the end of the third calendar date after this market's end date, it will resolve to "No" regardless of whether a strike was later confirmed to have taken place.
 
 ## Case surfaces
-- `current.md` = latest/current analysis pointers
+- `researcher-swarm-current.md` = latest/current researcher swarm pointers
 - `timeline.md` = programmatic lifecycle summary
-- `source-notes/` = case-level source provenance across analyses
-- `analyses/<YYYY-MM-DD>/<dispatch-id>/...` = append-only analysis generations
+- `researcher-source-notes/` = case-level source provenance across analyses
+- `researcher-analyses/<YYYY-MM-DD>/<dispatch-id>/...` = append-only analysis generations

@@ -3,6 +3,7 @@ type: entity_overview
 domain: tech-ai
 subdomain: chips-and-compute-products
 entity: blackwell
+aliases: [NVIDIA Blackwell]
 entity_type: product
 status: active
 last_updated: 2026-03-25

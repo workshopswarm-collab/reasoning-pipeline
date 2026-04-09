@@ -3,6 +3,7 @@ type: entity_overview
 domain: politics
 subdomain: electoral-and-party-competition
 entity: conservative-party-of-canada
+aliases: [Conservative Party, CPC]
 entity_type: party
 status: active
 last_updated: 2026-03-25

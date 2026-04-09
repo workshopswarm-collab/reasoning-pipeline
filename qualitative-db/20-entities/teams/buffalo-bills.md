@@ -3,6 +3,7 @@ type: entity_overview
 domain: sports
 subdomain: american-football
 entity: buffalo-bills
+aliases: [Bills]
 entity_type: team
 status: active
 last_updated: 2026-03-25

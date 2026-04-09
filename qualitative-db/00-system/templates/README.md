@@ -34,24 +34,28 @@ These templates support the quant-research pipeline:
 ### `qualitative-db/40-research/`
 
 Canonical live structure:
-- `cases/<case-key>/source-notes/` -> `source-note-template.md`
-- `cases/<case-key>/analyses/<YYYY-MM-DD>/<dispatch-id>/personas/` -> `agent-finding-template.md`
-- `cases/<case-key>/analyses/<YYYY-MM-DD>/<dispatch-id>/assumptions/` -> `assumption-note-template.md`
-- `cases/<case-key>/analyses/<YYYY-MM-DD>/<dispatch-id>/evidence/` -> `evidence-map-template.md`
+- `cases/<case-key>/researcher-source-notes/` -> `source-note-template.md`
+- `cases/<case-key>/researcher-analyses/<YYYY-MM-DD>/<dispatch-id>/personas/` -> `agent-finding-template.md`
+- `cases/<case-key>/researcher-analyses/<YYYY-MM-DD>/<dispatch-id>/assumptions/` -> `assumption-note-template.md`
+- `cases/<case-key>/researcher-analyses/<YYYY-MM-DD>/<dispatch-id>/evidence/` -> `evidence-map-template.md`
+- `cases/<case-key>/researcher-analyses/<YYYY-MM-DD>/<dispatch-id>/syndicated-finding.md` -> `syndicated-finding-template.md`
+- `cases/<case-key>/researcher-analyses/<YYYY-MM-DD>/<dispatch-id>/syndicated-finding.runtime.json` -> `syndicated-finding-runtime-metadata-template.json`
+- `cases/<case-key>/synthesizer-agent/syndicated-finding.md` -> canonical case-level synthesized finding using `syndicated-finding-template.md` semantics
+- `cases/<case-key>/synthesizer-agent/syndicated-finding.runtime.json` -> `syndicated-finding-runtime-metadata-template.json`
+- `cases/<case-key>/synthesizer-agent/decision-handoff.md` -> deterministic decision-maker handoff artifact rendered by the synthesis runtime
 - `product-notes/` -> `product-note-template.md`
 - `review-queue/` -> proposal/review artifacts; use the matching candidate/proposal template
 
 Compatibility / legacy flat surfaces may still exist during migration:
-- `source-notes/`
+- `researcher-source-notes/`
 - `agent-findings/`
 - `assumption-notes/`
 - `evidence-maps/`
 
 Conceptual / optional artifact types:
 - `investigations/` -> `investigation-template.md`
-- `syntheses/` -> `synthesis-template.md`
 
-Note: `investigations/` and `syntheses/` remain supported artifact types, but they are not currently present as live top-level folders under `qualitative-db/40-research/` in this repo snapshot.
+Note: the current dispatch-scoped orchestrator synthesis path does not have the model write markdown directly. The synthesis worker returns JSON, runtime validates and renders markdown, `syndicated-finding-template.md` is the primary live contract for that authored synthesis output, and `decision-handoff.md` is derived separately by the synthesis runtime.
 
 ### `qualitative-db/50-retrospectives/`
 
@@ -100,6 +104,8 @@ These templates are useful outside the default `40-research/` and `50-retrospect
 - `driver-candidate-template.md`
   - for proposing a missing or underbuilt market driver when existing `30-drivers/` coverage does not fit well
   - default home: `qualitative-db/40-research/review-queue/drivers-candidates/`
+  - generated raw candidate notes are stored under `qualitative-db/40-research/review-queue/drivers-candidates/candidate-notes/`
+  - generated family-review outputs are stored under `qualitative-db/40-research/review-queue/drivers-candidates/surfaced-family-review/`
 
 ## Template roles
 
@@ -115,8 +121,11 @@ These templates are useful outside the default `40-research/` and `50-retrospect
   - track multi-pass research threads that stay open across time
 - `product-note-template.md`
   - track versioned or release-specific product observations that are too time-bound for canon
-- `synthesis-template.md`
-  - main orchestrator consolidation layer before handoff to the decision-maker
+- `syndicated-finding-template.md`
+  - primary authored synthesis artifact contract for the current automated synthesis pipeline
+  - this is the template shape the synthesizer is actually prompted against
+- `syndicated-finding-runtime-metadata-template.json`
+  - JSON sidecar template for machine-heavy runtime/provenance metadata paired with syndicated findings
 - `decision-note-template.md`
   - final decision-maker recommendation template when a persistent decision record is needed
 - `retrospective-note-template.md`

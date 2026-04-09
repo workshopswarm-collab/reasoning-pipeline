@@ -2,7 +2,7 @@
 type: entity_overview
 domain: economics
 subdomain: macro-and-financial-governance
-entity: european-central-bank
+entity: european-central-baaliases: [ECB]CB]
 entity_type: agency
 status: active
 last_updated: 2026-03-26

@@ -3,6 +3,7 @@ type: entity_overview
 domain: tech-ai
 subdomain: internet-infrastructure-and-ai-delivery
 entity: cloudflare
+aliases: [NET]
 entity_type: company
 status: active
 last_updated: 2026-03-25

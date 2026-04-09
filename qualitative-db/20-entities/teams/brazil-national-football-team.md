@@ -3,6 +3,7 @@ type: entity_overview
 domain: sports
 subdomain: soccer
 entity: brazil-national-football-team
+aliases: [Brazil national team, Seleção]
 entity_type: team
 status: active
 last_updated: 2026-03-25

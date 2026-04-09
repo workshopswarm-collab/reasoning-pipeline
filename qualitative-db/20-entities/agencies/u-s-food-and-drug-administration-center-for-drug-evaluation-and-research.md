@@ -3,6 +3,7 @@ type: entity_overview
 domain: politics
 subdomain: regulation-and-public-health
 entity: u-s-food-and-drug-administration-center-for-drug-evaluation-and-research
+aliases: [CDER, Center for Drug Evaluation and Research]
 entity_type: agency
 status: active
 last_updated: 2026-03-25

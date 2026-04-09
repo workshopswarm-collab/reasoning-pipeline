@@ -3,6 +3,7 @@ type: entity_overview
 domain: tech-ai
 subdomain: geospatial-data-and-sensing
 entity: planet-labs
+aliases: [Planet Labs PBC, PL]
 entity_type: company
 status: active
 last_updated: 2026-03-25

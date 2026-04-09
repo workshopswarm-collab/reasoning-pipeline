@@ -3,6 +3,7 @@ type: entity_overview
 domain: sports
 subdomain: combat-sports
 entity: ufc
+aliases: [UFC, Ultimate Fighting Championship]
 entity_type: league
 status: active
 last_updated: 2026-03-25

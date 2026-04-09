@@ -2,7 +2,7 @@
 type: entity_overview
 domain: tech-ai
 subdomain: robotics
-entity: figure-ai
+entity: figure-aliases: [Inc.]c.]
 entity_type: company
 status: active
 last_updated: 2026-03-25

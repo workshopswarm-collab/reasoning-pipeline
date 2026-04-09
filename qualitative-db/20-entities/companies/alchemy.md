@@ -3,6 +3,7 @@ type: entity_overview
 domain: crypto
 subdomain: developer-infrastructure-and-onchain-services
 entity: alchemy
+aliases: [Alchemy Platform]
 entity_type: company
 status: active
 last_updated: 2026-03-25

@@ -3,6 +3,7 @@ type: entity_overview
 domain: economics
 subdomain: banking-capital-markets
 entity: goldman-sachs
+aliases: [Goldman, GS]
 entity_type: company
 status: active
 last_updated: 2026-03-25

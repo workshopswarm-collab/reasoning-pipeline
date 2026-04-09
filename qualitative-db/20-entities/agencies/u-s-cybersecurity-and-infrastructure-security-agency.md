@@ -2,7 +2,7 @@
 type: entity_overview
 domain: geopolitics
 subdomain: cyber-and-critical-infrastructure
-entity: u-s-cybersecurity-and-infrastructure-security-agency
+entity: u-s-cybersecurity-and-infrastructure-security-agenaliases: [United States Cybersecurity and Infrastructure Security Agency, CISA]SA]
 entity_type: agency
 status: active
 last_updated: 2026-03-25

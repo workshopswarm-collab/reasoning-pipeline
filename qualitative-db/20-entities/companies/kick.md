@@ -3,6 +3,7 @@ type: entity_overview
 domain: culture
 subdomain: creators-and-live-attention-platforms
 entity: kick
+aliases: [Kick.com]
 entity_type: company
 status: active
 last_updated: 2026-03-25

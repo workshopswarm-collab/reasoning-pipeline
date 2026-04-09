@@ -3,6 +3,7 @@ type: entity_overview
 domain: sports
 subdomain: baseball
 entity: julio-rodriguez
+aliases: [Julio Rodríguez, J-Rod]
 entity_type: player
 status: active
 last_updated: 2026-03-25

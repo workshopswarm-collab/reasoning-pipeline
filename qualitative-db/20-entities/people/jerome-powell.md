@@ -2,7 +2,7 @@
 type: entity_overview
 domain: economics
 subdomain: rates
-entity: jerome-powell
+entity: jerome-powealiases: [Jay Powell]ll]
 entity_type: person
 status: active
 last_updated: 2026-03-25

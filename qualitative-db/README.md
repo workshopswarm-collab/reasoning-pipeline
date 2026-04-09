@@ -143,7 +143,7 @@ Use for:
 - assumption notes
 - product notes
 
-Important: the canonical live `40-research/` structure is moving toward `cases/<case-key>/analyses/<YYYY-MM-DD>/<dispatch-id>/...` for rerun-safe history, while legacy flat folders such as `agent-findings/`, `assumption-notes/`, and `evidence-maps/` may remain as compatibility or latest-view surfaces during migration. Existing historical flat notes should be preserved unless they are already generated compatibility notes.
+Important: the canonical live `40-research/` structure is moving toward `cases/<case-key>/researcher-analyses/<YYYY-MM-DD>/<dispatch-id>/...` for rerun-safe history, while legacy flat folders such as `agent-findings/`, `assumption-notes/`, and `evidence-maps/` may remain as compatibility or latest-view surfaces during migration. Existing historical flat notes should be preserved unless they are already generated compatibility notes.
 Historical references to `syntheses/` or `investigations/` should be treated as conceptual artifact types or future/optional folders, not guaranteed live directories.
 
 ### `50-retrospectives/`
@@ -177,7 +177,7 @@ Purpose:
 - act as the canonical retrieval anchor
 
 ### Source note
-Usually under `40-research/cases/<case-key>/source-notes/`.
+Usually under `40-research/cases/<case-key>/researcher-source-notes/`.
 
 Purpose:
 - preserve provenance
@@ -185,7 +185,7 @@ Purpose:
 - explain why that source matters
 
 ### Agent finding
-Usually under `40-research/cases/<case-key>/analyses/<YYYY-MM-DD>/<dispatch-id>/personas/`.
+Usually under `40-research/cases/<case-key>/researcher-analyses/<YYYY-MM-DD>/<dispatch-id>/personas/`.
 
 Purpose:
 - store role-specific interpretation from a research agent
@@ -276,10 +276,10 @@ Read in this order:
 
 ### If you need recent evidence
 Then pull from current research artifacts such as:
-- `40-research/cases/<case-key>/source-notes/`
-- `40-research/cases/<case-key>/analyses/<YYYY-MM-DD>/<dispatch-id>/personas/`
-- `40-research/cases/<case-key>/analyses/<YYYY-MM-DD>/<dispatch-id>/assumptions/`
-- `40-research/cases/<case-key>/analyses/<YYYY-MM-DD>/<dispatch-id>/evidence/`
+- `40-research/cases/<case-key>/researcher-source-notes/`
+- `40-research/cases/<case-key>/researcher-analyses/<YYYY-MM-DD>/<dispatch-id>/personas/`
+- `40-research/cases/<case-key>/researcher-analyses/<YYYY-MM-DD>/<dispatch-id>/assumptions/`
+- `40-research/cases/<case-key>/researcher-analyses/<YYYY-MM-DD>/<dispatch-id>/evidence/`
 - `40-research/product-notes/`
 - `40-research/review-queue/` when relevant to handoff or promotion proposals
 

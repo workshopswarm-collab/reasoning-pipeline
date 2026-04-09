@@ -3,6 +3,7 @@ type: entity_overview
 domain: tech-ai
 subdomain: creative-software-and-ai-products
 entity: adobe
+aliases: [ADBE]
 entity_type: company
 status: active
 last_updated: 2026-03-25

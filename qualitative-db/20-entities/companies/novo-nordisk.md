@@ -3,6 +3,7 @@ type: entity_overview
 domain: tech-ai
 subdomain: biotech-and-pharma
 entity: novo-nordisk
+aliases: [NVO]
 entity_type: company
 status: active
 last_updated: 2026-03-26

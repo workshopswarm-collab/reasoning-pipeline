@@ -19,6 +19,8 @@ conflict_status:
 action_relevance:
 related_entities: []
 related_drivers: []
+proposed_entities: []
+proposed_drivers: []
 upstream_inputs: []
 downstream_uses: []
 tags: []

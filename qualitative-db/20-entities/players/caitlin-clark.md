@@ -3,6 +3,7 @@ type: entity_overview
 domain: sports
 subdomain: basketball
 entity: caitlin-clark
+aliases: [CC]
 entity_type: player
 status: active
 last_updated: 2026-03-25

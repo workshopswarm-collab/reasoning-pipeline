@@ -2,7 +2,7 @@
 type: entity_overview
 domain: politics
 subdomain: executive-power-and-future-leadership
-entity: pete-buttigieg
+entity: pete-buttigig]
 entity_type: person
 status: active
 last_updated: 2026-03-25

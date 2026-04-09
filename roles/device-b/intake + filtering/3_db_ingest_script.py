@@ -65,6 +65,24 @@ upserted_market AS (
     current_price = EXCLUDED.current_price,
     
     pipeline_status = CASE 
+        WHEN (
+            (EXCLUDED.closes_at IS NOT NULL AND EXCLUDED.closes_at <= NOW())
+            OR (EXCLUDED.resolves_at IS NOT NULL AND EXCLUDED.resolves_at <= NOW())
+        )
+        AND markets.pipeline_status IN ('new', 'pending_research')
+        THEN 'closed'::processing_status
+        WHEN (
+            (EXCLUDED.closes_at IS NOT NULL AND EXCLUDED.closes_at <= NOW())
+            OR (EXCLUDED.resolves_at IS NOT NULL AND EXCLUDED.resolves_at <= NOW())
+        )
+        AND markets.pipeline_status = 'researching'
+        AND NOT EXISTS (
+            SELECT 1
+            FROM cases c
+            WHERE c.market_id = markets.id
+              AND c.status = 'open'
+        )
+        THEN 'closed'::processing_status
         WHEN markets.pipeline_status IN ('ignored', 'executed') 
              AND ABS(COALESCE(markets.last_reasoned_price, 0) - EXCLUDED.current_price) >= 0.05 
         THEN 'pending_research'::processing_status

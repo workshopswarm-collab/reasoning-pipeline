@@ -2,7 +2,7 @@
 type: entity_overview
 domain: politics
 subdomain: communications-and-platform-governance
-entity: federal-communications-commission
+entity: federal-communications-commissialiases: [FCC]CC]
 entity_type: agency
 status: active
 last_updated: 2026-03-25

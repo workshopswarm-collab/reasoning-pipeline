@@ -2,7 +2,7 @@
 type: entity_overview
 domain: geopolitics
 subdomain: climate-weather-and-earth-systems
-entity: u-s-national-oceanic-and-atmospheric-administration
+entity: u-s-national-oceanic-and-atmospheric-administratialiases: [United States National Oceanic and Atmospheric Administration, NOAA]AA]
 entity_type: agency
 status: active
 last_updated: 2026-03-25

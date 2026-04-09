@@ -106,11 +106,15 @@ Template-use rule:
 5. Prefer **credible, recent** sources first, with primary and independent sources prioritized whenever available.
 6. Before writing the first artifact of a given type in the run, read the matching template.
 7. Preserve provenance in a way that makes the assigned evidence floor legible; for medium/high or audit-sensitive cases, prefer more provenance artifacts rather than too few.
-8. Write source notes whenever they materially help later reviewers see what was checked, especially when the case is medium/high difficulty, disagreement-heavy, or source-sensitive.
-9. Write an agent finding for your interpretation versus the market-implied baseline, using the finding template structure unless the runtime checklist requires additional labeled sections.
-10. Build an evidence map or synthesis when multi-source reasoning matters, conflict is present, or later auditability would otherwise be weak.
-11. If no existing market driver seems to fit well, propose a driver candidate in the review queue instead of forcing a bad driver match.
-12. If you discover a likely stable-layer issue, write a proposal or candidate to the review queue instead of editing canon directly.
+8. Treat retrieval minimums as search-effort and coverage requirements, not guaranteed hit counts; never invent markets, analogs, events, or any other retrieval artifacts to satisfy expected QMD volume.
+9. If retrieval is sparse or yields no relevant matches, report that explicitly, broaden or reformulate search when appropriate, and reduce confidence accordingly rather than filling gaps synthetically.
+10. Only provenance-backed items from actual retrieval output, approved memory, or explicitly cited external sources may be used or counted.
+11. Perform an explicit canonical-mapping check before finalizing: if any causally or structurally important entity or driver lacks a clean canonical slug, do not force a weak fit; record it in `proposed_entities` or `proposed_drivers` and note the gap for later review.
+12. Write source notes whenever they materially help later reviewers see what was checked, especially when the case is medium/high difficulty, disagreement-heavy, or source-sensitive.
+13. Write an agent finding for your interpretation versus the market-implied baseline, using the finding template structure unless the runtime checklist requires additional labeled sections.
+14. Build an evidence map or synthesis when multi-source reasoning matters, conflict is present, or later auditability would otherwise be weak.
+15. If no existing market driver seems to fit well, propose a driver candidate in the review queue instead of forcing a bad driver match.
+16. If you discover a likely stable-layer issue, write a proposal or candidate to the review queue instead of editing canon directly.
 
 ## Research output minimum
 
@@ -169,6 +173,14 @@ A durable lesson candidate is a **review artifact**, not a stable-layer update.
 
 Path:
 - `qualitative-db/40-research/review-queue/drivers-candidates/`
+
+Layout:
+- top-level index: `qualitative-db/40-research/review-queue/drivers-candidates/generated-index.md`
+- generated raw candidate notes: `qualitative-db/40-research/review-queue/drivers-candidates/candidate-notes/`
+- generated family-review outputs: `qualitative-db/40-research/review-queue/drivers-candidates/surfaced-family-review/`
+  - top-level LLM family index: `qualitative-db/40-research/review-queue/drivers-candidates/surfaced-family-review/LLM-proposed-family-index.md`
+  - markdown review notes: `qualitative-db/40-research/review-queue/drivers-candidates/surfaced-family-review/review-notes/`
+  - input packets: `qualitative-db/40-research/review-queue/drivers-candidates/surfaced-family-review/inputs/`
 
 Use for:
 - important market drivers that do not seem well represented in current `30-drivers/`

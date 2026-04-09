@@ -2,6 +2,8 @@
 type: driver_overview
 domain:
 subdomain:
+driver: regulation
+aliases: [regulatory-risk, regulatory pressure, policy-pressure]
 topic: regulation as a cross-domain driver
 date_created: 2026-03-25
 agent: orchestrator
@@ -13,7 +15,8 @@ tags: [driver/regulation, domain/crypto, domain/economics, domain/politics, doma
 status: active
 last_updated: 2026-03-25
 related_entities: []
-related_drivers: []---
+related_drivers: []
+---
 
 # Overview summary
 

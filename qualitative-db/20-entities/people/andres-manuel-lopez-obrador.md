@@ -3,6 +3,7 @@ type: entity_overview
 domain: politics
 subdomain: electoral-and-state-power
 entity: andres-manuel-lopez-obrador
+aliases: [AMLO, Andrés Manuel López Obrador]
 entity_type: person
 status: active
 last_updated: 2026-03-25

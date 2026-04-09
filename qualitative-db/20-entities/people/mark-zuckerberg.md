@@ -3,6 +3,7 @@ type: entity_overview
 domain: culture
 subdomain: social-media
 entity: mark-zuckerberg
+aliases: [Zuck]
 entity_type: person
 status: active
 last_updated: 2026-03-25

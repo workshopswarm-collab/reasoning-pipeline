@@ -3,6 +3,7 @@ type: entity_overview
 domain: economics
 subdomain: financial-regulation-and-legislative-power
 entity: u-s-senate-banking-committee
+aliases: [Senate Banking Committee]
 entity_type: agency
 status: active
 last_updated: 2026-03-25

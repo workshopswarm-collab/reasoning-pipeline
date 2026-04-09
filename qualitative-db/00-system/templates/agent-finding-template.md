@@ -20,6 +20,8 @@ novelty:
 time_horizon:
 related_entities: []
 related_drivers: []
+proposed_entities: []
+proposed_drivers: []
 upstream_inputs: []
 downstream_uses: []
 tags: []
@@ -51,7 +53,7 @@ Explain how this finding should move interpretation of the market, event, or ope
 ## Key sources used
 
 List the most important sources, notes, or governing source-of-truth surfaces you relied on.
-Prefer linking to case-level `source-notes/` entries where they exist instead of repeating long source summaries here.
+Prefer linking to case-level `researcher-source-notes/` entries where they exist instead of repeating long source summaries here.
 
 Make it legible which sources were:
 - primary vs secondary

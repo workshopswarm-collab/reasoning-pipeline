@@ -3,6 +3,7 @@ type: entity_overview
 domain: politics
 subdomain: electoral-and-party-competition
 entity: peter-magyar
+aliases: [Péter Magyar]
 entity_type: person
 status: active
 last_updated: 2026-03-25

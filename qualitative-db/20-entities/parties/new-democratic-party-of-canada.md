@@ -3,6 +3,7 @@ type: entity_overview
 domain: politics
 subdomain: electoral-and-party-competition
 entity: new-democratic-party-of-canada
+aliases: [NDP, New Democratic Party]
 entity_type: party
 status: active
 last_updated: 2026-03-25

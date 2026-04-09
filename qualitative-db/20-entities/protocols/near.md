@@ -3,6 +3,7 @@ type: entity_overview
 domain: crypto
 subdomain: layer1s-and-market-structure
 entity: near
+aliases: [NEAR]
 entity_type: protocol
 status: active
 last_updated: 2026-03-25

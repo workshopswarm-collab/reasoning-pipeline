@@ -3,6 +3,7 @@ type: entity_overview
 domain: crypto
 subdomain: market-structure-and-trading-infrastructure
 entity: injective
+aliases: [INJ]
 entity_type: protocol
 status: active
 last_updated: 2026-03-25

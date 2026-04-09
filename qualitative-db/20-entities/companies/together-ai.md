@@ -2,7 +2,7 @@
 type: entity_overview
 domain: tech-ai
 subdomain: model-platforms-and-inference
-entity: together-ai
+entity: together-I]
 entity_type: company
 status: active
 last_updated: 2026-03-25

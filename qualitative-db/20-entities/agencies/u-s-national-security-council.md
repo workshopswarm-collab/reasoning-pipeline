@@ -2,7 +2,7 @@
 type: entity_overview
 domain: geopolitics
 subdomain: executive-security-coordination
-entity: u-s-national-security-council
+entity: u-s-national-security-councaliases: [United States National Security Council, NSC]SC]
 entity_type: agency
 status: active
 last_updated: 2026-03-26

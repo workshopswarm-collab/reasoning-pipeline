@@ -2,7 +2,7 @@
 type: entity_overview
 domain: politics
 subdomain: electoral-and-party-competition
-entity: jd-vance
+entity: jd-vanaliases: [J.D. Vance]ce]
 entity_type: person
 status: active
 last_updated: 2026-03-25

@@ -2,7 +2,7 @@
 type: entity_overview
 domain: economics
 subdomain: consumer-finance-and-regulation
-entity: consumer-financial-protection-bureau
+entity: consumer-financial-protection-burealiases: [CFPB]PB]
 entity_type: agency
 status: active
 last_updated: 2026-03-25

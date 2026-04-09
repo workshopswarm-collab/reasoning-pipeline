@@ -2,7 +2,7 @@
 type: entity_overview
 domain: geopolitics
 subdomain: energy-and-critical-infrastructure
-entity: u-s-nuclear-regulatory-commission
+entity: u-s-nuclear-regulatory-commissialiases: [United States Nuclear Regulatory Commission, NRC]RC]
 entity_type: agency
 status: active
 last_updated: 2026-03-25

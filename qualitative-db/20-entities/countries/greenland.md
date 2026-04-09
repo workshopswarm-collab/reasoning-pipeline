@@ -3,6 +3,7 @@ type: entity_overview
 domain: geopolitics
 subdomain: arctic-and-strategic-geography
 entity: greenland
+aliases: [Kalaallit Nunaat]
 entity_type: country
 status: active
 last_updated: 2026-03-25

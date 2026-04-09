@@ -3,6 +3,7 @@ type: entity_overview
 domain: tech-ai
 subdomain: chips-and-inference-infrastructure
 entity: groq
+aliases: [Groq Inc.]
 entity_type: company
 status: active
 last_updated: 2026-03-25

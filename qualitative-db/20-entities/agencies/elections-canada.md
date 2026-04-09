@@ -3,6 +3,7 @@ type: entity_overview
 domain: politics
 subdomain: elections-and-state-capacity
 entity: elections-canada
+aliases: [Élections Canada]
 entity_type: agency
 status: active
 last_updated: 2026-03-25

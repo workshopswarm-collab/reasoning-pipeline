@@ -3,6 +3,7 @@ type: entity_overview
 domain: crypto
 subdomain: exchanges-and-market-structure
 entity: okx
+aliases: [OKX Exchange]
 entity_type: company
 status: active
 last_updated: 2026-03-25

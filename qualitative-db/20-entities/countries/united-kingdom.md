@@ -3,6 +3,7 @@ type: entity_overview
 domain: geopolitics
 subdomain: countries
 entity: united-kingdom
+aliases: [UK, U.K., Britain, Great Britain]
 entity_type: country
 status: active
 last_updated: 2026-03-26

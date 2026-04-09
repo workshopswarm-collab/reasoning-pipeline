@@ -3,6 +3,7 @@ type: entity_overview
 domain: tech-ai
 subdomain: compute-and-energy-infrastructure
 entity: crusoe
+aliases: [Crusoe Energy]
 entity_type: company
 status: active
 last_updated: 2026-03-25

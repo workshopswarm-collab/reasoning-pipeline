@@ -3,6 +3,7 @@ type: entity_overview
 domain: tech-ai
 subdomain: chips-compute
 entity: jensen-huang
+aliases: [Jen-Hsun Huang]
 entity_type: person
 status: active
 last_updated: 2026-03-25

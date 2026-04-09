@@ -3,6 +3,7 @@ type: entity_overview
 domain: economics
 subdomain: fiscal-and-financial-governance
 entity: janet-yellen
+aliases: [Janet L. Yellen]
 entity_type: person
 status: active
 last_updated: 2026-03-25

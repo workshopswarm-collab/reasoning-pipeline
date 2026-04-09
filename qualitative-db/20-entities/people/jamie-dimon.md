@@ -3,6 +3,7 @@ type: entity_overview
 domain: economics
 subdomain: finance-and-market-sentiment
 entity: jamie-dimon
+aliases: [James Dimon]
 entity_type: person
 status: active
 last_updated: 2026-03-25

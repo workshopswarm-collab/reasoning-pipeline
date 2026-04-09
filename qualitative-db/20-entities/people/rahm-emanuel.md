@@ -3,6 +3,7 @@ type: entity_overview
 domain: politics
 subdomain: executive-and-diplomatic-power
 entity: rahm-emanuel
+aliases: [Rahm Israel Emanuel]
 entity_type: person
 status: active
 last_updated: 2026-03-25

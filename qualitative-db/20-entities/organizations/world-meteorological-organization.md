@@ -3,6 +3,7 @@ type: entity_overview
 domain: geopolitics
 subdomain: climate-weather-and-global-governance
 entity: world-meteorological-organization
+aliases: [WMO]
 entity_type: organization
 status: active
 last_updated: 2026-03-25

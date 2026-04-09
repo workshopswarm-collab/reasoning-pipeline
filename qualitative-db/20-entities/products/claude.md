@@ -3,6 +3,7 @@ type: entity_overview
 domain: tech-ai
 subdomain: products
 entity: claude
+aliases: [Claude AI]
 entity_type: product
 status: active
 last_updated: 2026-03-25

@@ -2,7 +2,7 @@
 type: entity_overview
 domain: economics
 subdomain: macro-data-and-indicators
-entity: bureau-of-economic-analysis
+entity: bureau-of-economic-analysaliases: [BEA]EA]
 entity_type: agency
 status: active
 last_updated: 2026-03-25

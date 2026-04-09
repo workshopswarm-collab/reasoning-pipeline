@@ -2,7 +2,7 @@
 type: entity_overview
 domain: tech-ai
 subdomain: defense-tech-and-autonomy
-entity: shield-ai
+entity: shield-I]
 entity_type: company
 status: active
 last_updated: 2026-03-25

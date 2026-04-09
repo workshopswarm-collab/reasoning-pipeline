@@ -3,6 +3,7 @@ type: entity_overview
 domain: sports
 subdomain: basketball
 entity: san-antonio-spurs
+aliases: [Spurs]
 entity_type: team
 status: active
 last_updated: 2026-03-25

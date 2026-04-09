@@ -2,7 +2,7 @@
 type: entity_overview
 domain: crypto
 subdomain: prediction-markets-and-market-structure
-entity: polymarket
+entity: polymarkaliases: [Polymarket.com]om]
 entity_type: company
 status: active
 last_updated: 2026-03-26

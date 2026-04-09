@@ -37,7 +37,7 @@ Not the main purpose of this folder:
 - full methodology rules for canon vs research
 
 Those belong elsewhere:
-- case-specific source notes -> `qualitative-db/40-research/cases/<case-key>/source-notes/`
+- case-specific source notes -> `qualitative-db/40-research/cases/<case-key>/researcher-source-notes/`
 - operating rules -> `qualitative-db/00-system/README.md` and related governance/methodology files
 
 ## Current usage

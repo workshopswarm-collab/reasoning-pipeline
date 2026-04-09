@@ -3,6 +3,7 @@ type: entity_overview
 domain: tech-ai
 subdomain: ai-agent-products
 entity: operator
+aliases: [OpenAI Operator]
 entity_type: product
 status: active
 last_updated: 2026-03-26

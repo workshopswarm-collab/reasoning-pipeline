@@ -2,7 +2,7 @@
 type: entity_overview
 domain: economics
 subdomain: central-banks-and-monetary-policy
-entity: bank-of-canada
+entity: bank-of-canaaliases: [BoC]da]
 entity_type: agency
 status: active
 last_updated: 2026-03-25

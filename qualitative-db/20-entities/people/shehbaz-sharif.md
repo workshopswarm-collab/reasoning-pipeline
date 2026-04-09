@@ -3,6 +3,7 @@ type: entity_overview
 domain: politics
 subdomain: leadership-and-state-capacity
 entity: shehbaz-sharif
+aliases: [Shahbaz Sharif]
 entity_type: person
 status: active
 last_updated: 2026-03-25

@@ -3,6 +3,7 @@ type: entity_overview
 domain: politics
 subdomain: electoral-and-state-power
 entity: marine-le-pen
+aliases: [Le Pen]
 entity_type: person
 status: active
 last_updated: 2026-03-25

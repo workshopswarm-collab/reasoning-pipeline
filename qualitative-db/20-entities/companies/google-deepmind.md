@@ -2,7 +2,7 @@
 type: entity_overview
 domain: tech-ai
 subdomain: labs
-entity: google-deepmind
+entity: google-deepmialiases: [DeepMind]nd]
 entity_type: company
 status: active
 last_updated: 2026-03-25

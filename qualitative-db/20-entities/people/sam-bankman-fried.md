@@ -2,7 +2,7 @@
 type: entity_overview
 domain: crypto
 subdomain: market-structure-and-scandal
-entity: sam-bankman-fried
+entity: sam-bankman-frialiases: [SBF]ed]
 entity_type: person
 status: active
 last_updated: 2026-03-25

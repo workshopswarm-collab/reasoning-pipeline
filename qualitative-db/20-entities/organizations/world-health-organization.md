@@ -2,7 +2,7 @@
 type: entity_overview
 domain: geopolitics
 subdomain: global-governance-and-health-security
-entity: world-health-organization
+entity: world-health-organizatialiases: [WHO]HO]
 entity_type: organization
 status: active
 last_updated: 2026-03-25

@@ -3,6 +3,7 @@ type: entity_overview
 domain: geopolitics
 subdomain: regional-politics-and-security
 entity: colombia
+aliases: [Republic of Colombia]
 entity_type: country
 status: active
 last_updated: 2026-03-25

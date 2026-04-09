@@ -2,7 +2,7 @@
 type: entity_overview
 domain: politics
 subdomain: leadership-and-state-transformation
-entity: mohammed-bin-salman
+entity: mohammed-bin-salmaliases: [MBS]BS]
 entity_type: person
 status: active
 last_updated: 2026-03-25

@@ -3,6 +3,7 @@ type: entity_overview
 domain: sports
 subdomain: formula-one
 entity: nico-hulkenberg
+aliases: [Nico Hülkenberg, Hülkenberg]
 entity_type: player
 status: active
 last_updated: 2026-03-25

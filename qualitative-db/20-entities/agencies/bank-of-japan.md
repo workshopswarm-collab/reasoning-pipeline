@@ -2,7 +2,7 @@
 type: entity_overview
 domain: economics
 subdomain: macro-and-financial-governance
-entity: bank-of-japan
+entity: bank-of-japaliases: [BoJ]an]
 entity_type: agency
 status: active
 last_updated: 2026-03-25

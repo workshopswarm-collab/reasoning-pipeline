@@ -3,6 +3,7 @@ type: entity_overview
 domain: geopolitics
 subdomain: regional-stability-and-conflict-risk
 entity: iraq
+aliases: [Republic of Iraq]
 entity_type: country
 status: active
 last_updated: 2026-03-25

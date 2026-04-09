@@ -2,7 +2,7 @@
 type: entity_overview
 domain: geopolitics
 subdomain: bloc-governance-and-regulation
-entity: european-commission
+entity: european-commissialiases: [EC]EC]
 entity_type: agency
 status: active
 last_updated: 2026-03-25

@@ -3,6 +3,7 @@ type: entity_overview
 domain: economics
 subdomain: banking-capital-markets
 entity: jpmorgan
+aliases: [JPM, JPMorgan Chase]
 entity_type: company
 status: active
 last_updated: 2026-03-25

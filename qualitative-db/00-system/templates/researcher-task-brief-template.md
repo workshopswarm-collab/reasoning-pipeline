@@ -53,14 +53,14 @@ Output expectations:
 - whether any canon, driver, or linkage proposal should go to review queue
 
 Write targets:
-- source extraction -> `qualitative-db/40-research/cases/<case-key>/source-notes/`
-- interpretation -> `qualitative-db/40-research/cases/<case-key>/analyses/<YYYY-MM-DD>/<dispatch-id>/personas/`
-- assumption tracking -> `qualitative-db/40-research/cases/<case-key>/analyses/<YYYY-MM-DD>/<dispatch-id>/assumptions/`
-- pro/con structure -> `qualitative-db/40-research/cases/<case-key>/analyses/<YYYY-MM-DD>/<dispatch-id>/evidence/`
+- source extraction -> `qualitative-db/40-research/cases/<case-key>/researcher-source-notes/`
+- interpretation -> `qualitative-db/40-research/cases/<case-key>/researcher-analyses/<YYYY-MM-DD>/<dispatch-id>/personas/`
+- assumption tracking -> `qualitative-db/40-research/cases/<case-key>/researcher-analyses/<YYYY-MM-DD>/<dispatch-id>/assumptions/`
+- pro/con structure -> `qualitative-db/40-research/cases/<case-key>/researcher-analyses/<YYYY-MM-DD>/<dispatch-id>/evidence/`
 - release/version-specific observations -> `qualitative-db/40-research/product-notes/`
 - canon change proposal -> `qualitative-db/40-research/review-queue/canonical-update-proposals/`
 - durable lesson candidate -> `qualitative-db/40-research/review-queue/durable-lesson-candidates/`
-- driver candidate -> `qualitative-db/40-research/review-queue/drivers-candidates/`
+- driver candidate -> `qualitative-db/40-research/review-queue/drivers-candidates/` (generated raw candidate notes live in `drivers-candidates/candidate-notes/`; generated family reviews live in `drivers-candidates/surfaced-family-review/`)
 - linkage repair proposal -> `qualitative-db/40-research/review-queue/linkage-repair-candidates/`
 
 If a multi-input distilled view is needed before canon review, place it in an appropriate current research artifact or reintroduce a synthesis-style note deliberately rather than assuming `qualitative-db/40-research/syntheses/` already exists.

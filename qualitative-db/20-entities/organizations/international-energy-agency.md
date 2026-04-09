@@ -2,7 +2,7 @@
 type: entity_overview
 domain: geopolitics
 subdomain: energy-security-and-global-supply
-entity: international-energy-agency
+entity: international-energy-agenaliases: [IEA]EA]
 entity_type: organization
 status: active
 last_updated: 2026-03-25

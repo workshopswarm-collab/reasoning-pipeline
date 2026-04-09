@@ -2,7 +2,7 @@
 type: entity_overview
 domain: politics
 subdomain: public-health-and-state-capacity
-entity: centers-for-disease-control-and-prevention
+entity: centers-for-disease-control-and-preventialiases: [CDC]DC]
 entity_type: agency
 status: active
 last_updated: 2026-03-25

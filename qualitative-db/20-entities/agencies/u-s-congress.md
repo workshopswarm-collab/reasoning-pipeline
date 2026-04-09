@@ -2,7 +2,7 @@
 type: entity_overview
 domain: politics
 subdomain: legislative-power
-entity: u-s-congress
+entity: u-s-congrealiases: [United States Congress]ss]
 entity_type: agency
 status: active
 last_updated: 2026-03-25

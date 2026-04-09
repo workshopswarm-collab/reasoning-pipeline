@@ -1,0 +1,137 @@
+---
+type: syndicated_finding
+case_key: case-20260406-6e955d27
+dispatch_id: dispatch-case-20260406-6e955d27-20260408T153555Z
+question: "Will the price of Bitcoin be above $66,000 on April 6?"
+coverage_status: complete
+market_implied_probability: 0.825
+syndicated_probability_low: 0.95
+syndicated_probability_high: 0.985
+syndicated_probability_midpoint: 0.9675
+edge_vs_market_pct_points: 14.3
+relation_to_market: above_market
+edge_quality: strong
+edge_independent_verification_quality: medium
+compressed_toward_market_due_to_verification: no
+disagreement_intensity: low
+synthesis_confidence_quality: high
+staleness_risk: low
+next_checkpoint: "official market resolution / archived Binance UI parity check if needed"
+follow_up_needed: no
+---
+
+# Claim
+
+The market should resolve Yes. After reviewing all five persona findings and doing a bounded synthesis-stage verification pass against Binance’s own kline documentation plus the market-rule wording, the best post-synthesis judgment is that the governing Binance BTC/USDT noon-ET 1-minute candle closed well above $66,000; residual risk is narrow contract-mechanics/UI-versus-API interpretation risk rather than real price-level risk.
+
+## Alpha summary
+
+Market implied 0.825. My syndicated range is 0.95 to 0.985 Yes. The edge still looks actionable rather than marginal, though it is a mechanics-driven edge, not a directional BTC edge. The likely mispricing was residual trader caution about exact candle identity, timezone mapping, and Binance UI/API parity after the relevant minute had already printed far above the threshold.
+
+## Input coverage
+
+All five personas were available: base-rate, catalyst-hunter, market-implied, risk-manager, and variant-view. None were missing. I used the raw persona findings as canonical inputs and checked them against the extracts; the extracts looked broadly faithful, with the main risk being mild overconfidence rather than distortion. Supporting assumption/evidence artifacts were referenced in the lane findings but were not necessary to change the synthesis materially. Coverage is complete because every expected lane was present and all converged on the same governing mechanism.
+
+## Market-implied baseline
+
+The synthesis baseline is the market-implied 0.825 Yes probability captured at 2026-04-08T15:35:55Z. The key synthesis question is whether that remaining 17.5% No probability reflected real unresolved settlement risk or just underreaction to a directly checkable historical candle.
+
+## Syndicated probability estimate
+
+Final post-synthesis estimate: 0.95 to 0.985 Yes. I stay very high confidence because every lane identified the same decisive datapoint: the Binance BTC/USDT 1-minute candle corresponding to 2026-04-06 12:00 ET closed at 69,938.59, comfortably above 66,000. I stop short of 0.99+ because the contract wording points to Binance chart/UI language while most direct verification cited Binance API/documentation, leaving a small but nonzero interpretation-parity risk.
+
+## Difference from swarm-implied center
+
+This is slightly below the swarm-implied center near 0.98, but not materially so. I compressed the top end a bit less aggressively than the most bullish lanes because the swarm-vs-market gap was large and the independent verification obtained at synthesis stage mostly confirmed Binance kline semantics and market-rule wording, not archived Binance UI parity for the exact displayed candle. That said, verification was strong enough that a large collapse back toward 0.825 was not justified.
+
+## Agreement or disagreement with market
+
+I disagree with the market on the upside. The market had the direction right, but it appears to have left too much weight on residual mechanics risk after the relevant historical candle could be checked directly and was nearly $3,939 above the threshold. This is not a case where the market seemed directionally wrong; it seems underconfident on a narrow, source-defined settlement question.
+
+## Independent verification of edge
+
+Verification quality is medium. I independently checked Binance’s kline documentation, which explicitly states klines are uniquely identified by open time, and confirmed the market-rule wording from external references that the contract resolves to the Binance BTC/USDT 12:00 ET 1-minute candle close. This meaningfully supports the core lane logic that noon ET maps to the candle opening at noon ET / 16:00 UTC. What remains weaker is direct archived proof of the Binance website/UI candle display for that exact minute and direct confirmation that Polymarket would reject any alternate display convention in a corner case. So the edge was independently checked enough to support a high-confidence Yes, but not enough to call verification quality high.
+
+## Compression toward market due to verification
+
+No. I did not materially compress toward the 0.825 market price because the synthesis-stage verification supported the swarm’s main claim rather than undermining it. I did keep the range a bit wider and capped below near-certainty because the large swarm-vs-market gap deserved skepticism and the remaining unverified piece was UI/API parity rather than the price print itself.
+
+## Timing and catalyst posture
+
+The only meaningful checkpoint is official market resolution or, if one wanted extra audit comfort, an archived Binance UI parity check for the exact noon ET candle. There is little reason to expect the edge to decay meaningfully except via formal settlement confirmation; waiting mostly adds administrative certainty, not substantive new price information.
+
+## Decision blockers
+
+No major blocker remains for a practical downstream view. Minor blocker: lack of direct archived Binance website/chart evidence for the exact displayed noon ET candle, which keeps a small residual operational ambiguity alive. There is no serious price-level blocker.
+
+## Implication for the question
+
+The best interpretation is that the answer should be Yes because the governing noon-ET Binance BTC/USDT 1-minute candle closed well above $66,000. The remaining path to No would require an unusual source-of-truth or labeling interpretation rather than a different underlying BTC price fact.
+
+## Consensus across personas
+
+All personas converged on five points: Binance BTC/USDT is the governing source; the market is resolved by one exact 1-minute candle at 12:00 ET; the relevant close identified in the research was 69,938.59; that close sits far above 66,000; and the only meaningful residual risk is contract-mechanics or UI/API interpretation risk rather than directional BTC uncertainty.
+
+## Key disagreements across personas
+
+Disagreement was low and mostly weighting-based. Risk-manager assigned the lowest probability at 0.96 because it gave more weight to UI/API equivalence and archived-display risk. Market-implied was most aggressive at 0.985 because it treated direct settlement-surface verification as enough to nearly eliminate residual No risk. Variant-view and catalyst-hunter emphasized different framing: the former stressed source-of-truth handling as the real variant, while the latter emphasized that once the event minute passed this ceased to be a live catalyst forecast. There was no meaningful factual disagreement on the observed candle close.
+
+## Best countercase
+
+The best countercase is the risk-manager / variant-style countercase: the rules reference the Binance website chart/UI, not the API by name, so a corner-case mismatch in candle labeling, display convention, or settlement interpretation could in theory make the governing candle different from the API candle the lanes checked. This is a real but thin countercase, and it is weakened materially by the large buffer above 66,000 and by adjacent minutes also being above the threshold.
+
+## Encapsulated assumptions
+
+Shared assumptions: Binance BTC/USDT is the sole governing venue; 12:00 ET on 2026-04-06 maps to 16:00 UTC; Binance kline open-time semantics are the intended candle-identity rule; no exchange correction or settlement override changed the candle after the fact. Contested/fragile assumptions: the Binance API is a faithful operational proxy for the Binance website/chart surface referenced in the rules; Polymarket would not apply an alternate close-time or adjacent-minute labeling convention.
+
+## Encapsulated evidence map
+
+Strongest supporting evidence: all lanes directly cited the same Binance BTCUSDT 1-minute candle close of 69,938.59 for the noon-ET / 16:00 UTC minute; adjacent minutes were also above 66,000; Polymarket rule wording externally states resolution is by the Binance BTC/USDT 12:00 ET 1-minute candle close; Binance docs state klines are uniquely identified by open time. Strongest contradictory evidence: no contradictory price evidence appeared; only interpretive ambiguity about UI/API parity and exact candle labeling remained. Authoritative/source-of-truth evidence: Binance kline docs and direct kline-derived lane findings; contract wording pointing to Binance BTC/USDT close. Ambiguous evidence: whether the website chart display could differ in a settlement-relevant way from the API semantics.
+
+## Evidence weighting
+
+Most weight went to the direct settlement-source evidence summarized consistently across all lanes and reinforced by Binance’s own kline documentation. Secondary weight went to the contract wording showing Binance BTC/USDT noon-ET close is the governing mechanism. I downweighted generic market-price caution and any broad BTC narrative because this was a post-event, source-defined numeric market. I also downweighted unsupported extreme certainty because direct UI-archive parity was not shown in the synthesis pass.
+
+## Counterpoints / strongest disconfirming evidence
+
+The strongest disconfirming evidence is not a bearish BTC datapoint but the unresolved possibility that the contract’s reference to the Binance website/chart could, in a narrow corner case, imply a different candle-label convention than the API/open-time semantics used by the lanes. If such a mismatch existed and pointed to a below-66k close, the current synthesis would be too high. No evidence of that mismatch was surfaced, but that is the real failure mode.
+
+## Resolution or source-of-truth interpretation
+
+My synthesis interpretation is that the contract should be read through Binance’s standard kline semantics: the 12:00 ET 1-minute candle is the candle opening at 12:00:00 ET, which on this date is 16:00:00 UTC because New York was on daylight saving time. Binance documentation explicitly says klines are uniquely identified by open time, which materially strengthens this interpretation. The rules language found externally matches the lanes’ reading that the final Close price of that noon-ET Binance BTC/USDT candle governs.
+
+## Why this could create or destroy alpha
+
+This can create alpha when markets leave too much residual probability on a mechanically checkable settlement path after the relevant datapoint already exists. The market may have been over-discounting operational ambiguity. It destroys alpha if one treats exchange-defined threshold markets like open macro forecasts and fails to verify exact resolution mechanics. Here the likely edge came from disciplined settlement-surface verification, not superior directional crypto insight.
+
+## What would falsify this interpretation / change the view
+
+The main falsifier would be direct evidence that the governing Binance website/chart candle for noon ET is not the same candle the API/open-time interpretation identifies, or official Polymarket guidance using a different minute-label convention. A documented exchange correction to that exact historical candle would also matter. Short of that, there is little basis to move materially lower.
+
+## Highest-value next research
+
+If any extra check is desired, the single highest-value one is an archived Binance website/chart capture or other authoritative UI-level evidence for the exact noon-ET candle to close the remaining UI/API parity gap. Otherwise none.
+
+## Source-quality assessment
+
+Primary relied-on source class: the named governing exchange source, Binance, especially its kline documentation and lane-reported exact-minute data. Most important secondary source class: contract/rules text from Polymarket references. Evidence independence is medium at best because both sources are tightly coupled to the same resolution framework, but that is appropriate for a source-defined contract. Source-of-truth ambiguity is low, not zero. The synthesis is not bottlenecked by missing personas, but it is somewhat bottlenecked by all lanes relying on the same venue family rather than an independently archived UI capture.
+
+## Verification impact
+
+Yes, additional synthesis-stage verification was used. Checking Binance documentation materially supported the open-time candle-identity interpretation and reinforced that the lanes were not merely free-associating from generic BTC strength. Cross-lane comparison also clarified that the apparent disagreement was mostly about residual mechanics risk sizing, not about facts. The synthesis did not uncover a major lane-level inconsistency; if anything, it showed the extracts were faithful but a touch overconfident at the top end.
+
+## Persona contribution map
+
+base-rate — strongest clean framing that this is a narrow source-defined numeric market where outside-view confidence should be driven by mechanics risk, not macro BTC narrative. catalyst-hunter — useful reframing that after the event minute passed the only real catalyst was confirmation of settlement plumbing, plus adjacent-minute robustness. market-implied — best articulation of the market prior and why 0.825 likely understated confidence once the source-of-truth candle was checked. risk-manager — best preservation of the real residual risk: Binance website/UI versus REST API parity and unusual settlement interpretation. variant-view — strongest stress test of the minority failure mode, namely misidentifying the governing candle rather than getting BTC direction wrong.
+
+## Reusable lesson signals
+
+Possible durable lesson: in exchange-candle prediction markets, the highest-value synthesis work is often exact settlement-surface and timestamp verification, not broad asset analysis. Possible underbuilt driver: explicit UI/API parity risk may deserve more standardized treatment in resolution-sensitive crypto markets. Possible source-quality lesson: lanes should distinguish clearly between governing website/chart references and API-based operational verification. Reusability confidence: medium.
+
+## Orchestrator review suggestions
+
+review later for durable lesson: yes; review later for driver candidate: no; review later for canon or linkage issue: no; review later for swarm-method issue: yes; reason: this case suggests a reusable synthesis checklist for exchange-candle markets, especially around open-time semantics, timezone conversion, adjacent-minute checks, and explicit UI/API parity handling when the market-vs-swarm gap is large.
+
+## Recommended follow-up
+
+No follow-up needed for the case view itself. If process improvement is desired, standardize a lightweight verification checklist for exchange-defined candle markets and require explicit notation of whether direct UI/archive parity was verified or merely inferred from official API/docs.

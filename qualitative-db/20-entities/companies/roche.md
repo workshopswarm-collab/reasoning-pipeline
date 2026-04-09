@@ -3,6 +3,7 @@ type: entity_overview
 domain: tech-ai
 subdomain: biotech-and-pharma
 entity: roche
+aliases: [F. Hoffmann-La Roche]
 entity_type: company
 status: active
 last_updated: 2026-03-25
