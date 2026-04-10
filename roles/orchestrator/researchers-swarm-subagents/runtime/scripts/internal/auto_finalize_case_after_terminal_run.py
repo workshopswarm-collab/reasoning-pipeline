@@ -3,8 +3,8 @@
 
 Best-effort flow:
 1. Load the run's case/market/dispatch context.
-2. If a matching dispatch manifest can be found, run the standard manifest finalizer
-   to repair artifact-vs-DB lag.
+2. Only if the active dispatch is already terminal (no queued/running siblings), run the
+   standard manifest finalizer to repair artifact-vs-DB lag.
 3. Reload sibling run counts for the case.
 4. Close the parent case/market only when the full swarm has completed cleanly
    (all sibling runs are `completed`).
@@ -326,6 +326,15 @@ def find_manifest(dispatch_id: str | None) -> Path | None:
     return matches[-1] if matches else None
 
 
+def dispatch_counts(context: dict | None) -> dict:
+    return (context or {}).get("counts") or {}
+
+
+def dispatch_is_terminal(context: dict | None) -> bool:
+    counts = dispatch_counts(context)
+    return counts.get("queued", 0) == 0 and counts.get("running", 0) == 0 and counts.get("total", 0) > 0
+
+
 def main() -> int:
     maybe_load_workspace_env()
     args = parse_args()
@@ -340,9 +349,13 @@ def main() -> int:
             raise ValueError("research run not found")
 
         manifest_path = find_manifest(context.get("dispatch_id"))
+        pre_counts = dispatch_counts(context)
+        pre_terminal = dispatch_is_terminal(context)
         finalize_result = None
         finalize_error = None
-        if manifest_path is not None:
+        close_result = None
+
+        if pre_terminal and manifest_path is not None:
             os.environ["ORCHESTRATOR_SKIP_AUTO_FINALIZE"] = "1"
             try:
                 finalize_result = python_json(
@@ -358,23 +371,28 @@ def main() -> int:
             SQL_CONTEXT,
             vars_map={"research_run_id": args.research_run_id},
         )
-        close_result = run_psql(
-            args.psql,
-            args.db_url,
-            SQL_CLOSE_PARENT,
-            vars_map={"research_run_id": args.research_run_id},
-        )
+        post_counts = dispatch_counts(post_context)
+        post_terminal = dispatch_is_terminal(post_context)
+
+        if post_terminal:
+            close_result = run_psql(
+                args.psql,
+                args.db_url,
+                SQL_CLOSE_PARENT,
+                vars_map={"research_run_id": args.research_run_id},
+            )
 
         output = {
             "research_run_id": args.research_run_id,
             "dispatch_id": context.get("dispatch_id"),
             "manifest_path": str(manifest_path) if manifest_path else None,
+            "pre_reconcile_counts": pre_counts,
+            "pre_terminal": pre_terminal,
             "manifest_finalizer": finalize_result,
             "manifest_finalizer_error": finalize_error,
-            "post_reconcile_counts": (post_context or {}).get("counts") or {},
+            "post_reconcile_counts": post_counts,
             "parent_finalize": close_result,
-            "all_terminal": ((post_context or {}).get("counts") or {}).get("queued", 0) == 0
-            and ((post_context or {}).get("counts") or {}).get("running", 0) == 0,
+            "all_terminal": post_terminal,
         }
     except Exception as exc:  # noqa: BLE001
         print(f"ERROR: {exc}", file=sys.stderr)

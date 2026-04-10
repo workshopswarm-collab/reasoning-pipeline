@@ -14,7 +14,7 @@ if str(SUBAGENT_DIR) not in sys.path:
     sys.path.insert(0, str(SUBAGENT_DIR))
 
 from common import WORKSPACE_ROOT, load_json, relative_to_workspace, synthesis_subagent_label, telegram_topic_session_key  # noqa: E402
-from status import set_overall_status, write_status_file  # noqa: E402
+from status import locked_status, set_overall_status, write_status_file  # noqa: E402
 
 BUILD_BUNDLE = SUBAGENT_DIR / "planner" / "scripts" / "build_synthesis_bundle.py"
 BUILD_SIDECAR_BUNDLE = SUBAGENT_DIR / "planner" / "scripts" / "build_sidecar_synthesis_bundle.py"
@@ -132,25 +132,33 @@ def main() -> None:
         "structured_bundle_artifact_type": structured_bundle_artifact_type,
         "synthesis_prompt_path": synthesis_prompt_path,
         "synthesis_subagent_label": synthesis_subagent_label(args.dispatch_id),
-        "synthesis_target_chat_id": controller_chat_id,
-        "synthesis_target_topic_id": controller_topic_id,
-        "synthesis_target_topic_title": controller_topic_title,
-        "synthesis_target_session_key": telegram_topic_session_key(controller_chat_id, controller_topic_id),
         "synthesis_visible_start_marker": f"STARTING SYNTHESIS | market={question} | dispatch_id={args.dispatch_id}",
         "synthesis_visible_finish_marker": f"FINISHED SYNTHESIS | market={question} | dispatch_id={args.dispatch_id}",
     }
-    set_overall_status(
-        status_payload,
-        "ready_for_final_synthesis" if synthesis_prompt_path else "waiting_for_reasoning_sidecars",
-        stage="kickoff",
-        message="Synthesis kickoff prepared current-stage artifacts",
-        extra={
-            "ready_sidecar_personas": ready_sidecar_personas,
-            "pending_sidecar_personas": pending_sidecar_personas,
-            "structured_bundle_artifact_type": structured_bundle_artifact_type,
-        },
-    )
-    write_status_file(status_path, status_payload)
+    desired_status = "ready_for_final_synthesis" if synthesis_prompt_path else "waiting_for_reasoning_sidecars"
+    synthesis_target_session_key = telegram_topic_session_key(controller_chat_id, controller_topic_id)
+    with locked_status(status_path) as persisted_status:
+        persisted_status.update(status_payload)
+        if not persisted_status.get("synthesis_lane_session_key"):
+            persisted_status["synthesis_target_chat_id"] = controller_chat_id
+            persisted_status["synthesis_target_topic_id"] = controller_topic_id
+            persisted_status["synthesis_target_topic_title"] = controller_topic_title
+            persisted_status["synthesis_target_session_key"] = synthesis_target_session_key
+
+        current_status = str(persisted_status.get("status") or "")
+        if current_status not in {"final_synthesis_launching", "final_synthesis_launched", "synthesis_completed", "final_synthesis_failed"}:
+            set_overall_status(
+                persisted_status,
+                desired_status,
+                stage="kickoff",
+                message="Synthesis kickoff prepared current-stage artifacts",
+                extra={
+                    "ready_sidecar_personas": ready_sidecar_personas,
+                    "pending_sidecar_personas": pending_sidecar_personas,
+                    "structured_bundle_artifact_type": structured_bundle_artifact_type,
+                },
+            )
+        status_payload = dict(persisted_status)
 
     summary = {
         "ok": True,
