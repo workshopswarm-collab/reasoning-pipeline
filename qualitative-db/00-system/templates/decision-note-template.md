@@ -23,7 +23,6 @@ tags: []
 Use this template only when the pipeline needs to preserve a persistent final recommendation in file form.
 
 This template is for the decision-maker's final recommendation after reviewing research and orchestrator synthesis.
-If the recommendation needs machine-readable execution semantics, use `decision-packet-template.md` together with `decision-packet.schema.json` instead of relying on this higher-level note template alone.
 
 ## Recommendation
 
