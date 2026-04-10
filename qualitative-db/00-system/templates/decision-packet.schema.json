@@ -1,0 +1,447 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://docs.openclaw.ai/schemas/decision-packet.schema.json",
+  "title": "Decision Packet",
+  "description": "Machine-readable final decision contract for the Decision-Maker stage of the prediction-market pipeline. This artifact sits downstream of synthesis/decision-handoff and upstream of isolated execution, accounting, and evaluation. It should optimize for long-run market performance, clear execution thresholds, risk discipline, and auditability.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "generated_at",
+    "context",
+    "decision",
+    "valuation",
+    "execution_semantics",
+    "risk_controls",
+    "bands",
+    "invalidation",
+    "epistemic_status",
+    "audit"
+  ],
+  "$defs": {
+    "probability": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "bankrollFraction": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "qualityLevel": {
+      "type": "string",
+      "enum": ["low", "medium", "high"]
+    },
+    "stringList": {
+      "type": "array",
+      "items": { "type": "string" },
+      "default": []
+    },
+    "band": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "min_p", "max_p", "target_exposure_fraction"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "enum": ["max_enter", "scaled_enter", "hold", "trim", "exit"],
+          "description": "Canonical action band name. Execution semantics are determined by the band name plus target_exposure_fraction."
+        },
+        "min_p": {
+          "$ref": "#/$defs/probability",
+          "description": "Inclusive lower bound on the market-implied true-probability axis."
+        },
+        "max_p": {
+          "$ref": "#/$defs/probability",
+          "description": "Upper bound on the market-implied true-probability axis. Use half-open intervals except the final band, which should end at 1.0 inclusively."
+        },
+        "target_exposure_fraction": {
+          "$ref": "#/$defs/bankrollFraction",
+          "description": "Target fraction of max_position_size_pct_bankroll when the market is inside this band."
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "properties": {
+    "schema_version": {
+      "const": "decision-packet/v1"
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "context": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["case_key", "dispatch_id", "question"],
+      "properties": {
+        "case_key": { "type": "string" },
+        "dispatch_id": { "type": "string" },
+        "question": { "type": "string" },
+        "market_id": { "type": "string" },
+        "market_title": { "type": "string" },
+        "source_decision_handoff_path": {
+          "type": "string",
+          "description": "Workspace-relative path to the upstream synthesis decision-handoff artifact, when present."
+        },
+        "source_syndicated_finding_path": {
+          "type": "string",
+          "description": "Workspace-relative path to the upstream syndicated-finding artifact, when present."
+        },
+        "decision_maker_agent": {
+          "type": "string",
+          "default": "decision-maker"
+        }
+      }
+    },
+    "decision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "side",
+        "trade_authorization",
+        "position_policy",
+        "decision_readiness",
+        "primary_crux"
+      ],
+      "properties": {
+        "side": {
+          "type": "string",
+          "enum": ["yes", "no", "none"],
+          "description": "The intended thesis side. Use none only when the correct output is flat/no thesis position."
+        },
+        "trade_authorization": {
+          "type": "string",
+          "enum": ["authorized", "watch_only", "risk_reduce_only", "forbidden"],
+          "description": "Whether downstream execution may act autonomously on this packet."
+        },
+        "position_policy": {
+          "type": "string",
+          "enum": ["enter_or_add", "hold_only", "reduce_only", "exit_only", "flat"],
+          "description": "The permitted position behavior for this packet."
+        },
+        "decision_readiness": {
+          "type": "string",
+          "enum": ["ready", "needs_more_research", "needs_portfolio_review", "needs_market_update"],
+          "description": "Why the packet is or is not ready for live action."
+        },
+        "primary_crux": {
+          "type": "string",
+          "description": "The single sentence that is most carrying the decision."
+        },
+        "secondary_cruxes": {
+          "$ref": "#/$defs/stringList"
+        },
+        "thesis_class": {
+          "type": "string",
+          "enum": ["edge_present", "edge_too_small", "price_not_good_enough", "not_decision_ready", "risk_constraint_binding"]
+        }
+      }
+    },
+    "valuation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "fair_value_low",
+        "fair_value_high",
+        "fair_value_mid",
+        "market_reference_price",
+        "edge_mid_vs_market_pct_points",
+        "independent_verification_quality",
+        "compressed_toward_market_applied"
+      ],
+      "properties": {
+        "fair_value_low": {
+          "$ref": "#/$defs/probability",
+          "description": "Lower bound of the Decision-Maker's fair-value estimate."
+        },
+        "fair_value_high": {
+          "$ref": "#/$defs/probability",
+          "description": "Upper bound of the Decision-Maker's fair-value estimate. Must be >= fair_value_low."
+        },
+        "fair_value_mid": {
+          "$ref": "#/$defs/probability",
+          "description": "Midpoint or point estimate used for edge calculations."
+        },
+        "market_reference_price": {
+          "$ref": "#/$defs/probability",
+          "description": "Reference market probability used by the Decision-Maker when computing edge. Prefer the executable quote or a clearly documented market snapshot."
+        },
+        "edge_mid_vs_market_pct_points": {
+          "type": "number",
+          "description": "Difference between fair_value_mid and market_reference_price, stored in percentage points, not decimal probability. Example: +5.5 means fair_value_mid exceeds market_reference_price by 0.055."
+        },
+        "independent_verification_quality": {
+          "$ref": "#/$defs/qualityLevel"
+        },
+        "compressed_toward_market_applied": {
+          "type": "boolean",
+          "description": "Whether the final decision compressed toward market because the apparent edge was not independently verified strongly enough."
+        },
+        "compression_reason": {
+          "type": "string"
+        }
+      }
+    },
+    "execution_semantics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "price_axis",
+        "price_source",
+        "rebalance_threshold_fraction",
+        "allow_auto_reversal",
+        "valid_until",
+        "quote_staleness_seconds"
+      ],
+      "properties": {
+        "price_axis": {
+          "const": "market_implied_true_prob",
+          "description": "Canonical axis for all decision bands. Bands are always defined on the proposition's implied true-probability axis, even when side = no."
+        },
+        "price_source": {
+          "type": "string",
+          "enum": ["effective_executable_quote", "market_snapshot_quote"],
+          "description": "Execution should prefer effective_executable_quote: the best live actionable quote after expected fees/slippage."
+        },
+        "rebalance_threshold_fraction": {
+          "$ref": "#/$defs/bankrollFraction",
+          "description": "Do not rebalance unless the gap between current and target exposure is at least this fraction of max_position_size_pct_bankroll."
+        },
+        "allow_auto_reversal": {
+          "type": "boolean",
+          "description": "Default should be false. If false, automation must flatten before opening the opposite-side thesis from a fresh or explicitly reversal-authorized packet."
+        },
+        "valid_until": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Hard expiry for autonomous use of this packet."
+        },
+        "quote_staleness_seconds": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Maximum age of price data that execution may use when mapping price to a band."
+        },
+        "time_horizon": {
+          "type": "string"
+        }
+      }
+    },
+    "risk_controls": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "max_position_size_pct_bankroll",
+        "max_additional_exposure_pct_bankroll",
+        "max_single_order_pct_bankroll",
+        "slippage_tolerance_bps",
+        "confidence_level"
+      ],
+      "properties": {
+        "max_position_size_pct_bankroll": {
+          "$ref": "#/$defs/bankrollFraction"
+        },
+        "max_additional_exposure_pct_bankroll": {
+          "$ref": "#/$defs/bankrollFraction"
+        },
+        "max_single_order_pct_bankroll": {
+          "$ref": "#/$defs/bankrollFraction"
+        },
+        "slippage_tolerance_bps": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "liquidity_min_depth": {
+          "type": "number",
+          "minimum": 0
+        },
+        "correlation_bucket_limit_pct_bankroll": {
+          "$ref": "#/$defs/bankrollFraction"
+        },
+        "confidence_level": {
+          "$ref": "#/$defs/qualityLevel"
+        },
+        "portfolio_constraints": {
+          "$ref": "#/$defs/stringList"
+        },
+        "liquidity_caution": {
+          "$ref": "#/$defs/qualityLevel"
+        }
+      }
+    },
+    "bands": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/band"
+      },
+      "description": "Deterministic price bands for execution. Bands must fully cover [0,1] with no gaps or overlaps. For side = yes, target_exposure_fraction should be non-increasing as price rises. For side = no, target_exposure_fraction should be non-decreasing as price rises."
+    },
+    "invalidation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["thesis_breakers", "time_breakers"],
+      "properties": {
+        "thesis_breakers": {
+          "$ref": "#/$defs/stringList"
+        },
+        "market_structure_breakers": {
+          "$ref": "#/$defs/stringList"
+        },
+        "time_breakers": {
+          "$ref": "#/$defs/stringList"
+        },
+        "reversal_conditions": {
+          "$ref": "#/$defs/stringList"
+        }
+      }
+    },
+    "epistemic_status": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["key_uncertainties", "what_would_change_my_mind"],
+      "properties": {
+        "key_uncertainties": {
+          "$ref": "#/$defs/stringList"
+        },
+        "reasons_to_pass": {
+          "$ref": "#/$defs/stringList"
+        },
+        "what_would_change_my_mind": {
+          "$ref": "#/$defs/stringList"
+        },
+        "decision_quality": {
+          "type": "string",
+          "enum": ["clean", "good_not_clean", "fragile", "not_ready"]
+        }
+      }
+    },
+    "audit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "portfolio_context_checked",
+        "market_baseline_respected",
+        "action_bias_check_passed",
+        "self_preservation_bias_check_passed",
+        "one_sentence_rationale"
+      ],
+      "properties": {
+        "portfolio_context_checked": {
+          "type": "boolean"
+        },
+        "market_baseline_respected": {
+          "type": "boolean"
+        },
+        "action_bias_check_passed": {
+          "type": "boolean",
+          "description": "True only if the packet was not distorted toward activity simply because upstream effort was spent."
+        },
+        "self_preservation_bias_check_passed": {
+          "type": "boolean",
+          "description": "True only if the packet was not distorted toward activity to justify the pipeline or Decision-Maker's existence."
+        },
+        "one_sentence_rationale": {
+          "type": "string"
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "decision": {
+            "properties": {
+              "side": { "const": "none" }
+            },
+            "required": ["side"]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "decision": {
+            "properties": {
+              "position_policy": { "const": "flat" }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "decision": {
+            "properties": {
+              "trade_authorization": { "const": "forbidden" }
+            },
+            "required": ["trade_authorization"]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "decision": {
+            "properties": {
+              "position_policy": { "const": "flat" }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "decision": {
+            "properties": {
+              "trade_authorization": { "const": "risk_reduce_only" }
+            },
+            "required": ["trade_authorization"]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "decision": {
+            "properties": {
+              "position_policy": {
+                "enum": ["reduce_only", "exit_only"]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "decision": {
+            "properties": {
+              "trade_authorization": { "const": "watch_only" }
+            },
+            "required": ["trade_authorization"]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "decision": {
+            "properties": {
+              "position_policy": {
+                "enum": ["hold_only", "reduce_only", "exit_only", "flat"]
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}
