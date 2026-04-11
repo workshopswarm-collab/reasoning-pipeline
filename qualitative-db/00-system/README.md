@@ -39,7 +39,8 @@ Use `00-system/` for:
 - system-wide maintenance conventions
 
 Runtime note:
-- the live research swarm currently executes in fresh Telegram topics
+- the live researcher swarm currently executes in Telegram forum topics (controller + persona topics per case)
+- once a dispatch is truly terminal, synthesis promotion runs in one dedicated synthesis topic for that dispatch
 - the vault remains the durable memory/artifact layer, not the execution surface
 
 ## Non-negotiable operating rules

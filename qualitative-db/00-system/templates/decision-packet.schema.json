@@ -126,7 +126,7 @@
         },
         "decision_readiness": {
           "type": "string",
-          "enum": ["ready", "needs_more_research", "needs_portfolio_review", "needs_market_update"],
+          "enum": ["ready", "needs_more_research", "needs_market_update"],
           "description": "Why the packet is or is not ready for live action."
         },
         "primary_crux": {
@@ -324,16 +324,12 @@
       "type": "object",
       "additionalProperties": false,
       "required": [
-        "portfolio_context_checked",
         "market_baseline_respected",
         "action_bias_check_passed",
         "self_preservation_bias_check_passed",
         "one_sentence_rationale"
       ],
       "properties": {
-        "portfolio_context_checked": {
-          "type": "boolean"
-        },
         "market_baseline_respected": {
           "type": "boolean"
         },

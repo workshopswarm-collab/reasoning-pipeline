@@ -90,7 +90,8 @@ Canonical per-persona sidecar path:
    - `researchers-swarm-subagents/runtime/scripts/reconcile_research_run_completion.py` validates that the sidecar exists and matches the final persona memo before allowing a run to finalize as completed.
 
 4. **Dispatch finalization triggers synthesis kickoff**
-   - Once the swarm is truly complete, `researchers-swarm-subagents/runtime/scripts/runrepairs/finalize_dispatch_after_swarm.py` can best-effort call `runtime/scripts/kickoff_synthesis_after_swarm.py`.
+   - Once the swarm is truly complete, `researchers-swarm-subagents/runtime/scripts/runrepairs/finalize_dispatch_after_swarm.py` calls `runtime/scripts/kickoff_synthesis_after_swarm.py` and then hands the returned status file into `runtime/scripts/launch_synthesis_if_ready.py`.
+   - The researcher-side finalizer is only invoked once the active dispatch is actually terminal, which reduces pre-terminal fan-out.
 
 5. **Kickoff builds synthesis-stage preparation artifacts**
    - Kickoff writes:
@@ -117,7 +118,8 @@ Canonical per-persona sidecar path:
      - asks the synthesizer to explain material divergence from the swarm-implied center
 
 8. **A dedicated Telegram synthesis lane is created at synthesis start**
-   - `runtime/scripts/launch_synthesis_if_ready.py` bootstraps a fresh synthesis Telegram topic right before final synthesis launch.
+   - `runtime/scripts/launch_synthesis_if_ready.py` bootstraps or reuses the dedicated synthesis Telegram topic right before final synthesis launch.
+   - Launch is single-flight: concurrent callers compete for a dispatch-local launch claim, and only the winner is allowed to create/use the synthesis topic and spawn `run_synthesis_executor.py`.
    - That lane becomes the delivery/session target for the synthesis worker and the visible synthesis start/finish markers.
 
 9. **The synthesis worker returns JSON, not markdown**
@@ -157,10 +159,12 @@ Canonical per-persona sidecar path:
   - `runtime/scripts/show_synthesis_stage_status.py`
     - prints a concise summary of current status, lane info, last stage event, terminal summary, and final artifact paths
 - Multi-dispatch/idempotency hardening:
-  - status-file mutations are lock-protected for the main launcher/executor paths
+  - status-file mutations are lock-protected for kickoff, launcher, and main executor paths
+  - kickoff now merges into the existing status file instead of overwriting it, so it preserves any in-flight launch claim or completed synthesis state
+  - final synthesis launch uses a dispatch-local claim to enforce single-flight semantics
   - final synthesis launch skips an already-running final synthesis PID
   - synthesis-lane bootstrap is race-safe and reuses the lane if another process created it first
-  - re-running launchers on a completed dispatch should no-op cleanly rather than duplicating work
+  - re-running launchers or kickoff on a completed dispatch should no-op cleanly rather than duplicating work or resetting the stage back to `ready_for_final_synthesis`
 - Early-failure rule:
   - if any required sidecar is missing or invalid, final synthesis should not continue
   - repair/finalization should stop at the earliest failing stage rather than trying to push the whole synthesis process through

@@ -29,8 +29,9 @@ That means:
 - your work should improve provenance, retrieval, comparison, and later synthesis
 
 Runtime note:
-- live swarm execution currently uses fresh Telegram topics as the research surface
-- treat Telegram topics as the runtime workspace and `qualitative-db/40-research/` as the durable artifact/provenance layer
+- live swarm execution currently uses Telegram forum topics as the research surface
+- treat controller/persona topics as the active researcher runtime workspace and `qualitative-db/40-research/` as the durable artifact/provenance layer
+- synthesis happens later in its own dedicated synthesis topic; researcher lanes should not try to impersonate that step upstream
 
 ## Vault purpose
 

@@ -8,7 +8,7 @@ Launch the swarm from the canonical planner-generated prompts, not from hand-wri
 
 This is a two-phase process:
 - local Python/Postgres scripts prepare the dispatch plan
-- the OpenClaw runtime creates fresh Telegram topics, materializes the canonical topic sessions, and executes the actual `sessions.send` handoffs into those topic sessions
+- the OpenClaw runtime creates or reuses the required Telegram forum topics, materializes the canonical topic sessions, and executes the actual `sessions.send` handoffs into those topic sessions
 
 For headless launches from TUI, prefer:
 - `roles/orchestrator/researchers-swarm-subagents/runtime/scripts/prepare_and_launch_headless_telegram_dispatch.py`
@@ -51,10 +51,11 @@ Primary planner:
 15. completion handling should reconcile each run back from its fixed `research_run_id`
 16. successful completion should auto-post the visible Telegram finish marker through `update_research_run.py`
 17. the runtime loop can auto-complete stale finished work, send nudges to stalled lanes, and optionally fail hard-stalled runs
-18. terminal `update_research_run.py` completion/failure updates should auto-attempt dispatch reconciliation and parent case/market finalization
-19. if the automatic path is missed or you need a repair/audit step, run:
+18. terminal `update_research_run.py` completion/failure updates should auto-attempt dispatch reconciliation only once the active dispatch is truly terminal (`queued == 0` and `running == 0`)
+19. once the swarm is fully completed, the manifest finalizer should prepare synthesis stage artifacts and then hand the resulting status file into the single-flight synthesis launcher so only one dedicated synthesis topic/executor is created for the dispatch
+20. if the automatic path is missed or you need a repair/audit step, run:
    - `runtime/scripts/runrepairs/finalize_dispatch_after_swarm.py --file <manifest> --apply`
-20. finalize launch/completion summaries for Orchestrator
+21. finalize launch/completion summaries for Orchestrator
 
 ## Partial delivery rule
 

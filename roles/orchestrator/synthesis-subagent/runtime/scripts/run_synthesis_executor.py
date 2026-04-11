@@ -12,9 +12,13 @@ from typing import Any
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 SUBAGENT_DIR = SCRIPT_DIR.parents[1]
+REPO_ROOT = SCRIPT_DIR.parents[4]
 if str(SUBAGENT_DIR) not in sys.path:
     sys.path.insert(0, str(SUBAGENT_DIR))
+if str(REPO_ROOT / "scripts") not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT / "scripts"))
 
+from case_pipeline_status import update_case_pipeline_status  # noqa: E402
 from common import (  # noqa: E402
     WORKSPACE_ROOT,
     append_case_timeline_entry,
@@ -446,6 +450,20 @@ def status_path_for(args: argparse.Namespace, bundle_path: Path) -> Path:
     return bundle_path.with_name("synthesis-stage-status.json")
 
 
+def extract_case_key_from_path(path: Path) -> str:
+    for part in path.parts:
+        if part.startswith("case-"):
+            return part
+    return ""
+
+
+def extract_dispatch_id_from_path(path: Path) -> str:
+    for part in path.parts:
+        if part.startswith("dispatch-case-"):
+            return part
+    return ""
+
+
 def append_synthesis_timeline_entry(bundle_path: Path, artifact_path: str) -> dict[str, Any]:
     bundle = load_json(bundle_path)
     case_key = bundle.get("case_key") or ""
@@ -506,10 +524,24 @@ def main() -> None:
         outputs = render_and_write(bundle_path, result_path, args)
         timeline_update = append_synthesis_timeline_entry(bundle_path, outputs["render"]["artifact_path"])
         visible_finish = maybe_send_visible_marker(args.visible_chat_id, args.visible_topic_id, args.visible_finish_marker)
+        bundle_payload = load_json(bundle_path)
+        bundle_artifact_type = str(bundle_payload.get("artifact_type") or "").strip() if isinstance(bundle_payload, dict) else ""
+        resolved_structured_bundle_path = ""
+        resolved_structured_bundle_artifact_type = ""
+        if bundle_artifact_type == "sidecar_synthesis_bundle":
+            resolved_structured_bundle_path = relative_to_workspace(bundle_path)
+            resolved_structured_bundle_artifact_type = bundle_artifact_type
+        else:
+            sibling_sidecar_bundle = bundle_path.with_name("sidecar-synthesis-bundle.json")
+            if sibling_sidecar_bundle.exists():
+                sibling_payload = load_json(sibling_sidecar_bundle)
+                sibling_type = str(sibling_payload.get("artifact_type") or "").strip() if isinstance(sibling_payload, dict) else ""
+                if sibling_type == "sidecar_synthesis_bundle":
+                    resolved_structured_bundle_path = relative_to_workspace(sibling_sidecar_bundle)
+                    resolved_structured_bundle_artifact_type = sibling_type
         if status_exists:
             with locked_status(status_path) as status_payload:
                 status_payload.update({
-                    "structured_bundle_path": relative_to_workspace(bundle_path),
                     "synthesis_prompt_path": relative_to_workspace(prompt_path),
                     "result_json": relative_to_workspace(result_path),
                     "final_artifact_path": outputs["render"]["artifact_path"],
@@ -517,7 +549,32 @@ def main() -> None:
                     "final_decision_handoff_path": outputs["decision_handoff"]["decision_handoff_path"],
                     "timeline_update": timeline_update,
                 })
+                if resolved_structured_bundle_path:
+                    status_payload.update({
+                        "structured_bundle_path": resolved_structured_bundle_path,
+                        "structured_bundle_artifact_type": resolved_structured_bundle_artifact_type,
+                    })
                 set_overall_status(status_payload, "synthesis_completed", stage="final_synthesis_execution", message="Final synthesis completed and artifacts rendered")
+        case_key = extract_case_key_from_path(bundle_path)
+        dispatch_id = extract_dispatch_id_from_path(bundle_path)
+        if case_key:
+            update_case_pipeline_status(
+                case_key=case_key,
+                dispatch_id=dispatch_id,
+                status="pipeline_in_progress",
+                current_stage="synthesis",
+                stage_status_patch={
+                    "swarm": "completed",
+                    "synthesis": "completed",
+                    "decision": "pending",
+                },
+                runner_id="run_synthesis_executor",
+                message="Synthesis completed and decision handoff is ready",
+                terminal_summary_patch={
+                    "synthesis_artifact_path": outputs["render"]["artifact_path"],
+                    "decision_handoff_path": outputs["decision_handoff"]["decision_handoff_path"],
+                },
+            )
         summary = {
             "ok": True,
             "bundle_json": relative_to_workspace(bundle_path),
@@ -541,6 +598,19 @@ def main() -> None:
         if status_exists:
             with locked_status(status_path) as status_payload:
                 set_overall_status(status_payload, "final_synthesis_failed", stage="final_synthesis_execution", message="Final synthesis executor crashed", extra={"error": str(exc)})
+        case_key = extract_case_key_from_path(bundle_path if 'bundle_path' in locals() else status_path)
+        dispatch_id = extract_dispatch_id_from_path(bundle_path if 'bundle_path' in locals() else status_path)
+        if case_key:
+            update_case_pipeline_status(
+                case_key=case_key,
+                dispatch_id=dispatch_id,
+                status="pipeline_failed",
+                current_stage="synthesis",
+                stage_status_patch={"synthesis": "failed"},
+                runner_id="run_synthesis_executor",
+                message="Synthesis failed",
+                terminal_summary_patch={"failure_reason": str(exc), "failed_stage": "synthesis"},
+            )
         raise
 
 

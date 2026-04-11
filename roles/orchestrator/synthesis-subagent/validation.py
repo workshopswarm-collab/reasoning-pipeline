@@ -16,6 +16,18 @@ ALLOWED_SYNTHESIZER_FRONTMATTER_FIELDS = {
     "syndicated_probability_high",
     "edge_independent_verification_quality",
     "compressed_toward_market_due_to_verification",
+    "contract_ambiguity_level",
+    "contract_ambiguity_reason",
+    "independently_verified_points",
+    "verification_gap_summary",
+    "best_countercase_summary",
+    "main_reason_for_disagreement",
+    "resolution_mechanics_summary",
+    "freshness_sensitive",
+    "freshness_driver",
+    "decision_blockers",
+    "blockers_require_new_research",
+    "disagreement_type",
     "disagreement_intensity",
     "synthesis_confidence_quality",
     "staleness_risk",
@@ -139,6 +151,18 @@ def validate_synthesis_result_payload(payload: Any) -> dict[str, Any]:
         "syndicated_probability_high",
         "edge_independent_verification_quality",
         "compressed_toward_market_due_to_verification",
+        "contract_ambiguity_level",
+        "contract_ambiguity_reason",
+        "independently_verified_points",
+        "verification_gap_summary",
+        "best_countercase_summary",
+        "main_reason_for_disagreement",
+        "resolution_mechanics_summary",
+        "freshness_sensitive",
+        "freshness_driver",
+        "decision_blockers",
+        "blockers_require_new_research",
+        "disagreement_type",
         "disagreement_intensity",
         "synthesis_confidence_quality",
         "staleness_risk",
@@ -153,6 +177,38 @@ def validate_synthesis_result_payload(payload: Any) -> dict[str, Any]:
             value = coerce_string(frontmatter.get(field))
             if value not in allowed:
                 errors.append(f"invalid enum for {field}: {value or '[blank]'}")
+
+    if "contract_ambiguity_reason" in frontmatter and not isinstance(frontmatter.get("contract_ambiguity_reason"), str):
+        errors.append("contract_ambiguity_reason must be a string")
+    if coerce_string(frontmatter.get("contract_ambiguity_level")) in {"minor", "moderate", "major"} and not coerce_string(frontmatter.get("contract_ambiguity_reason")):
+        errors.append("contract_ambiguity_reason must be non-empty when contract_ambiguity_level is not none")
+
+    verified_points = frontmatter.get("independently_verified_points")
+    if not isinstance(verified_points, list):
+        errors.append("independently_verified_points must be a list of strings")
+    elif any(not isinstance(item, str) for item in verified_points):
+        errors.append("independently_verified_points must contain only strings")
+
+    for field in [
+        "verification_gap_summary",
+        "best_countercase_summary",
+        "main_reason_for_disagreement",
+        "resolution_mechanics_summary",
+        "freshness_driver",
+    ]:
+        if not isinstance(frontmatter.get(field), str):
+            errors.append(f"{field} must be a string")
+        elif not coerce_string(frontmatter.get(field)):
+            errors.append(f"{field} must be non-empty")
+
+    decision_blockers = frontmatter.get("decision_blockers")
+    if not isinstance(decision_blockers, list):
+        errors.append("decision_blockers must be a list of strings")
+        decision_blockers = []
+    elif any(not isinstance(item, str) for item in decision_blockers):
+        errors.append("decision_blockers must contain only strings")
+    if coerce_string(frontmatter.get("blockers_require_new_research")) == "yes" and not decision_blockers:
+        errors.append("decision_blockers must be non-empty when blockers_require_new_research is yes")
 
     low = normalize_probability(frontmatter.get("syndicated_probability_low"))
     high = normalize_probability(frontmatter.get("syndicated_probability_high"))

@@ -4,13 +4,14 @@ This folder is the launch control-plane for the researcher swarm subagents.
 
 ## Canonical truth
 
-- Runtime surface: **persistent Telegram case/persona topics**
+- Runtime surface: **Telegram forum topics**
+- Research-swarm lane pattern: one controller topic per case plus one persona topic per persona per case
+- Post-swarm synthesis pattern: once the active dispatch is truly terminal, promote into **one dedicated synthesis topic per dispatch**
 - Handoff primitive: Gateway RPC `sessions.send` (normally invoked through the runtime bridge/helper)
 - Stable completion key: `research_run_id`
-- Stable lane identity: one controller topic per case plus one persona topic per persona per case
-- Lifecycle owner for visible STARTING/FINISHED markers: `runtime/scripts/update_research_run.py`
+- Lifecycle owner for visible STARTING/FINISHED researcher markers: `runtime/scripts/update_research_run.py`
 - Runtime supervision path: `runtime/scripts/run_telegram_swarm_runtime_loop.py`
-- Primary completion path: terminal `update_research_run.py` updates auto-attempt parent finalization
+- Automatic terminal promotion path: terminal researcher completion updates -> guarded parent finalization -> manifest finalizer -> synthesis kickoff -> single-flight synthesis launch
 - Manual repair path: `runtime/scripts/runrepairs/finalize_dispatch_after_swarm.py --file <manifest> --apply`
 
 ## End-to-end flow
@@ -22,10 +23,12 @@ This folder is the launch control-plane for the researcher swarm subagents.
 5. Persona topics do the actual research work and may post sparse progress updates in-topic when useful.
 6. Completion/failure reconciles back into `research_runs` by `research_run_id`, either from the lane helper or from the runtime watchdog/loop.
 7. `update_research_run.py` treats the `running -> completed` patch as the canonical finish transition and auto-posts the visible `FINISHED RESEARCH` marker.
-8. Terminal run updates auto-attempt manifest reconciliation.
-9. Parent case/market closure happens only when the full swarm has completed cleanly; partial-terminal swarms move to `needs_intervention`.
-10. The Telegram swarm runtime loop supervises active `running` lanes, auto-completes stale finished work, sends nudges when needed, and exits automatically once the swarm is done.
-11. If automatic reconciliation is missed, use the manual finalizer as a repair/backstop step.
+8. Terminal run updates auto-attempt dispatch-level finalization only once the active dispatch is actually terminal (`queued == 0` and `running == 0`), which reduces pre-terminal fan-out.
+9. Once the swarm is fully completed, the manifest finalizer kicks off synthesis-stage preparation and then hands the status file into the synthesis launcher.
+10. The synthesis launcher uses a single-flight claim so only one process can create/use the dedicated synthesis topic and spawn the final synthesis executor for that dispatch.
+11. Parent case/market closure happens only when the full swarm has completed cleanly; partial-terminal swarms move to `needs_intervention`.
+12. The Telegram swarm runtime loop supervises active `running` lanes, auto-completes stale finished work, sends nudges when needed, and exits automatically once the swarm is done.
+13. If automatic reconciliation is missed, use the manual finalizer as a repair/backstop step.
 
 ## Important nuance
 
@@ -60,7 +63,9 @@ Runtime owns operational execution work:
 - materialize Telegram topic sessions and deliver one `sessions.send` handoff per launchable lane
 - patch runs to `running` after successful handoff
 - reconcile completion/failure state
-- auto-finalize parent case/market when all runs are terminal
+- auto-attempt dispatch finalization only when the active dispatch is terminal
+- promote completed dispatches into synthesis-stage preparation and single-flight final synthesis launch
+- auto-finalize parent case/market when all runs are terminal and clean
 - provide runtime-loop supervision, manual repair helpers, and manifest hygiene
 
 ## Canonical docs
@@ -115,7 +120,7 @@ Current personas:
 - `risk-manager`
 - `catalyst-hunter`
 
-Each case creates one fresh Telegram topic per persona plus one controller topic.
+Each case creates one controller topic plus one persona topic per persona lane.
 
 ## Status model
 

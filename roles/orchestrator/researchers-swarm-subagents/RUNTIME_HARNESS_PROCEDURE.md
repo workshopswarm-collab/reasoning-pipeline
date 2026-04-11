@@ -1,6 +1,6 @@
 # Runtime Harness Procedure
 
-Use this procedure when the TUI/main runtime needs to deliver a prepared dispatch manifest into fresh Telegram topics.
+Use this procedure when the TUI/main runtime needs to deliver a prepared dispatch manifest into Telegram forum topics.
 
 ## Goal
 
@@ -69,8 +69,11 @@ Use the runtime summary object to report one of:
 - persona lanes reconcile completion/failure through `update_research_run.py`
 - successful completion auto-posts the visible Telegram finish marker
 - terminal run updates auto-attempt `auto_finalize_case_after_terminal_run.py`
+- that helper now stays quiet until the active dispatch is actually terminal (`queued == 0` and `running == 0`)
 - if the swarm is fully completed, that helper:
   - runs manifest reconciliation
+  - prepares synthesis-stage artifacts
+  - hands off to the single-flight synthesis launcher so one dedicated synthesis topic/executor is created for the dispatch
   - closes the parent case
   - closes the parent market pipeline state
 - if the swarm is terminal but not fully completed, the market moves to `needs_intervention`
@@ -101,4 +104,4 @@ The runtime harness no longer depends on:
 - subagent session creation
 - unique per-run child-session routing metadata
 
-The handoff surface is the fresh Telegram topic session created or reused for each queued persona run.
+The handoff surface is the Telegram topic session created or reused for each queued persona run.

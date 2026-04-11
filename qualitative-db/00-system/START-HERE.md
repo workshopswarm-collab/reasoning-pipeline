@@ -35,7 +35,8 @@ Read these next only if needed:
 - `50-retrospectives/` = after-the-fact lessons and evaluation
 
 Runtime note:
-- live swarm execution currently happens in fresh Telegram topics
+- live researcher-swarm execution currently happens in Telegram forum topics (controller + persona topics per case)
+- once a dispatch is terminal, final synthesis runs in one dedicated synthesis topic for that dispatch
 - the vault is where durable research artifacts and provenance are written back
 
 ## First questions to ask

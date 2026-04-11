@@ -61,7 +61,7 @@ Recommended usage:
 - Side: `YES | NO | NONE`
 - Trade authorization: `authorized | watch_only | risk_reduce_only | forbidden`
 - Position policy: `enter_or_add | hold_only | reduce_only | exit_only | flat`
-- Decision readiness: `ready | needs_more_research | needs_portfolio_review | needs_market_update`
+- Decision readiness: `ready | needs_more_research | needs_market_update`
 - Primary crux:
 - One-sentence rationale:
 
@@ -166,7 +166,6 @@ Use the canonical band names below and map each one to a target fraction of `max
 
 ## Audit checks
 
-- Portfolio context checked: `true | false`
 - Market baseline respected: `true | false`
 - Action bias check passed: `true | false`
 - Self-preservation bias check passed: `true | false`

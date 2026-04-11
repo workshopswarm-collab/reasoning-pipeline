@@ -19,7 +19,8 @@ Use it to store:
 - retrospective lessons
 
 Current runtime note:
-- the live research swarm executes in persistent Telegram case/persona topics
+- the live research swarm executes in Telegram forum topics, with one controller topic plus one persona topic per case while research is active
+- once the researcher swarm is truly terminal, synthesis promotion creates one dedicated synthesis topic for that dispatch and runs the final synthesis there
 - this vault is the durable output/provenance layer for that runtime, not the execution surface itself
 
 Do **not** treat it as:

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Label</key>
+	<string>ai.openclaw.orchestrator.pipeline-watchdog</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/bin/python3.14</string>
+		<string>/Users/agent2/.openclaw/orchestrator/scripts/watch_pipeline.py</string>
+		<string>--poll-seconds</string>
+		<string>60</string>
+		<string>--lock-file</string>
+		<string>/Users/agent2/.openclaw/orchestrator/scripts/.runtime-state/pipeline-watchdog.lock</string>
+		<string>--control-managed</string>
+		<string>--control-file</string>
+		<string>/Users/agent2/.openclaw/orchestrator/scripts/.runtime-state/pipeline-automation-control.json</string>
+		<string>--pretty</string>
+	</array>
+	<key>WorkingDirectory</key>
+	<string>/Users/agent2/.openclaw/orchestrator</string>
+	<key>RunAtLoad</key>
+	<true/>
+	<key>StartInterval</key>
+	<integer>60</integer>
+	<key>StandardOutPath</key>
+	<string>/Users/agent2/.openclaw/orchestrator/scripts/.runtime-state/launchd/pipeline-watchdog.stdout.log</string>
+	<key>StandardErrorPath</key>
+	<string>/Users/agent2/.openclaw/orchestrator/scripts/.runtime-state/launchd/pipeline-watchdog.stderr.log</string>
+	<key>ProcessType</key>
+	<string>Background</string>
+	<key>EnvironmentVariables</key>
+	<dict>
+		<key>PATH</key>
+		<string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+		<key>PYTHONUNBUFFERED</key>
+		<string>1</string>
+	</dict>
+</dict>
+</plist>

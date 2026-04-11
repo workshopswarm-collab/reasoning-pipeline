@@ -28,6 +28,18 @@ SYNTHESIZER_FRONTMATTER_FIELDS = [
     ("syndicated_probability_high", "decimal probability in [0,1]"),
     ("edge_independent_verification_quality", "low | medium | high"),
     ("compressed_toward_market_due_to_verification", "yes | no"),
+    ("contract_ambiguity_level", "none | minor | moderate | major"),
+    ("contract_ambiguity_reason", "short string; required when ambiguity level is not none"),
+    ("independently_verified_points", "list of short strings"),
+    ("verification_gap_summary", "short string"),
+    ("best_countercase_summary", "short string"),
+    ("main_reason_for_disagreement", "short string"),
+    ("resolution_mechanics_summary", "short string"),
+    ("freshness_sensitive", "yes | no"),
+    ("freshness_driver", "short string"),
+    ("decision_blockers", "list of short strings"),
+    ("blockers_require_new_research", "yes | no"),
+    ("disagreement_type", "facts | contract | timing | interpretation | market_pricing | mixed"),
     ("disagreement_intensity", "low | medium | high"),
     ("synthesis_confidence_quality", "low | medium | high"),
     ("staleness_risk", "low | medium | high"),
@@ -87,6 +99,19 @@ def render_output_contract(lines: list[str]) -> None:
     lines.append("- Preserve disagreement when the bundle does not justify flattening it.")
     lines.append("- Explicitly rate how well the final edge was independently verified.")
     lines.append("- Explicitly say whether the final synthesis compressed toward market because verification was insufficient.")
+    lines.append("- Set contract_ambiguity_level to none | minor | moderate | major based on whether resolution mechanics, classification, source-of-truth rules, or operational implementation could materially change the final decision.")
+    lines.append("- Use contract_ambiguity_reason to name the exact ambiguity concisely; leave it blank only when contract_ambiguity_level is none.")
+    lines.append("- independently_verified_points should be a compact list of the specific points the synthesis regards as independently verified enough for downstream decision use.")
+    lines.append("- verification_gap_summary should name the most important remaining verification gap in one short sentence.")
+    lines.append("- best_countercase_summary should compress the strongest surviving countercase into one short sentence.")
+    lines.append("- main_reason_for_disagreement should name the main driver of remaining persona disagreement in one short sentence.")
+    lines.append("- resolution_mechanics_summary should compress the key resolution/source-of-truth mechanics into one short sentence for downstream decision use.")
+    lines.append("- freshness_sensitive should be yes when timing freshness could materially change the downstream decision.")
+    lines.append("- freshness_driver should name the exact catalyst, data source, or timing dependency causing freshness sensitivity.")
+    lines.append("- decision_blockers should list the concrete blockers most likely to stop a downstream decision or force caution.")
+    lines.append("- blockers_require_new_research should be yes only when at least one blocker really requires additional research rather than just operator caution.")
+    lines.append("- disagreement_type should classify the main remaining disagreement as facts | contract | timing | interpretation | market_pricing | mixed.")
+    lines.append("- These structured handoff fields are for the downstream Decision-Maker; make them compact, explicit, and directly reusable without rereading long prose.")
     lines.append("- If a section genuinely has nothing material to add, return an empty string rather than filler.")
     lines.append("")
 

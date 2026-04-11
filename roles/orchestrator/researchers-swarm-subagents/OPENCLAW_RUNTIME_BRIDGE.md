@@ -13,10 +13,12 @@ Runtime consumes that manifest.
 Runtime owns delivery and lifecycle reconciliation.
 
 In the current architecture:
-- planner emits fresh-topic handoff payloads inside the dispatch manifest
+- planner emits topic-targeted handoff payloads inside the dispatch manifest
 - runtime materializes the Telegram topic session and delivers with `sessions.send`
 - runtime patches run state after successful delivery
 - runtime reconciles terminal completion/failure back into `research_runs`
+- runtime only attempts dispatch finalization when the active swarm dispatch is truly terminal
+- terminal dispatch finalization prepares synthesis stage artifacts and hands off to the single-flight synthesis launcher for one dedicated synthesis topic per dispatch
 - runtime auto-attempts parent case/market finalization when the swarm becomes fully terminal
 
 ## What local Python can do
@@ -72,7 +74,7 @@ Each run carries:
 - `handoff.handoff_payload`
 - `handoff.post_handoff_update_template`
 
-For Telegram fresh-topic dispatches, `handoff.target` is logical until runtime bootstrap resolves actual topic ids/session keys.
+For Telegram-topic dispatches, `handoff.target` is logical until runtime bootstrap resolves actual topic ids/session keys.
 
 ## DB patch rule
 

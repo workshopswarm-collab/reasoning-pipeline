@@ -22,13 +22,14 @@ This split is intentional. It keeps the system interpretable for humans and LLMs
 
 ## Current research execution surface
 
-The live research swarm currently executes through **fresh Telegram topics**.
+The live research swarm currently executes through **Telegram forum topics**.
 
 Operationally:
 - planner/control-plane logic lives in this repo
-- OpenClaw runtime creates fresh Telegram topics per case/persona and delivers assignments into those topic sessions
-- researchers do the live work there and write artifacts back into `qualitative-db/40-research/`
-- PostgreSQL tracks market, case, and research-run state
+- OpenClaw runtime creates one controller topic plus one persona topic per case for the researcher swarm and delivers assignments into those topic sessions
+- once the active dispatch is truly terminal, synthesis promotion creates one dedicated synthesis topic for that dispatch and runs the final synthesis there
+- researchers and synthesis write artifacts back into `qualitative-db/40-research/`
+- PostgreSQL tracks market, case, dispatch, and research-run state
 
 See:
 - `roles/orchestrator/researchers-swarm-subagents/README.md`
@@ -43,9 +44,11 @@ The diagram below mixes:
 Today, the most concretely implemented and tested path is:
 - market metadata and pipeline state in PostgreSQL
 - case opening and `research_runs` creation
-- fresh Telegram-topic swarm dispatch via the OpenClaw runtime
-- researcher artifact output into `qualitative-db/40-research/`
-- run-level completion reconciliation and parent case/market closure
+- Telegram-topic researcher-swarm dispatch via the OpenClaw runtime
+- researcher-sidecar generation and dispatch-scoped artifact output into `qualitative-db/40-research/`
+- run-level completion reconciliation
+- terminal-only dispatch finalization and single-flight synthesis launch into a dedicated synthesis topic
+- final synthesis rendering plus parent case/market closure
 
 The downstream decision-packet, execution, accounting, evaluator, and trust-weight loops are already represented in the repo schema/docs, but they are comparatively less operationally mature than the research dispatch/control-plane path.
 

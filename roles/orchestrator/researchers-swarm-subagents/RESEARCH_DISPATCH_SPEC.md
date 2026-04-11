@@ -2,17 +2,17 @@
 
 ## Purpose
 
-Define the canonical state model and dispatch contract for the **fresh Telegram topic** architecture.
+Define the canonical state model and dispatch contract for the current **Telegram-topic researcher swarm plus dedicated synthesis-topic** architecture.
 
 This spec connects:
 - market/case state in Postgres
 - planner-side prompt generation
-- fresh Telegram topics as the runtime surface
+- Telegram forum topics as the runtime surface for both researcher and synthesis phases
 - durable research artifacts in `qualitative-db/40-research/`
 
 ## Canonical truth
 
-- Runtime surface: fresh Telegram topics
+- Runtime surface: Telegram forum topics
 - Handoff primitive: Gateway RPC `sessions.send` (wrapped by the runtime bridge/helper)
 - Stable completion key: `research_run_id`
 - Primary completion path: runtime-side terminal updates
@@ -60,10 +60,14 @@ Expected `notes.dispatch_stage` values:
 
 The runtime surface is **Telegram forum topics**.
 
-The current model is:
-- one persistent controller topic per case
-- one persistent persona topic per persona per case
+The current researcher-swarm model is:
+- one controller topic per case
+- one persona topic per persona per case
 - reruns create new attempt rows but should reuse those existing case/persona lanes whenever prior lane metadata exists
+
+The current post-swarm synthesis model is:
+- once the active dispatch is truly terminal, synthesis promotion creates one dedicated synthesis topic for that dispatch
+- synthesis launch must be treated as a single-flight action so only one process can create/use that topic and spawn the final synthesis executor
 
 Routing/config metadata lives in:
 - `runtime/telegram-runtime-config.json`
@@ -153,8 +157,9 @@ Terminal run updates should flow through:
 - `runtime/scripts/reconcile_research_run_completion.py`
 
 Those helpers now auto-attempt:
-1. manifest-level reconciliation through `runtime/scripts/runrepairs/finalize_dispatch_after_swarm.py`
-2. parent closure when all sibling runs are terminal
+1. a guarded terminality check so dispatch finalization only runs when the active dispatch has no queued/running siblings
+2. manifest-level reconciliation plus synthesis promotion through `runtime/scripts/runrepairs/finalize_dispatch_after_swarm.py`
+3. parent closure when all sibling runs are terminal
 
 ## Parent-finalization policy
 

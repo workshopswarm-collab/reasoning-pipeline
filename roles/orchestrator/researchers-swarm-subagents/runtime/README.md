@@ -8,13 +8,14 @@ Runtime owns everything that happens **after** a dispatch manifest has been prep
 
 That includes:
 - validating/preparing launchable runs
-- creating/reusing Telegram topics and materializing their canonical session keys
+- creating/reusing Telegram controller/persona topics and materializing their canonical session keys
 - delivering research assignments into those topic sessions
 - patching `research_runs` to `running`
 - auto-posting visible `STARTING RESEARCH` markers on successful start transitions
 - reconciling completion/failure back into `research_runs`
 - auto-posting visible completion markers on successful completion
-- auto-attempting parent case/market finalization after terminal run updates
+- auto-attempting dispatch finalization only when the active dispatch is actually terminal
+- kicking completed dispatches into synthesis-stage preparation and launch
 - supervising active Telegram runs with the runtime loop/watchdog
 - providing artifact-vs-DB repair helpers
 - supporting headless TUI -> Telegram handoff flows
@@ -66,7 +67,7 @@ Lifecycle rule:
 ## Runtime surface
 
 Telegram forum topics are the intended runtime surface.
-The current architecture reuses one persistent controller topic per case and one persistent persona topic per persona per case when lane metadata already exists; otherwise it creates the missing topics, materializes the canonical topic sessions, and then routes work into those topic sessions with `sessions.send`.
+The current architecture uses one controller topic per case and one persona topic per persona per case for the researcher swarm. Once the swarm is truly terminal, synthesis promotion creates one dedicated synthesis topic for that dispatch. Research and synthesis lanes are both delivered through canonical topic sessions with `sessions.send`, but synthesis launch is guarded as a single-flight action so only one process can create/use the synthesis topic for a dispatch.
 
 Operational helpers now include:
 - `scripts/sweep_orphaned_research_runs.py` for stale queued / stranded researching-case repair
@@ -92,8 +93,9 @@ For normal live automation, prefer:
 This is the canonical combined **prepare -> launch** entrypoint.
 It safely sequences:
 1. planner/runtime preparation
-2. manifest resolution
-3. live launch through `launch_dispatch_with_stateful_posts.py`
+2. a dry-run planner preflight to catch prompt/planner regressions before live DB mutation
+3. manifest resolution
+4. live launch through `launch_dispatch_with_stateful_posts.py`
 
 For manual debugging/control without enabling unattended automation, use:
 - `scripts/manual_batch_controller.py`

@@ -11,6 +11,12 @@ from pathlib import Path
 from typing import Any
 
 BASE_DIR = Path(__file__).resolve().parent
+REPO_ROOT = BASE_DIR.parents[4]
+if str(REPO_ROOT / "scripts") not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT / "scripts"))
+
+from case_pipeline_status import update_case_pipeline_status  # noqa: E402
+
 PREPARE = BASE_DIR / "prepare_headless_telegram_dispatch.py"
 LAUNCH = BASE_DIR / "launch_dispatch_with_stateful_posts.py"
 DEFAULT_MANIFEST_DIR = BASE_DIR.parent / "dispatch-manifests"
@@ -151,6 +157,33 @@ def main() -> int:
     ]
     launch_proc = subprocess.run(launch_cmd, text=True, capture_output=True)
     launch_result = parse_json_output(launch_proc.stdout)
+
+    if launch_proc.returncode == 0:
+        case_payload = prepare_result.get("case") or {}
+        market_payload = prepare_result.get("market") or {}
+        dispatch_payload = prepare_result.get("dispatch") or {}
+        case_key = str(case_payload.get("case_id") or "").strip()
+        if case_key:
+            update_case_pipeline_status(
+                case_key=case_key,
+                dispatch_id=str(dispatch_payload.get("dispatch_id") or "").strip(),
+                market_id=str(market_payload.get("market_id") or "").strip(),
+                market_title=str(market_payload.get("market_title") or "").strip(),
+                status="pipeline_started",
+                current_stage="swarm",
+                stage_status_patch={
+                    "dispatch": "launched",
+                    "swarm": "in_progress",
+                    "synthesis": "pending",
+                    "decision": "pending",
+                },
+                runner_id="prepare_and_launch_headless_telegram_dispatch",
+                message="Fresh case claimed and dispatch launched",
+                extra={
+                    "manifest_path": str(Path(manifest_path).resolve()),
+                    "target_session_key": str(dispatch_payload.get("target_session_key") or "").strip(),
+                },
+            )
 
     payload = {
         "status": "ok" if launch_proc.returncode == 0 else "launch_failed",

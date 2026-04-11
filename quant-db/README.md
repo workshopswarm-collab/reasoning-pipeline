@@ -28,7 +28,7 @@ Safety note:
 
 - Device B writes market metadata and market snapshots
 - Device A opens cases and coordinates research runs
-- research runs are handed off into fresh Telegram topics and tracked in PostgreSQL
+- research runs are handed off into Telegram forum topics and tracked in PostgreSQL
 - research agents log predictions
 - Device A writes decision packets
 - Device B reads those packets and records paper executions
