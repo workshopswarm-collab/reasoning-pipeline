@@ -1,0 +1,57 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "If the posted NASA row were treated as non-final or erroneous, settlement could delay or dispute.",
+    "Operator interpretation of the typo-like fallback clause could briefly matter."
+  ],
+  "key_assumptions": [
+    "The visible March 2026 NASA table row is an official release-quality posting.",
+    "The explicit March row/column instruction dominates the apparent February fallback typo."
+  ],
+  "main_logical_chain": [
+    "Read the contract's named primary resolution source and exact row/column.",
+    "Verify the NASA table currently lists March 2026 as 128 in 0.01\u00b0C units.",
+    "Convert 128 to 1.28\u00b0C and compare it to the 1.25\u20131.29 bracket.",
+    "Net the remaining risk as operational/settlement friction rather than substantive climate uncertainty."
+  ],
+  "main_thesis": "NASA's named settlement table already shows March 2026 = 1.28\u00b0C, so the market should resolve YES; only minor contract-handling risk remains.",
+  "own_probability": 0.99,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "2026   108  124  128",
+    "Divide by 100 to get changes in degrees Celsius",
+    "necessary and sufficient to resolve this market immediately once the data becomes available"
+  ],
+  "reasoning_mode": [
+    "contract_interpretation",
+    "technical_reference",
+    "variant_hypothesis"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260409-a8d8231d",
+    "dispatch_id": "dispatch-case-20260409-a8d8231d-20260409T183257Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "d8672721-ee79-4c39-aec2-8e901252edd6",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260409-a8d8231d/researcher-analyses/2026-04-09/dispatch-case-20260409-a8d8231d-20260409T183257Z/personas/variant-view.md",
+    "source_persona_sha256": "cd51059b628365ba9eab7964feb44c809a32460750a6df57d57d4cfdc5a345e5"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality primary source for the number, medium-quality contract source for mechanics, with low-to-medium overall ambiguity concentrated in the fallback wording.",
+  "strongest_disconfirmers": [
+    "The fallback clause references February 2026, creating small drafting-ambiguity and settlement-friction risk."
+  ],
+  "strongest_supports": [
+    "NASA GLB.Ts+dSST.txt shows 2026 Mar = 128, i.e. 1.28\u00b0C.",
+    "The contract says the named March bracket is necessary and sufficient once data becomes available.",
+    "Later revisions do not matter under the rules."
+  ],
+  "timing_relevance": "Highly timing-sensitive because the contract resolves on first availability of NASA's March 2026 table value and ignores later revisions.",
+  "unresolved_ambiguities": [
+    "Whether the February fallback reference is a harmless typo or could affect dispute handling.",
+    "Whether any hidden market clarification exists off-page."
+  ],
+  "what_would_change_view": "A formal clarification overriding the named source, or evidence that the visible 2026 Mar row was erroneous or unofficial, would reduce confidence materially."
+}

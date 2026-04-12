@@ -1,0 +1,396 @@
+{
+  "artifact_type": "sidecar_synthesis_bundle",
+  "case_key": "case-20260409-746679d3",
+  "dispatch_id": "dispatch-case-20260409-746679d3-20260409T205932Z",
+  "analysis_date": "2026-04-09",
+  "question": "Will the price of Ethereum be above $2,100 on April 10?",
+  "market_implied_probability": 0.94,
+  "market_snapshot_time": "2026-04-09T20:59:32.942960+00:00",
+  "coverage_status": "complete",
+  "source_bundle_path": "qualitative-db/40-research/cases/case-20260409-746679d3/researcher-analyses/2026-04-09/dispatch-case-20260409-746679d3-20260409T205932Z/synthesis-bundle.json",
+  "available_personas": [
+    "base-rate",
+    "catalyst-hunter",
+    "market-implied",
+    "risk-manager",
+    "variant-view"
+  ],
+  "missing_personas": [],
+  "sidecar_count": 5,
+  "reasoning_mode_counts": {
+    "base_rate": 1,
+    "catalyst_analysis": 1,
+    "contract_interpretation": 5,
+    "market_anchor": 4,
+    "risk_management": 1,
+    "technical_reference": 5,
+    "variant_hypothesis": 1
+  },
+  "recommended_weight_counts": {
+    "high": 2,
+    "medium": 3
+  },
+  "persona_probability_estimates": [
+    {
+      "persona": "base-rate",
+      "own_probability": 0.88
+    },
+    {
+      "persona": "catalyst-hunter",
+      "own_probability": 0.91
+    },
+    {
+      "persona": "market-implied",
+      "own_probability": 0.92
+    },
+    {
+      "persona": "risk-manager",
+      "own_probability": 0.88
+    },
+    {
+      "persona": "variant-view",
+      "own_probability": 0.9
+    }
+  ],
+  "persona_probability_estimate_count": 5,
+  "provisional_swarm_probability_low": 0.88,
+  "provisional_swarm_probability_high": 0.92,
+  "provisional_swarm_probability_median": 0.9,
+  "provisional_swarm_edge_vs_market_pct_points": -4.0,
+  "provisional_edge_verification_bar": "elevated",
+  "sidecars": [
+    {
+      "persona": "base-rate",
+      "path": "qualitative-db/40-research/cases/case-20260409-746679d3/researcher-analyses/2026-04-09/dispatch-case-20260409-746679d3-20260409T205932Z/personas/base-rate.sidecar.json",
+      "payload": {
+        "confidence_in_extract": "high",
+        "fragility_points": [
+          "A sharp overnight or morning crypto selloff could erase the cushion.",
+          "Single-minute settlement makes path volatility more important than end-of-day regime."
+        ],
+        "key_assumptions": [
+          "ETH stays in roughly the current price regime through the settlement minute.",
+          "The relevant settlement minute is 12:00 ET = 16:00 UTC on Binance.",
+          "Binance API kline close aligns with the chart-based settlement surface."
+        ],
+        "main_logical_chain": [
+          "Check the contract and verify the governing source of truth is Binance ETH/USDT 1-minute close at 12:00 ET.",
+          "Verify Binance uses UTC server time and map 12:00 ET on April 10 to 16:00 UTC.",
+          "Observe ETH spot is already materially above 2100.",
+          "Use recent Binance history as a base-rate anchor for next-day persistence when ETH is already above the threshold.",
+          "Discount the anchor somewhat because this contract resolves on a single minute rather than a daily close."
+        ],
+        "main_thesis": "Yes is the right side because ETH is already comfortably above 2100 and short-horizon persistence is usually strong, but the market likely overstates certainty for a one-minute timestamped threshold.",
+        "own_probability": 0.88,
+        "persona": "base-rate",
+        "quote_anchors": [
+          "12:00 ET = 16:00 UTC on April 10, 2026",
+          "67/73 recent prior-above-2100 daily cases also closed above 2100 the next day",
+          "Binance spot check around 2213.08"
+        ],
+        "reasoning_mode": [
+          "base_rate",
+          "contract_interpretation",
+          "technical_reference"
+        ],
+        "recommended_weight": "medium",
+        "source_quality_view": "Primary source quality is high because Binance is the designated settlement source; contextual evidence quality is decent but not independent because it also relies on Binance data.",
+        "strongest_disconfirmers": [
+          "Resolution depends on one exact 1-minute close, so ordinary intraday volatility can still produce a No even if the broader regime stays healthy."
+        ],
+        "strongest_supports": [
+          "Binance spot price during the check was about 2213, roughly $113 above the threshold.",
+          "In the recent 120-day Binance sample, next-day close stayed above 2100 in 67 of 73 cases when the prior close was already above 2100.",
+          "Settlement is less than a day away, favoring persistence absent a shock."
+        ],
+        "timing_relevance": "Very high: the market resolves on one exact noon ET minute on April 10, so short-horizon volatility and timestamp interpretation matter materially.",
+        "unresolved_ambiguities": [
+          "The rules reference Binance chart candles while the audit used Binance API endpoints, though these should economically align.",
+          "The exact UI labeling of the noon candle is not directly visible from text-only fetch."
+        ],
+        "what_would_change_view": "A move of ETH down toward or below 2100 before noon ET, or verified evidence that the settlement timestamp/candle interpretation differs from 16:00 UTC, would lower confidence materially."
+      },
+      "runtime_metadata": {
+        "case_key": "case-20260409-746679d3",
+        "dispatch_id": "dispatch-case-20260409-746679d3-20260409T205932Z",
+        "generation_mode": "researcher_sidecar_v1",
+        "prompt_contract_version": "researcher-sidecar-v1",
+        "research_run_id": "0df82309-bacf-4ad5-81c2-4aabba0201f4",
+        "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260409-746679d3/researcher-analyses/2026-04-09/dispatch-case-20260409-746679d3-20260409T205932Z/personas/base-rate.md",
+        "source_persona_sha256": "8479045090dfee7091ccf60805bcffcda9082ff0bcc6dace0b9a8fe99c7b7841"
+      },
+      "persona_finding_path": "qualitative-db/40-research/cases/case-20260409-746679d3/researcher-analyses/2026-04-09/dispatch-case-20260409-746679d3-20260409T205932Z/personas/base-rate.md",
+      "assumption_artifact_paths": [
+        "qualitative-db/40-research/cases/case-20260409-746679d3/researcher-analyses/2026-04-09/dispatch-case-20260409-746679d3-20260409T205932Z/assumptions/base-rate.md"
+      ],
+      "evidence_artifact_paths": []
+    },
+    {
+      "persona": "catalyst-hunter",
+      "path": "qualitative-db/40-research/cases/case-20260409-746679d3/researcher-analyses/2026-04-09/dispatch-case-20260409-746679d3-20260409T205932Z/personas/catalyst-hunter.sidecar.json",
+      "payload": {
+        "confidence_in_extract": "high",
+        "fragility_points": [
+          "Short-horizon crypto volatility could produce a temporary sub-2100 print.",
+          "Minor residual ambiguity remains around UI candle labeling versus API open-time convention."
+        ],
+        "key_assumptions": [
+          "The decisive candle is the Binance ETH/USDT 1-minute candle opened at 12:00 ET on Apr 10, 2026.",
+          "ETH will not suffer a roughly 5% downside move into the deciding minute.",
+          "No Binance-specific operational or print anomaly distorts the final close used for resolution."
+        ],
+        "main_logical_chain": [
+          "Market implies 94% Yes and ETH is currently trading materially above 2100.",
+          "The contract resolves on one Binance ETH/USDT 1-minute close at noon ET, so timing and microstructure matter more than broader daily direction.",
+          "Given current distance from threshold and limited time remaining, Yes is still more likely than No.",
+          "Because a one-minute close can be clipped by a fast downside move, confidence should be high but not near-certain."
+        ],
+        "main_thesis": "ETH is likely to remain above 2100 into the Binance ETH/USDT noon ET one-minute resolution candle, though single-minute volatility keeps the market slightly less certain than the 94% implied price suggests.",
+        "own_probability": 0.91,
+        "persona": "catalyst-hunter",
+        "quote_anchors": [
+          "Klines are uniquely identified by their open time.",
+          "12:00 ET on Apr 10, 2026 corresponds to 16:00 UTC under EDT."
+        ],
+        "reasoning_mode": [
+          "market_anchor",
+          "catalyst_analysis",
+          "contract_interpretation",
+          "technical_reference"
+        ],
+        "recommended_weight": "high",
+        "source_quality_view": "High on mechanics because Binance is the named source of truth and was checked directly; lower on independence because both docs and live verification are Binance-based, which is acceptable here.",
+        "strongest_disconfirmers": [
+          "This is a one-minute threshold market, so a brief sharp selloff could still resolve No even if ETH trades above 2100 for most of the day."
+        ],
+        "strongest_supports": [
+          "Live Binance ETHUSDT spot during the run was around 2211-2213, materially above the 2100 threshold.",
+          "Less than a day remains, limiting the number of catalysts that can still force a sub-2100 noon print.",
+          "Polymarket rules and Binance kline docs align on a clean single-venue, single-minute resolution mechanism."
+        ],
+        "timing_relevance": "The only catalysts that still matter are ones capable of moving ETH before or during the noon ET minute on Apr 10; overnight risk sentiment and any sharp broad crypto selloff are the main repricing triggers.",
+        "unresolved_ambiguities": [
+          "Whether Polymarket moderators would ever interpret the chart labeling differently from the Binance open-time kline convention, though current evidence suggests they should not."
+        ],
+        "what_would_change_view": "A move toward 2100 before U.S. morning, an official clarification changing candle interpretation, or evidence of Binance operational irregularity near resolution would reduce confidence materially."
+      },
+      "runtime_metadata": {
+        "case_key": "case-20260409-746679d3",
+        "dispatch_id": "dispatch-case-20260409-746679d3-20260409T205932Z",
+        "generation_mode": "researcher_sidecar_v1",
+        "prompt_contract_version": "researcher-sidecar-v1",
+        "research_run_id": "4e9f9b53-3707-46ac-8a6f-415fdbd92afb",
+        "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260409-746679d3/researcher-analyses/2026-04-09/dispatch-case-20260409-746679d3-20260409T205932Z/personas/catalyst-hunter.md",
+        "source_persona_sha256": "7142315a5fc93a9174ce713c43b8528e946d9a7332225d5975b935ef5353ec4c"
+      },
+      "persona_finding_path": "qualitative-db/40-research/cases/case-20260409-746679d3/researcher-analyses/2026-04-09/dispatch-case-20260409-746679d3-20260409T205932Z/personas/catalyst-hunter.md",
+      "assumption_artifact_paths": [
+        "qualitative-db/40-research/cases/case-20260409-746679d3/researcher-analyses/2026-04-09/dispatch-case-20260409-746679d3-20260409T205932Z/assumptions/catalyst-hunter.md"
+      ],
+      "evidence_artifact_paths": []
+    },
+    {
+      "persona": "market-implied",
+      "path": "qualitative-db/40-research/cases/case-20260409-746679d3/researcher-analyses/2026-04-09/dispatch-case-20260409-746679d3-20260409T205932Z/personas/market-implied.sidecar.json",
+      "payload": {
+        "confidence_in_extract": "high",
+        "fragility_points": [
+          "A sharp overnight crypto selloff could erase the cushion before the target minute.",
+          "An off-by-one-minute settlement interpretation would matter if price is near the threshold."
+        ],
+        "key_assumptions": [
+          "The relevant candle is the Binance ETHUSDT 1-minute bar opened at 12:00:00 ET / 16:00:00 UTC.",
+          "ETHUSDT remains roughly in the current low-2200s regime through tomorrow noon.",
+          "No UI/API settlement mismatch appears at the target minute."
+        ],
+        "main_logical_chain": [
+          "Start from the market's 94% baseline and ask what would justify such a high price.",
+          "Check the governing exchange directly: Binance ETHUSDT is trading around 2211-2213, comfortably above 2100.",
+          "Verify the settlement mechanics: Binance klines are identified by open time, and noon ET maps to 16:00 UTC on Apr 10.",
+          "Conclude that the market is directionally efficient, but trim below the richest prints because one exact 1-minute close still carries tail risk."
+        ],
+        "main_thesis": "The market is broadly right that Yes is very likely because ETHUSDT is already trading comfortably above 2100 on Binance and the contract settles on a single simple exchange-specific 1-minute close, though one-minute timing risk keeps the true probability slightly below the richest market prints.",
+        "own_probability": 0.92,
+        "persona": "market-implied",
+        "quote_anchors": [
+          "Klines are uniquely identified by their open time.",
+          "This market will resolve to Yes if the Binance 1 minute candle for ETH/USDT 12:00 in the ET timezone has a final Close price higher than 2100."
+        ],
+        "reasoning_mode": [
+          "market_anchor",
+          "contract_interpretation",
+          "technical_reference"
+        ],
+        "recommended_weight": "high",
+        "source_quality_view": "High-quality primary mechanics evidence from Binance docs and live API, plus a strong direct market surface from Polymarket; independence is limited because the settlement mechanics come from one source family, which is acceptable for this narrow contract.",
+        "strongest_disconfirmers": [
+          "Single-minute settlement preserves real jump risk even when spot is comfortably above the strike.",
+          "There is small residual ambiguity about UI candle labeling versus API open-time identification."
+        ],
+        "strongest_supports": [
+          "Live Binance 1m klines showed ETHUSDT around 2211-2213, giving roughly $111+ cushion over 2100.",
+          "Nearby Polymarket strike pricing is internally coherent with spot being in the low 2200s.",
+          "Binance is a single explicit settlement source, reducing multi-source ambiguity."
+        ],
+        "timing_relevance": "Very high: this contract resolves on one exact 1-minute Binance close at noon ET on Apr 10, so timezone and candle-definition checks are material.",
+        "unresolved_ambiguities": [
+          "Whether Polymarket operationally treats the Binance chart's candle label exactly the same way as API open-time indexing in all edge cases.",
+          "The assignment baseline price and fetched page price were slightly different, likely due to timing drift."
+        ],
+        "what_would_change_view": "I would cut the estimate materially if ETHUSDT fell much closer to 2100 before noon ET, or if Polymarket/Binance evidence suggested a different candle-label interpretation than the open-time reading."
+      },
+      "runtime_metadata": {
+        "case_key": "case-20260409-746679d3",
+        "dispatch_id": "dispatch-case-20260409-746679d3-20260409T205932Z",
+        "generation_mode": "researcher_sidecar_v1",
+        "prompt_contract_version": "researcher-sidecar-v1",
+        "research_run_id": "b29230d1-9199-41b0-bfbe-3521de8f43e7",
+        "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260409-746679d3/researcher-analyses/2026-04-09/dispatch-case-20260409-746679d3-20260409T205932Z/personas/market-implied.md",
+        "source_persona_sha256": "d2d2d58f0a1c9529b22975e1c21531afecd76cba92bba3ee8391643cade862f1"
+      },
+      "persona_finding_path": "qualitative-db/40-research/cases/case-20260409-746679d3/researcher-analyses/2026-04-09/dispatch-case-20260409-746679d3-20260409T205932Z/personas/market-implied.md",
+      "assumption_artifact_paths": [
+        "qualitative-db/40-research/cases/case-20260409-746679d3/researcher-analyses/2026-04-09/dispatch-case-20260409-746679d3-20260409T205932Z/assumptions/market-implied.md"
+      ],
+      "evidence_artifact_paths": [
+        "qualitative-db/40-research/cases/case-20260409-746679d3/researcher-analyses/2026-04-09/dispatch-case-20260409-746679d3-20260409T205932Z/evidence/market-implied.md"
+      ]
+    },
+    {
+      "persona": "risk-manager",
+      "path": "qualitative-db/40-research/cases/case-20260409-746679d3/researcher-analyses/2026-04-09/dispatch-case-20260409-746679d3-20260409T205932Z/personas/risk-manager.sidecar.json",
+      "payload": {
+        "confidence_in_extract": "high",
+        "fragility_points": [
+          "Single-minute close risk near the threshold.",
+          "Potential UI/API candle-label mismatch in a close-call scenario.",
+          "Short-term volatility spike on Binance before noon ET."
+        ],
+        "key_assumptions": [
+          "Noon ET maps to the Binance ETHUSDT 1m candle opening at 16:00:00 UTC on April 10.",
+          "Binance UI candle labeling aligns with the public API kline structure.",
+          "ETH retains enough cushion above 2100 to avoid a one-minute close below the strike."
+        ],
+        "main_logical_chain": [
+          "Polymarket implies roughly 94% Yes from current_price and the event page shows similarly elevated confidence.",
+          "Binance is the governing source of truth, so the critical checks are timestamp mapping and one-minute candle-close mechanics.",
+          "Direct Binance API verification confirms UTC timing and standard 1m kline close structure, reducing but not eliminating interpretation risk.",
+          "Because ETH is currently well above 2100, Yes remains more likely than not.",
+          "Because the market settles on one venue and one minute, confidence should be trimmed below the market's extreme pricing."
+        ],
+        "main_thesis": "Yes lean, but the market is too confident because a single Binance one-minute close creates timing and settlement-mechanics fragility.",
+        "own_probability": 0.88,
+        "persona": "risk-manager",
+        "quote_anchors": [
+          "Binance exchangeInfo reports timezone: UTC.",
+          "The market resolves on the Binance ETH/USDT 1 minute candle for 12:00 in the ET timezone."
+        ],
+        "reasoning_mode": [
+          "risk_management",
+          "contract_interpretation",
+          "technical_reference",
+          "market_anchor"
+        ],
+        "recommended_weight": "medium",
+        "source_quality_view": "Primary source quality is high because Binance directly governs timestamps and klines, but evidence independence is limited because settlement is effectively single-source; Polymarket is useful contextual support for wording and market price.",
+        "strongest_disconfirmers": [
+          "The contract resolves on a single Binance one-minute close, so minute-level volatility and path risk can flip the outcome even if the broader ETH thesis stays constructive.",
+          "Settlement dependence is effectively single-source, leaving some residual UI/API interpretation risk."
+        ],
+        "strongest_supports": [
+          "Direct Binance spot/kline checks during the run showed ETHUSDT around 2211-2213, about $110 above the threshold.",
+          "Polymarket strike ladder was internally coherent with 2100 very likely, 2200 around 60%, and 2300 low."
+        ],
+        "timing_relevance": "High: the market resolves on the Binance ETHUSDT 1-minute candle for 12:00 ET on April 10, so minute selection and minute-end close mechanics are central.",
+        "unresolved_ambiguities": [
+          "Exact Binance UI labeling was not independently screenshotted during this run.",
+          "The final probability remains sensitive to how much discount one applies for minute-specific path risk."
+        ],
+        "what_would_change_view": "I would move closer to market if ETH remains comfortably above 2100 near resolution and candle mapping is reaffirmed; I would move lower if ETH compresses toward the strike or if any ambiguity appears about which minute actually counts."
+      },
+      "runtime_metadata": {
+        "case_key": "case-20260409-746679d3",
+        "dispatch_id": "dispatch-case-20260409-746679d3-20260409T205932Z",
+        "generation_mode": "researcher_sidecar_v1",
+        "prompt_contract_version": "researcher-sidecar-v1",
+        "research_run_id": "26c93914-c5c6-45b7-bbb4-2001b4d5f8b5",
+        "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260409-746679d3/researcher-analyses/2026-04-09/dispatch-case-20260409-746679d3-20260409T205932Z/personas/risk-manager.md",
+        "source_persona_sha256": "1f86e5b85110725507a18bc13112c93c262582924abafbe8756568eef5163db9"
+      },
+      "persona_finding_path": "qualitative-db/40-research/cases/case-20260409-746679d3/researcher-analyses/2026-04-09/dispatch-case-20260409-746679d3-20260409T205932Z/personas/risk-manager.md",
+      "assumption_artifact_paths": [
+        "qualitative-db/40-research/cases/case-20260409-746679d3/researcher-analyses/2026-04-09/dispatch-case-20260409-746679d3-20260409T205932Z/assumptions/risk-manager.md"
+      ],
+      "evidence_artifact_paths": [
+        "qualitative-db/40-research/cases/case-20260409-746679d3/researcher-analyses/2026-04-09/dispatch-case-20260409-746679d3-20260409T205932Z/evidence/risk-manager.md"
+      ]
+    },
+    {
+      "persona": "variant-view",
+      "path": "qualitative-db/40-research/cases/case-20260409-746679d3/researcher-analyses/2026-04-09/dispatch-case-20260409-746679d3-20260409T205932Z/personas/variant-view.sidecar.json",
+      "payload": {
+        "confidence_in_extract": "high",
+        "fragility_points": [
+          "UI/API candle-label interpretation mismatch.",
+          "Single-minute settlement sensitivity.",
+          "Late ETH volatility compressing the existing cushion."
+        ],
+        "key_assumptions": [
+          "The resolving candle is the Binance ETH/USDT 1-minute candle opened at 12:00:00 ET / 16:00:00 UTC.",
+          "Binance API timing semantics are a valid proxy for the Binance web chart settlement surface.",
+          "ETH does not sell off below 2100 by the resolving minute."
+        ],
+        "main_logical_chain": [
+          "Market implies 94% Yes because ETH is already above 2100 with limited time to settlement.",
+          "Direct Binance docs and API checks support the noon ET candle mapping and close semantics.",
+          "That makes Yes likely, but single-minute single-exchange contracts still retain edge-case settlement and volatility risk.",
+          "Therefore the market is directionally right but a bit overconfident, leading to a 90% Yes estimate."
+        ],
+        "main_thesis": "Yes is still the likely outcome, but the market is slightly overconfident because a narrow Binance minute-candle contract still carries small settlement-mechanics and exact-minute interpretation risk.",
+        "own_probability": 0.9,
+        "persona": "variant-view",
+        "quote_anchors": [
+          "Klines are uniquely identified by their open time.",
+          "12:00 ET on April 10, 2026 maps to 16:00 UTC under EDT."
+        ],
+        "reasoning_mode": [
+          "market_anchor",
+          "contract_interpretation",
+          "technical_reference",
+          "variant_hypothesis"
+        ],
+        "recommended_weight": "medium",
+        "source_quality_view": "Good for a simple market: authoritative Binance docs plus live Binance API verification and the Polymarket rules page, though evidence independence is limited and there is minor UI-surface ambiguity.",
+        "strongest_disconfirmers": [
+          "Polymarket rules point to the Binance web chart UI, not the API directly, leaving small interpretation risk.",
+          "A roughly 5% overnight drop into the resolving minute is not impossible in crypto."
+        ],
+        "strongest_supports": [
+          "ETH traded around 2213 during the run, leaving meaningful cushion above 2100.",
+          "Binance docs state klines are uniquely identified by open time.",
+          "Live Binance API verification matched expected 1-minute candle timing and close-time behavior."
+        ],
+        "timing_relevance": "Very high: this is a date-specific market resolved by one Binance 1-minute candle at noon ET on April 10, 2026.",
+        "unresolved_ambiguities": [
+          "I did not directly verify the rendered Binance web chart minute label in this environment.",
+          "No direct precedent check was completed for how Polymarket has adjudicated identical chart-label edge cases."
+        ],
+        "what_would_change_view": "Direct verification that the Binance web UI labels the noon ET candle differently, a Polymarket clarification changing the effective minute mapping, or a material ETH selloff toward 2100 before settlement."
+      },
+      "runtime_metadata": {
+        "case_key": "case-20260409-746679d3",
+        "dispatch_id": "dispatch-case-20260409-746679d3-20260409T205932Z",
+        "generation_mode": "researcher_sidecar_v1",
+        "prompt_contract_version": "researcher-sidecar-v1",
+        "research_run_id": "068d43a3-3de5-4288-bf28-4fcce89ebdfb",
+        "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260409-746679d3/researcher-analyses/2026-04-09/dispatch-case-20260409-746679d3-20260409T205932Z/personas/variant-view.md",
+        "source_persona_sha256": "cb1718f43221bddbd8ee749a179e4f5bb0dab9c3a2cd14500d991c72a5b86fc1"
+      },
+      "persona_finding_path": "qualitative-db/40-research/cases/case-20260409-746679d3/researcher-analyses/2026-04-09/dispatch-case-20260409-746679d3-20260409T205932Z/personas/variant-view.md",
+      "assumption_artifact_paths": [
+        "qualitative-db/40-research/cases/case-20260409-746679d3/researcher-analyses/2026-04-09/dispatch-case-20260409-746679d3-20260409T205932Z/assumptions/variant-view.md"
+      ],
+      "evidence_artifact_paths": []
+    }
+  ]
+}

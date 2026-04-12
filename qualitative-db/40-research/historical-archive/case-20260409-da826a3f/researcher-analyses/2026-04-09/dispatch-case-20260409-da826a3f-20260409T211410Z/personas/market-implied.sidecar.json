@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Fast BTC downside before Apr 10 noon ET.",
+    "Exchange-specific wick or operational anomaly on Binance.",
+    "Unexpected resolver interpretation of the relevant minute label."
+  ],
+  "key_assumptions": [
+    "The relevant noon ET candle is the minute bucket opening at 12:00:00 ET and closing at 12:00:59.999 ET.",
+    "Binance API kline timing is a reliable operational proxy for the Binance candle display referenced in the rule.",
+    "There is no exchange-specific dislocation on Binance BTC/USDT before settlement."
+  ],
+  "main_logical_chain": [
+    "Start from the 95.9% market prior because the contract is narrow and current spot is far above strike.",
+    "Verify that the rule really points to Binance BTC/USDT noon ET 1-minute close and map noon ET to 16:00 UTC.",
+    "Check Binance minute-bucket behavior and current venue price context.",
+    "Conclude the high Yes price is efficient overall, but trim slightly for one-day downside and minute-specific settlement risk."
+  ],
+  "main_thesis": "The market's very high Yes price is broadly justified by BTC/USDT trading well above 68k and mostly clean settlement mechanics, though minute-specific downside and small timing ambiguity justify a slight discount versus market confidence.",
+  "own_probability": 0.93,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "This market will resolve to \"Yes\" if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone (noon)... has a final \"Close\" price higher than the price specified.",
+    "Apr 10 12:00 ET = Apr 10 16:00 UTC."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "contract_interpretation",
+    "technical_reference"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260409-da826a3f",
+    "dispatch_id": "dispatch-case-20260409-da826a3f-20260409T211410Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "94cdd5ee-5d9d-4334-853e-ecc44e6012d3",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260409-da826a3f/researcher-analyses/2026-04-09/dispatch-case-20260409-da826a3f-20260409T211410Z/personas/market-implied.md",
+    "source_persona_sha256": "8909ddf0ed64af08b2c371434f9fd471964ded3c68c20010913c47fe9eae440a"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is solid: Polymarket rules are authoritative for contract interpretation, Binance API is a strong direct verification surface, and an independent CoinGecko spot check mildly improves confidence.",
+  "strongest_disconfirmers": [
+    "BTC can move more than 6% in under a day.",
+    "A single one-minute settlement close creates path dependence and wick risk.",
+    "Small residual ambiguity remains between Polymarket's UI wording and API bucket semantics."
+  ],
+  "strongest_supports": [
+    "Binance BTC/USDT was about 72.3k at run time, leaving roughly a 6.4% cushion above 68k.",
+    "Polymarket rules specify a single venue, pair, minute, and close field, limiting interpretive ambiguity.",
+    "ET-to-UTC conversion and sampled Binance klines support clean timing alignment for the target minute."
+  ],
+  "timing_relevance": "Timing is central because the contract resolves on one Binance BTC/USDT 1-minute close at 12:00 ET on Apr 10, which maps to 16:00 UTC.",
+  "unresolved_ambiguities": [
+    "Whether the visually referenced Binance candle interface could be interpreted differently from API start-of-minute bucket semantics."
+  ],
+  "what_would_change_view": "A drop toward 69-70k before settlement, evidence of Binance-specific dislocation, or clarification that the relevant minute is interpreted differently would lower confidence."
+}

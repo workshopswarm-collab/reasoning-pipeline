@@ -17,20 +17,28 @@ Supported modes:
 from __future__ import annotations
 
 import argparse
+import fcntl
 import json
 import os
 import subprocess
 import sys
+from contextlib import contextmanager
 from pathlib import Path
-from typing import Any
+from typing import Any, Iterator
 
 DEFAULT_PSQL = "/opt/homebrew/opt/postgresql@16/bin/psql"
 BASE_DIR = Path(__file__).resolve().parent
 RUNTIME_DIR = BASE_DIR.parent
 PIPELINE_DIR = RUNTIME_DIR.parent
 WORKSPACE_ROOT = PIPELINE_DIR.parents[2]
+
+if str(WORKSPACE_ROOT / 'scripts') not in sys.path:
+    sys.path.insert(0, str(WORKSPACE_ROOT / 'scripts'))
+
+from case_pipeline_status import first_active_nonterminal_case, first_blocking_case_without_completed_decision_packet  # noqa: E402
 PLANNER_SCRIPTS_DIR = PIPELINE_DIR / "planner" / "scripts"
 DEFAULT_MANIFEST_DIR = RUNTIME_DIR / "dispatch-manifests"
+DEFAULT_PREPARE_LOCK = RUNTIME_DIR / ".runtime-state" / "prepare-dispatch.lock"
 DEFAULT_MODEL = "openai-codex/gpt-5.4"
 DEFAULT_THINKING = "medium"
 DEFAULT_PERSONAS = [
@@ -60,6 +68,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--run-timeout-seconds", type=int, default=0, help="Retained for compatibility; not used by Telegram topic bootstrap")
     parser.add_argument("--allow-when-busy", action="store_true", help="Bypass the global sequential-processing gate when auto-selecting the next market")
     parser.add_argument("--manifest-dir", default=str(DEFAULT_MANIFEST_DIR), help="Directory where prepared manifests should be written")
+    parser.add_argument("--lock-file", default=str(DEFAULT_PREPARE_LOCK), help="Process lock to prevent concurrent top-level dispatch preparation")
     parser.add_argument("--db-url", default=os.getenv("PREDQUANT_ORCHESTRATOR_URL", ""), help="Postgres connection URL")
     parser.add_argument("--psql", default=os.getenv("PSQL_BIN", DEFAULT_PSQL), help="Path to psql binary")
     parser.add_argument("--pretty", action="store_true", help="Pretty-print JSON output")
@@ -100,6 +109,128 @@ def load_json(path: Path) -> dict[str, Any]:
 def write_json(path: Path, data: dict[str, Any]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(data, indent=2, sort_keys=True) + "\n")
+
+
+@contextmanager
+def process_lock(path: Path) -> Iterator[None]:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    handle = path.open("w")
+    try:
+        fcntl.flock(handle.fileno(), fcntl.LOCK_EX)
+        yield
+    finally:
+        try:
+            fcntl.flock(handle.fileno(), fcntl.LOCK_UN)
+        finally:
+            handle.close()
+
+
+def psql_json(db_url: str, sql: str, variables: dict[str, str] | None = None, *, psql_bin: str = DEFAULT_PSQL) -> dict[str, Any]:
+    cmd = [psql_bin, db_url, "-X", "-qAt", "-v", "ON_ERROR_STOP=1"]
+    for key, value in (variables or {}).items():
+        cmd.extend(["-v", f"{key}={value}"])
+    cmd.extend(["-f", "-"])
+    proc = subprocess.run(cmd, input=sql, text=True, capture_output=True)
+    if proc.returncode != 0:
+        raise RuntimeError(proc.stderr.strip() or proc.stdout.strip() or "psql failed")
+    text = proc.stdout.strip()
+    if not text:
+        return {}
+    return json.loads(text.splitlines()[-1])
+
+
+def active_researching_case(db_url: str, *, psql_bin: str = DEFAULT_PSQL) -> dict[str, Any]:
+    sql = r'''
+    SELECT COALESCE((
+      SELECT json_build_object(
+        'case_id', c.id::text,
+        'case_key', c.case_key,
+        'market_id', m.id::text,
+        'market_title', m.title,
+        'market_status', m.status,
+        'pipeline_status', m.pipeline_status::text,
+        'opened_at', c.opened_at
+      )
+      FROM public.cases c
+      JOIN public.markets m ON m.id = c.market_id
+      WHERE c.status = 'open'
+        AND m.pipeline_status = 'researching'
+      ORDER BY c.opened_at DESC
+      LIMIT 1
+    ), '{}'::json)::text;
+    '''
+    return psql_json(db_url, sql, psql_bin=psql_bin)
+
+
+def case_key_for_case_id(db_url: str, case_id: str, *, psql_bin: str = DEFAULT_PSQL) -> str:
+    case_id = str(case_id or '').strip()
+    if not case_id:
+        return ''
+    sql = r'''
+    SELECT COALESCE((
+      SELECT json_build_object(
+        'case_key', c.case_key
+      )
+      FROM public.cases c
+      WHERE c.id = NULLIF(:'case_id', '')::uuid
+      LIMIT 1
+    ), '{}'::json)::text;
+    '''
+    payload = psql_json(db_url, sql, {'case_id': case_id}, psql_bin=psql_bin)
+    return str(payload.get('case_key') or '').strip()
+
+
+def requested_case_key(args: argparse.Namespace) -> str:
+    requested_case_id = str(args.case_id or '').strip()
+    if requested_case_id:
+        return case_key_for_case_id(args.db_url, requested_case_id, psql_bin=args.psql)
+    manifest_path = str(args.manifest_path or '').strip()
+    if manifest_path:
+        try:
+            manifest = load_json(Path(manifest_path).expanduser().resolve())
+        except Exception:
+            return ''
+        case_payload = manifest.get('case') if isinstance(manifest.get('case'), dict) else {}
+        return str(case_payload.get('case_key') or '').strip()
+    return ''
+
+
+def enforce_single_active_case_guard(args: argparse.Namespace) -> None:
+    requested_key = requested_case_key(args)
+
+    active_case = first_active_nonterminal_case()
+    if active_case:
+        active_case_key = str(active_case.get('case_key') or '').strip()
+        if requested_key and requested_key == active_case_key:
+            return
+        raise RuntimeError(
+            'top-level dispatch launch blocked: another canonical case is already non-terminal '
+            f"(case_key={active_case_key}, status={active_case.get('status')}, current_stage={active_case.get('current_stage')}, market_title={active_case.get('market_title')})"
+        )
+
+    blocking_case = first_blocking_case_without_completed_decision_packet()
+    if blocking_case:
+        blocking_case_key = str(blocking_case.get('case_key') or '').strip()
+        if requested_key and requested_key == blocking_case_key:
+            return
+        raise RuntimeError(
+            'top-level dispatch launch blocked: the most recent canonical case set is not yet cleanly finished with a decision packet '
+            f"(case_key={blocking_case_key}, status={blocking_case.get('status')}, market_title={blocking_case.get('market_title')})"
+        )
+
+    active = active_researching_case(args.db_url, psql_bin=args.psql)
+    if not active:
+        return
+    active_case_id = str(active.get('case_id') or '').strip()
+    requested_case_id = str(args.case_id or '').strip()
+    if requested_case_id and requested_case_id == active_case_id:
+        return
+    if requested_key and requested_key == str(active.get('case_key') or '').strip():
+        return
+    raise RuntimeError(
+        "top-level dispatch launch blocked: another case is already actively researching "
+        f"(case_key={active.get('case_key')}, market_title={active.get('market_title')})"
+    )
 
 
 def persist_manifest(manifest_dir: Path, manifest: dict[str, Any]) -> Path:
@@ -200,7 +331,9 @@ def main() -> int:
         if not args.db_url:
             raise ValueError("--db-url or PREDQUANT_ORCHESTRATOR_URL is required")
 
-        manifest, runtime_preview, manifest_path, selection = prepare_manifest(args)
+        with process_lock(Path(args.lock_file).expanduser().resolve()):
+            enforce_single_active_case_guard(args)
+            manifest, runtime_preview, manifest_path, selection = prepare_manifest(args)
         next_tool_steps = build_next_tool_steps(runtime_preview["prepare"])
 
         bootstrap_command = f"python3 {BASE_DIR / 'internal' / 'bootstrap_telegram_topics.py'} --manifest-path {manifest_path} --apply --pretty"

@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A sudden selloff toward the high-60s before noon ET would materially weaken the view.",
+    "Any evidence that Polymarket uses a different candle boundary would reduce confidence."
+  ],
+  "key_assumptions": [
+    "The relevant settlement candle is the Binance BTC/USDT one-minute bar opened at 12:00 ET / 16:00 UTC on 2026-04-10.",
+    "Binance UI and API candle mechanics are aligned closely enough for settlement interpretation.",
+    "No extreme downside move pushes BTC below 68000 by the settlement minute."
+  ],
+  "main_logical_chain": [
+    "Map the contract's 12:00 ET timestamp to the correct exchange candle.",
+    "Verify from Binance docs that candle identification and timezone handling are coherent.",
+    "Compare current BTC spot level to the 68000 strike over the <24h horizon.",
+    "Conclude that outside-view persistence above the strike remains the dominant outcome unless a tail selloff occurs."
+  ],
+  "main_thesis": "BTC/USDT is currently far enough above 68000 that the Binance 12:00 ET one-minute close on April 10 is still very likely to finish above the strike, with timing mechanics verified and only tail-risk downside remaining.",
+  "own_probability": 0.97,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "Klines are uniquely identified by their open time.",
+    "If timeZone provided, kline intervals are interpreted in that timezone instead of UTC.",
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone has a final 'Close' price higher than the price specified."
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "contract_interpretation",
+    "technical_reference"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260409-da826a3f",
+    "dispatch_id": "dispatch-case-20260409-da826a3f-20260409T211410Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "feeb63a1-2d29-41b4-bdb8-391af0c0becd",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260409-da826a3f/researcher-analyses/2026-04-09/dispatch-case-20260409-da826a3f-20260409T211410Z/personas/base-rate.md",
+    "source_persona_sha256": "6aa8d0f10b02d700127bca3443aa63e4f7cb3482b49c9351f4a3a6bda6584aea"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality direct mechanics from Binance docs plus authoritative contract wording from Polymarket; independence is medium-low but source-of-truth ambiguity is low after verification.",
+  "strongest_disconfirmers": [
+    "BTC can still fall more than 6% within a day under a sharp macro or liquidation shock.",
+    "There is small residual risk of UI/API or candle-label interpretation mismatch."
+  ],
+  "strongest_supports": [
+    "BTC/USDT traded around 72.3k during the run, leaving roughly a 4.3k cushion above the strike.",
+    "Binance docs say klines are identified by open time and allow timezone-based interval interpretation.",
+    "Polymarket rules explicitly specify Binance BTC/USDT, the 12:00 ET one-minute candle, and the final close price."
+  ],
+  "timing_relevance": "Timing is central: 12:00 ET on 2026-04-10 maps to 16:00 UTC because New York is on EDT, and the relevant one-minute candle is identified by open time.",
+  "unresolved_ambiguities": [
+    "Whether Polymarket staff visually inspect the Binance web UI versus equivalent exchange data surfaces.",
+    "Minor residual ambiguity around UI labeling conventions despite clear API documentation."
+  ],
+  "what_would_change_view": "A sharp BTC drop toward 69k or below before late morning ET, or credible evidence of a different candle-boundary interpretation, would reduce the probability materially."
+}

@@ -1,0 +1,61 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Late posting burst could push total above 119.",
+    "Tracker classification or deletion-capture edge cases are not fully transparent in public docs."
+  ],
+  "key_assumptions": [
+    "XTracker's 103-count snapshot is directionally reliable.",
+    "Remaining uncertainty is driven more by future posting pace than by hidden recounts.",
+    "Tracker fallback to Truth Social is unlikely to be needed."
+  ],
+  "main_logical_chain": [
+    "Start from the 0.81 market prior and ask what must be true for it to make sense.",
+    "Check the contract and confirm XTracker is the governing source of truth.",
+    "Verify the tracked account is really Trump and the window matches the market window.",
+    "Query the live posts endpoint and observe 103 captured in-window posts already inside the target band.",
+    "Cross-check latest tracker posts against public-facing Truth Social/archive surfaces.",
+    "Conclude the market is mostly right on count integrity but a bit too confident because overshoot risk remains live."
+  ],
+  "main_thesis": "The market is directionally right because XTracker already had Trump at 103 in-window posts, but 0.81 is a bit rich given real overshoot risk before noon ET.",
+  "own_probability": 0.72,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "XTracker already showed Trump at 103 in-window Truth Social posts around 20:20 ET on April 9.",
+    "The main live risk is overshooting above 119 rather than missing the band from below."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "contract_interpretation",
+    "scenario_analysis",
+    "technical_reference"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260410-1c62ba82",
+    "dispatch_id": "dispatch-case-20260410-1c62ba82-20260410T002235Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "cab4a1b2-b066-4160-a364-4a3ec6921ac7",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260410-1c62ba82/researcher-analyses/2026-04-10/dispatch-case-20260410-1c62ba82-20260410T002235Z/personas/market-implied.md",
+    "source_persona_sha256": "22d7f2af41ae736afea7856048e9f2b81d271e2cca883dca254a7f2f581b31f7"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary source quality is strong for identity and count because XTracker is the named resolution source; secondary corroboration is moderate and mainly useful for cross-checking alignment.",
+  "strongest_disconfirmers": [
+    "Roughly 11.5 hours remained after the 103-post snapshot, leaving meaningful overshoot risk above 119.",
+    "Public API labeling does not fully expose reply/main-feed classification edge cases."
+  ],
+  "strongest_supports": [
+    "The designated primary resolution source already showed 103 in-window posts.",
+    "XTracker, Truth Social metadata, and archive cross-check all align on poster identity.",
+    "Latest XTracker posts matched public-facing archive entries."
+  ],
+  "timing_relevance": "High: the case resolves at noon ET and the count snapshot was taken with substantial time remaining.",
+  "unresolved_ambiguities": [
+    "How each returned item is classified for replies versus main-feed inclusion.",
+    "Whether any very short-lived deleted posts were missed by tracker capture."
+  ],
+  "what_would_change_view": "A later tracker check showing a sprint toward 120+, or evidence that many counted items are actually excluded replies, would push me down materially."
+}

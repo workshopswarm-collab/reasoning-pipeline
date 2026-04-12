@@ -1,0 +1,57 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A tracker revision below 100 or above 119 would materially weaken the view.",
+    "Evidence of many excluded replies being counted would reduce confidence."
+  ],
+  "key_assumptions": [
+    "XTracker's 103 total correctly applies the contract closely enough that any residual error will not move the result out of the 100-119 bucket.",
+    "No late tracker correction or sync failure changes the total before resolution."
+  ],
+  "main_logical_chain": [
+    "Start from the outside view that Trump often posts at very high weekly volume on Truth Social.",
+    "Check the market's named resolution source rather than relying on narrative priors alone.",
+    "The exact XTracker market window returns a total of 103, which lies inside 100-119.",
+    "Residual uncertainty is mostly about tracker rule implementation, not about whether the posting pace is behaviorally plausible."
+  ],
+  "main_thesis": "The contract's named tracker currently shows 103 Trump Truth Social posts in the exact window, putting the 100-119 bucket in-range unless there is a material rule-implementation error.",
+  "own_probability": 0.88,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "stats.total = 103",
+    "governing source of truth is XTracker's Post Counter"
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "contract_interpretation",
+    "technical_reference"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260410-1c62ba82",
+    "dispatch_id": "dispatch-case-20260410-1c62ba82-20260410T002235Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "df6e1f0b-3e0c-46fd-aa3f-d095618d8c35",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260410-1c62ba82/researcher-analyses/2026-04-10/dispatch-case-20260410-1c62ba82-20260410T002235Z/personas/base-rate.md",
+    "source_persona_sha256": "89b59014f05e0cc6d6f494fd860d583b33d43ba88c1942deede8401061e9f7e1"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary source quality is strong because XTracker is the named resolution surface, but evidence independence is only medium-low and auditability around replies/deleted posts is not perfect.",
+  "strongest_disconfirmers": [
+    "The contract excludes replies unless they appear on the main feed, and I did not manually classify all 103 records one by one.",
+    "Deleted-post treatment and tracker implementation details limit truly independent recounting."
+  ],
+  "strongest_supports": [
+    "XTracker tracking stats for the exact market window returned total = 103.",
+    "The tracked user is verified realDonaldTrump on TRUTH_SOCIAL and matches the public Truth Social identity.",
+    "Trump's posting frequency is high enough on base rates that 100-119 is not an exotic outcome."
+  ],
+  "timing_relevance": "Immediate; the market resolves at noon ET on 2026-04-10 and the tracker was checked shortly before completion with the total already at 103.",
+  "unresolved_ambiguities": [
+    "Public API output reviewed did not clearly expose a reply/main-feed classification field for every returned post.",
+    "I did not complete a full independent manual recount from exported tracker data."
+  ],
+  "what_would_change_view": "A tracker correction, confirmed reply overcount, or proof that enough valid posts were missed/miscoded to move the count outside 100-119."
+}

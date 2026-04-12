@@ -1,0 +1,62 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Overshoot above 119 before noon ET is the main directional failure mode.",
+    "Public auditability of reply/main-feed and deleted-post treatment is incomplete from raw post rows.",
+    "If XTracker malfunctions, fallback counting on Truth Social could introduce settlement ambiguity."
+  ],
+  "key_assumptions": [
+    "XTracker remains the governing and functional resolution source through noon ET.",
+    "Additional counted posts before resolution are unlikely to push the total above 119.",
+    "The current 103 count will not be materially revised downward by reclassification."
+  ],
+  "main_logical_chain": [
+    "Check the contract and identify the governing settlement source as XTracker's Post Counter.",
+    "Verify the tracked account identity and exact market-linked time window on XTracker.",
+    "Observe that the official tracked total is already 103, inside the 100-119 band.",
+    "Discount confidence because the window is still open and raw captured-post rows do not map perfectly to the official counter.",
+    "Conclude lean Yes, but below the market's confidence level."
+  ],
+  "main_thesis": "Lean Yes because XTracker, the governing resolution source, currently shows 103 counted Truth Social posts in the exact window, but confidence should be discounted for late-window overshoot risk and counting-rule opacity.",
+  "own_probability": 0.68,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "totalBetweenStartAndEnd = 103",
+    "XTracker Post Counter is the primary resolution source",
+    "replies do not count unless recorded on the main feed"
+  ],
+  "reasoning_mode": [
+    "risk_management",
+    "contract_interpretation",
+    "scenario_analysis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260410-1c62ba82",
+    "dispatch_id": "dispatch-case-20260410-1c62ba82-20260410T002235Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "b83cd796-c912-417b-8f06-180333bca7de",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260410-1c62ba82/researcher-analyses/2026-04-10/dispatch-case-20260410-1c62ba82-20260410T002235Z/personas/risk-manager.md",
+    "source_persona_sha256": "ec728c8d114e8bfb7ff4fabc1e290c2b8c23f29c9568d7546b855939dd77cd5d"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Good primary source quality because the tracker is the explicit settlement source and exposes public docs plus live endpoints, but independence is limited and rule-filter transparency is only partial.",
+  "strongest_disconfirmers": [
+    "The market is still live, so a late posting burst could push the final official total above 119.",
+    "Raw captured posts endpoint returned 105 rows while the official counter showed 103, leaving some counting-rule opacity."
+  ],
+  "strongest_supports": [
+    "XTracker stats endpoint shows totalBetweenStartAndEnd = 103 for the exact market-linked window.",
+    "XTracker user endpoint matches the tracked poster to verified Truth Social account realDonaldTrump.",
+    "Polymarket rules explicitly make XTracker's Post Counter the primary resolution source."
+  ],
+  "timing_relevance": "High: the count is already in range but the market remains open until noon ET, so late-window posting can still flip the outcome.",
+  "unresolved_ambiguities": [
+    "Which exact two captured posts were excluded from the official 103 count.",
+    "How much additional posting activity will occur before the deadline.",
+    "Whether any borderline reply or deleted-post cases emerge near resolution."
+  ],
+  "what_would_change_view": "A tracker update toward or above 120, evidence of tracker malfunction, or proof that several currently counted posts should be excluded would move me materially away from Yes."
+}

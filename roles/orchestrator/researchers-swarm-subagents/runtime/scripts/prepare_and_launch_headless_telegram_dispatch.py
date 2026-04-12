@@ -162,7 +162,7 @@ def main() -> int:
         case_payload = prepare_result.get("case") or {}
         market_payload = prepare_result.get("market") or {}
         dispatch_payload = prepare_result.get("dispatch") or {}
-        case_key = str(case_payload.get("case_id") or "").strip()
+        case_key = str(case_payload.get("case_key") or case_payload.get("case_id") or "").strip()
         if case_key:
             update_case_pipeline_status(
                 case_key=case_key,

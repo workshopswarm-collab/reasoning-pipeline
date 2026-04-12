@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Label</key>
+	<string>ai.openclaw.orchestrator.pipeline-healthcheck</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/bin/python3.14</string>
+		<string>/Users/agent2/.openclaw/orchestrator/scripts/check_pipeline_health.py</string>
+		<string>--heartbeat-file</string>
+		<string>/Users/agent2/.openclaw/orchestrator/scripts/.runtime-state/pipeline-heartbeat.json</string>
+		<string>--quarantine-file</string>
+		<string>/Users/agent2/.openclaw/orchestrator/scripts/.runtime-state/pipeline-quarantine.json</string>
+		<string>--report-file</string>
+		<string>/Users/agent2/.openclaw/orchestrator/scripts/.runtime-state/pipeline-health-report.json</string>
+		<string>--artifact-contract-root</string>
+		<string>/Users/agent2/.openclaw/orchestrator/qualitative-db/40-research/cases</string>
+		<string>--artifact-contract-report-file</string>
+		<string>/Users/agent2/.openclaw/orchestrator/scripts/.runtime-state/pipeline-artifact-contract-report.json</string>
+		<string>--decided-market-watcher-heartbeat-file</string>
+		<string>/Users/agent2/.openclaw/orchestrator/scripts/.runtime-state/decided-market-watcher-heartbeat.json</string>
+		<string>--max-decided-market-watcher-age-seconds</string>
+		<string>120.0</string>
+		<string>--market-checker-env-file</string>
+		<string>/Users/agent2/.openclaw/orchestrator/.env.postgres.local</string>
+		<string>--market-checker-psql</string>
+		<string>/opt/homebrew/Cellar/postgresql@16/16.13/bin/psql</string>
+		<string>--max-market-snapshot-age-seconds</string>
+		<string>3600.0</string>
+		<string>--max-heartbeat-age-seconds</string>
+		<string>1800.0</string>
+		<string>--max-resolution-sync-age-seconds</string>
+		<string>5400.0</string>
+		<string>--max-brier-age-seconds</string>
+		<string>172800.0</string>
+		<string>--max-quarantine-count</string>
+		<string>10</string>
+		<string>--pretty</string>
+	</array>
+	<key>WorkingDirectory</key>
+	<string>/Users/agent2/.openclaw/orchestrator</string>
+	<key>RunAtLoad</key>
+	<true/>
+	<key>StartInterval</key>
+	<integer>300</integer>
+	<key>StandardOutPath</key>
+	<string>/Users/agent2/.openclaw/orchestrator/scripts/.runtime-state/launchd/pipeline-healthcheck.stdout.log</string>
+	<key>StandardErrorPath</key>
+	<string>/Users/agent2/.openclaw/orchestrator/scripts/.runtime-state/launchd/pipeline-healthcheck.stderr.log</string>
+	<key>ProcessType</key>
+	<string>Background</string>
+	<key>EnvironmentVariables</key>
+	<dict>
+		<key>PATH</key>
+		<string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+		<key>PYTHONUNBUFFERED</key>
+		<string>1</string>
+	</dict>
+</dict>
+</plist>

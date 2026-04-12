@@ -1,0 +1,78 @@
+{
+  "artifact_type": "targeted_verification_pack",
+  "schema_version": "decision-targeted-verification-pack/v1",
+  "case_key": "case-20260412-4f449580",
+  "dispatch_id": "dispatch-case-20260412-4f449580-20260412T013511Z",
+  "required": true,
+  "verification_mode": "targeted_escalation",
+  "pack_purpose": "Deterministic narrow follow-up pack for targeted escalation. It defines the crux questions and operational budgets, while source choice may remain model-driven within runtime-enforced tool guardrails.",
+  "verification_questions": [
+    "Does the latest available information materially change the decision, given: Binance BTCUSDT path during the overnight and late-morning session before the 12:00 ET fixing minute?",
+    "How decision-relevant is the remaining contract/source-of-truth ambiguity: minor Binance 1-minute candle labeling/open-time nuance despite otherwise clear settlement rules?",
+    "Are the current blockers still material to final judgment: The decisive 16:00 UTC Binance close was still unavailable?",
+    "Is the main verification gap still decision-material: The authoritative 16:00 UTC settlement candle was not yet available, so the final edge remains unverified at resolution time.?"
+  ],
+  "structured_handoff_focus": {
+    "contract_ambiguity_level": "minor",
+    "contract_ambiguity_reason": "minor Binance 1-minute candle labeling/open-time nuance despite otherwise clear settlement rules",
+    "verification_gap_summary": "The authoritative 16:00 UTC settlement candle was not yet available, so the final edge remains unverified at resolution time.",
+    "best_countercase_summary": "If BTC reclaims and holds a modest cushion above 72k before noon ET, the market's higher Yes pricing could be justified.",
+    "main_reason_for_disagreement": "The remaining disagreement is mainly about how much single-minute Binance fixing risk should discount a broadly bullish BTC setup near the strike.",
+    "resolution_mechanics_summary": "Resolve from the Binance BTCUSDT 1-minute candle closing at 12:00 ET / 16:00 UTC, requiring a final close strictly above 72000.",
+    "freshness_sensitive": "yes",
+    "freshness_driver": "Binance BTCUSDT path during the overnight and late-morning session before the 12:00 ET fixing minute",
+    "decision_blockers": [
+      "The decisive 16:00 UTC Binance close was still unavailable",
+      "Spot was oscillating near the threshold with high minute-level volatility",
+      "Upstream market-price snapshots were inconsistent between the assignment and one fetched page"
+    ],
+    "disagreement_type": "timing"
+  },
+  "supporting_persona_summaries": [
+    {
+      "persona": "market-implied",
+      "recommended_weight": "medium",
+      "own_probability": 0.81,
+      "main_thesis": "The market is broadly efficient: Yes is favored because Binance BTCUSDT is already above 72,000, but the edge is limited because single-minute Binance volatility can still flip the outcome.",
+      "main_logical_chain": [
+        "The governing source is Binance BTCUSDT 1-minute close at 12:00 ET, so exchange-specific spot and kline mechanics matter more than generic BTC sentiment.",
+        "BTCUSDT was already above 72,000, which makes Yes the correct lean and supports the market prior.",
+        "Observed recent minute-level volatility on Binance is large enough that a modest cushion above strike should still be discounted materially.",
+        "That leaves a favored-but-fragile Yes view, roughly agreeing with the market rather than strongly fading it."
+      ],
+      "strongest_supports": [
+        "Binance ticker showed BTCUSDT at 72,097.30 at research time.",
+        "Polymarket strike ladder around 70k/72k/74k looked internally coherent rather than stale."
+      ],
+      "strongest_disconfirmers": [
+        "Recent Binance 1-minute candles showed multi-hundred-dollar drops within minutes, large relative to the ~$97 cushion above strike.",
+        "The contract is governed by one exchange and one minute only."
+      ],
+      "unresolved_ambiguities": [
+        "Assignment snapshot price was 0.76 while fetched Polymarket page showed about 0.86.",
+        "Exact price path into the noon-ET resolving minute remains unknown."
+      ],
+      "what_would_change_view": "A sustained move below 72,000, higher realized volatility, or Binance-specific dislocation would lower the estimate; a larger buffer above 72,300-72,500 closer to noon ET would raise it.",
+      "timing_relevance": "High; the contract resolves at one precise noon-ET minute, so late-morning BTC path and short-horizon volatility dominate.",
+      "source_quality_view": "High confidence in mechanics because Binance and Polymarket rules are explicit; moderate confidence in pricing interpretation because causal evidence is mostly exchange-state and market-context rather than independent drivers.",
+      "persona_finding_path": "qualitative-db/40-research/cases/case-20260412-4f449580/researcher-analyses/2026-04-12/dispatch-case-20260412-4f449580-20260412T013511Z/personas/market-implied.md",
+      "assumption_artifact_paths": [
+        "qualitative-db/40-research/cases/case-20260412-4f449580/researcher-analyses/2026-04-12/dispatch-case-20260412-4f449580-20260412T013511Z/assumptions/market-implied.md"
+      ],
+      "evidence_artifact_paths": [
+        "qualitative-db/40-research/cases/case-20260412-4f449580/researcher-analyses/2026-04-12/dispatch-case-20260412-4f449580-20260412T013511Z/evidence/market-implied.md"
+      ]
+    }
+  ],
+  "selected_assumption_snippets": [],
+  "selected_evidence_snippets": [],
+  "selected_supporting_note_snippets": [],
+  "pack_budget": {
+    "max_chars": 6000,
+    "actual_chars_before_trim": 7874,
+    "actual_chars_after_trim": 5443,
+    "approx_tokens_before_trim": 1968,
+    "approx_tokens_after_trim": 1360,
+    "trim_applied": true
+  }
+}

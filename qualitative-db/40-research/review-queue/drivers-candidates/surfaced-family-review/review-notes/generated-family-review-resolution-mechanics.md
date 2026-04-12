@@ -2,11 +2,11 @@
 type: proposed_driver_family_review
 family_slug: resolution-mechanics
 review_model: qwen3.5:9b
-generated_at: 2026-04-09T07:49:49Z
+generated_at: 2026-04-09T20:48:54Z
 prompt_version: v1
 recommended_action: hold
-recommended_family_slug: resolution-mechanics
-recommended_family_label: "resolution mechanics"
+recommended_family_slug: 
+recommended_family_label: ""
 merge_target_family_slug: 
 merge_target_canonical_driver: 
 canon_overlap_status: none
@@ -19,15 +19,15 @@ status: active
 
 ## Recommendation
 - action: `hold`
-- recommended family slug: `resolution-mechanics`
-- recommended family label: `resolution mechanics`
+- recommended family slug: ``
+- recommended family label: ``
 - merge target family: ``
 - merge target canonical driver: ``
 
 ## Canon overlap
 - status: `none`
 - canonical driver: ``
-- reason: family marked novel in heuristic summary; no canonical driver covers the specific resolution mechanics concept
+- reason: 
 
 ## Family quality
 - coherent cluster: `True`
@@ -35,23 +35,53 @@ status: active
 - confidence: `low`
 
 ## Rationale
-The family contains four candidates with sparse evidence (7 total occurrences, 2 distinct cases). While the grouping appears coherent under the 'resolution mechanics' label, the evidence is too sparse to confidently split or promote. The intraday-volatility candidate has related_canonical_drivers (operational-risk, reliability) but is not substantially covered by them, so merge_into_canon is not appropriate. No clear material distinction exists between candidates to justify split_family. Hold is the conservative choice.
+
 
 ## Raw candidate assignments
-- `crypto-price-threshold-resolution` -> family `resolution-mechanics` | notes: primary candidate for family; distinct cases and personas support inclusion
-- `intraday-volatility` -> family `resolution-mechanics` | notes: related_canonical_drivers suggest operational-risk/reliability but grouped here; sparse evidence warrants hold rather than split
-- `exchange-specific settlement mechanics` -> family `resolution-mechanics` | notes: shares case keys with crypto-price-threshold-resolution; sparse evidence
-- `resolution mechanics` -> family `resolution-mechanics` | notes: generic label variant; sparse evidence
+- `bls-rounding-threshold-risk` -> family `resolution-mechanics` | notes: 
+- `contract-settlement-ambiguity` -> family `resolution-mechanics` | notes: 
+- `contract-settlement-risk` -> family `resolution-mechanics` | notes: 
+- `crypto-price-threshold-resolution` -> family `resolution-mechanics` | notes: 
+- `deadline-specific path-risk` -> family `resolution-mechanics` | notes: 
+- `monthly-global-temperature-anomaly-persistence` -> family `resolution-mechanics` | notes: 
+- `monthly-temperature-threshold-resolution-risk` -> family `resolution-mechanics` | notes: 
+- `threshold-resolution-risk` -> family `resolution-mechanics` | notes: 
+- `intraday-volatility` -> family `resolution-mechanics` | notes: 
+- `nowcast-dispersion` -> family `resolution-mechanics` | notes: 
+- `exchange-specific settlement mechanics` -> family `resolution-mechanics` | notes: 
+- `resolution mechanics` -> family `resolution-mechanics` | notes: 
 
 ## Suggested follow-up
-accumulate more occurrences or distinct cases before considering promotion or split
+
 
 ## Normalization notes
+- `recommended_action_normalized`
 - `canon_overlap_status_defaulted_to_none`
+- `family_quality_confidence_defaulted`
+- `candidate_assignment_defaulted:bls-rounding-threshold-risk`
+- `candidate_assignment_defaulted:contract-settlement-ambiguity`
+- `candidate_assignment_defaulted:contract-settlement-risk`
+- `candidate_assignment_defaulted:crypto-price-threshold-resolution`
+- `candidate_assignment_defaulted:deadline-specific-path-risk`
+- `candidate_assignment_defaulted:monthly-global-temperature-anomaly-persistence`
+- `candidate_assignment_defaulted:monthly-temperature-threshold-resolution-risk`
+- `candidate_assignment_defaulted:threshold-resolution-risk`
+- `candidate_assignment_defaulted:intraday-volatility`
+- `candidate_assignment_defaulted:nowcast-dispersion`
+- `candidate_assignment_defaulted:exchange-specific-settlement-mechanics`
+- `candidate_assignment_defaulted:resolution-mechanics`
 
 ## Source candidate notes
+- `bls-rounding-threshold-risk` -> `qualitative-db/40-research/review-queue/drivers-candidates/candidate-notes/generated-driver-candidate-bls-rounding-threshold-risk.md`
+- `contract-settlement-ambiguity` -> `qualitative-db/40-research/review-queue/drivers-candidates/candidate-notes/generated-driver-candidate-contract-settlement-ambiguity.md`
+- `contract-settlement-risk` -> `qualitative-db/40-research/review-queue/drivers-candidates/candidate-notes/generated-driver-candidate-contract-settlement-risk.md`
 - `crypto-price-threshold-resolution` -> `qualitative-db/40-research/review-queue/drivers-candidates/candidate-notes/generated-driver-candidate-crypto-price-threshold-resolution.md`
+- `deadline-specific path-risk` -> `qualitative-db/40-research/review-queue/drivers-candidates/candidate-notes/generated-driver-candidate-deadline-specific-path-risk.md`
+- `monthly-global-temperature-anomaly-persistence` -> `qualitative-db/40-research/review-queue/drivers-candidates/candidate-notes/generated-driver-candidate-monthly-global-temperature-anomaly-persistence.md`
+- `monthly-temperature-threshold-resolution-risk` -> `qualitative-db/40-research/review-queue/drivers-candidates/candidate-notes/generated-driver-candidate-monthly-temperature-threshold-resolution-risk.md`
+- `threshold-resolution-risk` -> `qualitative-db/40-research/review-queue/drivers-candidates/candidate-notes/generated-driver-candidate-threshold-resolution-risk.md`
 - `intraday-volatility` -> `qualitative-db/40-research/review-queue/drivers-candidates/candidate-notes/generated-driver-candidate-intraday-volatility.md`
+- `nowcast-dispersion` -> `qualitative-db/40-research/review-queue/drivers-candidates/candidate-notes/generated-driver-candidate-nowcast-dispersion.md`
 - `exchange-specific settlement mechanics` -> `qualitative-db/40-research/review-queue/drivers-candidates/candidate-notes/generated-driver-candidate-exchange-specific-settlement-mechanics.md`
 - `resolution mechanics` -> `qualitative-db/40-research/review-queue/drivers-candidates/candidate-notes/generated-driver-candidate-resolution-mechanics.md`
 

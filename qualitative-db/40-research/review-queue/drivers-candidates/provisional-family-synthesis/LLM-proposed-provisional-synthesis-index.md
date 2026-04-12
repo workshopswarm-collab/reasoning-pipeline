@@ -1,7 +1,7 @@
 ---
 type: proposed_driver_provisional_synthesis_index
 generated_by: ollama_provisional_synthesis_pass
-generated_at: 2026-04-09T17:16:16Z
+generated_at: 2026-04-12T03:23:32Z
 review_model: qwen3.5:9b
 family_review_count: 1
 status: active

@@ -1,0 +1,86 @@
+{
+  "artifact_type": "case_pipeline_status",
+  "case_key": "case-20260411-6669dcdb",
+  "completed_at": "2026-04-12T03:33:02.518276+00:00",
+  "current_stage": "decision",
+  "dispatch_id": "dispatch-case-20260411-6669dcdb-20260411T003353Z",
+  "last_event": {
+    "at": "2026-04-12T03:33:02.518276+00:00",
+    "current_stage": "decision",
+    "message": "Normalized completed case status after canonical case-key repair so terminal stage markers and provenance summary match the completed artifact set",
+    "status": "pipeline_completed"
+  },
+  "market_title": "Will the price of Bitcoin be above $72,000 on April 11?",
+  "runner_id": "case_pipeline_status_repair",
+  "schema_version": "case-pipeline-status/v1",
+  "stage_statuses": {
+    "decision": "completed",
+    "dispatch": "completed",
+    "swarm": "completed",
+    "synthesis": "completed"
+  },
+  "started_at": "2026-04-11T02:05:26.131469+00:00",
+  "status": "pipeline_completed",
+  "terminal_summary": {
+    "decision_packet_json": "qualitative-db/40-research/cases/case-20260411-6669dcdb/decision-maker/artifacts/decision-maker-packet.json",
+    "decision_packet_markdown": "qualitative-db/40-research/cases/case-20260411-6669dcdb/decision-maker/decision-maker-packet.md",
+    "decision_readiness": "ready",
+    "position_policy": "hold_only",
+    "recommended_side": "yes",
+    "swarm_stage_status_path": "qualitative-db/40-research/cases/case-20260411-6669dcdb/researcher-analyses/2026-04-11/dispatch-case-20260411-6669dcdb-20260411T003353Z/swarm-stage-status.json",
+    "topic_terminal_marker_chat_id": "-1003846500961",
+    "topic_terminal_marker_dispatch_id": "dispatch-case-20260411-6669dcdb-20260411T003353Z",
+    "topic_terminal_marker_message": "CASE INACTIVE | case_key=case-20260411-6669dcdb | status=pipeline_completed | stage=decision | market=Will the price of Bitcoin be above $72,000 on April 11?\n\nThis topic is no longer active for automation.",
+    "topic_terminal_marker_posted_at": "2026-04-12T03:33:06.016887+00:00",
+    "topic_terminal_marker_result": {
+      "raw_stdout": "{\n  \"action\": \"send\",\n  \"channel\": \"telegram\",\n  \"dryRun\": false,\n  \"handledBy\": \"plugin\",\n  \"payload\": {\n    \"ok\": true,\n    \"messageId\": \"790\",\n    \"chatId\": \"-1003846500961\"\n  }\n}"
+    },
+    "topic_terminal_marker_topic_id": "617",
+    "trade_authorization": "watch_only"
+  },
+  "timeline": [
+    {
+      "at": "2026-04-11T02:05:26.131469+00:00",
+      "current_stage": "decision",
+      "message": "Decision-Maker stage started",
+      "status": "pipeline_in_progress"
+    },
+    {
+      "at": "2026-04-11T02:05:59.004608+00:00",
+      "current_stage": "decision",
+      "message": "Decision-Maker completed and packet rendered",
+      "status": "pipeline_completed"
+    },
+    {
+      "at": "2026-04-11T03:12:57.574645+00:00",
+      "current_stage": "decision",
+      "message": "Swarm stage reconciled",
+      "status": "pipeline_in_progress"
+    },
+    {
+      "at": "2026-04-11T03:12:57.578489+00:00",
+      "current_stage": "synthesis",
+      "message": "Swarm resume helper action: none_needed",
+      "status": "pipeline_in_progress"
+    },
+    {
+      "at": "2026-04-11T03:41:34.442671+00:00",
+      "current_stage": "decision",
+      "message": "Swarm stage reconciled",
+      "status": "pipeline_in_progress"
+    },
+    {
+      "at": "2026-04-11T03:41:34.474675+00:00",
+      "current_stage": "decision",
+      "message": "Watchdog finalized pipeline from ready decision artifacts",
+      "status": "pipeline_completed"
+    },
+    {
+      "at": "2026-04-12T03:33:02.518276+00:00",
+      "current_stage": "decision",
+      "message": "Normalized completed case status after canonical case-key repair so terminal stage markers and provenance summary match the completed artifact set",
+      "status": "pipeline_completed"
+    }
+  ],
+  "updated_at": "2026-04-12T03:33:02.518276+00:00"
+}

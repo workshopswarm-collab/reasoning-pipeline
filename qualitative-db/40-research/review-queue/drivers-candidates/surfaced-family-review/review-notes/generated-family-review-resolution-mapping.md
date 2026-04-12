@@ -2,7 +2,7 @@
 type: proposed_driver_family_review
 family_slug: resolution-mapping
 review_model: qwen3.5:9b
-generated_at: 2026-04-08T15:41:22Z
+generated_at: 2026-04-09T20:40:39Z
 prompt_version: v1
 recommended_action: hold
 recommended_family_slug: resolution-mapping
@@ -27,7 +27,7 @@ status: active
 ## Canon overlap
 - status: `none`
 - canonical driver: ``
-- reason: no existing canonical driver covers this family; heuristic summary marks it as novel
+- reason: no existing canonical driver covers this family; heuristic summary indicates novel status
 
 ## Family quality
 - coherent cluster: `True`
@@ -35,14 +35,14 @@ status: active
 - confidence: `low`
 
 ## Rationale
-The family contains 2 candidates from 1 case. Evidence is sparse (4 total occurrences). The two candidates differ in persona (market-implied vs catalyst-hunter) and label, but there is no clear evidence of materially different mechanisms to justify a split. The family appears coherent but not yet robust enough for promotion. No existing canonical driver covers this, so merge_into_canon is not appropriate. Hold is the conservative choice pending more evidence.
+The family contains 2 candidates from 1 case with 4 total occurrences. Evidence is sparse (only 1 distinct case). The two candidates differ in persona (market-implied vs catalyst-hunter) and label, but both relate to mapping/ambiguity in the same case. Given sparse evidence and lack of clear material mechanism difference, hold rather than split. No canonical overlap exists. Coherence is plausible but confidence is low due to limited data.
 
 ## Raw candidate assignments
-- `chart-label-resolution-mapping` -> family `resolution-mapping` | notes: primary candidate with 3 occurrences; persona market-implied
-- `title-mapping-ambiguity` -> family `resolution-mapping` | notes: single occurrence; persona catalyst-hunter; unclear mechanistic distinction from chart-label-resolution-mapping
+- `chart-label-resolution-mapping` -> family `resolution-mapping` | notes: primary candidate with 3 occurrences in single case
+- `title-mapping-ambiguity` -> family `resolution-mapping` | notes: single occurrence in same case; distinct persona but grouped under same family
 
 ## Suggested follow-up
-Gather additional occurrences or cases to determine if the two candidates represent distinct mechanisms or should remain grouped.
+Gather more cases to determine if the two candidates represent distinct mechanisms or a single coherent family.
 
 ## Normalization notes
 - `canon_overlap_status_defaulted_to_none`

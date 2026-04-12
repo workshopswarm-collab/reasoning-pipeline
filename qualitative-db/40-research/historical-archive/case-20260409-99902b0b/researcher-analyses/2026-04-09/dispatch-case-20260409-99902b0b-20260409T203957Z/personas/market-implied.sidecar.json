@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Short-horizon BTC downside volatility into U.S. morning trading.",
+    "Binance-specific basis, outage, or chart-data anomalies near settlement.",
+    "Overconfidence caused by treating broad spot strength as equivalent to exact-minute settlement certainty."
+  ],
+  "key_assumptions": [
+    "A roughly $2.3k cushion above $70k is enough to survive normal overnight-to-noon BTC volatility.",
+    "Binance BTC/USDT remains aligned with broader BTC spot pricing into the settlement minute.",
+    "No major macro or crypto-specific shock hits before noon ET on April 10."
+  ],
+  "main_logical_chain": [
+    "The contract resolves to a specific Binance BTC/USDT 12:00 ET 1m close above 70000.",
+    "Current Binance spot is about 2363 points above the threshold with recent 1m candles clustered near 72.3k-72.4k.",
+    "Independent CoinGecko and Coinbase checks show similar spot levels, supporting that the cushion is real rather than a stale Binance print.",
+    "That makes a high yes probability reasonable, but not quite as high as 88.5% because short-horizon crypto volatility can still erase a 3.3% buffer by one exact minute tomorrow."
+  ],
+  "main_thesis": "The market's high yes price is broadly justified by Binance BTC/USDT trading around $72.36k with cross-venue confirmation, though exact-minute settlement risk makes 88.5% look slightly rich.",
+  "own_probability": 0.84,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone ... has a final 'Close' price higher than ... 70000.",
+    "Binance ticker: price 72363.48000000"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260409-99902b0b",
+    "dispatch_id": "dispatch-case-20260409-99902b0b-20260409T203957Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "4e675f79-e8ba-4f2e-b88a-d675e50ef0b2",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260409-99902b0b/researcher-analyses/2026-04-09/dispatch-case-20260409-99902b0b-20260409T203957Z/personas/market-implied.md",
+    "source_persona_sha256": "09003cafb5b1b7cf0d62aaffac8b66516e075e36d8323038a46cd3211808c1b1"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality primary resolution mechanics from Polymarket plus Binance, with medium-independence contextual verification from CoinGecko and Coinbase; source-of-truth ambiguity is low-to-medium because the venue and timestamp are explicit but exact chart-close implementation still matters.",
+  "strongest_disconfirmers": [
+    "The contract resolves on one exact Binance 12:00 ET one-minute close, so a >3% drawdown before noon could still flip it to no.",
+    "Venue-specific dislocation or Binance-specific data quirks would matter more here than in a generic BTC market."
+  ],
+  "strongest_supports": [
+    "Binance ticker showed BTCUSDT around 72363.48 at assignment time.",
+    "Recent Binance 1m closes were consistently above 72.3k.",
+    "CoinGecko and Coinbase both cross-checked spot around 72.38k-72.39k."
+  ],
+  "timing_relevance": "Assignment snapshot was at 4:40 PM ET on April 9; resolution is at 12:00 PM ET on April 10, so less than 20 hours remain but the market still depends on one exact minute close.",
+  "unresolved_ambiguities": [
+    "How much event risk or macro volatility could emerge before noon ET tomorrow.",
+    "Whether Binance chart-close implementation introduces any practical edge-case ambiguity at settlement."
+  ],
+  "what_would_change_view": "A sharp selloff toward or below 70k on Binance, evidence of Binance underperforming broader spot, or a meaningful clarification changing the noon ET candle interpretation would lower my estimate materially."
+}

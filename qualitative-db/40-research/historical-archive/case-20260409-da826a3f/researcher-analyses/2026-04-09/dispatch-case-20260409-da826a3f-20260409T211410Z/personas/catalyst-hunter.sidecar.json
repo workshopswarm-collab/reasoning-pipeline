@@ -1,0 +1,61 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Crypto can gap sharply on unscheduled news.",
+    "If BTC is already near 69000 by morning ET, the view weakens materially.",
+    "UI-versus-API candle labeling ambiguity is not fully eliminated."
+  ],
+  "key_assumptions": [
+    "The relevant settlement candle is the 1-minute candle opening at 12:00 ET / 16:00 UTC.",
+    "No new macro or crypto-specific shock catalyst arrives before resolution that forces a >5.9% drawdown.",
+    "Binance publishes the governing candle normally at settlement."
+  ],
+  "main_logical_chain": [
+    "Polymarket resolves this market from Binance BTCUSDT's 12:00 ET 1-minute candle close.",
+    "Binance docs indicate klines are keyed by open time and adjacent-day verification confirms 12:00 ET maps to 16:00 UTC under EDT.",
+    "Current BTCUSDT spot is roughly 4.3k above the threshold with less than a day remaining.",
+    "Therefore Yes remains likely unless a fresh downside catalyst produces an unusually sharp short-horizon selloff."
+  ],
+  "main_thesis": "BTC is likely to remain above 68000 on Binance's noon-ET 1-minute close on April 10 unless an unscheduled downside shock triggers a roughly 6% drawdown before settlement.",
+  "own_probability": 0.94,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone (noon)... has a final 'Close' price higher than the price specified.",
+    "Klines are uniquely identified by their open time.",
+    "Note that startTime and endTime are always interpreted in UTC, regardless of timeZone."
+  ],
+  "reasoning_mode": [
+    "catalyst_analysis",
+    "contract_interpretation",
+    "technical_reference",
+    "market_anchor"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260409-da826a3f",
+    "dispatch_id": "dispatch-case-20260409-da826a3f-20260409T211410Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "e55d5208-d3ed-470e-b218-d47cfed248d7",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260409-da826a3f/researcher-analyses/2026-04-09/dispatch-case-20260409-da826a3f-20260409T211410Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "e936c3ba9f011628659220a4b368fd8df2fc5c92d33a2c77ebd55ca686ed8d2c"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality direct rule and exchange-mechanics evidence, but medium independence because Binance is both the mechanics reference and live price source.",
+  "strongest_disconfirmers": [
+    "BTC can still move ~6% quickly on leverage unwinds, macro headlines, or exchange-specific stress.",
+    "Residual minute-label / settlement-mechanics ambiguity would matter more if price approached the threshold."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT spot during research was about 72288.83, well above 68000.",
+    "Adjacent-day verification showed the 16:00 UTC candle is the ET-noon minute during EDT.",
+    "No specific scheduled catalyst was identified that obviously carries enough information value to force a repricing below 68000 before deadline."
+  ],
+  "timing_relevance": "The market is mostly a short-horizon timing question: BTC only needs to avoid a roughly 5.9% drop into the exact noon-ET settlement minute.",
+  "unresolved_ambiguities": [
+    "Whether Binance's website chart UI presents the target minute exactly the same way implied by API open-time semantics.",
+    "Whether an unscheduled overnight macro or crypto-specific shock emerges before settlement."
+  ],
+  "what_would_change_view": "A sharp overnight selloff toward 68000, or direct clarification showing a different settlement-minute interpretation, would reduce confidence materially."
+}

@@ -1,0 +1,57 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Single-minute settlement rather than average or end-of-day price.",
+    "Venue-specific dependence on Binance BTC/USDT."
+  ],
+  "key_assumptions": [
+    "BTC/USDT will not suffer a large enough downside move before noon ET on April 10 to push the Binance 1-minute close below 70,000.",
+    "Binance remains the operative venue without a settlement-relevant anomaly or dislocation."
+  ],
+  "main_logical_chain": [
+    "The rules say settlement is the Binance BTC/USDT 12:00 ET April 10 one-minute candle close, strictly above 70,000.",
+    "Current Binance spot and nearby 1-minute closes are in the low 72.3k range, materially above the threshold.",
+    "Outside-view persistence therefore favors Yes, but exact-minute and venue-specific settlement risk prevents treating No as negligible.",
+    "That supports a 90% estimate: strong favorite, but slightly below the live mid-90s market pricing."
+  ],
+  "main_thesis": "BTC is already trading comfortably above 70,000 on Binance with less than a day left, so Yes is the base-rate favorite, though a single exact-minute settlement keeps the probability below the most extreme market pricing.",
+  "own_probability": 0.9,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "Binance BTCUSDT last price fetched during the run was 72,363.48.",
+    "The final close must be strictly greater than 70,000; equal to 70,000 would be No."
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "market_anchor",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260409-99902b0b",
+    "dispatch_id": "dispatch-case-20260409-99902b0b-20260409T203957Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "8cf42efa-ac6e-4464-9882-e88bf5c272f3",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260409-99902b0b/researcher-analyses/2026-04-09/dispatch-case-20260409-99902b0b-20260409T203957Z/personas/base-rate.md",
+    "source_persona_sha256": "d29732fee3727d2c21d3c89a26a2518f62bc7b9cd613615c72169ba1d94f0798"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality primary evidence on rules and exchange price; medium evidence independence because the secondary cross-check likely reflects overlapping exchange data; source-of-truth ambiguity is low after reading the contract rules.",
+  "strongest_disconfirmers": [
+    "The contract resolves on one exact future 1-minute close, so a normal crypto downside swing or Binance-specific wick could still produce No.",
+    "A roughly 3.4% cushion is meaningful but not huge for BTC over a sub-24-hour window."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT spot was 72,363.48 during the run, about 3.4% above the threshold.",
+    "Recent Binance 1-minute closes were also in the low 72.3k range, close to the actual settlement object.",
+    "CoinGecko roughly confirmed the same price regime, reducing concern that Binance was showing an outlier print."
+  ],
+  "timing_relevance": "Timing is central: the market settles on the Binance 12:00 ET April 10 1-minute close, and this run verified Binance timestamps against ET to confirm the analysis was done about 19 hours before resolution.",
+  "unresolved_ambiguities": [
+    "How often BTC makes 3%+ downside moves from similar starting conditions over the next ~19 hours was not quantified directly in this run.",
+    "Live Polymarket price observed on page fetch differed from assignment baseline, suggesting some intraday baseline drift."
+  ],
+  "what_would_change_view": "A fresh Binance check showing BTC much closer to 70,000, evidence that 3%+ sub-24-hour downside moves are more common than assumed, or signs of Binance-specific instability would lower the estimate."
+}

@@ -1,6 +1,16 @@
 {
   "canonical_driver_context": [
     {
+      "aliases": [
+        "consistency",
+        "system-reliability",
+        "operational-consistency"
+      ],
+      "driver_slug": "reliability",
+      "summary": "Reliability captures whether performance, infrastructure, or execution holds up consistently under normal and stressful conditions.",
+      "why_included": "related_driver"
+    },
+    {
       "aliases": [],
       "driver_slug": "performance",
       "summary": "Performance captures the repeatable on-field or on-court quality that actually drives results beyond raw narrative, reputation, or one-off variance.",
@@ -20,27 +30,27 @@
   "family_label": "release-window demand",
   "family_neighbors": [
     {
-      "family_label": "publication timing",
-      "family_slug": "publication-timing",
-      "overlap_score": 0.75,
-      "reason": "co-mentioned-driver"
-    },
-    {
       "family_label": "resolution mechanics",
       "family_slug": "resolution-mechanics",
-      "overlap_score": 0.75,
+      "overlap_score": 2.0,
+      "reason": "candidate-token+co-mentioned-driver"
+    },
+    {
+      "family_label": "publication timing",
+      "family_slug": "publication-timing",
+      "overlap_score": 1.5,
       "reason": "co-mentioned-driver"
     }
   ],
   "family_slug": "release-window-demand",
-  "generated_at": "2026-04-09T17:13:28Z",
+  "generated_at": "2026-04-12T03:20:02Z",
   "heuristic_summary": {
     "canon_coverage_driver": null,
     "canon_coverage_status": "novel",
-    "distinct_cases": 1,
-    "distinct_personas": 2,
-    "raw_candidate_count": 2,
-    "total_occurrences": 5
+    "distinct_cases": 2,
+    "distinct_personas": 3,
+    "raw_candidate_count": 3,
+    "total_occurrences": 7
   },
   "raw_candidates": [
     {
@@ -95,6 +105,49 @@
       "source_candidate_note": "qualitative-db/40-research/review-queue/drivers-candidates/candidate-notes/generated-driver-candidate-release-window-demand.md"
     },
     {
+      "candidate_label": "intraday-volatility-window",
+      "candidate_slug": "intraday-volatility-window",
+      "canonical_driver_suggestions": [],
+      "case_keys": [
+        "case-20260412-ea4d9b79"
+      ],
+      "distinct_cases": 1,
+      "distinct_personas": 1,
+      "label_variants": [
+        "intraday-volatility-window"
+      ],
+      "occurrences": 2,
+      "personas": [
+        "catalyst-hunter"
+      ],
+      "related_canonical_drivers": [
+        "reliability",
+        "operational-risk"
+      ],
+      "related_entities": [
+        "bitcoin"
+      ],
+      "sample_occurrences": [
+        {
+          "artifact_kind": "assumption",
+          "artifact_path": "qualitative-db/40-research/cases/case-20260412-ea4d9b79/researcher-analyses/2026-04-12/dispatch-case-20260412-ea4d9b79-20260412T020416Z/assumptions/catalyst-hunter.md",
+          "case_key": "case-20260412-ea4d9b79",
+          "label": "intraday-volatility-window",
+          "persona": "catalyst-hunter",
+          "source": "db"
+        },
+        {
+          "artifact_kind": "persona",
+          "artifact_path": "qualitative-db/40-research/cases/case-20260412-ea4d9b79/researcher-analyses/2026-04-12/dispatch-case-20260412-ea4d9b79-20260412T020416Z/personas/catalyst-hunter.md",
+          "case_key": "case-20260412-ea4d9b79",
+          "label": "intraday-volatility-window",
+          "persona": "catalyst-hunter",
+          "source": "db"
+        }
+      ],
+      "source_candidate_note": "qualitative-db/40-research/review-queue/drivers-candidates/candidate-notes/generated-driver-candidate-intraday-volatility-window.md"
+    },
+    {
       "candidate_label": "release-week-viewership-concentration",
       "candidate_slug": "release-week-viewership-concentration",
       "canonical_driver_suggestions": [],
@@ -146,5 +199,5 @@
     ],
     "instruction": "Review whether this family grouping is coherent, whether it is already covered by canon, and what action is most appropriate."
   },
-  "source_index_generated_at": "2026-04-09T17:13:28Z"
+  "source_index_generated_at": "2026-04-12T03:20:02Z"
 }

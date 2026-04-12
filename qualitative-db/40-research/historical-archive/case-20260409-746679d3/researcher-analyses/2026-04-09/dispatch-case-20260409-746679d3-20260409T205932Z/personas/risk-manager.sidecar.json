@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Single-minute close risk near the threshold.",
+    "Potential UI/API candle-label mismatch in a close-call scenario.",
+    "Short-term volatility spike on Binance before noon ET."
+  ],
+  "key_assumptions": [
+    "Noon ET maps to the Binance ETHUSDT 1m candle opening at 16:00:00 UTC on April 10.",
+    "Binance UI candle labeling aligns with the public API kline structure.",
+    "ETH retains enough cushion above 2100 to avoid a one-minute close below the strike."
+  ],
+  "main_logical_chain": [
+    "Polymarket implies roughly 94% Yes from current_price and the event page shows similarly elevated confidence.",
+    "Binance is the governing source of truth, so the critical checks are timestamp mapping and one-minute candle-close mechanics.",
+    "Direct Binance API verification confirms UTC timing and standard 1m kline close structure, reducing but not eliminating interpretation risk.",
+    "Because ETH is currently well above 2100, Yes remains more likely than not.",
+    "Because the market settles on one venue and one minute, confidence should be trimmed below the market's extreme pricing."
+  ],
+  "main_thesis": "Yes lean, but the market is too confident because a single Binance one-minute close creates timing and settlement-mechanics fragility.",
+  "own_probability": 0.88,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "Binance exchangeInfo reports timezone: UTC.",
+    "The market resolves on the Binance ETH/USDT 1 minute candle for 12:00 in the ET timezone."
+  ],
+  "reasoning_mode": [
+    "risk_management",
+    "contract_interpretation",
+    "technical_reference",
+    "market_anchor"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260409-746679d3",
+    "dispatch_id": "dispatch-case-20260409-746679d3-20260409T205932Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "26c93914-c5c6-45b7-bbb4-2001b4d5f8b5",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260409-746679d3/researcher-analyses/2026-04-09/dispatch-case-20260409-746679d3-20260409T205932Z/personas/risk-manager.md",
+    "source_persona_sha256": "1f86e5b85110725507a18bc13112c93c262582924abafbe8756568eef5163db9"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary source quality is high because Binance directly governs timestamps and klines, but evidence independence is limited because settlement is effectively single-source; Polymarket is useful contextual support for wording and market price.",
+  "strongest_disconfirmers": [
+    "The contract resolves on a single Binance one-minute close, so minute-level volatility and path risk can flip the outcome even if the broader ETH thesis stays constructive.",
+    "Settlement dependence is effectively single-source, leaving some residual UI/API interpretation risk."
+  ],
+  "strongest_supports": [
+    "Direct Binance spot/kline checks during the run showed ETHUSDT around 2211-2213, about $110 above the threshold.",
+    "Polymarket strike ladder was internally coherent with 2100 very likely, 2200 around 60%, and 2300 low."
+  ],
+  "timing_relevance": "High: the market resolves on the Binance ETHUSDT 1-minute candle for 12:00 ET on April 10, so minute selection and minute-end close mechanics are central.",
+  "unresolved_ambiguities": [
+    "Exact Binance UI labeling was not independently screenshotted during this run.",
+    "The final probability remains sensitive to how much discount one applies for minute-specific path risk."
+  ],
+  "what_would_change_view": "I would move closer to market if ETH remains comfortably above 2100 near resolution and candle mapping is reaffirmed; I would move lower if ETH compresses toward the strike or if any ambiguity appears about which minute actually counts."
+}

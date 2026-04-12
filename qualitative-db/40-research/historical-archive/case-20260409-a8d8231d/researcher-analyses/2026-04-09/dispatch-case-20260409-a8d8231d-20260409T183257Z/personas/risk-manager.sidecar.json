@@ -1,0 +1,63 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "medium",
+  "fragility_points": [
+    "If the NASA table cell was misread, the thesis can fail immediately.",
+    "If resolver practice differs from the literal contract wording, the market could still settle unexpectedly.",
+    "A transient or malformed NASA publication would undermine confidence."
+  ],
+  "key_assumptions": [
+    "The NASA GISS 2026/Mar cell was correctly read as 130.",
+    "Polymarket will apply the literal named NASA table rather than a different NASA surface.",
+    "No hidden resolver clarification overrides the contract text."
+  ],
+  "main_logical_chain": [
+    "This is a narrow source-specific contract, so the named NASA table matters more than generic climate commentary.",
+    "The named NASA March 2026 cell appears to be 1.30\u00b0C, which is outside the 1.25-1.29\u00b0C bracket.",
+    "Independent contextual sources suggest March was indeed very warm, making an above-band miss plausible.",
+    "Residual risk is operational and interpretive, not primarily about climate direction."
+  ],
+  "main_thesis": "The contract likely resolves No because the named NASA GISS March 2026 table cell appears to be 1.30\u00b0C, just above the 1.25-1.29\u00b0C bracket.",
+  "own_probability": 0.08,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "row `2026`, column `Mar`",
+    "March 2026 = 1.30\u00b0C",
+    "94.9% Yes market-implied baseline"
+  ],
+  "reasoning_mode": [
+    "risk_management",
+    "contract_interpretation",
+    "technical_reference",
+    "scenario_analysis"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260409-a8d8231d",
+    "dispatch_id": "dispatch-case-20260409-a8d8231d-20260409T183257Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "0e4749ed-ec7f-4a15-9559-b1217aa83dae",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260409-a8d8231d/researcher-analyses/2026-04-09/dispatch-case-20260409-a8d8231d-20260409T183257Z/personas/risk-manager.md",
+    "source_persona_sha256": "b73bb0cf9639efb1c7923289deaed4c75cc59b1c4987a9ff0ded5dc7906da408"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality primary source for settlement, with medium independence from NOAA/Berkeley contextual checks and low-to-medium source-of-truth ambiguity because the main source is explicit but the fallback clause is malformed.",
+  "strongest_disconfirmers": [
+    "The market traded around 94.9% Yes, implying strong consensus that the bracket hit.",
+    "Berkeley Earth noted elevated uncertainty from degraded upstream NOAA data services.",
+    "The fallback clause contains a February/March typo that could create interpretation noise."
+  ],
+  "strongest_supports": [
+    "The contract explicitly names the NASA GISS GLB.Ts+dSST.txt table and exact March 2026 cell.",
+    "The observed NASA March 2026 value appears to be 130, i.e. 1.30\u00b0C.",
+    "NOAA's March 2026 summary independently points to a very warm March consistent with an overshoot above the bracket ceiling."
+  ],
+  "timing_relevance": "The run occurred on 2026-04-09 after March 2026 data appears published and before market close/resolution, so direct source verification was timing-critical.",
+  "unresolved_ambiguities": [
+    "Whether archived copies of the NASA table exactly match the observed live copy.",
+    "Whether the malformed fallback clause could affect dispute handling.",
+    "Why the market price stayed extreme despite the apparent named-source print."
+  ],
+  "what_would_change_view": "A direct re-check, archived copy, or resolver clarification showing the NASA March 2026 settlement figure is inside 1.25-1.29\u00b0C or that a different NASA source governs would move me materially toward Yes."
+}

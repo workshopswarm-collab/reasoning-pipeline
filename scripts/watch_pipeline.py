@@ -53,18 +53,21 @@ def parse_args() -> argparse.Namespace:
 
 def load_repo_env() -> dict[str, str]:
     env = dict(os.environ)
-    env_file = REPO_ROOT / '.env'
-    if not env_file.exists():
-        return env
-    for raw_line in env_file.read_text().splitlines():
-        line = raw_line.strip()
-        if not line or line.startswith('#') or '=' not in line:
+    for env_name in ['.env', '.env.postgres.local']:
+        env_file = REPO_ROOT / env_name
+        if not env_file.exists():
             continue
-        key, value = line.split('=', 1)
-        key = key.strip()
-        value = value.strip().strip('"').strip("'")
-        if key and key not in env:
-            env[key] = value
+        for raw_line in env_file.read_text().splitlines():
+            line = raw_line.strip()
+            if not line or line.startswith('#') or '=' not in line:
+                continue
+            if line.startswith('export '):
+                line = line[len('export '):].strip()
+            key, value = line.split('=', 1)
+            key = key.strip()
+            value = value.strip().strip('"').strip("'")
+            if key and key not in env:
+                env[key] = value
     return env
 
 

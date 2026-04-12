@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Exact publication timestamp is not shown in the table itself.",
+    "A nontrivial exchange dispute over source-of-truth interpretation could still matter at the margin."
+  ],
+  "key_assumptions": [
+    "The visible NASA March 2026 value of 128 is the operative settlement datapoint.",
+    "The primary NASA table was available in time for settlement and no exchange-side dispute overrides the plain reading.",
+    "The odd February fallback sentence does not supersede the available primary March source."
+  ],
+  "main_logical_chain": [
+    "Start from the 94.9% market prior and ask what must be true for that price to make sense.",
+    "Check the exact NASA source named by the contract rather than relying on secondary summaries.",
+    "Observe that the March 2026 cell is 128, which maps to 1.28C and fits the bracket.",
+    "Conclude the market is mostly pricing source availability and settlement certainty, not remaining climate uncertainty.",
+    "Reserve only a small tail for process or dispute risk."
+  ],
+  "main_thesis": "The market's 94.9% YES price is broadly justified because the exact NASA source named by the contract already shows March 2026 at 1.28C, leaving only small settlement-process tail risk.",
+  "own_probability": 0.99,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "The live NASA table currently shows `2026   108  124  128 ...`",
+    "The market's 94.9% YES price is broadly justified and probably still a bit conservative rather than overextended."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "contract_interpretation",
+    "technical_reference",
+    "risk_management"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260409-a8d8231d",
+    "dispatch_id": "dispatch-case-20260409-a8d8231d-20260409T183257Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "de82727d-57ff-4999-85e7-3f94c35218f5",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260409-a8d8231d/researcher-analyses/2026-04-09/dispatch-case-20260409-a8d8231d-20260409T183257Z/personas/market-implied.md",
+    "source_persona_sha256": "3a3d42152666a466e7f9f0c0f4ea159a545636c04a05fc70fea7626a1b20a7b9"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is high because the decisive evidence is the exact NASA table named in the contract; independence is only medium because the most relevant evidence is concentrated in NASA surfaces, which is acceptable for a source-of-truth market.",
+  "strongest_disconfirmers": [
+    "Small settlement-mechanics tail risk from timestamp ambiguity and the contract's malformed February fallback clause."
+  ],
+  "strongest_supports": [
+    "NASA's contract-named GLB.Ts+dSST table shows row 2026, column Mar = 128.",
+    "128 means 1.28C in a table labeled in 0.01 degrees Celsius, which is inside the 1.25C-1.29C bracket.",
+    "NASA says GISTEMP tables update about the 10th of each month and shows a March 11, 2026 update entry."
+  ],
+  "timing_relevance": "Timing matters because the market closes April 9, 2026 ET, but NASA's own cadence and dated March 11, 2026 update strongly suggest the March value was already available well before close.",
+  "unresolved_ambiguities": [
+    "Why the fallback clause references February 2026 in a March 2026 market.",
+    "Whether any archival proof of first publication time would be needed in a dispute."
+  ],
+  "what_would_change_view": "I would lower the estimate if credible evidence showed the 128 entry was backfilled after the deadline, the named table was not operative for settlement, or the fallback clause materially altered resolution."
+}

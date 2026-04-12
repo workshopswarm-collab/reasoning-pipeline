@@ -23,7 +23,8 @@ Terminology note:
 This folder is the working research layer.
 
 Runtime note:
-- live research-swarm execution currently happens in persistent Telegram case/persona topics
+- live researcher-swarm execution currently happens in Telegram forum topics, with one controller topic plus one persona topic per case while research is active
+- once the swarm is truly terminal, synthesis promotion creates one dedicated synthesis topic for that dispatch and runs the final synthesis there
 - `40-research/` is where those runs write durable artifacts, provenance, and auditable case outputs
 - canonical case/rerun history now centers on `40-research/cases/<case-key>/researcher-analyses/<YYYY-MM-DD>/<dispatch-id>/...`
 
@@ -106,9 +107,10 @@ Purpose:
 Current canonical pattern:
 - `cases/<case-key>/case.md` = stable case identity / contract surface
 - `cases/<case-key>/researcher-swarm-current.md` = generated latest/current view
-- `cases/<case-key>/timeline.md` = generated lifecycle summary
+- `cases/<case-key>/timeline.md` = generated lifecycle summary, including synthesis entries for each dispatch
 - `cases/<case-key>/researcher-source-notes/` = case-level source provenance
-- `cases/<case-key>/researcher-analyses/<YYYY-MM-DD>/<dispatch-id>/...` = per-analysis findings / assumptions / evidence
+- `cases/<case-key>/researcher-analyses/<YYYY-MM-DD>/<dispatch-id>/...` = per-analysis findings / assumptions / evidence / synthesis-stage artifacts
+- `cases/<case-key>/synthesizer-agent/` = latest canonical case-level synthesis outputs (`syndicated-finding.md`, runtime metadata, decision handoff)
 
 Compatibility note:
 - legacy flat folders such as `agent-findings/`, `assumption-notes/`, and `evidence-maps/` may still exist during migration, but the case-centric `cases/` tree is the canonical write path going forward

@@ -1,0 +1,129 @@
+{
+  "schema_version": "decision-packet/v1",
+  "generated_at": "2026-04-10T17:00:18.995135+00:00",
+  "context": {
+    "case_key": "case-20260410-1c62ba82",
+    "dispatch_id": "dispatch-case-20260410-1c62ba82-20260410T002235Z",
+    "question": "Will Donald Trump post 100-119 Truth Social posts from April 3 to April 10, 2026?",
+    "market_id": "",
+    "market_title": "Will Donald Trump post 100-119 Truth Social posts from April 3 to April 10, 2026?",
+    "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260410-1c62ba82/synthesizer-agent/decision-handoff.md",
+    "source_syndicated_finding_path": "qualitative-db/40-research/cases/case-20260410-1c62ba82/synthesizer-agent/syndicated-finding.md",
+    "decision_maker_agent": "decision-maker",
+    "canonical_markdown_path": "decision-maker-packet.md",
+    "canonical_json_path": "artifacts/decision-maker-packet.json"
+  },
+  "decision": {
+    "side": "no",
+    "trade_authorization": "watch_only",
+    "position_policy": "flat",
+    "decision_readiness": "needs_portfolio_review",
+    "primary_crux": "Will Donald Trump post 100-119 Truth Social posts from April 3 to April 10, 2026?",
+    "secondary_cruxes": [],
+    "thesis_class": "not_decision_ready"
+  },
+  "valuation": {
+    "fair_value_low": 0.7,
+    "fair_value_high": 0.8,
+    "fair_value_mid": 0.75,
+    "market_reference_price": 0.81,
+    "edge_mid_vs_market_pct_points": -6.0,
+    "independent_verification_quality": "medium",
+    "compressed_toward_market_applied": true,
+    "compression_reason": "Inherited from synthesis handoff."
+  },
+  "execution_semantics": {
+    "price_axis": "market_implied_true_prob",
+    "price_source": "market_snapshot_quote",
+    "rebalance_threshold_fraction": 0.1,
+    "allow_auto_reversal": false,
+    "valid_until": "2026-04-11T17:00:18.995135+00:00",
+    "quote_staleness_seconds": 300,
+    "time_horizon": "until next material market update or packet expiry"
+  },
+  "risk_controls": {
+    "max_position_size_pct_bankroll": 0.02,
+    "max_additional_exposure_pct_bankroll": 0.01,
+    "max_single_order_pct_bankroll": 0.005,
+    "slippage_tolerance_bps": 100,
+    "liquidity_min_depth": 0,
+    "correlation_bucket_limit_pct_bankroll": 0.05,
+    "confidence_level": "medium",
+    "portfolio_constraints": [
+      "v1 placeholder constraints; replace with real portfolio policy"
+    ],
+    "liquidity_caution": "medium"
+  },
+  "bands": [
+    {
+      "name": "max_enter",
+      "min_p": 0.0,
+      "max_p": 0.2,
+      "target_exposure_fraction": 0.0,
+      "notes": "default v1 heuristic band"
+    },
+    {
+      "name": "scaled_enter",
+      "min_p": 0.2,
+      "max_p": 0.4,
+      "target_exposure_fraction": 0.15,
+      "notes": "default v1 heuristic band"
+    },
+    {
+      "name": "hold",
+      "min_p": 0.4,
+      "max_p": 0.6,
+      "target_exposure_fraction": 0.35,
+      "notes": "default v1 heuristic band"
+    },
+    {
+      "name": "trim",
+      "min_p": 0.6,
+      "max_p": 0.8,
+      "target_exposure_fraction": 0.65,
+      "notes": "default v1 heuristic band"
+    },
+    {
+      "name": "exit",
+      "min_p": 0.8,
+      "max_p": 1.0,
+      "target_exposure_fraction": 1.0,
+      "notes": "default v1 heuristic band"
+    }
+  ],
+  "invalidation": {
+    "thesis_breakers": [
+      "A near-close quote or new evidence materially changes the fair-value range."
+    ],
+    "market_structure_breakers": [
+      "Liquidity or executable pricing changes enough that market reference price is stale."
+    ],
+    "time_breakers": [
+      "Packet expires at 2026-04-11T17:00:18.995135+00:00."
+    ],
+    "reversal_conditions": [
+      "Flatten first unless a future packet explicitly authorizes auto-reversal."
+    ]
+  },
+  "epistemic_status": {
+    "key_uncertainties": [
+      "Portfolio context is currently placeholder-level in v1.",
+      "Market price freshness depends on the supplied context bundle."
+    ],
+    "reasons_to_pass": [
+      "Portfolio context is missing, so the packet is not safe for autonomous action yet."
+    ],
+    "what_would_change_my_mind": [
+      "A fresher market quote, updated synthesis, or real portfolio constraints could change the actionability call."
+    ],
+    "decision_quality": "not_ready"
+  },
+  "audit": {
+    "portfolio_context_checked": false,
+    "market_baseline_respected": true,
+    "action_bias_check_passed": true,
+    "self_preservation_bias_check_passed": true,
+    "one_sentence_rationale": "Portfolio context is missing, so the packet is not safe for autonomous action yet.",
+    "notes": "This is the minimal v1 deterministic Decision-Maker flow; replace placeholder portfolio policy fields before live autonomous use."
+  }
+}

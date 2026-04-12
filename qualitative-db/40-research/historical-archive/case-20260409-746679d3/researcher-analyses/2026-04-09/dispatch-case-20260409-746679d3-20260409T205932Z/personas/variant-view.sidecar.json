@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "UI/API candle-label interpretation mismatch.",
+    "Single-minute settlement sensitivity.",
+    "Late ETH volatility compressing the existing cushion."
+  ],
+  "key_assumptions": [
+    "The resolving candle is the Binance ETH/USDT 1-minute candle opened at 12:00:00 ET / 16:00:00 UTC.",
+    "Binance API timing semantics are a valid proxy for the Binance web chart settlement surface.",
+    "ETH does not sell off below 2100 by the resolving minute."
+  ],
+  "main_logical_chain": [
+    "Market implies 94% Yes because ETH is already above 2100 with limited time to settlement.",
+    "Direct Binance docs and API checks support the noon ET candle mapping and close semantics.",
+    "That makes Yes likely, but single-minute single-exchange contracts still retain edge-case settlement and volatility risk.",
+    "Therefore the market is directionally right but a bit overconfident, leading to a 90% Yes estimate."
+  ],
+  "main_thesis": "Yes is still the likely outcome, but the market is slightly overconfident because a narrow Binance minute-candle contract still carries small settlement-mechanics and exact-minute interpretation risk.",
+  "own_probability": 0.9,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "Klines are uniquely identified by their open time.",
+    "12:00 ET on April 10, 2026 maps to 16:00 UTC under EDT."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "contract_interpretation",
+    "technical_reference",
+    "variant_hypothesis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260409-746679d3",
+    "dispatch_id": "dispatch-case-20260409-746679d3-20260409T205932Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "068d43a3-3de5-4288-bf28-4fcce89ebdfb",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260409-746679d3/researcher-analyses/2026-04-09/dispatch-case-20260409-746679d3-20260409T205932Z/personas/variant-view.md",
+    "source_persona_sha256": "cb1718f43221bddbd8ee749a179e4f5bb0dab9c3a2cd14500d991c72a5b86fc1"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Good for a simple market: authoritative Binance docs plus live Binance API verification and the Polymarket rules page, though evidence independence is limited and there is minor UI-surface ambiguity.",
+  "strongest_disconfirmers": [
+    "Polymarket rules point to the Binance web chart UI, not the API directly, leaving small interpretation risk.",
+    "A roughly 5% overnight drop into the resolving minute is not impossible in crypto."
+  ],
+  "strongest_supports": [
+    "ETH traded around 2213 during the run, leaving meaningful cushion above 2100.",
+    "Binance docs state klines are uniquely identified by open time.",
+    "Live Binance API verification matched expected 1-minute candle timing and close-time behavior."
+  ],
+  "timing_relevance": "Very high: this is a date-specific market resolved by one Binance 1-minute candle at noon ET on April 10, 2026.",
+  "unresolved_ambiguities": [
+    "I did not directly verify the rendered Binance web chart minute label in this environment.",
+    "No direct precedent check was completed for how Polymarket has adjudicated identical chart-label edge cases."
+  ],
+  "what_would_change_view": "Direct verification that the Binance web UI labels the noon ET candle differently, a Polymarket clarification changing the effective minute mapping, or a material ETH selloff toward 2100 before settlement."
+}

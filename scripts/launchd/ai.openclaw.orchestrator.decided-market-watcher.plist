@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Label</key>
+	<string>ai.openclaw.orchestrator.decided-market-watcher</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/bin/python3.14</string>
+		<string>/Users/agent2/.openclaw/orchestrator/scripts/watch_decided_market_prices.py</string>
+		<string>--env-file</string>
+		<string>/Users/agent2/.openclaw/orchestrator/.env.postgres.local</string>
+		<string>--psql</string>
+		<string>/opt/homebrew/Cellar/postgresql@16/16.13/bin/psql</string>
+		<string>--lock-file</string>
+		<string>/Users/agent2/.openclaw/orchestrator/scripts/.runtime-state/decided-market-watcher.lock</string>
+		<string>--report-file</string>
+		<string>/Users/agent2/.openclaw/orchestrator/scripts/.runtime-state/decided-market-watcher-heartbeat.json</string>
+		<string>--min-price-delta</string>
+		<string>0.05</string>
+		<string>--apply</string>
+		<string>--pretty</string>
+	</array>
+	<key>WorkingDirectory</key>
+	<string>/Users/agent2/.openclaw/orchestrator</string>
+	<key>RunAtLoad</key>
+	<true/>
+	<key>StartInterval</key>
+	<integer>30</integer>
+	<key>StandardOutPath</key>
+	<string>/Users/agent2/.openclaw/orchestrator/scripts/.runtime-state/launchd/decided-market-watcher.stdout.log</string>
+	<key>StandardErrorPath</key>
+	<string>/Users/agent2/.openclaw/orchestrator/scripts/.runtime-state/launchd/decided-market-watcher.stderr.log</string>
+	<key>ProcessType</key>
+	<string>Background</string>
+	<key>EnvironmentVariables</key>
+	<dict>
+		<key>PATH</key>
+		<string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+		<key>PYTHONUNBUFFERED</key>
+		<string>1</string>
+	</dict>
+</dict>
+</plist>

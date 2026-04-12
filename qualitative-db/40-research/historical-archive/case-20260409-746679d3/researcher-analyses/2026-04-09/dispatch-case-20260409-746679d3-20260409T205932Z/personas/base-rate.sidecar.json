@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A sharp overnight or morning crypto selloff could erase the cushion.",
+    "Single-minute settlement makes path volatility more important than end-of-day regime."
+  ],
+  "key_assumptions": [
+    "ETH stays in roughly the current price regime through the settlement minute.",
+    "The relevant settlement minute is 12:00 ET = 16:00 UTC on Binance.",
+    "Binance API kline close aligns with the chart-based settlement surface."
+  ],
+  "main_logical_chain": [
+    "Check the contract and verify the governing source of truth is Binance ETH/USDT 1-minute close at 12:00 ET.",
+    "Verify Binance uses UTC server time and map 12:00 ET on April 10 to 16:00 UTC.",
+    "Observe ETH spot is already materially above 2100.",
+    "Use recent Binance history as a base-rate anchor for next-day persistence when ETH is already above the threshold.",
+    "Discount the anchor somewhat because this contract resolves on a single minute rather than a daily close."
+  ],
+  "main_thesis": "Yes is the right side because ETH is already comfortably above 2100 and short-horizon persistence is usually strong, but the market likely overstates certainty for a one-minute timestamped threshold.",
+  "own_probability": 0.88,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "12:00 ET = 16:00 UTC on April 10, 2026",
+    "67/73 recent prior-above-2100 daily cases also closed above 2100 the next day",
+    "Binance spot check around 2213.08"
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "contract_interpretation",
+    "technical_reference"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260409-746679d3",
+    "dispatch_id": "dispatch-case-20260409-746679d3-20260409T205932Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "0df82309-bacf-4ad5-81c2-4aabba0201f4",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260409-746679d3/researcher-analyses/2026-04-09/dispatch-case-20260409-746679d3-20260409T205932Z/personas/base-rate.md",
+    "source_persona_sha256": "8479045090dfee7091ccf60805bcffcda9082ff0bcc6dace0b9a8fe99c7b7841"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary source quality is high because Binance is the designated settlement source; contextual evidence quality is decent but not independent because it also relies on Binance data.",
+  "strongest_disconfirmers": [
+    "Resolution depends on one exact 1-minute close, so ordinary intraday volatility can still produce a No even if the broader regime stays healthy."
+  ],
+  "strongest_supports": [
+    "Binance spot price during the check was about 2213, roughly $113 above the threshold.",
+    "In the recent 120-day Binance sample, next-day close stayed above 2100 in 67 of 73 cases when the prior close was already above 2100.",
+    "Settlement is less than a day away, favoring persistence absent a shock."
+  ],
+  "timing_relevance": "Very high: the market resolves on one exact noon ET minute on April 10, so short-horizon volatility and timestamp interpretation matter materially.",
+  "unresolved_ambiguities": [
+    "The rules reference Binance chart candles while the audit used Binance API endpoints, though these should economically align.",
+    "The exact UI labeling of the noon candle is not directly visible from text-only fetch."
+  ],
+  "what_would_change_view": "A move of ETH down toward or below 2100 before noon ET, or verified evidence that the settlement timestamp/candle interpretation differs from 16:00 UTC, would lower confidence materially."
+}

@@ -19,6 +19,7 @@ if str(REPO_ROOT / "scripts") not in sys.path:
 
 from automation_control import DEFAULT_CONTROL_FILE, load_control_file, resolve_sequencer_policy  # noqa: E402
 from case_pipeline_status import list_case_pipeline_statuses, pipeline_status_path, summarize_case_pipeline_status, update_case_pipeline_status  # noqa: E402
+from watch_pipeline import watch_case as reconcile_existing_case_via_watchdog  # noqa: E402
 
 PREPARE_AND_LAUNCH = REPO_ROOT / "roles" / "orchestrator" / "researchers-swarm-subagents" / "runtime" / "scripts" / "prepare_and_launch_headless_telegram_dispatch.py"
 SELECT_REFRESH_CASE = REPO_ROOT / "roles" / "orchestrator" / "researchers-swarm-subagents" / "planner" / "scripts" / "select_refresh_case.py"
@@ -30,6 +31,7 @@ RUN_LIGHT_REFRESH_UPDATE = REPO_ROOT / "roles" / "decision-maker" / "runtime" / 
 SYNC_MARKET_RESOLUTIONS = REPO_ROOT / "quant-db" / "scripts" / "sync_polymarket_market_resolutions.py"
 SCORE_BRIER = REPO_ROOT / "quant-db" / "scripts" / "score_brier.py"
 DEFAULT_BRIER_OUTPUT_DIR = REPO_ROOT / "quant-db" / "reports" / "brier"
+DEFAULT_HEARTBEAT_FILE = REPO_ROOT / "scripts" / ".runtime-state" / "pipeline-heartbeat.json"
 DEFAULT_QUARANTINE_FILE = REPO_ROOT / "scripts" / ".runtime-state" / "pipeline-quarantine.json"
 DEFAULT_LOCK = REPO_ROOT / "scripts" / ".runtime-state" / "pipeline-sequencer.lock"
 NO_WORK_MARKERS = (
@@ -60,6 +62,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--resolution-sync-seconds", type=float, default=900.0, help="Cadence for Polymarket resolution sync while looping; set <=0 to disable")
     parser.add_argument("--brier-snapshot-seconds", type=float, default=86400.0, help="Cadence for persisted Brier snapshots while looping; set <=0 to disable")
     parser.add_argument("--brier-output-dir", default=str(DEFAULT_BRIER_OUTPUT_DIR), help="Directory for persisted Brier snapshot JSON files")
+    parser.add_argument("--heartbeat-file", default=str(DEFAULT_HEARTBEAT_FILE), help="Sequencer heartbeat/status JSON path")
     parser.add_argument("--quarantine-file", default=str(DEFAULT_QUARANTINE_FILE), help="JSON registry for temporarily quarantined case_keys/market_ids")
     parser.add_argument("--quarantine-seconds", type=float, default=3600.0, help="How long to quarantine a failed case/market before retrying")
     parser.add_argument("--pretty", action="store_true")
@@ -68,18 +71,21 @@ def parse_args() -> argparse.Namespace:
 
 def load_repo_env() -> dict[str, str]:
     env = dict(os.environ)
-    env_file = REPO_ROOT / ".env"
-    if not env_file.exists():
-        return env
-    for raw_line in env_file.read_text().splitlines():
-        line = raw_line.strip()
-        if not line or line.startswith("#") or "=" not in line:
+    for env_name in [".env", ".env.postgres.local"]:
+        env_file = REPO_ROOT / env_name
+        if not env_file.exists():
             continue
-        key, value = line.split("=", 1)
-        key = key.strip()
-        value = value.strip().strip('"').strip("'")
-        if key and key not in env:
-            env[key] = value
+        for raw_line in env_file.read_text().splitlines():
+            line = raw_line.strip()
+            if not line or line.startswith("#") or "=" not in line:
+                continue
+            if line.startswith("export "):
+                line = line[len("export "):].strip()
+            key, value = line.split("=", 1)
+            key = key.strip()
+            value = value.strip().strip('"').strip("'")
+            if key and key not in env:
+                env[key] = value
     return env
 
 
@@ -122,9 +128,13 @@ def load_quarantine_registry(path: Path) -> dict[str, Any]:
     return payload
 
 
-def save_quarantine_registry(path: Path, payload: dict[str, Any]) -> None:
+def write_runtime_json(path: Path, payload: dict[str, Any]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(payload, indent=2, sort_keys=True) + '\n')
+
+
+def save_quarantine_registry(path: Path, payload: dict[str, Any]) -> None:
+    write_runtime_json(path, payload)
 
 
 def prune_quarantine_entries(payload: dict[str, Any], *, now_ts: float) -> dict[str, Any]:
@@ -152,6 +162,22 @@ def active_quarantine_sets(payload: dict[str, Any]) -> tuple[set[str], set[str]]
         if market_id:
             market_ids.add(market_id)
     return case_keys, market_ids
+
+
+def load_heartbeat(path: Path) -> dict[str, Any]:
+    if not path.exists():
+        return {'schema_version': 'pipeline-heartbeat/v1'}
+    try:
+        payload = json.loads(path.read_text())
+    except Exception:
+        return {'schema_version': 'pipeline-heartbeat/v1'}
+    return payload if isinstance(payload, dict) else {'schema_version': 'pipeline-heartbeat/v1'}
+
+
+def write_heartbeat(path: Path, payload: dict[str, Any]) -> None:
+    payload['schema_version'] = 'pipeline-heartbeat/v1'
+    payload['updated_at'] = utc_now_iso()
+    write_runtime_json(path, payload)
 
 
 def quarantine_entry(path: Path, *, case_key: str = '', market_id: str = '', reason: str, result: dict[str, Any], quarantine_seconds: float) -> dict[str, Any]:
@@ -211,6 +237,104 @@ def soft_fail_status(result: dict[str, Any]) -> bool:
         'prepare_launch_failed',
         'prepare_unknown_failure',
     }
+
+
+def heartbeat_base(args: argparse.Namespace) -> dict[str, Any]:
+    return {
+        'runner': 'pipeline-sequencer',
+        'pid': os.getpid(),
+        'repo_root': str(REPO_ROOT),
+        'loop_mode': bool(args.loop),
+        'control_managed': bool(args.control_managed),
+        'lock_file': str(Path(args.lock_file).expanduser().resolve()),
+        'heartbeat_file': str(Path(args.heartbeat_file).expanduser().resolve()),
+        'quarantine_file': str(Path(args.quarantine_file).expanduser().resolve()),
+        'brier_output_dir': str(Path(args.brier_output_dir).expanduser().resolve()),
+        'config': {
+            'poll_seconds': float(args.poll_seconds),
+            'idle_seconds': float(args.idle_seconds),
+            'max_case_seconds': float(args.max_case_seconds),
+            'resolution_sync_seconds': float(args.resolution_sync_seconds),
+            'brier_snapshot_seconds': float(args.brier_snapshot_seconds),
+            'quarantine_seconds': float(args.quarantine_seconds),
+        },
+        'started_at': utc_now_iso(),
+        'state': 'starting',
+        'processed_cases_total': 0,
+        'quarantine_count': 0,
+    }
+
+
+def periodic_task_brief(task: dict[str, Any]) -> dict[str, Any]:
+    payload = task.get('payload') if isinstance(task, dict) else {}
+    summary: dict[str, Any] = {
+        'ok': bool(task.get('ok')) if isinstance(task, dict) else False,
+        'returncode': int(task.get('returncode')) if isinstance(task, dict) and str(task.get('returncode') or '').isdigit() else task.get('returncode') if isinstance(task, dict) else None,
+    }
+    if isinstance(payload, dict):
+        for key in ['candidate_count', 'group_count', 'filters']:
+            if key in payload:
+                summary[key] = payload.get(key)
+    persisted_paths = task.get('persisted_paths') if isinstance(task, dict) else None
+    if isinstance(persisted_paths, dict):
+        summary['persisted_paths'] = persisted_paths
+    stderr = str(task.get('stderr') or '') if isinstance(task, dict) else ''
+    if stderr:
+        summary['stderr_tail'] = stderr[-500:]
+    return summary
+
+
+def update_heartbeat_for_periodic_tasks(heartbeat: dict[str, Any], periodic_tasks: dict[str, Any]) -> dict[str, Any]:
+    if 'resolution_sync' in periodic_tasks:
+        heartbeat['last_resolution_sync'] = {
+            'attempted_at': utc_now_iso(),
+            **periodic_task_brief(periodic_tasks['resolution_sync']),
+        }
+        if periodic_tasks['resolution_sync'].get('ok'):
+            heartbeat['last_resolution_sync']['succeeded_at'] = utc_now_iso()
+    if 'brier_snapshot' in periodic_tasks:
+        heartbeat['last_brier_snapshot'] = {
+            'attempted_at': utc_now_iso(),
+            **periodic_task_brief(periodic_tasks['brier_snapshot']),
+        }
+        if periodic_tasks['brier_snapshot'].get('ok'):
+            heartbeat['last_brier_snapshot']['succeeded_at'] = utc_now_iso()
+    return heartbeat
+
+
+def update_heartbeat_for_pass(heartbeat: dict[str, Any], *, result: dict[str, Any], processed_cases: int, periodic_tasks: dict[str, Any], excluded_case_keys: set[str], excluded_market_ids: set[str]) -> dict[str, Any]:
+    case_key, market_id = extract_case_market_refs(result)
+    heartbeat['state'] = 'running'
+    heartbeat['processed_cases_total'] = processed_cases
+    heartbeat['last_loop_completed_at'] = utc_now_iso()
+    heartbeat['last_pass'] = {
+        'status': str(result.get('status') or ''),
+        'ok': bool(result.get('ok')),
+        'soft_failed': bool(result.get('soft_failed')),
+        'case_key': case_key,
+        'market_id': market_id,
+        'periodic_tasks_ran': sorted(list(periodic_tasks.keys())),
+    }
+    heartbeat['quarantine_count'] = len(excluded_case_keys) + len(excluded_market_ids)
+    heartbeat['active_quarantines'] = {
+        'case_keys': sorted(excluded_case_keys),
+        'market_ids': sorted(excluded_market_ids),
+    }
+    if not result.get('ok'):
+        heartbeat['last_hard_failure'] = {
+            'at': utc_now_iso(),
+            'status': str(result.get('status') or result.get('error') or 'unknown_failure'),
+            'case_key': case_key,
+            'market_id': market_id,
+        }
+    elif result.get('soft_failed'):
+        heartbeat['last_soft_failure'] = {
+            'at': utc_now_iso(),
+            'status': str(result.get('status') or ''),
+            'case_key': case_key,
+            'market_id': market_id,
+        }
+    return update_heartbeat_for_periodic_tasks(heartbeat, periodic_tasks)
 
 
 def maybe_quarantine_failed_result(*, args: argparse.Namespace, result: dict[str, Any]) -> dict[str, Any] | None:
@@ -476,104 +600,72 @@ def launch_synthesis_if_needed(case_key: str, pretty: bool) -> dict[str, Any] | 
 def wait_for_case(case_key: str, *, poll_seconds: float, max_case_seconds: float, pretty: bool) -> dict[str, Any]:
     path = pipeline_status_path(case_key)
     deadline = time.time() + max_case_seconds
-    decision_launched = False
-    decision_launch_result: dict[str, Any] | None = None
-    swarm_resume_attempts = 0
-    last_swarm_resume_result: dict[str, Any] | None = None
-    synthesis_launch_attempts = 0
-    last_synthesis_launch_result: dict[str, Any] | None = None
+    watchdog_passes = 0
+    last_watchdog_result: dict[str, Any] | None = None
+    watchdog_args = argparse.Namespace(stale_seconds=900.0, pretty=pretty)
+    watchdog_policy = {
+        'apply': True,
+        'allow_resume_swarm': True,
+        'allow_launch_synthesis': True,
+        'allow_launch_decision': True,
+        'allow_finalize_decision': True,
+        'allow_finalize_pipeline': True,
+    }
 
     while time.time() < deadline:
         summary = summarize_case_pipeline_status(case_key)
-        stage_statuses = summary.get("stage_statuses") or {}
-        status = summary.get("status") or ""
+        status = summary.get('status') or ''
 
         if pretty:
             print(json.dumps({
-                "case_key": case_key,
-                "pipeline_status_path": summary.get("path"),
-                "status": status,
-                "current_stage": summary.get("current_stage"),
-                "stage_statuses": stage_statuses,
+                'case_key': case_key,
+                'pipeline_status_path': summary.get('path'),
+                'status': status,
+                'current_stage': summary.get('current_stage'),
+                'stage_statuses': summary.get('stage_statuses') or {},
             }, indent=2))
 
-        if (
-            stage_statuses.get("swarm") in {"pending", "in_progress", "failed", ""}
-            and stage_statuses.get("synthesis") != "completed"
-            and stage_statuses.get("decision") in {"pending", ""}
-        ):
-            swarm_result = resume_swarm_stage(case_key, pretty=pretty)
-            last_swarm_resume_result = swarm_result
-            swarm_resume_attempts += 1
-            if not swarm_result.get('ok'):
-                return {
-                    'ok': False,
-                    'case_key': case_key,
-                    'error': 'swarm_resume_failed',
-                    'swarm_resume_result': swarm_result,
-                    'pipeline_summary': summarize_case_pipeline_status(case_key),
-                }
-
-        if (
-            stage_statuses.get("synthesis") != "completed"
-            and stage_statuses.get("decision") in {"pending", ""}
-        ):
-            synth_result = launch_synthesis_if_needed(case_key, pretty=pretty)
-            if synth_result is not None:
-                last_synthesis_launch_result = synth_result
-                synthesis_launch_attempts += 1
-                payload = synth_result.get("payload") or {}
-                launch_status = str(payload.get("status") or "")
-                if synth_result.get("returncode") != 0 and launch_status not in {"not_ready", "already_running", "already_completed"}:
-                    return {
-                        "ok": False,
-                        "case_key": case_key,
-                        "error": "synthesis_launch_failed",
-                        "synthesis_launch_result": synth_result,
-                        "pipeline_summary": summarize_case_pipeline_status(case_key),
-                    }
-
-        if (
-            stage_statuses.get("synthesis") == "completed"
-            and stage_statuses.get("decision") in {"pending", ""}
-            and not decision_launched
-        ):
-            decision_launch_result = launch_decision_maker(case_key, pretty=pretty)
-            decision_launched = True
-            if not decision_launch_result.get("ok"):
-                return {
-                    "ok": False,
-                    "case_key": case_key,
-                    "error": "decision_maker_launch_failed",
-                    "decision_launch_result": decision_launch_result,
-                    "pipeline_summary": summarize_case_pipeline_status(case_key),
-                }
-
-        if status in {"pipeline_completed", "pipeline_failed", "pipeline_skipped"}:
+        if status in {'pipeline_completed', 'pipeline_failed', 'pipeline_skipped'}:
             return {
-                "ok": status == "pipeline_completed",
-                "case_key": case_key,
-                "pipeline_summary": summary,
-                "decision_launch_result": decision_launch_result or {},
-                "swarm_resume_attempts": swarm_resume_attempts,
-                "last_swarm_resume_result": last_swarm_resume_result or {},
-                "synthesis_launch_attempts": synthesis_launch_attempts,
-                "last_synthesis_launch_result": last_synthesis_launch_result or {},
+                'ok': status == 'pipeline_completed',
+                'case_key': case_key,
+                'pipeline_summary': summary,
+                'watchdog_passes': watchdog_passes,
+                'last_watchdog_result': last_watchdog_result or {},
+            }
+
+        last_watchdog_result = reconcile_existing_case_via_watchdog(summary, args=watchdog_args, policy=watchdog_policy)
+        watchdog_passes += 1
+        if not last_watchdog_result.get('ok', False):
+            return {
+                'ok': False,
+                'case_key': case_key,
+                'error': 'watchdog_reconcile_failed',
+                'watchdog_result': last_watchdog_result,
+                'pipeline_summary': summarize_case_pipeline_status(case_key),
+            }
+
+        after = last_watchdog_result.get('after') if isinstance(last_watchdog_result.get('after'), dict) else summarize_case_pipeline_status(case_key)
+        after_status = str(after.get('status') or '')
+        if after_status in {'pipeline_completed', 'pipeline_failed', 'pipeline_skipped'}:
+            return {
+                'ok': after_status == 'pipeline_completed',
+                'case_key': case_key,
+                'pipeline_summary': after,
+                'watchdog_passes': watchdog_passes,
+                'last_watchdog_result': last_watchdog_result or {},
             }
 
         time.sleep(poll_seconds)
 
     return {
-        "ok": False,
-        "case_key": case_key,
-        "error": "pipeline_timeout",
-        "pipeline_summary": summarize_case_pipeline_status(case_key),
-        "pipeline_status_path": str(path),
-        "swarm_resume_attempts": swarm_resume_attempts,
-        "last_swarm_resume_result": last_swarm_resume_result or {},
-        "synthesis_launch_attempts": synthesis_launch_attempts,
-        "last_synthesis_launch_result": last_synthesis_launch_result or {},
-        "decision_launch_result": decision_launch_result or {},
+        'ok': False,
+        'case_key': case_key,
+        'error': 'pipeline_timeout',
+        'pipeline_summary': summarize_case_pipeline_status(case_key),
+        'pipeline_status_path': str(path),
+        'watchdog_passes': watchdog_passes,
+        'last_watchdog_result': last_watchdog_result or {},
     }
 
 
@@ -758,9 +850,9 @@ def run_sequencer_pass(args: argparse.Namespace, policy: dict[str, Any], *, excl
         case_payload = prepare_result.get("case") or {}
         market_payload = prepare_result.get("market") or {}
         dispatch_payload = prepare_result.get("dispatch") or {}
-        case_key = str(case_payload.get("case_id") or refresh_case_key).strip()
+        case_key = str(case_payload.get("case_key") or refresh_case_key or case_payload.get("case_id") or "").strip()
         if not case_key:
-            raise RunnerError("refresh prepare_and_launch did not return a case_id")
+            raise RunnerError("refresh prepare_and_launch did not return a case_key")
 
         update_case_pipeline_status(
             case_key=case_key,
@@ -830,9 +922,9 @@ def run_sequencer_pass(args: argparse.Namespace, policy: dict[str, Any], *, excl
     case_payload = prepare_result.get("case") or {}
     market_payload = prepare_result.get("market") or {}
     dispatch_payload = prepare_result.get("dispatch") or {}
-    case_key = str(case_payload.get("case_id") or "").strip()
+    case_key = str(case_payload.get("case_key") or case_payload.get("case_id") or "").strip()
     if not case_key:
-        raise RunnerError("prepare_and_launch did not return a case_id")
+        raise RunnerError("prepare_and_launch did not return a case_key")
 
     update_case_pipeline_status(
         case_key=case_key,
@@ -891,46 +983,92 @@ def loop_pass_payload(result: dict[str, Any], processed_cases: int, periodic_tas
 def main() -> None:
     args = parse_args()
     lock_path = Path(args.lock_file).expanduser().resolve()
-    with process_lock(lock_path):
-        if not args.loop:
-            result = run_sequencer_pass(args, effective_sequencer_policy(args), excluded_case_keys=set(), excluded_market_ids=set())
-            summary = single_pass_summary(result)
-            print(json.dumps(summary, indent=2 if args.pretty else None))
-            if not summary['ok']:
-                raise SystemExit(1)
-            return
+    heartbeat_path = Path(args.heartbeat_file).expanduser().resolve()
+    heartbeat = heartbeat_base(args)
+    write_heartbeat(heartbeat_path, heartbeat)
+    try:
+        with process_lock(lock_path):
+            heartbeat['state'] = 'running'
+            heartbeat['lock_acquired_at'] = utc_now_iso()
+            write_heartbeat(heartbeat_path, heartbeat)
 
-        processed = 0
-        last_resolution_sync_ts: float | None = None
-        last_brier_snapshot_ts: float | None = None
-        quarantine_path = Path(args.quarantine_file).expanduser().resolve()
-        while args.max_cases == 0 or processed < args.max_cases:
-            policy = effective_sequencer_policy(args)
-            now_ts = time.time()
-            quarantine_payload = prune_quarantine_entries(load_quarantine_registry(quarantine_path), now_ts=now_ts)
-            save_quarantine_registry(quarantine_path, quarantine_payload)
-            excluded_case_keys, excluded_market_ids = active_quarantine_sets(quarantine_payload)
-            periodic_tasks, last_resolution_sync_ts, last_brier_snapshot_ts = maybe_run_periodic_tasks(
-                args=args,
-                policy=policy,
-                now_ts=now_ts,
-                last_resolution_sync_ts=last_resolution_sync_ts,
-                last_brier_snapshot_ts=last_brier_snapshot_ts,
-            )
-            result = run_sequencer_pass(args, policy, excluded_case_keys=excluded_case_keys, excluded_market_ids=excluded_market_ids)
-            quarantine_entry_payload = maybe_quarantine_failed_result(args=args, result=result)
-            if quarantine_entry_payload is not None:
-                periodic_tasks['soft_fail_quarantine'] = quarantine_entry_payload
-                result['ok'] = True
-                result['soft_failed'] = True
-            if should_count_processed(result):
-                processed += 1
-            print(json.dumps(loop_pass_payload(result, processed, periodic_tasks), indent=2 if args.pretty else None), flush=True)
-            if not result.get('ok'):
-                raise SystemExit(1)
-            if should_count_processed(result):
-                continue
-            time.sleep(float(policy.get('idle_seconds', args.idle_seconds)))
+            if not args.loop:
+                heartbeat['last_loop_started_at'] = utc_now_iso()
+                write_heartbeat(heartbeat_path, heartbeat)
+                result = run_sequencer_pass(args, effective_sequencer_policy(args), excluded_case_keys=set(), excluded_market_ids=set())
+                heartbeat = update_heartbeat_for_pass(heartbeat, result=result, processed_cases=1 if should_count_processed(result) else 0, periodic_tasks={}, excluded_case_keys=set(), excluded_market_ids=set())
+                heartbeat['state'] = 'completed' if result.get('ok') else 'failed'
+                write_heartbeat(heartbeat_path, heartbeat)
+                summary = single_pass_summary(result)
+                print(json.dumps(summary, indent=2 if args.pretty else None))
+                if not summary['ok']:
+                    raise SystemExit(1)
+                return
+
+            processed = 0
+            last_resolution_sync_ts: float | None = None
+            last_brier_snapshot_ts: float | None = None
+            quarantine_path = Path(args.quarantine_file).expanduser().resolve()
+            while args.max_cases == 0 or processed < args.max_cases:
+                policy = effective_sequencer_policy(args)
+                now_ts = time.time()
+                quarantine_payload = prune_quarantine_entries(load_quarantine_registry(quarantine_path), now_ts=now_ts)
+                save_quarantine_registry(quarantine_path, quarantine_payload)
+                excluded_case_keys, excluded_market_ids = active_quarantine_sets(quarantine_payload)
+                heartbeat['state'] = 'running'
+                heartbeat['last_loop_started_at'] = utc_now_iso()
+                heartbeat['quarantine_count'] = len(quarantine_payload.get('entries') or [])
+                heartbeat['active_quarantines'] = {
+                    'case_keys': sorted(excluded_case_keys),
+                    'market_ids': sorted(excluded_market_ids),
+                }
+                write_heartbeat(heartbeat_path, heartbeat)
+
+                periodic_tasks, last_resolution_sync_ts, last_brier_snapshot_ts = maybe_run_periodic_tasks(
+                    args=args,
+                    policy=policy,
+                    now_ts=now_ts,
+                    last_resolution_sync_ts=last_resolution_sync_ts,
+                    last_brier_snapshot_ts=last_brier_snapshot_ts,
+                )
+                result = run_sequencer_pass(args, policy, excluded_case_keys=excluded_case_keys, excluded_market_ids=excluded_market_ids)
+                quarantine_entry_payload = maybe_quarantine_failed_result(args=args, result=result)
+                if quarantine_entry_payload is not None:
+                    periodic_tasks['soft_fail_quarantine'] = quarantine_entry_payload
+                    result['ok'] = True
+                    result['soft_failed'] = True
+                if should_count_processed(result):
+                    processed += 1
+                heartbeat = update_heartbeat_for_pass(heartbeat, result=result, processed_cases=processed, periodic_tasks=periodic_tasks, excluded_case_keys=excluded_case_keys, excluded_market_ids=excluded_market_ids)
+                write_heartbeat(heartbeat_path, heartbeat)
+                print(json.dumps(loop_pass_payload(result, processed, periodic_tasks), indent=2 if args.pretty else None), flush=True)
+                if not result.get('ok'):
+                    heartbeat['state'] = 'failed'
+                    write_heartbeat(heartbeat_path, heartbeat)
+                    raise SystemExit(1)
+                if should_count_processed(result):
+                    continue
+                heartbeat['state'] = 'idle_sleep'
+                heartbeat['last_idle_sleep_started_at'] = utc_now_iso()
+                heartbeat['last_idle_sleep_seconds'] = float(policy.get('idle_seconds', args.idle_seconds))
+                write_heartbeat(heartbeat_path, heartbeat)
+                time.sleep(float(policy.get('idle_seconds', args.idle_seconds)))
+    except SystemExit:
+        raise
+    except Exception as exc:
+        heartbeat['state'] = 'failed'
+        heartbeat['last_hard_failure'] = {
+            'at': utc_now_iso(),
+            'status': exc.__class__.__name__,
+            'message': str(exc),
+        }
+        write_heartbeat(heartbeat_path, heartbeat)
+        raise
+    finally:
+        if heartbeat.get('state') not in {'failed'}:
+            heartbeat['state'] = 'stopped'
+        heartbeat['stopped_at'] = utc_now_iso()
+        write_heartbeat(heartbeat_path, heartbeat)
 
 
 if __name__ == "__main__":

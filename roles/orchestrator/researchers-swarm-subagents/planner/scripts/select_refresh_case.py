@@ -17,8 +17,15 @@ from __future__ import annotations
 import argparse
 import json
 import os
+from pathlib import Path
 import subprocess
 import sys
+
+WORKSPACE_ROOT = Path(__file__).resolve().parents[5]
+if str(WORKSPACE_ROOT / 'scripts') not in sys.path:
+    sys.path.insert(0, str(WORKSPACE_ROOT / 'scripts'))
+
+from case_pipeline_status import first_active_nonterminal_case, first_blocking_case_without_completed_decision_packet  # noqa: E402
 
 DEFAULT_PSQL = "/opt/homebrew/opt/postgresql@16/bin/psql"
 
@@ -205,9 +212,29 @@ def run_query(psql_bin: str, db_url: str, sql_text: str, *, allow_when_busy: boo
     )
 
 
+def enforce_canonical_case_gate(*, allow_when_busy: bool) -> None:
+    if allow_when_busy:
+        return
+    active_case = first_active_nonterminal_case()
+    if active_case:
+        raise ValueError(
+            'pipeline already busy with a canonical non-terminal case '
+            f"(case_key={active_case.get('case_key')}, status={active_case.get('status')}, current_stage={active_case.get('current_stage')})"
+        )
+    blocking_case = first_blocking_case_without_completed_decision_packet()
+    if blocking_case:
+        raise ValueError(
+            'pipeline blocked by prior canonical case without clean decision-packet completion '
+            f"(case_key={blocking_case.get('case_key')}, status={blocking_case.get('status')})"
+        )
+
+
+
 def run_psql(psql_bin: str, db_url: str, *, allow_when_busy: bool, platform: str, contract_id: str, min_price_delta: str, excluded_market_ids: list[str], excluded_case_keys: list[str]) -> dict:
     if not db_url:
         raise ValueError("--db-url or PREDQUANT_ORCHESTRATOR_URL is required")
+
+    enforce_canonical_case_gate(allow_when_busy=allow_when_busy)
 
     proc = run_query(psql_bin, db_url, SQL, allow_when_busy=allow_when_busy, platform=platform, contract_id=contract_id, min_price_delta=min_price_delta, excluded_market_ids=excluded_market_ids, excluded_case_keys=excluded_case_keys)
     if proc.returncode != 0:

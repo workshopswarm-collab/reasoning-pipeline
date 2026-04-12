@@ -1,0 +1,57 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Short-horizon crypto volatility could produce a temporary sub-2100 print.",
+    "Minor residual ambiguity remains around UI candle labeling versus API open-time convention."
+  ],
+  "key_assumptions": [
+    "The decisive candle is the Binance ETH/USDT 1-minute candle opened at 12:00 ET on Apr 10, 2026.",
+    "ETH will not suffer a roughly 5% downside move into the deciding minute.",
+    "No Binance-specific operational or print anomaly distorts the final close used for resolution."
+  ],
+  "main_logical_chain": [
+    "Market implies 94% Yes and ETH is currently trading materially above 2100.",
+    "The contract resolves on one Binance ETH/USDT 1-minute close at noon ET, so timing and microstructure matter more than broader daily direction.",
+    "Given current distance from threshold and limited time remaining, Yes is still more likely than No.",
+    "Because a one-minute close can be clipped by a fast downside move, confidence should be high but not near-certain."
+  ],
+  "main_thesis": "ETH is likely to remain above 2100 into the Binance ETH/USDT noon ET one-minute resolution candle, though single-minute volatility keeps the market slightly less certain than the 94% implied price suggests.",
+  "own_probability": 0.91,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "Klines are uniquely identified by their open time.",
+    "12:00 ET on Apr 10, 2026 corresponds to 16:00 UTC under EDT."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "catalyst_analysis",
+    "contract_interpretation",
+    "technical_reference"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260409-746679d3",
+    "dispatch_id": "dispatch-case-20260409-746679d3-20260409T205932Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "4e9f9b53-3707-46ac-8a6f-415fdbd92afb",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260409-746679d3/researcher-analyses/2026-04-09/dispatch-case-20260409-746679d3-20260409T205932Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "7142315a5fc93a9174ce713c43b8528e946d9a7332225d5975b935ef5353ec4c"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High on mechanics because Binance is the named source of truth and was checked directly; lower on independence because both docs and live verification are Binance-based, which is acceptable here.",
+  "strongest_disconfirmers": [
+    "This is a one-minute threshold market, so a brief sharp selloff could still resolve No even if ETH trades above 2100 for most of the day."
+  ],
+  "strongest_supports": [
+    "Live Binance ETHUSDT spot during the run was around 2211-2213, materially above the 2100 threshold.",
+    "Less than a day remains, limiting the number of catalysts that can still force a sub-2100 noon print.",
+    "Polymarket rules and Binance kline docs align on a clean single-venue, single-minute resolution mechanism."
+  ],
+  "timing_relevance": "The only catalysts that still matter are ones capable of moving ETH before or during the noon ET minute on Apr 10; overnight risk sentiment and any sharp broad crypto selloff are the main repricing triggers.",
+  "unresolved_ambiguities": [
+    "Whether Polymarket moderators would ever interpret the chart labeling differently from the Binance open-time kline convention, though current evidence suggests they should not."
+  ],
+  "what_would_change_view": "A move toward 2100 before U.S. morning, an official clarification changing candle interpretation, or evidence of Binance operational irregularity near resolution would reduce confidence materially."
+}

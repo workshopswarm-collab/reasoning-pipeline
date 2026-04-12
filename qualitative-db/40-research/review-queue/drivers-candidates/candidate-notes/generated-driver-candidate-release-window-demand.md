@@ -8,7 +8,7 @@ normalized_driver_family_label: "release-window demand"
 canonical_coverage_status: novel
 canonical_coverage_driver: 
 generated_by: proposed_driver_candidate_aggregator
-generated_at: 2026-04-09T17:13:28Z
+generated_at: 2026-04-12T03:20:02Z
 status: active
 total_occurrences: 3
 distinct_cases: 1

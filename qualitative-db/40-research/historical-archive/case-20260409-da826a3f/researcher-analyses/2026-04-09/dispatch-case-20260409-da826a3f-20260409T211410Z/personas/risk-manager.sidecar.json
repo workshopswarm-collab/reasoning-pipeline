@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Website-vs-API candle presentation nuance.",
+    "Short-horizon BTC volatility tail into the exact settlement minute."
+  ],
+  "key_assumptions": [
+    "Binance website candle display aligns with Binance API 1m kline timing conventions for the relevant minute.",
+    "No extraordinary BTC selloff of roughly 4.3k or more occurs before the settlement candle closes.",
+    "The relevant resolution bar is the 12:00 ET / 16:00 UTC minute on 2026-04-10."
+  ],
+  "main_logical_chain": [
+    "Start from market-implied probability of 95.9% Yes.",
+    "Verify governing source of truth is Binance BTC/USDT 1m candle close for noon ET on April 10.",
+    "Verify noon ET converts to 16:00 UTC and Binance kline timing is open-time based.",
+    "Check live Binance BTCUSDT price and recent klines; spot is around 72.3k, leaving a cushion above 68k.",
+    "Conclude Yes is very likely, with remaining risk concentrated in sharp downside path risk or timing interpretation error."
+  ],
+  "main_thesis": "BTC/USDT on Binance is far enough above 68k that Yes remains very likely, with the main residual risks being a sharp late selloff or a timing/UI interpretation mistake around the noon ET candle.",
+  "own_probability": 0.97,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone (noon) ... has a final 'Close' price higher than the price specified in the title.",
+    "Klines are uniquely identified by their open time."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "risk_management",
+    "contract_interpretation",
+    "technical_reference"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260409-da826a3f",
+    "dispatch_id": "dispatch-case-20260409-da826a3f-20260409T211410Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "6c6dae63-899b-4d33-8486-50f3bb80d911",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260409-da826a3f/researcher-analyses/2026-04-09/dispatch-case-20260409-da826a3f-20260409T211410Z/personas/risk-manager.md",
+    "source_persona_sha256": "2cd5cec090dbb7beea6dba95087abf0d371d737e6b9b30103bcca4951132cfed"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality primary sources for both mechanics and live price context, though independence is limited because the decisive evidence comes from Binance plus the market's own rules.",
+  "strongest_disconfirmers": [
+    "Bitcoin can still make a large downside move into a single settlement minute.",
+    "Polymarket references the Binance website candle surface, so UI/API timing mismatch is a small but real operational risk."
+  ],
+  "strongest_supports": [
+    "Live Binance BTCUSDT price during the run was about 72,291.69, materially above the 68,000 strike.",
+    "Polymarket rules explicitly use Binance BTC/USDT 1m candle close as the governing source of truth.",
+    "Binance docs state klines are uniquely identified by open time and support timezone interpretation, reducing mechanics ambiguity."
+  ],
+  "timing_relevance": "Timing is central because the contract resolves on a single Binance 1m candle at 12:00 ET, which corresponds to 16:00 UTC on the resolution date.",
+  "unresolved_ambiguities": [
+    "Exact April 10 noon ET candle close is not yet observable.",
+    "Small residual uncertainty remains unless the Binance website candle is inspected directly near settlement."
+  ],
+  "what_would_change_view": "A drop toward 69k or lower before settlement, or evidence that the Binance website candle is labeled/interpreted differently than the API-based noon ET expectation, would lower confidence materially."
+}

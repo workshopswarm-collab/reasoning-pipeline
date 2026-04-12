@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "medium",
+  "fragility_points": [
+    "Lack of direct Trump-specific XTracker export retrieval during the run.",
+    "Final result can move on reply/main-feed classification or deleted-post capture."
+  ],
+  "key_assumptions": [
+    "Trump remains in a high-posting regime through the end of the window.",
+    "Boundary-sensitive count mechanics still matter for a narrow 100-119 bucket.",
+    "Public archive/contextual evidence is directionally representative even if not the settlement source."
+  ],
+  "main_logical_chain": [
+    "Trump appears to be in a high-activity posting regime, so 100-119 is plausible.",
+    "But this contract resolves on a narrow numeric band with exclusions for replies and special treatment of deleted posts.",
+    "XTracker is the governing source, yet direct public auditability of the Trump-specific count was limited in this run.",
+    "Therefore the right variant is a confidence haircut versus market, not a strong opposite call."
+  ],
+  "main_thesis": "The market likely has the right direction but is too confident that the final count lands specifically in 100-119 given tracker/platform opacity and rule-sensitive counting mechanics.",
+  "own_probability": 0.68,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "resolution source for this market is the XTracker Post Counter",
+    "Replies will NOT count",
+    "Deleted posts will count as long as they remain available long enough to be captured by the tracker"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "contract_interpretation",
+    "variant_hypothesis",
+    "risk_management"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260410-1c62ba82",
+    "dispatch_id": "dispatch-case-20260410-1c62ba82-20260410T002235Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "bb69cc11-7243-4a63-98d1-08d27a36a2d1",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260410-1c62ba82/researcher-analyses/2026-04-10/dispatch-case-20260410-1c62ba82-20260410T002235Z/personas/variant-view.md",
+    "source_persona_sha256": "ebbd1d1ece4d8138eb64e39a331debf473cd7c3105f45abbd6d4ef7dd1d3c07a"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Medium-quality overall: strong governing contract/tracker mechanics, medium auditability of the exact count, and only contextual independence from archive/platform checks.",
+  "strongest_disconfirmers": [
+    "If the Trump-specific XTracker export already shows a stable in-band total near resolution, the market's 81% may be justified or conservative."
+  ],
+  "strongest_supports": [
+    "Contract counts main-feed posts, quote posts, and reposts, structurally supporting high totals.",
+    "Truth Social page metadata verifies the target account as Donald J. Trump (@realDonaldTrump).",
+    "Independent archive/search evidence shows multiple April 3, 2026 original posts and retruths in-window."
+  ],
+  "timing_relevance": "High; this is an intraday pre-resolution view and late-window tracker data could change confidence quickly.",
+  "unresolved_ambiguities": [
+    "Exact live Trump count on XTracker near resolution.",
+    "Magnitude of any deleted-post or main-feed classification effects."
+  ],
+  "what_would_change_view": "A direct Trump-specific XTracker export near resolution showing a stable in-band count would move me toward or above market; evidence of adjacent-bucket drift or tracker/platform mismatch would move me lower."
+}
