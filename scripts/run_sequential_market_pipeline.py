@@ -9,7 +9,7 @@ import subprocess
 import sys
 import time
 from contextlib import contextmanager
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Iterator
 
@@ -108,7 +108,7 @@ def process_lock(path: Path) -> Iterator[None]:
 
 
 def utc_now_iso() -> str:
-    return datetime.utcnow().isoformat() + 'Z'
+    return datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z')
 
 
 def load_quarantine_registry(path: Path) -> dict[str, Any]:

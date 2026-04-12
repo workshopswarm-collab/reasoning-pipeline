@@ -9,6 +9,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+from automation_control import DEFAULT_CONTROL_FILE, load_control_file, resolve_sequencer_policy
 from case_artifact_contract_audit import DEFAULT_CASES_ROOT, DEFAULT_REPORT_FILE as DEFAULT_ARTIFACT_CONTRACT_REPORT_FILE, evaluate_case_artifact_contract
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -25,6 +26,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument('--heartbeat-file', default=str(DEFAULT_HEARTBEAT_FILE))
     parser.add_argument('--quarantine-file', default=str(DEFAULT_QUARANTINE_FILE))
     parser.add_argument('--report-file', default=str(DEFAULT_REPORT_FILE))
+    parser.add_argument('--control-file', default=str(DEFAULT_CONTROL_FILE))
     parser.add_argument('--max-heartbeat-age-seconds', type=float, default=1800.0)
     parser.add_argument('--max-resolution-sync-age-seconds', type=float, default=5400.0)
     parser.add_argument('--max-brier-age-seconds', type=float, default=172800.0)
@@ -151,6 +153,15 @@ def add_issue(issues: list[dict[str, Any]], *, level: str, code: str, message: s
     issues.append(issue)
 
 
+def monitor_sequencer_runtime(heartbeat: dict[str, Any], sequencer_policy: dict[str, Any]) -> bool:
+    if bool(sequencer_policy.get('enabled')):
+        return True
+    if bool(heartbeat.get('loop_mode')):
+        return True
+    state = str(heartbeat.get('state') or '').strip().lower()
+    return state in {'running', 'sleeping'}
+
+
 def evaluate(args: argparse.Namespace) -> dict[str, Any]:
     now = datetime.now(timezone.utc)
     heartbeat_path = Path(args.heartbeat_file).expanduser().resolve()
@@ -162,13 +173,18 @@ def evaluate(args: argparse.Namespace) -> dict[str, Any]:
     market_checker_env_file = Path(args.market_checker_env_file).expanduser().resolve()
     market_checker_db_url = resolve_market_checker_db_url(args)
 
+    control_file = Path(args.control_file).expanduser().resolve()
+    control = load_control_file(control_file)
+    sequencer_policy = resolve_sequencer_policy(control)
+
     heartbeat = load_json_file(heartbeat_path)
     quarantine = load_json_file(quarantine_path)
     quarantine_entries = quarantine.get('entries') if isinstance(quarantine.get('entries'), list) else []
     issues: list[dict[str, Any]] = []
 
     if not heartbeat:
-        add_issue(issues, level='error', code='missing_heartbeat', message='Sequencer heartbeat file is missing or unreadable', path=str(heartbeat_path))
+        if monitor_sequencer_runtime({}, sequencer_policy):
+            add_issue(issues, level='error', code='missing_heartbeat', message='Sequencer heartbeat file is missing or unreadable', path=str(heartbeat_path))
     else:
         state = str(heartbeat.get('state') or '')
         if state == 'failed':
@@ -181,9 +197,11 @@ def evaluate(args: argparse.Namespace) -> dict[str, Any]:
             elif last_activity_age > float(args.max_heartbeat_age_seconds):
                 add_issue(issues, level='error', code='stale_loop', message='Sequencer loop heartbeat is stale', age_seconds=round(last_activity_age, 1), max_age_seconds=float(args.max_heartbeat_age_seconds))
 
+        periodic_tasks_expected = bool(sequencer_policy.get('enabled')) or bool(heartbeat.get('loop_mode'))
+
         resolution_cfg = (((heartbeat.get('config') or {}) if isinstance(heartbeat.get('config'), dict) else {})).get('resolution_sync_seconds')
         last_resolution_sync = heartbeat.get('last_resolution_sync') if isinstance(heartbeat.get('last_resolution_sync'), dict) else {}
-        if resolution_cfg not in (None, '', 0, 0.0):
+        if periodic_tasks_expected and resolution_cfg not in (None, '', 0, 0.0):
             sync_age = age_seconds(last_resolution_sync.get('succeeded_at') or last_resolution_sync.get('attempted_at'), now=now)
             if sync_age is None:
                 add_issue(issues, level='warn', code='missing_resolution_sync', message='No recorded resolution sync yet', cadence_seconds=resolution_cfg)
@@ -194,7 +212,7 @@ def evaluate(args: argparse.Namespace) -> dict[str, Any]:
 
         brier_cfg = (((heartbeat.get('config') or {}) if isinstance(heartbeat.get('config'), dict) else {})).get('brier_snapshot_seconds')
         last_brier_snapshot = heartbeat.get('last_brier_snapshot') if isinstance(heartbeat.get('last_brier_snapshot'), dict) else {}
-        if brier_cfg not in (None, '', 0, 0.0):
+        if periodic_tasks_expected and brier_cfg not in (None, '', 0, 0.0):
             brier_age = age_seconds(last_brier_snapshot.get('succeeded_at') or last_brier_snapshot.get('attempted_at'), now=now)
             if brier_age is None:
                 add_issue(issues, level='warn', code='missing_brier_snapshot', message='No recorded Brier snapshot yet', cadence_seconds=brier_cfg)
@@ -229,16 +247,13 @@ def evaluate(args: argparse.Namespace) -> dict[str, Any]:
     if not args.skip_decided_market_watcher_check:
         decided_market_watcher_report = load_json_file(decided_market_watcher_heartbeat_path)
         watcher_age = age_seconds(decided_market_watcher_report.get('completed_at') or decided_market_watcher_report.get('started_at'), now=now)
-        decided_market_watcher_report['age_seconds'] = round(watcher_age, 1) if watcher_age is not None else None
-        if not decided_market_watcher_report:
-            add_issue(
-                issues,
-                level='warn',
-                code='missing_decided_market_watcher_heartbeat',
-                message='Decided-market watcher heartbeat file is missing',
-                decided_market_watcher_heartbeat_file=str(decided_market_watcher_heartbeat_path),
-            )
-        elif not decided_market_watcher_report.get('ok', False):
+        if decided_market_watcher_report:
+            decided_market_watcher_report['age_seconds'] = round(watcher_age, 1) if watcher_age is not None else None
+
+        tracked_market_count = int(decided_market_watcher_report.get('tracked_market_count') or 0) if decided_market_watcher_report else 0
+        watcher_activity_expected = tracked_market_count > 0
+
+        if decided_market_watcher_report and not decided_market_watcher_report.get('ok', False):
             add_issue(
                 issues,
                 level='error',
@@ -246,12 +261,20 @@ def evaluate(args: argparse.Namespace) -> dict[str, Any]:
                 message='Decided-market watcher reported a failed run',
                 decided_market_watcher=decided_market_watcher_report,
             )
-        elif watcher_age is not None and watcher_age > float(args.max_decided_market_watcher_age_seconds):
+        elif watcher_activity_expected and watcher_age is None:
+            add_issue(
+                issues,
+                level='warn',
+                code='missing_decided_market_watcher_activity_timestamp',
+                message='Decided-market watcher is tracking markets but did not record a completion timestamp',
+                decided_market_watcher=decided_market_watcher_report,
+            )
+        elif watcher_activity_expected and watcher_age is not None and watcher_age > float(args.max_decided_market_watcher_age_seconds):
             add_issue(
                 issues,
                 level='error',
                 code='stale_decided_market_watcher',
-                message='Decided-market watcher heartbeat is stale',
+                message='Decided-market watcher heartbeat is stale while tracking markets',
                 age_seconds=round(watcher_age, 1),
                 max_age_seconds=float(args.max_decided_market_watcher_age_seconds),
                 decided_market_watcher=decided_market_watcher_report,
@@ -329,11 +352,13 @@ def evaluate(args: argparse.Namespace) -> dict[str, Any]:
         'heartbeat_file': str(heartbeat_path),
         'quarantine_file': str(quarantine_path),
         'report_file': str(report_path),
+        'control_file': str(control_file),
         'artifact_contract_root': str(artifact_contract_root),
         'artifact_contract_report_file': str(artifact_contract_report_path),
         'decided_market_watcher_heartbeat_file': str(decided_market_watcher_heartbeat_path),
         'market_checker_env_file': str(market_checker_env_file),
         'market_checker_psql': str(args.market_checker_psql),
+        'sequencer_policy': sequencer_policy,
         'heartbeat': {
             'state': heartbeat.get('state'),
             'pid': heartbeat.get('pid'),
