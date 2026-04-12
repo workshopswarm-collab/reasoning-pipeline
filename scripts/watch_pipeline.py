@@ -5,7 +5,6 @@ import argparse
 import fcntl
 import json
 import os
-import subprocess
 import sys
 import time
 from contextlib import contextmanager
@@ -17,6 +16,7 @@ if str(REPO_ROOT / 'scripts') not in sys.path:
     sys.path.insert(0, str(REPO_ROOT / 'scripts'))
 
 from automation_control import DEFAULT_CONTROL_FILE, load_control_file, resolve_watchdog_policy  # noqa: E402
+from automation_runtime_support import DEFAULT_SUBPROCESS_TIMEOUT_SECONDS, run_json_subprocess  # noqa: E402
 from case_pipeline_status import list_case_pipeline_statuses, summarize_case_pipeline_status, update_case_pipeline_status  # noqa: E402
 
 RECONCILE_SWARM_STAGE = REPO_ROOT / 'roles' / 'orchestrator' / 'researchers-swarm-subagents' / 'runtime' / 'scripts' / 'reconcile_swarm_stage.py'
@@ -89,17 +89,13 @@ def process_lock(path: Path) -> Iterator[None]:
             fcntl.flock(handle.fileno(), fcntl.LOCK_UN)
 
 
-def run_json_command(cmd: list[str]) -> tuple[int, dict[str, Any], str, str]:
-    proc = subprocess.run(cmd, cwd=REPO_ROOT, text=True, capture_output=True, env=load_repo_env())
-    payload: dict[str, Any] = {}
-    text = (proc.stdout or '').strip()
-    if text:
-        try:
-            parsed = json.loads(text)
-            if isinstance(parsed, dict):
-                payload = parsed
-        except json.JSONDecodeError:
-            payload = {}
+def run_json_command(cmd: list[str], *, timeout_seconds: float = DEFAULT_SUBPROCESS_TIMEOUT_SECONDS) -> tuple[int, dict[str, Any], str, str]:
+    proc, payload = run_json_subprocess(
+        cmd,
+        cwd=REPO_ROOT,
+        env=load_repo_env(),
+        timeout_seconds=timeout_seconds,
+    )
     return proc.returncode, payload, proc.stdout, proc.stderr
 
 

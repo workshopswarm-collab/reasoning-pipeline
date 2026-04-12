@@ -4,7 +4,7 @@ from __future__ import annotations
 import json
 import os
 import re
-import subprocess
+import sys
 from contextlib import contextmanager
 from datetime import datetime, timezone
 import fcntl
@@ -12,10 +12,16 @@ from pathlib import Path
 from typing import Any, Iterator
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
+if str(REPO_ROOT / 'scripts') not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT / 'scripts'))
+
+from automation_runtime_support import DEFAULT_SUBPROCESS_TIMEOUT_SECONDS, parse_json_output, run_subprocess, tail_text  # noqa: E402
+
 CASES_ROOT = REPO_ROOT / "qualitative-db" / "40-research" / "cases"
 POST_CASE_TERMINAL_TOPIC_MARKER = REPO_ROOT / "scripts" / "post_case_terminal_topic_marker.py"
 MATERIALIZE_CASE_SWARM_ARTIFACTS = REPO_ROOT / "scripts" / "materialize_case_swarm_artifacts.py"
 CANONICAL_CASE_KEY_RE = re.compile(r'(case-\d{8}-[a-f0-9]{8})')
+HELPER_TIMEOUT_SECONDS = DEFAULT_SUBPROCESS_TIMEOUT_SECONDS
 
 
 def utc_now_iso() -> str:
@@ -84,40 +90,106 @@ def _default_stage_statuses() -> dict[str, str]:
     }
 
 
-def maybe_materialize_case_swarm_artifacts(snapshot: dict[str, Any]) -> None:
+def record_helper_status(case_key: str, helper_name: str, result: dict[str, Any]) -> None:
+    path = pipeline_status_path(case_key)
+    if not path.exists():
+        return
+    with locked_json_file(path) as payload:
+        helper_status = payload.setdefault('helper_status', {})
+        helper_status[helper_name] = result
+
+
+def maybe_materialize_case_swarm_artifacts(snapshot: dict[str, Any]) -> dict[str, Any]:
+    case_key = str(snapshot.get('case_key') or '').strip()
     if not MATERIALIZE_CASE_SWARM_ARTIFACTS.exists():
-        return
+        return {
+            'helper': 'materialize_case_swarm_artifacts',
+            'attempted_at': utc_now_iso(),
+            'ok': False,
+            'reason': 'script_missing',
+        }
+    cmd = [sys.executable, str(MATERIALIZE_CASE_SWARM_ARTIFACTS), '--case-key', case_key]
     try:
-        subprocess.run(
-            ["python3", str(MATERIALIZE_CASE_SWARM_ARTIFACTS), "--case-key", str(snapshot.get("case_key") or "")],
-            cwd=str(REPO_ROOT),
-            text=True,
-            capture_output=True,
-            check=False,
+        proc = run_subprocess(
+            cmd,
+            cwd=REPO_ROOT,
+            timeout_seconds=HELPER_TIMEOUT_SECONDS,
         )
-    except Exception:
-        return
+        payload = parse_json_output(proc.stdout or '')
+        result = {
+            'helper': 'materialize_case_swarm_artifacts',
+            'attempted_at': utc_now_iso(),
+            'ok': proc.returncode == 0,
+            'returncode': proc.returncode,
+        }
+        if payload:
+            result['payload'] = payload
+        if proc.returncode != 0:
+            result['stdout_tail'] = tail_text(proc.stdout)
+            result['stderr_tail'] = tail_text(proc.stderr)
+        return result
+    except Exception as exc:  # noqa: BLE001
+        return {
+            'helper': 'materialize_case_swarm_artifacts',
+            'attempted_at': utc_now_iso(),
+            'ok': False,
+            'error': str(exc),
+        }
 
 
-def maybe_post_terminal_topic_marker(snapshot: dict[str, Any]) -> None:
-    status = str(snapshot.get("status") or "")
-    if status not in {"pipeline_completed", "pipeline_failed", "pipeline_skipped"}:
-        return
-    terminal_summary = snapshot.get("terminal_summary") if isinstance(snapshot.get("terminal_summary"), dict) else {}
-    if terminal_summary.get("topic_terminal_marker_posted_at"):
-        return
+def maybe_post_terminal_topic_marker(snapshot: dict[str, Any]) -> dict[str, Any]:
+    status = str(snapshot.get('status') or '')
+    terminal_summary = snapshot.get('terminal_summary') if isinstance(snapshot.get('terminal_summary'), dict) else {}
+    if status not in {'pipeline_completed', 'pipeline_failed', 'pipeline_skipped'}:
+        return {
+            'helper': 'post_case_terminal_topic_marker',
+            'attempted_at': utc_now_iso(),
+            'ok': True,
+            'noop': True,
+            'reason': f'status_not_terminal:{status}',
+        }
+    if terminal_summary.get('topic_terminal_marker_posted_at'):
+        return {
+            'helper': 'post_case_terminal_topic_marker',
+            'attempted_at': utc_now_iso(),
+            'ok': True,
+            'noop': True,
+            'reason': 'already_posted',
+        }
     if not POST_CASE_TERMINAL_TOPIC_MARKER.exists():
-        return
+        return {
+            'helper': 'post_case_terminal_topic_marker',
+            'attempted_at': utc_now_iso(),
+            'ok': False,
+            'reason': 'script_missing',
+        }
+    cmd = [sys.executable, str(POST_CASE_TERMINAL_TOPIC_MARKER), '--case-key', str(snapshot.get('case_key') or '')]
     try:
-        subprocess.run(
-            ["python3", str(POST_CASE_TERMINAL_TOPIC_MARKER), "--case-key", str(snapshot.get("case_key") or "")],
-            cwd=str(REPO_ROOT),
-            text=True,
-            capture_output=True,
-            check=False,
+        proc = run_subprocess(
+            cmd,
+            cwd=REPO_ROOT,
+            timeout_seconds=HELPER_TIMEOUT_SECONDS,
         )
-    except Exception:
-        return
+        payload = parse_json_output(proc.stdout or '')
+        result = {
+            'helper': 'post_case_terminal_topic_marker',
+            'attempted_at': utc_now_iso(),
+            'ok': proc.returncode == 0,
+            'returncode': proc.returncode,
+        }
+        if payload:
+            result['payload'] = payload
+        if proc.returncode != 0:
+            result['stdout_tail'] = tail_text(proc.stdout)
+            result['stderr_tail'] = tail_text(proc.stderr)
+        return result
+    except Exception as exc:  # noqa: BLE001
+        return {
+            'helper': 'post_case_terminal_topic_marker',
+            'attempted_at': utc_now_iso(),
+            'ok': False,
+            'error': str(exc),
+        }
 
 
 def _normalize_terminal_payload(payload: dict[str, Any]) -> None:
@@ -208,8 +280,14 @@ def update_case_pipeline_status(
             timeline.append(entry)
             payload["last_event"] = entry
         snapshot = dict(payload)
-    maybe_materialize_case_swarm_artifacts(snapshot)
-    maybe_post_terminal_topic_marker(snapshot)
+    materialize_result = maybe_materialize_case_swarm_artifacts(snapshot)
+    terminal_marker_result = maybe_post_terminal_topic_marker(snapshot)
+    record_helper_status(normalized_case_key, 'materialize_case_swarm_artifacts', materialize_result)
+    record_helper_status(normalized_case_key, 'post_case_terminal_topic_marker', terminal_marker_result)
+    snapshot['helper_status'] = {
+        'materialize_case_swarm_artifacts': materialize_result,
+        'post_case_terminal_topic_marker': terminal_marker_result,
+    }
     return snapshot
 
 
@@ -230,6 +308,7 @@ def summarize_case_pipeline_status(case_key: str) -> dict[str, Any]:
         "updated_at": payload.get("updated_at", ""),
         "completed_at": payload.get("completed_at", ""),
         "terminal_summary": payload.get("terminal_summary", {}),
+        "helper_status": payload.get("helper_status", {}),
         "last_event": payload.get("last_event", {}),
     }
 

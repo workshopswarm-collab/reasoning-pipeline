@@ -3,11 +3,10 @@ from __future__ import annotations
 
 import argparse
 import json
-import re
-import subprocess
 from pathlib import Path
 from typing import Any
 
+from automation_runtime_support import DEFAULT_SUBPROCESS_TIMEOUT_SECONDS, parse_json_output, run_subprocess, tail_text  # type: ignore
 from case_pipeline_status import (  # type: ignore
     REPO_ROOT,
     load_json_if_exists,
@@ -49,34 +48,14 @@ def first_present(*values: Any) -> str:
     return ''
 
 
-SESSION_KEY_RE = re.compile(r"agent:main:telegram:group:(-?\d+):topic:(\d+)")
-
-
-def fallback_topic_binding_from_case(case_key: str) -> tuple[str, str]:
-    case_dir = REPO_ROOT / 'qualitative-db' / '40-research' / 'cases' / case_key
-    if not case_dir.exists():
-        return '', ''
-    matches: list[tuple[str, str]] = []
-    for path in case_dir.rglob('*'):
-        if not path.is_file():
-            continue
-        try:
-            text = path.read_text(errors='ignore')
-        except Exception:
-            continue
-        for match in SESSION_KEY_RE.finditer(text):
-            pair = (match.group(1), match.group(2))
-            if pair not in matches:
-                matches.append(pair)
-    return matches[0] if matches else ('', '')
-
-
-def resolve_topic_binding(manifest: dict[str, Any], case_key: str) -> tuple[str, str]:
+def resolve_topic_binding(manifest: dict[str, Any], payload: dict[str, Any]) -> tuple[str, str]:
     runtime_defaults = manifest.get("runtime_defaults") if isinstance(manifest.get("runtime_defaults"), dict) else {}
     bootstrap_state = manifest.get("bootstrap_state") if isinstance(manifest.get("bootstrap_state"), dict) else {}
     controller = bootstrap_state.get("controller") if isinstance(bootstrap_state.get("controller"), dict) else {}
     delivery = bootstrap_state.get("delivery") if isinstance(bootstrap_state.get("delivery"), dict) else {}
+    terminal_summary = payload.get("terminal_summary") if isinstance(payload.get("terminal_summary"), dict) else {}
     chat_id = first_present(
+        terminal_summary.get("topic_terminal_marker_chat_id"),
         runtime_defaults.get("chat_id"),
         runtime_defaults.get("controller_chat_id"),
         bootstrap_state.get("chat_id"),
@@ -84,15 +63,13 @@ def resolve_topic_binding(manifest: dict[str, Any], case_key: str) -> tuple[str,
         delivery.get("chat_id"),
     )
     topic_id = first_present(
+        terminal_summary.get("topic_terminal_marker_topic_id"),
         bootstrap_state.get("controller_topic_id"),
         controller.get("topic_id"),
         bootstrap_state.get("delivery_topic_id"),
         delivery.get("topic_id"),
     )
-    if chat_id and topic_id:
-        return chat_id, topic_id
-    fallback_chat_id, fallback_topic_id = fallback_topic_binding_from_case(case_key)
-    return first_present(chat_id, fallback_chat_id), first_present(topic_id, fallback_topic_id)
+    return chat_id, topic_id
 
 
 def build_message(payload: dict[str, Any]) -> str:
@@ -122,7 +99,7 @@ def build_message(payload: dict[str, Any]) -> str:
 
 
 def send_terminal_marker(*, chat_id: str, topic_id: str, message: str) -> dict[str, Any]:
-    proc = subprocess.run(
+    proc = run_subprocess(
         [
             "openclaw", "message", "send",
             "--channel", "telegram",
@@ -131,22 +108,15 @@ def send_terminal_marker(*, chat_id: str, topic_id: str, message: str) -> dict[s
             "--message", message,
             "--json",
         ],
-        cwd=str(REPO_ROOT),
-        text=True,
-        capture_output=True,
+        cwd=REPO_ROOT,
+        timeout_seconds=DEFAULT_SUBPROCESS_TIMEOUT_SECONDS,
     )
-    stdout = (proc.stdout or "").strip()
-    parsed: dict[str, Any] = {}
-    if stdout:
-        try:
-            maybe = json.loads(stdout.splitlines()[-1])
-            if isinstance(maybe, dict):
-                parsed = maybe
-        except Exception:
-            parsed = {"raw_stdout": stdout[-1000:]}
+    parsed = parse_json_output(proc.stdout or '')
     if proc.returncode != 0:
-        raise RuntimeError(proc.stderr.strip() or stdout or "openclaw message send failed")
-    return parsed
+        stdout = tail_text(proc.stdout)
+        stderr = tail_text(proc.stderr)
+        raise RuntimeError(stderr or stdout or "openclaw message send failed")
+    return parsed or ({"raw_stdout": tail_text(proc.stdout)} if (proc.stdout or '').strip() else {})
 
 
 def main() -> int:
@@ -166,7 +136,7 @@ def main() -> int:
 
     dispatch_id = str(payload.get("dispatch_id") or "")
     manifest = load_dispatch_manifest(dispatch_id)
-    chat_id, topic_id = resolve_topic_binding(manifest, args.case_key)
+    chat_id, topic_id = resolve_topic_binding(manifest, payload)
     if not chat_id or not topic_id:
         print(json.dumps({
             "ok": True,

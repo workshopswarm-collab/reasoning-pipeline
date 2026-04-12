@@ -6,7 +6,7 @@ It scans the manifest directory, looks up the referenced research_runs rows, and
 classifies each manifest into one of:
 - pending_launch   : at least one run is still queued and has not been handed off
 - inflight         : no queued launchable runs remain, but some runs are running
-- terminal         : all runs are terminal (completed/failed)
+- terminal         : all runs are terminal (completed/failed/superseded/cancelled/skipped)
 - unknown          : manifest/runtime state could not be classified cleanly
 
 Default output returns only manifests with pending launch work.
@@ -17,7 +17,6 @@ from __future__ import annotations
 import argparse
 import json
 import os
-import subprocess
 import sys
 from pathlib import Path
 from typing import Any
@@ -28,8 +27,14 @@ SCRIPTS_DIR = BASE_DIR.parent
 RUNTIME_DIR = SCRIPTS_DIR.parent
 PIPELINE_DIR = RUNTIME_DIR.parent
 WORKSPACE_ROOT = PIPELINE_DIR.parents[2]
+if str(WORKSPACE_ROOT / 'scripts') not in sys.path:
+    sys.path.insert(0, str(WORKSPACE_ROOT / 'scripts'))
+
+from automation_runtime_support import DEFAULT_SUBPROCESS_TIMEOUT_SECONDS, run_subprocess  # noqa: E402
+
 DEFAULT_MANIFEST_DIR = RUNTIME_DIR / "dispatch-manifests"
 DEFAULT_ENV_PATH = WORKSPACE_ROOT / ".env"
+TERMINAL_RUN_STATUSES = {"completed", "failed", "superseded", "cancelled", "skipped"}
 
 SQL = r'''
 WITH input AS (
@@ -105,11 +110,10 @@ def run_psql(psql_bin: str, db_url: str, payload: dict[str, Any]) -> list[dict[s
     if not db_url:
         raise ValueError("--db-url or PREDQUANT_ORCHESTRATOR_URL is required")
     payload_json = json.dumps(payload, separators=(",", ":"))
-    proc = subprocess.run(
+    proc = run_subprocess(
         [psql_bin, db_url, "-X", "-qAt", "-v", "ON_ERROR_STOP=1", "-v", f"payload={payload_json}", "-f", "-"],
-        input=SQL,
-        text=True,
-        capture_output=True,
+        input_text=SQL,
+        timeout_seconds=DEFAULT_SUBPROCESS_TIMEOUT_SECONDS,
     )
     if proc.returncode != 0:
         raise RuntimeError(proc.stderr.strip() or "psql failed")
@@ -125,6 +129,9 @@ def classify_manifest(run_rows: list[dict[str, Any]]) -> tuple[str, dict[str, in
         "running": 0,
         "completed": 0,
         "failed": 0,
+        "superseded": 0,
+        "cancelled": 0,
+        "skipped": 0,
         "with_delivery_target": 0,
         "without_delivery_target": 0,
     }
@@ -143,7 +150,7 @@ def classify_manifest(run_rows: list[dict[str, Any]]) -> tuple[str, dict[str, in
         if row.get("status") == "queued"
     ]
     running = [row for row in run_rows if row.get("status") == "running"]
-    terminal = [row for row in run_rows if row.get("status") in {"completed", "failed"}]
+    terminal = [row for row in run_rows if row.get("status") in TERMINAL_RUN_STATUSES]
 
     if launchable:
         return "pending_launch", counts

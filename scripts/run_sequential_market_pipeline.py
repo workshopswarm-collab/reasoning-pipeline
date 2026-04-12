@@ -5,7 +5,6 @@ import argparse
 import fcntl
 import json
 import os
-import subprocess
 import sys
 import time
 from contextlib import contextmanager
@@ -17,7 +16,8 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 if str(REPO_ROOT / "scripts") not in sys.path:
     sys.path.insert(0, str(REPO_ROOT / "scripts"))
 
-from automation_control import DEFAULT_CONTROL_FILE, load_control_file, resolve_sequencer_policy  # noqa: E402
+from automation_control import DEFAULT_CONTROL_FILE, load_control_file, resolve_sequencer_policy, resolve_watchdog_policy  # noqa: E402
+from automation_runtime_support import DEFAULT_SUBPROCESS_TIMEOUT_SECONDS, run_json_subprocess  # noqa: E402
 from case_pipeline_status import list_case_pipeline_statuses, pipeline_status_path, summarize_case_pipeline_status, update_case_pipeline_status  # noqa: E402
 from watch_pipeline import watch_case as reconcile_existing_case_via_watchdog  # noqa: E402
 
@@ -394,20 +394,13 @@ def effective_sequencer_policy(args: argparse.Namespace) -> dict[str, Any]:
     return policy
 
 
-def run_json_command(cmd: list[str]) -> tuple[int, dict[str, Any], str, str]:
-    proc = subprocess.run(cmd, cwd=REPO_ROOT, text=True, capture_output=True, env=load_repo_env())
-    payload: dict[str, Any] = {}
-    text = (proc.stdout or "").strip()
-    if text:
-        candidates = [text, text.splitlines()[-1].strip()]
-        for candidate in candidates:
-            try:
-                parsed = json.loads(candidate)
-                if isinstance(parsed, dict):
-                    payload = parsed
-                    break
-            except json.JSONDecodeError:
-                continue
+def run_json_command(cmd: list[str], *, timeout_seconds: float = DEFAULT_SUBPROCESS_TIMEOUT_SECONDS) -> tuple[int, dict[str, Any], str, str]:
+    proc, payload = run_json_subprocess(
+        cmd,
+        cwd=REPO_ROOT,
+        env=load_repo_env(),
+        timeout_seconds=timeout_seconds,
+    )
     return proc.returncode, payload, proc.stdout, proc.stderr
 
 
@@ -597,20 +590,34 @@ def launch_synthesis_if_needed(case_key: str, pretty: bool) -> dict[str, Any] | 
     }
 
 
-def wait_for_case(case_key: str, *, poll_seconds: float, max_case_seconds: float, pretty: bool) -> dict[str, Any]:
-    path = pipeline_status_path(case_key)
-    deadline = time.time() + max_case_seconds
-    watchdog_passes = 0
-    last_watchdog_result: dict[str, Any] | None = None
-    watchdog_args = argparse.Namespace(stale_seconds=900.0, pretty=pretty)
-    watchdog_policy = {
+def effective_internal_watchdog_policy(args: argparse.Namespace) -> dict[str, Any]:
+    if args.control_managed:
+        control = load_control_file(Path(args.control_file).expanduser().resolve())
+        return {
+            **resolve_watchdog_policy(control),
+            'control_managed': True,
+            'control_file': str(Path(args.control_file).expanduser().resolve()),
+            'control_snapshot': control,
+        }
+    return {
+        'enabled': True,
         'apply': True,
         'allow_resume_swarm': True,
         'allow_launch_synthesis': True,
         'allow_launch_decision': True,
         'allow_finalize_decision': True,
         'allow_finalize_pipeline': True,
+        'control_managed': False,
+        'control_file': '',
     }
+
+
+def wait_for_case(case_key: str, *, args: argparse.Namespace, poll_seconds: float, max_case_seconds: float, pretty: bool) -> dict[str, Any]:
+    path = pipeline_status_path(case_key)
+    deadline = time.time() + max_case_seconds
+    watchdog_passes = 0
+    last_watchdog_result: dict[str, Any] | None = None
+    watchdog_args = argparse.Namespace(stale_seconds=900.0, pretty=pretty)
 
     while time.time() < deadline:
         summary = summarize_case_pipeline_status(case_key)
@@ -634,6 +641,7 @@ def wait_for_case(case_key: str, *, poll_seconds: float, max_case_seconds: float
                 'last_watchdog_result': last_watchdog_result or {},
             }
 
+        watchdog_policy = effective_internal_watchdog_policy(args)
         last_watchdog_result = reconcile_existing_case_via_watchdog(summary, args=watchdog_args, policy=watchdog_policy)
         watchdog_passes += 1
         if not last_watchdog_result.get('ok', False):
@@ -754,6 +762,7 @@ def run_sequencer_pass(args: argparse.Namespace, policy: dict[str, Any], *, excl
         )
         case_result = wait_for_case(
             case_key,
+            args=args,
             poll_seconds=float(policy['poll_seconds']),
             max_case_seconds=float(policy['max_case_seconds']),
             pretty=args.pretty,
@@ -877,6 +886,7 @@ def run_sequencer_pass(args: argparse.Namespace, policy: dict[str, Any], *, excl
 
         case_result = wait_for_case(
             case_key,
+            args=args,
             poll_seconds=float(policy['poll_seconds']),
             max_case_seconds=float(policy['max_case_seconds']),
             pretty=args.pretty,
@@ -945,6 +955,7 @@ def run_sequencer_pass(args: argparse.Namespace, policy: dict[str, Any], *, excl
 
     case_result = wait_for_case(
         case_key,
+        args=args,
         poll_seconds=float(policy['poll_seconds']),
         max_case_seconds=float(policy['max_case_seconds']),
         pretty=args.pretty,

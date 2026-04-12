@@ -37,6 +37,8 @@ def parse_args() -> argparse.Namespace:
         cmd.add_argument('--lock-file', default=str(SCRIPTS_DIR / '.runtime-state' / 'pipeline-sequencer.lock'))
         cmd.add_argument('--control-file', default=str(DEFAULT_CONTROL_FILE))
         cmd.add_argument('--max-cases', type=int, default=0, help='Forwarded to the sequencer; 0 means no internal case cap')
+        cmd.add_argument('--throttle-interval-seconds', type=int, default=30, help='launchd restart throttle interval for crash loops')
+        cmd.add_argument('--keepalive-successful-exit', action='store_true', help='Also relaunch after a clean exit (default only relaunches on abnormal exit)')
         cmd.add_argument('--no-resume-existing', action='store_true', help='Disable resumable-case preference in the service definition')
 
     render_cmd = sub.add_parser('render', help='Render the launch agent plist into the repo (or another path)')
@@ -97,7 +99,8 @@ def render_plist_payload(args: argparse.Namespace) -> dict[str, Any]:
         'ProgramArguments': sequencer_program_arguments(args),
         'WorkingDirectory': str(REPO_ROOT),
         'RunAtLoad': True,
-        'KeepAlive': True,
+        'KeepAlive': True if args.keepalive_successful_exit else {'SuccessfulExit': False},
+        'ThrottleInterval': int(args.throttle_interval_seconds),
         'StandardOutPath': str(stdout_log),
         'StandardErrorPath': str(stderr_log),
         'ProcessType': 'Background',
