@@ -18,6 +18,9 @@ CASE_DECISION_DIRNAME = "decision-maker"
 CASE_DECISION_PACKET_FILENAME = "decision-maker-packet.md"
 CASE_DECISION_PACKET_JSON_RELATIVE = "artifacts/decision-maker-packet.json"
 CASE_DECISION_STAGE_STATUS_JSON_RELATIVE = "artifacts/decision-stage-status.json"
+CASE_LIGHT_REFRESH_BRIEF_JSON_RELATIVE = "artifacts/light-refresh-brief.json"
+CASE_LIGHT_REFRESH_BRIEF_MARKDOWN_RELATIVE = "artifacts/light-refresh-brief.md"
+DISPATCH_MANIFESTS_DIR = WORKSPACE_ROOT / "roles" / "orchestrator" / "researchers-swarm-subagents" / "runtime" / "dispatch-manifests"
 
 DECISION_PACKET_FRONTMATTER_ORDER = [
     "type",
@@ -25,9 +28,14 @@ DECISION_PACKET_FRONTMATTER_ORDER = [
     "dispatch_id",
     "question",
     "market_id",
+    "external_market_id",
+    "market_slug",
+    "platform",
     "market_title",
     "source_decision_handoff_path",
     "source_syndicated_finding_path",
+    "source_light_refresh_brief_path",
+    "refresh_mode",
     "recommended_side",
     "trade_authorization",
     "position_policy",
@@ -133,6 +141,14 @@ def case_decision_stage_status_path(case_key: str) -> Path:
     return decision_case_dir(case_key) / CASE_DECISION_STAGE_STATUS_JSON_RELATIVE
 
 
+def case_light_refresh_brief_json_path(case_key: str) -> Path:
+    return decision_case_dir(case_key) / CASE_LIGHT_REFRESH_BRIEF_JSON_RELATIVE
+
+
+def case_light_refresh_brief_markdown_path(case_key: str) -> Path:
+    return decision_case_dir(case_key) / CASE_LIGHT_REFRESH_BRIEF_MARKDOWN_RELATIVE
+
+
 def utc_now_iso() -> str:
     return datetime.now(timezone.utc).isoformat()
 
@@ -227,6 +243,24 @@ def dump_frontmatter(data: OrderedDict[str, Any], body: str) -> str:
 
 def load_markdown_frontmatter(path: Path) -> tuple[OrderedDict[str, Any], str]:
     return parse_frontmatter(path.read_text())
+
+
+def dispatch_manifest_path(dispatch_id: str) -> Path:
+    return DISPATCH_MANIFESTS_DIR / f"{dispatch_id}.json"
+
+
+def load_dispatch_manifest_market(dispatch_id: str) -> dict[str, Any]:
+    if not dispatch_id:
+        return {}
+    path = dispatch_manifest_path(dispatch_id)
+    if not path.exists():
+        return {}
+    try:
+        payload = load_json(path)
+    except Exception:
+        return {}
+    market = payload.get("market") if isinstance(payload, dict) else {}
+    return dict(market) if isinstance(market, dict) else {}
 
 
 def find_case_dir_for_dispatch(dispatch_id: str) -> Path | None:

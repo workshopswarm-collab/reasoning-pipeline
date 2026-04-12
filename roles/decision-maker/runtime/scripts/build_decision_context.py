@@ -25,6 +25,7 @@ from common import (  # noqa: E402
     normalize_probability,
     percent_points_from_prob_delta,
     relative_to_workspace,
+    load_dispatch_manifest_market,
     round_probability,
     telegram_topic_session_key,
     utc_now_iso,
@@ -148,9 +149,45 @@ def main() -> None:
     runtime_payload = load_runtime(runtime_path)
 
     dispatch_id = coerce_string(args.dispatch_id) or coerce_string(handoff_frontmatter.get("dispatch_id"))
-    question = coerce_string(handoff_frontmatter.get("question")) or coerce_string(runtime_payload.get("question"))
-    market_title = coerce_string(args.market_title) or coerce_string(handoff_frontmatter.get("market_title")) or question
-    market_id = coerce_string(args.market_id) or coerce_string(handoff_frontmatter.get("market_id"))
+    manifest_market = load_dispatch_manifest_market(dispatch_id)
+    question = coerce_string(handoff_frontmatter.get("question")) or coerce_string(runtime_payload.get("question")) or coerce_string(manifest_market.get("title"))
+    market_title = (
+        coerce_string(args.market_title)
+        or coerce_string(handoff_frontmatter.get("market_title"))
+        or coerce_string(runtime_payload.get("market_title"))
+        or coerce_string(manifest_market.get("title"))
+        or question
+    )
+    market_id = (
+        coerce_string(args.market_id)
+        or coerce_string(handoff_frontmatter.get("market_id"))
+        or coerce_string(runtime_payload.get("market_id"))
+        or coerce_string(manifest_market.get("market_id"))
+    )
+    external_market_id = (
+        coerce_string(handoff_frontmatter.get("external_market_id"))
+        or coerce_string(runtime_payload.get("external_market_id"))
+        or coerce_string(manifest_market.get("external_market_id"))
+    )
+    market_slug = (
+        coerce_string(handoff_frontmatter.get("market_slug"))
+        or coerce_string(handoff_frontmatter.get("slug"))
+        or coerce_string(runtime_payload.get("market_slug"))
+        or coerce_string(runtime_payload.get("slug"))
+        or coerce_string(manifest_market.get("slug"))
+    )
+    platform = (
+        coerce_string(handoff_frontmatter.get("platform"))
+        or coerce_string(runtime_payload.get("platform"))
+        or coerce_string(manifest_market.get("platform"))
+        or "polymarket"
+    )
+    primary_market_url = (
+        coerce_string(handoff_frontmatter.get("primary_market_url"))
+        or coerce_string(runtime_payload.get("primary_market_url"))
+        or coerce_string(((manifest_market.get("metadata") or {}) if isinstance(manifest_market.get("metadata"), dict) else {}).get("url"))
+        or (f"https://polymarket.com/event/{market_slug}" if market_slug else "")
+    )
 
     market_price = args.market_price
     if market_price is None:
@@ -190,6 +227,10 @@ def main() -> None:
         "question": question,
         "market": {
             "market_id": market_id,
+            "external_market_id": external_market_id,
+            "market_slug": market_slug,
+            "platform": platform,
+            "primary_market_url": primary_market_url,
             "market_title": market_title,
             "market_reference_price": round_probability(market_price),
             "quote_timestamp": coerce_string(args.quote_timestamp) or coerce_string(runtime_payload.get("market_snapshot_time")),

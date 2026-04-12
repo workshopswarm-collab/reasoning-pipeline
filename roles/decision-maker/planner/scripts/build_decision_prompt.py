@@ -201,6 +201,8 @@ def main() -> None:
         out_path = WORKSPACE_ROOT / out_path
     out_path.parent.mkdir(parents=True, exist_ok=True)
 
+    light_refresh = context.get("light_refresh") if isinstance(context.get("light_refresh"), dict) else {}
+
     core_case = dict(selected_bundle.get("core_case") or {})
     for key in ["question", "market_title", "relation_to_market", "follow_up_needed"]:
         if not coerce_string(core_case.get(key)):
@@ -257,6 +259,43 @@ def main() -> None:
                     snippet_candidates.append(item)
         if snippet_candidates:
             expanded_reasoning_fallback["note_deep_dive"] = build_expanded_snippet_fallback(snippet_candidates[0])
+    compact_light_refresh = {}
+    if light_refresh:
+        market_block = light_refresh.get("market") if isinstance(light_refresh.get("market"), dict) else {}
+        latest_forecast = light_refresh.get("latest_forecast") if isinstance(light_refresh.get("latest_forecast"), dict) else {}
+        refresh_assessment = light_refresh.get("refresh_assessment") if isinstance(light_refresh.get("refresh_assessment"), dict) else {}
+        live_probe = light_refresh.get("live_market_probe") if isinstance(light_refresh.get("live_market_probe"), dict) else {}
+        snapshot_summary = light_refresh.get("snapshot_summary") if isinstance(light_refresh.get("snapshot_summary"), dict) else {}
+        compact_light_refresh = {
+            "recommended_mode": coerce_string(refresh_assessment.get("recommended_mode")),
+            "reasons": list(refresh_assessment.get("reasons") or [])[:4],
+            "current_price": market_block.get("current_price"),
+            "last_reasoned_price": market_block.get("last_reasoned_price"),
+            "price_delta_pct_points": refresh_assessment.get("price_delta_pct_points"),
+            "hours_since_last_forecast": refresh_assessment.get("hours_since_last_forecast"),
+            "hours_to_close": refresh_assessment.get("hours_to_close"),
+            "latest_forecast": {
+                "forecast_id": coerce_string(latest_forecast.get("forecast_id")),
+                "forecast_prob": latest_forecast.get("forecast_prob"),
+                "decision_ts": coerce_string(latest_forecast.get("decision_ts")),
+                "rationale_summary": trim_text(coerce_string(latest_forecast.get("rationale_summary")), 220),
+            },
+            "snapshot_summary": {
+                "snapshot_count": snapshot_summary.get("snapshot_count"),
+                "min_reference_price": snapshot_summary.get("min_reference_price"),
+                "max_reference_price": snapshot_summary.get("max_reference_price"),
+                "avg_reference_price": snapshot_summary.get("avg_reference_price"),
+            },
+            "live_market_probe": {
+                "closed": live_probe.get("closed"),
+                "archived": live_probe.get("archived"),
+                "acceptingOrders": live_probe.get("acceptingOrders"),
+                "umaResolutionStatus": coerce_string(live_probe.get("umaResolutionStatus")),
+                "outcomePrices": list(live_probe.get("outcomePrices") or [])[:4],
+            },
+            "focused_questions": list(light_refresh.get("focused_questions") or [])[:4],
+        }
+
     compact_targeted_pack = {}
     if targeted_pack:
         focus = targeted_pack.get("structured_handoff_focus") or {}
@@ -317,6 +356,15 @@ def main() -> None:
         f"- market_title: {market.get('market_title', '')}",
         f"- market_reference_price: {market.get('market_reference_price', '')}",
         "",
+        *([
+            "## Lightweight refresh brief for this run",
+            "```json",
+            json.dumps(compact_light_refresh, ensure_ascii=False, separators=(',', ':')),
+            "```",
+            "",
+            "Use this brief as a bounded update layer on top of the prior synthesis package. Do not rerun broad synthesis mentally unless the refresh brief indicates a true regime change.",
+            "",
+        ] if compact_light_refresh else []),
         "## Contract",
         "",
         contract.rstrip(),

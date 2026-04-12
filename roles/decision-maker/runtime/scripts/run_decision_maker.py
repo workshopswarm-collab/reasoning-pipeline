@@ -44,6 +44,7 @@ SELECT_DECISION_INPUTS = DECISION_MAKER_DIR / "planner" / "scripts" / "select_de
 BUILD_TARGETED_VERIFICATION_PACK = DECISION_MAKER_DIR / "planner" / "scripts" / "build_targeted_verification_pack.py"
 BUILD_PROMPT = DECISION_MAKER_DIR / "planner" / "scripts" / "build_decision_prompt.py"
 VALIDATE_PACKET = SCRIPT_DIR / "validate_decision_packet.py"
+PERSIST_FORECAST_DECISION = SCRIPT_DIR / "persist_forecast_decision.py"
 RENDER_PACKET = SCRIPT_DIR / "render_decision_packet.py"
 BOOTSTRAP_DECISION_LANE = SCRIPT_DIR / "bootstrap_decision_telegram_lane.py"
 OPENCLAW_SESSIONS_SEND = (
@@ -659,9 +660,15 @@ def hydrate_packet_from_context(packet: dict[str, Any], context: dict[str, Any],
     ctx["dispatch_id"] = coerce_string(context.get("dispatch_id"))
     ctx["question"] = coerce_string(context.get("question"))
     ctx["market_id"] = coerce_string(ctx.get("market_id")) or coerce_string(market.get("market_id"))
+    ctx["external_market_id"] = coerce_string(ctx.get("external_market_id")) or coerce_string(market.get("external_market_id"))
+    ctx["market_slug"] = coerce_string(ctx.get("market_slug")) or coerce_string(market.get("market_slug"))
+    ctx["platform"] = coerce_string(ctx.get("platform")) or coerce_string(market.get("platform")) or "polymarket"
+    ctx["primary_market_url"] = coerce_string(ctx.get("primary_market_url")) or coerce_string(market.get("primary_market_url"))
     ctx["market_title"] = coerce_string(ctx.get("market_title")) or coerce_string(market.get("market_title"))
     ctx["source_decision_handoff_path"] = coerce_string(upstream.get("decision_handoff_path"))
     ctx["source_syndicated_finding_path"] = coerce_string(upstream.get("syndicated_finding_path"))
+    ctx["source_light_refresh_brief_path"] = coerce_string(upstream.get("light_refresh_brief_path"))
+    ctx["refresh_mode"] = coerce_string(upstream.get("light_refresh_mode"))
     ctx["decision_maker_agent"] = "decision-maker"
     ctx["canonical_markdown_path"] = "decision-maker-packet.md"
     ctx["canonical_json_path"] = CASE_DECISION_PACKET_JSON_RELATIVE
@@ -1011,6 +1018,15 @@ def main() -> None:
         write_json(packet_json_path, packet, pretty=True)
 
         run_command([sys.executable, str(VALIDATE_PACKET), "--packet-json", str(packet_json_path), *( ["--pretty"] if args.pretty else [] )])
+
+        forecast_persist_summary: dict[str, Any] | None = None
+        forecast_persist_error = ""
+        try:
+            persist_proc = run_command([sys.executable, str(PERSIST_FORECAST_DECISION), "--packet-json", str(packet_json_path), *( ["--pretty"] if args.pretty else [] )])
+            forecast_persist_summary = parse_json_stdout(persist_proc)
+        except Exception as exc:  # noqa: BLE001
+            forecast_persist_error = str(exc)
+
         render_proc = run_command([sys.executable, str(RENDER_PACKET), "--packet-json", str(packet_json_path), *( ["--pretty"] if args.pretty else [] )])
         render_summary = parse_json_stdout(render_proc)
         packet_markdown_path = render_summary.get("decision_packet_path", relative_to_workspace(case_decision_packet_markdown_path(case_key)))
@@ -1025,7 +1041,11 @@ def main() -> None:
             status["decision_readiness"] = (packet.get("decision") or {}).get("decision_readiness", "")
             status["recommended_side"] = (packet.get("decision") or {}).get("side", "")
             status["timeline_update"] = timeline_update
-            set_overall_status(status, "decision_completed", stage="decision_execution", message="Decision-Maker completed and packet rendered", extra={"warnings": validation["warnings"]})
+            if forecast_persist_summary is not None:
+                status["forecast_decision_persist"] = forecast_persist_summary
+            if forecast_persist_error:
+                status["forecast_decision_persist_error"] = forecast_persist_error
+            set_overall_status(status, "decision_completed", stage="decision_execution", message="Decision-Maker completed and packet rendered", extra={"warnings": validation["warnings"], "forecast_decision_persist_error": forecast_persist_error})
 
         maybe_send_visible_marker(status_path, marker_key="decision_completion_marker_sent_at", stage="decision_execution", message=coerce_string(load_json(status_path).get("decision_visible_finish_marker")))
 
@@ -1046,6 +1066,8 @@ def main() -> None:
                 "position_policy": (packet.get("decision") or {}).get("position_policy", ""),
                 "decision_readiness": (packet.get("decision") or {}).get("decision_readiness", ""),
                 "recommended_side": (packet.get("decision") or {}).get("side", ""),
+                "forecast_decision_persisted": bool(forecast_persist_summary and forecast_persist_summary.get("ok")),
+                "forecast_decision_persist_error": forecast_persist_error,
             },
         )
 
@@ -1060,6 +1082,8 @@ def main() -> None:
             "decision_packet_path": packet_markdown_path,
             "decision_stage_status_path": relative_to_workspace(status_path),
             "timeline_update": timeline_update,
+            "forecast_decision_persist": forecast_persist_summary or {},
+            "forecast_decision_persist_error": forecast_persist_error,
             "warnings": validation["warnings"],
         }, indent=2 if args.pretty else None))
     except SystemExit:
