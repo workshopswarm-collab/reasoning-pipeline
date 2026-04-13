@@ -59,7 +59,12 @@ eligible AS (
     m.pipeline_status,
     m.current_price,
     m.last_reasoned_price,
-    m.updated_at
+    m.updated_at,
+    EXISTS (
+      SELECT 1
+      FROM cases c_any
+      WHERE c_any.market_id = m.id
+    ) AS has_any_case_history
   FROM markets m
   CROSS JOIN busy b
   WHERE (COALESCE(:'allow_when_busy', '') = 'true' OR b.pipeline_busy = false)
@@ -72,6 +77,14 @@ eligible AS (
       FROM cases c
       WHERE c.market_id = m.id
         AND c.status = 'open'
+    )
+    AND (
+      m.pipeline_status = 'new'
+      OR NOT EXISTS (
+        SELECT 1
+        FROM cases c_prior
+        WHERE c_prior.market_id = m.id
+      )
     )
 ),
 ranked AS (
@@ -104,7 +117,8 @@ SELECT json_build_object(
   'pipeline_status', pipeline_status,
   'current_price', current_price,
   'last_reasoned_price', last_reasoned_price,
-  'updated_at', updated_at
+  'updated_at', updated_at,
+  'has_any_case_history', has_any_case_history
 )::text
 FROM ranked;
 '''

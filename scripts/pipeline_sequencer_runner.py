@@ -392,6 +392,7 @@ def run_sequencer_pass(
             'case_result': case_result,
         }
 
+    debounced_refresh_result: dict[str, Any] | None = None
     refresh_candidate = select_refresh_case(
         pretty=args.pretty,
         excluded_market_ids=excluded_market_ids,
@@ -406,7 +407,7 @@ def run_sequencer_pass(
             watermark_payload = load_refresh_watermarks()
             watermark_entry = watermark_payload.get('entries', {}).get(refresh_watermark_key(refresh_payload))
             if not should_retrigger_refresh(refresh_payload=refresh_payload, watermark_entry=watermark_entry):
-                return {
+                debounced_refresh_result = {
                     'ok': True,
                     'status': 'debounced_light_refresh_candidate',
                     'policy': policy,
@@ -415,190 +416,205 @@ def run_sequencer_pass(
                     'watermark_entry': watermark_entry,
                     'retrigger_threshold': REFRESH_RETRIGGER_THRESHOLD,
                 }
-            refresh_case_key = str(refresh_payload.get('case_key') or refresh_payload.get('latest_forecast_case_key') or '').strip()
-            if not refresh_case_key:
+                if progress_callback is not None:
+                    progress_callback(
+                        phase='debounced_light_refresh',
+                        message='Skipping repeated light refresh and continuing to fresh-case selection',
+                        case_key=str(refresh_payload.get('case_key') or refresh_payload.get('latest_forecast_case_key') or '').strip(),
+                        market_id=str(refresh_payload.get('market_id') or '').strip(),
+                        details={
+                            'mode': refresh_mode,
+                            'watermark_entry': watermark_entry or {},
+                            'retrigger_threshold': REFRESH_RETRIGGER_THRESHOLD,
+                        },
+                    )
+                refresh_candidate = {'ok': False}
+            else:
+                refresh_case_key = str(refresh_payload.get('case_key') or refresh_payload.get('latest_forecast_case_key') or '').strip()
+                if not refresh_case_key:
+                    return {
+                        'ok': False,
+                        'status': 'light_refresh_missing_case_key',
+                        'policy': policy,
+                        'refresh_candidate': refresh_candidate,
+                        'refresh_plan': refresh_plan,
+                    }
+                if progress_callback is not None:
+                    progress_callback(
+                        phase='light_refresh',
+                        message='Running light refresh for an already-decided case',
+                        case_key=refresh_case_key,
+                        market_id=str(refresh_payload.get('market_id') or '').strip(),
+                        details={
+                            'mode': refresh_mode,
+                            'reasons': [str(item) for item in (refresh_plan.get('reasons') or []) if str(item).strip()],
+                        },
+                    )
+                light_refresh_result = run_light_refresh_update(refresh_case_key, pretty=args.pretty)
+                if light_refresh_result.get('ok'):
+                    record_refresh_watermark(
+                        refresh_payload=refresh_payload,
+                        refresh_plan=refresh_plan,
+                        refresh_case_key=refresh_case_key,
+                        light_refresh_result=light_refresh_result,
+                    )
                 return {
-                    'ok': False,
-                    'status': 'light_refresh_missing_case_key',
+                    'ok': bool(light_refresh_result.get('ok')),
+                    'status': 'processed_light_refresh_case',
                     'policy': policy,
+                    'case_key': refresh_case_key,
                     'refresh_candidate': refresh_candidate,
                     'refresh_plan': refresh_plan,
+                    'light_refresh_result': light_refresh_result,
                 }
+
+        elif refresh_mode != 'light':
+            refresh_case_id = str(refresh_payload.get('case_id') or '').strip()
+            refresh_case_key = str(refresh_payload.get('case_key') or '').strip()
+            refresh_reasons = [str(item) for item in (refresh_plan.get('reasons') or []) if str(item).strip()]
+            refresh_price_delta_pct_points = ''
+            if refresh_payload.get('price_delta_pct_points') is not None:
+                refresh_price_delta_pct_points = str(refresh_payload.get('price_delta_pct_points'))
+            elif refresh_payload.get('price_delta') is not None:
+                try:
+                    refresh_price_delta_pct_points = str(round(float(refresh_payload.get('price_delta')) * 100.0, 3))
+                except Exception:
+                    refresh_price_delta_pct_points = ''
+            refresh_detected_marker = build_refresh_detected_marker(refresh_payload=refresh_payload, refresh_plan=refresh_plan)
             if progress_callback is not None:
                 progress_callback(
-                    phase='light_refresh',
-                    message='Running light refresh for an already-decided case',
+                    phase='prepare_refresh_launch',
+                    message='Preparing full-refresh launch for a material-change case',
                     case_key=refresh_case_key,
                     market_id=str(refresh_payload.get('market_id') or '').strip(),
                     details={
                         'mode': refresh_mode,
-                        'reasons': [str(item) for item in (refresh_plan.get('reasons') or []) if str(item).strip()],
+                        'reasons': refresh_reasons,
+                        'price_delta_pct_points': refresh_price_delta_pct_points,
                     },
                 )
-            light_refresh_result = run_light_refresh_update(refresh_case_key, pretty=args.pretty)
-            if light_refresh_result.get('ok'):
-                record_refresh_watermark(
-                    refresh_payload=refresh_payload,
-                    refresh_plan=refresh_plan,
-                    refresh_case_key=refresh_case_key,
-                    light_refresh_result=light_refresh_result,
-                )
-            return {
-                'ok': bool(light_refresh_result.get('ok')),
-                'status': 'processed_light_refresh_case',
-                'policy': policy,
-                'case_key': refresh_case_key,
-                'refresh_candidate': refresh_candidate,
-                'refresh_plan': refresh_plan,
-                'light_refresh_result': light_refresh_result,
-            }
-
-        refresh_case_id = str(refresh_payload.get('case_id') or '').strip()
-        refresh_case_key = str(refresh_payload.get('case_key') or '').strip()
-        refresh_reasons = [str(item) for item in (refresh_plan.get('reasons') or []) if str(item).strip()]
-        refresh_price_delta_pct_points = ''
-        if refresh_payload.get('price_delta_pct_points') is not None:
-            refresh_price_delta_pct_points = str(refresh_payload.get('price_delta_pct_points'))
-        elif refresh_payload.get('price_delta') is not None:
-            try:
-                refresh_price_delta_pct_points = str(round(float(refresh_payload.get('price_delta')) * 100.0, 3))
-            except Exception:
-                refresh_price_delta_pct_points = ''
-        refresh_detected_marker = build_refresh_detected_marker(refresh_payload=refresh_payload, refresh_plan=refresh_plan)
-        if progress_callback is not None:
-            progress_callback(
-                phase='prepare_refresh_launch',
-                message='Preparing full-refresh launch for a material-change case',
-                case_key=refresh_case_key,
-                market_id=str(refresh_payload.get('market_id') or '').strip(),
-                details={
-                    'mode': refresh_mode,
-                    'reasons': refresh_reasons,
-                    'price_delta_pct_points': refresh_price_delta_pct_points,
-                },
-            )
-        if refresh_case_id:
-            prepared = manual_launch_case(
-                refresh_case_id,
-                pretty=args.pretty,
-                refresh_mode=refresh_mode,
-                refresh_reasons=refresh_reasons,
-                refresh_price_delta_pct_points=refresh_price_delta_pct_points,
-                refresh_detected_marker=refresh_detected_marker,
-            )
-        else:
-            prepared = manual_launch_market(
-                str(refresh_payload.get('market_id') or '').strip(),
-                pretty=args.pretty,
-                refresh_mode=refresh_mode,
-                refresh_reasons=refresh_reasons,
-                refresh_price_delta_pct_points=refresh_price_delta_pct_points,
-                refresh_detected_marker=refresh_detected_marker,
-            )
-        if not prepared:
-            return {
-                'ok': False,
-                'status': 'prepare_unknown_failure',
-                'policy': policy,
-                'refresh_candidate': refresh_candidate,
-                'refresh_plan': refresh_plan,
-            }
-        payload = prepared.get('payload') or {}
-        if not prepared.get('ok'):
-            failure_kind = classify_prepare_failure(prepared)
-            if failure_kind == 'prepare_launch_timed_out':
-                recovered = recover_case_after_launch_timeout(
-                    args=args,
-                    policy=policy,
-                    excluded_case_keys=excluded_case_keys,
-                    excluded_market_ids=excluded_market_ids,
+            if refresh_case_id:
+                prepared = manual_launch_case(
+                    refresh_case_id,
                     pretty=args.pretty,
-                    status_label='processed_refresh_case_after_launch_timeout',
+                    refresh_mode=refresh_mode,
+                    refresh_reasons=refresh_reasons,
+                    refresh_price_delta_pct_points=refresh_price_delta_pct_points,
+                    refresh_detected_marker=refresh_detected_marker,
                 )
-                if recovered is not None:
-                    recovered.update({
-                        'refresh_candidate': refresh_candidate,
-                        'refresh_plan': refresh_plan,
-                        'prepare_result': prepared,
-                    })
-                    return recovered
-            if failure_kind == 'open_case_failed':
-                failure_kind = 'refresh_open_case_failed'
-            return {
-                'ok': failure_kind in {'idle_pipeline_busy', 'idle_no_eligible_market'},
-                'status': failure_kind,
-                'policy': policy,
-                'refresh_candidate': refresh_candidate,
-                'refresh_plan': refresh_plan,
-                'prepare_result': prepared,
-            }
+            else:
+                prepared = manual_launch_market(
+                    str(refresh_payload.get('market_id') or '').strip(),
+                    pretty=args.pretty,
+                    refresh_mode=refresh_mode,
+                    refresh_reasons=refresh_reasons,
+                    refresh_price_delta_pct_points=refresh_price_delta_pct_points,
+                    refresh_detected_marker=refresh_detected_marker,
+                )
+            if not prepared:
+                return {
+                    'ok': False,
+                    'status': 'prepare_unknown_failure',
+                    'policy': policy,
+                    'refresh_candidate': refresh_candidate,
+                    'refresh_plan': refresh_plan,
+                }
+            payload = prepared.get('payload') or {}
+            if not prepared.get('ok'):
+                failure_kind = classify_prepare_failure(prepared)
+                if failure_kind == 'prepare_launch_timed_out':
+                    recovered = recover_case_after_launch_timeout(
+                        args=args,
+                        policy=policy,
+                        excluded_case_keys=excluded_case_keys,
+                        excluded_market_ids=excluded_market_ids,
+                        pretty=args.pretty,
+                        status_label='processed_refresh_case_after_launch_timeout',
+                    )
+                    if recovered is not None:
+                        recovered.update({
+                            'refresh_candidate': refresh_candidate,
+                            'refresh_plan': refresh_plan,
+                            'prepare_result': prepared,
+                        })
+                        return recovered
+                if failure_kind == 'open_case_failed':
+                    failure_kind = 'refresh_open_case_failed'
+                return {
+                    'ok': failure_kind in {'idle_pipeline_busy', 'idle_no_eligible_market'},
+                    'status': failure_kind,
+                    'policy': policy,
+                    'refresh_candidate': refresh_candidate,
+                    'refresh_plan': refresh_plan,
+                    'prepare_result': prepared,
+                }
 
-        assert_sequencer_launch_boundary(prepare_result=prepared, mode='full_refresh')
-        prepare_result = payload.get('prepare_result') or {}
-        case_payload = prepare_result.get('case') or {}
-        case_key = str(case_payload.get('case_key') or refresh_case_key or case_payload.get('case_id') or '').strip()
-        if not case_key:
-            raise RuntimeError('refresh prepare_and_launch did not return a case_key')
+            assert_sequencer_launch_boundary(prepare_result=prepared, mode='full_refresh')
+            prepare_result = payload.get('prepare_result') or {}
+            case_payload = prepare_result.get('case') or {}
+            case_key = str(case_payload.get('case_key') or refresh_case_key or case_payload.get('case_id') or '').strip()
+            if not case_key:
+                raise RuntimeError('refresh prepare_and_launch did not return a case_key')
 
-        if progress_callback is not None:
-            progress_callback(
-                phase='monitor_refresh_case',
-                message='Refresh launch completed; monitoring case execution',
-                case_key=case_key,
-                market_id=str(refresh_payload.get('market_id') or '').strip(),
-                dispatch_id=str(case_payload.get('dispatch_id') or '').strip(),
-                details={'mode': refresh_mode},
+            if progress_callback is not None:
+                progress_callback(
+                    phase='monitor_refresh_case',
+                    message='Refresh launch completed; monitoring case execution',
+                    case_key=case_key,
+                    market_id=str(refresh_payload.get('market_id') or '').strip(),
+                    dispatch_id=str(case_payload.get('dispatch_id') or '').strip(),
+                    details={'mode': refresh_mode},
+                )
+            case_result = wait_for_case(
+                case_key,
+                args=args,
+                poll_seconds=float(policy['poll_seconds']),
+                max_case_seconds=float(policy['max_case_seconds']),
+                pretty=args.pretty,
+                progress_callback=progress_callback,
             )
-        case_result = wait_for_case(
-            case_key,
-            args=args,
-            poll_seconds=float(policy['poll_seconds']),
-            max_case_seconds=float(policy['max_case_seconds']),
-            pretty=args.pretty,
-            progress_callback=progress_callback,
-        )
-        handling = classify_nonterminal_case_result(case_result, policy=policy)
-        if handling.get('mode') == 'defer':
-            pipeline_summary = case_result.get('pipeline_summary') if isinstance(case_result.get('pipeline_summary'), dict) else {}
+            handling = classify_nonterminal_case_result(case_result, policy=policy)
+            if handling.get('mode') == 'defer':
+                pipeline_summary = case_result.get('pipeline_summary') if isinstance(case_result.get('pipeline_summary'), dict) else {}
+                return {
+                    'ok': True,
+                    'status': 'refresh_case_deferred',
+                    'policy': policy,
+                    'case_key': case_key,
+                    'refresh_candidate': refresh_candidate,
+                    'refresh_plan': refresh_plan,
+                    'prepare_result': prepared,
+                    'case_result': case_result,
+                    'deferred_error': str(case_result.get('error') or ''),
+                    'deferred_because_nonterminal': True,
+                    'deferred_runtime_age_seconds': case_runtime_age_seconds(pipeline_summary),
+                    'retry_budget': handling.get('retry_budget'),
+                    'retry_entry': handling.get('retry_entry'),
+                }
+            if handling.get('mode') == 'stuck':
+                return {
+                    'ok': False,
+                    'status': 'stage_launch_stuck',
+                    'policy': policy,
+                    'case_key': case_key,
+                    'refresh_candidate': refresh_candidate,
+                    'refresh_plan': refresh_plan,
+                    'prepare_result': prepared,
+                    'case_result': case_result,
+                    'stuck_reason': str(case_result.get('error') or ''),
+                    'retry_budget': handling.get('retry_budget'),
+                    'retry_entry': handling.get('retry_entry'),
+                }
             return {
-                'ok': True,
-                'status': 'refresh_case_deferred',
+                'ok': bool(case_result.get('ok')),
+                'status': 'processed_refresh_case',
                 'policy': policy,
                 'case_key': case_key,
                 'refresh_candidate': refresh_candidate,
                 'refresh_plan': refresh_plan,
                 'prepare_result': prepared,
                 'case_result': case_result,
-                'deferred_error': str(case_result.get('error') or ''),
-                'deferred_because_nonterminal': True,
-                'deferred_runtime_age_seconds': case_runtime_age_seconds(pipeline_summary),
-                'retry_budget': handling.get('retry_budget'),
-                'retry_entry': handling.get('retry_entry'),
             }
-        if handling.get('mode') == 'stuck':
-            return {
-                'ok': False,
-                'status': 'stage_launch_stuck',
-                'policy': policy,
-                'case_key': case_key,
-                'refresh_candidate': refresh_candidate,
-                'refresh_plan': refresh_plan,
-                'prepare_result': prepared,
-                'case_result': case_result,
-                'stuck_reason': str(case_result.get('error') or ''),
-                'retry_budget': handling.get('retry_budget'),
-                'retry_entry': handling.get('retry_entry'),
-            }
-        return {
-            'ok': bool(case_result.get('ok')),
-            'status': 'processed_refresh_case',
-            'policy': policy,
-            'case_key': case_key,
-            'refresh_candidate': refresh_candidate,
-            'refresh_plan': refresh_plan,
-            'prepare_result': prepared,
-            'case_result': case_result,
-        }
 
     if not policy.get('allow_new_case_claims', False):
         return {
@@ -637,6 +653,10 @@ def run_sequencer_pass(
                 recovered['prepare_result'] = prepared
                 return recovered
         idle = failure_kind in {'idle_pipeline_busy', 'idle_no_eligible_market'}
+        if failure_kind == 'idle_no_eligible_market' and debounced_refresh_result is not None:
+            debounced_refresh_result = dict(debounced_refresh_result)
+            debounced_refresh_result['fallback_prepare_result'] = prepared
+            return debounced_refresh_result
         return {
             'ok': idle,
             'status': failure_kind,

@@ -423,6 +423,49 @@ class PipelineTightenInvariantTests(unittest.TestCase):
         self.assertEqual(plan['heartbeat_state'], 'deferred_retry_sleep')
         self.assertEqual(plan['sleep_seconds'], 10.0)
 
+    def test_sequencer_debounced_light_refresh_falls_through_to_new_case_claim(self) -> None:
+        args = self.make_args()
+        policy = {
+            'enabled': True,
+            'resume_existing': False,
+            'allow_new_case_claims': True,
+            'poll_seconds': 15.0,
+            'idle_seconds': 60.0,
+            'max_case_seconds': 7200.0,
+        }
+        refresh_candidate = {
+            'ok': True,
+            'payload': {
+                'case_key': 'case-20260413-refreshbeef',
+                'latest_forecast_case_key': 'case-20260413-refreshbeef',
+                'market_id': 'market-refresh',
+                'current_price': 0.79,
+                'last_reasoned_price': 0.71,
+                'price_delta': 0.08,
+            },
+        }
+        prepared = {
+            'ok': True,
+            'payload': {
+                'prepare_result': {
+                    'case': {'case_key': 'case-20260413-freshbeef'},
+                }
+            },
+        }
+        waited = {'ok': True, 'pipeline_summary': {'status': 'pipeline_completed'}}
+
+        with patch.object(pipeline_sequencer_runner, 'select_resumable_case', return_value=None), \
+             patch.object(pipeline_sequencer_runner, 'select_refresh_case', return_value=refresh_candidate), \
+             patch.object(pipeline_sequencer_runner, 'load_refresh_watermarks', return_value={'entries': {'market-refresh': {'trigger_market_price': 0.79}}}), \
+             patch.object(pipeline_sequencer_runner, 'manual_launch_next', return_value=prepared) as launch_mock, \
+             patch.object(pipeline_sequencer_runner, 'wait_for_case', return_value=waited):
+            result = pipeline_sequencer_runner.run_sequencer_pass(args, policy, excluded_case_keys=set(), excluded_market_ids=set())
+
+        launch_mock.assert_called_once_with(pretty=False)
+        self.assertTrue(result['ok'])
+        self.assertEqual(result['status'], 'processed_new_case')
+        self.assertEqual(result['case_key'], 'case-20260413-freshbeef')
+
     def test_sequencer_new_case_uses_manual_launch_then_waits_without_local_launch_write(self) -> None:
         args = self.make_args()
         policy = {
@@ -536,9 +579,18 @@ class PipelineTightenInvariantTests(unittest.TestCase):
             'updated_at': ''
         }
 
+        no_eligible_prepare = {
+            'ok': False,
+            'manual_status': 'idle_no_eligible_market',
+            'payload': {},
+            'stdout': 'ERROR: no eligible market found',
+            'stderr': '',
+        }
+
         with patch.object(pipeline_sequencer_runner, 'select_resumable_case', return_value=None), \
              patch.object(pipeline_sequencer_runner, 'select_refresh_case', return_value=refresh_candidate), \
              patch.object(pipeline_sequencer_runner, 'load_refresh_watermarks', return_value=watermark), \
+             patch.object(pipeline_sequencer_runner, 'manual_launch_next', return_value=no_eligible_prepare), \
              patch.object(pipeline_sequencer_runner, 'run_light_refresh_update') as light_mock:
             result = pipeline_sequencer_runner.run_sequencer_pass(args, policy, excluded_case_keys=set(), excluded_market_ids=set())
 
