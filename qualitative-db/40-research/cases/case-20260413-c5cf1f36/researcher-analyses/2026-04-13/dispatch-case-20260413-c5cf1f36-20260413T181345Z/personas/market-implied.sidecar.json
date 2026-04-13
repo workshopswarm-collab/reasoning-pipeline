@@ -1,0 +1,62 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A sharp BTC selloff before Apr 15 noon ET.",
+    "Exchange-specific settlement-minute anomalies on Binance.",
+    "A catalyst that rapidly reprices downside risk across crypto."
+  ],
+  "key_assumptions": [
+    "BTC/USDT stays in roughly the current trading regime through Apr 15 noon ET.",
+    "No major negative catalyst or Binance-specific disruption occurs before the settlement minute.",
+    "Current distance from strike is the dominant input to the contract outcome."
+  ],
+  "main_logical_chain": [
+    "The contract resolves from Binance BTC/USDT 12:00 PM ET 1-minute close on Apr 15.",
+    "Current Binance spot and recent realized lows sit comfortably above 66,000.",
+    "Therefore the market only needs the current regime to avoid a meaningful breakdown over ~46 hours.",
+    "That makes a high Yes probability sensible, though not quite as close to certainty as the market implies."
+  ],
+  "main_thesis": "The market's ~95.95% Yes price is broadly justified because Binance BTC/USDT is trading around 72.2k and recent realized lows remain well above 66k, though I keep a small discount for short-horizon path risk and exact-minute settlement mechanics.",
+  "own_probability": 0.94,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "The assigned current price is 0.9595, implying a 95.95% Yes probability.",
+    "94%",
+    "Governing source of truth: Binance BTC/USDT."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation",
+    "technical_reference"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260413-c5cf1f36",
+    "dispatch_id": "dispatch-case-20260413-c5cf1f36-20260413T181345Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "98b0a124-f665-45d4-982d-b706850d2acb",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260413-c5cf1f36/researcher-analyses/2026-04-13/dispatch-case-20260413-c5cf1f36-20260413T181345Z/personas/market-implied.md",
+    "source_persona_sha256": "6f02fd7eb481ff6f41be1fc473bf768f393072f5328e199c78930fec968a735a"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is strong for this type of case because the contract rules explicitly identify Binance BTC/USDT as the settlement venue and those venue-specific market data endpoints were directly checked; independence is medium because contract-definition and venue-data sources serve different functions but are closely linked.",
+  "strongest_disconfirmers": [
+    "The market settles on one exact future 1-minute Binance close, not on current spot.",
+    "BTC can still experience an ~8.5% drawdown over two days.",
+    "Binance-specific operational or pricing anomalies could matter because only that venue counts."
+  ],
+  "strongest_supports": [
+    "Binance spot was about 72.18k at verification time, roughly 6.2k above the 66k strike.",
+    "Recent Binance 24h and daily lows remained materially above 66k.",
+    "Neighboring Polymarket strike pricing looked internally coherent rather than stale."
+  ],
+  "timing_relevance": "This is a short-dated, date-specific market with roughly 46 hours from analysis time to the governing Apr 15 noon ET settlement minute, so current spot cushion matters a lot but does not fully settle the outcome.",
+  "unresolved_ambiguities": [
+    "No independent catalyst check found a strong near-term bearish trigger, but absence of catalyst is weak evidence.",
+    "Exact noon ET path risk remains irreducible until settlement."
+  ],
+  "what_would_change_view": "A decisive drop toward 66k before settlement, credible evidence of a near-term downside catalyst, or Binance-specific trading/data issues near the settlement minute would reduce confidence materially."
+}

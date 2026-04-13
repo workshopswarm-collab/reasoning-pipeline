@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Timestamp-specific resolution creates path dependence.",
+    "A sudden macro or crypto shock could erase the cushion before noon ET.",
+    "Assignment snapshot price and fetched page price were not identical."
+  ],
+  "key_assumptions": [
+    "No sharp downside move pushes Binance BTC/USDT below 70000 at the exact noon-ET resolving minute.",
+    "Current Binance spot around 72.3k is a reasonable anchor for the remaining horizon.",
+    "Binance-specific price behavior will not diverge enough from broader BTC trading to change the resolving candle outcome."
+  ],
+  "main_logical_chain": [
+    "Polymarket rules make Binance BTC/USDT 12:00 ET 1-minute close the governing source of truth.",
+    "Binance direct data showed BTC/USDT around 72.3k, leaving a meaningful cushion over 70000.",
+    "With less than a day left, that distance plus recent price regime supports a high Yes probability.",
+    "Residual risk is concentrated in exact-minute timing and short-horizon downside volatility rather than base directional weakness."
+  ],
+  "main_thesis": "BTC/USDT was already comfortably above 70000 on Binance with less than a day left, so a high-Yes view is justified, though exact-minute timestamp risk keeps confidence below the most aggressive market pricing.",
+  "own_probability": 0.89,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone has a final 'Close' price higher than the price specified in the title.",
+    "Binance BTC/USDT spot was about 72,275 at review time."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation",
+    "technical_reference"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260413-9e664afd",
+    "dispatch_id": "dispatch-case-20260413-9e664afd-20260413T164930Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "2a2a06f0-2971-40d1-aa43-40b86b97fcf2",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260413-9e664afd/researcher-analyses/2026-04-13/dispatch-case-20260413-9e664afd-20260413T164930Z/personas/market-implied.md",
+    "source_persona_sha256": "d2997f59d15c8276e174b43f64153795e390395615f01bcc4367f4745326a720"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Good for a medium-difficulty case: one primary rules source plus direct Binance market data, with moderate evidence independence and low-medium source-of-truth ambiguity.",
+  "strongest_disconfirmers": [
+    "The contract resolves on one exact 1-minute Binance candle close at noon ET, so a brief sharp selloff could still flip the result.",
+    "Very high market confidence can be a bit overextended for a narrow timestamp market."
+  ],
+  "strongest_supports": [
+    "Binance BTC/USDT spot was about 72275 at review time, roughly 3.2% above the threshold.",
+    "Recent Binance daily closes were mostly already above 70000.",
+    "A simple realized-volatility check made 70000 look materially below spot over the remaining horizon."
+  ],
+  "timing_relevance": "High: this is a date-sensitive, exact-minute noon-ET candle-close market, so timing mechanics materially affect risk.",
+  "unresolved_ambiguities": [
+    "Whether the true live market-implied baseline at assignment time was closer to 84.5% or the fetched page's ~93% display.",
+    "Whether Binance should have a clean canonical entity slug in-vault."
+  ],
+  "what_would_change_view": "I would lower the estimate if BTC/USDT moved down toward 70000, if downside volatility rose materially into the final hours, or if Binance-specific resolution mechanics looked more ambiguous than the rules imply."
+}

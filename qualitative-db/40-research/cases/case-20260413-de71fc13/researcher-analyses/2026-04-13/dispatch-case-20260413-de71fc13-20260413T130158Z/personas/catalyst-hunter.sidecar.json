@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "If the exact governing candle later prints at 68000 or below, the thesis fails.",
+    "If contract timestamp interpretation differs from the ET-to-UTC mapping used here, confidence drops.",
+    "If Binance web settlement surface differs from public API candles, operational risk rises."
+  ],
+  "key_assumptions": [
+    "The exact Binance 12:00 ET candle will remain comfortably above 68000 once fully visible.",
+    "12:00 ET on 2026-04-13 maps straightforwardly to 16:00 UTC for Binance timestamp checks.",
+    "No Binance web-vs-API settlement-surface mismatch changes the governing close."
+  ],
+  "main_logical_chain": [
+    "Read Polymarket rules to identify the exact governing source and minute.",
+    "Verify Binance BTCUSDT spot pair and price precision via exchangeInfo.",
+    "Check direct Binance 1m candle data and observe BTC trading around 71.1k.",
+    "Convert 12:00 ET to 16:00 UTC and attempt to fetch the exact target minute.",
+    "Conclude Yes is still very likely because price is far above threshold, but keep a small discount for exact-minute accessibility ambiguity."
+  ],
+  "main_thesis": "BTC was already trading around 71.1k on direct Binance 1m data visible during the run, so the 68k threshold looks very likely cleared; the remaining uncertainty is exact settlement-minute accessibility rather than price direction.",
+  "own_probability": 0.96,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone (noon) ... has a final 'Close' price higher than ... 68,000.",
+    "Direct Binance 1-minute spot candles visible during the run had BTC/USDT closing around 71.1k."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "catalyst_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260413-de71fc13",
+    "dispatch_id": "dispatch-case-20260413-de71fc13-20260413T130158Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "67b7a757-3f04-4904-be5e-135fea8db74d",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260413-de71fc13/researcher-analyses/2026-04-13/dispatch-case-20260413-de71fc13-20260413T130158Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "7947fb066a69b824676954798d5379353576327343542c2db2c9ce6db7db8401"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality direct sources for both rules and market data, but with a low-to-medium last-mile ambiguity because the exact target candle was not directly retrievable yet.",
+  "strongest_disconfirmers": [
+    "The exact 12:00 ET target candle was not yet retrievable from the public Binance API during the run.",
+    "Residual risk is settlement-surface or timestamp interpretation rather than market direction."
+  ],
+  "strongest_supports": [
+    "Direct Binance 1m candles visible during the run closed around 71118-71139.",
+    "Polymarket contract explicitly settles on Binance BTC/USDT 12:00 ET 1m candle close.",
+    "Threshold is more than 3k below observed nearby Binance prices."
+  ],
+  "timing_relevance": "Most economic catalysts were already exhausted by research time; the main remaining catalyst was direct confirmation of the exact Binance settlement minute.",
+  "unresolved_ambiguities": [
+    "Why the exact ET-noon candle was unavailable from the queried API surface during the run.",
+    "Whether Binance web chart and public API are perfectly synchronized for settlement purposes at that moment."
+  ],
+  "what_would_change_view": "Direct display of the exact Binance 12:00 ET candle at or below 68000, or evidence of a timestamp/surface interpretation mismatch, would cut the estimate materially."
+}

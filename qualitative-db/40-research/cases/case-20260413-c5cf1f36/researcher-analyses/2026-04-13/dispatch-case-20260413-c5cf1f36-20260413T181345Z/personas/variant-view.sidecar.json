@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A sharp 48-hour selloff could erase the current cushion.",
+    "One-minute exchange-specific settlement mechanics can create more path dependence than headline odds imply."
+  ],
+  "key_assumptions": [
+    "BTC remains comfortably above 66k into the final 24-48 hours.",
+    "The relevant Binance ET-noon one-minute close is interpreted straightforwardly.",
+    "Exchange-specific or timestamp-specific mechanics remain a small but real residual risk."
+  ],
+  "main_logical_chain": [
+    "The contract settles on Binance BTC/USDT 1-minute close at 12:00 PM ET on Apr 15, not on broad BTC sentiment.",
+    "Current spot is well above 66k, so Yes is the base case.",
+    "But narrow one-minute, venue-specific settlement leaves more tail risk than a generic spot-above-strike framing suggests.",
+    "Therefore the true probability is high but somewhat below the 95.95% market-implied level."
+  ],
+  "main_thesis": "BTC above 66k on Apr 15 noon ET is likely, but the market is mildly overconfident because this resolves on a single Binance one-minute close rather than broad spot direction.",
+  "own_probability": 0.91,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "single Binance BTC/USDT one-minute close at exactly 12:00 PM ET on April 15",
+    "Current market-implied probability from the assignment price is 95.95%.",
+    "Own probability estimate: 91%."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "contract_interpretation",
+    "scenario_analysis",
+    "variant_hypothesis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260413-c5cf1f36",
+    "dispatch_id": "dispatch-case-20260413-c5cf1f36-20260413T181345Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "d91bee4e-0501-47b7-bd65-6d95f4c7727a",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260413-c5cf1f36/researcher-analyses/2026-04-13/dispatch-case-20260413-c5cf1f36-20260413T181345Z/personas/variant-view.md",
+    "source_persona_sha256": "8555a3c82306f8cc28410e1865dee462a30e8ca50d7e4d1c8a927fca65e1db05"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality governing rules plus direct Binance data, with medium evidence independence because the contract itself resolves on Binance; cross-venue checks improved confidence but did not change the mechanism.",
+  "strongest_disconfirmers": [
+    "The cushion above 66k is large enough that ordinary noise should not be sufficient to produce No.",
+    "If BTC simply stays in its recent regime, the market's very high confidence is mostly justified."
+  ],
+  "strongest_supports": [
+    "Binance spot during the pass was about 72.2k, roughly 6.2k above the strike.",
+    "Recent Binance daily closes were all above 66k heading into the event window.",
+    "CoinGecko and Kraken cross-checks were consistent with Binance at the time of verification."
+  ],
+  "timing_relevance": "The event resolves at 2026-04-15 12:00 PM ET, so a two-day horizon and exact one-minute timing are central to the residual risk.",
+  "unresolved_ambiguities": [
+    "No major rule ambiguity found, but ET-noon timestamp mapping always deserves care in narrow crypto contracts.",
+    "Binance-specific dislocation risk near the event minute cannot be ruled out in advance."
+  ],
+  "what_would_change_view": "I would move closer to the market if BTC stays firmly above 70k into late Apr 14/early Apr 15 with calm volatility and no Binance-specific issues; I would move lower if BTC sells off sharply toward the high-60s or Binance diverges around key prints."
+}

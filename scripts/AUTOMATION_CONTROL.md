@@ -36,6 +36,18 @@ Show current state:
 python3 scripts/automation_control.py status
 ```
 
+Show the clearer operator-facing effective posture only:
+
+```bash
+python3 scripts/automation_control.py effective
+```
+
+Render the effective posture summary to a runtime-state JSON file:
+
+```bash
+python3 scripts/automation_control.py write-effective
+```
+
 Force safe/off posture:
 
 ```bash
@@ -99,6 +111,12 @@ Important distinction:
 
 - `sequencer.enabled = true` means the sequencer service may run
 - `automation_enabled = true` + `allow_new_case_claims = true` means it may claim **new** markets
+
+The intended architecture boundary is:
+
+- the **sequencer** owns policy selection only (`resume existing`, `claim new`, `light vs full refresh`, quarantine, sleep cadence)
+- the **canonical action layer** owns workflow side effects (launch, reconcile/resume swarm, launch synthesis, launch decision, finalize decision, finalize pipeline)
+- launch/start `pipeline-status.json` writes are single-sourced in the canonical launch script, not duplicated in the sequencer
 
 This allows a useful intermediate posture:
 

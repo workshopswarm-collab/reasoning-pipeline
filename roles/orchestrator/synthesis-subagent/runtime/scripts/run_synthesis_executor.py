@@ -18,7 +18,7 @@ if str(SUBAGENT_DIR) not in sys.path:
 if str(REPO_ROOT / "scripts") not in sys.path:
     sys.path.insert(0, str(REPO_ROOT / "scripts"))
 
-from case_pipeline_status import update_case_pipeline_status  # noqa: E402
+from case_pipeline_status import update_case_pipeline_status_with_followups as update_case_pipeline_status  # noqa: E402
 from common import (  # noqa: E402
     WORKSPACE_ROOT,
     append_case_timeline_entry,
@@ -52,6 +52,19 @@ OPENCLAW_SESSIONS_SEND = (
 
 class ExecutorError(RuntimeError):
     pass
+
+
+class RetryableSynthesisFormatError(ExecutorError):
+    pass
+
+
+MAX_SYNTHESIS_PARSE_ATTEMPTS = 2
+STRICT_JSON_REPAIR_FOOTER = (
+    "\n\nIMPORTANT RETRY INSTRUCTION:\n"
+    "Your previous response was not valid JSON for the required schema. "
+    "Return exactly one valid JSON object and nothing else. "
+    "Do not include markdown fences, commentary, apologies, headings, or trailing prose."
+)
 
 
 def parse_args() -> argparse.Namespace:
@@ -108,6 +121,20 @@ def default_result_path(bundle_path: Path) -> Path:
 
 def default_raw_response_path(bundle_path: Path) -> Path:
     return bundle_path.with_name("synthesis-response.json")
+
+
+def raw_response_text_path(bundle_path: Path, *, attempt: int) -> Path:
+    suffix = "" if attempt == 1 else f".attempt-{attempt}"
+    return bundle_path.with_name(f"synthesis-response{suffix}.raw.txt")
+
+
+def raw_gateway_response_path(bundle_path: Path, *, attempt: int) -> Path:
+    suffix = "" if attempt == 1 else f".attempt-{attempt}"
+    return bundle_path.with_name(f"synthesis-response{suffix}.json")
+
+
+def parse_failure_path(bundle_path: Path, *, attempt: int) -> Path:
+    return bundle_path.with_name(f"synthesis-parse-failure.attempt-{attempt}.json")
 
 
 def default_artifact_path(bundle_path: Path) -> Path:
@@ -221,11 +248,14 @@ def extract_text_from_message_content(content: list[Any]) -> str:
 def extract_json_payload(text: str) -> dict[str, Any]:
     stripped = text.strip()
     if not stripped:
-        raise ExecutorError("empty synthesis response text")
+        raise RetryableSynthesisFormatError("empty synthesis response text")
     try:
         return json.loads(stripped)
     except json.JSONDecodeError:
         pass
+
+    if stripped.startswith('```') and stripped.endswith('```'):
+        stripped = stripped.strip('`').strip()
 
     if "```json" in stripped:
         start = stripped.find("```json") + len("```json")
@@ -256,7 +286,19 @@ def extract_json_payload(text: str) -> dict[str, Any]:
                 return obj
         except json.JSONDecodeError:
             continue
-    raise ExecutorError("could not parse JSON object from synthesis response text")
+
+    start = stripped.find('{')
+    end = stripped.rfind('}')
+    if start != -1 and end != -1 and end > start:
+        candidate = stripped[start:end + 1]
+        try:
+            parsed = json.loads(candidate)
+            if isinstance(parsed, dict):
+                return parsed
+        except json.JSONDecodeError:
+            pass
+
+    raise RetryableSynthesisFormatError("could not parse JSON object from synthesis response text")
 
 
 def build_bundle(args: argparse.Namespace) -> Path:
@@ -324,47 +366,124 @@ def maybe_send_visible_marker(chat_id: str | None, topic_id: str | None, message
     return send_visible_telegram_message(chat_id=str(chat_id), topic_id=str(topic_id), message=str(message))
 
 
-def invoke_synthesizer(prompt_path: Path, bundle_path: Path, args: argparse.Namespace) -> Path:
+def retry_prompt(original_prompt: str) -> str:
+    return f"{original_prompt.rstrip()}{STRICT_JSON_REPAIR_FOOTER}\n"
+
+
+def write_raw_response_text(path: Path, text: str) -> None:
+    path.write_text(text)
+
+
+def write_parse_failure_artifact(*, bundle_path: Path, prompt_path: Path, attempt: int, error: str, raw_text_path: Path, gateway_response_path: Path) -> Path:
+    payload = {
+        "attempt": attempt,
+        "at": datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z'),
+        "error": error,
+        "prompt_path": relative_to_workspace(prompt_path),
+        "raw_text_path": relative_to_workspace(raw_text_path),
+        "gateway_response_path": relative_to_workspace(gateway_response_path),
+    }
+    artifact_path = parse_failure_path(bundle_path, attempt=attempt)
+    write_json(artifact_path, payload, pretty=True)
+    latest_path = bundle_path.with_name('synthesis-parse-failure.json')
+    write_json(latest_path, payload, pretty=True)
+    return artifact_path
+
+
+def invoke_synthesizer(prompt_path: Path, bundle_path: Path, args: argparse.Namespace, *, status_path: Path | None = None) -> tuple[Path, dict[str, Any]]:
     if args.result_json:
         result_path = Path(args.result_json)
-        return result_path if result_path.is_absolute() else WORKSPACE_ROOT / result_path
+        resolved = result_path if result_path.is_absolute() else WORKSPACE_ROOT / result_path
+        return resolved, {"parse_failures": [], "attempt_count": 0, "recovered_after_retry": False, "visible_start": None}
     if not args.session_key:
         raise ExecutorError("either --result-json or --session-key is required unless --prepare-only is set")
 
-    maybe_send_visible_marker(args.visible_chat_id, args.visible_topic_id, args.visible_start_marker)
+    visible_start = maybe_send_visible_marker(args.visible_chat_id, args.visible_topic_id, args.visible_start_marker)
+    original_prompt = prompt_path.read_text()
+    parse_failures: list[dict[str, Any]] = []
 
-    prompt = prompt_path.read_text()
-    payload = {
-        "sessionKey": args.session_key,
-        "message": prompt,
-        "timeoutSeconds": args.timeout_seconds,
-    }
-    if args.agent_id:
-        payload["agentId"] = args.agent_id
-    proc = run_command(
-        [
+    for attempt in range(1, MAX_SYNTHESIS_PARSE_ATTEMPTS + 1):
+        prompt = original_prompt if attempt == 1 else retry_prompt(original_prompt)
+        payload = {
+            "sessionKey": args.session_key,
+            "message": prompt,
+            "timeoutSeconds": args.timeout_seconds,
+        }
+        if args.agent_id:
+            payload["agentId"] = args.agent_id
+        proc = run_command([
             "node",
             str(OPENCLAW_SESSIONS_SEND),
             "--payload-json",
             json.dumps(payload),
-        ]
-    )
-    gateway_response = json.loads(proc.stdout)
-    raw_response_path = default_raw_response_path(bundle_path)
-    write_json(raw_response_path, gateway_response, pretty=True)
-    try:
-        text = extract_text_from_gateway_response(gateway_response)
-    except ExecutorError:
-        status = gateway_response.get("status") if isinstance(gateway_response, dict) else None
-        message_seq = gateway_response.get("messageSeq") if isinstance(gateway_response, dict) else None
-        if args.session_key and status in {"started", "accepted", "running"}:
-            text = wait_for_assistant_text(args.session_key, min_seq=message_seq if isinstance(message_seq, int) else None, timeout_seconds=args.timeout_seconds)
-        else:
+        ])
+        gateway_response = json.loads(proc.stdout)
+        gateway_response_path = raw_gateway_response_path(bundle_path, attempt=attempt)
+        write_json(gateway_response_path, gateway_response, pretty=True)
+        if attempt == 1:
+            write_json(default_raw_response_path(bundle_path), gateway_response, pretty=True)
+        try:
+            text = extract_text_from_gateway_response(gateway_response)
+        except ExecutorError:
+            status = gateway_response.get("status") if isinstance(gateway_response, dict) else None
+            message_seq = gateway_response.get("messageSeq") if isinstance(gateway_response, dict) else None
+            if args.session_key and status in {"started", "accepted", "running"}:
+                text = wait_for_assistant_text(args.session_key, min_seq=message_seq if isinstance(message_seq, int) else None, timeout_seconds=args.timeout_seconds)
+            else:
+                raise
+        raw_text_path = raw_response_text_path(bundle_path, attempt=attempt)
+        write_raw_response_text(raw_text_path, text)
+        if attempt == 1:
+            write_raw_response_text(bundle_path.with_name('synthesis-response.raw.txt'), text)
+        try:
+            result = extract_json_payload(text)
+        except RetryableSynthesisFormatError as exc:
+            artifact_path = write_parse_failure_artifact(
+                bundle_path=bundle_path,
+                prompt_path=prompt_path,
+                attempt=attempt,
+                error=str(exc),
+                raw_text_path=raw_text_path,
+                gateway_response_path=gateway_response_path,
+            )
+            parse_failures.append({
+                "attempt": attempt,
+                "error": str(exc),
+                "artifact_path": relative_to_workspace(artifact_path),
+                "raw_text_path": relative_to_workspace(raw_text_path),
+            })
+            if status_path is not None and status_path.exists():
+                with locked_status(status_path) as status_payload:
+                    status_payload["synthesis_parse_failure_count"] = int(status_payload.get("synthesis_parse_failure_count") or 0) + 1
+                    status_payload["last_parse_failure"] = parse_failures[-1]
+                    append_stage_event(
+                        status_payload,
+                        stage="final_synthesis_execution",
+                        state="final_synthesis_parse_failed_retrying" if attempt < MAX_SYNTHESIS_PARSE_ATTEMPTS else "final_synthesis_parse_failed_exhausted",
+                        message="Final synthesis output was not valid JSON; retrying" if attempt < MAX_SYNTHESIS_PARSE_ATTEMPTS else "Final synthesis output remained invalid JSON after retry budget exhausted",
+                        extra={
+                            "attempt": attempt,
+                            "error": str(exc),
+                            "parse_failure_artifact": relative_to_workspace(artifact_path),
+                            "raw_text_path": relative_to_workspace(raw_text_path),
+                        },
+                    )
+            if attempt < MAX_SYNTHESIS_PARSE_ATTEMPTS:
+                continue
             raise
-    result = extract_json_payload(text)
-    result_path = default_result_path(bundle_path)
-    write_json(result_path, result, pretty=True)
-    return result_path
+        result_path = default_result_path(bundle_path)
+        write_json(result_path, result, pretty=True)
+        telemetry = {
+            "parse_failures": parse_failures,
+            "attempt_count": attempt,
+            "recovered_after_retry": attempt > 1,
+            "visible_start": visible_start,
+            "raw_text_path": relative_to_workspace(raw_text_path),
+            "gateway_response_path": relative_to_workspace(gateway_response_path),
+        }
+        return result_path, telemetry
+
+    raise RetryableSynthesisFormatError("synthesis response retries exhausted")
 
 
 def validate_result(result_path: Path, args: argparse.Namespace) -> dict[str, Any]:
@@ -504,7 +623,7 @@ def main() -> None:
         return
 
     try:
-        result_path = invoke_synthesizer(prompt_path, bundle_path, args)
+        result_path, synthesis_telemetry = invoke_synthesizer(prompt_path, bundle_path, args, status_path=status_path if status_exists else None)
         validation = validate_synthesis_result_payload(load_json(result_path))
         if not validation["ok"]:
             if status_exists:
@@ -544,6 +663,11 @@ def main() -> None:
                 status_payload.update({
                     "synthesis_prompt_path": relative_to_workspace(prompt_path),
                     "result_json": relative_to_workspace(result_path),
+                    "raw_response_text_path": synthesis_telemetry.get("raw_text_path", ""),
+                    "last_gateway_response_path": synthesis_telemetry.get("gateway_response_path", ""),
+                    "synthesis_attempt_count": synthesis_telemetry.get("attempt_count", 0),
+                    "synthesis_parse_failures": synthesis_telemetry.get("parse_failures", []),
+                    "synthesis_parse_recovered": bool(synthesis_telemetry.get("recovered_after_retry")),
                     "final_artifact_path": outputs["render"]["artifact_path"],
                     "final_sidecar_path": outputs["sidecar"]["sidecar_path"],
                     "final_decision_handoff_path": outputs["decision_handoff"]["decision_handoff_path"],
@@ -554,6 +678,8 @@ def main() -> None:
                         "structured_bundle_path": resolved_structured_bundle_path,
                         "structured_bundle_artifact_type": resolved_structured_bundle_artifact_type,
                     })
+                if synthesis_telemetry.get("recovered_after_retry"):
+                    append_stage_event(status_payload, stage="final_synthesis_execution", state="final_synthesis_parse_recovered", message="Final synthesis recovered after malformed JSON retry", extra={"attempt_count": synthesis_telemetry.get("attempt_count", 0)})
                 set_overall_status(status_payload, "synthesis_completed", stage="final_synthesis_execution", message="Final synthesis completed and artifacts rendered")
         case_key = extract_case_key_from_path(bundle_path)
         dispatch_id = extract_dispatch_id_from_path(bundle_path)
@@ -589,6 +715,7 @@ def main() -> None:
             "current_sidecar_path": outputs["sidecar"].get("current_sidecar_path", ""),
             "timeline_update": timeline_update,
             "allow_truth_finding_research": args.allow_truth_finding_research,
+            "synthesis_telemetry": synthesis_telemetry,
             "visible_finish": visible_finish,
         }
         print(json.dumps(summary, indent=2 if args.pretty else None))
@@ -597,7 +724,8 @@ def main() -> None:
     except Exception as exc:  # noqa: BLE001
         if status_exists:
             with locked_status(status_path) as status_payload:
-                set_overall_status(status_payload, "final_synthesis_failed", stage="final_synthesis_execution", message="Final synthesis executor crashed", extra={"error": str(exc)})
+                status_payload["synthesis_hard_failure_count"] = int(status_payload.get("synthesis_hard_failure_count") or 0) + 1
+                set_overall_status(status_payload, "final_synthesis_failed", stage="final_synthesis_execution", message="Final synthesis executor crashed", extra={"error": str(exc), "retryable_format_failure": isinstance(exc, RetryableSynthesisFormatError)})
         case_key = extract_case_key_from_path(bundle_path if 'bundle_path' in locals() else status_path)
         dispatch_id = extract_dispatch_id_from_path(bundle_path if 'bundle_path' in locals() else status_path)
         if case_key:

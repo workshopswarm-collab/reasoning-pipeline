@@ -1,0 +1,157 @@
+{
+  "schema_version": "decision-packet/v1",
+  "generated_at": "2026-04-13T13:15:00-04:00",
+  "context": {
+    "case_key": "case-20260413-f68a8c5c",
+    "dispatch_id": "dispatch-case-20260413-f68a8c5c-20260413T165914Z",
+    "question": "Will the price of Bitcoin be above $68,000 on April 14?",
+    "market_id": "case-20260413-f68a8c5c",
+    "market_title": "Will the price of Bitcoin be above $68,000 on April 14?",
+    "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260413-f68a8c5c/synthesizer-agent/decision-handoff.md",
+    "source_syndicated_finding_path": "qualitative-db/40-research/cases/case-20260413-f68a8c5c/synthesizer-agent/syndicated-finding.md",
+    "decision_maker_agent": "decision-maker",
+    "canonical_markdown_path": "decision-maker-packet.md",
+    "canonical_json_path": "artifacts/decision-maker-packet.json",
+    "external_market_id": "0x0047decf5a127be6ec0ba4eee78c9b224eb2d5445aff6241377272eacd42114f",
+    "market_slug": "bitcoin-above-68k-on-april-14",
+    "platform": "polymarket",
+    "primary_market_url": "https://polymarket.com/event/bitcoin-above-68k-on-april-14",
+    "source_light_refresh_brief_path": "",
+    "refresh_mode": ""
+  },
+  "decision": {
+    "side": "yes",
+    "trade_authorization": "watch_only",
+    "position_policy": "hold_only",
+    "decision_readiness": "ready",
+    "primary_crux": "Fresh independent checks still place BTC around 72.3k, roughly 6.3% above 68,000, so Yes remains overwhelmingly likely, but the market already prices near-certainty for a still-future one-minute Binance settlement event.",
+    "secondary_cruxes": [
+      "Independent bounded verification confirms Binance spot and recent 1-minute closes above 72k, while CoinGecko is aligned near the same level.",
+      "The current distance from strike is large enough that ordinary drift is not the main issue; the residual risk is tail volatility plus one-minute venue-specific settlement mechanics.",
+      "Because the market is already at 95.95%, even a strong Yes base case does not automatically translate into positive EV."
+    ],
+    "thesis_class": "edge_too_small"
+  },
+  "valuation": {
+    "fair_value_low": 0.94,
+    "fair_value_high": 0.975,
+    "fair_value_mid": 0.958,
+    "market_reference_price": 0.9595,
+    "edge_mid_vs_market_pct_points": -0.2,
+    "independent_verification_quality": "medium",
+    "compressed_toward_market_applied": false,
+    "compression_reason": "Fresh bounded verification broadly confirms the upstream range and does not justify either a large discount or a large premium versus the existing market; the remaining risk is mostly narrow settlement mechanics rather than uncertainty about current spot."
+  },
+  "execution_semantics": {
+    "price_axis": "market_implied_true_prob",
+    "price_source": "market_snapshot_quote",
+    "rebalance_threshold_fraction": 0.1,
+    "allow_auto_reversal": false,
+    "valid_until": "2026-04-14T15:50:00Z",
+    "quote_staleness_seconds": 600,
+    "time_horizon": "Into the April 14 12:00 ET / 16:00 UTC settlement minute"
+  },
+  "risk_controls": {
+    "max_position_size_pct_bankroll": 0.015,
+    "max_additional_exposure_pct_bankroll": 0.0,
+    "max_single_order_pct_bankroll": 0.0,
+    "slippage_tolerance_bps": 30,
+    "liquidity_min_depth": 1000,
+    "correlation_bucket_limit_pct_bankroll": 0.05,
+    "confidence_level": "medium",
+    "portfolio_constraints": [
+      "Do not initiate fresh exposure from this packet because the estimated edge versus market is negligible.",
+      "Existing aligned exposure may be held, but avoid adding unless the market cheapens materially while BTC remains comfortably above 68,000 closer to settlement.",
+      "Refresh live Binance data near settlement before any action because all residual uncertainty is concentrated in the final exact minute."
+    ],
+    "liquidity_caution": "low"
+  },
+  "bands": [
+    {
+      "name": "max_enter",
+      "min_p": 0,
+      "max_p": 0.86,
+      "target_exposure_fraction": 0,
+      "notes": "No autonomous entry from this packet; any much cheaper price would require a fresh late-window decision."
+    },
+    {
+      "name": "scaled_enter",
+      "min_p": 0.86,
+      "max_p": 0.92,
+      "target_exposure_fraction": 0,
+      "notes": "No autonomous entry authorized because current evidence does not support a robust edge above market."
+    },
+    {
+      "name": "hold",
+      "min_p": 0.92,
+      "max_p": 0.965,
+      "target_exposure_fraction": 0,
+      "notes": "Hold-only zone consistent with a very likely Yes outcome but insufficient valuation cushion for fresh adds."
+    },
+    {
+      "name": "trim",
+      "min_p": 0.965,
+      "max_p": 0.985,
+      "target_exposure_fraction": 0,
+      "notes": "Trim/avoid increasing as price moves into the upper end of fair value."
+    },
+    {
+      "name": "exit",
+      "min_p": 0.985,
+      "max_p": 1,
+      "target_exposure_fraction": 0,
+      "notes": "Exit/avoid at extreme prices because minute-level settlement risk still prevents certainty."
+    }
+  ],
+  "invalidation": {
+    "thesis_breakers": [
+      "BTCUSDT sells off sharply toward 68,000 before the operative settlement minute.",
+      "Verified settlement mechanics differ materially from the assumed Binance 1-minute close interpretation used here.",
+      "A venue-specific dislocation or broader market shock makes a sub-68,000 settlement close materially more likely than currently assumed."
+    ],
+    "market_structure_breakers": [
+      "Clarification of the operative Binance candle changes which minute or close governs settlement.",
+      "Current executable market pricing diverges materially from the 0.9595 reference, making this packet stale for action decisions.",
+      "Exchange outage or data integrity issues make Binance spot or kline data unreliable near settlement."
+    ],
+    "time_breakers": [
+      "This packet expires at valid_until unless refreshed with later market and Binance data.",
+      "Any new trading decision close to settlement should rely on fresher data than this packet."
+    ],
+    "reversal_conditions": [
+      "Reverse only on a new packet after refreshed near-settlement Binance verification shows materially higher downside risk.",
+      "Do not auto-reverse from this packet.",
+      "Suspend this packet if market-reference or exchange-data assumptions break."
+    ]
+  },
+  "epistemic_status": {
+    "key_uncertainties": [
+      "The exact April 14 12:00 ET settlement candle is still in the future, so residual path risk cannot be eliminated.",
+      "Minor UI/API exact-candle parity ambiguity remains if a discrepancy appears near settlement.",
+      "Independent verification quality is medium because bounded checks confirm current cushion and cross-source alignment, not the future resolving minute itself."
+    ],
+    "reasons_to_pass": [
+      "At 95.95%, the market already prices almost all of the obvious Yes case.",
+      "One-minute single-venue settlement means even a comfortably in-the-money threshold can still fail on a rare but real tail path.",
+      "A tiny theoretical edge is not worth acting on when the market and fair value are already nearly identical."
+    ],
+    "what_would_change_my_mind": [
+      "A sharp pre-settlement selloff toward 68,000 would lower fair value materially.",
+      "A material market repricing lower without a corresponding BTC drop could create a genuine Yes edge and justify authorization.",
+      "Direct confirmation eliminating settlement-surface ambiguity would slightly improve confidence but would not by itself create meaningful EV at current pricing."
+    ],
+    "decision_quality": "good_not_clean"
+  },
+  "audit": {
+    "market_baseline_respected": true,
+    "action_bias_check_passed": true,
+    "self_preservation_bias_check_passed": true,
+    "one_sentence_rationale": "BTC remains far enough above 68,000 that Yes is still very likely, but with the market already near 96% and the contract settling on one future Binance minute, the disciplined output is watch-only rather than fresh entry.",
+    "notes": "I treated synthesis as advisory, independently verified Binance spot, recent 1-minute closes, and CoinGecko spot, and ended almost exactly on market because the current cushion is large while the only residual risk is narrow settlement mechanics.",
+    "structured_handoff_primary_used": true,
+    "prose_fallback_used": true,
+    "verification_mode_used": "targeted_escalation",
+    "additional_verification_performed": true,
+    "additional_verification_notes": "targeted_pack; tools:q=0,f=3,fam=2; web_fetch"
+  }
+}

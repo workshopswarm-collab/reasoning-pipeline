@@ -12,6 +12,7 @@ from typing import Any
 DEFAULT_PSQL = "/opt/homebrew/opt/postgresql@16/bin/psql"
 BASE_DIR = Path(__file__).resolve().parent
 SELECT_NEXT = BASE_DIR.parents[1] / "planner" / "scripts" / "select_next_market.py"
+OPEN_CASE = BASE_DIR.parents[1] / "planner" / "scripts" / "open_case.py"
 PREPARE_AND_LAUNCH = BASE_DIR / "prepare_and_launch_headless_telegram_dispatch.py"
 ANOMALY_REPORT = BASE_DIR / "pipeline_anomaly_report.py"
 SWEEP_ORPHANS = BASE_DIR / "sweep_orphaned_research_runs.py"
@@ -173,6 +174,20 @@ def parse_args() -> argparse.Namespace:
     launch_case.add_argument("--case-id", required=True)
     launch_case.add_argument("--model", default="openai-codex/gpt-5.4")
     launch_case.add_argument("--thinking", default="medium")
+    launch_case.add_argument("--refresh-mode", default="")
+    launch_case.add_argument("--refresh-reasons", default="")
+    launch_case.add_argument("--refresh-price-delta-pct-points", default="")
+    launch_case.add_argument("--refresh-detected-marker", default="")
+
+    launch_market = sub.add_parser("launch-market", help="Open a case for one market id, then prepare and launch it")
+    launch_market.add_argument("--pretty", action="store_true", help=argparse.SUPPRESS)
+    launch_market.add_argument("--market-id", required=True)
+    launch_market.add_argument("--model", default="openai-codex/gpt-5.4")
+    launch_market.add_argument("--thinking", default="medium")
+    launch_market.add_argument("--refresh-mode", default="")
+    launch_market.add_argument("--refresh-reasons", default="")
+    launch_market.add_argument("--refresh-price-delta-pct-points", default="")
+    launch_market.add_argument("--refresh-detected-marker", default="")
 
     inspect_case = sub.add_parser("inspect-case", help="Inspect one case and its runs")
     inspect_case.add_argument("--pretty", action="store_true", help=argparse.SUPPRESS)
@@ -271,8 +286,59 @@ def main() -> int:
             result = {"status": "ok" if launched["returncode"] == 0 else "launch_failed", "launch": launched["payload"], "stderr": launched["stderr"]}
         elif args.command == "launch-case":
             cmd = [str(PREPARE_AND_LAUNCH), "--case-id", args.case_id, "--model", args.model, "--thinking", args.thinking, "--db-url", args.db_url, "--psql", args.psql, "--pretty"]
+            if args.refresh_mode:
+                cmd.extend(["--refresh-mode", args.refresh_mode])
+            if args.refresh_reasons:
+                cmd.extend(["--refresh-reasons", args.refresh_reasons])
+            if args.refresh_price_delta_pct_points:
+                cmd.extend(["--refresh-price-delta-pct-points", args.refresh_price_delta_pct_points])
+            if args.refresh_detected_marker:
+                cmd.extend(["--refresh-detected-marker", args.refresh_detected_marker])
             launched = run_script(cmd, root)
             result = {"status": "ok" if launched["returncode"] == 0 else "launch_failed", "launch": launched["payload"], "stderr": launched["stderr"]}
+        elif args.command == "launch-market":
+            opened_case = run_script([
+                str(OPEN_CASE),
+                "--market-id", args.market_id,
+                "--db-url", args.db_url,
+                "--psql", args.psql,
+                "--pretty",
+            ], root)
+            if opened_case["returncode"] != 0:
+                result = {
+                    "status": "open_case_failed",
+                    "open_case": opened_case["payload"],
+                    "stderr": opened_case["stderr"],
+                }
+            else:
+                opened_payload = opened_case["payload"] or {}
+                case_id = str(opened_payload.get("case_id") or "").strip()
+                if not case_id:
+                    raise ValueError("open-case did not return case_id")
+                launch_cmd = [
+                    str(PREPARE_AND_LAUNCH),
+                    "--case-id", case_id,
+                    "--model", args.model,
+                    "--thinking", args.thinking,
+                    "--db-url", args.db_url,
+                    "--psql", args.psql,
+                    "--pretty",
+                ]
+                if args.refresh_mode:
+                    launch_cmd.extend(["--refresh-mode", args.refresh_mode])
+                if args.refresh_reasons:
+                    launch_cmd.extend(["--refresh-reasons", args.refresh_reasons])
+                if args.refresh_price_delta_pct_points:
+                    launch_cmd.extend(["--refresh-price-delta-pct-points", args.refresh_price_delta_pct_points])
+                if args.refresh_detected_marker:
+                    launch_cmd.extend(["--refresh-detected-marker", args.refresh_detected_marker])
+                launched = run_script(launch_cmd, root)
+                result = {
+                    "status": "ok" if launched["returncode"] == 0 else "launch_failed",
+                    "open_case": opened_payload,
+                    "launch": launched["payload"],
+                    "stderr": launched["stderr"],
+                }
         elif args.command == "inspect-case":
             inspection = run_sql(args.psql, args.db_url, INSPECT_CASE_SQL, {"case_ref": args.case_ref})
             if not inspection:

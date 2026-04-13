@@ -61,6 +61,22 @@ def is_repaired_legacy_status_path(root: Path, source_path: Path, *, payload_cas
     return rel_source in {str(item) for item in repaired_from}
 
 
+def _timeline_has_duplicate_launch_markers(payload: dict[str, Any]) -> tuple[bool, list[str]]:
+    timeline = payload.get('timeline') if isinstance(payload.get('timeline'), list) else []
+    launch_messages: list[str] = []
+    for entry in timeline:
+        if not isinstance(entry, dict):
+            continue
+        message = str(entry.get('message') or '').strip()
+        if message in {
+            'Fresh case claimed and dispatch launched',
+            'Sequential runner claimed case and is waiting for synthesis completion',
+            'Sequential runner escalated a tracked market to full re-research after material market movement',
+        }:
+            launch_messages.append(message)
+    return len(launch_messages) > 1, launch_messages
+
+
 def evaluate_case_artifact_contract(cases_root: Path | None = None, *, report_file: Path | None = None) -> dict[str, Any]:
     root = (cases_root or DEFAULT_CASES_ROOT).expanduser().resolve()
     issues: list[dict[str, Any]] = []
@@ -100,6 +116,17 @@ def evaluate_case_artifact_contract(cases_root: Path | None = None, *, report_fi
                     )
 
             if pipeline_status_path.exists() and canonical:
+                has_duplicate_launch_markers, duplicate_launch_messages = _timeline_has_duplicate_launch_markers(payload)
+                if has_duplicate_launch_markers:
+                    add_issue(
+                        issues,
+                        level='warn',
+                        code='duplicate_launch_timeline_markers',
+                        message='Canonical case pipeline-status.json contains multiple launch/start timeline markers; launch status writing may be duplicated',
+                        case_key=case_name,
+                        path=str(pipeline_status_path.relative_to(REPO_ROOT)),
+                        launch_messages=duplicate_launch_messages,
+                    )
                 if not payload_case_key:
                     add_issue(
                         issues,

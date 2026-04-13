@@ -1,0 +1,56 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A fast move into the high 60ks before noon ET would compress the cushion quickly.",
+    "Reliance on Binance-centric evidence limits independence."
+  ],
+  "key_assumptions": [
+    "No extraordinary BTC selloff or Binance-specific settlement anomaly occurs before 12:00 ET on April 14.",
+    "Current broad BTC price regime remains roughly intact into the settlement window."
+  ],
+  "main_logical_chain": [
+    "The contract resolves on the Binance BTC/USDT 12:00 ET 1-minute close on April 14.",
+    "Current Binance price is materially above the threshold.",
+    "Recent same-time Binance candles also sit above the threshold.",
+    "Therefore Yes is the base-rate outcome unless a sizable late selloff or settlement anomaly intervenes."
+  ],
+  "main_thesis": "BTC is trading far enough above 66000 that Yes remains the dominant path, though minute-specific and volatility tail risks keep the probability below near-certainty.",
+  "own_probability": 0.93,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "Binance BTCUSDT = 72426.03 during research.",
+    "Market-implied probability from current_price 0.957 = 95.7% Yes.",
+    "Own probability estimate = 93% Yes."
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "contract_interpretation",
+    "technical_reference"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260413-63496469",
+    "dispatch_id": "dispatch-case-20260413-63496469-20260413T173535Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "b9e6fd56-90a4-4462-b003-affec86f79db",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260413-63496469/researcher-analyses/2026-04-13/dispatch-case-20260413-63496469-20260413T173535Z/personas/base-rate.md",
+    "source_persona_sha256": "1e4ef6483d126491095e5bb8a0eb926d3986d2968b43875c519c7303fafd6e65"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary source quality is high because Binance is the named resolution source; secondary context is supportive but evidence independence is only medium-low.",
+  "strongest_disconfirmers": [
+    "BTC can still drop ~9% in a day under macro shock or liquidation stress.",
+    "The contract is venue-specific and minute-specific, creating residual settlement-surface risk."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT was about 72426 at research time, leaving an ~8.9% cushion above 66000.",
+    "A rough same-time 14-day Binance 1m sample showed all sampled closes above 66000."
+  ],
+  "timing_relevance": "The market settles at 2026-04-14 12:00 ET (16:00 UTC during EDT), so a one-day move and exact minute close both matter.",
+  "unresolved_ambiguities": [
+    "Formal settlement references the Binance UI candle rather than the API surfaces used for pre-resolution checking."
+  ],
+  "what_would_change_view": "A sharp drawdown toward 68-69k before settlement or evidence of Binance operational/candle ambiguity would reduce confidence materially."
+}

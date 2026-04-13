@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "UI/API parity for the exact settlement candle is assumed, not perfectly proven.",
+    "A fast crypto selloff before noon ET could still push BTC below 68k.",
+    "Resolution depends on precise ET-to-UTC candle mapping."
+  ],
+  "key_assumptions": [
+    "Binance API spot and kline data are close enough proxies for the Binance trading-interface candle named in the contract.",
+    "No major exchange outage, backfill, or timestamp ambiguity affects the noon ET candle.",
+    "BTC does not suffer a large downside move before Apr 14 noon ET."
+  ],
+  "main_logical_chain": [
+    "The contract resolves on one specific Binance BTC/USDT 1-minute close at 12:00 ET on Apr 14.",
+    "Direct Binance data on Apr 13 places BTC around 72.2k, materially above 68k.",
+    "That makes Yes the clear base case, but extreme market confidence may underweight narrow timestamp/surface and tail-volatility risk.",
+    "Therefore I stay Yes but slightly below the market at 95%."
+  ],
+  "main_thesis": "BTC is likely to finish above 68,000 on the Apr 14 noon ET Binance candle, but the market is slightly overconfident because narrow timestamp/surface mechanics and tail volatility still leave a real residual No path.",
+  "own_probability": 0.95,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "This market will resolve to \"Yes\" if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone has a final \"Close\" price higher than 68,000.",
+    "Direct Binance ticker check returned BTCUSDT price 72208.13."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "contract_interpretation",
+    "variant_hypothesis",
+    "technical_reference"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260413-f68a8c5c",
+    "dispatch_id": "dispatch-case-20260413-f68a8c5c-20260413T165914Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "8d77e9ec-bccd-488d-84c0-6452f5467052",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260413-f68a8c5c/researcher-analyses/2026-04-13/dispatch-case-20260413-f68a8c5c-20260413T165914Z/personas/variant-view.md",
+    "source_persona_sha256": "6e759613867339ba88f2b931d1419c511c33cb2b080966f4866afda42e71b46c"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Appropriate but only medium-independence: one governing contract source plus the directly referenced exchange data. Source-of-truth ambiguity is low-to-medium because Binance is explicit but exact surface/timestamp handling still matters.",
+  "strongest_disconfirmers": [
+    "BTC has more than 4k cushion above the threshold, which makes the market's extreme confidence directionally understandable.",
+    "The main residual risk is narrow contract mechanics or a sharp selloff, not current spot weakness."
+  ],
+  "strongest_supports": [
+    "Direct Binance ticker check showed BTCUSDT at 72208.13, well above the 68000 threshold.",
+    "Recent 1-minute Binance closes in the verification window all remained above 72000.",
+    "Polymarket rules clearly specify the Binance BTC/USDT 12:00 ET 1-minute close as the governing source."
+  ],
+  "timing_relevance": "Resolution is date- and minute-specific: Apr 14, 2026 at 12:00 ET, which corresponds to 16:00 UTC during daylight saving time.",
+  "unresolved_ambiguities": [
+    "Whether the Binance UI candle surface can ever diverge from API-reported klines for settlement purposes.",
+    "How any exchange incident or data revision near the relevant minute would be operationally handled."
+  ],
+  "what_would_change_view": "I would move lower if BTC approaches 68k, if Binance has an outage or chart discrepancy, or if there is evidence the relevant noon ET candle maps differently than assumed."
+}

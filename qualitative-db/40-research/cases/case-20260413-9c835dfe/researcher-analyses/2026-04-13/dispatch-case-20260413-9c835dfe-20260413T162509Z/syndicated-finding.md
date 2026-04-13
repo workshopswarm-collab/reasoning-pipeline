@@ -1,0 +1,149 @@
+---
+type: syndicated_finding
+case_key: case-20260413-9c835dfe
+dispatch_id: dispatch-case-20260413-9c835dfe-20260413T162509Z
+question: "MicroStrategy announces >1000 BTC purchase April 7-13?"
+coverage_status: complete
+market_implied_probability: 0.96
+syndicated_probability_low: 0.93
+syndicated_probability_high: 0.98
+syndicated_probability_midpoint: 0.955
+edge_vs_market_pct_points: -0.5
+relation_to_market: crosses_market
+edge_quality: unclear
+edge_independent_verification_quality: medium
+compressed_toward_market_due_to_verification: yes
+contract_ambiguity_level: minor
+contract_ambiguity_reason: "Whether the official purchases page plus linked filing/social copy is the qualifying announcement surface and was public within the ET window"
+independently_verified_points: ["Official Strategy disclosure stack showed a 2026-04-13 entry for 13,927 BTC", "Reported amount was far above the >1000 BTC threshold", "Contract resolves on official Strategy/MicroStrategy or Michael Saylor information and on announcement timing, not purchase timing", "Multiple lanes independently surfaced the same official-domain disclosure details including linked 8-K metadata"]
+verification_gap_summary: "I still do not have an independently audited public ET timestamp or a separately fetched qualifying Saylor/IR post in this synthesis pass."
+best_countercase_summary: "The April 13 disclosure could fail only if resolvers reject the purchases-page disclosure stack or determine the qualifying post was not public in-window."
+main_reason_for_disagreement: "How much discount to apply for residual announcement-surface and timestamp verification risk."
+resolution_mechanics_summary: "YES if an official Strategy/MicroStrategy or Saylor announcement of >1000 BTC was made during Apr 7-13 ET, regardless of when purchases were executed."
+freshness_sensitive: yes
+freshness_driver: "Resolution turns on the exact April 13 official disclosure timing and accepted source surface"
+decision_blockers: ["No independently audited ET timestamp for the qualifying public disclosure", "Minor residual ambiguity over whether the purchases page plus linked filing/social copy is sufficient for settlement"]
+blockers_require_new_research: no
+disagreement_type: mixed
+disagreement_intensity: medium
+synthesis_confidence_quality: medium
+staleness_risk: medium
+next_checkpoint: "Official resolution or any late clarification on whether the April 13 purchases-page disclosure stack counts for settlement"
+follow_up_needed: yes
+---
+
+# Claim
+
+Strategy very likely already satisfied this market via an official April 13 disclosure of a 13,927 BTC acquisition, but the only surviving risk is a narrow settlement/timestamp technicality around whether the purchases-page disclosure stack is accepted as the qualifying in-window announcement surface.
+
+## Alpha summary
+
+Market is 0.96 YES; my post-synthesis range is 0.93-0.98 YES. That is only a marginal edge at best and mostly a 'market probably right' conclusion, not a strong mispricing call. The market may be slightly overconfident because the remaining risk is concentrated in settlement mechanics rather than event substance.
+
+## Input coverage
+
+All five personas were available. Coverage is complete. I used the raw persona findings as canonical inputs and checked supporting source notes where they materially clarified the official-disclosure evidence and contract mechanics. No persona was missing, but the market-implied and risk-manager lanes were thinner on direct event verification than the three bullish lanes.
+
+## Market-implied baseline
+
+Baseline market-implied probability is 0.96 from the dispatch snapshot. The swarm median sat at 0.99, with one cautious 0.82 lane and one 0.89 lane pulling against three 0.99 views.
+
+## Syndicated probability estimate
+
+My final estimate is 0.93-0.98 YES. The center is below the provisional swarm median but still near the market because the official Strategy disclosure stack appears real, in-window, and far above threshold, while the remaining uncertainty is mostly technical and small.
+
+## Difference from swarm-implied center
+
+I am materially below the swarm-implied center near 0.99. The reason is verification discipline: three lanes treated the purchases-page disclosure as effectively dispositive, but the cautious lanes were right to preserve some discount for exact public-timestamp auditing and announcement-surface eligibility. I did not find enough new independent verification in synthesis to fully endorse near-certainty.
+
+## Agreement or disagreement with market
+
+I roughly agree with the market. My range straddles and slightly compresses around 0.96 rather than claiming a strong above-market edge. The market looks directionally correct because the official company disclosure stack shows a same-day >1000 BTC announcement, but the residual technicality risk keeps me from calling this cleaner than the price implies.
+
+## Independent verification of edge
+
+Verification quality is medium. I independently checked the raw lane outputs against source-note provenance and found repeated, internally consistent reports of the same official Strategy purchases-page entry: dated 2026-04-13, amount 13,927 BTC, linked same-day 8-K, and accompanying official social/disclosure copy. That is meaningful verification of the core factual claim. What remains weaker is independent proof of the exact public ET timestamp and a separate authoritative surface outside the same issuer-controlled disclosure stack. Because the final edge versus market is small and only partly independently verified, medium is the right rating.
+
+## Compression toward market due to verification
+
+Yes. I compressed toward market because the swarm's most bullish lanes were effectively at 0.99 and treated the official page as almost fully dispositive. I could not independently strengthen the case enough to remove the last timing/surface ambiguity, so I pulled the final range down from the swarm center and closer to 0.96 rather than endorsing a confident above-market call.
+
+## Timing and catalyst posture
+
+The key catalyst has likely already occurred: the April 13 official disclosure. From here the edge is more likely to decay than widen, because once the disclosure exists the remaining question is administrative settlement interpretation. Waiting probably does not improve the decision much unless a resolver/source clarification appears.
+
+## Decision blockers
+
+No major blocker to a practical YES lean. The only blockers are narrow: lack of independently audited ET timestamp and small residual ambiguity over whether the purchases page plus linked filing/social copy is the accepted qualifying surface. Those are caution flags, not reasons to abandon the trade thesis.
+
+## Implication for the question
+
+This synthesis implies the market should resolve YES unless a narrow settlement technicality intervenes. The substantive event requirement appears met: an official Strategy disclosure on April 13 reported acquisition of 13,927 BTC, which is far above the threshold.
+
+## Consensus across personas
+
+Broad consensus points: Strategy official disclosure surfaces showed fresh April 13 BTC data; the reported amount was 13,927 BTC, comfortably above threshold; the contract is about announcement timing rather than purchase timing; and the only serious residual risk is source-of-truth/timestamp mechanics, not whether Strategy actually disclosed a large purchase.
+
+## Key disagreements across personas
+
+Main disagreement 1: how dispositive the purchases-page disclosure stack is for settlement (source-of-truth / interpretive). Base-rate, catalyst-hunter, and variant-view treated it as nearly decisive; market-implied and risk-manager wanted a discount until the exact qualifying announcement text/timestamp was more directly verified. Main disagreement 2: how much to discount for limited independence and client-rendered extraction issues (weighting / factual-access). Main disagreement 3: whether a market at 0.96 already fairly prices the residual technical risk (market-pricing).
+
+## Best countercase
+
+Best countercase comes from market-implied and risk-manager: the synthesis should not assume that an official holdings/purchases page update automatically equals a contract-qualifying in-window announcement unless the exact dated public disclosure and accepted announcement surface are cleanly verified. That countercase survives, but only as a narrow technical tail risk rather than a substantive NO thesis.
+
+## Encapsulated assumptions
+
+Shared assumptions: the contract's governing truth set is official Strategy/MicroStrategy or Michael Saylor information; the April 13 disclosure stack is genuine; 13,927 BTC is unambiguously above threshold. Contested assumptions: whether the purchases page plus linked filing/social text is itself the qualifying announcement surface; whether the public timestamp was definitely inside the ET window. Fragile assumptions: that no later correction or resolver-specific interpretation will narrow the acceptable announcement surface.
+
+## Encapsulated evidence map
+
+Strongest supporting evidence: repeated lane-level extraction of an official Strategy purchases-page entry dated 2026-04-13 showing 13,927 BTC acquired and 780,897 BTC holdings, plus a same-day linked 8-K and official company copy saying Strategy has acquired 13,927 BTC. Strongest contradictory evidence: no synthesis-stage independently audited ET timestamp and no separately fetched Saylor/IR post proving the same event outside the issuer-controlled page stack. Governing source-of-truth evidence: the contract resolves from official Strategy/MicroStrategy or Michael Saylor information and explicitly centers announcement timing. Mixed evidence: some lanes had direct page-level data while others only recovered holdings freshness and not fully attributable announcement text.
+
+## Evidence weighting
+
+I gave highest weight to the official Strategy disclosure-stack details that multiple personas independently converged on, especially the dated 13,927 BTC entry and linked same-day filing metadata. I downweighted pure market anchoring and pattern-based reasoning. I also downweighted any implication that fresh holdings data alone settles the contract without a qualifying announcement surface, because this is a narrow announcement-window market.
+
+## Counterpoints / strongest disconfirming evidence
+
+The strongest disconfirming evidence is not a contrary fact but an evidentiary gap: this synthesis pass still lacks independently audited proof of the exact public ET timestamp and lacks a separately retrieved official Saylor/IR announcement outside the same company page stack. If settlement adjudicators are strict about announcement surface or timing, that gap could matter.
+
+## Resolution or source-of-truth interpretation
+
+My synthesis interpretation is that the disclosed April 13 purchases-page entry, linked same-day 8-K artifact, and embedded official company copy likely satisfy the contract's official-information standard. The market text does not require purchase execution in-window; it requires an official announcement in-window. On the current record, the better reading is that this happened. The ambiguity is minor rather than moderate because the contract already points to official company/Saylor information and the purchases page is an official company surface, but it is not literally zero because settlement operators can sometimes prefer a narrower public artifact.
+
+## Why this could create or destroy alpha
+
+This case matters mainly as a discipline check: a swarm can easily overstate edge against a high market price when most of the remaining uncertainty is settlement technicality rather than event substance. Here the market likely is right, so forcing a big above-market edge would destroy alpha. The only tradable nuance is whether residual technical risk is slightly under- or over-priced; that looks marginal, not strong.
+
+## What would falsify this interpretation / change the view
+
+A showing that the qualifying disclosure was first public after 11:59 PM ET on April 13 would push the estimate sharply lower. So would an official clarification that the purchases page does not count for this contract absent a different Strategy/Saylor post. Conversely, a clearly timestamped official IR, 8-K, or Saylor post within the window would move the view closer to near-certainty YES.
+
+## Highest-value next research
+
+Single best next check: independently audit the public timestamp and content of the April 13 official Strategy disclosure or linked 8-K/Saylor post to remove the last settlement-mechanics discount.
+
+## Source-quality assessment
+
+Primary source class is strong: official issuer-controlled disclosure surfaces. Most important secondary class is the market rules/contract text defining what counts. Evidence independence is medium-low because the confirming details mostly come from the same issuer-controlled disclosure stack. Source-of-truth ambiguity is low-to-medium: the governing source class is clear, but the exact qualifying surface remains a small open question. The synthesis is somewhat bottlenecked by upstream sourcing concentration on the same official page stack.
+
+## Verification impact
+
+Yes, additional synthesis-stage verification was used in the form of raw-lane critical comparison plus source-note checks. That comparison materially reduced confidence in the 0.99-style near-certainty lanes because it highlighted that the key supporting evidence was consistent but not fully independently timestamp-audited. It also showed the cautious lanes were directionally too skeptical on substance but useful on residual technical risk.
+
+## Persona contribution map
+
+base-rate — strongest clean bullish case that once the official purchases page carries a dated 13,927 BTC entry, remaining risk collapses into timing/eligibility technicalities. catalyst-hunter — best articulation that the expected Monday catalyst likely already fired and that the same-day disclosure stack points to an in-window YES. market-implied — most valuable skepticism on extreme-price discipline, emphasizing that fresh holdings data is not automatically the same as a qualifying in-window announcement. risk-manager — best framing of the residual tail risk as contract mechanics rather than event doubt. variant-view — strongest explicit synthesis of the bullish case after extra verification, especially the linked same-day filing and embedded official copy details.
+
+## Reusable lesson signals
+
+Durable lesson: in narrow corporate announcement markets, residual risk often sits in announcement-surface and timestamp mechanics after substantive evidence is already clear. Possible underbuilt driver: official-disclosure-timing may deserve better standardized treatment. Possible source-quality lesson: repeated convergence on the same issuer-controlled disclosure stack should not be mistaken for high independence. Reusability confidence: medium.
+
+## Orchestrator review suggestions
+
+review later for durable lesson: yes; review later for driver candidate: yes; review later for canon or linkage issue: no; review later for swarm-method issue: yes. Reason: the case usefully shows when to compress an apparent swarm edge back toward market because verification is concentrated in one official disclosure stack and residual risk is settlement-technical.
+
+## Recommended follow-up
+
+Request decision-maker review with a practical YES lean and only minor caution. If operationally useful, do one final timestamp/source-surface confirmation; otherwise no major rerun is needed.

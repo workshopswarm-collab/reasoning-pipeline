@@ -1,0 +1,102 @@
+{
+  "artifact_type": "case_pipeline_status",
+  "case_key": "case-20260413-de71fc13",
+  "completed_at": "2026-04-13T13:24:02.207441+00:00",
+  "current_stage": "decision",
+  "dispatch_id": "dispatch-case-20260413-de71fc13-20260413T130158Z",
+  "helper_status": {
+    "materialize_case_swarm_artifacts": {
+      "attempted_at": "2026-04-13T13:24:02.249466+00:00",
+      "helper": "materialize_case_swarm_artifacts",
+      "ok": true,
+      "payload": {
+        "artifact_index": "qualitative-db/40-research/cases/case-20260413-de71fc13/artifacts/index.json",
+        "case_key": "case-20260413-de71fc13",
+        "dispatch_dir": "qualitative-db/40-research/cases/case-20260413-de71fc13/researcher-analyses/2026-04-13/dispatch-case-20260413-de71fc13-20260413T130158Z",
+        "ok": true,
+        "researcher_swarm_current": "qualitative-db/40-research/cases/case-20260413-de71fc13/researcher-swarm-current.md",
+        "researcher_swarm_summary": "qualitative-db/40-research/cases/case-20260413-de71fc13/researcher-swarm-summary.md"
+      },
+      "returncode": 0
+    },
+    "post_case_terminal_topic_marker": {
+      "attempted_at": "2026-04-13T13:24:02.283637+00:00",
+      "helper": "post_case_terminal_topic_marker",
+      "ok": true,
+      "payload": {
+        "case_key": "case-20260413-de71fc13",
+        "dispatch_id": "dispatch-case-20260413-de71fc13-20260413T130158Z",
+        "noop": true,
+        "ok": true,
+        "reason": "missing_topic_binding"
+      },
+      "returncode": 0
+    }
+  },
+  "last_event": {
+    "at": "2026-04-13T13:24:02.207441+00:00",
+    "current_stage": "decision",
+    "message": "Decision-Maker completed and packet rendered",
+    "status": "pipeline_completed"
+  },
+  "market_id": "505a9a16-f0f2-4510-a416-df2a568b8c24",
+  "market_title": "Will the price of Bitcoin be above $68,000 on April 13?",
+  "runner_id": "run_decision_maker",
+  "schema_version": "case-pipeline-status/v1",
+  "stage_statuses": {
+    "decision": "completed",
+    "dispatch": "completed",
+    "swarm": "completed",
+    "synthesis": "completed"
+  },
+  "started_at": "2026-04-13T13:02:24.824197+00:00",
+  "status": "pipeline_completed",
+  "terminal_summary": {
+    "decision_handoff_path": "qualitative-db/40-research/cases/case-20260413-de71fc13/researcher-analyses/2026-04-13/dispatch-case-20260413-de71fc13-20260413T130158Z/decision-handoff.md",
+    "decision_packet_json": "qualitative-db/40-research/cases/case-20260413-de71fc13/decision-maker/artifacts/decision-maker-packet.json",
+    "decision_packet_markdown": "qualitative-db/40-research/cases/case-20260413-de71fc13/decision-maker/decision-maker-packet.md",
+    "decision_readiness": "ready",
+    "forecast_decision_persist_error": "",
+    "forecast_decision_persisted": true,
+    "position_policy": "hold_only",
+    "recommended_side": "yes",
+    "swarm_stage_status_path": "qualitative-db/40-research/cases/case-20260413-de71fc13/researcher-analyses/2026-04-13/dispatch-case-20260413-de71fc13-20260413T130158Z/swarm-stage-status.json",
+    "synthesis_artifact_path": "qualitative-db/40-research/cases/case-20260413-de71fc13/researcher-analyses/2026-04-13/dispatch-case-20260413-de71fc13-20260413T130158Z/syndicated-finding.md",
+    "trade_authorization": "watch_only"
+  },
+  "timeline": [
+    {
+      "at": "2026-04-13T13:02:24.824197+00:00",
+      "current_stage": "swarm",
+      "manifest_path": "/Users/agent2/.openclaw/orchestrator/roles/orchestrator/researchers-swarm-subagents/runtime/dispatch-manifests/dispatch-case-20260413-de71fc13-20260413T130158Z.json",
+      "message": "Fresh case claimed and dispatch launched",
+      "status": "pipeline_started",
+      "target_session_key": ""
+    },
+    {
+      "at": "2026-04-13T13:10:16.967847+00:00",
+      "current_stage": "synthesis",
+      "message": "Synthesis completed and decision handoff is ready",
+      "status": "pipeline_in_progress"
+    },
+    {
+      "at": "2026-04-13T13:23:17.592483+00:00",
+      "current_stage": "decision",
+      "message": "Swarm stage reconciled",
+      "status": "pipeline_in_progress"
+    },
+    {
+      "at": "2026-04-13T13:23:19.988984+00:00",
+      "current_stage": "decision",
+      "message": "Decision-Maker stage started",
+      "status": "pipeline_in_progress"
+    },
+    {
+      "at": "2026-04-13T13:24:02.207441+00:00",
+      "current_stage": "decision",
+      "message": "Decision-Maker completed and packet rendered",
+      "status": "pipeline_completed"
+    }
+  ],
+  "updated_at": "2026-04-13T13:24:02.207441+00:00"
+}

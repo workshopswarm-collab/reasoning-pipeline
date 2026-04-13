@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A sharp risk-off move into April 14 noon ET.",
+    "A Binance-specific divergence, anomaly, or exact-candle interpretation issue."
+  ],
+  "key_assumptions": [
+    "Current Binance BTCUSDT level is a reasonable guide to next-day noon settlement risk.",
+    "No Binance-specific anomaly or unusual interpretation issue affects the settlement candle.",
+    "A >6% drawdown into the exact settlement minute remains possible but unlikely."
+  ],
+  "main_logical_chain": [
+    "The market implies about 95.95% Yes.",
+    "Direct Binance venue data shows BTC materially above the 68k threshold before settlement.",
+    "With less than a day left, the main requirement is avoiding a sizeable selloff rather than needing new upside.",
+    "That supports a high Yes probability, but exact-minute and exchange-specific settlement mechanics keep it below certainty."
+  ],
+  "main_thesis": "The market is mostly right to price a strong Yes because Binance BTCUSDT is currently around 72.2k, comfortably above 68k, but the exact noon-ET 1-minute settlement mechanics leave a small residual failure path.",
+  "own_probability": 0.94,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "current_price: 0.9595",
+    "Binance BTCUSDT price: 72202.37000000",
+    "Yes if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone has a final Close higher than 68,000"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260413-f68a8c5c",
+    "dispatch_id": "dispatch-case-20260413-f68a8c5c-20260413T165914Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "22234d30-b78c-4c90-b481-51c4d0e893af",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260413-f68a8c5c/researcher-analyses/2026-04-13/dispatch-case-20260413-f68a8c5c-20260413T165914Z/personas/market-implied.md",
+    "source_persona_sha256": "2535b5e124b6d86fb5c5d8eb03e14264bca814ccf3f6e1eda33e6c10aadff72b"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary quality is high because the analysis used the governing Polymarket rules and direct Binance venue data; independence is medium and source-of-truth ambiguity is low to medium.",
+  "strongest_disconfirmers": [
+    "Crypto can still move more than 6% in under a day.",
+    "The contract resolves on one exact Binance 1-minute close, so path and venue-specific risk remain nonzero."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT spot fetched around 72,202, about 6.2% above the 68,000 threshold.",
+    "Recent sampled Binance 1-minute closes were all above 72k.",
+    "The contract keys to Binance BTCUSDT specifically, so venue-matched evidence supports the market price."
+  ],
+  "timing_relevance": "This is a <24h, date-sensitive contract keyed to the Binance BTCUSDT 12:00 ET 1-minute close on April 14, so exact timing and venue mechanics matter more than broad BTC narrative.",
+  "unresolved_ambiguities": [
+    "Minor practical ambiguity remains around exact candle labeling conventions until the live settlement surface is viewed.",
+    "Secondary context sources add little beyond the direct contract and venue data."
+  ],
+  "what_would_change_view": "I would cut the probability if Binance BTCUSDT fell toward 68k before the deadline, if Binance-specific anomalies appeared, or if contract mechanics around the operative candle were clarified differently."
+}

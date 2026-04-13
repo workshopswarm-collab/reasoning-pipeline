@@ -117,6 +117,24 @@ def sessions_send(payload: dict[str, Any]) -> dict[str, Any]:
     return parse_json_lines(proc.stdout)
 
 
+def send_visible_telegram_message(*, chat_id: str, topic_id: str, message: str) -> dict[str, Any]:
+    proc = subprocess.run(
+        [
+            'openclaw', 'message', 'send',
+            '--channel', 'telegram',
+            '--target', str(chat_id),
+            '--thread-id', str(topic_id),
+            '--message', message,
+            '--json',
+        ],
+        text=True,
+        capture_output=True,
+    )
+    if proc.returncode != 0:
+        raise RuntimeError(proc.stderr.strip() or proc.stdout.strip() or 'telegram visible send failed')
+    return parse_json_lines(proc.stdout)
+
+
 def apply_patch(patch_payload: dict[str, Any], db_url: str) -> dict[str, Any]:
     cmd = [
         sys.executable,
@@ -192,6 +210,19 @@ def main() -> int:
 
         bootstrap = python_json(BOOTSTRAP_TOPICS, ["--manifest-path", str(manifest_path), "--apply"])
         steps = ((bootstrap.get("parallel_handoff_group") or {}).get("steps") or [])
+
+        controller_topic = bootstrap.get('controller_topic') or {}
+        controller_visible_messages = controller_topic.get('visible_launch_messages') or []
+        controller_visible_results: list[dict[str, Any]] = []
+        controller_chat_id = str(bootstrap.get('chat_id') or '')
+        controller_topic_id = str(controller_topic.get('topic_id') or '')
+        if controller_chat_id and controller_topic_id:
+            for message in controller_visible_messages:
+                if not str(message or '').strip():
+                    continue
+                controller_visible_results.append(
+                    send_visible_telegram_message(chat_id=controller_chat_id, topic_id=controller_topic_id, message=str(message))
+                )
 
         delivered_results: list[dict[str, Any]] = []
         failures: list[dict[str, Any]] = []
@@ -278,6 +309,7 @@ def main() -> int:
             "status": "ok",
             "manifest_path": str(manifest_path),
             "bootstrap": bootstrap,
+            "controller_visible_results": controller_visible_results,
             "delivered_results": delivered_results,
             "failures": failures,
             "summary": summary,

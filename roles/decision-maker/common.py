@@ -21,6 +21,7 @@ CASE_DECISION_STAGE_STATUS_JSON_RELATIVE = "artifacts/decision-stage-status.json
 CASE_LIGHT_REFRESH_BRIEF_JSON_RELATIVE = "artifacts/light-refresh-brief.json"
 CASE_LIGHT_REFRESH_BRIEF_MARKDOWN_RELATIVE = "artifacts/light-refresh-brief.md"
 CASE_DECISION_REFRESHES_DIRNAME = "refreshes"
+CASE_LIGHT_REFRESH_STATUS_FILENAME = "light-refresh-status.json"
 DISPATCH_MANIFESTS_DIR = WORKSPACE_ROOT / "roles" / "orchestrator" / "researchers-swarm-subagents" / "runtime" / "dispatch-manifests"
 
 DECISION_PACKET_FRONTMATTER_ORDER = [
@@ -160,6 +161,10 @@ def decision_case_refresh_dir(case_key: str, refresh_id: str) -> Path:
 
 def case_refresh_manifest_path(case_key: str, refresh_id: str) -> Path:
     return decision_case_refresh_dir(case_key, refresh_id) / "refresh-manifest.json"
+
+
+def case_light_refresh_status_path(case_key: str, refresh_id: str) -> Path:
+    return decision_case_refresh_dir(case_key, refresh_id) / CASE_LIGHT_REFRESH_STATUS_FILENAME
 
 
 def utc_now_iso() -> str:

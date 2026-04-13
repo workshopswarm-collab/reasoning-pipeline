@@ -1,0 +1,57 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "This is a one-minute-close contract, so path risk matters more than daily directional drift.",
+    "Market confidence in the mid-90s may underprice a short-lived intraday reversal."
+  ],
+  "key_assumptions": [
+    "BTC/USDT remains above 70000 through the exact Binance 12:00 ET closing print.",
+    "No Binance-specific pricing anomaly or late volatility shock erases the pre-noon cushion."
+  ],
+  "main_logical_chain": [
+    "Verify the exact contract mechanics and source of truth from Polymarket.",
+    "Translate the noon ET resolving minute to 16:00 UTC and confirm Binance kline timestamping.",
+    "Observe that Binance spot was materially above 70000 about 2h10m before resolution.",
+    "Apply a modest haircut for narrow timestamp/path risk rather than treating broad bullish BTC direction as sufficient."
+  ],
+  "main_thesis": "Yes is still the better base case, but the market appears slightly too confident because this resolves on one exact Binance noon ET minute close.",
+  "own_probability": 0.9,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone (noon) ... has a final 'Close' price higher than the price specified in the title.",
+    "12:00 ET = 16:00 UTC on 2026-04-13."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "risk_management",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260413-2d3a41aa",
+    "dispatch_id": "dispatch-case-20260413-2d3a41aa-20260413T134928Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "188bb629-19bf-4aa1-bb8c-69e64b1d1a67",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260413-2d3a41aa/researcher-analyses/2026-04-13/dispatch-case-20260413-2d3a41aa-20260413T134928Z/personas/risk-manager.md",
+    "source_persona_sha256": "7b7a05000ce6fdaf1e8197b00fb1a2a64c396b289e586c49cc6e1325f5db366d"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Low source-of-truth ambiguity and high direct-source credibility, but only medium independence because contract wording and exchange data are complementary rather than independent.",
+  "strongest_disconfirmers": [
+    "A single late intraday flush at the exact noon ET candle can settle No even if BTC traded above 70000 earlier.",
+    "Pre-resolution checks cannot directly observe the future settling candle."
+  ],
+  "strongest_supports": [
+    "Binance 1-minute BTC/USDT data around 09:46-09:50 ET showed closes roughly from 70964 to 71609.",
+    "Polymarket rules clearly define Binance BTC/USDT 1m close at 12:00 ET as the governing condition."
+  ],
+  "timing_relevance": "High: the whole case turns on one exact Binance BTC/USDT 1-minute close at 12:00 ET / 16:00 UTC.",
+  "unresolved_ambiguities": [
+    "The final noon ET Binance candle was not yet available at research time.",
+    "Late-morning volatility before resolution could still compress the cushion."
+  ],
+  "what_would_change_view": "A fresh Binance check near noon showing compression toward or below 70000 would reduce the estimate materially; a still-comfortable cushion closer to resolution would move it toward the market."
+}

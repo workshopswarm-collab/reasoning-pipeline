@@ -180,8 +180,17 @@ The sequencer/watch surfaces now also expose repo-local runtime state files unde
   - machine-readable health-check report written by `scripts/check_pipeline_health.py`
 - `pipeline-artifact-contract-report.json`
   - machine-readable audit report for canonical case-root artifact contract / `case_key` drift checks
+- `pipeline-automation-effective.json`
+  - operator-facing summary of the current effective watchdog/sequencer posture, renderable via `python3 scripts/automation_control.py write-effective`
 - `decided-market-watcher-heartbeat.json`
   - machine-readable heartbeat/report written by `scripts/watch_decided_market_prices.py`
+
+Useful control-state commands before/after launchd changes:
+
+```bash
+python3 scripts/automation_control.py effective
+python3 scripts/automation_control.py write-effective
+```
 
 Health check command:
 

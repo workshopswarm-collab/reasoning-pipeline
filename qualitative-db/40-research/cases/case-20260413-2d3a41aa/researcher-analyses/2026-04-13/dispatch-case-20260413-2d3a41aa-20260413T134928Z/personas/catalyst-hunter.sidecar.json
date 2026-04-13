@@ -1,0 +1,57 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Path dependence is extreme because only one minute close matters.",
+    "The contextual catalyst pass was light and did not identify every possible macro headline risk."
+  ],
+  "key_assumptions": [
+    "BTC can avoid a roughly 2 percent selloff before the 12:00 ET Binance minute closes.",
+    "No missed scheduled catalyst before noon ET has enough downside force to overwhelm the price buffer.",
+    "Binance venue operations remain normal and contract interpretation stays straightforward."
+  ],
+  "main_logical_chain": [
+    "Polymarket rules make Binance BTCUSDT 12:00 ET 1-minute close the governing source of truth.",
+    "Binance data showed BTC already above 70k with about a 2 percent cushion during research.",
+    "Absent a negative intraday catalyst large enough to erase that buffer before noon ET, Yes is more likely than No."
+  ],
+  "main_thesis": "BTC was already trading meaningfully above 70k, so the April 13 noon ET Binance minute-close contract is mainly about avoiding a sharp intraday selloff before the governing candle.",
+  "own_probability": 0.78,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone ... has a final 'Close' price higher than the price specified.",
+    "My estimate is 78% for Yes."
+  ],
+  "reasoning_mode": [
+    "catalyst_analysis",
+    "market_anchor",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260413-2d3a41aa",
+    "dispatch_id": "dispatch-case-20260413-2d3a41aa-20260413T134928Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "9d65b404-2833-4335-9cf4-b4e8281e1a41",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260413-2d3a41aa/researcher-analyses/2026-04-13/dispatch-case-20260413-2d3a41aa-20260413T134928Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "d122e2b2a593ee4858e527ef3a7d672ba175a37fb4a78dda0c2e028d4e9ca837"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High quality for contract mechanics and live venue pricing because Polymarket rules and Binance API are direct sources, but only moderate independence because the evidence set is concentrated around the same settlement mechanism.",
+  "strongest_disconfirmers": [
+    "This is a minute-specific threshold contract, so one sharp liquidation or macro shock at the wrong time can still resolve No.",
+    "A temporary selloff into the exact noon ET close matters more than broader same-day strength."
+  ],
+  "strongest_supports": [
+    "Binance ticker was around 71415 during research, leaving roughly 1.4k of buffer above 70k.",
+    "The governing candle had not yet occurred; this is a true pre-resolution timing market.",
+    "Recent 1-minute realized moves were much smaller than the threshold buffer in the sampled window."
+  ],
+  "timing_relevance": "High: the dominant question is whether BTC can stay above the threshold into the exact noon ET minute rather than whether the broader Bitcoin thesis is bullish.",
+  "unresolved_ambiguities": [
+    "No decisive scheduled catalyst was found for the remaining window, so residual headline risk remains.",
+    "UI-level Binance timezone display was not directly scraped cleanly; UTC conversion was used instead."
+  ],
+  "what_would_change_view": "A fast break below 71k, evidence of an imminent downside catalyst before noon ET, or Binance-specific operational/pricing issues would reduce confidence in Yes quickly."
+}

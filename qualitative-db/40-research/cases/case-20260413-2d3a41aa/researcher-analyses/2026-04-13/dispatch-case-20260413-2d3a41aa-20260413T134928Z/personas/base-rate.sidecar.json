@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A sharp intraday selloff before noon ET would quickly erode the edge.",
+    "Single-minute settlement mechanics make timing noise more important than broader daily direction."
+  ],
+  "key_assumptions": [
+    "Short-horizon path persistence is a better default than an immediate >2% downside break.",
+    "No exchange-specific Binance dislocation appears before settlement.",
+    "No fresh macro or crypto shock hits before noon ET."
+  ],
+  "main_logical_chain": [
+    "Interpret the contract as Binance BTC/USDT 12:00 ET 1-minute candle close strictly above 70,000.",
+    "Check current Binance price context and distance from strike shortly before settlement.",
+    "Apply outside-view persistence over a short remaining horizon for a liquid benchmark asset.",
+    "Adjust for crypto intraday volatility and single-minute settlement fragility.",
+    "Land modestly above the 71% market price at 78% Yes."
+  ],
+  "main_thesis": "With BTC/USDT around 71.6k about two hours before the governing noon ET Binance candle and the reported 24h low still above 70k, the outside-view base rate favors a Yes close above 70k.",
+  "own_probability": 0.78,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "Binance BTC/USDT 12:00 ET 1-minute candle close",
+    "Binance spot around 71,600 near 09:50 ET",
+    "24h low around 70,505.88"
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "market_anchor",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260413-2d3a41aa",
+    "dispatch_id": "dispatch-case-20260413-2d3a41aa-20260413T134928Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "b89b38bb-2851-41e8-be03-d6ae510de8c2",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260413-2d3a41aa/researcher-analyses/2026-04-13/dispatch-case-20260413-2d3a41aa-20260413T134928Z/personas/base-rate.md",
+    "source_persona_sha256": "57f326c64490e537bad608438a3ada96b59c76c8455e4136b2c04156d0d270e8"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality primary source setup because Binance is explicitly named as settlement source; Coinbase adds moderate-quality contextual verification; source-of-truth ambiguity is low.",
+  "strongest_disconfirmers": [
+    "BTC can still drop more than 2% intraday in a short window.",
+    "The contract is decided by one exact minute close, so a temporary noon selloff could resolve No."
+  ],
+  "strongest_supports": [
+    "Binance spot was about 71,600 near 09:50 ET, roughly 2.3% above the threshold.",
+    "Binance 24h low was about 70,505.88, already above 70,000.",
+    "Only about 130 minutes remained until the governing candle."
+  ],
+  "timing_relevance": "This is a narrow intraday contract; the remaining time to the 12:00 ET settlement minute is central to the estimate.",
+  "unresolved_ambiguities": [
+    "The exact noon ET candle was still in the future at research time.",
+    "No deeper intraday distribution study was performed beyond current spot and 24h range context."
+  ],
+  "what_would_change_view": "A fast move down through 71,000, cross-venue stress, or a fresh macro/crypto shock before noon ET would lower the estimate materially."
+}

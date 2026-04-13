@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Single-minute settlement sensitivity.",
+    "Potential chart/API retrieval mismatch for the final candle.",
+    "Assignment snapshot may have been stale versus later live market pricing."
+  ],
+  "key_assumptions": [
+    "BTC/USDT on Binance was already in an above-70k regime around the settlement window.",
+    "The main residual risk is the exact 12:00 ET minute close rather than a broader directional BTC miss.",
+    "Public Binance API surfaces are sufficiently aligned with the Binance chart used for settlement."
+  ],
+  "main_logical_chain": [
+    "Use the assignment market price of 0.71 as the baseline prior.",
+    "Verify the contract source of truth and exact mechanics on Polymarket.",
+    "Verify that 12:00 ET corresponds to 16:00 UTC on the resolution date.",
+    "Check direct Binance price surfaces and observe BTC above 70k.",
+    "Conclude the market is directionally right, with remaining risk concentrated in timestamp-specific settlement noise."
+  ],
+  "main_thesis": "The assignment-market 71% looked directionally right and somewhat conservative because Binance BTC/USDT was already above 70k, leaving exact-minute settlement noise as the main residual risk.",
+  "own_probability": 0.82,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone",
+    "BTCUSDT price 71593.01000000"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "contract_interpretation",
+    "risk_management"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260413-2d3a41aa",
+    "dispatch_id": "dispatch-case-20260413-2d3a41aa-20260413T134928Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "0bf2894c-4f80-46c6-8111-b1ad727360f1",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260413-2d3a41aa/researcher-analyses/2026-04-13/dispatch-case-20260413-2d3a41aa-20260413T134928Z/personas/market-implied.md",
+    "source_persona_sha256": "c084275f70fab3f5de691b6f76aa5d1c3bf45f1013ea55cea633587d1bfd8e00"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is medium-high overall: Binance is the direct source of truth for price, Polymarket clearly states the rules, but exact-candle verification remained incomplete in-session.",
+  "strongest_disconfirmers": [
+    "The contract depends on one exact 1-minute close at 12:00 ET, so a brief downtick could still flip resolution.",
+    "The exact target 12:00 ET candle was not directly captured in-session."
+  ],
+  "strongest_supports": [
+    "Direct Binance spot check during the run returned 71593.01.",
+    "Recent Binance 1-minute closes visible in-session were above 70000.",
+    "The contract resolves from a narrow, liquid, directly observable exchange source."
+  ],
+  "timing_relevance": "This is a date-specific, intraday contract with resolution concentrated in the Binance BTC/USDT 12:00 ET 1-minute candle on 2026-04-13.",
+  "unresolved_ambiguities": [
+    "Exact Binance 12:00 ET candle close was not directly obtained in-session.",
+    "Public Polymarket page price differed from the assignment snapshot."
+  ],
+  "what_would_change_view": "Direct confirmation that the exact 12:00 ET Binance candle closed at or below 70000 would flip the view; direct confirmation that it closed above 70000 would increase confidence materially."
+}

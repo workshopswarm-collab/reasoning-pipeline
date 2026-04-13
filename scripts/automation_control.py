@@ -9,6 +9,7 @@ from typing import Any
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_CONTROL_FILE = REPO_ROOT / 'scripts' / '.runtime-state' / 'pipeline-automation-control.json'
+DEFAULT_EFFECTIVE_POLICY_FILE = REPO_ROOT / 'scripts' / '.runtime-state' / 'pipeline-automation-effective.json'
 
 
 def utc_now_iso() -> str:
@@ -126,6 +127,67 @@ def resolve_sequencer_policy(control: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+def summarize_effective_mode(control: dict[str, Any], *, effective_watchdog: dict[str, Any], effective_sequencer: dict[str, Any]) -> dict[str, Any]:
+    notes: list[str] = []
+    if not effective_sequencer.get('enabled'):
+        sequencer_mode = 'disabled'
+    elif effective_sequencer.get('allow_new_case_claims'):
+        sequencer_mode = 'claiming_new_cases'
+    else:
+        sequencer_mode = 'resume_only_or_observe_only'
+        if not effective_sequencer.get('automation_enabled'):
+            notes.append('Sequencer is enabled but global automation_enabled=false, so new case claims remain blocked.')
+
+    if not effective_watchdog.get('enabled'):
+        watchdog_mode = 'disabled'
+    elif effective_watchdog.get('apply'):
+        watchdog_mode = 'repairing_existing_cases'
+    else:
+        watchdog_mode = 'observe_only'
+
+    if effective_watchdog.get('apply') and not any([
+        effective_watchdog.get('allow_resume_swarm'),
+        effective_watchdog.get('allow_launch_synthesis'),
+        effective_watchdog.get('allow_launch_decision'),
+        effective_watchdog.get('allow_finalize_decision'),
+        effective_watchdog.get('allow_finalize_pipeline'),
+    ]):
+        notes.append('Watchdog apply=true but no repair actions are enabled, so behavior is effectively observe-only.')
+
+    if not effective_sequencer.get('enabled') and not effective_watchdog.get('enabled'):
+        overall_mode = 'manual_only'
+    elif effective_sequencer.get('allow_new_case_claims'):
+        overall_mode = 'fully_automated_one_case_at_a_time'
+    elif effective_watchdog.get('apply'):
+        overall_mode = 'repair_existing_cases_only'
+    else:
+        overall_mode = 'manual_plus_observe_only'
+
+    return {
+        'overall_mode': overall_mode,
+        'sequencer_mode': sequencer_mode,
+        'watchdog_mode': watchdog_mode,
+        'notes': notes,
+    }
+
+
+def build_effective_payload(path: Path) -> dict[str, Any]:
+    exists = path.exists()
+    control = load_control_file(path)
+    effective_watchdog = resolve_watchdog_policy(control)
+    effective_sequencer = resolve_sequencer_policy(control)
+    return {
+        'path': str(path),
+        'exists': exists,
+        'control': control,
+        'effective': {
+            'watchdog': effective_watchdog,
+            'sequencer': effective_sequencer,
+        },
+        'summary': summarize_effective_mode(control, effective_watchdog=effective_watchdog, effective_sequencer=effective_sequencer),
+    }
+
+
 def parse_toggle(value: str) -> bool:
     normalized = value.strip().lower()
     if normalized in {'1', 'true', 'on', 'yes', 'enabled'}:
@@ -141,6 +203,9 @@ def parse_args() -> argparse.Namespace:
     sub = parser.add_subparsers(dest='command', required=True)
 
     sub.add_parser('status', help='Show current control-file state and effective policies')
+    sub.add_parser('effective', help='Show the operator-facing effective automation posture summary')
+    write_effective = sub.add_parser('write-effective', help='Render the effective automation posture summary to a JSON file')
+    write_effective.add_argument('--output', default=str(DEFAULT_EFFECTIVE_POLICY_FILE))
     sub.add_parser('disable-all', help='Disable new market claims, sequencer automation, and watchdog repairs')
     sub.add_parser('enable-sequencer', help='Enable the sequencer and allow new market claims')
     sub.add_parser('disable-sequencer', help='Disable the sequencer and new market claims')
@@ -167,18 +232,24 @@ def parse_args() -> argparse.Namespace:
 
 
 def cmd_status(path: Path) -> None:
-    exists = path.exists()
-    control = load_control_file(path)
-    payload = {
-        'path': str(path),
-        'exists': exists,
-        'control': control,
-        'effective': {
-            'watchdog': resolve_watchdog_policy(control),
-            'sequencer': resolve_sequencer_policy(control),
-        },
-    }
-    print(json.dumps(payload, indent=2))
+    print(json.dumps(build_effective_payload(path), indent=2))
+
+
+def cmd_effective(path: Path) -> None:
+    payload = build_effective_payload(path)
+    print(json.dumps({
+        'path': payload['path'],
+        'exists': payload['exists'],
+        'effective': payload['effective'],
+        'summary': payload['summary'],
+    }, indent=2))
+
+
+def cmd_write_effective(path: Path, output: Path) -> None:
+    payload = build_effective_payload(path)
+    output.parent.mkdir(parents=True, exist_ok=True)
+    output.write_text(json.dumps(payload, indent=2, sort_keys=True) + '\n')
+    print(json.dumps({'status': 'ok', 'output': str(output), 'summary': payload['summary']}, indent=2))
 
 
 def cmd_disable_all(path: Path) -> None:
@@ -275,6 +346,10 @@ def main() -> None:
     path = Path(args.control_file).expanduser().resolve()
     if args.command == 'status':
         cmd_status(path)
+    elif args.command == 'effective':
+        cmd_effective(path)
+    elif args.command == 'write-effective':
+        cmd_write_effective(path, Path(args.output).expanduser().resolve())
     elif args.command == 'disable-all':
         cmd_disable_all(path)
     elif args.command == 'enable-sequencer':

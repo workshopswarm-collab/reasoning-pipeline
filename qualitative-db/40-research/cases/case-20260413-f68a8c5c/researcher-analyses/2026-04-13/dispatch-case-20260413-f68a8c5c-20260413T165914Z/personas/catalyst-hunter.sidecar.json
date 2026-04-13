@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Single-minute settlement makes path risk more important than broad daily direction.",
+    "Evidence is strong but mostly concentrated on one governing venue: Binance.",
+    "Short-window crypto volatility can overwhelm otherwise comfortable price cushion assumptions."
+  ],
+  "key_assumptions": [
+    "BTC/USDT avoids a roughly 5.8%+ downside move before the settlement minute.",
+    "Binance candle mechanics used by Polymarket align with the documented Binance kline interpretation.",
+    "No Binance-specific anomaly distorts the relevant 1-minute close."
+  ],
+  "main_logical_chain": [
+    "Verify the exact contract mechanics and governing source of truth.",
+    "Confirm Binance kline/close mechanics and timezone mapping.",
+    "Spot-check live Binance BTCUSDT price versus the 68,000 threshold.",
+    "Assess whether any remaining catalyst before noon ET is likely to erase a ~4,200 point cushion.",
+    "Conclude Yes remains highly likely but with residual tail risk slightly larger than the market implies."
+  ],
+  "main_thesis": "BTC/USDT is far enough above 68,000 that Yes remains the base case unless a sharp negative catalyst hits before the April 14 noon ET settlement candle.",
+  "own_probability": 0.93,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "Governing source of truth: Binance market data for BTC/USDT, as referenced by the Polymarket rules.",
+    "The strongest disconfirming consideration is simple: Bitcoin can move 5-6% in less than a day."
+  ],
+  "reasoning_mode": [
+    "catalyst_analysis",
+    "contract_interpretation",
+    "risk_management"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260413-f68a8c5c",
+    "dispatch_id": "dispatch-case-20260413-f68a8c5c-20260413T165914Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "b385bd79-0e3b-4ab3-8192-3ef05c43b2b0",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260413-f68a8c5c/researcher-analyses/2026-04-13/dispatch-case-20260413-f68a8c5c-20260413T165914Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "5d7b6998f3e17a56c4e52a6ba737cdb2095ead191aef3dea13f8c1583d02bbbc"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality direct sourcing on rules and Binance mechanics, with medium evidence independence because the checks still trace back to Binance as the governing venue.",
+  "strongest_disconfirmers": [
+    "Bitcoin can move 5-6% in less than a day, and this contract settles on a single one-minute exchange-specific close.",
+    "A macro shock, crypto-specific negative headline, liquidation cascade, or Binance-specific dislocation could still flip the outcome."
+  ],
+  "strongest_supports": [
+    "Polymarket rules explicitly point to Binance BTC/USDT 12:00 ET 1-minute candle close as the governing source of truth.",
+    "Direct Binance endpoint check showed BTCUSDT around 72,200 on April 13, materially above the 68,000 strike.",
+    "No obvious scheduled high-information catalyst before settlement naturally points to a >5% downside move."
+  ],
+  "timing_relevance": "This is mainly a residual-catalyst and path-to-settlement market now: absent a sharp adverse trigger before noon ET, time decay favors Yes.",
+  "unresolved_ambiguities": [
+    "Minor operational ambiguity remains around website chart display versus API retrieval conventions, though they should normally align.",
+    "The exact realized April 14 12:00 ET close is not yet known."
+  ],
+  "what_would_change_view": "A sharp break toward/below 70k, a major adverse macro/crypto headline, or evidence of settlement-mechanics mismatch would reduce the estimate materially."
+}

@@ -42,6 +42,15 @@ FOCUS_HINT_NORMALIZATION = {
     "validate_price_calculation_method": ["settlement_mechanics_check"],
     "confirm_official_ranking_update": ["official_source_verification", "date_timing_check"],
     "confirm_metric_threshold_method": ["source_of_truth_check"],
+    "verify_utc_conversion": ["date_timing_check", "settlement_mechanics_check"],
+    "check_binance_candle_close": ["official_source_verification", "settlement_mechanics_check"],
+    "exclude_other_exchanges": ["source_of_truth_check"],
+    "verify_on_chain_price_history": ["official_source_verification"],
+    "check_exchange_rules": ["settlement_mechanics_check"],
+    "verify_exact_btc/usdt_pair": ["source_of_truth_check"],
+    "check_et_1200_utc_alignment": ["date_timing_check"],
+    "confirm_close_price_logic": ["settlement_mechanics_check"],
+    "authoritative_direct": ["authoritative_source_first", "official_source_verification"],
 }
 
 CANONICAL_FOCUS_HINTS = {
@@ -56,6 +65,69 @@ CANONICAL_FOCUS_HINTS = {
     "authoritative_source_first",
     "official_source_verification",
     "settlement_mechanics_check",
+}
+
+FOCUS_HINT_PRIORITY = {
+    "official_source_verification": 10,
+    "authoritative_source_first": 20,
+    "source_of_truth_check": 30,
+    "settlement_mechanics_check": 40,
+    "date_timing_check": 50,
+    "resolution_audit": 60,
+    "multi_condition_check": 70,
+    "attribution_check": 80,
+    "independent_confirmation": 90,
+    "disconfirming_source_required": 100,
+    "extra_verification": 110,
+}
+
+CANONICAL_RATIONALES = {
+    "extreme_market_probability",
+    "date_sensitive_resolution",
+    "explicit_exclusion_rules",
+    "attribution_requirement",
+    "consensus_reporting_dependency",
+    "multi_condition_contract",
+    "geopolitics_reporting_sensitivity",
+    "authoritative_source_available",
+    "authoritative_source_with_fallback",
+    "settlement_mechanics_complexity",
+    "structured_settlement_guard",
+    "ambiguous_source_of_truth",
+    "heuristic_medium_band",
+    "official_and_consensus_cues",
+}
+
+RATIONALE_PRIORITY = {
+    "authoritative_source_available": 10,
+    "authoritative_source_with_fallback": 20,
+    "settlement_mechanics_complexity": 30,
+    "date_sensitive_resolution": 40,
+    "explicit_exclusion_rules": 50,
+    "attribution_requirement": 60,
+    "consensus_reporting_dependency": 70,
+    "multi_condition_contract": 80,
+    "geopolitics_reporting_sensitivity": 90,
+    "extreme_market_probability": 100,
+    "ambiguous_source_of_truth": 110,
+    "official_and_consensus_cues": 120,
+    "structured_settlement_guard": 130,
+    "heuristic_medium_band": 140,
+}
+
+SOURCE_OF_TRUTH_ORDER = {
+    "authoritative_direct": 0,
+    "authoritative_with_fallback": 1,
+    "consensus_reporting_primary": 2,
+    "multi_source_ambiguous": 3,
+}
+
+DIFFICULTY_ORDER = {"low": 0, "medium": 1, "high": 2}
+EVIDENCE_ORDER = {
+    "1_authoritative": 0,
+    "2_meaningful": 1,
+    "3_meaningful": 2,
+    "direct_settlement_required": 3,
 }
 
 DATE_PATTERNS = [
@@ -207,6 +279,10 @@ def count_matches(patterns: list[str], text: str) -> int:
     return sum(1 for pattern in patterns if re.search(pattern, text, re.IGNORECASE | re.DOTALL))
 
 
+def _priority_sort(values: list[str], priority_map: dict[str, int]) -> list[str]:
+    return sorted(dict.fromkeys(values), key=lambda item: (priority_map.get(item, 9999), item))
+
+
 def normalize_focus_hints(focus_hints: list[str]) -> list[str]:
     normalized: list[str] = []
     for raw_hint in focus_hints or []:
@@ -220,9 +296,36 @@ def normalize_focus_hints(focus_hints: list[str]) -> list[str]:
             normalized.extend(mapped)
         elif hint in CANONICAL_FOCUS_HINTS:
             normalized.append(hint)
-        else:
-            normalized.append(hint)
-    return list(dict.fromkeys(normalized))
+    return _priority_sort(normalized, FOCUS_HINT_PRIORITY)
+
+
+def _normalize_rationale_item(item: str) -> str | None:
+    text = item.strip().lower().replace('-', '_').replace(' ', '_')
+    if not text:
+        return None
+    if text in CANONICAL_RATIONALES:
+        return text
+
+    pattern_map = [
+        (r"extreme.*probability|market_implied_probability_is_extreme", "extreme_market_probability"),
+        (r"date.*deadline|date_specific|deadline_sensitive", "date_sensitive_resolution"),
+        (r"explicit_exclusions|narrow_qualifying_criteria|exclusion", "explicit_exclusion_rules"),
+        (r"attribution|identity_requirement", "attribution_requirement"),
+        (r"consensus_reporting|official_statements", "consensus_reporting_dependency"),
+        (r"multiple_conditions|multi_condition", "multi_condition_contract"),
+        (r"geopolitics|conflict|public_reporting_sensitive", "geopolitics_reporting_sensitivity"),
+        (r"authoritative_source_available|authoritative_source_appears_primary|authoritative_source", "authoritative_source_available"),
+        (r"fallback_reporting|authoritative_with_fallback", "authoritative_source_with_fallback"),
+        (r"settlement_mechanics|structured_settlement", "settlement_mechanics_complexity"),
+        (r"medium_band", "heuristic_medium_band"),
+        (r"ambiguous.*source_of_truth|source_of_truth.*ambiguous", "ambiguous_source_of_truth"),
+        (r"official.*consensus|consensus.*official", "official_and_consensus_cues"),
+        (r"structured_settlement_mechanics_warrant_conservative_classification|settlement_guard", "structured_settlement_guard"),
+    ]
+    for pattern, canonical in pattern_map:
+        if re.search(pattern, text):
+            return canonical
+    return None
 
 
 def normalize_rationale(value) -> list[str]:
@@ -230,11 +333,14 @@ def normalize_rationale(value) -> list[str]:
         value = [value]
     if not isinstance(value, list):
         return []
-    cleaned = []
+    cleaned: list[str] = []
     for item in value:
-        if isinstance(item, str) and item.strip():
-            cleaned.append(item.strip())
-    return list(dict.fromkeys(cleaned))
+        if not isinstance(item, str):
+            continue
+        canonical = _normalize_rationale_item(item)
+        if canonical:
+            cleaned.append(canonical)
+    return _priority_sort(cleaned, RATIONALE_PRIORITY)
 
 
 def heuristic_classify(payload: dict) -> dict:
@@ -253,27 +359,27 @@ def heuristic_classify(payload: dict) -> dict:
         difficulty_score += 1
         risk_score += 1
         focus_hints.append("extra_verification")
-        rationale.append("market-implied probability is extreme")
+        rationale.append("extreme_market_probability")
 
     if has_any(DATE_PATTERNS, text):
         difficulty_score += 1
         risk_score += 1
         focus_hints.append("date_timing_check")
-        rationale.append("date-specific or deadline-sensitive market")
+        rationale.append("date_sensitive_resolution")
 
     has_exclusions = has_any(EXCLUSION_PATTERNS, text)
     if has_exclusions:
         difficulty_score += 1
         risk_score += 2
         focus_hints.append("resolution_audit")
-        rationale.append("resolution wording contains explicit exclusions or narrow qualifying criteria")
+        rationale.append("explicit_exclusion_rules")
 
     has_attribution = has_any(ATTRIBUTION_PATTERNS, text)
     if has_attribution:
         difficulty_score += 1
         risk_score += 1
         focus_hints.append("attribution_check")
-        rationale.append("contract includes attribution or identity requirements")
+        rationale.append("attribution_requirement")
 
     has_consensus_reporting = has_any(CONSENSUS_PATTERNS, text)
     has_authoritative_fallback = has_any(AUTHORITATIVE_FALLBACK_PATTERNS, text)
@@ -282,13 +388,13 @@ def heuristic_classify(payload: dict) -> dict:
         difficulty_score += 1
         risk_score += 2
         focus_hints.append("source_of_truth_check")
-        rationale.append("resolution depends on official statements or consensus reporting")
+        rationale.append("consensus_reporting_dependency")
 
     if has_any(MULTI_CONDITION_PATTERNS, text):
         difficulty_score += 1
         risk_score += 1
         focus_hints.append("multi_condition_check")
-        rationale.append("contract appears to require multiple conditions to resolve yes")
+        rationale.append("multi_condition_contract")
 
     geo_strong_matches = count_matches(GEO_STRONG_PATTERNS, text)
     geo_weak_matches = count_matches(GEO_WEAK_PATTERNS, text)
@@ -298,20 +404,20 @@ def heuristic_classify(payload: dict) -> dict:
         difficulty_score += 1
         risk_score += 1
         focus_hints.append("independent_confirmation")
-        rationale.append("domain appears geopolitics / conflict / public-reporting sensitive")
+        rationale.append("geopolitics_reporting_sensitivity")
 
     official_source_like = has_any(OFFICIAL_SOURCE_PATTERNS, text) or any(
         token in title for token in ["netflix", "youtube", "settle at", "top 10", "box office", "box score", "subscribers"]
     )
     if official_source_like:
         focus_hints.append("authoritative_source_first")
-        rationale.append("market may be resolvable from an authoritative source-of-truth surface")
+        rationale.append("authoritative_source_available")
         difficulty_score -= 1
         risk_score -= 1
         if has_authoritative_fallback:
             difficulty_score -= 1
             risk_score -= 1
-            rationale.append("authoritative source appears primary and consensus reporting looks like fallback language")
+            rationale.append("authoritative_source_with_fallback")
 
     difficulty_score = max(difficulty_score, 0)
     risk_score = max(risk_score, 0)
@@ -351,7 +457,7 @@ def heuristic_classify(payload: dict) -> dict:
 
     if has_settlement_mechanics:
         focus_hints.append("settlement_mechanics_check")
-        rationale.append("resolution depends on structured settlement mechanics rather than a simple point-in-time reading")
+        rationale.append("settlement_mechanics_complexity")
         if difficulty_class == "low":
             difficulty_class = "medium"
         if resolution_risk == "low":
@@ -359,7 +465,7 @@ def heuristic_classify(payload: dict) -> dict:
         if evidence_floor == "1_authoritative":
             evidence_floor = "2_meaningful"
         extra_verification_required = True
-        ambiguity_reasons.append("structured settlement mechanics warrant conservative classification")
+        ambiguity_reasons.append("structured_settlement_guard")
 
     if difficulty_class == "high":
         focus_hints.extend(["disconfirming_source_required", "independent_confirmation"])
@@ -371,13 +477,13 @@ def heuristic_classify(payload: dict) -> dict:
     )
 
     if difficulty_class == "medium":
-        ambiguity_reasons.append("heuristic classification landed in medium band")
+        ambiguity_reasons.append("heuristic_medium_band")
     if source_of_truth_class == "authoritative_with_fallback":
-        ambiguity_reasons.append("authoritative source with fallback reporting may be over- or under-classified")
+        ambiguity_reasons.append("authoritative_source_with_fallback")
     if source_of_truth_class == "multi_source_ambiguous":
-        ambiguity_reasons.append("source of truth classification is ambiguous")
+        ambiguity_reasons.append("ambiguous_source_of_truth")
     if official_source_like and has_consensus_reporting and difficulty_class != "low":
-        ambiguity_reasons.append("official-source cues and consensus-reporting cues both present")
+        ambiguity_reasons.append("official_and_consensus_cues")
 
     heuristic_confidence = "high"
     if ambiguity_reasons:
@@ -401,7 +507,7 @@ def heuristic_classify(payload: dict) -> dict:
         "source_of_truth_class": source_of_truth_class,
         "classifier_source": "heuristic",
         "classifier_model": None,
-        "classifier_version": "v2-hybrid-ready",
+        "classifier_version": "v3-hybrid-ready",
     }
     validate_profile(profile)
     return {
@@ -467,55 +573,131 @@ def model_available(endpoint: str, model: str, timeout_seconds: float) -> tuple[
     return True, None
 
 
-def merge_profiles(heuristic_profile: dict, model_profile: dict) -> dict:
+def _more_conservative_value(heuristic_value: str, model_value: str, order: dict[str, int]) -> str:
+    if heuristic_value not in order:
+        return model_value
+    if model_value not in order:
+        return heuristic_value
+    return model_value if order[model_value] > order[heuristic_value] else heuristic_value
+
+
+def merge_focus_hints(heuristic_hints: list[str], model_hints: list[str], *, heuristic_confidence: str, model_confidence: str | None) -> list[str]:
+    base = normalize_focus_hints(heuristic_hints or [])
+    if model_confidence not in {"medium", "high"}:
+        return base[:5]
+    extra = normalize_focus_hints(model_hints or [])
+    if heuristic_confidence == "high":
+        return base[:5]
+    merged = _priority_sort(base + extra, FOCUS_HINT_PRIORITY)
+    return merged[:5]
+
+
+def merge_rationale(heuristic_rationale: list[str], model_rationale: list[str], *, heuristic_confidence: str, model_confidence: str | None) -> list[str]:
+    base = normalize_rationale(heuristic_rationale or [])
+    if model_confidence not in {"medium", "high"}:
+        return base[:4]
+    extra = normalize_rationale(model_rationale or [])
+    if heuristic_confidence == "high":
+        return base[:4]
+    merged = _priority_sort(base + extra, RATIONALE_PRIORITY)
+    return merged[:4]
+
+
+def merge_source_of_truth_class(heuristic_source: str | None, model_source: str | None, *, heuristic_confidence: str, model_confidence: str | None) -> str | None:
+    if heuristic_source not in VALID_SOURCE_OF_TRUTH:
+        return model_source if model_source in VALID_SOURCE_OF_TRUTH else heuristic_source
+    if model_source not in VALID_SOURCE_OF_TRUTH:
+        return heuristic_source
+    if heuristic_confidence == "high":
+        return heuristic_source
+    if heuristic_source == model_source:
+        return heuristic_source
+    if heuristic_source == "multi_source_ambiguous" and heuristic_confidence == "low" and model_confidence == "high":
+        return model_source
+    if model_confidence == "high" and SOURCE_OF_TRUTH_ORDER[model_source] > SOURCE_OF_TRUTH_ORDER[heuristic_source]:
+        return model_source
+    return heuristic_source
+
+
+def merge_profiles(heuristic_profile: dict, model_profile: dict, *, heuristic_confidence: str, model_confidence: str | None) -> dict:
     merged = dict(heuristic_profile)
-
-    # Safe refinement: preserve conservative heuristic defaults on edge cases.
-    for key in ["source_of_truth_class", "focus_hints", "difficulty_rationale"]:
-        if key in model_profile:
-            merged[key] = model_profile[key]
-
     heuristic_hard = heuristic_profile["difficulty_class"] == "high" or heuristic_profile["resolution_risk"] == "high"
     heuristic_mediumish = heuristic_profile["difficulty_class"] == "medium" or heuristic_profile["resolution_risk"] == "medium"
-    model_difficulty = model_profile.get("difficulty_class")
-    model_risk = model_profile.get("resolution_risk")
     settlement_guard = "settlement_mechanics_check" in (heuristic_profile.get("focus_hints") or [])
+    model_confident = model_confidence in {"medium", "high"}
+    detail_lock = heuristic_hard or (settlement_guard and heuristic_mediumish)
+    detail_confidence = "high" if detail_lock else heuristic_confidence
 
-    if heuristic_hard:
-        # For obvious hard cases, allow stricter but not looser adjustments.
+    merged["source_of_truth_class"] = merge_source_of_truth_class(
+        heuristic_profile.get("source_of_truth_class"),
+        model_profile.get("source_of_truth_class"),
+        heuristic_confidence=detail_confidence,
+        model_confidence=model_confidence,
+    )
+    merged["focus_hints"] = merge_focus_hints(
+        heuristic_profile.get("focus_hints") or [],
+        model_profile.get("focus_hints") or [],
+        heuristic_confidence=detail_confidence,
+        model_confidence=model_confidence,
+    )
+    merged["difficulty_rationale"] = merge_rationale(
+        heuristic_profile.get("difficulty_rationale") or [],
+        model_profile.get("difficulty_rationale") or [],
+        heuristic_confidence=detail_confidence,
+        model_confidence=model_confidence,
+    )
+
+    if heuristic_confidence == "high":
+        if model_confident:
+            if model_profile.get("difficulty_class") in VALID_DIFFICULTY:
+                merged["difficulty_class"] = _more_conservative_value(heuristic_profile["difficulty_class"], model_profile["difficulty_class"], DIFFICULTY_ORDER)
+            if model_profile.get("resolution_risk") in VALID_RISK:
+                merged["resolution_risk"] = _more_conservative_value(heuristic_profile["resolution_risk"], model_profile["resolution_risk"], DIFFICULTY_ORDER)
+            if model_profile.get("evidence_floor") in VALID_EVIDENCE:
+                merged["evidence_floor"] = _more_conservative_value(heuristic_profile["evidence_floor"], model_profile["evidence_floor"], EVIDENCE_ORDER)
+            merged["extra_verification_required"] = bool(heuristic_profile["extra_verification_required"] or model_profile.get("extra_verification_required"))
+    elif heuristic_hard:
         if model_profile.get("evidence_floor") == "direct_settlement_required":
             merged["evidence_floor"] = "direct_settlement_required"
         merged["extra_verification_required"] = True
     elif settlement_guard and heuristic_mediumish:
-        # Settlement-mechanics markets should not be casually downgraded to low.
-        if model_profile.get("evidence_floor") in VALID_EVIDENCE:
-            merged["evidence_floor"] = model_profile["evidence_floor"]
+        if model_profile.get("evidence_floor") in VALID_EVIDENCE and model_confident:
+            merged["evidence_floor"] = _more_conservative_value(heuristic_profile["evidence_floor"], model_profile["evidence_floor"], EVIDENCE_ORDER)
         merged["difficulty_class"] = heuristic_profile["difficulty_class"]
         merged["resolution_risk"] = heuristic_profile["resolution_risk"]
         merged["extra_verification_required"] = heuristic_profile["extra_verification_required"]
     else:
-        # Conservative merge: prefer medium/high over low on edge cases.
-        if model_difficulty in VALID_DIFFICULTY:
-            if heuristic_mediumish and model_difficulty == "low":
-                merged["difficulty_class"] = heuristic_profile["difficulty_class"]
-            else:
-                merged["difficulty_class"] = model_difficulty
-        if model_risk in VALID_RISK:
-            if heuristic_mediumish and model_risk == "low":
-                merged["resolution_risk"] = heuristic_profile["resolution_risk"]
-            else:
-                merged["resolution_risk"] = model_risk
-        if model_profile.get("evidence_floor") in VALID_EVIDENCE:
-            merged["evidence_floor"] = model_profile["evidence_floor"]
-        if isinstance(model_profile.get("extra_verification_required"), bool):
-            if heuristic_mediumish and model_profile.get("extra_verification_required") is False:
-                merged["extra_verification_required"] = heuristic_profile["extra_verification_required"]
-            else:
-                merged["extra_verification_required"] = model_profile["extra_verification_required"]
+        if model_confident:
+            model_difficulty = model_profile.get("difficulty_class")
+            model_risk = model_profile.get("resolution_risk")
+            if model_difficulty in VALID_DIFFICULTY:
+                if heuristic_mediumish and model_difficulty == "low":
+                    merged["difficulty_class"] = heuristic_profile["difficulty_class"]
+                elif heuristic_confidence == "low" and model_confidence == "high":
+                    merged["difficulty_class"] = model_difficulty
+                else:
+                    merged["difficulty_class"] = _more_conservative_value(heuristic_profile["difficulty_class"], model_difficulty, DIFFICULTY_ORDER)
+            if model_risk in VALID_RISK:
+                if heuristic_mediumish and model_risk == "low":
+                    merged["resolution_risk"] = heuristic_profile["resolution_risk"]
+                elif heuristic_confidence == "low" and model_confidence == "high":
+                    merged["resolution_risk"] = model_risk
+                else:
+                    merged["resolution_risk"] = _more_conservative_value(heuristic_profile["resolution_risk"], model_risk, DIFFICULTY_ORDER)
+            if model_profile.get("evidence_floor") in VALID_EVIDENCE:
+                if heuristic_confidence == "low" and model_confidence == "high":
+                    merged["evidence_floor"] = model_profile["evidence_floor"]
+                else:
+                    merged["evidence_floor"] = _more_conservative_value(heuristic_profile["evidence_floor"], model_profile["evidence_floor"], EVIDENCE_ORDER)
+            if isinstance(model_profile.get("extra_verification_required"), bool):
+                if heuristic_confidence == "low" and model_confidence == "high":
+                    merged["extra_verification_required"] = model_profile["extra_verification_required"]
+                else:
+                    merged["extra_verification_required"] = bool(heuristic_profile["extra_verification_required"] or model_profile["extra_verification_required"])
 
     merged["classifier_source"] = "hybrid"
     merged["classifier_model"] = model_profile.get("classifier_model")
-    merged["classifier_version"] = "v2-hybrid"
+    merged["classifier_version"] = "v3-hybrid"
     validate_profile(merged)
     return merged
 
@@ -534,6 +716,7 @@ def classify(payload: dict, *, mode: str, endpoint: str, model: str, timeout_sec
             "mode": mode,
             "fallback_reason": None,
             "model_confidence": None,
+            "merge_policy": "confidence_gated_conservative_v3",
         },
     }
 
@@ -562,11 +745,17 @@ def classify(payload: dict, *, mode: str, endpoint: str, model: str, timeout_sec
         "source_of_truth_class": model_result.get("source_of_truth_class"),
         "classifier_source": "hybrid",
         "classifier_model": model,
-        "classifier_version": "v2-hybrid",
+        "classifier_version": "v3-hybrid",
     }
     try:
         validate_profile(model_profile)
-        merged_profile = merge_profiles(heuristic_profile, model_profile)
+        model_confidence = model_result.get("model_confidence") if model_result.get("model_confidence") in VALID_MODEL_CONFIDENCE else None
+        merged_profile = merge_profiles(
+            heuristic_profile,
+            model_profile,
+            heuristic_confidence=heuristic_summary.get("heuristic_confidence") or "low",
+            model_confidence=model_confidence,
+        )
     except Exception as exc:  # noqa: BLE001
         result["model_summary"] = {
             "used": False,
@@ -574,6 +763,7 @@ def classify(payload: dict, *, mode: str, endpoint: str, model: str, timeout_sec
             "fallback_reason": f"invalid model output: {exc}",
             "model_confidence": model_result.get("model_confidence") if model_result.get("model_confidence") in VALID_MODEL_CONFIDENCE else None,
             "raw_model_result": model_result,
+            "merge_policy": "confidence_gated_conservative_v3",
         }
         return result
 
@@ -582,8 +772,9 @@ def classify(payload: dict, *, mode: str, endpoint: str, model: str, timeout_sec
         "used": True,
         "mode": mode,
         "fallback_reason": None,
-        "model_confidence": model_result.get("model_confidence") if model_result.get("model_confidence") in VALID_MODEL_CONFIDENCE else None,
+        "model_confidence": model_confidence,
         "raw_model_result": model_result,
+        "merge_policy": "confidence_gated_conservative_v3",
     }
     return result
 

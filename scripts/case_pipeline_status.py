@@ -192,6 +192,71 @@ def maybe_post_terminal_topic_marker(snapshot: dict[str, Any]) -> dict[str, Any]
         }
 
 
+def build_case_pipeline_followup_plan(previous_snapshot: dict[str, Any], snapshot: dict[str, Any]) -> dict[str, dict[str, Any]]:
+    previous_stage_statuses = previous_snapshot.get('stage_statuses') if isinstance(previous_snapshot.get('stage_statuses'), dict) else {}
+    current_stage_statuses = snapshot.get('stage_statuses') if isinstance(snapshot.get('stage_statuses'), dict) else {}
+    previous_terminal_summary = previous_snapshot.get('terminal_summary') if isinstance(previous_snapshot.get('terminal_summary'), dict) else {}
+    current_terminal_summary = snapshot.get('terminal_summary') if isinstance(snapshot.get('terminal_summary'), dict) else {}
+    previous_helper_status = previous_snapshot.get('helper_status') if isinstance(previous_snapshot.get('helper_status'), dict) else {}
+
+    materialize_changed = any([
+        str(previous_snapshot.get('dispatch_id') or '') != str(snapshot.get('dispatch_id') or ''),
+        str(previous_snapshot.get('status') or '') != str(snapshot.get('status') or ''),
+        str(previous_snapshot.get('current_stage') or '') != str(snapshot.get('current_stage') or ''),
+        previous_stage_statuses != current_stage_statuses,
+        str(previous_snapshot.get('market_id') or '') != str(snapshot.get('market_id') or ''),
+        str(previous_snapshot.get('market_title') or '') != str(snapshot.get('market_title') or ''),
+        str(previous_snapshot.get('completed_at') or '') != str(snapshot.get('completed_at') or ''),
+    ])
+
+    previous_status = str(previous_snapshot.get('status') or '')
+    current_status = str(snapshot.get('status') or '')
+    previous_terminal_helper = previous_helper_status.get('post_case_terminal_topic_marker') if isinstance(previous_helper_status.get('post_case_terminal_topic_marker'), dict) else {}
+    terminal_marker_needed = (
+        current_status in {'pipeline_completed', 'pipeline_failed', 'pipeline_skipped'}
+        and not current_terminal_summary.get('topic_terminal_marker_posted_at')
+        and (
+            previous_status != current_status
+            or previous_terminal_summary.get('topic_terminal_marker_posted_at') != current_terminal_summary.get('topic_terminal_marker_posted_at')
+            or not previous_terminal_helper.get('ok', False)
+        )
+    )
+
+    return {
+        'materialize_case_swarm_artifacts': {
+            'run': materialize_changed,
+            'reason': 'meaningful_pipeline_state_change' if materialize_changed else 'no_material_state_change',
+        },
+        'post_case_terminal_topic_marker': {
+            'run': terminal_marker_needed,
+            'reason': 'entered_or_updated_terminal_state' if terminal_marker_needed else 'no_new_terminal_marker_needed',
+        },
+    }
+
+
+def run_case_pipeline_followups(snapshot: dict[str, Any], *, previous_snapshot: dict[str, Any] | None = None) -> dict[str, Any]:
+    previous_snapshot = previous_snapshot or {}
+    plan = build_case_pipeline_followup_plan(previous_snapshot, snapshot)
+    helper_status = snapshot.get('helper_status') if isinstance(snapshot.get('helper_status'), dict) else {}
+    if not helper_status and isinstance(previous_snapshot.get('helper_status'), dict):
+        helper_status = dict(previous_snapshot.get('helper_status') or {})
+    case_key = str(snapshot.get('case_key') or '').strip()
+
+    if plan['materialize_case_swarm_artifacts']['run']:
+        materialize_result = maybe_materialize_case_swarm_artifacts(snapshot)
+        if case_key:
+            record_helper_status(case_key, 'materialize_case_swarm_artifacts', materialize_result)
+        helper_status['materialize_case_swarm_artifacts'] = materialize_result
+
+    if plan['post_case_terminal_topic_marker']['run']:
+        terminal_marker_result = maybe_post_terminal_topic_marker(snapshot)
+        if case_key:
+            record_helper_status(case_key, 'post_case_terminal_topic_marker', terminal_marker_result)
+        helper_status['post_case_terminal_topic_marker'] = terminal_marker_result
+
+    return helper_status
+
+
 def _normalize_terminal_payload(payload: dict[str, Any]) -> None:
     status = str(payload.get("status") or "").strip()
     stage_statuses = payload.setdefault("stage_statuses", _default_stage_statuses())
@@ -280,14 +345,41 @@ def update_case_pipeline_status(
             timeline.append(entry)
             payload["last_event"] = entry
         snapshot = dict(payload)
-    materialize_result = maybe_materialize_case_swarm_artifacts(snapshot)
-    terminal_marker_result = maybe_post_terminal_topic_marker(snapshot)
-    record_helper_status(normalized_case_key, 'materialize_case_swarm_artifacts', materialize_result)
-    record_helper_status(normalized_case_key, 'post_case_terminal_topic_marker', terminal_marker_result)
-    snapshot['helper_status'] = {
-        'materialize_case_swarm_artifacts': materialize_result,
-        'post_case_terminal_topic_marker': terminal_marker_result,
-    }
+    return snapshot
+
+
+def update_case_pipeline_status_with_followups(
+    *,
+    case_key: str,
+    dispatch_id: str = "",
+    market_id: str = "",
+    market_title: str = "",
+    status: str | None = None,
+    current_stage: str | None = None,
+    stage_status_patch: dict[str, str] | None = None,
+    runner_id: str = "",
+    batch_run_id: str = "",
+    message: str = "",
+    extra: dict[str, Any] | None = None,
+    terminal_summary_patch: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    normalized_case_key = canonicalize_case_key(case_key, dispatch_id=dispatch_id)
+    previous_snapshot = load_json_if_exists(pipeline_status_path(normalized_case_key))
+    snapshot = update_case_pipeline_status(
+        case_key=case_key,
+        dispatch_id=dispatch_id,
+        market_id=market_id,
+        market_title=market_title,
+        status=status,
+        current_stage=current_stage,
+        stage_status_patch=stage_status_patch,
+        runner_id=runner_id,
+        batch_run_id=batch_run_id,
+        message=message,
+        extra=extra,
+        terminal_summary_patch=terminal_summary_patch,
+    )
+    snapshot['helper_status'] = run_case_pipeline_followups(snapshot, previous_snapshot=previous_snapshot)
     return snapshot
 
 

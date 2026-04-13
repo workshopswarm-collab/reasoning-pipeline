@@ -1,0 +1,63 @@
+{
+  "qmd_tier": "tier2",
+  "qmd_used": true,
+  "query_profile": {
+    "difficulty_class": "high",
+    "prior_case_count": 0,
+    "prior_dispatch_count": 0,
+    "rerun_scope": null,
+    "run_kind": "novel",
+    "source_of_truth_class": "consensus_reporting_primary",
+    "suppress_same_case": true,
+    "suppress_same_market": false
+  },
+  "result_paths": [
+    "qualitative-db/20-entities/countries/israel.md",
+    "qualitative-db/20-entities/countries/lebanon.md",
+    "qualitative-db/30-drivers/diplomacy.md"
+  ],
+  "results": {
+    "driver_notes": [
+      {
+        "artifact_exists": true,
+        "path": "qualitative-db/30-drivers/diplomacy.md",
+        "retrieval_role": "mechanism",
+        "retrieval_score": 3.5,
+        "slug": "diplomacy",
+        "summary": "Diplomacy captures whether negotiation, signaling, coalition management, and state-to-state communication are opening or closing pathways to agreement, restraint, or coordinated action.",
+        "type": "driver",
+        "why_retrieved": "matched market description via driver alias `diplomacy`"
+      }
+    ],
+    "entity_notes": [
+      {
+        "artifact_exists": true,
+        "path": "qualitative-db/20-entities/countries/israel.md",
+        "retrieval_role": "canonical_context",
+        "retrieval_score": 6.0,
+        "slug": "israel",
+        "summary": "Israel is a high-impact geopolitical entity because regional conflict, alliance politics, security policy, and legal/international scrutiny repeatedly converge around it.",
+        "type": "entity",
+        "why_retrieved": "matched market title via entity alias `israel`"
+      },
+      {
+        "artifact_exists": true,
+        "path": "qualitative-db/20-entities/countries/lebanon.md",
+        "retrieval_role": "canonical_context",
+        "retrieval_score": 6.0,
+        "slug": "lebanon",
+        "summary": "Lebanon is a high-yield entity because financial collapse, political paralysis, and conflict spillover make it a recurrent fragility and escalation risk case.",
+        "type": "entity",
+        "why_retrieved": "matched market title via entity alias `lebanon`"
+      }
+    ],
+    "similar_cases": []
+  },
+  "retrieval_policy": {
+    "analog_second": true,
+    "artifact_existence_gating": true,
+    "canon_first": true,
+    "similar_case_strategy": "rerun_or_tier2_only"
+  },
+  "status": "ok"
+}

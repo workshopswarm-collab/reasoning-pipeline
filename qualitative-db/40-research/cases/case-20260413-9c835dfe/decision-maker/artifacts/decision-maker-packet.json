@@ -1,0 +1,157 @@
+{
+  "schema_version": "decision-packet/v1",
+  "generated_at": "2026-04-13T12:33:00-04:00",
+  "context": {
+    "case_key": "case-20260413-9c835dfe",
+    "dispatch_id": "dispatch-case-20260413-9c835dfe-20260413T162509Z",
+    "question": "MicroStrategy announces >1000 BTC purchase April 7-13?",
+    "market_id": "case-20260413-9c835dfe",
+    "market_title": "MicroStrategy announces >1000 BTC purchase April 7-13?",
+    "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260413-9c835dfe/synthesizer-agent/decision-handoff.md",
+    "source_syndicated_finding_path": "qualitative-db/40-research/cases/case-20260413-9c835dfe/synthesizer-agent/syndicated-finding.md",
+    "decision_maker_agent": "decision-maker",
+    "canonical_markdown_path": "decision-maker-packet.md",
+    "canonical_json_path": "artifacts/decision-maker-packet.json",
+    "external_market_id": "0xdd1101f985c5649c070c0acc370e72d48a1117a2d4775fd060526771c4c38e41",
+    "market_slug": "microstrategy-announces-1000-btc-purchase-april-7-13",
+    "platform": "polymarket",
+    "primary_market_url": "https://polymarket.com/event/microstrategy-announces-1000-btc-purchase-april-7-13",
+    "source_light_refresh_brief_path": "",
+    "refresh_mode": ""
+  },
+  "decision": {
+    "side": "yes",
+    "trade_authorization": "watch_only",
+    "position_policy": "hold_only",
+    "decision_readiness": "ready",
+    "primary_crux": "The bounded evidence strongly indicates an official Strategy disclosure stack showing a 2026-04-13 announcement for 13,927 BTC, which is far above threshold, so the event substance appears to have happened; the only meaningful remaining risk is a narrow timestamp/source-surface settlement technicality.",
+    "secondary_cruxes": [
+      "The reported amount is not close to threshold, so this is not a quantity-estimation problem but a qualification/timing problem.",
+      "Multiple upstream personas converge that the only live failure mode is whether the qualifying official disclosure was public within the ET window and accepted by resolvers.",
+      "Independent refresh in this turn was partially degraded because web search hit bot detection and the fetched strategy.com root did not expose the relevant page content directly, so I do not upgrade confidence beyond medium despite the strong handoff."
+    ],
+    "thesis_class": "edge_too_small"
+  },
+  "valuation": {
+    "fair_value_low": 0.93,
+    "fair_value_high": 0.985,
+    "fair_value_mid": 0.96,
+    "market_reference_price": 0.96,
+    "independent_verification_quality": "medium",
+    "compressed_toward_market_applied": true,
+    "compression_reason": "I keep fair value near market because the event substance appears overwhelmingly satisfied, but unresolved ET timestamp and qualifying-surface technicalities still justify a non-trivial haircut from certainty and prevent claiming a clear edge.",
+    "edge_mid_vs_market_pct_points": 0.0
+  },
+  "execution_semantics": {
+    "price_axis": "market_implied_true_prob",
+    "price_source": "market_snapshot_quote",
+    "rebalance_threshold_fraction": 0.1,
+    "allow_auto_reversal": false,
+    "valid_until": "2026-04-13T23:59:00-04:00",
+    "quote_staleness_seconds": 1800,
+    "time_horizon": "Same-day disclosure and settlement-confirmation window"
+  },
+  "risk_controls": {
+    "max_position_size_pct_bankroll": 0.015,
+    "max_additional_exposure_pct_bankroll": 0.0,
+    "max_single_order_pct_bankroll": 0.0,
+    "slippage_tolerance_bps": 40,
+    "liquidity_min_depth": 1000,
+    "correlation_bucket_limit_pct_bankroll": 0.05,
+    "confidence_level": "medium",
+    "portfolio_constraints": [
+      "Do not initiate fresh exposure from this packet because the remaining uncertainty is a narrow settlement technicality and the market is already pricing near fair value.",
+      "Existing aligned exposure may be held, but avoid adding unless a refreshed authoritative source clarifies the in-window qualifying announcement beyond current ambiguity.",
+      "Refresh official disclosure timing/source evidence before any new action if the market moves materially."
+    ],
+    "liquidity_caution": "low"
+  },
+  "bands": [
+    {
+      "name": "max_enter",
+      "min_p": 0,
+      "max_p": 0.84,
+      "target_exposure_fraction": 0,
+      "notes": "No autonomous entry from this packet; if the market were this low, a fresh packet with refreshed disclosure evidence would be required."
+    },
+    {
+      "name": "scaled_enter",
+      "min_p": 0.84,
+      "max_p": 0.92,
+      "target_exposure_fraction": 0,
+      "notes": "No autonomous entry authorized because current edge is too small relative to settlement-surface ambiguity."
+    },
+    {
+      "name": "hold",
+      "min_p": 0.92,
+      "max_p": 0.97,
+      "target_exposure_fraction": 0,
+      "notes": "Hold-only zone consistent with a likely Yes that is already well priced by the market."
+    },
+    {
+      "name": "trim",
+      "min_p": 0.97,
+      "max_p": 0.99,
+      "target_exposure_fraction": 0,
+      "notes": "Trim/avoid increasing as price moves above my fair-value midpoint into the technical-risk zone."
+    },
+    {
+      "name": "exit",
+      "min_p": 0.99,
+      "max_p": 1,
+      "target_exposure_fraction": 0,
+      "notes": "Exit/avoid at extreme prices because residual timestamp/source-surface technicality still prevents certainty."
+    }
+  ],
+  "invalidation": {
+    "thesis_breakers": [
+      "Authoritative evidence shows the qualifying official announcement was not public within the Apr 7-13 ET window.",
+      "Resolvers reject the purchases-page disclosure stack as insufficient under market rules.",
+      "The company corrects or withdraws the apparent 13,927 BTC disclosure."
+    ],
+    "market_structure_breakers": [
+      "A clarified market-rule interpretation requires a distinct official surface that the current disclosure stack does not satisfy.",
+      "Current executable pricing diverges materially from the 0.96 reference, making this packet stale for action decisions.",
+      "Later authoritative evidence materially changes the accepted announcement timestamp."
+    ],
+    "time_breakers": [
+      "This packet expires at valid_until unless refreshed with later official confirmation or settlement-relevant clarification.",
+      "If the market remains unresolved despite same-day official disclosure debate, re-underwrite with the latest accepted source evidence."
+    ],
+    "reversal_conditions": [
+      "Reverse only on fresh authoritative evidence that the in-window announcement requirement was not met.",
+      "Do not auto-reverse from this packet; require a new packet with refreshed source-of-truth evidence.",
+      "Suspend this packet if source-surface or timing assumptions are materially contradicted by official or resolver guidance."
+    ]
+  },
+  "epistemic_status": {
+    "key_uncertainties": [
+      "The main uncertainty is whether the official purchases-page plus linked filing/social stack cleanly counts as the qualifying announcement surface.",
+      "The exact ET timestamp of public availability is not independently audited in the bounded bundle.",
+      "Independent verification quality is only medium because my attempt to refresh supporting public sources was degraded by bot-detection and incomplete page extraction."
+    ],
+    "reasons_to_pass": [
+      "At 0.96, the market already prices the high-probability Yes outcome almost fully.",
+      "The remaining risk is mostly a settlement technicality, which is hard to monetize unless one has superior source-timing verification.",
+      "A small apparent edge can disappear entirely if resolvers adopt a narrower interpretation of qualifying announcement surface."
+    ],
+    "what_would_change_my_mind": [
+      "Direct authoritative confirmation of the public ET timestamp and accepted official surface would raise confidence toward near-certainty.",
+      "Evidence that the disclosure was posted outside the ET window or that resolvers reject the purchases page would lower fair value materially.",
+      "A materially cheaper market combined with better timestamp verification could justify authorization."
+    ],
+    "decision_quality": "good_not_clean"
+  },
+  "audit": {
+    "market_baseline_respected": true,
+    "action_bias_check_passed": true,
+    "self_preservation_bias_check_passed": true,
+    "one_sentence_rationale": "The substance of the event appears overwhelmingly satisfied by an official 13,927 BTC April 13 disclosure, but because the remaining risk is a narrow timestamp/source-surface technicality and the market already prices 96%, the disciplined output is hold/watch-only rather than fresh entry.",
+    "notes": "I treated synthesis as advisory, accepted the bounded official-disclosure evidence as strong on substance, and declined to claim a live edge because independent refresh in this turn was partially impaired and did not eliminate the residual qualifying-surface ambiguity.",
+    "structured_handoff_primary_used": true,
+    "prose_fallback_used": true,
+    "verification_mode_used": "targeted_escalation",
+    "additional_verification_performed": true,
+    "additional_verification_notes": "targeted_pack; tools:q=2,f=1,fam=1; web_search, web_fetch"
+  }
+}

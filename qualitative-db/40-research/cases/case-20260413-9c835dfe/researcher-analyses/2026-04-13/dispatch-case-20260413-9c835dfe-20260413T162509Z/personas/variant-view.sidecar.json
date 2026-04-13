@@ -1,0 +1,53 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Low independence among official-source checks because the page, filing link, and statement come from the same disclosure stack.",
+    "Confidence would drop if the public timestamp were shown to fall outside the window."
+  ],
+  "key_assumptions": [
+    "The official Strategy purchases page counts as valid official information under the contract.",
+    "The April 13 disclosure was public within the market window rather than a later retroactive update."
+  ],
+  "main_logical_chain": [
+    "The contract resolves on official announcements within April 7-13, not necessarily on execution timing.",
+    "Strategy's official disclosure stack shows a >1000 BTC announcement dated April 13.",
+    "Therefore the event should resolve Yes unless there is a narrow announcement-validity or timing problem."
+  ],
+  "main_thesis": "The market is basically right: Strategy appears to have officially disclosed a 13,927 BTC purchase on 2026-04-13, so the only serious residual risk is a narrow source-of-truth or timestamp edge case.",
+  "own_probability": 0.99,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "@Strategy has acquired 13,927 BTC for ~$1.00 billion... As of 4/12/2026, we hodl 780,897 $BTC...",
+    "The market resolves based on announcements made within the market's designated time frame regardless of when the actual purchases were made."
+  ],
+  "reasoning_mode": [
+    "contract_interpretation",
+    "variant_hypothesis"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260413-9c835dfe",
+    "dispatch_id": "dispatch-case-20260413-9c835dfe-20260413T162509Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "9121e3c6-f005-4128-93cc-a16e903fc68b",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260413-9c835dfe/researcher-analyses/2026-04-13/dispatch-case-20260413-9c835dfe-20260413T162509Z/personas/variant-view.md",
+    "source_persona_sha256": "ffc010fd9797e247199c19ef1bc858e99026e9a3b4ade24bf9f685e8028f0b5b"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality official evidence with medium independence and low source-of-truth ambiguity.",
+  "strongest_disconfirmers": [
+    "A timestamp or source-of-truth technicality could still matter if the apparent April 13 disclosure does not count for settlement."
+  ],
+  "strongest_supports": [
+    "Strategy's official purchases page shows a 2026-04-13 entry for 13,927 BTC.",
+    "The entry links a same-day filing artifact and includes official company disclosure text."
+  ],
+  "timing_relevance": "Critical: this is a date-window market and the remaining risk is almost entirely announcement timing/validity.",
+  "unresolved_ambiguities": [
+    "Whether settlement operators would require a specific official surface beyond the company page and linked filing.",
+    "Exact public timestamp was not independently timestamp-audited beyond the same-day official surfaces."
+  ],
+  "what_would_change_view": "Evidence that the April 13 disclosure was not public within the window, was erroneous, or does not count under settlement rules would reduce confidence materially."
+}

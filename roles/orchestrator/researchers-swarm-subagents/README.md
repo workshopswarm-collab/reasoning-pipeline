@@ -180,4 +180,4 @@ Treat `runtime/scripts/prepare_headless_telegram_dispatch.py` and `runtime/scrip
 For manual stepwise operation before enabling unattended automation, use:
 - `runtime/scripts/manual_batch_controller.py`
 
-That harness keeps the current architecture but gives an explicit control loop surface without turning the pipeline into a daemon or cron-driven service.
+That harness keeps the current architecture but gives an explicit control loop surface without turning the pipeline into a daemon or cron-driven service. Current useful subcommands include `launch-next`, `launch-case --case-id <uuid>`, and `launch-market --market-id <market-uuid>`.

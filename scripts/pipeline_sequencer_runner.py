@@ -1,0 +1,446 @@
+from __future__ import annotations
+
+import json
+import time
+from pathlib import Path
+from typing import Any
+
+from automation_control import load_control_file, resolve_sequencer_policy
+from automation_runtime_support import exclusive_lock
+from pipeline_automation_actions import manual_launch_case, manual_launch_market, manual_launch_next, run_light_refresh_update
+from pipeline_sequencer_candidates import classify_prepare_failure, decide_refresh_mode, select_refresh_case, select_resumable_case
+from pipeline_sequencer_periodic import maybe_run_periodic_tasks
+from pipeline_sequencer_progress import wait_for_case
+from pipeline_sequencer_state import (
+    active_quarantine_sets,
+    heartbeat_base,
+    load_quarantine_registry,
+    maybe_quarantine_failed_result,
+    prune_quarantine_entries,
+    save_quarantine_registry,
+    update_heartbeat_for_pass,
+    utc_now_iso,
+    write_heartbeat,
+)
+
+
+def effective_sequencer_policy(args: Any) -> dict[str, Any]:
+    policy = {
+        'enabled': True,
+        'resume_existing': bool(args.resume_existing),
+        'allow_new_case_claims': True,
+        'poll_seconds': float(args.poll_seconds),
+        'idle_seconds': float(args.idle_seconds),
+        'max_case_seconds': float(args.max_case_seconds),
+        'control_managed': bool(args.control_managed),
+        'control_file': str(Path(args.control_file).expanduser().resolve()),
+    }
+    if args.control_managed:
+        control_path = Path(args.control_file).expanduser().resolve()
+        control = load_control_file(control_path)
+        control_policy = resolve_sequencer_policy(control)
+        policy.update({
+            'enabled': bool(control_policy.get('enabled')),
+            'resume_existing': bool(control_policy.get('resume_existing')),
+            'allow_new_case_claims': bool(control_policy.get('allow_new_case_claims')),
+            'poll_seconds': float(control_policy.get('poll_seconds')),
+            'idle_seconds': float(control_policy.get('idle_seconds')),
+            'max_case_seconds': float(control_policy.get('max_case_seconds')),
+            'control_snapshot': control,
+            'automation_enabled': bool(control_policy.get('automation_enabled')),
+        })
+    return policy
+
+
+def assert_sequencer_launch_boundary(*, prepare_result: dict[str, Any], mode: str) -> None:
+    payload = prepare_result.get('payload') if isinstance(prepare_result.get('payload'), dict) else {}
+    prepared = payload.get('prepare_result') if isinstance(payload.get('prepare_result'), dict) else {}
+    case_payload = prepared.get('case') if isinstance(prepared.get('case'), dict) else {}
+    case_key = str(case_payload.get('case_key') or case_payload.get('case_id') or '').strip()
+    if not case_key:
+        raise RuntimeError(f'sequencer launch boundary violation ({mode}): canonical launch path returned no case key')
+
+
+
+def recover_case_after_launch_timeout(*, args: Any, policy: dict[str, Any], excluded_case_keys: set[str], excluded_market_ids: set[str], pretty: bool, status_label: str) -> dict[str, Any] | None:
+    resumable = select_resumable_case(excluded_case_keys=excluded_case_keys, excluded_market_ids=excluded_market_ids)
+    if not resumable:
+        return None
+    case_key = str(resumable.get('case_key') or '').strip()
+    if not case_key:
+        return None
+    case_result = wait_for_case(
+        case_key,
+        args=args,
+        poll_seconds=float(policy['poll_seconds']),
+        max_case_seconds=float(policy['max_case_seconds']),
+        pretty=pretty,
+    )
+    return {
+        'ok': bool(case_result.get('ok')),
+        'status': status_label,
+        'policy': policy,
+        'case_key': case_key,
+        'case_result': case_result,
+        'launch_timeout_recovered': True,
+    }
+
+
+
+def build_refresh_detected_marker(*, refresh_payload: dict[str, Any], refresh_plan: dict[str, Any]) -> str:
+    case_key = str(refresh_payload.get('case_key') or refresh_payload.get('latest_forecast_case_key') or '').strip()
+    market_title = str(refresh_payload.get('market_title') or refresh_payload.get('title') or '').strip()
+    mode = str(refresh_plan.get('mode') or '').strip() or 'full'
+    reasons = ','.join(str(item) for item in (refresh_plan.get('reasons') or []) if str(item).strip())
+    delta = refresh_payload.get('price_delta_pct_points')
+    if delta is None:
+        raw_delta = refresh_payload.get('price_delta')
+        try:
+            delta = round(float(raw_delta) * 100.0, 3) if raw_delta is not None else ''
+        except Exception:
+            delta = ''
+    return f"MATERIAL CHANGE DETECTED | case={case_key} | market={market_title} | refresh_mode={mode} | delta_pct_points={delta} | reasons={reasons}"
+
+
+
+def run_sequencer_pass(args: Any, policy: dict[str, Any], *, excluded_case_keys: set[str], excluded_market_ids: set[str]) -> dict[str, Any]:
+    if not policy.get('enabled', True):
+        return {
+            'ok': True,
+            'status': 'sequencer_disabled',
+            'policy': policy,
+        }
+
+    resumable = select_resumable_case(excluded_case_keys=excluded_case_keys, excluded_market_ids=excluded_market_ids) if policy.get('resume_existing') else None
+    if resumable:
+        case_key = str(resumable.get('case_key') or '').strip()
+        if not case_key:
+            raise RuntimeError('resumable pipeline status is missing case_key')
+        case_result = wait_for_case(
+            case_key,
+            args=args,
+            poll_seconds=float(policy['poll_seconds']),
+            max_case_seconds=float(policy['max_case_seconds']),
+            pretty=args.pretty,
+        )
+        return {
+            'ok': bool(case_result.get('ok')),
+            'status': 'processed_existing_case',
+            'policy': policy,
+            'case_key': case_key,
+            'case_result': case_result,
+        }
+
+    refresh_candidate = select_refresh_case(
+        pretty=args.pretty,
+        excluded_market_ids=excluded_market_ids,
+        excluded_case_keys=excluded_case_keys,
+    )
+    if refresh_candidate.get('ok'):
+        refresh_payload = refresh_candidate.get('payload') or {}
+        refresh_plan = decide_refresh_mode(refresh_payload)
+        refresh_mode = str(refresh_plan.get('mode') or 'light')
+
+        if refresh_mode == 'light':
+            refresh_case_key = str(refresh_payload.get('case_key') or refresh_payload.get('latest_forecast_case_key') or '').strip()
+            if not refresh_case_key:
+                return {
+                    'ok': False,
+                    'status': 'light_refresh_missing_case_key',
+                    'policy': policy,
+                    'refresh_candidate': refresh_candidate,
+                    'refresh_plan': refresh_plan,
+                }
+            light_refresh_result = run_light_refresh_update(refresh_case_key, pretty=args.pretty)
+            return {
+                'ok': bool(light_refresh_result.get('ok')),
+                'status': 'processed_light_refresh_case',
+                'policy': policy,
+                'case_key': refresh_case_key,
+                'refresh_candidate': refresh_candidate,
+                'refresh_plan': refresh_plan,
+                'light_refresh_result': light_refresh_result,
+            }
+
+        refresh_case_id = str(refresh_payload.get('case_id') or '').strip()
+        refresh_case_key = str(refresh_payload.get('case_key') or '').strip()
+        refresh_reasons = [str(item) for item in (refresh_plan.get('reasons') or []) if str(item).strip()]
+        refresh_price_delta_pct_points = ''
+        if refresh_payload.get('price_delta_pct_points') is not None:
+            refresh_price_delta_pct_points = str(refresh_payload.get('price_delta_pct_points'))
+        elif refresh_payload.get('price_delta') is not None:
+            try:
+                refresh_price_delta_pct_points = str(round(float(refresh_payload.get('price_delta')) * 100.0, 3))
+            except Exception:
+                refresh_price_delta_pct_points = ''
+        refresh_detected_marker = build_refresh_detected_marker(refresh_payload=refresh_payload, refresh_plan=refresh_plan)
+        if refresh_case_id:
+            prepared = manual_launch_case(
+                refresh_case_id,
+                pretty=args.pretty,
+                refresh_mode=refresh_mode,
+                refresh_reasons=refresh_reasons,
+                refresh_price_delta_pct_points=refresh_price_delta_pct_points,
+                refresh_detected_marker=refresh_detected_marker,
+            )
+        else:
+            prepared = manual_launch_market(
+                str(refresh_payload.get('market_id') or '').strip(),
+                pretty=args.pretty,
+                refresh_mode=refresh_mode,
+                refresh_reasons=refresh_reasons,
+                refresh_price_delta_pct_points=refresh_price_delta_pct_points,
+                refresh_detected_marker=refresh_detected_marker,
+            )
+        if not prepared:
+            return {
+                'ok': False,
+                'status': 'prepare_unknown_failure',
+                'policy': policy,
+                'refresh_candidate': refresh_candidate,
+                'refresh_plan': refresh_plan,
+            }
+        payload = prepared.get('payload') or {}
+        if not prepared.get('ok'):
+            failure_kind = classify_prepare_failure(prepared)
+            if failure_kind == 'prepare_launch_timed_out':
+                recovered = recover_case_after_launch_timeout(
+                    args=args,
+                    policy=policy,
+                    excluded_case_keys=excluded_case_keys,
+                    excluded_market_ids=excluded_market_ids,
+                    pretty=args.pretty,
+                    status_label='processed_refresh_case_after_launch_timeout',
+                )
+                if recovered is not None:
+                    recovered.update({
+                        'refresh_candidate': refresh_candidate,
+                        'refresh_plan': refresh_plan,
+                        'prepare_result': prepared,
+                    })
+                    return recovered
+            if failure_kind == 'open_case_failed':
+                failure_kind = 'refresh_open_case_failed'
+            return {
+                'ok': failure_kind in {'idle_pipeline_busy', 'idle_no_eligible_market'},
+                'status': failure_kind,
+                'policy': policy,
+                'refresh_candidate': refresh_candidate,
+                'refresh_plan': refresh_plan,
+                'prepare_result': prepared,
+            }
+
+        assert_sequencer_launch_boundary(prepare_result=prepared, mode='full_refresh')
+        prepare_result = payload.get('prepare_result') or {}
+        case_payload = prepare_result.get('case') or {}
+        case_key = str(case_payload.get('case_key') or refresh_case_key or case_payload.get('case_id') or '').strip()
+        if not case_key:
+            raise RuntimeError('refresh prepare_and_launch did not return a case_key')
+
+        case_result = wait_for_case(
+            case_key,
+            args=args,
+            poll_seconds=float(policy['poll_seconds']),
+            max_case_seconds=float(policy['max_case_seconds']),
+            pretty=args.pretty,
+        )
+        return {
+            'ok': bool(case_result.get('ok')),
+            'status': 'processed_refresh_case',
+            'policy': policy,
+            'case_key': case_key,
+            'refresh_candidate': refresh_candidate,
+            'refresh_plan': refresh_plan,
+            'prepare_result': prepared,
+            'case_result': case_result,
+        }
+
+    if not policy.get('allow_new_case_claims', False):
+        return {
+            'ok': True,
+            'status': 'claims_disabled_idle',
+            'policy': policy,
+        }
+
+    prepared = manual_launch_next(pretty=args.pretty)
+    if not prepared:
+        return {
+            'ok': False,
+            'status': 'prepare_unknown_failure',
+            'policy': policy,
+        }
+
+    payload = prepared.get('payload') or {}
+    if not prepared.get('ok'):
+        failure_kind = classify_prepare_failure(prepared)
+        if failure_kind == 'prepare_launch_timed_out':
+            recovered = recover_case_after_launch_timeout(
+                args=args,
+                policy=policy,
+                excluded_case_keys=excluded_case_keys,
+                excluded_market_ids=excluded_market_ids,
+                pretty=args.pretty,
+                status_label='processed_new_case_after_launch_timeout',
+            )
+            if recovered is not None:
+                recovered['prepare_result'] = prepared
+                return recovered
+        idle = failure_kind in {'idle_pipeline_busy', 'idle_no_eligible_market'}
+        return {
+            'ok': idle,
+            'status': failure_kind,
+            'policy': policy,
+            'prepare_result': prepared,
+        }
+
+    assert_sequencer_launch_boundary(prepare_result=prepared, mode='new_case')
+    prepare_result = payload.get('prepare_result') or {}
+    case_payload = prepare_result.get('case') or {}
+    case_key = str(case_payload.get('case_key') or case_payload.get('case_id') or '').strip()
+    if not case_key:
+        raise RuntimeError('prepare_and_launch did not return a case_key')
+
+    case_result = wait_for_case(
+        case_key,
+        args=args,
+        poll_seconds=float(policy['poll_seconds']),
+        max_case_seconds=float(policy['max_case_seconds']),
+        pretty=args.pretty,
+    )
+    return {
+        'ok': bool(case_result.get('ok')),
+        'status': 'processed_new_case',
+        'policy': policy,
+        'case_key': case_key,
+        'prepare_result': prepared,
+        'case_result': case_result,
+    }
+
+
+def should_count_processed(result: dict[str, Any]) -> bool:
+    return bool(result.get('ok')) and not bool(result.get('soft_failed')) and str(result.get('status') or '') in {
+        'processed_existing_case',
+        'processed_new_case',
+        'processed_refresh_case',
+        'processed_light_refresh_case',
+    }
+
+
+def build_single_pass_summary(result: dict[str, Any]) -> dict[str, Any]:
+    return {
+        'ok': bool(result.get('ok')),
+        'processed_cases': 1 if should_count_processed(result) else 0,
+        'results': [result],
+    }
+
+
+def build_loop_pass_payload(result: dict[str, Any], processed_cases: int, periodic_tasks: dict[str, Any]) -> dict[str, Any]:
+    return {
+        'ok': bool(result.get('ok')),
+        'processed_cases': processed_cases,
+        'periodic_tasks': periodic_tasks,
+        'pass_result': result,
+    }
+
+
+def execute_sequencer(args: Any) -> None:
+    lock_path = Path(args.lock_file).expanduser().resolve()
+    heartbeat_path = Path(args.heartbeat_file).expanduser().resolve()
+    heartbeat = heartbeat_base(args)
+    write_heartbeat(heartbeat_path, heartbeat)
+    try:
+        with exclusive_lock(lock_path, error_message=f'another sequencer instance already holds {lock_path}'):
+            heartbeat['state'] = 'running'
+            heartbeat['lock_acquired_at'] = utc_now_iso()
+            write_heartbeat(heartbeat_path, heartbeat)
+
+            if not args.loop:
+                heartbeat['last_loop_started_at'] = utc_now_iso()
+                write_heartbeat(heartbeat_path, heartbeat)
+                result = run_sequencer_pass(args, effective_sequencer_policy(args), excluded_case_keys=set(), excluded_market_ids=set())
+                heartbeat = update_heartbeat_for_pass(
+                    heartbeat,
+                    result=result,
+                    processed_cases=1 if should_count_processed(result) else 0,
+                    periodic_tasks={},
+                    excluded_case_keys=set(),
+                    excluded_market_ids=set(),
+                )
+                heartbeat['state'] = 'completed' if result.get('ok') else 'failed'
+                write_heartbeat(heartbeat_path, heartbeat)
+                summary = build_single_pass_summary(result)
+                print(json.dumps(summary, indent=2 if args.pretty else None))
+                if not summary['ok']:
+                    raise SystemExit(1)
+                return
+
+            processed = 0
+            last_resolution_sync_ts: float | None = None
+            last_brier_snapshot_ts: float | None = None
+            quarantine_path = Path(args.quarantine_file).expanduser().resolve()
+            while args.max_cases == 0 or processed < args.max_cases:
+                policy = effective_sequencer_policy(args)
+                now_ts = time.time()
+                quarantine_payload = prune_quarantine_entries(load_quarantine_registry(quarantine_path), now_ts=now_ts)
+                save_quarantine_registry(quarantine_path, quarantine_payload)
+                excluded_case_keys, excluded_market_ids = active_quarantine_sets(quarantine_payload)
+                heartbeat['state'] = 'running'
+                heartbeat['last_loop_started_at'] = utc_now_iso()
+                heartbeat['quarantine_count'] = len(quarantine_payload.get('entries') or [])
+                heartbeat['active_quarantines'] = {
+                    'case_keys': sorted(excluded_case_keys),
+                    'market_ids': sorted(excluded_market_ids),
+                }
+                write_heartbeat(heartbeat_path, heartbeat)
+
+                periodic_tasks, last_resolution_sync_ts, last_brier_snapshot_ts = maybe_run_periodic_tasks(
+                    args=args,
+                    now_ts=now_ts,
+                    last_resolution_sync_ts=last_resolution_sync_ts,
+                    last_brier_snapshot_ts=last_brier_snapshot_ts,
+                )
+                result = run_sequencer_pass(args, policy, excluded_case_keys=excluded_case_keys, excluded_market_ids=excluded_market_ids)
+                quarantine_entry_payload = maybe_quarantine_failed_result(args=args, result=result)
+                if quarantine_entry_payload is not None:
+                    periodic_tasks['soft_fail_quarantine'] = quarantine_entry_payload
+                    result['ok'] = True
+                    result['soft_failed'] = True
+                if should_count_processed(result):
+                    processed += 1
+                heartbeat = update_heartbeat_for_pass(
+                    heartbeat,
+                    result=result,
+                    processed_cases=processed,
+                    periodic_tasks=periodic_tasks,
+                    excluded_case_keys=excluded_case_keys,
+                    excluded_market_ids=excluded_market_ids,
+                )
+                write_heartbeat(heartbeat_path, heartbeat)
+                print(json.dumps(build_loop_pass_payload(result, processed, periodic_tasks), indent=2 if args.pretty else None), flush=True)
+                if not result.get('ok'):
+                    heartbeat['state'] = 'failed'
+                    write_heartbeat(heartbeat_path, heartbeat)
+                    raise SystemExit(1)
+                if should_count_processed(result):
+                    continue
+                heartbeat['state'] = 'idle_sleep'
+                heartbeat['last_idle_sleep_started_at'] = utc_now_iso()
+                heartbeat['last_idle_sleep_seconds'] = float(policy.get('idle_seconds', args.idle_seconds))
+                write_heartbeat(heartbeat_path, heartbeat)
+                time.sleep(float(policy.get('idle_seconds', args.idle_seconds)))
+    except SystemExit:
+        raise
+    except Exception as exc:
+        heartbeat['state'] = 'failed'
+        heartbeat['last_hard_failure'] = {
+            'at': utc_now_iso(),
+            'status': exc.__class__.__name__,
+            'message': str(exc),
+        }
+        write_heartbeat(heartbeat_path, heartbeat)
+        raise
+    finally:
+        if heartbeat.get('state') not in {'failed'}:
+            heartbeat['state'] = 'stopped'
+        heartbeat['stopped_at'] = utc_now_iso()
+        write_heartbeat(heartbeat_path, heartbeat)

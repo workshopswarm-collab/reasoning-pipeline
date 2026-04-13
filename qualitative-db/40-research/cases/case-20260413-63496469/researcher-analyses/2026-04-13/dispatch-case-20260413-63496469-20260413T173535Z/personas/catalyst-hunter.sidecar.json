@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A large overnight risk-off move or liquidation cascade could erase the cushion quickly.",
+    "Timezone or strict-close interpretation mistakes would matter in a narrow market."
+  ],
+  "key_assumptions": [
+    "No extraordinary downside catalyst or Binance-specific disruption occurs before settlement.",
+    "12:00 ET on April 14 maps to the expected Binance minute under EDT.",
+    "The current spot-to-strike cushion is the dominant feature of the case."
+  ],
+  "main_logical_chain": [
+    "The contract resolves from one exact Binance BTCUSDT 1-minute close at 12:00 ET.",
+    "Current verified Binance spot is far above 66000 with less than a day left.",
+    "Therefore the main threat is a near-term tail event, not ordinary drift.",
+    "Without a concrete high-impact downside catalyst, Yes remains very likely."
+  ],
+  "main_thesis": "BTC/USDT is very likely to remain above 66000 at the Binance 12:00 ET minute close on April 14 because spot is already around 72.4k and no concrete near-term downside catalyst was identified that plausibly closes the gap.",
+  "own_probability": 0.97,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "The resolution source for this market is Binance",
+    "Close must be strictly higher than 66,000",
+    "Verified Binance spot near 72.4k"
+  ],
+  "reasoning_mode": [
+    "catalyst_analysis",
+    "contract_interpretation",
+    "technical_reference"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260413-63496469",
+    "dispatch_id": "dispatch-case-20260413-63496469-20260413T173535Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "e5ed6449-ccc0-4495-998d-f514197af007",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260413-63496469/researcher-analyses/2026-04-13/dispatch-case-20260413-63496469-20260413T173535Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "a959822e3a45ebbebeab878ab2755d39904c386fadde03ace9057decfa9b3e1d"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality direct evidence on settlement mechanics and current price from Polymarket rules and Binance data, but limited independence because the contract is intentionally tied to one venue.",
+  "strongest_disconfirmers": [
+    "Single-minute settlement creates tail-risk if a sharp selloff hits exactly into the resolution window.",
+    "Exchange-specific outage or pricing anomaly on Binance could matter because the source of truth is venue-specific."
+  ],
+  "strongest_supports": [
+    "Verified Binance BTCUSDT spot near 72423.78, roughly 8.9% above the strike.",
+    "Polymarket rules explicitly use the Binance BTC/USDT 1-minute candle close at 12:00 ET.",
+    "No identified scheduled catalyst in the remaining window obviously implies an 8%+ downside move."
+  ],
+  "timing_relevance": "Timing is central because the contract cares about one minute at noon ET on April 14; the relevant catalyst question is whether anything before that exact minute can force a sharp downside repricing.",
+  "unresolved_ambiguities": [
+    "Whether any unobserved macro event in the remaining window materially raises downside gap risk.",
+    "Whether Polymarket operationally displays the candle timing exactly as the straightforward EDT-to-UTC mapping implies."
+  ],
+  "what_would_change_view": "A verified major downside catalyst, sharp selloff toward the high-60k area, or Binance-specific disruption before settlement would reduce confidence materially."
+}

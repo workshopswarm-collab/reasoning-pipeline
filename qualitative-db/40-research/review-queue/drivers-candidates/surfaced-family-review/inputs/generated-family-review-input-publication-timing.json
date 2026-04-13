@@ -11,6 +11,12 @@
       "why_included": "related_driver"
     },
     {
+      "aliases": [],
+      "driver_slug": "product-launches",
+      "summary": "Product-launches captures how new releases, versions, features, or packaging changes alter perception, adoption, competition, and pricing.",
+      "why_included": "suggestion"
+    },
+    {
       "aliases": [
         "execution-risk",
         "operations-risk",
@@ -19,10 +25,22 @@
       "driver_slug": "operational-risk",
       "summary": "Operational-risk captures whether execution failures, outages, controls problems, logistical breakdowns, or internal process weaknesses can materially disrupt outcomes.",
       "why_included": "related_driver"
+    },
+    {
+      "aliases": [],
+      "driver_slug": "media-narratives",
+      "summary": "Media narratives are a reusable cross-domain driver that affect attention, sentiment, legitimacy, and short-run expectation formation.",
+      "why_included": "related_driver"
     }
   ],
   "family_label": "publication timing",
   "family_neighbors": [
+    {
+      "family_label": "release-window demand",
+      "family_slug": "release-window-demand",
+      "overlap_score": 2.25,
+      "reason": "candidate-token+co-mentioned-driver"
+    },
     {
       "family_label": "resolution mechanics",
       "family_slug": "resolution-mechanics",
@@ -30,41 +48,84 @@
       "reason": "candidate-token+co-mentioned-driver"
     },
     {
-      "family_label": "release-window demand",
-      "family_slug": "release-window-demand",
-      "overlap_score": 1.5,
-      "reason": "co-mentioned-driver"
+      "family_label": "netflix-top10-chart-momentum",
+      "family_slug": "netflix-top10-chart-momentum",
+      "overlap_score": 0.75,
+      "reason": "candidate-token"
     },
     {
       "family_label": "official-company-announcement-cadence",
       "family_slug": "official-company-announcement-cadence",
-      "overlap_score": 0.5,
+      "overlap_score": 0.75,
       "reason": "candidate-token"
     },
     {
       "family_label": "official-announcement-surface-coverage",
       "family_slug": "official-announcement-surface-coverage",
-      "overlap_score": 0.25,
-      "reason": "candidate-token"
-    },
-    {
-      "family_label": "resolution mapping",
-      "family_slug": "resolution-mapping",
-      "overlap_score": 0.25,
+      "overlap_score": 0.5,
       "reason": "candidate-token"
     }
   ],
   "family_slug": "publication-timing",
-  "generated_at": "2026-04-12T03:20:02Z",
+  "generated_at": "2026-04-13T18:32:07Z",
   "heuristic_summary": {
     "canon_coverage_driver": null,
     "canon_coverage_status": "novel",
-    "distinct_cases": 3,
-    "distinct_personas": 3,
-    "raw_candidate_count": 6,
-    "total_occurrences": 10
+    "distinct_cases": 6,
+    "distinct_personas": 4,
+    "raw_candidate_count": 10,
+    "total_occurrences": 19
   },
   "raw_candidates": [
+    {
+      "candidate_label": "official-disclosure-timing",
+      "candidate_slug": "official-disclosure-timing",
+      "canonical_driver_suggestions": [],
+      "case_keys": [
+        "case-20260413-9c835dfe"
+      ],
+      "distinct_cases": 1,
+      "distinct_personas": 1,
+      "label_variants": [
+        "official-disclosure-timing"
+      ],
+      "occurrences": 3,
+      "personas": [
+        "market-implied"
+      ],
+      "related_canonical_drivers": [],
+      "related_entities": [
+        "strategy",
+        "bitcoin"
+      ],
+      "sample_occurrences": [
+        {
+          "artifact_kind": "assumption",
+          "artifact_path": "qualitative-db/40-research/cases/case-20260413-9c835dfe/researcher-analyses/2026-04-13/dispatch-case-20260413-9c835dfe-20260413T162509Z/assumptions/market-implied.md",
+          "case_key": "case-20260413-9c835dfe",
+          "label": "official-disclosure-timing",
+          "persona": "market-implied",
+          "source": "db"
+        },
+        {
+          "artifact_kind": "persona",
+          "artifact_path": "qualitative-db/40-research/cases/case-20260413-9c835dfe/researcher-analyses/2026-04-13/dispatch-case-20260413-9c835dfe-20260413T162509Z/personas/market-implied.md",
+          "case_key": "case-20260413-9c835dfe",
+          "label": "official-disclosure-timing",
+          "persona": "market-implied",
+          "source": "db"
+        },
+        {
+          "artifact_kind": "assumption",
+          "artifact_path": "qualitative-db/40-research/cases/case-20260413-9c835dfe/researcher-analyses/2026-04-13/dispatch-case-20260413T162509Z/assumptions/market-implied.md",
+          "case_key": "case-20260413-9c835dfe",
+          "label": "official-disclosure-timing",
+          "persona": "market-implied",
+          "source": "markdown_fallback"
+        }
+      ],
+      "source_candidate_note": "qualitative-db/40-research/review-queue/drivers-candidates/candidate-notes/generated-driver-candidate-official-disclosure-timing.md"
+    },
     {
       "candidate_label": "chart-refresh-timing",
       "candidate_slug": "chart-refresh-timing",
@@ -187,6 +248,89 @@
       "source_candidate_note": "qualitative-db/40-research/review-queue/drivers-candidates/candidate-notes/generated-driver-candidate-macro-event-timing.md"
     },
     {
+      "candidate_label": "netflix-top10-update-timing",
+      "candidate_slug": "netflix-top10-update-timing",
+      "canonical_driver_suggestions": [],
+      "case_keys": [
+        "case-20260413-f6bfc755"
+      ],
+      "distinct_cases": 1,
+      "distinct_personas": 1,
+      "label_variants": [
+        "netflix-top10-update-timing"
+      ],
+      "occurrences": 2,
+      "personas": [
+        "catalyst-hunter"
+      ],
+      "related_canonical_drivers": [
+        "media-narratives"
+      ],
+      "related_entities": [],
+      "sample_occurrences": [
+        {
+          "artifact_kind": "assumption",
+          "artifact_path": "qualitative-db/40-research/cases/case-20260413-f6bfc755/researcher-analyses/2026-04-13/dispatch-case-20260413-f6bfc755-20260413T152336Z/assumptions/catalyst-hunter.md",
+          "case_key": "case-20260413-f6bfc755",
+          "label": "netflix-top10-update-timing",
+          "persona": "catalyst-hunter",
+          "source": "db"
+        },
+        {
+          "artifact_kind": "persona",
+          "artifact_path": "qualitative-db/40-research/cases/case-20260413-f6bfc755/researcher-analyses/2026-04-13/dispatch-case-20260413-f6bfc755-20260413T152336Z/personas/catalyst-hunter.md",
+          "case_key": "case-20260413-f6bfc755",
+          "label": "netflix-top10-update-timing",
+          "persona": "catalyst-hunter",
+          "source": "db"
+        }
+      ],
+      "source_candidate_note": "qualitative-db/40-research/review-queue/drivers-candidates/candidate-notes/generated-driver-candidate-netflix-top10-update-timing.md"
+    },
+    {
+      "candidate_label": "product-launch-timing",
+      "candidate_slug": "product-launch-timing",
+      "canonical_driver_suggestions": [
+        "product-launches"
+      ],
+      "case_keys": [
+        "case-20260413-4d87ab23"
+      ],
+      "distinct_cases": 1,
+      "distinct_personas": 1,
+      "label_variants": [
+        "product-launch-timing"
+      ],
+      "occurrences": 2,
+      "personas": [
+        "base-rate"
+      ],
+      "related_canonical_drivers": [
+        "reliability",
+        "operational-risk"
+      ],
+      "related_entities": [],
+      "sample_occurrences": [
+        {
+          "artifact_kind": "persona",
+          "artifact_path": "qualitative-db/40-research/cases/case-20260413-4d87ab23/researcher-analyses/2026-04-13/dispatch-case-20260413-4d87ab23-20260413T174302Z/personas/base-rate.md",
+          "case_key": "case-20260413-4d87ab23",
+          "label": "product-launch-timing",
+          "persona": "base-rate",
+          "source": "db"
+        },
+        {
+          "artifact_kind": "persona",
+          "artifact_path": "qualitative-db/40-research/cases/case-20260413-4d87ab23/researcher-analyses/2026-04-13/dispatch-case-20260413T174302Z/personas/base-rate.md",
+          "case_key": "case-20260413-4d87ab23",
+          "label": "product-launch-timing",
+          "persona": "base-rate",
+          "source": "markdown_fallback"
+        }
+      ],
+      "source_candidate_note": "qualitative-db/40-research/review-queue/drivers-candidates/candidate-notes/generated-driver-candidate-product-launch-timing.md"
+    },
+    {
       "candidate_label": "streaming-chart-publication-timing",
       "candidate_slug": "streaming-chart-publication-timing",
       "canonical_driver_suggestions": [],
@@ -223,6 +367,44 @@
         }
       ],
       "source_candidate_note": "qualitative-db/40-research/review-queue/drivers-candidates/candidate-notes/generated-driver-candidate-streaming-chart-publication-timing.md"
+    },
+    {
+      "candidate_label": "streaming-chart-update-timing",
+      "candidate_slug": "streaming-chart-update-timing",
+      "canonical_driver_suggestions": [],
+      "case_keys": [
+        "case-20260413-f6bfc755"
+      ],
+      "distinct_cases": 1,
+      "distinct_personas": 1,
+      "label_variants": [
+        "streaming-chart-update-timing"
+      ],
+      "occurrences": 2,
+      "personas": [
+        "variant-view"
+      ],
+      "related_canonical_drivers": [],
+      "related_entities": [],
+      "sample_occurrences": [
+        {
+          "artifact_kind": "assumption",
+          "artifact_path": "qualitative-db/40-research/cases/case-20260413-f6bfc755/researcher-analyses/2026-04-13/dispatch-case-20260413-f6bfc755-20260413T152336Z/assumptions/variant-view.md",
+          "case_key": "case-20260413-f6bfc755",
+          "label": "streaming-chart-update-timing",
+          "persona": "variant-view",
+          "source": "db"
+        },
+        {
+          "artifact_kind": "persona",
+          "artifact_path": "qualitative-db/40-research/cases/case-20260413-f6bfc755/researcher-analyses/2026-04-13/dispatch-case-20260413-f6bfc755-20260413T152336Z/personas/variant-view.md",
+          "case_key": "case-20260413-f6bfc755",
+          "label": "streaming-chart-update-timing",
+          "persona": "variant-view",
+          "source": "db"
+        }
+      ],
+      "source_candidate_note": "qualitative-db/40-research/review-queue/drivers-candidates/candidate-notes/generated-driver-candidate-streaming-chart-update-timing.md"
     },
     {
       "candidate_label": "company-bitcoin-purchase-announcement-timing",
@@ -301,5 +483,5 @@
     ],
     "instruction": "Review whether this family grouping is coherent, whether it is already covered by canon, and what action is most appropriate."
   },
-  "source_index_generated_at": "2026-04-12T03:20:02Z"
+  "source_index_generated_at": "2026-04-13T18:32:07Z"
 }

@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Crypto can move several percent intraday, so the remaining path risk is not zero.",
+    "A Binance-specific anomaly or timestamp-mapping mistake would weaken the inference."
+  ],
+  "key_assumptions": [
+    "Binance API prices are representative of the same venue data family used by the settlement chart.",
+    "No late-morning selloff of roughly 4% or more hits BTC/USDT before the noon ET close.",
+    "Noon ET maps to the 16:00 UTC Binance 1-minute candle under daylight saving time."
+  ],
+  "main_logical_chain": [
+    "Start from the market's extreme Yes prior and test whether the governing venue/pair already sits safely above the strike.",
+    "Verify the contract mechanics on Polymarket to confirm that Binance BTC/USDT 1-minute close at noon ET is what matters.",
+    "Check Binance live ticker and recent klines; spot near 71.1k implies a cushion of more than 3k with under three hours left.",
+    "Conclude that the market is mostly efficient, while reserving some probability for residual intraday downside volatility."
+  ],
+  "main_thesis": "The market is broadly right because Binance BTC/USDT is already trading materially above 68k with limited time left, though some intraday downside risk still justifies a small discount from certainty.",
+  "own_probability": 0.94,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone",
+    "current_price: 0.929",
+    "ticker price 71171.41000000 near 09:02 ET"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "contract_interpretation",
+    "technical_reference",
+    "scenario_analysis"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260413-de71fc13",
+    "dispatch_id": "dispatch-case-20260413-de71fc13-20260413T130158Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "5a0b9f39-ac2e-4e97-a91c-4959e6000f5e",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260413-de71fc13/researcher-analyses/2026-04-13/dispatch-case-20260413-de71fc13-20260413T130158Z/personas/market-implied.md",
+    "source_persona_sha256": "a49c70d2b9925b218365507937b4973ec94b77cf98a6847689214e9c30b23e9f"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is strong for a medium case because the work combines direct contract-rule verification from Polymarket with direct same-venue price verification from Binance; independence is moderate and source-of-truth ambiguity is low-to-medium.",
+  "strongest_disconfirmers": [
+    "The market is not settled yet, so a sharp same-morning selloff could still push the noon close below 68k.",
+    "Verification used Binance API rather than the exact Binance chart UI named in the rule text."
+  ],
+  "strongest_supports": [
+    "Binance BTC/USDT traded around 71.1k near 09:02 ET, roughly 3.2k above the threshold.",
+    "Recent 1-minute Binance candles around 09:00 ET were consistently above 71k.",
+    "Polymarket rules clearly specify Binance BTC/USDT 1-minute close at 12:00 ET as the governing source of truth."
+  ],
+  "timing_relevance": "This is a date-sensitive intraday market; the key fact is that Binance was still over 68k by a wide margin only a few hours before the noon ET settlement candle.",
+  "unresolved_ambiguities": [
+    "Small practical ambiguity remains between Binance API verification and the exact chart UI surface named in rules.",
+    "Assignment snapshot price and later page snapshot differed, though both indicated an extreme Yes market."
+  ],
+  "what_would_change_view": "A late-morning BTC drop toward 68k, a Binance-specific pricing irregularity, or evidence that the noon ET candle was being mapped incorrectly would reduce confidence materially."
+}

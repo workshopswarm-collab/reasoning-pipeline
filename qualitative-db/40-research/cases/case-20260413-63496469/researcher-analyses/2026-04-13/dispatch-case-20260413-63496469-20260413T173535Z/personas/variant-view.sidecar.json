@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A fast selloff into the high-60k range would compress the buffer quickly.",
+    "Exchange-specific settlement mechanics matter more than cross-exchange BTC consensus.",
+    "Confidence is sensitive to the remaining sub-24h volatility window."
+  ],
+  "key_assumptions": [
+    "BTC does not suffer an approximately 9% selloff before the April 14 noon-ET settlement minute.",
+    "Binance BTC/USDT prints normally at the relevant minute without exchange-specific anomaly.",
+    "Polymarket resolution follows the explicit Binance BTC/USDT 1-minute close rule without added ambiguity."
+  ],
+  "main_logical_chain": [
+    "Polymarket rules say settlement depends on Binance BTC/USDT 1-minute close at 12:00 ET on April 14.",
+    "Direct Binance data shows BTC currently around 72.4k, roughly 6.4k above the 66k threshold.",
+    "That makes Yes highly likely, but not certain, because a single-minute exchange-specific settlement still leaves tail-risk and mechanics exposure.",
+    "Therefore the market direction is right, but 95.7% looks slightly rich relative to residual risk, leading to a 93% estimate."
+  ],
+  "main_thesis": "BTC is still very likely to finish above 66,000 on the governed Binance noon-ET minute, but the market is slightly overconfident because one exact exchange-specific minute close still leaves residual tail and mechanics risk.",
+  "own_probability": 0.93,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone (noon) ... has a final 'Close' price higher than ... 66,000.",
+    "Binance ticker check during run: BTCUSDT 72398.00000000"
+  ],
+  "reasoning_mode": [
+    "contract_interpretation",
+    "variant_hypothesis",
+    "scenario_analysis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260413-63496469",
+    "dispatch_id": "dispatch-case-20260413-63496469-20260413T173535Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "5bad8cb9-ca60-4540-8bbf-1b96c3460ab7",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260413-63496469/researcher-analyses/2026-04-13/dispatch-case-20260413-63496469-20260413T173535Z/personas/variant-view.md",
+    "source_persona_sha256": "c69938a48d0f24ede68ac98cc3ea7944e635360b09ef060d0617b9de477c0567"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality direct-source case: Polymarket for contract mechanics and Binance for the governed price surface; independence is only medium because the contract itself points to Binance.",
+  "strongest_disconfirmers": [
+    "The contract resolves on one exact later minute close, not current or average price.",
+    "Crypto can still experience sharp downside moves over sub-24h windows.",
+    "A Binance-specific print or timing issue could matter at the margin in a narrow settlement contract."
+  ],
+  "strongest_supports": [
+    "Direct Binance spot check during the run showed BTC/USDT around 72,398, well above 66,000.",
+    "Recent 1-minute Binance closes were clustered near 72.4k-72.5k rather than near the strike.",
+    "Polymarket rules clearly identify Binance BTC/USDT 12:00 ET 1-minute close as the governing source of truth."
+  ],
+  "timing_relevance": "The case settles at 2026-04-14 12:00 ET (16:00 UTC); a timestamp conversion check confirmed Binance kline times need UTC-to-ET translation and that the direct spot check occurred about 22.4 hours before settlement.",
+  "unresolved_ambiguities": [
+    "Exact exchange behavior near the settlement minute cannot be known in advance.",
+    "The magnitude of residual downside tail risk over the remaining window is uncertain."
+  ],
+  "what_would_change_view": "A fresh pre-settlement check showing BTC still comfortably above 66k would move me toward or above market; a hard selloff, Binance divergence, or exchange-specific anomaly would move me lower."
+}

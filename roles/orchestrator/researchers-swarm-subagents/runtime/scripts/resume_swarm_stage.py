@@ -16,7 +16,7 @@ LAUNCH_SYNTHESIS = REPO_ROOT / 'roles' / 'orchestrator' / 'synthesis-subagent' /
 if str(REPO_ROOT / 'scripts') not in sys.path:
     sys.path.insert(0, str(REPO_ROOT / 'scripts'))
 
-from case_pipeline_status import update_case_pipeline_status  # noqa: E402
+from case_pipeline_status import update_case_pipeline_status_with_followups as update_case_pipeline_status  # noqa: E402
 
 
 class ResumeError(RuntimeError):

@@ -1,0 +1,56 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "If posting time was outside the ET window, YES could fail on a technicality.",
+    "If resolvers reject the purchases page as an announcement surface, confidence drops."
+  ],
+  "key_assumptions": [
+    "The April 13 official purchases-page entry counts as an in-window announcement.",
+    "The purchases page qualifies under the contract's official-information standard."
+  ],
+  "main_logical_chain": [
+    "Market resolves from official information from MicroStrategy/Strategy or Michael Saylor.",
+    "Official Strategy page shows a 2026-04-13 disclosure for 13,927 BTC.",
+    "13,927 BTC is well above threshold, so if the disclosure is in-window the market should resolve YES.",
+    "Only narrow timestamp/channel risks remain."
+  ],
+  "main_thesis": "Official Strategy disclosures now indicate a 13,927 BTC acquisition announced on April 13, making YES overwhelmingly likely unless there is a narrow timing or eligibility wrinkle.",
+  "own_probability": 0.99,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "has acquired 13,927 BTC for ~$1.00 billion",
+    "As of 4/12/2026, we hodl 780,897 $BTC"
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "contract_interpretation",
+    "market_anchor"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260413-9c835dfe",
+    "dispatch_id": "dispatch-case-20260413-9c835dfe-20260413T162509Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "543bb9e8-4b94-4eba-a73c-6475f6455b18",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260413-9c835dfe/researcher-analyses/2026-04-13/dispatch-case-20260413-9c835dfe-20260413T162509Z/personas/base-rate.md",
+    "source_persona_sha256": "c2827f9f30acd73b5512cd9d61b1d3f6a973bb820f529c556a8ece5c0c8d2788"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality official-domain evidence, but low-to-medium independence because both checked sources are on Strategy's domain.",
+  "strongest_disconfirmers": [
+    "Residual risk is mostly timing or announcement-surface eligibility ambiguity, not substance."
+  ],
+  "strongest_supports": [
+    "Official Strategy purchases page lists 13,927 BTC with date_of_purchase 2026-04-13.",
+    "Reported amount is far above the >1000 BTC threshold.",
+    "Linked SEC filing metadata reduces odds the page entry is casual or unofficial."
+  ],
+  "timing_relevance": "Very high because the contract is a narrow April 7-13 announcement window.",
+  "unresolved_ambiguities": [
+    "Exact ET timestamp of the qualifying official post.",
+    "Whether resolvers require a distinct press release or Saylor post beyond the purchases page."
+  ],
+  "what_would_change_view": "Proof of out-of-window timing, exclusion of the purchases page under market rules, or a company correction would reduce the estimate materially."
+}

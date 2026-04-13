@@ -1,0 +1,58 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Unexpected macro, regulatory, security, or liquidation event before settlement.",
+    "Binance-specific market or candle anomaly at the decisive minute."
+  ],
+  "key_assumptions": [
+    "No major adverse macro or BTC-specific shock hits before noon ET.",
+    "Binance's settlement-relevant BTCUSDT candle feed remains operational and representative.",
+    "A >4% selloff into the specific settlement minute is possible but not the default base-rate path."
+  ],
+  "main_logical_chain": [
+    "The market resolves on a narrow, explicit Binance BTC/USDT 12:00 ET 1-minute close rule.",
+    "Observed Binance spot during analysis was about 71.1k, materially above 68k.",
+    "Without a meaningful shock, outside-view odds favor remaining above a threshold that is more than 3k lower over the remaining window.",
+    "Therefore Yes is highly likely, though not certain because BTC is volatile and the resolution minute is narrow."
+  ],
+  "main_thesis": "BTC was trading around 71.1k during analysis, so a noon ET Binance 1-minute close above 68k remained the clear base-rate outcome absent a meaningful adverse shock.",
+  "own_probability": 0.95,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone has a final 'Close' price higher than the price specified.",
+    "Observed Binance spot during analysis was around 71.1k."
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "contract_interpretation",
+    "market_anchor"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260413-de71fc13",
+    "dispatch_id": "dispatch-case-20260413-de71fc13-20260413T130158Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "5993a5da-c978-486d-b8b7-ec5d37a6a92d",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260413-de71fc13/researcher-analyses/2026-04-13/dispatch-case-20260413-de71fc13-20260413T130158Z/personas/base-rate.md",
+    "source_persona_sha256": "2b019ca1fae78dcc7ba1722873175b0b8c5c68484ed94c31ec3249c306b49306"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality primary rules plus direct exchange verification; low source-of-truth ambiguity and medium evidence independence.",
+  "strongest_disconfirmers": [
+    "BTC can still drop more than 4% intraday before noon ET.",
+    "The contract resolves on a single 1-minute close, so minute-specific volatility or venue dislocation could matter."
+  ],
+  "strongest_supports": [
+    "Direct Binance pricing during the run was around 71.1k, comfortably above the 68k threshold.",
+    "Polymarket rules are explicit that the only decisive condition is the Binance BTC/USDT 12:00 ET 1-minute candle close being strictly above 68,000.",
+    "Secondary CoinGecko pricing was directionally consistent with Binance spot."
+  ],
+  "timing_relevance": "Very high: this is a same-day, noon-ET, single-minute candle-close contract.",
+  "unresolved_ambiguities": [
+    "Exact remaining time-to-settlement at final read affects how much room there is for a large move.",
+    "Single-minute settlement always leaves some tail risk even when spot is well above the threshold."
+  ],
+  "what_would_change_view": "A sharp move toward 69k or below, a major adverse headline, or evidence of Binance-specific settlement/candle issues would lower confidence materially."
+}

@@ -71,6 +71,10 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--lock-file", default=str(DEFAULT_PREPARE_LOCK), help="Process lock to prevent concurrent top-level dispatch preparation")
     parser.add_argument("--db-url", default=os.getenv("PREDQUANT_ORCHESTRATOR_URL", ""), help="Postgres connection URL")
     parser.add_argument("--psql", default=os.getenv("PSQL_BIN", DEFAULT_PSQL), help="Path to psql binary")
+    parser.add_argument("--refresh-mode", default="", help="Optional refresh mode metadata for reruns/full refresh launches")
+    parser.add_argument("--refresh-reasons", default="", help="Optional comma-separated refresh reasons")
+    parser.add_argument("--refresh-price-delta-pct-points", default="", help="Optional refresh price delta in percentage points")
+    parser.add_argument("--refresh-detected-marker", default="", help="Optional controller-lane material-change marker")
     parser.add_argument("--pretty", action="store_true", help="Pretty-print JSON output")
     return parser.parse_args()
 
@@ -289,6 +293,10 @@ def prepare_manifest(args: argparse.Namespace) -> tuple[dict[str, Any], dict[str
                 "--thinking", args.thinking,
                 "--run-timeout-seconds", str(args.run_timeout_seconds),
                 *( ["--personas", *args.personas] if args.personas else []),
+                *( ["--refresh-mode", args.refresh_mode] if args.refresh_mode else []),
+                *( ["--refresh-reasons", args.refresh_reasons] if args.refresh_reasons else []),
+                *( ["--refresh-price-delta-pct-points", args.refresh_price_delta_pct_points] if args.refresh_price_delta_pct_points else []),
+                *( ["--refresh-detected-marker", args.refresh_detected_marker] if args.refresh_detected_marker else []),
             ],
         )
         manifest_path = persist_manifest(manifest_dir, manifest)

@@ -158,6 +158,10 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--dry-run", action="store_true", help="Compute the dispatch/rerun plan without writing DB state or creating attempt rows")
     parser.add_argument("--db-url", default=os.getenv("PREDQUANT_ORCHESTRATOR_URL", ""), help="Postgres connection URL")
     parser.add_argument("--psql", default=os.getenv("PSQL_BIN", DEFAULT_PSQL), help="Path to psql binary")
+    parser.add_argument("--refresh-mode", default="", help="Optional explicit refresh mode metadata")
+    parser.add_argument("--refresh-reasons", default="", help="Optional comma-separated explicit refresh reasons")
+    parser.add_argument("--refresh-price-delta-pct-points", default="", help="Optional explicit refresh price delta in percentage points")
+    parser.add_argument("--refresh-detected-marker", default="", help="Optional explicit controller-lane material-change marker")
     parser.add_argument("--pretty", action="store_true", help="Pretty-print JSON result")
     return parser.parse_args()
 
@@ -636,6 +640,20 @@ def build_visible_markers(*, research_run_id: str, persona: str, market_title: s
     return start_marker, finish_marker
 
 
+def is_refresh_dispatch_mode(value: str) -> bool:
+    return str(value or '').strip().lower() in {'refresh', 'full_refresh', 'full'}
+
+
+def build_refresh_controller_markers(*, case_key: str, market_title: str, dispatch_id: str, refresh_mode: str, refresh_reasons: list[str] | None = None) -> tuple[str, str]:
+    normalized_mode = str(refresh_mode or '').strip().lower()
+    if not is_refresh_dispatch_mode(normalized_mode):
+        return '', ''
+    reasons = ','.join(str(item) for item in (refresh_reasons or []) if str(item).strip())
+    start_marker = f"STARTING FULL REFRESH | case={case_key} | market={market_title} | dispatch_id={dispatch_id} | refresh_mode={normalized_mode} | reasons={reasons}"
+    finish_marker = f"FINISHED FULL REFRESH SWARM | case={case_key} | dispatch_id={dispatch_id}"
+    return start_marker, finish_marker
+
+
 def build_topic_handoff_message(*, research_run_id: str, persona: str, case_key: str, topic_title: str, controller_topic_title: str, market_title: str, workspace_note_path: str, reasoning_sidecar_path: str, prompt_text: str, start_marker: str, finish_marker: str) -> str:
     completion_cmd = (
         "python3 roles/orchestrator/researchers-swarm-subagents/runtime/scripts/"
@@ -796,6 +814,23 @@ def main() -> int:
             case_key=case_ctx["case_key"],
         )
 
+        refresh_mode = str(args.refresh_mode or rerun_context.get('run_kind') or '').strip().lower()
+        refresh_reasons = [item.strip() for item in str(args.refresh_reasons or '').split(',') if item.strip()]
+        if not refresh_reasons and is_refresh_dispatch_mode(refresh_mode):
+            refresh_reasons = ['material_move_reanalysis']
+        refresh_controller_start_marker, refresh_controller_finish_marker = build_refresh_controller_markers(
+            case_key=case_ctx['case_key'],
+            market_title=case_ctx['title'],
+            dispatch_id=dispatch_id,
+            refresh_mode=refresh_mode or 'fresh',
+            refresh_reasons=refresh_reasons,
+        )
+        refresh_detected_marker = str(args.refresh_detected_marker or '').strip()
+        if not refresh_detected_marker and is_refresh_dispatch_mode(refresh_mode):
+            delta_text = str(args.refresh_price_delta_pct_points or '').strip()
+            reasons_text = ','.join(refresh_reasons)
+            refresh_detected_marker = f"MATERIAL CHANGE DETECTED | case={case_ctx['case_key']} | market={case_ctx['title']} | refresh_mode={refresh_mode or 'full'} | delta_pct_points={delta_text} | reasons={reasons_text}"
+
         persona_paths = {
             persona: note_path(case_ctx["case_key"], created_at, dispatch_id, persona)
             for persona in args.personas
@@ -945,6 +980,9 @@ def main() -> int:
                 "controller_topic_title": controller_topic_title,
                 "dispatch_id": dispatch_id,
                 "dispatch_stage": "awaiting_topic_reuse_or_creation",
+                "refresh_mode": refresh_mode,
+                "refresh_reasons": refresh_reasons,
+                "refresh_detected_marker": refresh_detected_marker,
                 "runtime_surface": DEFAULT_RUNTIME_SURFACE,
                 "expected_start_marker": start_marker,
                 "expected_finish_marker": finish_marker,
@@ -1014,11 +1052,11 @@ def main() -> int:
                     "workspace_note_path": workspace_note_path,
                     "reasoning_sidecar_path": reasoning_sidecar_path,
                     "expected_auxiliary_paths": {
-                        "source_note_directory": source_note_directory,
-                        "source_note_prefix": source_note_prefix,
+                        "source_note_directory": source_note_dir,
+                        "source_note_prefix": source_note_prefix_value,
                         "reasoning_sidecar_path": reasoning_sidecar_path,
-                        "assumption_note_path": assumption_note_path,
-                        "evidence_map_path": evidence_map_path,
+                        "assumption_note_path": assumption_note_path_value,
+                        "evidence_map_path": evidence_map_path_value,
                     },
                     "research_run": update_result,
                     "lane_reused": bool(lane_seed),
@@ -1070,6 +1108,11 @@ def main() -> int:
                 "runtime_surface": DEFAULT_RUNTIME_SURFACE,
                 "chat_id": research_group["chat_id"],
                 "controller_topic_title": controller_topic_title,
+                "refresh_mode": refresh_mode,
+                "refresh_reasons": refresh_reasons,
+                "refresh_detected_marker": refresh_detected_marker,
+                "refresh_start_marker": refresh_controller_start_marker,
+                "refresh_finish_marker": refresh_controller_finish_marker,
                 "model": args.model,
                 "thinking": args.thinking,
             },

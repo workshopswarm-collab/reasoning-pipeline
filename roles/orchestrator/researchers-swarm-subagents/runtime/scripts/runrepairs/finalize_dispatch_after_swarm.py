@@ -14,6 +14,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import subprocess
 import sys
 from pathlib import Path
 
@@ -67,6 +68,29 @@ def validate_manifest_payload(manifest_path: Path) -> dict:
     if not isinstance(runs, list):
         raise RuntimeError(f'dispatch manifest runs must be a list: {manifest_path}')
     return manifest
+
+
+def write_manifest(path: Path, manifest: dict) -> None:
+    path.write_text(json.dumps(manifest, indent=2, sort_keys=True) + "\n")
+
+
+def send_visible_telegram_message(*, chat_id: str, topic_id: str, message: str) -> dict:
+    proc = subprocess.run(
+        [
+            'openclaw', 'message', 'send',
+            '--channel', 'telegram',
+            '--target', str(chat_id),
+            '--thread-id', str(topic_id),
+            '--message', message,
+            '--json',
+        ],
+        text=True,
+        capture_output=True,
+    )
+    if proc.returncode != 0:
+        raise RuntimeError(proc.stderr.strip() or proc.stdout.strip() or 'telegram visible send failed')
+    text = proc.stdout.strip()
+    return json.loads(text.splitlines()[-1]) if text else {}
 
 
 def locate_status_file(*, case_key: str, dispatch_id: str) -> Path | None:
@@ -137,11 +161,31 @@ def main() -> int:
             kickoff_error = None
             synthesis_launch = None
             synthesis_launch_error = None
+            refresh_finish_result = None
+            refresh_finish_error = None
             dispatch_id = manifest_path.stem
             manifest = validate_manifest_payload(manifest_path)
             case_key = ((manifest.get("case") or {}).get("case_key") or "").strip()
             existing_status_path = locate_status_file(case_key=case_key, dispatch_id=dispatch_id)
             synthesis_terminal_before_finalize = synthesis_already_terminal(existing_status_path)
+            if args.apply and all_completed:
+                runtime_defaults = manifest.get('runtime_defaults') if isinstance(manifest.get('runtime_defaults'), dict) else {}
+                bootstrap_state = manifest.get('bootstrap_state') if isinstance(manifest.get('bootstrap_state'), dict) else {}
+                controller_topic = bootstrap_state.get('controller_topic') if isinstance(bootstrap_state.get('controller_topic'), dict) else {}
+                refresh_finish_marker = str(runtime_defaults.get('refresh_finish_marker') or '').strip()
+                refresh_finish_sent_at = str((bootstrap_state.get('refresh_finish_marker_sent_at') or '')).strip()
+                if refresh_finish_marker and not refresh_finish_sent_at and bootstrap_state.get('chat_id') and controller_topic.get('topic_id'):
+                    try:
+                        refresh_finish_result = send_visible_telegram_message(
+                            chat_id=str(bootstrap_state.get('chat_id')),
+                            topic_id=str(controller_topic.get('topic_id')),
+                            message=refresh_finish_marker,
+                        )
+                        bootstrap_state['refresh_finish_marker_sent_at'] = str(refresh_finish_result.get('sentAt') or 'sent')
+                        manifest['bootstrap_state'] = bootstrap_state
+                        write_manifest(manifest_path, manifest)
+                    except Exception as exc:  # noqa: BLE001
+                        refresh_finish_error = str(exc)
             if args.apply and all_completed and not synthesis_terminal_before_finalize and KICKOFF_SYNTHESIS.exists():
                 try:
                     kickoff_args = ["--dispatch-id", dispatch_id, "--build-full"]
@@ -171,6 +215,8 @@ def main() -> int:
                 "all_completed": all_completed,
                 "existing_status_path": str(existing_status_path) if existing_status_path else None,
                 "synthesis_terminal_before_finalize": synthesis_terminal_before_finalize,
+                "refresh_finish_result": refresh_finish_result,
+                "refresh_finish_error": refresh_finish_error,
                 "synthesis_kickoff": kickoff_result,
                 "synthesis_kickoff_error": kickoff_error,
                 "synthesis_launch": synthesis_launch,

@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Short-horizon BTC volatility near settlement minute.",
+    "Exchange-specific pricing or presentation issues on Binance.",
+    "Thin confidence edge because this is an intraday timestamp contract rather than a longer-horizon thesis."
+  ],
+  "key_assumptions": [
+    "Live Binance spot above 70k is informative for the noon ET candle close.",
+    "No sharp late selloff or Binance-specific irregularity erases the roughly 2.3% cushion into settlement.",
+    "Polymarket's stated Binance BTC/USDT 1m candle rule governs without hidden ambiguity."
+  ],
+  "main_logical_chain": [
+    "Read contract rules to identify exact settlement venue, pair, timestamp, and value used.",
+    "Verify noon ET timing maps to 16:00 UTC for the governing Binance minute.",
+    "Check live Binance BTCUSDT price to see whether spot is already above the 70k threshold.",
+    "Conclude Yes is more likely than the 0.71 market baseline, but retain meaningful path-dependent downside because only the exact noon ET close matters."
+  ],
+  "main_thesis": "Market may be underpricing how much a 71.6k Binance spot print cushions a 70k noon ET close, though exact-minute timing risk still matters.",
+  "own_probability": 0.84,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone... has a final 'Close' price higher than the price specified.",
+    "ticker/price returned 71603.23000000"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "contract_interpretation",
+    "variant_hypothesis",
+    "risk_management"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260413-2d3a41aa",
+    "dispatch_id": "dispatch-case-20260413-2d3a41aa-20260413T134928Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "7e91f294-9035-42d7-ac40-708488f6aca4",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260413-2d3a41aa/researcher-analyses/2026-04-13/dispatch-case-20260413-2d3a41aa-20260413T134928Z/personas/variant-view.md",
+    "source_persona_sha256": "67aff5d583d6cc88e61d915936a99931378b51a9ce4c13a296526785775ad862"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality mechanics verification with low source ambiguity; medium evidence independence because the contextual price check uses the same governing venue.",
+  "strongest_disconfirmers": [
+    "The contract depends on one exact minute close, and BTC can move more than 2% intraday.",
+    "Spot above threshold before noon does not guarantee the governing close remains above threshold."
+  ],
+  "strongest_supports": [
+    "Polymarket rules explicitly define Binance BTC/USDT 12:00 ET 1m candle close as source of truth.",
+    "Binance live spot check during the run returned 71603.23, materially above 70000.",
+    "Noon ET on 2026-04-13 maps cleanly to 16:00 UTC for Binance API alignment."
+  ],
+  "timing_relevance": "Extremely high: only the Binance BTC/USDT 12:00 ET one-minute candle close determines resolution.",
+  "unresolved_ambiguities": [
+    "Exact noon ET candle close had not occurred at research time.",
+    "No full order-book or volatility context was gathered beyond spot verification."
+  ],
+  "what_would_change_view": "A sharp pre-noon drop toward or below 70k, rising volatility into settlement, or any Binance-specific irregularity would reduce the estimate materially."
+}

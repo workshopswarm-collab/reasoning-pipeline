@@ -1,0 +1,157 @@
+{
+  "schema_version": "decision-packet/v1",
+  "generated_at": "2026-04-13T11:32:00-04:00",
+  "context": {
+    "case_key": "case-20260413-f6bfc755",
+    "dispatch_id": "dispatch-case-20260413-f6bfc755-20260413T152336Z",
+    "question": "Will \\\"Thrash\\\" be the top US Netflix movie this week?",
+    "market_id": "case-20260413-f6bfc755",
+    "market_title": "Will \"Thrash\" be the top US Netflix movie this week?",
+    "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260413-f6bfc755/synthesizer-agent/decision-handoff.md",
+    "source_syndicated_finding_path": "qualitative-db/40-research/cases/case-20260413-f6bfc755/synthesizer-agent/syndicated-finding.md",
+    "decision_maker_agent": "decision-maker",
+    "canonical_markdown_path": "decision-maker-packet.md",
+    "canonical_json_path": "artifacts/decision-maker-packet.json",
+    "external_market_id": "0xf0298a9e3948374a4c3341f5b286f6f99a6bd6bd960c455bf8bb355c2eff358c",
+    "market_slug": "will-thrash-be-the-top-us-netflix-movie-this-week",
+    "platform": "polymarket",
+    "primary_market_url": "https://polymarket.com/event/will-thrash-be-the-top-us-netflix-movie-this-week",
+    "source_light_refresh_brief_path": "",
+    "refresh_mode": ""
+  },
+  "decision": {
+    "side": "none",
+    "trade_authorization": "forbidden",
+    "position_policy": "flat",
+    "decision_readiness": "needs_more_research",
+    "primary_crux": "The bounded bundle does not provide independently verified evidence that Thrash actually led the unpublished 4/6/26-4/12/26 US Netflix week, while the market is pricing extreme confidence at 0.90, so the evidence-quality gap is too large to support an execution-quality decision.",
+    "secondary_cruxes": [
+      "The governing source has not yet published the target week, so the key outcome-defining evidence is still missing rather than merely uncertain.",
+      "The package itself says independent verification quality is low and blockers require new research, which is exactly the condition where a strong market signal should not be blindly trusted.",
+      "Residual title-mapping risk means even a later chart could require careful contract-fit confirmation before settlement confidence is warranted."
+    ],
+    "thesis_class": "not_decision_ready"
+  },
+  "valuation": {
+    "fair_value_low": 0.62,
+    "fair_value_high": 0.8,
+    "fair_value_mid": 0.71,
+    "market_reference_price": 0.9,
+    "independent_verification_quality": "low",
+    "compressed_toward_market_applied": false,
+    "compression_reason": "No further compression helps because the problem is not overprecision in the estimate; it is that the decisive title-specific chart evidence for the unpublished week is absent, leaving the market's unseen-information signal unverified.",
+    "edge_mid_vs_market_pct_points": -19.0
+  },
+  "execution_semantics": {
+    "price_axis": "market_implied_true_prob",
+    "price_source": "market_snapshot_quote",
+    "rebalance_threshold_fraction": 0.1,
+    "allow_auto_reversal": false,
+    "valid_until": "2026-04-14T23:59:00Z",
+    "quote_staleness_seconds": 3600,
+    "time_horizon": "Pre-publication through the expected 2026-04-14 Netflix US Top 10 publication"
+  },
+  "risk_controls": {
+    "max_position_size_pct_bankroll": 0.0,
+    "max_additional_exposure_pct_bankroll": 0.0,
+    "max_single_order_pct_bankroll": 0.0,
+    "slippage_tolerance_bps": 100,
+    "liquidity_min_depth": 1000,
+    "correlation_bucket_limit_pct_bankroll": 0.05,
+    "confidence_level": "low",
+    "portfolio_constraints": [
+      "Do not trade from this packet because the target-week chart evidence is unpublished and independently unverified.",
+      "Require the Netflix Tudum US movie chart for 4/6/26-4/12/26 or equivalently authoritative confirmation before authorizing any exposure.",
+      "Keep target exposure at zero until title mapping and actual weekly rank are observed on the governing source."
+    ],
+    "liquidity_caution": "medium"
+  },
+  "bands": [
+    {
+      "name": "max_enter",
+      "min_p": 0,
+      "max_p": 0.2,
+      "target_exposure_fraction": 0,
+      "notes": "Zero-exposure band because this packet is not decision-ready."
+    },
+    {
+      "name": "scaled_enter",
+      "min_p": 0.2,
+      "max_p": 0.4,
+      "target_exposure_fraction": 0,
+      "notes": "Zero-exposure band because the decisive target-week evidence is missing."
+    },
+    {
+      "name": "hold",
+      "min_p": 0.4,
+      "max_p": 0.6,
+      "target_exposure_fraction": 0,
+      "notes": "Zero-exposure band; no autonomous hold/add decision is justified before publication."
+    },
+    {
+      "name": "trim",
+      "min_p": 0.6,
+      "max_p": 0.8,
+      "target_exposure_fraction": 0,
+      "notes": "Zero-exposure band because market confidence cannot be audited against the unpublished governing chart."
+    },
+    {
+      "name": "exit",
+      "min_p": 0.8,
+      "max_p": 1,
+      "target_exposure_fraction": 0,
+      "notes": "Zero-exposure band; remain flat until the governing Netflix update prints and title mapping is confirmed."
+    }
+  ],
+  "invalidation": {
+    "thesis_breakers": [
+      "The 2026-04-14 Netflix Tudum US movie chart publishes and shows Thrash clearly below #1.",
+      "The chart publishes and shows a different title at #1, eliminating the pre-publication uncertainty.",
+      "Credible evidence emerges that Thrash was not eligible or is titled differently than the market assumes for the governing chart."
+    ],
+    "market_structure_breakers": [
+      "A clarified market-rule interpretation changes how title mapping to the Netflix chart is handled.",
+      "The governing Tudum update is delayed or unavailable long enough to shift settlement expectations materially.",
+      "Evidence appears that the market's 0.90 price was tied to information not reflected in public pre-publication sources, requiring a new review after release."
+    ],
+    "time_breakers": [
+      "This packet should not be used after valid_until without the actual target-week Netflix update.",
+      "Once the chart publishes, this pre-publication uncertainty packet should be replaced with a new post-publication decision immediately."
+    ],
+    "reversal_conditions": [
+      "No reversal logic applies because this packet authorizes no position.",
+      "A new packet is required after chart publication or equivalent authoritative confirmation.",
+      "Do not auto-reverse from flat based on this packet."
+    ]
+  },
+  "epistemic_status": {
+    "key_uncertainties": [
+      "Whether Thrash actually led the unpublished 4/6/26-4/12/26 US Netflix week.",
+      "Whether the market's extreme confidence reflects accurate unofficial tracking or simply overconfident speculation.",
+      "Whether the eventual Netflix chart label will map cleanly to the market's exact title string."
+    ],
+    "reasons_to_pass": [
+      "The decisive governing chart has not yet published, so the strongest possible evidence is still unavailable.",
+      "Independent verification quality is explicitly low, which is insufficient for acting against or with an extreme market price confidently.",
+      "This is a classic case where the market may have unseen information, but the bounded public bundle does not justify trusting that signal enough to trade."
+    ],
+    "what_would_change_my_mind": [
+      "The 2026-04-14 Netflix Tudum US movie Top 10 update showing Thrash at #1 would make the case decision-ready in favor of Yes.",
+      "The update showing another film at #1 would make the case decision-ready against Thrash.",
+      "Authoritative title-specific evidence that Thrash launched in-window and dominated US viewing would increase confidence materially even before chart publication."
+    ],
+    "decision_quality": "not_ready"
+  },
+  "audit": {
+    "market_baseline_respected": true,
+    "action_bias_check_passed": true,
+    "self_preservation_bias_check_passed": true,
+    "one_sentence_rationale": "Because the governing Netflix chart for the target week is still unpublished and the bundle provides no strong independent evidence explaining a 90% market price, the disciplined output is to stay flat and wait for the actual source of truth.",
+    "notes": "I preserve the bounded provisional estimate around 0.71 as a pre-publication expectation, but I do not consider it execution-usable given low independent verification quality, explicit reopen-recommended status, and the absence of direct title-specific evidence for the unresolved week.",
+    "structured_handoff_primary_used": true,
+    "prose_fallback_used": false,
+    "verification_mode_used": "not_ready_reopen_recommended",
+    "additional_verification_performed": false,
+    "additional_verification_notes": ""
+  }
+}

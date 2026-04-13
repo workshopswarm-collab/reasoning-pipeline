@@ -13,7 +13,7 @@ REPO_ROOT = SCRIPT_DIR.parents[4]
 if str(REPO_ROOT / 'scripts') not in sys.path:
     sys.path.insert(0, str(REPO_ROOT / 'scripts'))
 
-from case_pipeline_status import update_case_pipeline_status  # noqa: E402
+from case_pipeline_status import summarize_case_pipeline_status, update_case_pipeline_status_with_followups as update_case_pipeline_status  # noqa: E402
 
 WORKSPACE_ROOT = REPO_ROOT
 EXPECTED_PERSONAS = [
@@ -62,16 +62,39 @@ def relative_to_workspace(path: Path | None) -> str:
         return str(candidate)
 
 
+def canonical_dispatch_dir_from_case_status(case_key: str) -> Path | None:
+    summary = summarize_case_pipeline_status(case_key)
+    dispatch_id = str(summary.get('dispatch_id') or '').strip()
+    if not dispatch_id:
+        return None
+    analyses_root = WORKSPACE_ROOT / 'qualitative-db' / '40-research' / 'cases' / case_key / 'researcher-analyses'
+    for candidate in analyses_root.glob(f'*/{dispatch_id}'):
+        if candidate.is_dir():
+            return candidate.resolve()
+    return None
+
+
 def resolve_dispatch_dir(case_key: str) -> Path:
+    canonical = canonical_dispatch_dir_from_case_status(case_key)
+    if canonical is not None:
+        return canonical
     analyses_root = WORKSPACE_ROOT / 'qualitative-db' / '40-research' / 'cases' / case_key / 'researcher-analyses'
     candidates = sorted(analyses_root.glob('*/dispatch-case-*'), key=lambda p: p.stat().st_mtime, reverse=True)
     if not candidates:
         raise FileNotFoundError(f'no dispatch directory found for case {case_key}')
+    full_named = [p for p in candidates if p.name.startswith(f'dispatch-{case_key}-')]
+    if full_named:
+        return full_named[0]
     return candidates[0]
 
 
 def dispatch_id_from_dir(dispatch_dir: Path) -> str:
     return dispatch_dir.name if dispatch_dir.name.startswith('dispatch-case-') else ''
+
+
+def is_short_fallback_dispatch_dir(dispatch_dir: Path, *, case_key: str) -> bool:
+    name = dispatch_dir.name
+    return name.startswith('dispatch-case-') and not name.startswith(f'dispatch-{case_key}-')
 
 
 def find_manifest(dispatch_id: str) -> Path | None:
@@ -102,6 +125,10 @@ def main() -> None:
 
     dispatch_dir = Path(args.dispatch_dir).resolve() if args.dispatch_dir else resolve_dispatch_dir(args.case_key)
     case_key = args.case_key or next((part for part in dispatch_dir.parts if part.startswith('case-')), '')
+    if case_key and is_short_fallback_dispatch_dir(dispatch_dir, case_key=case_key):
+        canonical = canonical_dispatch_dir_from_case_status(case_key)
+        if canonical is not None and canonical != dispatch_dir:
+            dispatch_dir = canonical
     dispatch_id = dispatch_id_from_dir(dispatch_dir)
     manifest_path = find_manifest(dispatch_id)
     personas_dir = dispatch_dir / 'personas'

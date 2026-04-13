@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Single-minute, single-venue settlement fragility.",
+    "Short-horizon crypto downside tail risk remains live until the noon ET candle closes.",
+    "Minor timezone/operational interpretation risk remains until settlement."
+  ],
+  "key_assumptions": [
+    "Current Binance BTC/USDT level and morning stability are informative for the noon ET close.",
+    "Noon ET correctly maps to a 16:00 UTC still-future Binance 1-minute candle.",
+    "No exchange-specific Binance dislocation develops before settlement."
+  ],
+  "main_logical_chain": [
+    "The contract resolves from one specific Binance BTC/USDT 1-minute close at 12:00 ET.",
+    "Binance was already materially above 68k with under three hours remaining and recent price action was stable.",
+    "That makes Yes highly likely, but residual path-risk and exact-candle mechanics keep the probability below certainty."
+  ],
+  "main_thesis": "Yes is highly likely because Binance BTC/USDT was already around 71.1k with under three hours left, but single-minute settlement and intraday crash risk keep this below certainty.",
+  "own_probability": 0.96,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "Binance spot was about 71,145.56 at roughly 9:03 AM ET.",
+    "The governing source of truth is Binance BTC/USDT, specifically the final close for the 1-minute candle at 12:00 PM ET."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "risk_management",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260413-de71fc13",
+    "dispatch_id": "dispatch-case-20260413-de71fc13-20260413T130158Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "7213894b-5e7f-408b-8df2-bb5d1cb8f592",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260413-de71fc13/researcher-analyses/2026-04-13/dispatch-case-20260413-de71fc13-20260413T130158Z/personas/risk-manager.md",
+    "source_persona_sha256": "ea1f56c4bec295c2689d222d6290f02920c9c42d8a4277446710e8938e3770ce"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Good for a medium case: Binance is the governing source, Polymarket rules clarify mechanics, and Coinbase/CoinGecko provided a useful additional verification pass.",
+  "strongest_disconfirmers": [
+    "A roughly 4.5%+ intraday selloff before noon ET could still flip the market to No.",
+    "Settlement depends on one exact Binance 1-minute close, not a broader market average."
+  ],
+  "strongest_supports": [
+    "Binance BTC/USDT was about 71,145.56 around 9:03 AM ET, roughly 4.6% above 68,000.",
+    "Recent Binance 1-minute closes stayed roughly in a 70.68k-71.21k range over the prior four hours.",
+    "Coinbase and CoinGecko were also near 71.1k, supporting that Binance was not an isolated aberration."
+  ],
+  "timing_relevance": "Very high: the case depends on a still-future noon ET / 16:00 UTC Binance 1-minute close on the same day.",
+  "unresolved_ambiguities": [
+    "Exact live UI/candle labeling on Binance was not directly viewed, only API and rules surfaces were checked.",
+    "The specific noon ET close had not yet occurred at analysis time."
+  ],
+  "what_would_change_view": "A sharp Binance drop toward 68k, a Binance-specific dislocation, or evidence that the relevant candle timing was interpreted differently would move the estimate down materially."
+}

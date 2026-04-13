@@ -1,0 +1,157 @@
+{
+  "schema_version": "decision-packet/v1",
+  "generated_at": "2026-04-13T14:01:00-04:00",
+  "context": {
+    "case_key": "case-20260413-36f15d57",
+    "dispatch_id": "dispatch-case-20260413-36f15d57-20260413T175211Z",
+    "question": "DeepSeek V4 released by April 30?",
+    "market_id": "case-20260413-36f15d57",
+    "market_title": "DeepSeek V4 released by April 30?",
+    "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260413-36f15d57/synthesizer-agent/decision-handoff.md",
+    "source_syndicated_finding_path": "qualitative-db/40-research/cases/case-20260413-36f15d57/synthesizer-agent/syndicated-finding.md",
+    "decision_maker_agent": "decision-maker",
+    "canonical_markdown_path": "decision-maker-packet.md",
+    "canonical_json_path": "artifacts/decision-maker-packet.json",
+    "external_market_id": "0xe5883e093e642062acb19820d91429ecd1d00ccb9011ac2f595dfd2cb8f40dc5",
+    "market_slug": "deepseek-v4-released-by-april-30-896",
+    "platform": "polymarket",
+    "primary_market_url": "https://polymarket.com/event/deepseek-v4-released-by-april-30-896",
+    "source_light_refresh_brief_path": "",
+    "refresh_mode": ""
+  },
+  "decision": {
+    "side": "none",
+    "trade_authorization": "forbidden",
+    "position_policy": "flat",
+    "decision_readiness": "needs_more_research",
+    "primary_crux": "The bounded inputs do not establish a stable contract: deadline/month wording conflicts across title, slug, metadata, and fetched contract text, so I cannot responsibly assess whether the market is pricing the same event the dispatch asks about.",
+    "secondary_cruxes": [
+      "Even setting contract identity aside, the bundle says no independently confirmed official public-access artifact for V4 was found on checked first-party surfaces.",
+      "The market may still be incorporating real launch-imminence information, but the package explicitly says blockers require new research and the key first-party qualification evidence is missing.",
+      "A last-minute official open beta/open waitlist could flip the case immediately, which makes stale or mismatched contract wording especially dangerous."
+    ],
+    "thesis_class": "not_decision_ready"
+  },
+  "valuation": {
+    "fair_value_low": 0.4,
+    "fair_value_high": 0.55,
+    "fair_value_mid": 0.475,
+    "market_reference_price": 0.7,
+    "independent_verification_quality": "medium",
+    "compressed_toward_market_applied": false,
+    "compression_reason": "No extra compression is useful because the main blocker is unresolved contract identity/deadline ambiguity, not overprecision around the provisional probability estimate.",
+    "edge_mid_vs_market_pct_points": -22.5
+  },
+  "execution_semantics": {
+    "price_axis": "market_implied_true_prob",
+    "price_source": "market_snapshot_quote",
+    "rebalance_threshold_fraction": 0.1,
+    "allow_auto_reversal": false,
+    "valid_until": "2026-04-14T12:00:00-04:00",
+    "quote_staleness_seconds": 3600,
+    "time_horizon": "Immediate contract-clarification and launch-announcement window"
+  },
+  "risk_controls": {
+    "max_position_size_pct_bankroll": 0.0,
+    "max_additional_exposure_pct_bankroll": 0.0,
+    "max_single_order_pct_bankroll": 0.0,
+    "slippage_tolerance_bps": 100,
+    "liquidity_min_depth": 1000,
+    "correlation_bucket_limit_pct_bankroll": 0.05,
+    "confidence_level": "low",
+    "portfolio_constraints": [
+      "Do not trade from this packet because the operative deadline is not reliably identified across the bounded inputs.",
+      "Require confirmation of the actual governing contract text and deadline before authorizing any exposure.",
+      "Keep target exposure at zero until official first-party release/access evidence and contract wording are reconciled."
+    ],
+    "liquidity_caution": "high"
+  },
+  "bands": [
+    {
+      "name": "max_enter",
+      "min_p": 0,
+      "max_p": 0.2,
+      "target_exposure_fraction": 0,
+      "notes": "Zero-exposure band because the underlying contract is not cleanly identified."
+    },
+    {
+      "name": "scaled_enter",
+      "min_p": 0.2,
+      "max_p": 0.4,
+      "target_exposure_fraction": 0,
+      "notes": "Zero-exposure band because deadline and source-of-truth ambiguity block execution-quality judgment."
+    },
+    {
+      "name": "hold",
+      "min_p": 0.4,
+      "max_p": 0.6,
+      "target_exposure_fraction": 0,
+      "notes": "Zero-exposure band; no autonomous hold/add decision is justified until the contract text is reconciled."
+    },
+    {
+      "name": "trim",
+      "min_p": 0.6,
+      "max_p": 0.8,
+      "target_exposure_fraction": 0,
+      "notes": "Zero-exposure band because apparent mispricing may reflect contract mismatch rather than substantive disagreement."
+    },
+    {
+      "name": "exit",
+      "min_p": 0.8,
+      "max_p": 1,
+      "target_exposure_fraction": 0,
+      "notes": "Zero-exposure band; remain flat until deadline and qualification criteria are confirmed."
+    }
+  ],
+  "invalidation": {
+    "thesis_breakers": [
+      "Authoritative confirmation shows the real contract deadline and qualification standard differ from what this packet assumes.",
+      "Official DeepSeek announces a clearly qualifying flagship successor with general-public accessibility before the true deadline.",
+      "Credible evidence establishes that no qualifying public-access release is possible by the true deadline."
+    ],
+    "market_structure_breakers": [
+      "The dispatch, slug, and live market text are confirmed to refer to different contracts or deadlines.",
+      "A clarified rule interpretation changes what counts as public accessibility or flagship successor status.",
+      "Official DeepSeek surfaces materially update and resolve the current first-party evidence gap."
+    ],
+    "time_breakers": [
+      "This packet should not be used after valid_until without contract clarification.",
+      "Because a single official launch/access announcement could move the case abruptly, stale pre-clarification judgments should not be carried forward."
+    ],
+    "reversal_conditions": [
+      "No reversal logic applies because this packet authorizes no position.",
+      "A new packet is required after deadline reconciliation and refreshed official-source review.",
+      "Do not auto-reverse from flat based on this packet."
+    ]
+  },
+  "epistemic_status": {
+    "key_uncertainties": [
+      "Whether the actual governing deadline is April 30 or some other date implied by conflicting market metadata.",
+      "Whether an official DeepSeek public-access artifact exists outside the checked first-party surfaces or could appear abruptly.",
+      "Whether rumor/reporting-based launch imminence is genuine enough to justify the market despite missing direct qualifying evidence."
+    ],
+    "reasons_to_pass": [
+      "You cannot responsibly trade when the dispatch and fetched contract references disagree on the operative deadline/month.",
+      "The package does not independently verify an official public-access V4 release on first-party surfaces.",
+      "The runtime explicitly marks this case as reopen-recommended and says blockers require new research."
+    ],
+    "what_would_change_my_mind": [
+      "Authoritative confirmation of the actual contract wording and deadline would make the case decision-ready enough to judge.",
+      "An official DeepSeek announcement plus clear general-public access path for the next flagship V-series model would move the probability sharply upward.",
+      "Credible confirmation that no qualifying official release/access artifact exists as the true deadline approaches would move it downward."
+    ],
+    "decision_quality": "not_ready"
+  },
+  "audit": {
+    "market_baseline_respected": false,
+    "action_bias_check_passed": true,
+    "self_preservation_bias_check_passed": true,
+    "one_sentence_rationale": "Because the bounded inputs do not even cleanly identify the governing DeepSeek contract deadline and still lack first-party qualifying release evidence, the only disciplined output is to stay flat and demand clarification before trading.",
+    "notes": "I preserve the bounded provisional below-market estimate around 0.475 only as a placeholder expectation, not as an execution-quality signal; the real blocker is contract identity plus missing official qualifying evidence.",
+    "structured_handoff_primary_used": true,
+    "prose_fallback_used": false,
+    "verification_mode_used": "not_ready_reopen_recommended",
+    "additional_verification_performed": false,
+    "additional_verification_notes": ""
+  }
+}

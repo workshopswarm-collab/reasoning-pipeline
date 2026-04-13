@@ -1,0 +1,206 @@
+{
+  "artifact_type": "decision_stage_status",
+  "schema_version": "decision-stage-status/v1",
+  "case_key": "case-20260413-9e664afd",
+  "dispatch_id": "dispatch-case-20260413-9e664afd-20260413T164930Z",
+  "question": "Will the price of Bitcoin be above $70,000 on April 14?",
+  "decision_context_path": "roles/decision-maker/runtime/artifacts/case-20260413-9e664afd/decision-context-dispatch-case-20260413-9e664afd-20260413T164930Z.json",
+  "actor": "decision-maker",
+  "decision_target_chat_id": "-1003846500961",
+  "decision_target_session_key": "agent:main:telegram:group:-1003846500961:topic:937",
+  "trade_authorization": "watch_only",
+  "position_policy": "hold_only",
+  "decision_readiness": "ready",
+  "recommended_side": "yes",
+  "warnings": [],
+  "packet_json_path": "qualitative-db/40-research/cases/case-20260413-9e664afd/decision-maker/artifacts/decision-maker-packet.json",
+  "packet_markdown_path": "qualitative-db/40-research/cases/case-20260413-9e664afd/decision-maker/decision-maker-packet.md",
+  "decision_visible_receipt_marker": "SYNTHESIS RECEIVED | market=Will the price of Bitcoin be above $70,000 on April 14? | dispatch_id=dispatch-case-20260413-9e664afd-20260413T164930Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260413-9e664afd/decision-context-dispatch-case-20260413-9e664afd-20260413T164930Z.json",
+  "decision_visible_start_marker": "DECISION-MAKING ANALYSIS UNDERWAY | market=Will the price of Bitcoin be above $70,000 on April 14? | dispatch_id=dispatch-case-20260413-9e664afd-20260413T164930Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260413-9e664afd/decision-context-dispatch-case-20260413-9e664afd-20260413T164930Z.json",
+  "decision_visible_finish_marker": "DECISION-MAKING COMPLETED, DECISION PACKAGE CREATED | market=Will the price of Bitcoin be above $70,000 on April 14? | dispatch_id=dispatch-case-20260413-9e664afd-20260413T164930Z | packet_path=qualitative-db/40-research/cases/case-20260413-9e664afd/decision-maker/decision-maker-packet.md",
+  "status": "decision_completed",
+  "stage_events": [
+    {
+      "at": "2026-04-13T16:57:05.415876Z",
+      "stage": "kickoff",
+      "state": "decision_ready_for_receipt",
+      "message": "Decision-Maker stage initialized from synthesis handoff",
+      "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260413-9e664afd/synthesizer-agent/decision-handoff.md"
+    },
+    {
+      "at": "2026-04-13T16:57:05.557756Z",
+      "stage": "decision_input_selection",
+      "state": "built",
+      "message": "Built deterministic Decision-Maker selected-input bundle",
+      "verification_mode_path": "roles/decision-maker/runtime/artifacts/case-20260413-9e664afd/verification-mode-dispatch-case-20260413-9e664afd-20260413T164930Z.json",
+      "selected_input_bundle_path": "roles/decision-maker/runtime/artifacts/case-20260413-9e664afd/selected-inputs-dispatch-case-20260413-9e664afd-20260413T164930Z.json",
+      "verification_mode": "targeted_escalation",
+      "approx_tokens_after_trim": 4451,
+      "agent_tool_use_allowed": true
+    },
+    {
+      "at": "2026-04-13T16:57:05.557803Z",
+      "stage": "decision_targeted_verification",
+      "state": "built",
+      "message": "Built deterministic targeted verification pack",
+      "targeted_verification_pack_path": "roles/decision-maker/runtime/artifacts/case-20260413-9e664afd/targeted-verification-pack-dispatch-case-20260413-9e664afd-20260413T164930Z.json",
+      "approx_tokens_after_trim": 2043
+    },
+    {
+      "at": "2026-04-13T16:57:05.557834Z",
+      "stage": "decision_prompt",
+      "state": "built",
+      "message": "Built Decision-Maker prompt from compact selected-input bundle",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260413-9e664afd/decision-prompt-dispatch-case-20260413-9e664afd-20260413T164930Z.md"
+    },
+    {
+      "at": "2026-04-13T16:57:07.243684Z",
+      "stage": "decision_lane_bootstrap",
+      "state": "created",
+      "message": "Created dedicated Telegram decision lane",
+      "topic_id": "937",
+      "topic_title": "case-20260413-9e664afd | decision | T164930Z",
+      "session_key": "agent:main:telegram:group:-1003846500961:topic:937"
+    },
+    {
+      "at": "2026-04-13T16:57:10.910957Z",
+      "stage": "decision_receipt",
+      "state": "visible_marker_sent",
+      "message": "SYNTHESIS RECEIVED | market=Will the price of Bitcoin be above $70,000 on April 14? | dispatch_id=dispatch-case-20260413-9e664afd-20260413T164930Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260413-9e664afd/decision-context-dispatch-case-20260413-9e664afd-20260413T164930Z.json"
+    },
+    {
+      "at": "2026-04-13T16:57:10.911446Z",
+      "stage": "decision_receipt",
+      "state": "accepted",
+      "message": "Decision-Maker handoff accepted",
+      "session_key": "agent:decision-maker:main",
+      "handoff_status": "started"
+    },
+    {
+      "at": "2026-04-13T16:57:10.911582Z",
+      "stage": "decision_execution",
+      "state": "decision_analysis_running",
+      "message": "Decision-Maker agent invocation accepted and analysis started",
+      "session_key": "agent:decision-maker:main",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260413-9e664afd/decision-prompt-dispatch-case-20260413-9e664afd-20260413T164930Z.md",
+      "handoff_status": "started"
+    },
+    {
+      "at": "2026-04-13T16:57:13.051322Z",
+      "stage": "decision_execution",
+      "state": "visible_marker_sent",
+      "message": "DECISION-MAKING ANALYSIS UNDERWAY | market=Will the price of Bitcoin be above $70,000 on April 14? | dispatch_id=dispatch-case-20260413-9e664afd-20260413T164930Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260413-9e664afd/decision-context-dispatch-case-20260413-9e664afd-20260413T164930Z.json"
+    },
+    {
+      "at": "2026-04-13T16:57:47.998747Z",
+      "stage": "decision_execution",
+      "state": "decision_completed",
+      "message": "Decision-Maker completed and packet rendered",
+      "warnings": [],
+      "forecast_decision_persist_error": ""
+    },
+    {
+      "at": "2026-04-13T16:57:50.299939Z",
+      "stage": "decision_execution",
+      "state": "visible_marker_sent",
+      "message": "DECISION-MAKING COMPLETED, DECISION PACKAGE CREATED | market=Will the price of Bitcoin be above $70,000 on April 14? | dispatch_id=dispatch-case-20260413-9e664afd-20260413T164930Z | packet_path=qualitative-db/40-research/cases/case-20260413-9e664afd/decision-maker/decision-maker-packet.md"
+    }
+  ],
+  "last_stage_event": {
+    "at": "2026-04-13T16:57:50.299939Z",
+    "stage": "decision_execution",
+    "state": "visible_marker_sent",
+    "message": "DECISION-MAKING COMPLETED, DECISION PACKAGE CREATED | market=Will the price of Bitcoin be above $70,000 on April 14? | dispatch_id=dispatch-case-20260413-9e664afd-20260413T164930Z | packet_path=qualitative-db/40-research/cases/case-20260413-9e664afd/decision-maker/decision-maker-packet.md"
+  },
+  "updated_at": "2026-04-13T16:57:50.299965Z",
+  "decision_lane": {
+    "topic_id": "937",
+    "topic_title": "case-20260413-9e664afd | decision | T164930Z",
+    "session_key": "agent:main:telegram:group:-1003846500961:topic:937"
+  },
+  "verification_mode_path": "roles/decision-maker/runtime/artifacts/case-20260413-9e664afd/verification-mode-dispatch-case-20260413-9e664afd-20260413T164930Z.json",
+  "selected_input_bundle_path": "roles/decision-maker/runtime/artifacts/case-20260413-9e664afd/selected-inputs-dispatch-case-20260413-9e664afd-20260413T164930Z.json",
+  "selected_input_bundle_mode": "targeted_escalation",
+  "selected_input_bundle_estimated_tokens": 4451,
+  "targeted_verification_pack_path": "roles/decision-maker/runtime/artifacts/case-20260413-9e664afd/targeted-verification-pack-dispatch-case-20260413-9e664afd-20260413T164930Z.json",
+  "targeted_verification_pack_required": true,
+  "decision_prompt_path": "roles/decision-maker/runtime/artifacts/case-20260413-9e664afd/decision-prompt-dispatch-case-20260413-9e664afd-20260413T164930Z.md",
+  "agent_tool_use_allowed": true,
+  "decision_lane_topic_id": "937",
+  "decision_lane_topic_title": "case-20260413-9e664afd | decision | T164930Z",
+  "decision_lane_session_key": "agent:main:telegram:group:-1003846500961:topic:937",
+  "decision_target_topic_id": "937",
+  "decision_target_topic_title": "case-20260413-9e664afd | decision | T164930Z",
+  "decision_receipt_marker_sent_at": "2026-04-13T16:57:10.910931+00:00",
+  "decision_analysis_marker_sent_at": "2026-04-13T16:57:13.051308+00:00",
+  "timeline_update": {
+    "appended": true,
+    "case_key": "case-20260413-9e664afd",
+    "dispatch_id": "dispatch-case-20260413-9e664afd-20260413T164930Z",
+    "packet_path": "qualitative-db/40-research/cases/case-20260413-9e664afd/decision-maker/decision-maker-packet.md",
+    "entry": "- 2026-04-13T16:57:47.998211+00:00 — completed decision-making `dispatch-case-20260413-9e664afd-20260413T164930Z` with packet `qualitative-db/40-research/cases/case-20260413-9e664afd/decision-maker/decision-maker-packet.md`."
+  },
+  "forecast_decision_persist": {
+    "ok": true,
+    "packet_json": "qualitative-db/40-research/cases/case-20260413-9e664afd/decision-maker/artifacts/decision-maker-packet.json",
+    "persisted": {
+      "forecast_id": "dispatch-case-20260413-9e664afd-20260413T164930Z",
+      "market_id": "343b4125-9ce7-4238-81ad-f534fc4c6fae",
+      "contract_id": "yes",
+      "forecast_prob": 0.87,
+      "decision_status": "recorded",
+      "decision_packet_path": "qualitative-db/40-research/cases/case-20260413-9e664afd/decision-maker/artifacts/decision-maker-packet.json",
+      "supersedes_forecast_id": null,
+      "superseded_forecast_ids": [],
+      "market_state": {
+        "market_id": "343b4125-9ce7-4238-81ad-f534fc4c6fae",
+        "current_price": 0.845,
+        "last_reasoned_price": 0.87,
+        "pipeline_status": "executed"
+      }
+    },
+    "record": {
+      "forecast_id": "dispatch-case-20260413-9e664afd-20260413T164930Z",
+      "decision_ts": "2026-04-13T12:57:00-04:00",
+      "case_id": "case-20260413-9e664afd",
+      "dispatch_id": "dispatch-case-20260413-9e664afd-20260413T164930Z",
+      "market_id": "343b4125-9ce7-4238-81ad-f534fc4c6fae",
+      "contract_id": "yes",
+      "platform": "polymarket",
+      "market_slug": "bitcoin-above-70k-on-april-14",
+      "question": "Will the price of Bitcoin be above $70,000 on April 14?",
+      "forecast_prob": "0.87",
+      "forecast_direction": "yes",
+      "confidence_label": "medium",
+      "confidence_score": "",
+      "time_horizon_label": "Final day into the Apr 14 noon ET / 16:00 UTC settlement minute",
+      "verification_mode": "targeted_escalation",
+      "decision_status": "recorded",
+      "rationale_summary": "BTC is still clearly above 70,000, so Yes remains the better directional call, but because the bounded inputs contain inconsistent market pricing and the contract settles on one future Binance minute, the disciplined output is watch-only rather than fresh entry.",
+      "decision_packet_path": "qualitative-db/40-research/cases/case-20260413-9e664afd/decision-maker/artifacts/decision-maker-packet.json",
+      "decision_handoff_path": "qualitative-db/40-research/cases/case-20260413-9e664afd/synthesizer-agent/decision-handoff.md",
+      "syndicated_finding_path": "qualitative-db/40-research/cases/case-20260413-9e664afd/synthesizer-agent/syndicated-finding.md"
+    },
+    "warnings": []
+  },
+  "terminal_summary": {
+    "at": "2026-04-13T16:57:50.299975Z",
+    "status": "decision_completed",
+    "decision_lane": {
+      "topic_id": "937",
+      "topic_title": "case-20260413-9e664afd | decision | T164930Z",
+      "session_key": "agent:main:telegram:group:-1003846500961:topic:937"
+    },
+    "packet_json_path": "qualitative-db/40-research/cases/case-20260413-9e664afd/decision-maker/artifacts/decision-maker-packet.json",
+    "packet_markdown_path": "qualitative-db/40-research/cases/case-20260413-9e664afd/decision-maker/decision-maker-packet.md",
+    "trade_authorization": "watch_only",
+    "decision_readiness": "ready",
+    "last_stage_event": {
+      "at": "2026-04-13T16:57:50.299939Z",
+      "stage": "decision_execution",
+      "state": "visible_marker_sent",
+      "message": "DECISION-MAKING COMPLETED, DECISION PACKAGE CREATED | market=Will the price of Bitcoin be above $70,000 on April 14? | dispatch_id=dispatch-case-20260413-9e664afd-20260413T164930Z | packet_path=qualitative-db/40-research/cases/case-20260413-9e664afd/decision-maker/decision-maker-packet.md"
+    }
+  },
+  "decision_completion_marker_sent_at": "2026-04-13T16:57:50.299910+00:00"
+}

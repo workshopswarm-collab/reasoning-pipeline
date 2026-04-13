@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Single-candle settlement mechanics compress residual risk into a short window.",
+    "Extreme market confidence can overstate certainty before the governing print exists."
+  ],
+  "key_assumptions": [
+    "BTC does not drop more than roughly 4% into the specific noon ET Binance close.",
+    "Binance remains the accepted governing source for the relevant candle.",
+    "No hidden settlement nuance overrides the plain contract wording."
+  ],
+  "main_logical_chain": [
+    "Polymarket resolves from the Binance BTC/USDT 12:00 ET 1-minute candle final close.",
+    "Direct Binance checks show BTC already comfortably above 68k before settlement.",
+    "Therefore Yes is favored, but not literally settled because the governing candle is still ahead.",
+    "That leaves a small but real residual No tail that the market may be underweighting."
+  ],
+  "main_thesis": "Yes remains highly likely because Binance BTC/USDT was already trading around 71k hours before settlement, but the market is slightly overconfident because the only governing print is the still-unformed 12:00 ET 1-minute candle.",
+  "own_probability": 0.89,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "08:00 ET close 70888.27",
+    "09:00 ET close 71110.83",
+    "12:00 ET candle not yet available"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "contract_interpretation",
+    "variant_hypothesis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260413-de71fc13",
+    "dispatch_id": "dispatch-case-20260413-de71fc13-20260413T130158Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "75e29d84-8713-4613-bef5-ad0915e6f532",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260413-de71fc13/researcher-analyses/2026-04-13/dispatch-case-20260413-de71fc13-20260413T130158Z/personas/variant-view.md",
+    "source_persona_sha256": "a9bbfcbc1630e64a9ea506627442323d46dc68a78a95e7a57079504e6f73a49b"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality direct source for price mechanics via Binance plus exact contract wording from Polymarket; independence is medium because they are contractually linked.",
+  "strongest_disconfirmers": [
+    "The only price that counts is the 12:00 ET Binance 1-minute candle close, and it did not yet exist at research time.",
+    "A sharp crypto selloff or Binance-specific issue before noon could still flip resolution."
+  ],
+  "strongest_supports": [
+    "Binance spot was already in the low 71k area during the check.",
+    "08:00 ET and 09:00 ET Binance 1m closes were 70888.27 and 71110.83.",
+    "A move below 68k before noon would require a meaningful adverse intraday move."
+  ],
+  "timing_relevance": "This is an intraday, date-specific contract; at research time there were about three hours left before the governing noon ET candle.",
+  "unresolved_ambiguities": [
+    "Exact noon candle had not yet formed at research time.",
+    "Minor implementation ambiguity remains until the specific noon ET candle is inspected directly."
+  ],
+  "what_would_change_view": "A rapid move toward 68k, Binance operational issues, or clarified settlement mechanics different from the current interpretation would lower the probability materially."
+}

@@ -18,7 +18,7 @@ if str(DECISION_MAKER_DIR) not in sys.path:
 if str(REPO_ROOT / "scripts") not in sys.path:
     sys.path.insert(0, str(REPO_ROOT / "scripts"))
 
-from case_pipeline_status import update_case_pipeline_status  # noqa: E402
+from case_pipeline_status import update_case_pipeline_status_with_followups as update_case_pipeline_status  # noqa: E402
 from common import (  # noqa: E402
     CASE_DECISION_PACKET_JSON_RELATIVE,
     WORKSPACE_ROOT,

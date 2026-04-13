@@ -105,6 +105,7 @@ This exposes explicit subcommands such as:
 - `select-next`
 - `launch-next`
 - `launch-case --case-id <uuid>`
+- `launch-market --market-id <market-uuid>`
 - `inspect-case --case-ref <uuid|case-key>`
 - `repair-preview`
 - `repair-apply`

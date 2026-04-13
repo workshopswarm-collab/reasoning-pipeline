@@ -1,0 +1,157 @@
+{
+  "schema_version": "decision-packet/v1",
+  "generated_at": "2026-04-13T14:11:00-04:00",
+  "context": {
+    "case_key": "case-20260413-49227e85",
+    "dispatch_id": "dispatch-case-20260413-49227e85-20260413T180153Z",
+    "question": "DeepSeek V4 released by April 15?",
+    "market_id": "case-20260413-49227e85",
+    "market_title": "DeepSeek V4 released by April 15?",
+    "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260413-49227e85/synthesizer-agent/decision-handoff.md",
+    "source_syndicated_finding_path": "qualitative-db/40-research/cases/case-20260413-49227e85/synthesizer-agent/syndicated-finding.md",
+    "decision_maker_agent": "decision-maker",
+    "canonical_markdown_path": "decision-maker-packet.md",
+    "canonical_json_path": "artifacts/decision-maker-packet.json",
+    "external_market_id": "0x51109a2d8f1f4d15d702d69783f41bee0440f9e36ad4337d5fe00f8c864aaa0f",
+    "market_slug": "deepseek-v4-released-by-april-15-787",
+    "platform": "polymarket",
+    "primary_market_url": "https://polymarket.com/event/deepseek-v4-released-by-april-15-787",
+    "source_light_refresh_brief_path": "",
+    "refresh_mode": ""
+  },
+  "decision": {
+    "side": "none",
+    "trade_authorization": "forbidden",
+    "position_policy": "flat",
+    "decision_readiness": "needs_more_research",
+    "primary_crux": "The bounded evidence does not independently verify a qualifying DeepSeek V4-or-successor public release artifact on official-family surfaces, while the market is pricing 75.5% Yes largely on implied imminence rather than observed qualification evidence.",
+    "secondary_cruxes": [
+      "The package explicitly says independent coverage of all official DeepSeek launch surfaces is incomplete, so a decisive qualifying artifact could still appear without being captured here.",
+      "There is residual contract-fit ambiguity around whether a successor not explicitly named V4 and/or an open waitlist/open beta would count, which is material with only ~48 hours left.",
+      "The runtime marks this case as not_ready_reopen_recommended and says blockers require new research, which makes a flat/no-action output more disciplined than pretending the missing first-party evidence is sufficient."
+    ],
+    "thesis_class": "not_decision_ready"
+  },
+  "valuation": {
+    "fair_value_low": 0.34,
+    "fair_value_high": 0.5,
+    "fair_value_mid": 0.42,
+    "market_reference_price": 0.755,
+    "independent_verification_quality": "medium",
+    "compressed_toward_market_applied": false,
+    "compression_reason": "No further compression is useful because the key issue is missing qualification evidence plus incomplete official-surface coverage, not overprecision around the provisional estimate.",
+    "edge_mid_vs_market_pct_points": -33.5
+  },
+  "execution_semantics": {
+    "price_axis": "market_implied_true_prob",
+    "price_source": "market_snapshot_quote",
+    "rebalance_threshold_fraction": 0.1,
+    "allow_auto_reversal": false,
+    "valid_until": "2026-04-15T12:00:00-04:00",
+    "quote_staleness_seconds": 3600,
+    "time_horizon": "Final 48-hour launch-announcement window into the Apr 15 deadline"
+  },
+  "risk_controls": {
+    "max_position_size_pct_bankroll": 0.0,
+    "max_additional_exposure_pct_bankroll": 0.0,
+    "max_single_order_pct_bankroll": 0.0,
+    "slippage_tolerance_bps": 100,
+    "liquidity_min_depth": 1000,
+    "correlation_bucket_limit_pct_bankroll": 0.05,
+    "confidence_level": "low",
+    "portfolio_constraints": [
+      "Do not trade from this packet because qualifying official public-access evidence is still incomplete and surface coverage is explicitly partial.",
+      "Require refreshed review of official DeepSeek launch surfaces before authorizing any exposure.",
+      "Keep target exposure at zero until a qualifying artifact or a clearer non-release state is observed."
+    ],
+    "liquidity_caution": "high"
+  },
+  "bands": [
+    {
+      "name": "max_enter",
+      "min_p": 0,
+      "max_p": 0.2,
+      "target_exposure_fraction": 0,
+      "notes": "Zero-exposure band because this packet is not decision-ready."
+    },
+    {
+      "name": "scaled_enter",
+      "min_p": 0.2,
+      "max_p": 0.4,
+      "target_exposure_fraction": 0,
+      "notes": "Zero-exposure band because official-surface coverage is incomplete and the qualifying artifact is unverified."
+    },
+    {
+      "name": "hold",
+      "min_p": 0.4,
+      "max_p": 0.6,
+      "target_exposure_fraction": 0,
+      "notes": "Zero-exposure band; no autonomous hold/add decision is justified before a qualifying first-party artifact is observed."
+    },
+    {
+      "name": "trim",
+      "min_p": 0.6,
+      "max_p": 0.8,
+      "target_exposure_fraction": 0,
+      "notes": "Zero-exposure band because the market may be reacting to real imminence, but the bounded evidence is insufficient to verify it."
+    },
+    {
+      "name": "exit",
+      "min_p": 0.8,
+      "max_p": 1,
+      "target_exposure_fraction": 0,
+      "notes": "Zero-exposure band; remain flat until official launch/access evidence is clarified."
+    }
+  ],
+  "invalidation": {
+    "thesis_breakers": [
+      "An official DeepSeek announcement plus public-access or open-waitlist artifact for the next flagship V-series model appears before Apr 15.",
+      "Credible evidence confirms a qualifying release path exists on an official surface not covered in this bounded run.",
+      "A clarified contract interpretation makes a successor with unexpected naming or open-waitlist access clearly count."
+    ],
+    "market_structure_breakers": [
+      "A clarified market rule interpretation changes what counts as public accessibility or successor naming.",
+      "The market reprices sharply on new official evidence, making this pre-clarification packet stale immediately.",
+      "Official DeepSeek surfaces become inspectable in a way that resolves the current ambiguity."
+    ],
+    "time_breakers": [
+      "This packet should not be used after valid_until without refreshed official-surface review.",
+      "Because a single official launch artifact could flip the case immediately, stale pre-announcement judgments should not be carried forward."
+    ],
+    "reversal_conditions": [
+      "No reversal logic applies because this packet authorizes no position.",
+      "A new packet is required after refreshed official evidence or deadline-adjacent clarification.",
+      "Do not auto-reverse from flat based on this packet."
+    ]
+  },
+  "epistemic_status": {
+    "key_uncertainties": [
+      "Whether a qualifying official DeepSeek launch/access artifact exists on an uncovered surface or appears abruptly before Apr 15.",
+      "Whether a successor not literally named V4 and/or an open waitlist/open beta would satisfy the contract.",
+      "How much of the market's 75.5% Yes price reflects real launch imminence not captured in the bounded public evidence."
+    ],
+    "reasons_to_pass": [
+      "The package explicitly says independent coverage of official DeepSeek launch surfaces is incomplete.",
+      "No qualifying first-party public release artifact was independently verified on the checked official-family surfaces.",
+      "With only ~48 hours left, event risk is highly discontinuous and can change on one official announcement, making under-verified trades fragile."
+    ],
+    "what_would_change_my_mind": [
+      "An official DeepSeek announcement plus clear public-access path for the next flagship V-series model would move the probability sharply higher.",
+      "Credible confirmation that no such official artifact exists as the deadline approaches would move the probability lower and make the case more decision-ready.",
+      "A clarified resolver interpretation on successor naming and open-waitlist qualification would reduce contract-fit ambiguity materially."
+    ],
+    "decision_quality": "not_ready"
+  },
+  "audit": {
+    "market_baseline_respected": true,
+    "action_bias_check_passed": true,
+    "self_preservation_bias_check_passed": true,
+    "one_sentence_rationale": "Because the bounded evidence still does not show a qualifying official public DeepSeek V4-style release artifact and even admits incomplete official-surface coverage, the disciplined output is to stay flat rather than trade against or with a rumor-heavy 75.5% market.",
+    "notes": "I preserve the bounded provisional below-market estimate around 0.42 only as a non-execution-ready expectation; the missing official qualifying artifact and explicit reopen-required status dominate the decision.",
+    "structured_handoff_primary_used": true,
+    "prose_fallback_used": false,
+    "verification_mode_used": "not_ready_reopen_recommended",
+    "additional_verification_performed": false,
+    "additional_verification_notes": ""
+  }
+}

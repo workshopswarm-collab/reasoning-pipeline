@@ -203,15 +203,27 @@ def main() -> int:
         else:
             controller_topic_title = controller_topic_title or controller_title
 
-        controller_visible_message = (
-            f"SWARM LAUNCH | case_key={(manifest.get('case') or {}).get('case_key')} "
-            f"| market={(manifest.get('market') or {}).get('title')} "
-            f"| dispatch_id={manifest.get('dispatch_id')}"
-        )
-        controller_visible_send_command = (
-            build_visible_send_command(chat_id=chat_id, topic_id=controller_topic_id, message=controller_visible_message)
-            if controller_topic_id else None
-        )
+        refresh_detected_marker = str(runtime_defaults.get('refresh_detected_marker') or '').strip()
+        refresh_start_marker = str(runtime_defaults.get('refresh_start_marker') or '').strip()
+        controller_visible_messages = [
+            message for message in [
+                refresh_detected_marker,
+                refresh_start_marker,
+                (
+                    f"SWARM LAUNCH | case_key={(manifest.get('case') or {}).get('case_key')} "
+                    f"| market={(manifest.get('market') or {}).get('title')} "
+                    f"| dispatch_id={manifest.get('dispatch_id')}"
+                ) if not refresh_start_marker else '',
+            ]
+            if str(message or '').strip()
+        ]
+        controller_visible_message = controller_visible_messages[-1] if controller_visible_messages else ''
+        controller_visible_send_commands = [
+            build_visible_send_command(chat_id=chat_id, topic_id=controller_topic_id, message=message)
+            for message in controller_visible_messages
+            if controller_topic_id
+        ]
+        controller_visible_send_command = controller_visible_send_commands[-1] if controller_visible_send_commands else None
 
         run_plans: list[dict[str, Any]] = []
         for run in launchable:
@@ -322,7 +334,9 @@ def main() -> int:
                 "topic_id": controller_topic_id,
                 "create_command": controller_command,
                 "visible_launch_message": controller_visible_message,
+                "visible_launch_messages": controller_visible_messages,
                 "visible_launch_command": controller_visible_send_command,
+                "visible_launch_commands": controller_visible_send_commands,
             },
             "launchable_runs": run_plans,
             "parallel_handoff_group": {

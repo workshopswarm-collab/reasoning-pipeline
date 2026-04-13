@@ -1,0 +1,198 @@
+{
+  "artifact_type": "decision_stage_status",
+  "schema_version": "decision-stage-status/v1",
+  "case_key": "case-20260413-36f15d57",
+  "dispatch_id": "dispatch-case-20260413-36f15d57-20260413T175211Z",
+  "question": "DeepSeek V4 released by April 30?",
+  "decision_context_path": "roles/decision-maker/runtime/artifacts/case-20260413-36f15d57/decision-context-dispatch-case-20260413-36f15d57-20260413T175211Z.json",
+  "actor": "decision-maker",
+  "decision_target_chat_id": "-1003846500961",
+  "decision_target_session_key": "agent:main:telegram:group:-1003846500961:topic:1034",
+  "trade_authorization": "forbidden",
+  "position_policy": "flat",
+  "decision_readiness": "needs_more_research",
+  "recommended_side": "none",
+  "warnings": [],
+  "packet_json_path": "qualitative-db/40-research/cases/case-20260413-36f15d57/decision-maker/artifacts/decision-maker-packet.json",
+  "packet_markdown_path": "qualitative-db/40-research/cases/case-20260413-36f15d57/decision-maker/decision-maker-packet.md",
+  "decision_visible_receipt_marker": "SYNTHESIS RECEIVED | market=DeepSeek V4 released by April 30? | dispatch_id=dispatch-case-20260413-36f15d57-20260413T175211Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260413-36f15d57/decision-context-dispatch-case-20260413-36f15d57-20260413T175211Z.json",
+  "decision_visible_start_marker": "DECISION-MAKING ANALYSIS UNDERWAY | market=DeepSeek V4 released by April 30? | dispatch_id=dispatch-case-20260413-36f15d57-20260413T175211Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260413-36f15d57/decision-context-dispatch-case-20260413-36f15d57-20260413T175211Z.json",
+  "decision_visible_finish_marker": "DECISION-MAKING COMPLETED, DECISION PACKAGE CREATED | market=DeepSeek V4 released by April 30? | dispatch_id=dispatch-case-20260413-36f15d57-20260413T175211Z | packet_path=qualitative-db/40-research/cases/case-20260413-36f15d57/decision-maker/decision-maker-packet.md",
+  "status": "decision_completed",
+  "stage_events": [
+    {
+      "at": "2026-04-13T18:01:16.374746Z",
+      "stage": "kickoff",
+      "state": "decision_ready_for_receipt",
+      "message": "Decision-Maker stage initialized from synthesis handoff",
+      "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260413-36f15d57/synthesizer-agent/decision-handoff.md"
+    },
+    {
+      "at": "2026-04-13T18:01:16.478130Z",
+      "stage": "decision_input_selection",
+      "state": "built",
+      "message": "Built deterministic Decision-Maker selected-input bundle",
+      "verification_mode_path": "roles/decision-maker/runtime/artifacts/case-20260413-36f15d57/verification-mode-dispatch-case-20260413-36f15d57-20260413T175211Z.json",
+      "selected_input_bundle_path": "roles/decision-maker/runtime/artifacts/case-20260413-36f15d57/selected-inputs-dispatch-case-20260413-36f15d57-20260413T175211Z.json",
+      "verification_mode": "not_ready_reopen_recommended",
+      "approx_tokens_after_trim": 2818,
+      "agent_tool_use_allowed": false
+    },
+    {
+      "at": "2026-04-13T18:01:16.478179Z",
+      "stage": "decision_prompt",
+      "state": "built",
+      "message": "Built Decision-Maker prompt from compact selected-input bundle",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260413-36f15d57/decision-prompt-dispatch-case-20260413-36f15d57-20260413T175211Z.md"
+    },
+    {
+      "at": "2026-04-13T18:01:18.103212Z",
+      "stage": "decision_lane_bootstrap",
+      "state": "created",
+      "message": "Created dedicated Telegram decision lane",
+      "topic_id": "1034",
+      "topic_title": "case-20260413-36f15d57 | decision | T175211Z",
+      "session_key": "agent:main:telegram:group:-1003846500961:topic:1034"
+    },
+    {
+      "at": "2026-04-13T18:01:21.682880Z",
+      "stage": "decision_receipt",
+      "state": "visible_marker_sent",
+      "message": "SYNTHESIS RECEIVED | market=DeepSeek V4 released by April 30? | dispatch_id=dispatch-case-20260413-36f15d57-20260413T175211Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260413-36f15d57/decision-context-dispatch-case-20260413-36f15d57-20260413T175211Z.json"
+    },
+    {
+      "at": "2026-04-13T18:01:21.683539Z",
+      "stage": "decision_receipt",
+      "state": "accepted",
+      "message": "Decision-Maker handoff accepted",
+      "session_key": "agent:decision-maker:main",
+      "handoff_status": "started"
+    },
+    {
+      "at": "2026-04-13T18:01:21.683704Z",
+      "stage": "decision_execution",
+      "state": "decision_analysis_running",
+      "message": "Decision-Maker agent invocation accepted and analysis started",
+      "session_key": "agent:decision-maker:main",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260413-36f15d57/decision-prompt-dispatch-case-20260413-36f15d57-20260413T175211Z.md",
+      "handoff_status": "started"
+    },
+    {
+      "at": "2026-04-13T18:01:23.763696Z",
+      "stage": "decision_execution",
+      "state": "visible_marker_sent",
+      "message": "DECISION-MAKING ANALYSIS UNDERWAY | market=DeepSeek V4 released by April 30? | dispatch_id=dispatch-case-20260413-36f15d57-20260413T175211Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260413-36f15d57/decision-context-dispatch-case-20260413-36f15d57-20260413T175211Z.json"
+    },
+    {
+      "at": "2026-04-13T18:01:49.439016Z",
+      "stage": "decision_execution",
+      "state": "decision_completed",
+      "message": "Decision-Maker completed and packet rendered",
+      "warnings": [],
+      "forecast_decision_persist_error": ""
+    },
+    {
+      "at": "2026-04-13T18:01:51.496194Z",
+      "stage": "decision_execution",
+      "state": "visible_marker_sent",
+      "message": "DECISION-MAKING COMPLETED, DECISION PACKAGE CREATED | market=DeepSeek V4 released by April 30? | dispatch_id=dispatch-case-20260413-36f15d57-20260413T175211Z | packet_path=qualitative-db/40-research/cases/case-20260413-36f15d57/decision-maker/decision-maker-packet.md"
+    }
+  ],
+  "last_stage_event": {
+    "at": "2026-04-13T18:01:51.496194Z",
+    "stage": "decision_execution",
+    "state": "visible_marker_sent",
+    "message": "DECISION-MAKING COMPLETED, DECISION PACKAGE CREATED | market=DeepSeek V4 released by April 30? | dispatch_id=dispatch-case-20260413-36f15d57-20260413T175211Z | packet_path=qualitative-db/40-research/cases/case-20260413-36f15d57/decision-maker/decision-maker-packet.md"
+  },
+  "updated_at": "2026-04-13T18:01:51.496217Z",
+  "decision_lane": {
+    "topic_id": "1034",
+    "topic_title": "case-20260413-36f15d57 | decision | T175211Z",
+    "session_key": "agent:main:telegram:group:-1003846500961:topic:1034"
+  },
+  "verification_mode_path": "roles/decision-maker/runtime/artifacts/case-20260413-36f15d57/verification-mode-dispatch-case-20260413-36f15d57-20260413T175211Z.json",
+  "selected_input_bundle_path": "roles/decision-maker/runtime/artifacts/case-20260413-36f15d57/selected-inputs-dispatch-case-20260413-36f15d57-20260413T175211Z.json",
+  "selected_input_bundle_mode": "not_ready_reopen_recommended",
+  "selected_input_bundle_estimated_tokens": 2818,
+  "targeted_verification_pack_path": "",
+  "targeted_verification_pack_required": false,
+  "decision_prompt_path": "roles/decision-maker/runtime/artifacts/case-20260413-36f15d57/decision-prompt-dispatch-case-20260413-36f15d57-20260413T175211Z.md",
+  "agent_tool_use_allowed": false,
+  "decision_lane_topic_id": "1034",
+  "decision_lane_topic_title": "case-20260413-36f15d57 | decision | T175211Z",
+  "decision_lane_session_key": "agent:main:telegram:group:-1003846500961:topic:1034",
+  "decision_target_topic_id": "1034",
+  "decision_target_topic_title": "case-20260413-36f15d57 | decision | T175211Z",
+  "decision_receipt_marker_sent_at": "2026-04-13T18:01:21.682854+00:00",
+  "decision_analysis_marker_sent_at": "2026-04-13T18:01:23.763675+00:00",
+  "timeline_update": {
+    "appended": true,
+    "case_key": "case-20260413-36f15d57",
+    "dispatch_id": "dispatch-case-20260413-36f15d57-20260413T175211Z",
+    "packet_path": "qualitative-db/40-research/cases/case-20260413-36f15d57/decision-maker/decision-maker-packet.md",
+    "entry": "- 2026-04-13T18:01:49.438519+00:00 — completed decision-making `dispatch-case-20260413-36f15d57-20260413T175211Z` with packet `qualitative-db/40-research/cases/case-20260413-36f15d57/decision-maker/decision-maker-packet.md`."
+  },
+  "forecast_decision_persist": {
+    "ok": true,
+    "packet_json": "qualitative-db/40-research/cases/case-20260413-36f15d57/decision-maker/artifacts/decision-maker-packet.json",
+    "persisted": {
+      "forecast_id": "dispatch-case-20260413-36f15d57-20260413T175211Z",
+      "market_id": "36bae2b0-439c-405e-a88a-a1c504c516dc",
+      "contract_id": "yes",
+      "forecast_prob": 0.475,
+      "decision_status": "void",
+      "decision_packet_path": "qualitative-db/40-research/cases/case-20260413-36f15d57/decision-maker/artifacts/decision-maker-packet.json",
+      "supersedes_forecast_id": null,
+      "superseded_forecast_ids": [],
+      "market_state": {
+        "market_id": "36bae2b0-439c-405e-a88a-a1c504c516dc",
+        "current_price": 0.7,
+        "last_reasoned_price": 0.475,
+        "pipeline_status": "closed"
+      }
+    },
+    "record": {
+      "forecast_id": "dispatch-case-20260413-36f15d57-20260413T175211Z",
+      "decision_ts": "2026-04-13T14:01:00-04:00",
+      "case_id": "case-20260413-36f15d57",
+      "dispatch_id": "dispatch-case-20260413-36f15d57-20260413T175211Z",
+      "market_id": "36bae2b0-439c-405e-a88a-a1c504c516dc",
+      "contract_id": "yes",
+      "platform": "polymarket",
+      "market_slug": "deepseek-v4-released-by-april-30-896",
+      "question": "DeepSeek V4 released by April 30?",
+      "forecast_prob": "0.475",
+      "forecast_direction": "none",
+      "confidence_label": "medium",
+      "confidence_score": "",
+      "time_horizon_label": "Immediate contract-clarification and launch-announcement window",
+      "verification_mode": "not_ready_reopen_recommended",
+      "decision_status": "void",
+      "rationale_summary": "Because the bounded inputs do not even cleanly identify the governing DeepSeek contract deadline and still lack first-party qualifying release evidence, the only disciplined output is to stay flat and demand clarification before trading.",
+      "decision_packet_path": "qualitative-db/40-research/cases/case-20260413-36f15d57/decision-maker/artifacts/decision-maker-packet.json",
+      "decision_handoff_path": "qualitative-db/40-research/cases/case-20260413-36f15d57/synthesizer-agent/decision-handoff.md",
+      "syndicated_finding_path": "qualitative-db/40-research/cases/case-20260413-36f15d57/synthesizer-agent/syndicated-finding.md"
+    },
+    "warnings": []
+  },
+  "terminal_summary": {
+    "at": "2026-04-13T18:01:51.496230Z",
+    "status": "decision_completed",
+    "decision_lane": {
+      "topic_id": "1034",
+      "topic_title": "case-20260413-36f15d57 | decision | T175211Z",
+      "session_key": "agent:main:telegram:group:-1003846500961:topic:1034"
+    },
+    "packet_json_path": "qualitative-db/40-research/cases/case-20260413-36f15d57/decision-maker/artifacts/decision-maker-packet.json",
+    "packet_markdown_path": "qualitative-db/40-research/cases/case-20260413-36f15d57/decision-maker/decision-maker-packet.md",
+    "trade_authorization": "forbidden",
+    "decision_readiness": "needs_more_research",
+    "last_stage_event": {
+      "at": "2026-04-13T18:01:51.496194Z",
+      "stage": "decision_execution",
+      "state": "visible_marker_sent",
+      "message": "DECISION-MAKING COMPLETED, DECISION PACKAGE CREATED | market=DeepSeek V4 released by April 30? | dispatch_id=dispatch-case-20260413-36f15d57-20260413T175211Z | packet_path=qualitative-db/40-research/cases/case-20260413-36f15d57/decision-maker/decision-maker-packet.md"
+    }
+  },
+  "decision_completion_marker_sent_at": "2026-04-13T18:01:51.496168+00:00"
+}

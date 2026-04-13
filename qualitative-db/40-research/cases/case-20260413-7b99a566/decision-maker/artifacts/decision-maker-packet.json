@@ -1,0 +1,157 @@
+{
+  "schema_version": "decision-packet/v1",
+  "generated_at": "2026-04-13T10:15:00-04:00",
+  "context": {
+    "case_key": "case-20260413-7b99a566",
+    "dispatch_id": "dispatch-case-20260413-7b99a566-20260413T140531Z",
+    "question": "Israel x Lebanon diplomatic meeting by April 19, 2026?",
+    "market_id": "case-20260413-7b99a566",
+    "market_title": "Israel x Lebanon diplomatic meeting by April 19, 2026?",
+    "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260413-7b99a566/synthesizer-agent/decision-handoff.md",
+    "source_syndicated_finding_path": "qualitative-db/40-research/cases/case-20260413-7b99a566/synthesizer-agent/syndicated-finding.md",
+    "decision_maker_agent": "decision-maker",
+    "canonical_markdown_path": "decision-maker-packet.md",
+    "canonical_json_path": "artifacts/decision-maker-packet.json",
+    "external_market_id": "0x94c90390c885be1fb270f09581e241d7b2ebc3c39252df926ee915044c0c3652",
+    "market_slug": "israel-x-lebanon-diplomatic-meeting-by-april-19-2026-257",
+    "platform": "polymarket",
+    "primary_market_url": "https://polymarket.com/event/israel-x-lebanon-diplomatic-meeting-by-april-19-2026-257",
+    "source_light_refresh_brief_path": "",
+    "refresh_mode": ""
+  },
+  "decision": {
+    "side": "none",
+    "trade_authorization": "forbidden",
+    "position_policy": "flat",
+    "decision_readiness": "needs_more_research",
+    "primary_crux": "The strongest bounded evidence is about a concretely scheduled April 14 Washington meeting, but the contract turns on post-event confirmation that a clearly qualifying in-person official Israel-Lebanon meeting actually occurred, and that confirmation does not yet exist in the bundle.",
+    "secondary_cruxes": [
+      "Multiple credible-source summaries reportedly support an expected meeting, which makes Yes plausible, but expected is not completed.",
+      "The contract-fit risk is real: remote, shuttle-style, vague, or inadequately acknowledged talks could fail to qualify even if diplomacy is underway.",
+      "The runtime itself marks this case as not_ready_reopen_recommended and says blockers require new research, which is consistent with refusing autonomous action pre-event."
+    ],
+    "thesis_class": "not_decision_ready"
+  },
+  "valuation": {
+    "fair_value_low": 0.68,
+    "fair_value_high": 0.79,
+    "fair_value_mid": 0.735,
+    "market_reference_price": 0.715,
+    "independent_verification_quality": "medium",
+    "compressed_toward_market_applied": false,
+    "compression_reason": "No extra compression is needed around the provisional pre-event probability estimate; the real issue is that the key evidentiary gap is binary post-event confirmation, which blocks execution readiness more than fair-value precision does.",
+    "edge_mid_vs_market_pct_points": 2.0
+  },
+  "execution_semantics": {
+    "price_axis": "market_implied_true_prob",
+    "price_source": "market_snapshot_quote",
+    "rebalance_threshold_fraction": 0.1,
+    "allow_auto_reversal": false,
+    "valid_until": "2026-04-14T23:59:00Z",
+    "quote_staleness_seconds": 3600,
+    "time_horizon": "Pre-event through immediate post-event confirmation window"
+  },
+  "risk_controls": {
+    "max_position_size_pct_bankroll": 0.0,
+    "max_additional_exposure_pct_bankroll": 0.0,
+    "max_single_order_pct_bankroll": 0.0,
+    "slippage_tolerance_bps": 80,
+    "liquidity_min_depth": 1000,
+    "correlation_bucket_limit_pct_bankroll": 0.05,
+    "confidence_level": "low",
+    "portfolio_constraints": [
+      "Do not trade from this packet because the decisive qualifying-event confirmation is still missing.",
+      "Require post-event official acknowledgment or consensus Reuters/AP-level reporting that the meeting occurred in a qualifying in-person format before authorizing exposure.",
+      "Keep target exposure at zero until contract-fit uncertainty is resolved."
+    ],
+    "liquidity_caution": "medium"
+  },
+  "bands": [
+    {
+      "name": "max_enter",
+      "min_p": 0,
+      "max_p": 0.2,
+      "target_exposure_fraction": 0,
+      "notes": "Zero-exposure band because this packet is not decision-ready."
+    },
+    {
+      "name": "scaled_enter",
+      "min_p": 0.2,
+      "max_p": 0.4,
+      "target_exposure_fraction": 0,
+      "notes": "Zero-exposure band because the key post-event confirmation is missing."
+    },
+    {
+      "name": "hold",
+      "min_p": 0.4,
+      "max_p": 0.6,
+      "target_exposure_fraction": 0,
+      "notes": "Zero-exposure band; no autonomous hold/add decision is justified before event qualification is confirmed."
+    },
+    {
+      "name": "trim",
+      "min_p": 0.6,
+      "max_p": 0.8,
+      "target_exposure_fraction": 0,
+      "notes": "Zero-exposure band because execution depends on unverified contract fit, not just directional likelihood."
+    },
+    {
+      "name": "exit",
+      "min_p": 0.8,
+      "max_p": 1,
+      "target_exposure_fraction": 0,
+      "notes": "Zero-exposure band; remain flat until post-event evidence resolves qualification."
+    }
+  ],
+  "invalidation": {
+    "thesis_breakers": [
+      "Credible reporting shows the April 14 meeting was canceled, postponed beyond April 19, or changed to a non-qualifying format.",
+      "Post-event reporting indicates talks occurred only indirectly or without a direct in-person official Israel-Lebanon meeting.",
+      "Authoritative reporting shows no government acknowledgment or consensus credible reporting sufficient for contract qualification."
+    ],
+    "market_structure_breakers": [
+      "A clarified market rule interpretation shows a stricter or looser qualification standard than assumed here.",
+      "The market reprices sharply on rumor flow without corresponding contract-qualifying evidence, increasing noise relative to signal.",
+      "Source reporting becomes contradictory enough that post-event consensus is unavailable."
+    ],
+    "time_breakers": [
+      "This packet should not be used after valid_until without refreshed post-event reporting.",
+      "If no qualifying confirmation appears promptly after the scheduled meeting window, re-evaluate with fresh evidence rather than extrapolating from schedules."
+    ],
+    "reversal_conditions": [
+      "No reversal logic applies because this packet authorizes no position.",
+      "A new packet is required after post-event confirmation or failure becomes clear.",
+      "Do not auto-reverse from flat based on this packet."
+    ]
+  },
+  "epistemic_status": {
+    "key_uncertainties": [
+      "Whether the scheduled April 14 Washington session actually occurs in a clearly qualifying in-person format.",
+      "Whether official acknowledgment or consensus Reuters/AP-level reporting after the event will be explicit enough for settlement.",
+      "Whether the meeting slips, changes format, or is reported too vaguely to satisfy the contract despite real diplomatic contact."
+    ],
+    "reasons_to_pass": [
+      "This is an event-confirmation market where expected scheduling is not the same as completed qualifying occurrence.",
+      "The runtime explicitly flags the case as reopen-recommended and says blockers require new research.",
+      "A small provisional edge versus market is not worth acting on when the decisive evidentiary gap is unresolved and binary."
+    ],
+    "what_would_change_my_mind": [
+      "Post-event official or consensus credible reporting that Israeli and Lebanese officials actually held the in-person Washington meeting would make the case decision-ready.",
+      "Credible reporting that the meeting was canceled, postponed, or held in a non-qualifying format would push the case toward No or flat-forbidden with higher confidence.",
+      "Clear rule clarification about what counts as a qualifying diplomatic meeting would reduce contract-fit ambiguity."
+    ],
+    "decision_quality": "not_ready"
+  },
+  "audit": {
+    "market_baseline_respected": true,
+    "action_bias_check_passed": true,
+    "self_preservation_bias_check_passed": true,
+    "one_sentence_rationale": "The disciplined move is to stay flat because the strongest evidence supports a scheduled meeting, but the contract requires post-event confirmation of a clearly qualifying in-person official meeting and that confirmation is not yet available.",
+    "notes": "I preserve the bounded provisional probability around 0.735 as a pre-event expectation, but I treat it as insufficient for execution because the key missing evidence is not marginal research depth; it is the actual occurrence and qualification of the event.",
+    "structured_handoff_primary_used": true,
+    "prose_fallback_used": false,
+    "verification_mode_used": "not_ready_reopen_recommended",
+    "additional_verification_performed": false,
+    "additional_verification_notes": ""
+  }
+}

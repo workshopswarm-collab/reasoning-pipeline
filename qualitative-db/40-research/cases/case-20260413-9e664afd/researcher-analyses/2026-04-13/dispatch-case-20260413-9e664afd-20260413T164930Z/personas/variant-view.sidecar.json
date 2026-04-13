@@ -1,0 +1,61 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A late selloff that pushes Binance BTCUSDT back below 70000 before noon ET.",
+    "Higher short-term volatility than the recent sample suggests.",
+    "Any operational mismatch between Binance UI settlement display and API data."
+  ],
+  "key_assumptions": [
+    "Recent Binance stability above 70000 remains informative through the noon-ET resolution window.",
+    "No major macro or crypto-specific selloff hits before resolution.",
+    "Binance web-chart settlement values stay aligned with Binance API-visible candle values."
+  ],
+  "main_logical_chain": [
+    "Check the contract-defining source to identify the exact pair, exact minute, strict comparison rule, and settlement venue.",
+    "Verify direct Binance data for BTCUSDT symbol identity, UTC timing basis, current spot level, and recent 1-minute threshold occupancy.",
+    "Compare the comfortable current margin above 70000 with the fact that settlement is a single minute nearly a day later.",
+    "Conclude that Yes is still likely but the strongest credible variant is slight market overconfidence rather than a bearish flip."
+  ],
+  "main_thesis": "Yes remains the base case because Binance BTCUSDT is comfortably above 70000 and recent minute-level occupancy above that threshold is strong, but the market may be slightly overconfident because settlement depends on one exact noon-ET minute close tomorrow.",
+  "own_probability": 0.88,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "This market will resolve to \"Yes\" if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone (noon) ... has a final \"Close\" price higher than the price specified.",
+    "All sampled 1000 one-minute Binance closes were above 70000."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation",
+    "variant_hypothesis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260413-9e664afd",
+    "dispatch_id": "dispatch-case-20260413-9e664afd-20260413T164930Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "561a04ee-4a57-43f8-a139-1236b50861d9",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260413-9e664afd/researcher-analyses/2026-04-13/dispatch-case-20260413-9e664afd-20260413T164930Z/personas/variant-view.md",
+    "source_persona_sha256": "48abb3d3b9464faac56d1e80946a327b0aac895c42b6b975c3d4e8bd10ceb6e9"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary evidence quality is high because Binance is the named settlement source and Polymarket defines the contract, but independence is only medium-low and there is mild UI/API source-of-truth ambiguity.",
+  "strongest_disconfirmers": [
+    "The contract resolves on one exact minute close tomorrow, not on today's spot level.",
+    "A roughly 3.2% cushion can still be erased by an overnight or morning selloff.",
+    "The rules reference the Binance web UI, leaving mild UI-versus-API ambiguity."
+  ],
+  "strongest_supports": [
+    "Binance spot was around 72.29k-72.35k during research, roughly 3.2% above the threshold.",
+    "All sampled 1000 recent Binance one-minute closes were above 70000.",
+    "The market rules clearly identify Binance BTC/USDT 1m close as the governing source."
+  ],
+  "timing_relevance": "Timing is central because the contract resolves on the Binance BTC/USDT 12:00 ET one-minute candle on 2026-04-14, which maps to about 16:00 UTC under DST.",
+  "unresolved_ambiguities": [
+    "Whether Polymarket would rely on a Binance UI display if it ever diverged from raw API klines.",
+    "How stable the current >70000 occupancy remains over the next ~23 hours."
+  ],
+  "what_would_change_view": "I would cut the estimate if Binance BTCUSDT moved back below 70000 before resolution or if evidence emerged that the settlement chart could diverge from API-visible candle values; I would move higher if BTC stayed comfortably above 71k-72k into late morning ET."
+}

@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Short-horizon BTC volatility over the next ~48 hours.",
+    "Exchange-specific dislocation on Binance at the exact measurement minute.",
+    "Overconfidence from extreme market pricing despite narrow resolution mechanics."
+  ],
+  "key_assumptions": [
+    "Binance BTCUSDT avoids an approximately 9% drop before the noon ET April 15 close.",
+    "No Binance-specific dislocation or wick distorts the exact governing 1m close.",
+    "ET noon maps cleanly to the intended Binance 1-minute candle."
+  ],
+  "main_logical_chain": [
+    "Polymarket rules make Binance BTCUSDT 12:00 PM ET 1-minute close the governing source of truth.",
+    "Current Binance spot is materially above 66000, so the base case is Yes.",
+    "Because resolution is single-minute and single-venue, residual tail risk is higher than a casual spot snapshot implies.",
+    "Therefore Yes remains favored, but confidence should be trimmed modestly versus the market."
+  ],
+  "main_thesis": "Yes remains the base case because BTC is materially above 66000, but the market is slightly overconfident for a single-venue, single-minute contract.",
+  "own_probability": 0.92,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone has a final 'Close' price higher than the price specified.",
+    "Binance ticker returned price 72191.21000000."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "risk_management",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260413-c5cf1f36",
+    "dispatch_id": "dispatch-case-20260413-c5cf1f36-20260413T181345Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "957e2850-0cd1-449e-9648-2e4cdc6fd2df",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260413-c5cf1f36/researcher-analyses/2026-04-13/dispatch-case-20260413-c5cf1f36-20260413T181345Z/personas/risk-manager.md",
+    "source_persona_sha256": "aa4e30845081bc438a0cba780478e43b1c8610360e25db15185dba52414002b2"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is medium-high: Polymarket rules and Binance data are directly relevant, with CoinGecko adding an independent contextual check; ambiguity is mainly operational/timing rather than wording-based.",
+  "strongest_disconfirmers": [
+    "The contract resolves on one exact Binance 1-minute close, so timing and venue-specific tail risk remain nonzero.",
+    "A fast crypto selloff or Binance-specific wick could still push the relevant close below 66000."
+  ],
+  "strongest_supports": [
+    "Binance spot was about 72191 on April 13, leaving roughly a 6200 cushion over 66000.",
+    "Recent Binance 1-minute candles were stable around 72.15k-72.19k.",
+    "CoinGecko independently showed BTC near 72207 at nearly the same time."
+  ],
+  "timing_relevance": "Resolution depends on the Binance BTCUSDT 1-minute candle close at exactly 12:00 PM ET on 2026-04-15, so short-horizon path risk matters more than medium-term BTC fundamentals.",
+  "unresolved_ambiguities": [
+    "Exact-time candle mapping always deserves caution in minute-resolution contracts.",
+    "No direct evidence yet from immediately pre-resolution trading conditions."
+  ],
+  "what_would_change_view": "I would move lower if BTC sold off toward 68k or Binance showed venue-specific anomalies, and move closer to the market if a later Binance check near resolution still showed a wide cushion above 66k."
+}

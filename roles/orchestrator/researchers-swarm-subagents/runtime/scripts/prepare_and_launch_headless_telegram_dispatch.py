@@ -15,7 +15,7 @@ REPO_ROOT = BASE_DIR.parents[4]
 if str(REPO_ROOT / "scripts") not in sys.path:
     sys.path.insert(0, str(REPO_ROOT / "scripts"))
 
-from case_pipeline_status import update_case_pipeline_status  # noqa: E402
+from case_pipeline_status import update_case_pipeline_status_with_followups as update_case_pipeline_status  # noqa: E402
 
 PREPARE = BASE_DIR / "prepare_headless_telegram_dispatch.py"
 LAUNCH = BASE_DIR / "launch_dispatch_with_stateful_posts.py"
@@ -32,6 +32,10 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--manifest-dir", default=str(DEFAULT_MANIFEST_DIR))
     parser.add_argument("--db-url", default=os.getenv("PREDQUANT_ORCHESTRATOR_URL", ""))
     parser.add_argument("--psql", default=os.getenv("PSQL_BIN", "/opt/homebrew/opt/postgresql@16/bin/psql"))
+    parser.add_argument("--refresh-mode", default="")
+    parser.add_argument("--refresh-reasons", default="")
+    parser.add_argument("--refresh-price-delta-pct-points", default="")
+    parser.add_argument("--refresh-detected-marker", default="")
     parser.add_argument("--pretty", action="store_true")
     return parser.parse_args()
 
@@ -100,6 +104,27 @@ def resolve_manifest_path(*, prepare_result: dict[str, Any], manifest_dir: Path,
     raise ValueError("unable to determine manifest path from prepare step")
 
 
+def launch_status_message(*, prepare_result: dict[str, Any]) -> str:
+    dispatch_payload = prepare_result.get("dispatch") if isinstance(prepare_result.get("dispatch"), dict) else {}
+    dispatch_stage = str(dispatch_payload.get("dispatch_stage") or prepare_result.get("dispatch_stage") or "").strip().lower()
+    if dispatch_stage == 'refresh':
+        return 'Refresh case dispatch launched'
+    return 'Fresh case claimed and dispatch launched'
+
+
+def assert_prepare_launch_contract(*, prepare_result: dict[str, Any], manifest_path: str) -> None:
+    case_payload = prepare_result.get("case") if isinstance(prepare_result.get("case"), dict) else {}
+    dispatch_payload = prepare_result.get("dispatch") if isinstance(prepare_result.get("dispatch"), dict) else {}
+    case_key = str(case_payload.get("case_key") or case_payload.get("case_id") or "").strip()
+    dispatch_id = str(dispatch_payload.get("dispatch_id") or prepare_result.get("dispatch_id") or "").strip()
+    if not case_key:
+        raise ValueError('canonical launch contract violation: prepare result is missing case_key/case_id')
+    if not dispatch_id:
+        raise ValueError('canonical launch contract violation: prepare result is missing dispatch_id')
+    if not str(manifest_path or '').strip():
+        raise ValueError('canonical launch contract violation: resolved manifest_path is empty')
+
+
 def main() -> int:
     args = parse_args()
     manifest_dir = Path(args.manifest_dir).resolve()
@@ -120,6 +145,14 @@ def main() -> int:
         prepare_cmd.extend(["--case-id", args.case_id])
     if args.allow_when_busy:
         prepare_cmd.append("--allow-when-busy")
+    if args.refresh_mode:
+        prepare_cmd.extend(["--refresh-mode", args.refresh_mode])
+    if args.refresh_reasons:
+        prepare_cmd.extend(["--refresh-reasons", args.refresh_reasons])
+    if args.refresh_price_delta_pct_points:
+        prepare_cmd.extend(["--refresh-price-delta-pct-points", args.refresh_price_delta_pct_points])
+    if args.refresh_detected_marker:
+        prepare_cmd.extend(["--refresh-detected-marker", args.refresh_detected_marker])
 
     prepare_proc = subprocess.run(prepare_cmd, text=True, capture_output=True)
     prepare_result = parse_json_output(prepare_proc.stdout)
@@ -148,6 +181,8 @@ def main() -> int:
         }
         print(json.dumps(error_payload, indent=2 if args.pretty else None))
         return 1
+
+    assert_prepare_launch_contract(prepare_result=prepare_result, manifest_path=manifest_path)
 
     launch_cmd = [
         sys.executable,
@@ -178,7 +213,7 @@ def main() -> int:
                     "decision": "pending",
                 },
                 runner_id="prepare_and_launch_headless_telegram_dispatch",
-                message="Fresh case claimed and dispatch launched",
+                message=launch_status_message(prepare_result=prepare_result),
                 extra={
                     "manifest_path": str(Path(manifest_path).resolve()),
                     "target_session_key": str(dispatch_payload.get("target_session_key") or "").strip(),

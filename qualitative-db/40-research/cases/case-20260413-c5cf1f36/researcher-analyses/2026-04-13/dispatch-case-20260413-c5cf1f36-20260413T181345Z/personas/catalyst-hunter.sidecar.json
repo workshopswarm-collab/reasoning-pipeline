@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Single-minute, single-exchange settlement creates wick and operational-risk fragility.",
+    "The run did not verify a full macro calendar, so unspotted scheduled catalysts remain a residual uncertainty."
+  ],
+  "key_assumptions": [
+    "No major negative macro or crypto catalyst hits before April 15 noon ET with enough force to push BTC below 66k.",
+    "Binance remains operationally reliable enough that the settlement candle reflects genuine market pricing.",
+    "Recent realized volatility is a better guide than generic tail-risk narratives absent a concrete trigger."
+  ],
+  "main_logical_chain": [
+    "Confirm the governing source of truth: Binance BTC/USDT 1-minute close at 12:00 PM ET on April 15.",
+    "Measure current spot versus strike: BTC is around 72.2k versus a 66k threshold.",
+    "Ask what catalyst is needed: roughly an 8.6% downside move into the exact settlement minute.",
+    "Check recent realized volatility and independent context: recent range has stayed materially above 66k.",
+    "Conclude that Yes remains highly likely unless a sharp downside catalyst or Binance-specific anomaly appears before resolution."
+  ],
+  "main_thesis": "BTC is likely to remain above 66,000 at the exact Binance noon ET April 15 close because spot is around 72.2k, the remaining window is short, and no specific near-term downside catalyst was verified that would justify expecting an 8.6%+ drop.",
+  "own_probability": 0.97,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone ... has a final 'Close' price higher than the price specified.",
+    "The strongest disconfirming consideration is that crypto can reprice violently on short notice, and this contract settles on a single exchange, single candle, single minute."
+  ],
+  "reasoning_mode": [
+    "catalyst_analysis",
+    "market_anchor",
+    "contract_interpretation",
+    "risk_management"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260413-c5cf1f36",
+    "dispatch_id": "dispatch-case-20260413-c5cf1f36-20260413T181345Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "a1f6bbd6-3a0b-4d96-b803-9ee3bd695161",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260413-c5cf1f36/researcher-analyses/2026-04-13/dispatch-case-20260413-c5cf1f36-20260413T181345Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "fcc6a9758039f17b7f7869dfbd934c862bb8ddff5fdbe6493585c926a4758018"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is solid for this case because settlement mechanics are explicit and direct Binance price data was cross-checked against CoinGecko context; ambiguity is low except for residual single-candle operational risk.",
+  "strongest_disconfirmers": [
+    "Crypto can reprice violently on short notice, and this contract settles on a single exchange, single candle, single minute.",
+    "A sudden macro shock, deleveraging cascade, or Binance-specific wick could still create a No outcome."
+  ],
+  "strongest_supports": [
+    "Binance spot during the run was about 72.2k, leaving roughly a 6.2k cushion over the strike.",
+    "The contract settles on a short time horizon, so a No outcome likely requires a discrete adverse catalyst rather than ordinary drift.",
+    "Independent CoinGecko context showed recent BTC trading mostly in roughly the 70.7k-73.5k zone."
+  ],
+  "timing_relevance": "Timing dominates this contract: the key question is whether a concrete negative catalyst can hit before Wednesday noon ET, not the long-run Bitcoin thesis.",
+  "unresolved_ambiguities": [
+    "Whether any specific high-importance macro release or policy event lands before the settlement window with enough force to move BTC >8% lower.",
+    "How much Binance-specific microstructure risk to assign in a short-dated candle market."
+  ],
+  "what_would_change_view": "A verified major pre-resolution catalyst, a sharp breakdown below the recent range, or Binance-specific operational/wick concerns would reduce confidence materially."
+}

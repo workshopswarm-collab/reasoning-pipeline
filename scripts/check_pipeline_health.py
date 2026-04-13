@@ -42,6 +42,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument('--market-checker-psql', default=os.getenv('PSQL_BIN', DEFAULT_PSQL_BIN))
     parser.add_argument('--max-market-snapshot-age-seconds', type=float, default=3600.0)
     parser.add_argument('--skip-market-checker-check', action='store_true')
+    parser.add_argument('--synthesis-parse-failure-lookback-hours', type=float, default=24.0)
+    parser.add_argument('--max-synthesis-parse-failures', type=int, default=2)
     parser.add_argument('--pretty', action='store_true')
     return parser.parse_args()
 
@@ -153,6 +155,41 @@ def add_issue(issues: list[dict[str, Any]], *, level: str, code: str, message: s
     issues.append(issue)
 
 
+def collect_recent_synthesis_parse_failures(cases_root: Path, *, now: datetime, lookback_hours: float) -> list[dict[str, Any]]:
+    results: list[dict[str, Any]] = []
+    cutoff = now.timestamp() - (lookback_hours * 3600.0)
+    for status_path in cases_root.glob('case-*/researcher-analyses/*/dispatch-case-*/synthesis-stage-status.json'):
+        try:
+            payload = load_json_file(status_path)
+        except Exception:
+            continue
+        stage_events = payload.get('stage_events') if isinstance(payload.get('stage_events'), list) else []
+        for event in stage_events:
+            if not isinstance(event, dict):
+                continue
+            state = str(event.get('state') or '')
+            if state not in {'final_synthesis_parse_failed_retrying', 'final_synthesis_parse_failed_exhausted'}:
+                continue
+            event_dt = parse_iso(event.get('at'))
+            if event_dt is None or event_dt.timestamp() < cutoff:
+                continue
+            case_key = next((part for part in status_path.parts if part.startswith('case-')), '')
+            try:
+                dispatch_status_path = str(status_path.relative_to(REPO_ROOT))
+            except ValueError:
+                dispatch_status_path = str(status_path)
+            results.append({
+                'case_key': case_key,
+                'dispatch_status_path': dispatch_status_path,
+                'at': event.get('at'),
+                'state': state,
+                'error': event.get('error'),
+                'parse_failure_artifact': event.get('parse_failure_artifact'),
+            })
+    results.sort(key=lambda item: str(item.get('at') or ''))
+    return results
+
+
 def monitor_sequencer_runtime(heartbeat: dict[str, Any], sequencer_policy: dict[str, Any]) -> bool:
     if bool(sequencer_policy.get('enabled')):
         return True
@@ -231,16 +268,31 @@ def evaluate(args: argparse.Namespace) -> dict[str, Any]:
             artifact_contract_root,
             report_file=artifact_contract_report_path,
         )
+        duplicate_launch_marker_cases: list[str] = []
         for artifact_issue in artifact_contract_report.get('issues', []):
             level = str(artifact_issue.get('level') or 'warn')
             if level not in {'warn', 'error'}:
                 level = 'warn'
+            code = str(artifact_issue.get('code') or '')
+            if code == 'duplicate_launch_timeline_markers':
+                case_key = str(artifact_issue.get('case_key') or '').strip()
+                if case_key:
+                    duplicate_launch_marker_cases.append(case_key)
             add_issue(
                 issues,
                 level=level,
-                code=f"artifact_contract_{artifact_issue.get('code')}",
+                code=f"artifact_contract_{code}",
                 message=str(artifact_issue.get('message') or 'Case artifact contract issue detected'),
                 artifact_issue=artifact_issue,
+            )
+        if duplicate_launch_marker_cases:
+            add_issue(
+                issues,
+                level='warn',
+                code='duplicate_launch_marker_drift',
+                message='Artifact contract audit detected canonical cases with duplicate launch/start timeline markers',
+                case_keys=sorted(set(duplicate_launch_marker_cases)),
+                duplicate_launch_case_count=len(sorted(set(duplicate_launch_marker_cases))),
             )
 
     decided_market_watcher_report: dict[str, Any] = {}
@@ -334,6 +386,23 @@ def evaluate(args: argparse.Namespace) -> dict[str, Any]:
                         message='Market checker found no open polymarket markets to monitor',
                         market_checker=market_checker_report,
                     )
+
+    recent_synthesis_parse_failures = collect_recent_synthesis_parse_failures(
+        artifact_contract_root,
+        now=now,
+        lookback_hours=float(args.synthesis_parse_failure_lookback_hours),
+    )
+    if len(recent_synthesis_parse_failures) > int(args.max_synthesis_parse_failures):
+        add_issue(
+            issues,
+            level='warn',
+            code='synthesis_parse_failures_spike',
+            message='Recent malformed synthesis outputs exceeded the warning threshold',
+            lookback_hours=float(args.synthesis_parse_failure_lookback_hours),
+            parse_failure_count=len(recent_synthesis_parse_failures),
+            max_synthesis_parse_failures=int(args.max_synthesis_parse_failures),
+            recent_synthesis_parse_failures=recent_synthesis_parse_failures,
+        )
 
     if any(issue['level'] == 'error' for issue in issues):
         status = 'error'

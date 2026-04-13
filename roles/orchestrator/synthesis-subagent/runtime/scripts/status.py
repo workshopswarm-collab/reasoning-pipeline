@@ -87,6 +87,10 @@ def update_terminal_summary(status: dict[str, Any]) -> None:
         "final_sidecar_path": status.get("final_sidecar_path", ""),
         "final_decision_handoff_path": status.get("final_decision_handoff_path", ""),
         "synthesis_lane": synthesis_lane_summary(status),
+        "synthesis_attempt_count": status.get("synthesis_attempt_count", 0),
+        "synthesis_parse_failure_count": status.get("synthesis_parse_failure_count", 0),
+        "synthesis_parse_recovered": bool(status.get("synthesis_parse_recovered")),
+        "last_parse_failure": deepcopy(status.get("last_parse_failure") or {}),
         "last_stage_event": deepcopy(status.get("last_stage_event") or {}),
     }
 

@@ -4,10 +4,16 @@
 - dispatch_dir: `qualitative-db/40-research/cases/case-20260411-6669dcdb/researcher-analyses/2026-04-11/dispatch-case-20260411-6669dcdb-20260411T003353Z`
 - pipeline_status: `pipeline_completed`
 - current_stage: `decision`
+- expected_persona_count: `5`
+- completed_persona_count: `5`
 
 ## Persona outputs
 
-- No persona outputs found in qmd-bundle metadata
+- `base-rate` [completed] -> `qualitative-db/40-research/cases/case-20260411-6669dcdb/researcher-analyses/2026-04-11/dispatch-case-20260411-6669dcdb-20260411T003353Z/personas/base-rate.md`
+- `catalyst-hunter` [completed] -> `qualitative-db/40-research/cases/case-20260411-6669dcdb/researcher-analyses/2026-04-11/dispatch-case-20260411-6669dcdb-20260411T003353Z/personas/catalyst-hunter.md`
+- `market-implied` [completed] -> `qualitative-db/40-research/cases/case-20260411-6669dcdb/researcher-analyses/2026-04-11/dispatch-case-20260411-6669dcdb-20260411T003353Z/personas/market-implied.md`
+- `risk-manager` [completed] -> `qualitative-db/40-research/cases/case-20260411-6669dcdb/researcher-analyses/2026-04-11/dispatch-case-20260411-6669dcdb-20260411T003353Z/personas/risk-manager.md`
+- `variant-view` [completed] -> `qualitative-db/40-research/cases/case-20260411-6669dcdb/researcher-analyses/2026-04-11/dispatch-case-20260411-6669dcdb-20260411T003353Z/personas/variant-view.md`
 
 ## Summary excerpt
 
