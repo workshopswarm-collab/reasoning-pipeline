@@ -74,6 +74,35 @@ def write_heartbeat(path: Path, payload: dict[str, Any]) -> None:
     write_runtime_json(path, payload)
 
 
+def update_heartbeat_activity(
+    heartbeat: dict[str, Any],
+    *,
+    phase: str,
+    message: str = '',
+    case_key: str = '',
+    market_id: str = '',
+    dispatch_id: str = '',
+    details: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    activity: dict[str, Any] = {
+        'phase': phase,
+        'updated_at': utc_now_iso(),
+    }
+    if message:
+        activity['message'] = message
+    if case_key:
+        activity['case_key'] = case_key
+    if market_id:
+        activity['market_id'] = market_id
+    if dispatch_id:
+        activity['dispatch_id'] = dispatch_id
+    if details:
+        activity['details'] = details
+    heartbeat['state'] = 'running'
+    heartbeat['current_activity'] = activity
+    return heartbeat
+
+
 def heartbeat_base(args: Any) -> dict[str, Any]:
     return {
         'runner': 'pipeline-sequencer',
@@ -198,6 +227,9 @@ def update_heartbeat_for_periodic_tasks(heartbeat: dict[str, Any], periodic_task
 
 def update_heartbeat_for_pass(heartbeat: dict[str, Any], *, result: dict[str, Any], processed_cases: int, periodic_tasks: dict[str, Any], excluded_case_keys: set[str], excluded_market_ids: set[str]) -> dict[str, Any]:
     case_key, market_id = extract_case_market_refs(result)
+    prior_activity = heartbeat.pop('current_activity', None)
+    if isinstance(prior_activity, dict) and prior_activity:
+        heartbeat['last_activity'] = prior_activity
     heartbeat['state'] = 'running'
     heartbeat['processed_cases_total'] = processed_cases
     heartbeat['last_loop_completed_at'] = utc_now_iso()

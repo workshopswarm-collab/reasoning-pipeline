@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import time
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -9,6 +10,9 @@ from automation_control import load_control_file, resolve_sequencer_policy
 from automation_runtime_support import exclusive_lock
 from pipeline_automation_actions import manual_launch_case, manual_launch_market, manual_launch_next, run_light_refresh_update
 from pipeline_sequencer_candidates import classify_prepare_failure, decide_refresh_mode, select_refresh_case, select_resumable_case
+
+REFRESH_WATERMARK_PATH = Path(__file__).resolve().parent / '.runtime-state' / 'refresh-watermarks.json'
+REFRESH_RETRIGGER_THRESHOLD = 0.02
 from pipeline_sequencer_periodic import maybe_run_periodic_tasks
 from pipeline_sequencer_progress import wait_for_case
 from pipeline_sequencer_state import (
@@ -18,6 +22,7 @@ from pipeline_sequencer_state import (
     maybe_quarantine_failed_result,
     prune_quarantine_entries,
     save_quarantine_registry,
+    update_heartbeat_activity,
     update_heartbeat_for_pass,
     utc_now_iso,
     write_heartbeat,
@@ -87,6 +92,83 @@ def recover_case_after_launch_timeout(*, args: Any, policy: dict[str, Any], excl
 
 
 
+def utc_now_iso() -> str:
+    return datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z')
+
+
+
+def load_refresh_watermarks(path: Path = REFRESH_WATERMARK_PATH) -> dict[str, Any]:
+    if not path.exists():
+        return {'entries': {}, 'updated_at': ''}
+    try:
+        payload = json.loads(path.read_text())
+    except Exception:
+        return {'entries': {}, 'updated_at': ''}
+    if not isinstance(payload, dict):
+        return {'entries': {}, 'updated_at': ''}
+    entries = payload.get('entries') if isinstance(payload.get('entries'), dict) else {}
+    return {'entries': entries, 'updated_at': str(payload.get('updated_at') or '')}
+
+
+
+def save_refresh_watermarks(payload: dict[str, Any], path: Path = REFRESH_WATERMARK_PATH) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    payload['updated_at'] = utc_now_iso()
+    path.write_text(json.dumps(payload, indent=2) + '\n')
+
+
+
+def refresh_watermark_key(refresh_payload: dict[str, Any]) -> str:
+    market_id = str(refresh_payload.get('market_id') or '').strip()
+    contract_id = str(refresh_payload.get('contract_id') or '').strip()
+    if market_id and contract_id:
+        return f'{market_id}:{contract_id}'
+    if market_id:
+        return market_id
+    return str(refresh_payload.get('case_key') or refresh_payload.get('latest_forecast_case_key') or '').strip()
+
+
+
+def should_retrigger_refresh(*, refresh_payload: dict[str, Any], watermark_entry: dict[str, Any] | None) -> bool:
+    if not watermark_entry:
+        return True
+    try:
+        current_price = float(refresh_payload.get('current_price'))
+        trigger_price = float(watermark_entry.get('trigger_market_price'))
+    except Exception:
+        return True
+    incremental_move = abs(current_price - trigger_price)
+    return incremental_move >= REFRESH_RETRIGGER_THRESHOLD
+
+
+
+def record_refresh_watermark(*, refresh_payload: dict[str, Any], refresh_plan: dict[str, Any], refresh_case_key: str, light_refresh_result: dict[str, Any] | None = None) -> None:
+    key = refresh_watermark_key(refresh_payload)
+    if not key:
+        return
+    payload = load_refresh_watermarks()
+    entries = payload.setdefault('entries', {})
+    entry = {
+        'case_key': refresh_case_key,
+        'market_id': str(refresh_payload.get('market_id') or ''),
+        'contract_id': str(refresh_payload.get('contract_id') or ''),
+        'trigger_market_price': refresh_payload.get('current_price'),
+        'trigger_reasoned_price': refresh_payload.get('last_reasoned_price'),
+        'trigger_delta': refresh_payload.get('price_delta'),
+        'trigger_delta_pct_points': refresh_payload.get('price_delta_pct_points'),
+        'refresh_mode': str(refresh_plan.get('mode') or ''),
+        'refresh_reasons': refresh_plan.get('reasons') or [],
+        'triggered_at': utc_now_iso(),
+    }
+    if isinstance(light_refresh_result, dict):
+        result_payload = light_refresh_result.get('payload') if isinstance(light_refresh_result.get('payload'), dict) else light_refresh_result
+        if isinstance(result_payload, dict):
+            entry['completed_refresh_id'] = str(result_payload.get('refresh_id') or '')
+    entries[key] = entry
+    save_refresh_watermarks(payload)
+
+
+
 def build_refresh_detected_marker(*, refresh_payload: dict[str, Any], refresh_plan: dict[str, Any]) -> str:
     case_key = str(refresh_payload.get('case_key') or refresh_payload.get('latest_forecast_case_key') or '').strip()
     market_title = str(refresh_payload.get('market_title') or refresh_payload.get('title') or '').strip()
@@ -103,7 +185,14 @@ def build_refresh_detected_marker(*, refresh_payload: dict[str, Any], refresh_pl
 
 
 
-def run_sequencer_pass(args: Any, policy: dict[str, Any], *, excluded_case_keys: set[str], excluded_market_ids: set[str]) -> dict[str, Any]:
+def run_sequencer_pass(
+    args: Any,
+    policy: dict[str, Any],
+    *,
+    excluded_case_keys: set[str],
+    excluded_market_ids: set[str],
+    progress_callback: Any | None = None,
+) -> dict[str, Any]:
     if not policy.get('enabled', True):
         return {
             'ok': True,
@@ -116,12 +205,22 @@ def run_sequencer_pass(args: Any, policy: dict[str, Any], *, excluded_case_keys:
         case_key = str(resumable.get('case_key') or '').strip()
         if not case_key:
             raise RuntimeError('resumable pipeline status is missing case_key')
+        if progress_callback is not None:
+            progress_callback(
+                phase='resume_existing_case',
+                message='Resuming existing in-flight case',
+                case_key=case_key,
+                market_id=str(resumable.get('market_id') or '').strip(),
+                dispatch_id=str(resumable.get('dispatch_id') or '').strip(),
+                details={'mode': 'resume_existing'},
+            )
         case_result = wait_for_case(
             case_key,
             args=args,
             poll_seconds=float(policy['poll_seconds']),
             max_case_seconds=float(policy['max_case_seconds']),
             pretty=args.pretty,
+            progress_callback=progress_callback,
         )
         return {
             'ok': bool(case_result.get('ok')),
@@ -142,6 +241,18 @@ def run_sequencer_pass(args: Any, policy: dict[str, Any], *, excluded_case_keys:
         refresh_mode = str(refresh_plan.get('mode') or 'light')
 
         if refresh_mode == 'light':
+            watermark_payload = load_refresh_watermarks()
+            watermark_entry = watermark_payload.get('entries', {}).get(refresh_watermark_key(refresh_payload))
+            if not should_retrigger_refresh(refresh_payload=refresh_payload, watermark_entry=watermark_entry):
+                return {
+                    'ok': True,
+                    'status': 'debounced_light_refresh_candidate',
+                    'policy': policy,
+                    'refresh_candidate': refresh_candidate,
+                    'refresh_plan': refresh_plan,
+                    'watermark_entry': watermark_entry,
+                    'retrigger_threshold': REFRESH_RETRIGGER_THRESHOLD,
+                }
             refresh_case_key = str(refresh_payload.get('case_key') or refresh_payload.get('latest_forecast_case_key') or '').strip()
             if not refresh_case_key:
                 return {
@@ -151,7 +262,25 @@ def run_sequencer_pass(args: Any, policy: dict[str, Any], *, excluded_case_keys:
                     'refresh_candidate': refresh_candidate,
                     'refresh_plan': refresh_plan,
                 }
+            if progress_callback is not None:
+                progress_callback(
+                    phase='light_refresh',
+                    message='Running light refresh for an already-decided case',
+                    case_key=refresh_case_key,
+                    market_id=str(refresh_payload.get('market_id') or '').strip(),
+                    details={
+                        'mode': refresh_mode,
+                        'reasons': [str(item) for item in (refresh_plan.get('reasons') or []) if str(item).strip()],
+                    },
+                )
             light_refresh_result = run_light_refresh_update(refresh_case_key, pretty=args.pretty)
+            if light_refresh_result.get('ok'):
+                record_refresh_watermark(
+                    refresh_payload=refresh_payload,
+                    refresh_plan=refresh_plan,
+                    refresh_case_key=refresh_case_key,
+                    light_refresh_result=light_refresh_result,
+                )
             return {
                 'ok': bool(light_refresh_result.get('ok')),
                 'status': 'processed_light_refresh_case',
@@ -174,6 +303,18 @@ def run_sequencer_pass(args: Any, policy: dict[str, Any], *, excluded_case_keys:
             except Exception:
                 refresh_price_delta_pct_points = ''
         refresh_detected_marker = build_refresh_detected_marker(refresh_payload=refresh_payload, refresh_plan=refresh_plan)
+        if progress_callback is not None:
+            progress_callback(
+                phase='prepare_refresh_launch',
+                message='Preparing full-refresh launch for a material-change case',
+                case_key=refresh_case_key,
+                market_id=str(refresh_payload.get('market_id') or '').strip(),
+                details={
+                    'mode': refresh_mode,
+                    'reasons': refresh_reasons,
+                    'price_delta_pct_points': refresh_price_delta_pct_points,
+                },
+            )
         if refresh_case_id:
             prepared = manual_launch_case(
                 refresh_case_id,
@@ -237,12 +378,22 @@ def run_sequencer_pass(args: Any, policy: dict[str, Any], *, excluded_case_keys:
         if not case_key:
             raise RuntimeError('refresh prepare_and_launch did not return a case_key')
 
+        if progress_callback is not None:
+            progress_callback(
+                phase='monitor_refresh_case',
+                message='Refresh launch completed; monitoring case execution',
+                case_key=case_key,
+                market_id=str(refresh_payload.get('market_id') or '').strip(),
+                dispatch_id=str(case_payload.get('dispatch_id') or '').strip(),
+                details={'mode': refresh_mode},
+            )
         case_result = wait_for_case(
             case_key,
             args=args,
             poll_seconds=float(policy['poll_seconds']),
             max_case_seconds=float(policy['max_case_seconds']),
             pretty=args.pretty,
+            progress_callback=progress_callback,
         )
         return {
             'ok': bool(case_result.get('ok')),
@@ -262,6 +413,12 @@ def run_sequencer_pass(args: Any, policy: dict[str, Any], *, excluded_case_keys:
             'policy': policy,
         }
 
+    if progress_callback is not None:
+        progress_callback(
+            phase='prepare_new_launch',
+            message='Preparing launch for the next eligible market',
+            details={'mode': 'new_case'},
+        )
     prepared = manual_launch_next(pretty=args.pretty)
     if not prepared:
         return {
@@ -300,12 +457,22 @@ def run_sequencer_pass(args: Any, policy: dict[str, Any], *, excluded_case_keys:
     if not case_key:
         raise RuntimeError('prepare_and_launch did not return a case_key')
 
+    if progress_callback is not None:
+        progress_callback(
+            phase='monitor_new_case',
+            message='New case launched; monitoring pipeline progress',
+            case_key=case_key,
+            market_id=str(case_payload.get('market_id') or '').strip(),
+            dispatch_id=str(case_payload.get('dispatch_id') or '').strip(),
+            details={'mode': 'new_case'},
+        )
     case_result = wait_for_case(
         case_key,
         args=args,
         poll_seconds=float(policy['poll_seconds']),
         max_case_seconds=float(policy['max_case_seconds']),
         pretty=args.pretty,
+        progress_callback=progress_callback,
     )
     return {
         'ok': bool(case_result.get('ok')),
@@ -347,6 +514,20 @@ def execute_sequencer(args: Any) -> None:
     lock_path = Path(args.lock_file).expanduser().resolve()
     heartbeat_path = Path(args.heartbeat_file).expanduser().resolve()
     heartbeat = heartbeat_base(args)
+
+    def progress_callback(*, phase: str, message: str = '', case_key: str = '', market_id: str = '', dispatch_id: str = '', details: dict[str, Any] | None = None) -> None:
+        nonlocal heartbeat
+        heartbeat = update_heartbeat_activity(
+            heartbeat,
+            phase=phase,
+            message=message,
+            case_key=case_key,
+            market_id=market_id,
+            dispatch_id=dispatch_id,
+            details=details,
+        )
+        write_heartbeat(heartbeat_path, heartbeat)
+
     write_heartbeat(heartbeat_path, heartbeat)
     try:
         with exclusive_lock(lock_path, error_message=f'another sequencer instance already holds {lock_path}'):
@@ -357,7 +538,7 @@ def execute_sequencer(args: Any) -> None:
             if not args.loop:
                 heartbeat['last_loop_started_at'] = utc_now_iso()
                 write_heartbeat(heartbeat_path, heartbeat)
-                result = run_sequencer_pass(args, effective_sequencer_policy(args), excluded_case_keys=set(), excluded_market_ids=set())
+                result = run_sequencer_pass(args, effective_sequencer_policy(args), excluded_case_keys=set(), excluded_market_ids=set(), progress_callback=progress_callback)
                 heartbeat = update_heartbeat_for_pass(
                     heartbeat,
                     result=result,
@@ -399,7 +580,7 @@ def execute_sequencer(args: Any) -> None:
                     last_resolution_sync_ts=last_resolution_sync_ts,
                     last_brier_snapshot_ts=last_brier_snapshot_ts,
                 )
-                result = run_sequencer_pass(args, policy, excluded_case_keys=excluded_case_keys, excluded_market_ids=excluded_market_ids)
+                result = run_sequencer_pass(args, policy, excluded_case_keys=excluded_case_keys, excluded_market_ids=excluded_market_ids, progress_callback=progress_callback)
                 quarantine_entry_payload = maybe_quarantine_failed_result(args=args, result=result)
                 if quarantine_entry_payload is not None:
                     periodic_tasks['soft_fail_quarantine'] = quarantine_entry_payload

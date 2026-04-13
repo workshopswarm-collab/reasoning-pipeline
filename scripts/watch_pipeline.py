@@ -129,7 +129,15 @@ def watch_case(summary: dict[str, object], *, args: argparse.Namespace, policy: 
         'before': summary,
         'proposed_actions': [],
         'executed_actions': [],
+        'action_failures': [],
     }
+
+    def record_action(name: str, action: dict[str, object]) -> dict[str, object]:
+        entry = {'name': name, 'result': action}
+        case_result['executed_actions'].append(entry)
+        if not bool(action.get('ok')):
+            case_result['action_failures'].append(entry)
+        return action
 
     swarm_result = reconcile_swarm(case_key, stale_seconds=args.stale_seconds, check_only=not bool(policy['apply']), pretty=args.pretty)
     case_result['swarm_reconcile'] = swarm_result
@@ -140,12 +148,12 @@ def watch_case(summary: dict[str, object], *, args: argparse.Namespace, policy: 
         case_result['proposed_actions'].append('resume_swarm_same_dispatch')
         if policy['apply'] and policy['allow_resume_swarm']:
             action = resume_swarm(case_key, pretty=args.pretty)
-            case_result['executed_actions'].append({'name': 'resume_swarm_same_dispatch', 'result': action})
+            record_action('resume_swarm_same_dispatch', action)
     elif swarm_status == 'ready_for_synthesis':
         case_result['proposed_actions'].append('launch_synthesis_for_existing_case')
         if policy['apply'] and policy['allow_launch_synthesis']:
             action = resume_swarm(case_key, pretty=args.pretty)
-            case_result['executed_actions'].append({'name': 'launch_synthesis_for_existing_case', 'result': action})
+            record_action('launch_synthesis_for_existing_case', action)
 
     summary_after_swarm = summarize_case_pipeline_status(case_key)
     stage_statuses = summary_after_swarm.get('stage_statuses') or stage_statuses
@@ -158,7 +166,7 @@ def watch_case(summary: dict[str, object], *, args: argparse.Namespace, policy: 
             case_result['proposed_actions'].append('check_synthesis_launch_gate')
             if policy['apply'] and policy['allow_launch_synthesis']:
                 action = launch_synthesis_if_needed(case_key, pretty=args.pretty)
-                case_result['executed_actions'].append({'name': 'check_synthesis_launch_gate', 'result': action})
+                record_action('check_synthesis_launch_gate', action)
                 summary_after_swarm = summarize_case_pipeline_status(case_key)
                 stage_statuses = summary_after_swarm.get('stage_statuses') or stage_statuses
                 stage_statuses = stage_statuses if isinstance(stage_statuses, dict) else {}
@@ -175,19 +183,21 @@ def watch_case(summary: dict[str, object], *, args: argparse.Namespace, policy: 
             case_result['proposed_actions'].append('finalize_pipeline_from_ready_decision')
             if policy['apply'] and policy['allow_finalize_pipeline']:
                 action = finalize_pipeline(case_key, decision_payload=decision_payload, summary=summary_after_swarm)
-                case_result['executed_actions'].append({'name': 'finalize_pipeline_from_ready_decision', 'result': action})
+                record_action('finalize_pipeline_from_ready_decision', action)
         if decision_health == 'stale_status':
             case_result['proposed_actions'].append('finalize_decision_status_from_existing_packet')
             if policy['apply'] and policy['allow_finalize_decision']:
                 action = finalize_decision(case_key, pretty=args.pretty)
-                case_result['executed_actions'].append({'name': 'finalize_decision_status_from_existing_packet', 'result': action})
+                record_action('finalize_decision_status_from_existing_packet', action)
         elif decision_health == 'not_started' and decision_pending:
             case_result['proposed_actions'].append('launch_decision_for_existing_case')
             if policy['apply'] and policy['allow_launch_decision']:
                 action = launch_decision_maker(case_key, pretty=args.pretty)
-                case_result['executed_actions'].append({'name': 'launch_decision_for_existing_case', 'result': action})
+                record_action('launch_decision_for_existing_case', action)
 
     case_result['after'] = summarize_case_pipeline_status(case_key)
+    if not case_result['action_failures']:
+        case_result.pop('action_failures', None)
     case_result['ok'] = True
     return case_result
 

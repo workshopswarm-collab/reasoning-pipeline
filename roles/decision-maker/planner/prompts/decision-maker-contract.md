@@ -45,6 +45,7 @@ Return a single JSON object with:
 - `decision.position_policy`: `enter_or_add | hold_only | reduce_only | exit_only | flat`
 - `decision.decision_readiness`: `ready | needs_more_research | needs_market_update`
 - `decision.thesis_class`: `edge_present | edge_too_small | price_not_good_enough | not_decision_ready | risk_constraint_binding`
+- `execution_semantics.price_source`: `market_snapshot_quote | effective_executable_quote`
 - quality enums: `low | medium | high`
 - `epistemic_status.decision_quality`: `clean | good_not_clean | fragile | not_ready`
 

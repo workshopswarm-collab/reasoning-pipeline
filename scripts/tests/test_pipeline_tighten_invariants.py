@@ -323,6 +323,93 @@ class PipelineTightenInvariantTests(unittest.TestCase):
         self.assertEqual(wait_mock.call_args.args[0], 'case-20260413-feedface')
         self.assertEqual(result['status'], 'processed_refresh_case')
 
+    def test_sequencer_debounces_same_regime_light_refresh_candidate(self) -> None:
+        args = self.make_args()
+        policy = {
+            'enabled': True,
+            'resume_existing': False,
+            'allow_new_case_claims': True,
+            'poll_seconds': 15.0,
+            'idle_seconds': 60.0,
+            'max_case_seconds': 7200.0,
+        }
+        refresh_candidate = {
+            'ok': True,
+            'payload': {
+                'case_key': 'case-20260413-cafebabe',
+                'market_id': 'market-2',
+                'contract_id': 'contract-2',
+                'current_price': 0.77,
+                'last_reasoned_price': 0.70,
+                'price_delta': 0.07,
+                'hours_since_last_forecast': 0.05,
+                'hours_to_close': 36,
+            },
+        }
+        watermark = {
+            'entries': {
+                'market-2:contract-2': {
+                    'trigger_market_price': 0.76,
+                    'case_key': 'case-20260413-cafebabe'
+                }
+            },
+            'updated_at': ''
+        }
+
+        with patch.object(pipeline_sequencer_runner, 'select_resumable_case', return_value=None), \
+             patch.object(pipeline_sequencer_runner, 'select_refresh_case', return_value=refresh_candidate), \
+             patch.object(pipeline_sequencer_runner, 'load_refresh_watermarks', return_value=watermark), \
+             patch.object(pipeline_sequencer_runner, 'run_light_refresh_update') as light_mock:
+            result = pipeline_sequencer_runner.run_sequencer_pass(args, policy, excluded_case_keys=set(), excluded_market_ids=set())
+
+        light_mock.assert_not_called()
+        self.assertEqual(result['status'], 'debounced_light_refresh_candidate')
+        self.assertTrue(result['ok'])
+
+    def test_sequencer_retriggers_light_refresh_after_new_incremental_move(self) -> None:
+        args = self.make_args()
+        policy = {
+            'enabled': True,
+            'resume_existing': False,
+            'allow_new_case_claims': True,
+            'poll_seconds': 15.0,
+            'idle_seconds': 60.0,
+            'max_case_seconds': 7200.0,
+        }
+        refresh_candidate = {
+            'ok': True,
+            'payload': {
+                'case_key': 'case-20260413-cafebabe',
+                'market_id': 'market-2',
+                'contract_id': 'contract-2',
+                'current_price': 0.80,
+                'last_reasoned_price': 0.70,
+                'price_delta': 0.10,
+                'hours_since_last_forecast': 0.05,
+                'hours_to_close': 36,
+            },
+        }
+        watermark = {
+            'entries': {
+                'market-2:contract-2': {
+                    'trigger_market_price': 0.76,
+                    'case_key': 'case-20260413-cafebabe'
+                }
+            },
+            'updated_at': ''
+        }
+
+        with patch.object(pipeline_sequencer_runner, 'select_resumable_case', return_value=None), \
+             patch.object(pipeline_sequencer_runner, 'select_refresh_case', return_value=refresh_candidate), \
+             patch.object(pipeline_sequencer_runner, 'load_refresh_watermarks', return_value=watermark), \
+             patch.object(pipeline_sequencer_runner, 'record_refresh_watermark'), \
+             patch.object(pipeline_sequencer_runner, 'run_light_refresh_update', return_value={'ok': True}) as light_mock:
+            result = pipeline_sequencer_runner.run_sequencer_pass(args, policy, excluded_case_keys=set(), excluded_market_ids=set())
+
+        light_mock.assert_called_once_with('case-20260413-cafebabe', pretty=False)
+        self.assertEqual(result['status'], 'processed_light_refresh_case')
+        self.assertTrue(result['ok'])
+
     def test_sequencer_light_refresh_uses_direct_light_refresh_path_not_manual_launch(self) -> None:
         args = self.make_args()
         policy = {

@@ -37,7 +37,15 @@ def resolve_internal_watchdog_policy(args: Any) -> dict[str, Any]:
     }
 
 
-def wait_for_case(case_key: str, *, args: Any, poll_seconds: float, max_case_seconds: float, pretty: bool) -> dict[str, Any]:
+def wait_for_case(
+    case_key: str,
+    *,
+    args: Any,
+    poll_seconds: float,
+    max_case_seconds: float,
+    pretty: bool,
+    progress_callback: Any | None = None,
+) -> dict[str, Any]:
     path = pipeline_status_path(case_key)
     deadline = time.time() + max_case_seconds
     watchdog_passes = 0
@@ -57,6 +65,21 @@ def wait_for_case(case_key: str, *, args: Any, poll_seconds: float, max_case_sec
                 'stage_statuses': summary.get('stage_statuses') or {},
             }, indent=2))
 
+        if progress_callback is not None:
+            progress_callback(
+                phase='monitor_case',
+                message='Monitoring active case progress',
+                case_key=case_key,
+                market_id=str(summary.get('market_id') or '').strip(),
+                dispatch_id=str(summary.get('dispatch_id') or '').strip(),
+                details={
+                    'pipeline_status': status,
+                    'current_stage': str(summary.get('current_stage') or ''),
+                    'stage_statuses': summary.get('stage_statuses') or {},
+                    'watchdog_passes': watchdog_passes,
+                },
+            )
+
         if status in TERMINAL_PIPELINE_STATUSES:
             return {
                 'ok': status == 'pipeline_completed',
@@ -69,6 +92,40 @@ def wait_for_case(case_key: str, *, args: Any, poll_seconds: float, max_case_sec
         watchdog_policy = resolve_internal_watchdog_policy(args)
         last_watchdog_result = watch_existing_case(summary, args=watchdog_args, policy=watchdog_policy)
         watchdog_passes += 1
+        action_failures = last_watchdog_result.get('action_failures') if isinstance(last_watchdog_result.get('action_failures'), list) else []
+        if progress_callback is not None:
+            after_for_progress = last_watchdog_result.get('after') if isinstance(last_watchdog_result.get('after'), dict) else summary
+            executed_actions = last_watchdog_result.get('executed_actions') if isinstance(last_watchdog_result.get('executed_actions'), list) else []
+            progress_callback(
+                phase='watchdog_reconcile',
+                message='Reconciling active case while waiting for terminal state',
+                case_key=case_key,
+                market_id=str(after_for_progress.get('market_id') or summary.get('market_id') or '').strip(),
+                dispatch_id=str(after_for_progress.get('dispatch_id') or summary.get('dispatch_id') or '').strip(),
+                details={
+                    'watchdog_passes': watchdog_passes,
+                    'pipeline_status': str(after_for_progress.get('status') or summary.get('status') or ''),
+                    'current_stage': str(after_for_progress.get('current_stage') or summary.get('current_stage') or ''),
+                    'stage_statuses': after_for_progress.get('stage_statuses') or summary.get('stage_statuses') or {},
+                    'proposed_actions': last_watchdog_result.get('proposed_actions') or [],
+                    'executed_actions': [
+                        str((item.get('name') if isinstance(item, dict) else item) or '')
+                        for item in executed_actions
+                    ],
+                    'action_failures': [
+                        str(((item.get('name') if isinstance(item, dict) else item) or ''))
+                        for item in action_failures
+                    ],
+                },
+            )
+        if action_failures:
+            return {
+                'ok': False,
+                'case_key': case_key,
+                'error': 'watchdog_action_failed',
+                'watchdog_result': last_watchdog_result,
+                'pipeline_summary': summarize_case_pipeline_status(case_key),
+            }
         if not last_watchdog_result.get('ok', False):
             return {
                 'ok': False,

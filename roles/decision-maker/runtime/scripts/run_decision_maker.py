@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import subprocess
 import sys
 import time
@@ -64,6 +65,33 @@ class DecisionMakerError(RuntimeError):
     pass
 
 
+PRICE_SOURCE_ALIAS_MAP = {
+    "runtime_market_snapshot": "market_snapshot_quote",
+    "runtime_market_snapshot_quote": "market_snapshot_quote",
+    "market_snapshot": "market_snapshot_quote",
+    "market_quote": "market_snapshot_quote",
+    "last_observed_market_snapshot": "market_snapshot_quote",
+    "executable_quote": "effective_executable_quote",
+}
+
+
+def canonicalize_price_source(raw_value: Any, *, fallback: str = "market_snapshot_quote") -> tuple[str, str | None]:
+    raw = coerce_string(raw_value).strip()
+    if not raw:
+        return fallback, None
+    normalized = raw.lower()
+    if normalized in {"market_snapshot_quote", "effective_executable_quote"}:
+        return normalized, None
+    if normalized.startswith("market_snapshot_quote"):
+        return "market_snapshot_quote", f"normalized price_source from {raw!r}"
+    if normalized.startswith("effective_executable_quote"):
+        return "effective_executable_quote", f"normalized price_source from {raw!r}"
+    alias = PRICE_SOURCE_ALIAS_MAP.get(normalized)
+    if alias:
+        return alias, f"normalized price_source from {raw!r}"
+    return fallback, f"replaced invalid price_source {raw!r} with {fallback!r}"
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Run the real Decision-Maker flow using the separate decision-maker agent")
     parser.add_argument("--case-key")
@@ -85,8 +113,28 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
+def load_repo_env() -> dict[str, str]:
+    env = dict(os.environ)
+    for env_name in ['.env', '.env.postgres.local']:
+        env_file = REPO_ROOT / env_name
+        if not env_file.exists():
+            continue
+        for raw_line in env_file.read_text().splitlines():
+            line = raw_line.strip()
+            if not line or line.startswith('#') or '=' not in line:
+                continue
+            if line.startswith('export '):
+                line = line[len('export '):].strip()
+            key, value = line.split('=', 1)
+            key = key.strip()
+            value = value.strip().strip('"').strip("'")
+            if key and key not in env:
+                env[key] = value
+    return env
+
+
 def run_command(cmd: list[str], *, cwd: Path = WORKSPACE_ROOT) -> subprocess.CompletedProcess[str]:
-    proc = subprocess.run(cmd, cwd=str(cwd), capture_output=True, text=True)
+    proc = subprocess.run(cmd, cwd=str(cwd), capture_output=True, text=True, env=load_repo_env())
     if proc.returncode != 0:
         raise DecisionMakerError(f"command failed ({proc.returncode}): {' '.join(cmd)}\nSTDOUT:\n{proc.stdout}\nSTDERR:\n{proc.stderr}")
     return proc
@@ -707,7 +755,9 @@ def hydrate_packet_from_context(packet: dict[str, Any], context: dict[str, Any],
     valuation.setdefault("compression_reason", "")
 
     execution["price_axis"] = "market_implied_true_prob"
-    execution.setdefault("price_source", coerce_string(defaults.get("price_source")) or "market_snapshot_quote")
+    default_price_source = coerce_string(defaults.get("price_source")) or "market_snapshot_quote"
+    execution_price_source, price_source_note = canonicalize_price_source(execution.get("price_source"), fallback=default_price_source)
+    execution["price_source"] = execution_price_source
     execution.setdefault("rebalance_threshold_fraction", defaults.get("rebalance_threshold_fraction", 0.1))
     execution.setdefault("allow_auto_reversal", bool(defaults.get("allow_auto_reversal", False)))
     execution.setdefault("quote_staleness_seconds", int(defaults.get("quote_staleness_seconds", 300)))
@@ -752,6 +802,8 @@ def hydrate_packet_from_context(packet: dict[str, Any], context: dict[str, Any],
         )
     if tool_names:
         notes_bits.append(", ".join(tool_names))
+    if price_source_note:
+        notes_bits.append(price_source_note)
     audit["additional_verification_notes"] = "; ".join(notes_bits)
     audit.setdefault("one_sentence_rationale", coerce_string(decision.get("primary_crux")) or "Decision rationale missing.")
     note_prefix = ""
