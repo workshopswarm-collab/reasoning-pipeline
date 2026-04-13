@@ -76,6 +76,7 @@ def wait_for_case(
                     'pipeline_status': status,
                     'current_stage': str(summary.get('current_stage') or ''),
                     'stage_statuses': summary.get('stage_statuses') or {},
+                    'stage_detail_states': summary.get('stage_detail_states') or {},
                     'watchdog_passes': watchdog_passes,
                 },
             )
@@ -107,6 +108,7 @@ def wait_for_case(
                     'pipeline_status': str(after_for_progress.get('status') or summary.get('status') or ''),
                     'current_stage': str(after_for_progress.get('current_stage') or summary.get('current_stage') or ''),
                     'stage_statuses': after_for_progress.get('stage_statuses') or summary.get('stage_statuses') or {},
+                    'stage_detail_states': after_for_progress.get('stage_detail_states') or summary.get('stage_detail_states') or {},
                     'proposed_actions': last_watchdog_result.get('proposed_actions') or [],
                     'executed_actions': [
                         str((item.get('name') if isinstance(item, dict) else item) or '')

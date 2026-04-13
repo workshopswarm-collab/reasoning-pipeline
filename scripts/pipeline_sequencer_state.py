@@ -166,6 +166,7 @@ def is_soft_fail_status(result: dict[str, Any]) -> bool:
         'light_refresh_missing_case_key',
         'prepare_launch_failed',
         'prepare_unknown_failure',
+        'stage_launch_stuck',
     }
 
 
@@ -281,13 +282,21 @@ def maybe_quarantine_failed_result(*, args: Any, result: dict[str, Any]) -> dict
         quarantine_seconds=float(args.quarantine_seconds),
     )
     if case_key:
+        pipeline_summary = ((result.get('case_result') or {}) if isinstance(result.get('case_result'), dict) else {}).get('pipeline_summary')
+        pipeline_summary = pipeline_summary if isinstance(pipeline_summary, dict) else {}
+        stage_detail_states = pipeline_summary.get('stage_detail_states') if isinstance(pipeline_summary.get('stage_detail_states'), dict) else {}
+        current_stage = str(pipeline_summary.get('current_stage') or 'decision')
         update_case_pipeline_status(
             case_key=case_key,
+            dispatch_id=str(pipeline_summary.get('dispatch_id') or ''),
+            market_id=str(pipeline_summary.get('market_id') or market_id or ''),
+            market_title=str(pipeline_summary.get('market_title') or ''),
             status='pipeline_failed',
-            current_stage=str((((result.get('case_result') or {}) if isinstance(result.get('case_result'), dict) else {}).get('pipeline_summary') or {}).get('current_stage') if isinstance((((result.get('case_result') or {}) if isinstance(result.get('case_result'), dict) else {}).get('pipeline_summary')), dict) else 'decision'),
+            current_stage=current_stage,
+            stage_detail_patch={current_stage: str(stage_detail_states.get(current_stage) or '')} if current_stage else None,
             runner_id='run_sequential_market_pipeline',
             message='Sequential runner soft-failed and quarantined the case for later retry',
-            extra={'quarantine': entry, 'soft_failed_result_status': result.get('status', '')},
-            terminal_summary_patch={'failure_reason': reason, 'quarantined': True},
+            extra={'quarantine': entry, 'soft_failed_result_status': result.get('status', ''), 'retry_entry': result.get('retry_entry')},
+            terminal_summary_patch={'failure_reason': reason, 'quarantined': True, 'failed_stage': current_stage},
         )
     return entry

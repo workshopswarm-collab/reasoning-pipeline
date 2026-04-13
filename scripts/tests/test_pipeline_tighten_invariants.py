@@ -269,7 +269,9 @@ class PipelineTightenInvariantTests(unittest.TestCase):
             },
         }
 
-        with patch.object(pipeline_sequencer_runner, 'select_resumable_case', return_value=resumable), \
+        with tempfile.TemporaryDirectory() as tmpdir, \
+             patch.object(pipeline_sequencer_runner, 'STAGE_RETRY_REGISTRY_PATH', Path(tmpdir) / 'stage-launch-retries.json'), \
+             patch.object(pipeline_sequencer_runner, 'select_resumable_case', return_value=resumable), \
              patch.object(pipeline_sequencer_runner, 'wait_for_case', return_value=waited) as wait_mock:
             result = pipeline_sequencer_runner.run_sequencer_pass(args, policy, excluded_case_keys=set(), excluded_market_ids=set())
 
@@ -307,7 +309,9 @@ class PipelineTightenInvariantTests(unittest.TestCase):
             },
         }
 
-        with patch.object(pipeline_sequencer_runner, 'select_resumable_case', return_value=None), \
+        with tempfile.TemporaryDirectory() as tmpdir, \
+             patch.object(pipeline_sequencer_runner, 'STAGE_RETRY_REGISTRY_PATH', Path(tmpdir) / 'stage-launch-retries.json'), \
+             patch.object(pipeline_sequencer_runner, 'select_resumable_case', return_value=None), \
              patch.object(pipeline_sequencer_runner, 'select_refresh_case', return_value={'ok': False}), \
              patch.object(pipeline_sequencer_runner, 'manual_launch_next', return_value=prepared), \
              patch.object(pipeline_sequencer_runner, 'wait_for_case', return_value=waited):
@@ -355,6 +359,69 @@ class PipelineTightenInvariantTests(unittest.TestCase):
 
         self.assertFalse(result['ok'])
         self.assertEqual(result['status'], 'processed_new_case')
+
+    def test_stage_launch_retry_budget_escalates_to_stuck(self) -> None:
+        args = self.make_args()
+        policy = {
+            'enabled': True,
+            'resume_existing': False,
+            'allow_new_case_claims': True,
+            'poll_seconds': 15.0,
+            'idle_seconds': 60.0,
+            'max_case_seconds': 7200.0,
+            'defer_retry_budget': 2,
+        }
+        prepared = {
+            'ok': True,
+            'payload': {
+                'prepare_result': {
+                    'case': {'case_key': 'case-20260413-stuckbeef'},
+                }
+            },
+        }
+        waited = {
+            'ok': False,
+            'error': 'watchdog_action_failed',
+            'pipeline_summary': {
+                'case_key': 'case-20260413-stuckbeef',
+                'status': 'pipeline_in_progress',
+                'current_stage': 'synthesis',
+            },
+            'watchdog_result': {
+                'action_failures': [
+                    {'name': 'launch_synthesis_for_existing_case', 'result': {'ok': False}}
+                ]
+            },
+        }
+
+        with tempfile.TemporaryDirectory() as tmpdir, \
+             patch.object(pipeline_sequencer_runner, 'STAGE_RETRY_REGISTRY_PATH', Path(tmpdir) / 'stage-launch-retries.json'), \
+             patch.object(pipeline_sequencer_runner, 'select_resumable_case', return_value=None), \
+             patch.object(pipeline_sequencer_runner, 'select_refresh_case', return_value={'ok': False}), \
+             patch.object(pipeline_sequencer_runner, 'manual_launch_next', return_value=prepared), \
+             patch.object(pipeline_sequencer_runner, 'wait_for_case', return_value=waited):
+            first = pipeline_sequencer_runner.run_sequencer_pass(args, policy, excluded_case_keys=set(), excluded_market_ids=set())
+            second = pipeline_sequencer_runner.run_sequencer_pass(args, policy, excluded_case_keys=set(), excluded_market_ids=set())
+            third = pipeline_sequencer_runner.run_sequencer_pass(args, policy, excluded_case_keys=set(), excluded_market_ids=set())
+
+        self.assertTrue(first['ok'])
+        self.assertEqual(first['status'], 'new_case_deferred')
+        self.assertTrue(second['ok'])
+        self.assertEqual(second['status'], 'new_case_deferred')
+        self.assertFalse(third['ok'])
+        self.assertEqual(third['status'], 'stage_launch_stuck')
+        self.assertEqual(third['retry_entry']['attempts'], 3)
+
+    def test_sequencer_sleep_plan_uses_short_retry_after_defer(self) -> None:
+        args = self.make_args()
+        plan = pipeline_sequencer_runner.sequencer_sleep_plan(
+            {'status': 'new_case_deferred'},
+            policy={'poll_seconds': 15.0, 'idle_seconds': 60.0},
+            args=args,
+        )
+        self.assertTrue(plan['deferred'])
+        self.assertEqual(plan['heartbeat_state'], 'deferred_retry_sleep')
+        self.assertEqual(plan['sleep_seconds'], 10.0)
 
     def test_sequencer_new_case_uses_manual_launch_then_waits_without_local_launch_write(self) -> None:
         args = self.make_args()

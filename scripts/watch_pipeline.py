@@ -152,7 +152,7 @@ def watch_case(summary: dict[str, object], *, args: argparse.Namespace, policy: 
     elif swarm_status == 'ready_for_synthesis':
         case_result['proposed_actions'].append('launch_synthesis_for_existing_case')
         if policy['apply'] and policy['allow_launch_synthesis']:
-            action = resume_swarm(case_key, pretty=args.pretty)
+            action = launch_synthesis_if_needed(case_key, pretty=args.pretty) or {'ok': False, 'launch_status': 'retryable_transient_failure', 'reason': 'missing_synthesis_status_file'}
             record_action('launch_synthesis_for_existing_case', action)
 
     summary_after_swarm = summarize_case_pipeline_status(case_key)

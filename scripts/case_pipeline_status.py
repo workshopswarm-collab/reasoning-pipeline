@@ -90,6 +90,15 @@ def _default_stage_statuses() -> dict[str, str]:
     }
 
 
+def _default_stage_detail_states() -> dict[str, str]:
+    return {
+        "dispatch": "",
+        "swarm": "",
+        "synthesis": "",
+        "decision": "",
+    }
+
+
 def record_helper_status(case_key: str, helper_name: str, result: dict[str, Any]) -> None:
     path = pipeline_status_path(case_key)
     if not path.exists():
@@ -260,15 +269,19 @@ def run_case_pipeline_followups(snapshot: dict[str, Any], *, previous_snapshot: 
 def _normalize_terminal_payload(payload: dict[str, Any]) -> None:
     status = str(payload.get("status") or "").strip()
     stage_statuses = payload.setdefault("stage_statuses", _default_stage_statuses())
+    stage_detail_states = payload.setdefault("stage_detail_states", _default_stage_detail_states())
     terminal_summary = payload.setdefault("terminal_summary", {})
     if status == "pipeline_completed":
         for stage_name in ("dispatch", "swarm", "synthesis", "decision"):
             stage_statuses[stage_name] = "completed"
+            stage_detail_states[stage_name] = "completed"
         for stale_key in ("failure_reason", "failed_stage", "quarantined"):
             terminal_summary.pop(stale_key, None)
     elif status == "pipeline_skipped":
         for stale_key in ("failure_reason", "failed_stage", "quarantined"):
             terminal_summary.pop(stale_key, None)
+    elif status and status not in {"pipeline_completed", "pipeline_failed", "pipeline_skipped"}:
+        payload.pop("completed_at", None)
 
 
 def update_case_pipeline_status(
@@ -280,6 +293,7 @@ def update_case_pipeline_status(
     status: str | None = None,
     current_stage: str | None = None,
     stage_status_patch: dict[str, str] | None = None,
+    stage_detail_patch: dict[str, str] | None = None,
     runner_id: str = "",
     batch_run_id: str = "",
     message: str = "",
@@ -294,6 +308,7 @@ def update_case_pipeline_status(
         payload.setdefault("schema_version", "case-pipeline-status/v1")
         payload["case_key"] = normalized_case_key
         payload.setdefault("stage_statuses", _default_stage_statuses())
+        payload.setdefault("stage_detail_states", _default_stage_detail_states())
         payload.setdefault("timeline", [])
         payload.setdefault("terminal_summary", {})
         payload.setdefault("started_at", now)
@@ -323,6 +338,12 @@ def update_case_pipeline_status(
             for key, value in stage_status_patch.items():
                 if value:
                     stage_statuses[key] = value
+        if stage_detail_patch:
+            stage_detail_states = payload.setdefault("stage_detail_states", _default_stage_detail_states())
+            for key, value in stage_detail_patch.items():
+                if key not in stage_detail_states:
+                    stage_detail_states[key] = ""
+                stage_detail_states[key] = str(value or "")
         if terminal_summary_patch:
             terminal_summary = payload.setdefault("terminal_summary", {})
             for key, value in terminal_summary_patch.items():
@@ -357,6 +378,7 @@ def update_case_pipeline_status_with_followups(
     status: str | None = None,
     current_stage: str | None = None,
     stage_status_patch: dict[str, str] | None = None,
+    stage_detail_patch: dict[str, str] | None = None,
     runner_id: str = "",
     batch_run_id: str = "",
     message: str = "",
@@ -373,6 +395,7 @@ def update_case_pipeline_status_with_followups(
         status=status,
         current_stage=current_stage,
         stage_status_patch=stage_status_patch,
+        stage_detail_patch=stage_detail_patch,
         runner_id=runner_id,
         batch_run_id=batch_run_id,
         message=message,
@@ -393,6 +416,7 @@ def summarize_case_pipeline_status(case_key: str) -> dict[str, Any]:
         "status": payload.get("status", ""),
         "current_stage": payload.get("current_stage", ""),
         "stage_statuses": payload.get("stage_statuses", {}),
+        "stage_detail_states": payload.get("stage_detail_states", {}),
         "dispatch_id": payload.get("dispatch_id", ""),
         "market_id": payload.get("market_id", ""),
         "market_title": payload.get("market_title", ""),

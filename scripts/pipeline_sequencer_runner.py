@@ -12,7 +12,10 @@ from pipeline_automation_actions import manual_launch_case, manual_launch_market
 from pipeline_sequencer_candidates import classify_prepare_failure, decide_refresh_mode, select_refresh_case, select_resumable_case
 
 REFRESH_WATERMARK_PATH = Path(__file__).resolve().parent / '.runtime-state' / 'refresh-watermarks.json'
+STAGE_RETRY_REGISTRY_PATH = Path(__file__).resolve().parent / '.runtime-state' / 'stage-launch-retries.json'
 REFRESH_RETRIGGER_THRESHOLD = 0.02
+DEFER_RETRY_BUDGET = 3
+DEFER_RETRY_SLEEP_SECONDS = 10.0
 from pipeline_sequencer_periodic import maybe_run_periodic_tasks
 from pipeline_sequencer_progress import TERMINAL_PIPELINE_STATUSES, wait_for_case
 from pipeline_sequencer_state import (
@@ -97,6 +100,97 @@ def should_defer_nonterminal_case_result(case_result: dict[str, Any], *, policy:
     if age_seconds is not None and max_case_seconds > 0.0 and age_seconds > max_case_seconds:
         return False
     return True
+
+
+def load_stage_retry_registry(path: Path | None = None) -> dict[str, Any]:
+    path = path or STAGE_RETRY_REGISTRY_PATH
+    if not path.exists():
+        return {'schema_version': 'pipeline-stage-retries/v1', 'entries': {}, 'updated_at': ''}
+    try:
+        payload = json.loads(path.read_text())
+    except Exception:
+        return {'schema_version': 'pipeline-stage-retries/v1', 'entries': {}, 'updated_at': ''}
+    if not isinstance(payload, dict):
+        return {'schema_version': 'pipeline-stage-retries/v1', 'entries': {}, 'updated_at': ''}
+    entries = payload.get('entries') if isinstance(payload.get('entries'), dict) else {}
+    return {'schema_version': 'pipeline-stage-retries/v1', 'entries': entries, 'updated_at': str(payload.get('updated_at') or '')}
+
+
+def save_stage_retry_registry(payload: dict[str, Any], path: Path | None = None) -> None:
+    path = path or STAGE_RETRY_REGISTRY_PATH
+    path.parent.mkdir(parents=True, exist_ok=True)
+    payload['updated_at'] = utc_now_iso()
+    path.write_text(json.dumps(payload, indent=2) + '\n')
+
+
+def clear_case_stage_retries(case_key: str, path: Path | None = None) -> None:
+    path = path or STAGE_RETRY_REGISTRY_PATH
+    normalized_case_key = str(case_key or '').strip()
+    if not normalized_case_key:
+        return
+    payload = load_stage_retry_registry(path)
+    entries = payload.get('entries') if isinstance(payload.get('entries'), dict) else {}
+    payload['entries'] = {
+        key: value for key, value in entries.items()
+        if str((value or {}).get('case_key') or '').strip() != normalized_case_key
+    }
+    save_stage_retry_registry(payload, path)
+
+
+def stage_retry_identity(case_result: dict[str, Any]) -> dict[str, Any]:
+    pipeline_summary = case_result.get('pipeline_summary') if isinstance(case_result.get('pipeline_summary'), dict) else {}
+    watchdog_result = case_result.get('watchdog_result') if isinstance(case_result.get('watchdog_result'), dict) else {}
+    action_failures = watchdog_result.get('action_failures') if isinstance(watchdog_result.get('action_failures'), list) else []
+    first_failure = action_failures[0] if action_failures else {}
+    action_name = str((first_failure.get('name') if isinstance(first_failure, dict) else '') or '').strip()
+    stage_name = str(pipeline_summary.get('current_stage') or '').strip() or 'unknown'
+    case_key = str(pipeline_summary.get('case_key') or case_result.get('case_key') or '').strip()
+    return {
+        'case_key': case_key,
+        'stage': stage_name,
+        'action_name': action_name,
+        'error': str(case_result.get('error') or '').strip(),
+    }
+
+
+def classify_nonterminal_case_result(case_result: dict[str, Any], *, policy: dict[str, Any]) -> dict[str, Any]:
+    if not should_defer_nonterminal_case_result(case_result, policy=policy):
+        return {'mode': 'none'}
+    identity = stage_retry_identity(case_result)
+    payload = load_stage_retry_registry()
+    entries = payload.setdefault('entries', {})
+    case_key = str(identity.get('case_key') or '').strip()
+    stage_name = str(identity.get('stage') or '').strip() or 'unknown'
+    action_name = str(identity.get('action_name') or '').strip() or 'unknown_action'
+    key = f'{case_key}:{stage_name}:{action_name}'
+    entry = entries.get(key) if isinstance(entries.get(key), dict) else {}
+    attempts = int(entry.get('attempts') or 0) + 1
+    budget = int(policy.get('defer_retry_budget') or DEFER_RETRY_BUDGET)
+    pipeline_summary = case_result.get('pipeline_summary') if isinstance(case_result.get('pipeline_summary'), dict) else {}
+    age_seconds = case_runtime_age_seconds(pipeline_summary)
+    next_entry = {
+        'case_key': case_key,
+        'stage': stage_name,
+        'action_name': action_name,
+        'error': str(identity.get('error') or ''),
+        'attempts': attempts,
+        'first_seen_at': str(entry.get('first_seen_at') or utc_now_iso()),
+        'last_seen_at': utc_now_iso(),
+        'runtime_age_seconds': age_seconds,
+    }
+    entries[key] = next_entry
+    save_stage_retry_registry(payload)
+    if attempts > budget:
+        return {
+            'mode': 'stuck',
+            'retry_entry': next_entry,
+            'retry_budget': budget,
+        }
+    return {
+        'mode': 'defer',
+        'retry_entry': next_entry,
+        'retry_budget': budget,
+    }
 
 
 def assert_sequencer_launch_boundary(*, prepare_result: dict[str, Any], mode: str) -> None:
@@ -264,7 +358,8 @@ def run_sequencer_pass(
             pretty=args.pretty,
             progress_callback=progress_callback,
         )
-        if should_defer_nonterminal_case_result(case_result, policy=policy):
+        handling = classify_nonterminal_case_result(case_result, policy=policy)
+        if handling.get('mode') == 'defer':
             pipeline_summary = case_result.get('pipeline_summary') if isinstance(case_result.get('pipeline_summary'), dict) else {}
             return {
                 'ok': True,
@@ -275,6 +370,19 @@ def run_sequencer_pass(
                 'deferred_error': str(case_result.get('error') or ''),
                 'deferred_because_nonterminal': True,
                 'deferred_runtime_age_seconds': case_runtime_age_seconds(pipeline_summary),
+                'retry_budget': handling.get('retry_budget'),
+                'retry_entry': handling.get('retry_entry'),
+            }
+        if handling.get('mode') == 'stuck':
+            return {
+                'ok': False,
+                'status': 'stage_launch_stuck',
+                'policy': policy,
+                'case_key': case_key,
+                'case_result': case_result,
+                'stuck_reason': str(case_result.get('error') or ''),
+                'retry_budget': handling.get('retry_budget'),
+                'retry_entry': handling.get('retry_entry'),
             }
         return {
             'ok': bool(case_result.get('ok')),
@@ -449,7 +557,8 @@ def run_sequencer_pass(
             pretty=args.pretty,
             progress_callback=progress_callback,
         )
-        if should_defer_nonterminal_case_result(case_result, policy=policy):
+        handling = classify_nonterminal_case_result(case_result, policy=policy)
+        if handling.get('mode') == 'defer':
             pipeline_summary = case_result.get('pipeline_summary') if isinstance(case_result.get('pipeline_summary'), dict) else {}
             return {
                 'ok': True,
@@ -463,6 +572,22 @@ def run_sequencer_pass(
                 'deferred_error': str(case_result.get('error') or ''),
                 'deferred_because_nonterminal': True,
                 'deferred_runtime_age_seconds': case_runtime_age_seconds(pipeline_summary),
+                'retry_budget': handling.get('retry_budget'),
+                'retry_entry': handling.get('retry_entry'),
+            }
+        if handling.get('mode') == 'stuck':
+            return {
+                'ok': False,
+                'status': 'stage_launch_stuck',
+                'policy': policy,
+                'case_key': case_key,
+                'refresh_candidate': refresh_candidate,
+                'refresh_plan': refresh_plan,
+                'prepare_result': prepared,
+                'case_result': case_result,
+                'stuck_reason': str(case_result.get('error') or ''),
+                'retry_budget': handling.get('retry_budget'),
+                'retry_entry': handling.get('retry_entry'),
             }
         return {
             'ok': bool(case_result.get('ok')),
@@ -543,7 +668,8 @@ def run_sequencer_pass(
         pretty=args.pretty,
         progress_callback=progress_callback,
     )
-    if should_defer_nonterminal_case_result(case_result, policy=policy):
+    handling = classify_nonterminal_case_result(case_result, policy=policy)
+    if handling.get('mode') == 'defer':
         pipeline_summary = case_result.get('pipeline_summary') if isinstance(case_result.get('pipeline_summary'), dict) else {}
         return {
             'ok': True,
@@ -555,6 +681,20 @@ def run_sequencer_pass(
             'deferred_error': str(case_result.get('error') or ''),
             'deferred_because_nonterminal': True,
             'deferred_runtime_age_seconds': case_runtime_age_seconds(pipeline_summary),
+            'retry_budget': handling.get('retry_budget'),
+            'retry_entry': handling.get('retry_entry'),
+        }
+    if handling.get('mode') == 'stuck':
+        return {
+            'ok': False,
+            'status': 'stage_launch_stuck',
+            'policy': policy,
+            'case_key': case_key,
+            'prepare_result': prepared,
+            'case_result': case_result,
+            'stuck_reason': str(case_result.get('error') or ''),
+            'retry_budget': handling.get('retry_budget'),
+            'retry_entry': handling.get('retry_entry'),
         }
     return {
         'ok': bool(case_result.get('ok')),
@@ -589,6 +729,16 @@ def build_loop_pass_payload(result: dict[str, Any], processed_cases: int, period
         'processed_cases': processed_cases,
         'periodic_tasks': periodic_tasks,
         'pass_result': result,
+    }
+
+
+def sequencer_sleep_plan(result: dict[str, Any], *, policy: dict[str, Any], args: Any) -> dict[str, Any]:
+    deferred = str(result.get('status') or '').endswith('_deferred')
+    sleep_seconds = float(min(policy.get('poll_seconds', args.poll_seconds), DEFER_RETRY_SLEEP_SECONDS)) if deferred else float(policy.get('idle_seconds', args.idle_seconds))
+    return {
+        'deferred': deferred,
+        'sleep_seconds': sleep_seconds,
+        'heartbeat_state': 'deferred_retry_sleep' if deferred else 'idle_sleep',
     }
 
 
@@ -670,6 +820,9 @@ def execute_sequencer(args: Any) -> None:
                     result['soft_failed'] = True
                 if should_count_processed(result):
                     processed += 1
+                    resolved_case_key = str(result.get('case_key') or '')
+                    if resolved_case_key:
+                        clear_case_stage_retries(resolved_case_key)
                 heartbeat = update_heartbeat_for_pass(
                     heartbeat,
                     result=result,
@@ -686,11 +839,22 @@ def execute_sequencer(args: Any) -> None:
                     raise SystemExit(1)
                 if should_count_processed(result):
                     continue
-                heartbeat['state'] = 'idle_sleep'
+                sleep_plan = sequencer_sleep_plan(result, policy=policy, args=args)
+                sleep_seconds = float(sleep_plan['sleep_seconds'])
+                heartbeat['state'] = str(sleep_plan['heartbeat_state'])
                 heartbeat['last_idle_sleep_started_at'] = utc_now_iso()
-                heartbeat['last_idle_sleep_seconds'] = float(policy.get('idle_seconds', args.idle_seconds))
+                heartbeat['last_idle_sleep_seconds'] = sleep_seconds
+                if sleep_plan['deferred']:
+                    heartbeat['last_deferred_retry'] = {
+                        'at': utc_now_iso(),
+                        'status': str(result.get('status') or ''),
+                        'case_key': str(result.get('case_key') or ''),
+                        'sleep_seconds': sleep_seconds,
+                        'retry_budget': result.get('retry_budget'),
+                        'retry_entry': result.get('retry_entry'),
+                    }
                 write_heartbeat(heartbeat_path, heartbeat)
-                time.sleep(float(policy.get('idle_seconds', args.idle_seconds)))
+                time.sleep(sleep_seconds)
     except SystemExit:
         raise
     except Exception as exc:

@@ -112,6 +112,19 @@ def synthesis_status_file(case_key: str) -> Path | None:
     return path if path.exists() else None
 
 
+def decision_status_file(case_key: str) -> Path:
+    return REPO_ROOT / 'qualitative-db' / '40-research' / 'cases' / case_key / 'decision-maker' / 'artifacts' / 'decision-stage-status.json'
+
+
+def process_running(pid: Any) -> bool:
+    try:
+        pid_int = int(pid)
+    except (TypeError, ValueError):
+        return False
+    proc = subprocess.run(['ps', '-p', str(pid_int), '-o', 'pid='], capture_output=True, text=True)
+    return bool(proc.stdout.strip())
+
+
 def reconcile_swarm(case_key: str, *, stale_seconds: float, check_only: bool, pretty: bool) -> dict[str, Any]:
     args = ['--case-key', case_key, '--stale-seconds', str(stale_seconds)]
     if check_only:
@@ -127,8 +140,115 @@ def launch_synthesis_if_needed(case_key: str, *, pretty: bool) -> dict[str, Any]
     status_file = synthesis_status_file(case_key)
     if status_file is None:
         return None
+    status_before = load_json_if_exists(status_file)
+    before_status = str(status_before.get('status') or '').strip()
     result = run_python_script(LAUNCH_SYNTHESIS_IF_READY, '--status-file', str(status_file), pretty=pretty)
-    result['status_file'] = str(status_file.relative_to(REPO_ROOT))
+    payload = result.get('payload') if isinstance(result.get('payload'), dict) else {}
+    status_after = load_json_if_exists(status_file)
+    after_status = str(status_after.get('status') or payload.get('status') or before_status).strip()
+    reason = str(payload.get('reason') or '').strip()
+
+    summary = summarize_case_pipeline_status(case_key)
+    market_title = str(summary.get('market_title') or '').strip()
+    market_id = str(summary.get('market_id') or '').strip()
+    dispatch_id = str(summary.get('dispatch_id') or '').strip()
+
+    if result.get('ok'):
+        if reason == 'already_completed' or after_status == 'synthesis_completed':
+            update_case_pipeline_status(
+                case_key=case_key,
+                dispatch_id=dispatch_id,
+                market_id=market_id,
+                market_title=market_title,
+                status='pipeline_in_progress',
+                current_stage='synthesis',
+                stage_status_patch={'swarm': 'completed', 'synthesis': 'completed'},
+                stage_detail_patch={'synthesis': 'completed'},
+                runner_id='pipeline_automation_actions.launch_synthesis_if_needed',
+                message='Synthesis stage already completed when launch was checked',
+            )
+            result.update({'launch_status': 'already_completed', 'status_file': str(status_file.relative_to(REPO_ROOT))})
+            return result
+
+        if reason in {'already_running', 'already_launching', 'already_running_after_race'}:
+            detail_state = 'handoff_sent' if after_status == 'final_synthesis_launching' else 'running'
+            update_case_pipeline_status(
+                case_key=case_key,
+                dispatch_id=dispatch_id,
+                market_id=market_id,
+                market_title=market_title,
+                status='pipeline_in_progress',
+                current_stage='synthesis',
+                stage_status_patch={'swarm': 'completed', 'synthesis': 'running'},
+                stage_detail_patch={'synthesis': detail_state},
+                runner_id='pipeline_automation_actions.launch_synthesis_if_needed',
+                message='Synthesis launch already in progress',
+                extra={'launch_reason': reason or after_status},
+            )
+            result.update({'launch_status': 'already_running', 'status_file': str(status_file.relative_to(REPO_ROOT))})
+            return result
+
+        if after_status == 'waiting_for_reasoning_sidecars':
+            update_case_pipeline_status(
+                case_key=case_key,
+                dispatch_id=dispatch_id,
+                market_id=market_id,
+                market_title=market_title,
+                status='pipeline_in_progress',
+                current_stage='swarm',
+                stage_status_patch={'synthesis': 'pending'},
+                stage_detail_patch={'synthesis': 'waiting_for_sidecars'},
+                runner_id='pipeline_automation_actions.launch_synthesis_if_needed',
+                message='Synthesis launch check is still waiting for researcher sidecars',
+            )
+            result.update({'launch_status': 'blocked_waiting_for_sidecars', 'status_file': str(status_file.relative_to(REPO_ROOT))})
+            return result
+
+        if reason == 'missing_synthesis_target_session_key' or after_status == 'synthesis_lane_bootstrap_failed':
+            result.update({'ok': False, 'launch_status': 'terminal_failure', 'status_file': str(status_file.relative_to(REPO_ROOT))})
+            return result
+
+        detail_state = 'handoff_sent' if after_status == 'final_synthesis_launching' else 'running'
+        update_case_pipeline_status(
+            case_key=case_key,
+            dispatch_id=dispatch_id,
+            market_id=market_id,
+            market_title=market_title,
+            status='pipeline_in_progress',
+            current_stage='synthesis',
+            stage_status_patch={'swarm': 'completed', 'synthesis': 'running'},
+            stage_detail_patch={'synthesis': detail_state},
+            runner_id='pipeline_automation_actions.launch_synthesis_if_needed',
+            message='Synthesis launch acknowledged by automation controller',
+            extra={'launch_reason': reason or after_status},
+        )
+        result.update({'launch_status': 'started', 'status_file': str(status_file.relative_to(REPO_ROOT))})
+        return result
+
+    retryable = after_status in {
+        'ready_for_final_synthesis',
+        'waiting_for_reasoning_sidecars',
+        'final_synthesis_launching',
+        'final_synthesis_launched',
+        'final_synthesis_failed',
+    }
+    result.update({
+        'launch_status': 'retryable_transient_failure' if retryable else 'terminal_failure',
+        'status_file': str(status_file.relative_to(REPO_ROOT)),
+    })
+    if retryable:
+        update_case_pipeline_status(
+            case_key=case_key,
+            dispatch_id=dispatch_id,
+            market_id=market_id,
+            market_title=market_title,
+            status='pipeline_in_progress',
+            current_stage='synthesis' if after_status.startswith('final_synthesis') or after_status == 'ready_for_final_synthesis' else 'swarm',
+            stage_detail_patch={'synthesis': after_status or 'retryable_launch_error'},
+            runner_id='pipeline_automation_actions.launch_synthesis_if_needed',
+            message='Synthesis launch hit a retryable transient failure',
+            extra={'launch_reason': reason or after_status, 'stderr': (result.get('stderr') or '')[-400:]},
+        )
     return result
 
 
@@ -138,6 +258,53 @@ def reconcile_decision(case_key: str, *, pretty: bool) -> dict[str, Any]:
 
 def finalize_decision(case_key: str, *, pretty: bool) -> dict[str, Any]:
     return run_python_script(FINALIZE_DECISION_STAGE, '--case-key', case_key, '--apply', pretty=pretty)
+
+
+def recover_stale_decision_launch_claim(case_key: str, *, status_path: Path) -> bool:
+    status_payload = load_json_if_exists(status_path)
+    status_value = str(status_payload.get('status') or '').strip()
+    claim = status_payload.get('decision_launch_claim') if isinstance(status_payload.get('decision_launch_claim'), dict) else {}
+    runner_pid = claim.get('runner_pid')
+    if status_value not in {'handoff_sent', 'decision_analysis_running'}:
+        return False
+    if process_running(runner_pid):
+        return False
+    packet_json_path = REPO_ROOT / 'qualitative-db' / '40-research' / 'cases' / case_key / 'decision-maker' / 'artifacts' / 'decision-maker-packet.json'
+    packet_md_path = REPO_ROOT / 'qualitative-db' / '40-research' / 'cases' / case_key / 'decision-maker' / 'decision-maker-packet.md'
+    if packet_json_path.exists() or packet_md_path.exists():
+        return False
+    event = {
+        'at': utc_now_iso(),
+        'stage': 'decision_receipt',
+        'state': 'stale_launch_claim_recovered',
+        'message': 'Recovered stale Decision-Maker launch claim after worker pid disappeared without terminal artifacts',
+        'runner_pid': runner_pid,
+    }
+    with locked_json_file(status_path) as status:
+        status['status'] = 'handoff_prepared'
+        claim_payload = status.get('decision_launch_claim') if isinstance(status.get('decision_launch_claim'), dict) else {}
+        claim_payload.update({
+            'stale_recovered_at': event['at'],
+            'runner_pid': runner_pid,
+        })
+        status['decision_launch_claim'] = claim_payload
+        status.setdefault('stage_events', []).append(event)
+        status['last_stage_event'] = dict(event)
+        status['updated_at'] = event['at']
+    summary = summarize_case_pipeline_status(case_key)
+    update_case_pipeline_status(
+        case_key=case_key,
+        dispatch_id=str(summary.get('dispatch_id') or '').strip(),
+        market_id=str(summary.get('market_id') or '').strip(),
+        market_title=str(summary.get('market_title') or '').strip(),
+        status='pipeline_in_progress',
+        current_stage='decision',
+        stage_status_patch={'decision': 'pending'},
+        stage_detail_patch={'decision': 'handoff_prepared'},
+        runner_id='pipeline_automation_actions.recover_stale_decision_launch_claim',
+        message='Recovered stale Decision-Maker launch claim; case returned to prepared state for relaunch',
+    )
+    return True
 
 
 def record_decision_launch_claim(
@@ -236,6 +403,9 @@ def spawn_background_decision_runner(case_key: str, *, prepare_payload: dict[str
 
 
 def launch_decision_maker(case_key: str, *, pretty: bool) -> dict[str, Any]:
+    status_path = decision_status_file(case_key)
+    recovered_stale_claim = recover_stale_decision_launch_claim(case_key, status_path=status_path)
+
     reconcile = reconcile_decision(case_key, pretty=pretty)
     payload = reconcile.get('payload') if isinstance(reconcile.get('payload'), dict) else {}
     health = str(payload.get('health') or '')
@@ -252,6 +422,7 @@ def launch_decision_maker(case_key: str, *, pretty: bool) -> dict[str, Any]:
             'launch_status': 'already_running',
             'decision_health': health,
             'payload': payload,
+            'recovered_stale_claim': recovered_stale_claim,
         }
     if not reconcile.get('ok') and health not in {'not_started'}:
         return {
@@ -279,7 +450,7 @@ def launch_decision_maker(case_key: str, *, pretty: bool) -> dict[str, Any]:
 
     spawn = spawn_background_decision_runner(case_key, prepare_payload=prepare_payload, pretty=pretty)
     status_path_value = str(prepare_payload.get('decision_stage_status_path') or '').strip()
-    status_path = (REPO_ROOT / status_path_value) if status_path_value else (REPO_ROOT / 'qualitative-db' / '40-research' / 'cases' / case_key / 'decision-maker' / 'artifacts' / 'decision-stage-status.json')
+    status_path = (REPO_ROOT / status_path_value) if status_path_value else decision_status_file(case_key)
     record_decision_launch_claim(
         case_key=case_key,
         status_path=status_path,
@@ -297,13 +468,27 @@ def launch_decision_maker(case_key: str, *, pretty: bool) -> dict[str, Any]:
         status='pipeline_in_progress',
         current_stage='decision',
         stage_status_patch={'decision': 'running'},
+        stage_detail_patch={'decision': 'handoff_sent'},
         runner_id='pipeline_automation_actions.launch_decision_maker',
         message='Decision-Maker launch claimed and worker subprocess started',
+        extra={'recovered_stale_claim': recovered_stale_claim},
     )
     time.sleep(0.5)
     returncode = spawn['proc'].poll()
     if returncode not in (None, 0):
         record_decision_launch_immediate_failure(status_path=status_path, pid=int(spawn['pid']), log_path=spawn['log_path'], returncode=int(returncode))
+        update_case_pipeline_status(
+            case_key=case_key,
+            dispatch_id=str(summary.get('dispatch_id') or '').strip(),
+            market_id=str(summary.get('market_id') or '').strip(),
+            market_title=str(summary.get('market_title') or '').strip(),
+            status='pipeline_in_progress',
+            current_stage='decision',
+            stage_status_patch={'decision': 'pending'},
+            stage_detail_patch={'decision': 'handoff_prepared'},
+            runner_id='pipeline_automation_actions.launch_decision_maker',
+            message='Decision-Maker worker exited immediately after launch claim; returning to prepared state',
+        )
         return {
             'ok': False,
             'launch_status': 'retryable_transient_failure',
