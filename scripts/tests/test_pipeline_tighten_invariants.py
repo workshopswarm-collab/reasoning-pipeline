@@ -243,6 +243,119 @@ class PipelineTightenInvariantTests(unittest.TestCase):
         wait_mock.assert_called_once()
         self.assertEqual(wait_mock.call_args.args[0], 'case-20260413-timeoutbeef')
 
+    def test_sequencer_defers_nonterminal_existing_case_failure_without_quarantine(self) -> None:
+        args = self.make_args()
+        policy = {
+            'enabled': True,
+            'resume_existing': True,
+            'allow_new_case_claims': True,
+            'poll_seconds': 15.0,
+            'idle_seconds': 60.0,
+            'max_case_seconds': 7200.0,
+        }
+        resumable = {
+            'case_key': 'case-20260413-deferbeef',
+            'market_id': 'market-defer',
+            'dispatch_id': 'dispatch-case-20260413-deferbeef-20260413T000000Z',
+            'status': 'pipeline_in_progress',
+        }
+        waited = {
+            'ok': False,
+            'error': 'watchdog_reconcile_failed',
+            'pipeline_summary': {
+                'case_key': 'case-20260413-deferbeef',
+                'status': 'pipeline_in_progress',
+                'current_stage': 'decision',
+            },
+        }
+
+        with patch.object(pipeline_sequencer_runner, 'select_resumable_case', return_value=resumable), \
+             patch.object(pipeline_sequencer_runner, 'wait_for_case', return_value=waited) as wait_mock:
+            result = pipeline_sequencer_runner.run_sequencer_pass(args, policy, excluded_case_keys=set(), excluded_market_ids=set())
+
+        wait_mock.assert_called_once()
+        self.assertTrue(result['ok'])
+        self.assertEqual(result['status'], 'existing_case_deferred')
+        self.assertTrue(result['deferred_because_nonterminal'])
+        self.assertEqual(result['deferred_error'], 'watchdog_reconcile_failed')
+
+    def test_sequencer_new_case_defers_nonterminal_transient_failure_without_quarantine(self) -> None:
+        args = self.make_args()
+        policy = {
+            'enabled': True,
+            'resume_existing': False,
+            'allow_new_case_claims': True,
+            'poll_seconds': 15.0,
+            'idle_seconds': 60.0,
+            'max_case_seconds': 7200.0,
+        }
+        prepared = {
+            'ok': True,
+            'payload': {
+                'prepare_result': {
+                    'case': {'case_key': 'case-20260413-newdefer'},
+                }
+            },
+        }
+        waited = {
+            'ok': False,
+            'error': 'watchdog_action_failed',
+            'pipeline_summary': {
+                'case_key': 'case-20260413-newdefer',
+                'status': 'pipeline_in_progress',
+                'current_stage': 'synthesis',
+            },
+        }
+
+        with patch.object(pipeline_sequencer_runner, 'select_resumable_case', return_value=None), \
+             patch.object(pipeline_sequencer_runner, 'select_refresh_case', return_value={'ok': False}), \
+             patch.object(pipeline_sequencer_runner, 'manual_launch_next', return_value=prepared), \
+             patch.object(pipeline_sequencer_runner, 'wait_for_case', return_value=waited):
+            result = pipeline_sequencer_runner.run_sequencer_pass(args, policy, excluded_case_keys=set(), excluded_market_ids=set())
+
+        self.assertTrue(result['ok'])
+        self.assertEqual(result['status'], 'new_case_deferred')
+        self.assertTrue(result['deferred_because_nonterminal'])
+        self.assertEqual(result['deferred_error'], 'watchdog_action_failed')
+
+    def test_sequencer_new_case_timeout_does_not_defer_forever(self) -> None:
+        args = self.make_args()
+        policy = {
+            'enabled': True,
+            'resume_existing': False,
+            'allow_new_case_claims': True,
+            'poll_seconds': 15.0,
+            'idle_seconds': 60.0,
+            'max_case_seconds': 7200.0,
+        }
+        prepared = {
+            'ok': True,
+            'payload': {
+                'prepare_result': {
+                    'case': {'case_key': 'case-20260413-timeoutnew'},
+                }
+            },
+        }
+        waited = {
+            'ok': False,
+            'error': 'pipeline_timeout',
+            'pipeline_summary': {
+                'case_key': 'case-20260413-timeoutnew',
+                'status': 'pipeline_in_progress',
+                'current_stage': 'decision',
+                'started_at': '2000-01-01T00:00:00+00:00',
+            },
+        }
+
+        with patch.object(pipeline_sequencer_runner, 'select_resumable_case', return_value=None), \
+             patch.object(pipeline_sequencer_runner, 'select_refresh_case', return_value={'ok': False}), \
+             patch.object(pipeline_sequencer_runner, 'manual_launch_next', return_value=prepared), \
+             patch.object(pipeline_sequencer_runner, 'wait_for_case', return_value=waited):
+            result = pipeline_sequencer_runner.run_sequencer_pass(args, policy, excluded_case_keys=set(), excluded_market_ids=set())
+
+        self.assertFalse(result['ok'])
+        self.assertEqual(result['status'], 'processed_new_case')
+
     def test_sequencer_new_case_uses_manual_launch_then_waits_without_local_launch_write(self) -> None:
         args = self.make_args()
         policy = {

@@ -2,11 +2,15 @@ from __future__ import annotations
 
 import json
 import os
+import subprocess
 import sys
+import time
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
 from automation_runtime_support import AutomationRuntimeError, DEFAULT_SUBPROCESS_TIMEOUT_SECONDS, run_json_subprocess
+from case_pipeline_status import locked_json_file, summarize_case_pipeline_status, update_case_pipeline_status_with_followups as update_case_pipeline_status
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 
@@ -19,8 +23,13 @@ FINALIZE_DECISION_STAGE = REPO_ROOT / 'roles' / 'decision-maker' / 'runtime' / '
 RUN_DECISION_MAKER = REPO_ROOT / 'roles' / 'decision-maker' / 'runtime' / 'scripts' / 'run_decision_maker.py'
 RUN_LIGHT_REFRESH_UPDATE = REPO_ROOT / 'roles' / 'decision-maker' / 'runtime' / 'scripts' / 'run_light_refresh_update.py'
 SYNC_MARKET_RESOLUTIONS = REPO_ROOT / 'quant-db' / 'scripts' / 'sync_polymarket_market_resolutions.py'
+DECISION_LAUNCH_LOG_DIR = REPO_ROOT / 'scripts' / '.runtime-state' / 'decision-maker-launches'
 
 MANUAL_LAUNCH_TIMEOUT_SECONDS = 600.0
+
+
+def utc_now_iso() -> str:
+    return datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z')
 
 
 def load_repo_env() -> dict[str, str]:
@@ -131,8 +140,187 @@ def finalize_decision(case_key: str, *, pretty: bool) -> dict[str, Any]:
     return run_python_script(FINALIZE_DECISION_STAGE, '--case-key', case_key, '--apply', pretty=pretty)
 
 
+def record_decision_launch_claim(
+    *,
+    case_key: str,
+    status_path: Path,
+    pid: int,
+    log_path: Path,
+    launch_status: str,
+    prepare_payload: dict[str, Any],
+) -> None:
+    status_path.parent.mkdir(parents=True, exist_ok=True)
+    event = {
+        'at': utc_now_iso(),
+        'stage': 'decision_receipt',
+        'state': launch_status,
+        'message': 'Decision-Maker launch claimed by automation controller',
+        'runner_pid': pid,
+        'launch_log_path': str(log_path.relative_to(REPO_ROOT)),
+        'decision_context_path': str(prepare_payload.get('decision_context_path') or ''),
+        'prompt_path': str(prepare_payload.get('prompt_path') or ''),
+    }
+    with locked_json_file(status_path) as status:
+        status['status'] = 'handoff_sent'
+        status['decision_launch_claim'] = {
+            'claimed_at': event['at'],
+            'runner_pid': pid,
+            'launch_log_path': event['launch_log_path'],
+            'decision_context_path': event['decision_context_path'],
+            'prompt_path': event['prompt_path'],
+            'launcher': 'pipeline_automation_actions.launch_decision_maker',
+        }
+        status.setdefault('stage_events', []).append(event)
+        status['last_stage_event'] = dict(event)
+        status['updated_at'] = event['at']
+
+
+def record_decision_launch_immediate_failure(*, status_path: Path, pid: int, log_path: Path, returncode: int) -> None:
+    event = {
+        'at': utc_now_iso(),
+        'stage': 'decision_receipt',
+        'state': 'launch_failed_immediately',
+        'message': 'Decision-Maker worker subprocess exited immediately after launch claim',
+        'runner_pid': pid,
+        'launch_log_path': str(log_path.relative_to(REPO_ROOT)),
+        'returncode': returncode,
+    }
+    with locked_json_file(status_path) as status:
+        status['status'] = 'handoff_prepared'
+        claim = status.get('decision_launch_claim') if isinstance(status.get('decision_launch_claim'), dict) else {}
+        claim.update({
+            'failed_at': event['at'],
+            'runner_pid': pid,
+            'launch_log_path': event['launch_log_path'],
+            'returncode': returncode,
+        })
+        status['decision_launch_claim'] = claim
+        status.setdefault('stage_events', []).append(event)
+        status['last_stage_event'] = dict(event)
+        status['updated_at'] = event['at']
+
+
+def spawn_background_decision_runner(case_key: str, *, prepare_payload: dict[str, Any], pretty: bool) -> dict[str, Any]:
+    DECISION_LAUNCH_LOG_DIR.mkdir(parents=True, exist_ok=True)
+    timestamp = datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')
+    log_path = DECISION_LAUNCH_LOG_DIR / f'{case_key}-{timestamp}.log'
+    cmd = [
+        sys.executable,
+        str(RUN_DECISION_MAKER),
+        '--case-key',
+        case_key,
+    ]
+    decision_context_path = str(prepare_payload.get('decision_context_path') or '').strip()
+    prompt_path = str(prepare_payload.get('prompt_path') or '').strip()
+    if decision_context_path:
+        cmd.extend(['--decision-context-json', decision_context_path])
+    if prompt_path:
+        cmd.extend(['--prompt-path', prompt_path])
+    if pretty:
+        cmd.append('--pretty')
+    with log_path.open('a', encoding='utf-8') as handle:
+        proc = subprocess.Popen(
+            cmd,
+            cwd=str(REPO_ROOT),
+            env=load_repo_env(),
+            stdout=handle,
+            stderr=subprocess.STDOUT,
+            start_new_session=True,
+        )
+    return {
+        'pid': proc.pid,
+        'log_path': log_path,
+        'cmd': cmd,
+        'proc': proc,
+    }
+
+
 def launch_decision_maker(case_key: str, *, pretty: bool) -> dict[str, Any]:
-    return run_python_script(RUN_DECISION_MAKER, '--case-key', case_key, pretty=pretty)
+    reconcile = reconcile_decision(case_key, pretty=pretty)
+    payload = reconcile.get('payload') if isinstance(reconcile.get('payload'), dict) else {}
+    health = str(payload.get('health') or '')
+    if reconcile.get('ok') and health == 'ready':
+        return {
+            'ok': True,
+            'launch_status': 'already_completed',
+            'decision_health': health,
+            'payload': payload,
+        }
+    if reconcile.get('ok') and health in {'in_progress', 'stale_status'}:
+        return {
+            'ok': True,
+            'launch_status': 'already_running',
+            'decision_health': health,
+            'payload': payload,
+        }
+    if not reconcile.get('ok') and health not in {'not_started'}:
+        return {
+            'ok': False,
+            'launch_status': 'terminal_failure',
+            'decision_health': health,
+            'payload': payload,
+            'stderr': reconcile.get('stderr') or '',
+            'stdout': reconcile.get('stdout') or '',
+            'returncode': reconcile.get('returncode'),
+        }
+
+    prepare = run_python_script(RUN_DECISION_MAKER, '--case-key', case_key, '--prepare-only', pretty=pretty)
+    prepare_payload = prepare.get('payload') if isinstance(prepare.get('payload'), dict) else {}
+    if not prepare.get('ok'):
+        return {
+            'ok': False,
+            'launch_status': 'retryable_transient_failure',
+            'decision_health': 'not_started',
+            'payload': prepare_payload,
+            'stderr': prepare.get('stderr') or '',
+            'stdout': prepare.get('stdout') or '',
+            'returncode': prepare.get('returncode'),
+        }
+
+    spawn = spawn_background_decision_runner(case_key, prepare_payload=prepare_payload, pretty=pretty)
+    status_path_value = str(prepare_payload.get('decision_stage_status_path') or '').strip()
+    status_path = (REPO_ROOT / status_path_value) if status_path_value else (REPO_ROOT / 'qualitative-db' / '40-research' / 'cases' / case_key / 'decision-maker' / 'artifacts' / 'decision-stage-status.json')
+    record_decision_launch_claim(
+        case_key=case_key,
+        status_path=status_path,
+        pid=int(spawn['pid']),
+        log_path=spawn['log_path'],
+        launch_status='handoff_sent',
+        prepare_payload=prepare_payload,
+    )
+    summary = summarize_case_pipeline_status(case_key)
+    update_case_pipeline_status(
+        case_key=case_key,
+        dispatch_id=str(summary.get('dispatch_id') or '').strip(),
+        market_id=str(summary.get('market_id') or '').strip(),
+        market_title=str(summary.get('market_title') or '').strip(),
+        status='pipeline_in_progress',
+        current_stage='decision',
+        stage_status_patch={'decision': 'running'},
+        runner_id='pipeline_automation_actions.launch_decision_maker',
+        message='Decision-Maker launch claimed and worker subprocess started',
+    )
+    time.sleep(0.5)
+    returncode = spawn['proc'].poll()
+    if returncode not in (None, 0):
+        record_decision_launch_immediate_failure(status_path=status_path, pid=int(spawn['pid']), log_path=spawn['log_path'], returncode=int(returncode))
+        return {
+            'ok': False,
+            'launch_status': 'retryable_transient_failure',
+            'decision_health': 'not_started',
+            'payload': prepare_payload,
+            'runner_pid': int(spawn['pid']),
+            'launch_log_path': str(spawn['log_path'].relative_to(REPO_ROOT)),
+            'returncode': int(returncode),
+        }
+    return {
+        'ok': True,
+        'launch_status': 'started',
+        'decision_health': 'not_started',
+        'payload': prepare_payload,
+        'runner_pid': int(spawn['pid']),
+        'launch_log_path': str(spawn['log_path'].relative_to(REPO_ROOT)),
+    }
 
 
 def run_light_refresh_update(case_key: str, *, pretty: bool) -> dict[str, Any]:

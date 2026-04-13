@@ -890,7 +890,10 @@ def main() -> None:
         status["decision_visible_receipt_marker"] = f"SYNTHESIS RECEIVED | market={question} | dispatch_id={dispatch_id} | decision_context_path={relative_to_workspace(context_path)}"
         status["decision_visible_start_marker"] = f"DECISION-MAKING ANALYSIS UNDERWAY | market={question} | dispatch_id={dispatch_id} | decision_context_path={relative_to_workspace(context_path)}"
         status["decision_visible_finish_marker"] = f"DECISION-MAKING COMPLETED, DECISION PACKAGE CREATED | market={question} | dispatch_id={dispatch_id} | packet_path={outputs.get('decision_packet_markdown', relative_to_workspace(case_decision_packet_markdown_path(case_key)))}"
-        set_overall_status(status, "decision_ready_for_receipt", stage="kickoff", message="Decision-Maker stage initialized from synthesis handoff", extra={"source_decision_handoff_path": upstream.get("decision_handoff_path", "")})
+        if prior_status not in {"handoff_prepared", "handoff_sent", "decision_analysis_running", "decision_completed"}:
+            set_overall_status(status, "decision_ready_for_receipt", stage="kickoff", message="Decision-Maker stage initialized from synthesis handoff", extra={"source_decision_handoff_path": upstream.get("decision_handoff_path", "")})
+        else:
+            append_stage_event(status, stage="kickoff", state="reentered", message="Decision-Maker executor resumed from existing prepared/running state", extra={"source_decision_handoff_path": upstream.get("decision_handoff_path", "")})
 
     verification_mode_path, selected_input_bundle_path = build_selected_bundle(context_path, args)
     selected_bundle = load_json(selected_input_bundle_path)
@@ -947,9 +950,12 @@ def main() -> None:
         append_stage_event(status, stage="decision_prompt", state="built", message="Built Decision-Maker prompt from compact selected-input bundle", extra={"prompt_path": relative_to_workspace(prompt_path)})
 
     if args.prepare_only:
+        with locked_status(status_path) as status:
+            set_overall_status(status, "handoff_prepared", stage="decision_prepare", message="Decision-Maker inputs prepared; awaiting launch claim", extra={"prompt_path": relative_to_workspace(prompt_path)})
         print(json.dumps({
             "ok": True,
             "prepare_only": True,
+            "launch_status": "prepared",
             "decision_context_path": relative_to_workspace(context_path),
             "verification_mode_path": relative_to_workspace(verification_mode_path),
             "selected_input_bundle_path": relative_to_workspace(selected_input_bundle_path),

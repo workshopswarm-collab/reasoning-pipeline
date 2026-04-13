@@ -14,7 +14,7 @@ from pipeline_sequencer_candidates import classify_prepare_failure, decide_refre
 REFRESH_WATERMARK_PATH = Path(__file__).resolve().parent / '.runtime-state' / 'refresh-watermarks.json'
 REFRESH_RETRIGGER_THRESHOLD = 0.02
 from pipeline_sequencer_periodic import maybe_run_periodic_tasks
-from pipeline_sequencer_progress import wait_for_case
+from pipeline_sequencer_progress import TERMINAL_PIPELINE_STATUSES, wait_for_case
 from pipeline_sequencer_state import (
     active_quarantine_sets,
     heartbeat_base,
@@ -55,6 +55,48 @@ def effective_sequencer_policy(args: Any) -> dict[str, Any]:
             'automation_enabled': bool(control_policy.get('automation_enabled')),
         })
     return policy
+
+
+DEFERABLE_NONTERMINAL_CASE_ERRORS = {
+    'watchdog_reconcile_failed',
+    'watchdog_action_failed',
+}
+
+
+def _parse_iso_datetime(value: str) -> datetime | None:
+    text = str(value or '').strip()
+    if not text:
+        return None
+    try:
+        return datetime.fromisoformat(text.replace('Z', '+00:00'))
+    except ValueError:
+        return None
+
+
+def case_runtime_age_seconds(summary: dict[str, Any]) -> float | None:
+    started_at = _parse_iso_datetime(str(summary.get('started_at') or ''))
+    if started_at is None:
+        return None
+    if started_at.tzinfo is None:
+        started_at = started_at.replace(tzinfo=timezone.utc)
+    return max(0.0, (datetime.now(timezone.utc) - started_at.astimezone(timezone.utc)).total_seconds())
+
+
+def should_defer_nonterminal_case_result(case_result: dict[str, Any], *, policy: dict[str, Any]) -> bool:
+    if bool(case_result.get('ok')):
+        return False
+    error = str(case_result.get('error') or '').strip()
+    if error not in DEFERABLE_NONTERMINAL_CASE_ERRORS:
+        return False
+    pipeline_summary = case_result.get('pipeline_summary') if isinstance(case_result.get('pipeline_summary'), dict) else {}
+    pipeline_status = str(pipeline_summary.get('status') or '').strip()
+    if not pipeline_status or pipeline_status in TERMINAL_PIPELINE_STATUSES:
+        return False
+    age_seconds = case_runtime_age_seconds(pipeline_summary)
+    max_case_seconds = float(policy.get('max_case_seconds') or 0.0)
+    if age_seconds is not None and max_case_seconds > 0.0 and age_seconds > max_case_seconds:
+        return False
+    return True
 
 
 def assert_sequencer_launch_boundary(*, prepare_result: dict[str, Any], mode: str) -> None:
@@ -222,6 +264,18 @@ def run_sequencer_pass(
             pretty=args.pretty,
             progress_callback=progress_callback,
         )
+        if should_defer_nonterminal_case_result(case_result, policy=policy):
+            pipeline_summary = case_result.get('pipeline_summary') if isinstance(case_result.get('pipeline_summary'), dict) else {}
+            return {
+                'ok': True,
+                'status': 'existing_case_deferred',
+                'policy': policy,
+                'case_key': case_key,
+                'case_result': case_result,
+                'deferred_error': str(case_result.get('error') or ''),
+                'deferred_because_nonterminal': True,
+                'deferred_runtime_age_seconds': case_runtime_age_seconds(pipeline_summary),
+            }
         return {
             'ok': bool(case_result.get('ok')),
             'status': 'processed_existing_case',
@@ -395,6 +449,21 @@ def run_sequencer_pass(
             pretty=args.pretty,
             progress_callback=progress_callback,
         )
+        if should_defer_nonterminal_case_result(case_result, policy=policy):
+            pipeline_summary = case_result.get('pipeline_summary') if isinstance(case_result.get('pipeline_summary'), dict) else {}
+            return {
+                'ok': True,
+                'status': 'refresh_case_deferred',
+                'policy': policy,
+                'case_key': case_key,
+                'refresh_candidate': refresh_candidate,
+                'refresh_plan': refresh_plan,
+                'prepare_result': prepared,
+                'case_result': case_result,
+                'deferred_error': str(case_result.get('error') or ''),
+                'deferred_because_nonterminal': True,
+                'deferred_runtime_age_seconds': case_runtime_age_seconds(pipeline_summary),
+            }
         return {
             'ok': bool(case_result.get('ok')),
             'status': 'processed_refresh_case',
@@ -474,6 +543,19 @@ def run_sequencer_pass(
         pretty=args.pretty,
         progress_callback=progress_callback,
     )
+    if should_defer_nonterminal_case_result(case_result, policy=policy):
+        pipeline_summary = case_result.get('pipeline_summary') if isinstance(case_result.get('pipeline_summary'), dict) else {}
+        return {
+            'ok': True,
+            'status': 'new_case_deferred',
+            'policy': policy,
+            'case_key': case_key,
+            'prepare_result': prepared,
+            'case_result': case_result,
+            'deferred_error': str(case_result.get('error') or ''),
+            'deferred_because_nonterminal': True,
+            'deferred_runtime_age_seconds': case_runtime_age_seconds(pipeline_summary),
+        }
     return {
         'ok': bool(case_result.get('ok')),
         'status': 'processed_new_case',
