@@ -33,6 +33,7 @@ KICKOFF_SYNTHESIS = SCRIPTS_DIR.parents[2] / "synthesis-subagent" / "runtime" / 
 LAUNCH_SYNTHESIS_IF_READY = SCRIPTS_DIR.parents[2] / "synthesis-subagent" / "runtime" / "scripts" / "launch_synthesis_if_ready.py"
 REPAIR_LOCK_BYPASS_ENV = 'OPENCLAW_REPAIR_LOCK_HELD'
 LOCK_DIR = WORKSPACE_ROOT / 'roles' / 'orchestrator' / 'researchers-swarm-subagents' / 'runtime' / '.runtime-state' / 'runrepairs'
+MARKER_REGISTRY_PATH = WORKSPACE_ROOT / 'roles' / 'orchestrator' / 'researchers-swarm-subagents' / 'runtime' / '.runtime-state' / 'controller-marker-registry.json'
 
 
 def parse_args() -> argparse.Namespace:
@@ -58,6 +59,52 @@ def load_json(path: Path) -> dict:
     return load_json_dict(path, artifact_name='json artifact')
 
 
+def load_marker_registry(path: Path | None = None) -> dict:
+    path = path or MARKER_REGISTRY_PATH
+    payload = load_json_dict(path, artifact_name='controller marker registry', default={}) if path.exists() else {}
+    if not isinstance(payload, dict):
+        return {'schema_version': 'controller-marker-registry/v1', 'entries': {}}
+    entries = payload.get('entries') if isinstance(payload.get('entries'), dict) else {}
+    return {
+        'schema_version': 'controller-marker-registry/v1',
+        'entries': entries,
+    }
+
+
+def save_marker_registry(payload: dict, path: Path | None = None) -> None:
+    path = path or MARKER_REGISTRY_PATH
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(payload, indent=2) + '\n')
+
+
+def controller_marker_registry_key(*, dispatch_id: str, marker_kind: str) -> str:
+    return f'{dispatch_id}:{marker_kind}'
+
+
+def marker_already_sent(*, dispatch_id: str, marker_kind: str, bootstrap_state: dict, registry: dict) -> bool:
+    if marker_kind == 'refresh_finish' and str(bootstrap_state.get('refresh_finish_marker_sent_at') or '').strip():
+        return True
+    entries = registry.get('entries') if isinstance(registry.get('entries'), dict) else {}
+    return controller_marker_registry_key(dispatch_id=dispatch_id, marker_kind=marker_kind) in entries
+
+
+def record_marker_sent(*, dispatch_id: str, marker_kind: str, marker_text: str, bootstrap_state: dict, registry: dict) -> str:
+    from datetime import datetime, timezone
+    sent_at = str(bootstrap_state.get('refresh_finish_marker_sent_at') or '').strip()
+    if not sent_at:
+        sent_at = datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z')
+    if marker_kind == 'refresh_finish':
+        bootstrap_state['refresh_finish_marker_sent_at'] = sent_at
+    entries = registry.setdefault('entries', {}) if isinstance(registry, dict) else {}
+    entries[controller_marker_registry_key(dispatch_id=dispatch_id, marker_kind=marker_kind)] = {
+        'dispatch_id': dispatch_id,
+        'marker_kind': marker_kind,
+        'marker_text': marker_text,
+        'sent_at': sent_at,
+    }
+    return sent_at
+
+
 def dispatch_lock_path(manifest_path: Path) -> Path:
     return LOCK_DIR / f'{manifest_path.stem}.lock'
 
@@ -72,6 +119,59 @@ def validate_manifest_payload(manifest_path: Path) -> dict:
 
 def write_manifest(path: Path, manifest: dict) -> None:
     path.write_text(json.dumps(manifest, indent=2, sort_keys=True) + "\n")
+
+
+def maybe_send_refresh_finish_marker(*, manifest: dict, manifest_path: Path, dispatch_id: str) -> tuple[dict | None, str | None]:
+    runtime_defaults = manifest.get('runtime_defaults') if isinstance(manifest.get('runtime_defaults'), dict) else {}
+    bootstrap_state = manifest.get('bootstrap_state') if isinstance(manifest.get('bootstrap_state'), dict) else {}
+    controller_topic = bootstrap_state.get('controller_topic') if isinstance(bootstrap_state.get('controller_topic'), dict) else {}
+    refresh_finish_marker = str(runtime_defaults.get('refresh_finish_marker') or '').strip()
+    if not refresh_finish_marker or not bootstrap_state.get('chat_id') or not controller_topic.get('topic_id'):
+        return None, None
+
+    marker_registry = load_marker_registry()
+    already_sent = marker_already_sent(
+        dispatch_id=dispatch_id,
+        marker_kind='refresh_finish',
+        bootstrap_state=bootstrap_state,
+        registry=marker_registry,
+    )
+    if already_sent:
+        if not str(bootstrap_state.get('refresh_finish_marker_sent_at') or '').strip():
+            record_marker_sent(
+                dispatch_id=dispatch_id,
+                marker_kind='refresh_finish',
+                marker_text=refresh_finish_marker,
+                bootstrap_state=bootstrap_state,
+                registry=marker_registry,
+            )
+            manifest['bootstrap_state'] = bootstrap_state
+            write_manifest(manifest_path, manifest)
+            save_marker_registry(marker_registry)
+        return None, None
+
+    try:
+        refresh_finish_result = send_visible_telegram_message(
+            chat_id=str(bootstrap_state.get('chat_id')),
+            topic_id=str(controller_topic.get('topic_id')),
+            message=refresh_finish_marker,
+        )
+        sent_at = str(refresh_finish_result.get('sentAt') or '').strip()
+        if sent_at:
+            bootstrap_state['refresh_finish_marker_sent_at'] = sent_at
+        record_marker_sent(
+            dispatch_id=dispatch_id,
+            marker_kind='refresh_finish',
+            marker_text=refresh_finish_marker,
+            bootstrap_state=bootstrap_state,
+            registry=marker_registry,
+        )
+        manifest['bootstrap_state'] = bootstrap_state
+        write_manifest(manifest_path, manifest)
+        save_marker_registry(marker_registry)
+        return refresh_finish_result, None
+    except Exception as exc:  # noqa: BLE001
+        return None, str(exc)
 
 
 def send_visible_telegram_message(*, chat_id: str, topic_id: str, message: str) -> dict:
@@ -169,23 +269,11 @@ def main() -> int:
             existing_status_path = locate_status_file(case_key=case_key, dispatch_id=dispatch_id)
             synthesis_terminal_before_finalize = synthesis_already_terminal(existing_status_path)
             if args.apply and all_completed:
-                runtime_defaults = manifest.get('runtime_defaults') if isinstance(manifest.get('runtime_defaults'), dict) else {}
-                bootstrap_state = manifest.get('bootstrap_state') if isinstance(manifest.get('bootstrap_state'), dict) else {}
-                controller_topic = bootstrap_state.get('controller_topic') if isinstance(bootstrap_state.get('controller_topic'), dict) else {}
-                refresh_finish_marker = str(runtime_defaults.get('refresh_finish_marker') or '').strip()
-                refresh_finish_sent_at = str((bootstrap_state.get('refresh_finish_marker_sent_at') or '')).strip()
-                if refresh_finish_marker and not refresh_finish_sent_at and bootstrap_state.get('chat_id') and controller_topic.get('topic_id'):
-                    try:
-                        refresh_finish_result = send_visible_telegram_message(
-                            chat_id=str(bootstrap_state.get('chat_id')),
-                            topic_id=str(controller_topic.get('topic_id')),
-                            message=refresh_finish_marker,
-                        )
-                        bootstrap_state['refresh_finish_marker_sent_at'] = str(refresh_finish_result.get('sentAt') or 'sent')
-                        manifest['bootstrap_state'] = bootstrap_state
-                        write_manifest(manifest_path, manifest)
-                    except Exception as exc:  # noqa: BLE001
-                        refresh_finish_error = str(exc)
+                refresh_finish_result, refresh_finish_error = maybe_send_refresh_finish_marker(
+                    manifest=manifest,
+                    manifest_path=manifest_path,
+                    dispatch_id=dispatch_id,
+                )
             if args.apply and all_completed and not synthesis_terminal_before_finalize and KICKOFF_SYNTHESIS.exists():
                 try:
                     kickoff_args = ["--dispatch-id", dispatch_id, "--build-full"]

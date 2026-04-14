@@ -282,6 +282,8 @@ def _normalize_terminal_payload(payload: dict[str, Any]) -> None:
             terminal_summary.pop(stale_key, None)
     elif status and status not in {"pipeline_completed", "pipeline_failed", "pipeline_skipped"}:
         payload.pop("completed_at", None)
+        for stale_key in ("failure_reason", "failed_stage", "quarantined"):
+            terminal_summary.pop(stale_key, None)
 
 
 def update_case_pipeline_status(

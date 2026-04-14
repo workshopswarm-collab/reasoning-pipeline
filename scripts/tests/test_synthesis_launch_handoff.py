@@ -112,6 +112,47 @@ class SynthesisLaunchHandoffTests(unittest.TestCase):
         _, kwargs = update_status.call_args
         self.assertEqual(kwargs['stage_detail_patch']['synthesis'], 'handoff_sent')
 
+    def test_launch_synthesis_if_needed_bootstraps_missing_status_file_via_kickoff(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            repo = Path(tmpdir).resolve()
+            status_path = self.write_status(repo, {'status': 'ready_for_final_synthesis'})
+            def run_script_side_effect(script_path, *args, pretty=False, timeout_seconds=None):
+                script_name = Path(script_path).name
+                if script_name == 'kickoff_synthesis_after_swarm.py':
+                    return {'ok': True, 'status_path': str(status_path.relative_to(repo))}
+                return {'ok': True, 'payload': {'status': 'final_synthesis_launched', 'pid': 999}}
+
+            with patch.object(pipeline_automation_actions, 'REPO_ROOT', repo), patch.object(
+                pipeline_automation_actions,
+                'summarize_case_pipeline_status',
+                return_value={'dispatch_id': 'dispatch-test', 'market_id': 'market-test', 'market_title': 'Test market'},
+            ), patch.object(
+                pipeline_automation_actions,
+                'synthesis_status_file',
+                side_effect=[None, status_path],
+            ), patch.object(
+                pipeline_automation_actions,
+                'update_case_pipeline_status',
+            ) as update_status, patch.object(
+                pipeline_automation_actions,
+                'run_python_script',
+                side_effect=run_script_side_effect,
+            ), patch.object(
+                pipeline_automation_actions,
+                'load_json_if_exists',
+                side_effect=[
+                    {'status': 'ready_for_final_synthesis'},
+                    {'status': 'final_synthesis_launching'},
+                ],
+            ):
+                result = pipeline_automation_actions.launch_synthesis_if_needed('case-test', pretty=False)
+
+        self.assertIsNotNone(result)
+        assert result is not None
+        self.assertEqual(result['launch_status'], 'started')
+        self.assertEqual(result['status_file'], str(status_path.relative_to(repo)))
+        update_status.assert_called_once()
+
     def test_launch_synthesis_if_needed_marks_retryable_failure(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             repo = Path(tmpdir)

@@ -650,7 +650,7 @@ def build_refresh_controller_markers(*, case_key: str, market_title: str, dispat
         return '', ''
     reasons = ','.join(str(item) for item in (refresh_reasons or []) if str(item).strip())
     start_marker = f"STARTING FULL REFRESH | case={case_key} | market={market_title} | dispatch_id={dispatch_id} | refresh_mode={normalized_mode} | reasons={reasons}"
-    finish_marker = f"FINISHED FULL REFRESH SWARM | case={case_key} | dispatch_id={dispatch_id}"
+    finish_marker = f"FULL REFRESH SWARM COMPLETED | case={case_key} | dispatch_id={dispatch_id} | next_stage=synthesis"
     return start_marker, finish_marker
 
 

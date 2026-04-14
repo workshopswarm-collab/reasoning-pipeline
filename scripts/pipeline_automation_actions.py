@@ -18,6 +18,7 @@ MANUAL_BATCH_CONTROLLER = REPO_ROOT / 'roles' / 'orchestrator' / 'researchers-sw
 RECONCILE_SWARM_STAGE = REPO_ROOT / 'roles' / 'orchestrator' / 'researchers-swarm-subagents' / 'runtime' / 'scripts' / 'reconcile_swarm_stage.py'
 RESUME_SWARM_STAGE = REPO_ROOT / 'roles' / 'orchestrator' / 'researchers-swarm-subagents' / 'runtime' / 'scripts' / 'resume_swarm_stage.py'
 LAUNCH_SYNTHESIS_IF_READY = REPO_ROOT / 'roles' / 'orchestrator' / 'synthesis-subagent' / 'runtime' / 'scripts' / 'launch_synthesis_if_ready.py'
+KICKOFF_SYNTHESIS_AFTER_SWARM = REPO_ROOT / 'roles' / 'orchestrator' / 'synthesis-subagent' / 'runtime' / 'scripts' / 'kickoff_synthesis_after_swarm.py'
 RECONCILE_DECISION_STAGE = REPO_ROOT / 'roles' / 'decision-maker' / 'runtime' / 'scripts' / 'reconcile_decision_stage.py'
 FINALIZE_DECISION_STAGE = REPO_ROOT / 'roles' / 'decision-maker' / 'runtime' / 'scripts' / 'finalize_decision_stage.py'
 RUN_DECISION_MAKER = REPO_ROOT / 'roles' / 'decision-maker' / 'runtime' / 'scripts' / 'run_decision_maker.py'
@@ -137,9 +138,49 @@ def resume_swarm(case_key: str, *, pretty: bool) -> dict[str, Any]:
 
 
 def launch_synthesis_if_needed(case_key: str, *, pretty: bool) -> dict[str, Any] | None:
+    summary = summarize_case_pipeline_status(case_key)
+    market_title = str(summary.get('market_title') or '').strip()
+    market_id = str(summary.get('market_id') or '').strip()
+    dispatch_id = str(summary.get('dispatch_id') or '').strip()
+
     status_file = synthesis_status_file(case_key)
+    kickoff_result: dict[str, Any] | None = None
+    if status_file is None and dispatch_id and KICKOFF_SYNTHESIS_AFTER_SWARM.exists():
+        kickoff_args = ['--dispatch-id', dispatch_id, '--build-full']
+        if case_key:
+            kickoff_args.extend(['--case-key', case_key])
+        kickoff_result = run_python_script(KICKOFF_SYNTHESIS_AFTER_SWARM, *kickoff_args, pretty=pretty)
+        kickoff_payload = kickoff_result.get('payload') if isinstance(kickoff_result.get('payload'), dict) else kickoff_result
+        status_path = str((kickoff_payload or {}).get('status_path') or '').strip()
+        if status_path:
+            candidate = (REPO_ROOT / status_path).resolve()
+            if candidate.exists():
+                status_file = candidate
+        if status_file is None:
+            status_file = synthesis_status_file(case_key)
+
     if status_file is None:
-        return None
+        missing_result = {
+            'ok': False,
+            'launch_status': 'retryable_transient_failure',
+            'reason': 'missing_synthesis_status_file',
+            'kickoff_result': kickoff_result,
+        }
+        update_case_pipeline_status(
+            case_key=case_key,
+            dispatch_id=dispatch_id,
+            market_id=market_id,
+            market_title=market_title,
+            status='pipeline_in_progress',
+            current_stage='synthesis',
+            stage_status_patch={'swarm': 'completed', 'synthesis': 'pending'},
+            stage_detail_patch={'synthesis': 'handoff_prepared'},
+            runner_id='pipeline_automation_actions.launch_synthesis_if_needed',
+            message='Synthesis handoff preparation ran but no synthesis status file exists yet',
+            extra={'kickoff_result': kickoff_result or {}},
+        )
+        return missing_result
+
     status_before = load_json_if_exists(status_file)
     before_status = str(status_before.get('status') or '').strip()
     result = run_python_script(LAUNCH_SYNTHESIS_IF_READY, '--status-file', str(status_file), pretty=pretty)
@@ -147,11 +188,6 @@ def launch_synthesis_if_needed(case_key: str, *, pretty: bool) -> dict[str, Any]
     status_after = load_json_if_exists(status_file)
     after_status = str(status_after.get('status') or payload.get('status') or before_status).strip()
     reason = str(payload.get('reason') or '').strip()
-
-    summary = summarize_case_pipeline_status(case_key)
-    market_title = str(summary.get('market_title') or '').strip()
-    market_id = str(summary.get('market_id') or '').strip()
-    dispatch_id = str(summary.get('dispatch_id') or '').strip()
 
     if result.get('ok'):
         if reason == 'already_completed' or after_status == 'synthesis_completed':
