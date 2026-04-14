@@ -159,6 +159,7 @@ Canonical per-persona sidecar path:
   - `runtime/scripts/show_synthesis_stage_status.py`
     - prints a concise summary of current status, lane info, last stage event, terminal summary, and final artifact paths
 - Multi-dispatch/idempotency hardening:
+  - launch and repair paths are designed to cooperate with the bounded sequencer/watchdog control plane in repo `scripts/`, which may revisit the same nonterminal case repeatedly while expecting synthesis launch/finalization helpers to behave idempotently
   - status-file mutations are lock-protected for kickoff, launcher, and main executor paths
   - kickoff now merges into the existing status file instead of overwriting it, so it preserves any in-flight launch claim or completed synthesis state
   - final synthesis launch uses a dispatch-local claim to enforce single-flight semantics
@@ -166,6 +167,7 @@ Canonical per-persona sidecar path:
   - synthesis-lane bootstrap is race-safe and reuses the lane if another process created it first
   - re-running launchers or kickoff on a completed dispatch should no-op cleanly rather than duplicating work or resetting the stage back to `ready_for_final_synthesis`
 - Early-failure rule:
+  - transient launcher/watchdog failures should not be treated as authoritative if persisted synthesis state has already advanced; callers should re-read `synthesis-stage-status.json` before classifying a case as truly stuck
   - if any required sidecar is missing or invalid, final synthesis should not continue
   - repair/finalization should stop at the earliest failing stage rather than trying to push the whole synthesis process through
 

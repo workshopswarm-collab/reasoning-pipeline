@@ -48,9 +48,11 @@ Today, the most concretely implemented and tested path is:
 - researcher-sidecar generation and dispatch-scoped artifact output into `qualitative-db/40-research/`
 - run-level completion reconciliation
 - terminal-only dispatch finalization and single-flight synthesis launch into a dedicated synthesis topic
-- final synthesis rendering plus parent case/market closure
+- final synthesis rendering into canonical case-level synthesis artifacts
+- dedicated Decision-Maker lane launch, decision-packet validation/rendering, and forecast-ledger persistence
+- bounded sequencer / watchdog / health-check supervision around the active one-case-at-a-time pipeline
 
-The downstream decision-packet, execution, accounting, evaluator, and trust-weight loops are already represented in the repo schema/docs, but they are comparatively less operationally mature than the research dispatch/control-plane path.
+Execution, accounting, evaluator, and trust-weight loops are already represented in the repo schema/docs, but they are comparatively less operationally mature than the research -> synthesis -> decision control-plane path.
 
 ## Core architecture
 
@@ -176,7 +178,7 @@ The **Orchestrator** reviews the research outputs and produces a synthesized vie
 
 Then the **Decision-Maker**:
 - reviews the synthesis and selected underlying notes
-- checks structured market / portfolio context in PostgreSQL
+- checks structured market context in PostgreSQL
 - produces a **decision packet**
 
 A decision packet should include things like:
@@ -238,7 +240,7 @@ Owns parallel evidence generation:
 ### Decision-Maker
 Owns the final suggested action:
 - validates or challenges the orchestrator synthesis
-- checks portfolio / market context
+- checks bounded market / decision context
 - emits the structured decision packet
 
 ### Evaluator

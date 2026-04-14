@@ -29,6 +29,7 @@ This folder is the launch control-plane for the researcher swarm subagents.
 11. Parent case/market closure happens only when the full swarm has completed cleanly; partial-terminal swarms move to `needs_intervention`.
 12. The Telegram swarm runtime loop supervises active `running` lanes, auto-completes stale finished work, sends nudges when needed, and exits automatically once the swarm is done.
 13. If automatic reconciliation is missed, use the manual finalizer as a repair/backstop step.
+14. Downstream active-case supervision is now expected to happen through the bounded sequencer/watchdog surfaces in repo `scripts/` rather than by assuming the swarm runtime loop alone explains the whole pipeline state.
 
 ## Important nuance
 

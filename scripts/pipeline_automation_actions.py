@@ -97,6 +97,13 @@ def load_json_if_exists(path: Path | None) -> dict[str, Any]:
     return payload if isinstance(payload, dict) else {}
 
 
+def display_path(path: Path) -> str:
+    try:
+        return str(path.relative_to(REPO_ROOT))
+    except ValueError:
+        return str(path)
+
+
 def latest_dispatch_dir(case_key: str) -> Path | None:
     analyses_root = REPO_ROOT / 'qualitative-db' / '40-research' / 'cases' / case_key / 'researcher-analyses'
     if not analyses_root.exists():
@@ -143,6 +150,57 @@ def launch_synthesis_if_needed(case_key: str, *, pretty: bool) -> dict[str, Any]
     market_id = str(summary.get('market_id') or '').strip()
     dispatch_id = str(summary.get('dispatch_id') or '').strip()
 
+    def status_snapshot(path: Path, fallback_status: str = '') -> tuple[dict[str, Any], str, str]:
+        payload = load_json_if_exists(path)
+        status_value = str(payload.get('status') or fallback_status).strip()
+        reason_value = ''
+        last_stage_event = payload.get('last_stage_event') if isinstance(payload.get('last_stage_event'), dict) else {}
+        if isinstance(last_stage_event, dict):
+            reason_value = str(last_stage_event.get('state') or '').strip()
+        return payload, status_value, reason_value
+
+    def mark_synthesis_completed(*, message: str, status_file: Path, extra: dict[str, Any] | None = None) -> dict[str, Any]:
+        update_case_pipeline_status(
+            case_key=case_key,
+            dispatch_id=dispatch_id,
+            market_id=market_id,
+            market_title=market_title,
+            status='pipeline_in_progress',
+            current_stage='synthesis',
+            stage_status_patch={'swarm': 'completed', 'synthesis': 'completed'},
+            stage_detail_patch={'synthesis': 'completed'},
+            runner_id='pipeline_automation_actions.launch_synthesis_if_needed',
+            message=message,
+            extra=extra or {},
+        )
+        return {
+            'ok': True,
+            'launch_status': 'already_completed',
+            'status_file': display_path(status_file),
+        }
+
+    def mark_synthesis_running(*, status_file: Path, reason_value: str, after_status: str, message: str) -> dict[str, Any]:
+        detail_state = 'handoff_sent' if after_status == 'final_synthesis_launching' else 'running'
+        update_case_pipeline_status(
+            case_key=case_key,
+            dispatch_id=dispatch_id,
+            market_id=market_id,
+            market_title=market_title,
+            status='pipeline_in_progress',
+            current_stage='synthesis',
+            stage_status_patch={'swarm': 'completed', 'synthesis': 'running'},
+            stage_detail_patch={'synthesis': detail_state},
+            runner_id='pipeline_automation_actions.launch_synthesis_if_needed',
+            message=message,
+            extra={'launch_reason': reason_value or after_status},
+        )
+        return {
+            'ok': True,
+            'launch_status': 'already_running',
+            'status_file': display_path(status_file),
+            'reason': reason_value or after_status,
+        }
+
     status_file = synthesis_status_file(case_key)
     kickoff_result: dict[str, Any] | None = None
     if status_file is None and dispatch_id and KICKOFF_SYNTHESIS_AFTER_SWARM.exists():
@@ -181,48 +239,56 @@ def launch_synthesis_if_needed(case_key: str, *, pretty: bool) -> dict[str, Any]
         )
         return missing_result
 
-    status_before = load_json_if_exists(status_file)
-    before_status = str(status_before.get('status') or '').strip()
+    status_before, before_status, _ = status_snapshot(status_file)
     result = run_python_script(LAUNCH_SYNTHESIS_IF_READY, '--status-file', str(status_file), pretty=pretty)
     payload = result.get('payload') if isinstance(result.get('payload'), dict) else {}
-    status_after = load_json_if_exists(status_file)
-    after_status = str(status_after.get('status') or payload.get('status') or before_status).strip()
+    status_after, after_status, event_state = status_snapshot(status_file, str(payload.get('status') or before_status).strip())
     reason = str(payload.get('reason') or '').strip()
 
+    if after_status == 'synthesis_completed':
+        normalized = mark_synthesis_completed(
+            message='Synthesis stage completed while launch gate was being checked',
+            status_file=status_file,
+            extra={'launch_reason': reason or event_state or after_status},
+        )
+        normalized.update({
+            'payload': payload,
+            'status_payload': status_after,
+            'reason': reason or event_state or after_status,
+        })
+        return normalized
+
+    if after_status in {'final_synthesis_launching', 'final_synthesis_launched'}:
+        normalized = mark_synthesis_running(
+            status_file=status_file,
+            reason_value=reason or event_state,
+            after_status=after_status,
+            message='Synthesis launch is already in progress',
+        )
+        normalized.update({
+            'payload': payload,
+            'status_payload': status_after,
+        })
+        return normalized
+
     if result.get('ok'):
-        if reason == 'already_completed' or after_status == 'synthesis_completed':
-            update_case_pipeline_status(
-                case_key=case_key,
-                dispatch_id=dispatch_id,
-                market_id=market_id,
-                market_title=market_title,
-                status='pipeline_in_progress',
-                current_stage='synthesis',
-                stage_status_patch={'swarm': 'completed', 'synthesis': 'completed'},
-                stage_detail_patch={'synthesis': 'completed'},
-                runner_id='pipeline_automation_actions.launch_synthesis_if_needed',
+        if reason == 'already_completed':
+            normalized = mark_synthesis_completed(
                 message='Synthesis stage already completed when launch was checked',
+                status_file=status_file,
             )
-            result.update({'launch_status': 'already_completed', 'status_file': str(status_file.relative_to(REPO_ROOT))})
-            return result
+            normalized.update({'payload': payload, 'status_payload': status_after, 'reason': reason})
+            return normalized
 
         if reason in {'already_running', 'already_launching', 'already_running_after_race'}:
-            detail_state = 'handoff_sent' if after_status == 'final_synthesis_launching' else 'running'
-            update_case_pipeline_status(
-                case_key=case_key,
-                dispatch_id=dispatch_id,
-                market_id=market_id,
-                market_title=market_title,
-                status='pipeline_in_progress',
-                current_stage='synthesis',
-                stage_status_patch={'swarm': 'completed', 'synthesis': 'running'},
-                stage_detail_patch={'synthesis': detail_state},
-                runner_id='pipeline_automation_actions.launch_synthesis_if_needed',
+            normalized = mark_synthesis_running(
+                status_file=status_file,
+                reason_value=reason,
+                after_status=after_status,
                 message='Synthesis launch already in progress',
-                extra={'launch_reason': reason or after_status},
             )
-            result.update({'launch_status': 'already_running', 'status_file': str(status_file.relative_to(REPO_ROOT))})
-            return result
+            normalized.update({'payload': payload, 'status_payload': status_after})
+            return normalized
 
         if after_status == 'waiting_for_reasoning_sidecars':
             update_case_pipeline_status(
@@ -237,11 +303,11 @@ def launch_synthesis_if_needed(case_key: str, *, pretty: bool) -> dict[str, Any]
                 runner_id='pipeline_automation_actions.launch_synthesis_if_needed',
                 message='Synthesis launch check is still waiting for researcher sidecars',
             )
-            result.update({'launch_status': 'blocked_waiting_for_sidecars', 'status_file': str(status_file.relative_to(REPO_ROOT))})
+            result.update({'launch_status': 'blocked_waiting_for_sidecars', 'status_file': display_path(status_file)})
             return result
 
         if reason == 'missing_synthesis_target_session_key' or after_status == 'synthesis_lane_bootstrap_failed':
-            result.update({'ok': False, 'launch_status': 'terminal_failure', 'status_file': str(status_file.relative_to(REPO_ROOT))})
+            result.update({'ok': False, 'launch_status': 'terminal_failure', 'status_file': display_path(status_file)})
             return result
 
         detail_state = 'handoff_sent' if after_status == 'final_synthesis_launching' else 'running'
@@ -258,7 +324,7 @@ def launch_synthesis_if_needed(case_key: str, *, pretty: bool) -> dict[str, Any]
             message='Synthesis launch acknowledged by automation controller',
             extra={'launch_reason': reason or after_status},
         )
-        result.update({'launch_status': 'started', 'status_file': str(status_file.relative_to(REPO_ROOT))})
+        result.update({'launch_status': 'started', 'status_file': display_path(status_file)})
         return result
 
     retryable = after_status in {
@@ -270,7 +336,7 @@ def launch_synthesis_if_needed(case_key: str, *, pretty: bool) -> dict[str, Any]
     }
     result.update({
         'launch_status': 'retryable_transient_failure' if retryable else 'terminal_failure',
-        'status_file': str(status_file.relative_to(REPO_ROOT)),
+        'status_file': display_path(status_file),
     })
     if retryable:
         update_case_pipeline_status(
@@ -283,7 +349,7 @@ def launch_synthesis_if_needed(case_key: str, *, pretty: bool) -> dict[str, Any]
             stage_detail_patch={'synthesis': after_status or 'retryable_launch_error'},
             runner_id='pipeline_automation_actions.launch_synthesis_if_needed',
             message='Synthesis launch hit a retryable transient failure',
-            extra={'launch_reason': reason or after_status, 'stderr': (result.get('stderr') or '')[-400:]},
+            extra={'launch_reason': reason or event_state or after_status, 'stderr': (result.get('stderr') or '')[-400:]},
         )
     return result
 

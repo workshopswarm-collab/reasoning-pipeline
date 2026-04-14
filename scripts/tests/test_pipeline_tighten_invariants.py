@@ -322,6 +322,126 @@ class PipelineTightenInvariantTests(unittest.TestCase):
         self.assertTrue(result['deferred_because_nonterminal'])
         self.assertEqual(result['deferred_error'], 'watchdog_action_failed')
 
+    def test_sequencer_existing_case_treats_watchdog_failure_with_advanced_state_as_recovered_progress(self) -> None:
+        args = self.make_args()
+        policy = {
+            'enabled': True,
+            'resume_existing': True,
+            'allow_new_case_claims': True,
+            'poll_seconds': 15.0,
+            'idle_seconds': 60.0,
+            'max_case_seconds': 7200.0,
+        }
+        resumable = {
+            'case_key': 'case-20260413-recoverbeef',
+            'market_id': 'market-recover',
+            'dispatch_id': 'dispatch-case-20260413-recoverbeef-20260413T000000Z',
+            'status': 'pipeline_in_progress',
+        }
+        waited = {
+            'ok': False,
+            'error': 'watchdog_action_failed',
+            'pipeline_summary': {
+                'case_key': 'case-20260413-recoverbeef',
+                'status': 'pipeline_in_progress',
+                'current_stage': 'synthesis',
+                'stage_statuses': {
+                    'dispatch': 'completed',
+                    'swarm': 'completed',
+                    'synthesis': 'pending',
+                    'decision': 'pending',
+                },
+                'stage_detail_states': {'synthesis': 'handoff_prepared'},
+            },
+            'watchdog_result': {
+                'after': {
+                    'case_key': 'case-20260413-recoverbeef',
+                    'status': 'pipeline_in_progress',
+                    'current_stage': 'decision',
+                    'stage_statuses': {
+                        'dispatch': 'completed',
+                        'swarm': 'completed',
+                        'synthesis': 'completed',
+                        'decision': 'pending',
+                    },
+                    'stage_detail_states': {'synthesis': 'completed', 'decision': 'handoff_prepared'},
+                }
+            },
+        }
+
+        with tempfile.TemporaryDirectory() as tmpdir, \
+             patch.object(pipeline_sequencer_runner, 'STAGE_RETRY_REGISTRY_PATH', Path(tmpdir) / 'stage-launch-retries.json'), \
+             patch.object(pipeline_sequencer_runner, 'select_resumable_case', return_value=resumable), \
+             patch.object(pipeline_sequencer_runner, 'wait_for_case', return_value=waited):
+            result = pipeline_sequencer_runner.run_sequencer_pass(args, policy, excluded_case_keys=set(), excluded_market_ids=set())
+
+        self.assertTrue(result['ok'])
+        self.assertEqual(result['status'], 'existing_case_recovered_progress')
+        self.assertEqual(result['recovery']['after_stage'], 'decision')
+        self.assertEqual(result['recovery']['after_stage_statuses']['synthesis'], 'completed')
+
+    def test_sequencer_new_case_treats_watchdog_failure_with_advanced_state_as_recovered_progress(self) -> None:
+        args = self.make_args()
+        policy = {
+            'enabled': True,
+            'resume_existing': False,
+            'allow_new_case_claims': True,
+            'poll_seconds': 15.0,
+            'idle_seconds': 60.0,
+            'max_case_seconds': 7200.0,
+        }
+        prepared = {
+            'ok': True,
+            'payload': {
+                'prepare_result': {
+                    'case': {'case_key': 'case-20260413-newrecover'},
+                }
+            },
+        }
+        waited = {
+            'ok': False,
+            'error': 'watchdog_action_failed',
+            'pipeline_summary': {
+                'case_key': 'case-20260413-newrecover',
+                'status': 'pipeline_in_progress',
+                'current_stage': 'synthesis',
+                'stage_statuses': {
+                    'dispatch': 'completed',
+                    'swarm': 'completed',
+                    'synthesis': 'pending',
+                    'decision': 'pending',
+                },
+                'stage_detail_states': {'synthesis': 'handoff_prepared'},
+            },
+            'watchdog_result': {
+                'after': {
+                    'case_key': 'case-20260413-newrecover',
+                    'status': 'pipeline_in_progress',
+                    'current_stage': 'decision',
+                    'stage_statuses': {
+                        'dispatch': 'completed',
+                        'swarm': 'completed',
+                        'synthesis': 'completed',
+                        'decision': 'pending',
+                    },
+                    'stage_detail_states': {'synthesis': 'completed', 'decision': 'handoff_prepared'},
+                }
+            },
+        }
+
+        with tempfile.TemporaryDirectory() as tmpdir, \
+             patch.object(pipeline_sequencer_runner, 'STAGE_RETRY_REGISTRY_PATH', Path(tmpdir) / 'stage-launch-retries.json'), \
+             patch.object(pipeline_sequencer_runner, 'select_resumable_case', return_value=None), \
+             patch.object(pipeline_sequencer_runner, 'select_refresh_case', return_value={'ok': False}), \
+             patch.object(pipeline_sequencer_runner, 'manual_launch_next', return_value=prepared), \
+             patch.object(pipeline_sequencer_runner, 'wait_for_case', return_value=waited):
+            result = pipeline_sequencer_runner.run_sequencer_pass(args, policy, excluded_case_keys=set(), excluded_market_ids=set())
+
+        self.assertTrue(result['ok'])
+        self.assertEqual(result['status'], 'new_case_recovered_progress')
+        self.assertEqual(result['recovery']['after_stage'], 'decision')
+        self.assertEqual(result['recovery']['after_stage_statuses']['synthesis'], 'completed')
+
     def test_sequencer_new_case_timeout_does_not_defer_forever(self) -> None:
         args = self.make_args()
         policy = {

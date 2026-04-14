@@ -107,7 +107,7 @@ class SynthesisLaunchHandoffTests(unittest.TestCase):
 
         self.assertIsNotNone(result)
         assert result is not None
-        self.assertEqual(result['launch_status'], 'started')
+        self.assertEqual(result['launch_status'], 'already_running')
         self.assertEqual(result['status_file'], str(status_path.relative_to(repo)))
         _, kwargs = update_status.call_args
         self.assertEqual(kwargs['stage_detail_patch']['synthesis'], 'handoff_sent')
@@ -149,7 +149,7 @@ class SynthesisLaunchHandoffTests(unittest.TestCase):
 
         self.assertIsNotNone(result)
         assert result is not None
-        self.assertEqual(result['launch_status'], 'started')
+        self.assertEqual(result['launch_status'], 'already_running')
         self.assertEqual(result['status_file'], str(status_path.relative_to(repo)))
         update_status.assert_called_once()
 
@@ -176,6 +176,64 @@ class SynthesisLaunchHandoffTests(unittest.TestCase):
         self.assertFalse(result['ok'])
         self.assertEqual(result['launch_status'], 'retryable_transient_failure')
         update_status.assert_called_once()
+
+    def test_launch_synthesis_if_needed_normalizes_completed_state_after_failed_launch_attempt(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            repo = Path(tmpdir)
+            status_path = self.write_status(repo, {
+                'status': 'synthesis_completed',
+                'last_stage_event': {'state': 'synthesis_completed'},
+            })
+            with patch.object(pipeline_automation_actions, 'REPO_ROOT', repo), patch.object(
+                pipeline_automation_actions,
+                'summarize_case_pipeline_status',
+                return_value={'dispatch_id': 'dispatch-test', 'market_id': 'market-test', 'market_title': 'Test market'},
+            ), patch.object(
+                pipeline_automation_actions,
+                'update_case_pipeline_status',
+            ) as update_status, patch.object(
+                pipeline_automation_actions,
+                'run_python_script',
+                return_value={'ok': False, 'stderr': 'transient boom', 'payload': {'status': 'ready_for_final_synthesis'}},
+            ):
+                result = pipeline_automation_actions.launch_synthesis_if_needed('case-test', pretty=False)
+
+        self.assertIsNotNone(result)
+        assert result is not None
+        self.assertTrue(result['ok'])
+        self.assertEqual(result['launch_status'], 'already_completed')
+        self.assertEqual(result['status_file'], str(status_path.relative_to(repo)))
+        _, kwargs = update_status.call_args
+        self.assertEqual(kwargs['stage_status_patch']['synthesis'], 'completed')
+
+    def test_launch_synthesis_if_needed_normalizes_running_state_after_failed_launch_attempt(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            repo = Path(tmpdir)
+            status_path = self.write_status(repo, {
+                'status': 'final_synthesis_launched',
+                'last_stage_event': {'state': 'final_synthesis_launched'},
+            })
+            with patch.object(pipeline_automation_actions, 'REPO_ROOT', repo), patch.object(
+                pipeline_automation_actions,
+                'summarize_case_pipeline_status',
+                return_value={'dispatch_id': 'dispatch-test', 'market_id': 'market-test', 'market_title': 'Test market'},
+            ), patch.object(
+                pipeline_automation_actions,
+                'update_case_pipeline_status',
+            ) as update_status, patch.object(
+                pipeline_automation_actions,
+                'run_python_script',
+                return_value={'ok': False, 'stderr': 'transient boom', 'payload': {'status': 'ready_for_final_synthesis'}},
+            ):
+                result = pipeline_automation_actions.launch_synthesis_if_needed('case-test', pretty=False)
+
+        self.assertIsNotNone(result)
+        assert result is not None
+        self.assertTrue(result['ok'])
+        self.assertEqual(result['launch_status'], 'already_running')
+        self.assertEqual(result['status_file'], str(status_path.relative_to(repo)))
+        _, kwargs = update_status.call_args
+        self.assertEqual(kwargs['stage_status_patch']['synthesis'], 'running')
 
 
 if __name__ == '__main__':
