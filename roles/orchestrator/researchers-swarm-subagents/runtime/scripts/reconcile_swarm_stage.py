@@ -192,19 +192,25 @@ def main() -> None:
     }
 
     if not args.check_only:
-        write_json(out_path, payload, pretty=True)
         if case_key:
-            stage_state = 'completed' if status in {'completed', 'ready_for_synthesis'} else 'in_progress' if status == 'in_progress' else 'failed' if status == 'stale' else 'pending'
-            update_case_pipeline_status(
-                case_key=case_key,
-                dispatch_id=dispatch_id,
-                status='pipeline_in_progress',
-                current_stage='swarm' if status in {'in_progress', 'stale'} else 'synthesis' if status == 'ready_for_synthesis' else 'decision' if status == 'completed' else 'swarm',
-                stage_status_patch={'swarm': stage_state},
-                runner_id='reconcile_swarm_stage',
-                message='Swarm stage reconciled',
-                terminal_summary_patch={'swarm_stage_status_path': relative_to_workspace(out_path)},
-            )
+            current_summary = summarize_case_pipeline_status(case_key)
+            current_status = str(current_summary.get('status') or '').strip()
+            if current_status not in {'pipeline_completed', 'pipeline_failed', 'pipeline_skipped'}:
+                stage_state = 'completed' if status in {'completed', 'ready_for_synthesis'} else 'in_progress' if status == 'in_progress' else 'failed' if status == 'stale' else 'pending'
+                update_case_pipeline_status(
+                    case_key=case_key,
+                    dispatch_id=dispatch_id,
+                    status='pipeline_in_progress',
+                    current_stage='swarm' if status in {'in_progress', 'stale'} else 'synthesis' if status == 'ready_for_synthesis' else 'decision' if status == 'completed' else 'swarm',
+                    stage_status_patch={'swarm': stage_state},
+                    runner_id='reconcile_swarm_stage',
+                    message='Swarm stage reconciled',
+                    terminal_summary_patch={'swarm_stage_status_path': relative_to_workspace(out_path)},
+                )
+            else:
+                payload['canonical_update_skipped'] = True
+                payload['canonical_status_preserved'] = current_status
+        write_json(out_path, payload, pretty=True)
 
     print(json.dumps(payload, indent=2 if args.pretty else None))
 

@@ -11,6 +11,7 @@ from typing import Any
 
 DEFAULT_PSQL = "/opt/homebrew/opt/postgresql@16/bin/psql"
 BASE_DIR = Path(__file__).resolve().parent
+DEFAULT_ENV_FILE = BASE_DIR.parents[4] / ".env.postgres.local"
 SELECT_NEXT = BASE_DIR.parents[1] / "planner" / "scripts" / "select_next_market.py"
 OPEN_CASE = BASE_DIR.parents[1] / "planner" / "scripts" / "open_case.py"
 PREPARE_AND_LAUNCH = BASE_DIR / "prepare_and_launch_headless_telegram_dispatch.py"
@@ -152,6 +153,7 @@ SELECT json_build_object(
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Manual control-plane harness for sequential batch execution")
+    parser.add_argument("--env-file", default=str(DEFAULT_ENV_FILE), help="Env file used to resolve Postgres/runtime defaults")
     parser.add_argument("--db-url", default=os.getenv("PREDQUANT_ORCHESTRATOR_URL", ""), help="Postgres connection URL")
     parser.add_argument("--psql", default=os.getenv("PSQL_BIN", DEFAULT_PSQL), help="Path to psql binary")
     parser.add_argument("--pretty", action="store_true", help="Pretty-print JSON output")
@@ -207,6 +209,45 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
+def load_env_file(path: Path) -> dict[str, str]:
+    if not path.exists():
+        return {}
+    env: dict[str, str] = {}
+    for raw in path.read_text().splitlines():
+        line = raw.strip()
+        if not line or line.startswith('#') or '=' not in line:
+            continue
+        if line.startswith('export '):
+            line = line[len('export '):].strip()
+        key, value = line.split('=', 1)
+        env[key.strip()] = value.strip().strip('"').strip("'")
+    return env
+
+
+def build_repo_env(*, root: Path, env_file: str) -> dict[str, str]:
+    env = dict(os.environ)
+    for candidate in [root / '.env', Path(env_file).expanduser().resolve()]:
+        if not candidate.exists():
+            continue
+        for key, value in load_env_file(candidate).items():
+            env.setdefault(key, value)
+    return env
+
+
+def resolve_db_url(*, args: argparse.Namespace, repo_env: dict[str, str]) -> str:
+    direct = str(args.db_url or '').strip()
+    if direct:
+        return direct
+    return str(repo_env.get('PREDQUANT_ORCHESTRATOR_URL') or repo_env.get('PREDQUANT_ADMIN_URL') or '').strip()
+
+
+def resolve_psql_bin(*, args: argparse.Namespace, repo_env: dict[str, str]) -> str:
+    direct = str(args.psql or '').strip()
+    if direct:
+        return direct
+    return str(repo_env.get('PSQL_BIN') or DEFAULT_PSQL).strip()
+
+
 def parse_json_output(stdout: str) -> dict[str, Any]:
     text = stdout.strip()
     if not text:
@@ -227,8 +268,8 @@ def parse_json_output(stdout: str) -> dict[str, Any]:
         return {}
 
 
-def run_script(args: list[str], cwd: Path) -> dict[str, Any]:
-    proc = subprocess.run([sys.executable, *args], cwd=cwd, text=True, capture_output=True)
+def run_script(args: list[str], cwd: Path, *, env: dict[str, str] | None = None) -> dict[str, Any]:
+    proc = subprocess.run([sys.executable, *args], cwd=cwd, env=env, text=True, capture_output=True)
     payload = parse_json_output(proc.stdout)
     return {
         "returncode": proc.returncode,
@@ -261,11 +302,20 @@ def render(result: dict[str, Any], pretty: bool) -> None:
 def main() -> int:
     args = parse_args()
     root = BASE_DIR.parents[4]
+    repo_env = build_repo_env(root=root, env_file=args.env_file)
+    args.db_url = resolve_db_url(args=args, repo_env=repo_env)
+    args.psql = resolve_psql_bin(args=args, repo_env=repo_env)
+    child_env = dict(repo_env)
+    if args.db_url:
+        child_env.setdefault('PREDQUANT_ORCHESTRATOR_URL', args.db_url)
+        child_env.setdefault('PREDQUANT_ADMIN_URL', args.db_url)
+    if args.psql:
+        child_env.setdefault('PSQL_BIN', args.psql)
     try:
         if args.command == "status":
             db_state = run_sql(args.psql, args.db_url, STATUS_SQL)
-            anomaly = run_script([str(ANOMALY_REPORT), "--db-url", args.db_url, "--psql", args.psql, "--pretty"], root)
-            next_sel = run_script([str(SELECT_NEXT), "--db-url", args.db_url, "--psql", args.psql, "--pretty"], root)
+            anomaly = run_script([str(ANOMALY_REPORT), "--db-url", args.db_url, "--psql", args.psql, "--pretty"], root, env=child_env)
+            next_sel = run_script([str(SELECT_NEXT), "--db-url", args.db_url, "--psql", args.psql, "--pretty"], root, env=child_env)
             result = {
                 "status": "ok",
                 "db_state": db_state,
@@ -274,7 +324,7 @@ def main() -> int:
                 "next_candidate_error": None if next_sel["returncode"] == 0 else (next_sel["stderr"].strip() or next_sel["stdout"].strip()),
             }
         elif args.command == "select-next":
-            selection = run_script([str(SELECT_NEXT), "--db-url", args.db_url, "--psql", args.psql, "--pretty"], root)
+            selection = run_script([str(SELECT_NEXT), "--db-url", args.db_url, "--psql", args.psql, "--pretty"], root, env=child_env)
             if selection["returncode"] != 0:
                 raise ValueError(selection["stderr"].strip() or selection["stdout"].strip() or "select-next failed")
             result = {"status": "ok", "selection": selection["payload"]}
@@ -282,7 +332,7 @@ def main() -> int:
             cmd = [str(PREPARE_AND_LAUNCH), "--model", args.model, "--thinking", args.thinking, "--db-url", args.db_url, "--psql", args.psql, "--pretty"]
             if args.allow_when_busy:
                 cmd.append("--allow-when-busy")
-            launched = run_script(cmd, root)
+            launched = run_script(cmd, root, env=child_env)
             result = {"status": "ok" if launched["returncode"] == 0 else "launch_failed", "launch": launched["payload"], "stderr": launched["stderr"]}
         elif args.command == "launch-case":
             cmd = [str(PREPARE_AND_LAUNCH), "--case-id", args.case_id, "--model", args.model, "--thinking", args.thinking, "--db-url", args.db_url, "--psql", args.psql, "--pretty"]
@@ -294,7 +344,7 @@ def main() -> int:
                 cmd.extend(["--refresh-price-delta-pct-points", args.refresh_price_delta_pct_points])
             if args.refresh_detected_marker:
                 cmd.extend(["--refresh-detected-marker", args.refresh_detected_marker])
-            launched = run_script(cmd, root)
+            launched = run_script(cmd, root, env=child_env)
             result = {"status": "ok" if launched["returncode"] == 0 else "launch_failed", "launch": launched["payload"], "stderr": launched["stderr"]}
         elif args.command == "launch-market":
             opened_case = run_script([
@@ -303,7 +353,7 @@ def main() -> int:
                 "--db-url", args.db_url,
                 "--psql", args.psql,
                 "--pretty",
-            ], root)
+            ], root, env=child_env)
             if opened_case["returncode"] != 0:
                 result = {
                     "status": "open_case_failed",
@@ -332,7 +382,7 @@ def main() -> int:
                     launch_cmd.extend(["--refresh-price-delta-pct-points", args.refresh_price_delta_pct_points])
                 if args.refresh_detected_marker:
                     launch_cmd.extend(["--refresh-detected-marker", args.refresh_detected_marker])
-                launched = run_script(launch_cmd, root)
+                launched = run_script(launch_cmd, root, env=child_env)
                 result = {
                     "status": "ok" if launched["returncode"] == 0 else "launch_failed",
                     "open_case": opened_payload,
@@ -351,7 +401,7 @@ def main() -> int:
                 "--db-url", args.db_url,
                 "--psql", args.psql,
                 "--pretty",
-            ], root)
+            ], root, env=child_env)
             result = {"status": "ok" if preview["returncode"] == 0 else "repair_preview_failed", "preview": preview["payload"], "stderr": preview["stderr"]}
         elif args.command == "repair-apply":
             cmd = [
@@ -367,7 +417,7 @@ def main() -> int:
                 cmd.append("--apply-finalize-stranded-cases")
             if args.mark_stranded_needs_intervention:
                 cmd.append("--apply-mark-stranded-needs-intervention")
-            applied = run_script(cmd, root)
+            applied = run_script(cmd, root, env=child_env)
             result = {"status": "ok" if applied["returncode"] == 0 else "repair_apply_failed", "apply": applied["payload"], "stderr": applied["stderr"]}
         else:
             raise ValueError(f"unknown command: {args.command}")

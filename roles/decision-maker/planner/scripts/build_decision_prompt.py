@@ -344,6 +344,7 @@ def main() -> None:
         "Do not wrap the JSON in markdown fences. Do not prepend explanation.",
         "The runtime will persist artifacts and post visible Telegram markers; you should focus on judgment quality and packet correctness.",
         "The runtime has already deterministically bounded your verification context. Use the compact selected bundle below rather than trying to reconstruct the whole case tree.",
+        "Important: the runtime hydrates many metadata / execution / risk / audit defaults after parsing. Focus your output effort on judgment-bearing fields rather than boilerplate runtime-owned fields.",
         "Treat `structured_handoff_primary` as the main starting point for synthesis->decision transfer. Treat `prose_fallback` only as fallback context on those compact fields.",
         "Synthesis, researcher findings, sidecars, and handoff prose are advisory inputs only. They are not determinative of the final decision.",
         "Your job is to critically evaluate those upstream materials, decide how much weight they deserve, and form your own final judgment.",

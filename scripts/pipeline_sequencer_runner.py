@@ -16,6 +16,7 @@ STAGE_RETRY_REGISTRY_PATH = Path(__file__).resolve().parent / '.runtime-state' /
 REFRESH_RETRIGGER_THRESHOLD = 0.02
 DEFER_RETRY_BUDGET = 3
 DEFER_RETRY_SLEEP_SECONDS = 10.0
+STAGE_RETRY_ENTRY_TTL_SECONDS = 12 * 60 * 60
 from pipeline_sequencer_periodic import maybe_run_periodic_tasks
 from pipeline_sequencer_progress import TERMINAL_PIPELINE_STATUSES, wait_for_case
 from pipeline_sequencer_state import (
@@ -85,6 +86,29 @@ def case_runtime_age_seconds(summary: dict[str, Any]) -> float | None:
     return max(0.0, (datetime.now(timezone.utc) - started_at.astimezone(timezone.utc)).total_seconds())
 
 
+def retry_entry_age_seconds(entry: dict[str, Any]) -> float | None:
+    timestamp = _parse_iso_datetime(str(entry.get('last_seen_at') or entry.get('first_seen_at') or ''))
+    if timestamp is None:
+        return None
+    if timestamp.tzinfo is None:
+        timestamp = timestamp.replace(tzinfo=timezone.utc)
+    return max(0.0, (datetime.now(timezone.utc) - timestamp.astimezone(timezone.utc)).total_seconds())
+
+
+def prune_stage_retry_entries(entries: dict[str, Any]) -> dict[str, Any]:
+    pruned: dict[str, Any] = {}
+    for key, value in entries.items():
+        entry = value if isinstance(value, dict) else {}
+        case_key = str(entry.get('case_key') or '').strip()
+        age_seconds = retry_entry_age_seconds(entry)
+        if not case_key:
+            continue
+        if age_seconds is not None and age_seconds > float(STAGE_RETRY_ENTRY_TTL_SECONDS):
+            continue
+        pruned[str(key)] = entry
+    return pruned
+
+
 def should_defer_nonterminal_case_result(case_result: dict[str, Any], *, policy: dict[str, Any]) -> bool:
     if bool(case_result.get('ok')):
         return False
@@ -104,21 +128,33 @@ def should_defer_nonterminal_case_result(case_result: dict[str, Any], *, policy:
 
 def load_stage_retry_registry(path: Path | None = None) -> dict[str, Any]:
     path = path or STAGE_RETRY_REGISTRY_PATH
+    empty = {'schema_version': 'pipeline-stage-retries/v1', 'entries': {}, 'updated_at': ''}
     if not path.exists():
-        return {'schema_version': 'pipeline-stage-retries/v1', 'entries': {}, 'updated_at': ''}
+        return empty
     try:
         payload = json.loads(path.read_text())
     except Exception:
-        return {'schema_version': 'pipeline-stage-retries/v1', 'entries': {}, 'updated_at': ''}
+        return empty
     if not isinstance(payload, dict):
-        return {'schema_version': 'pipeline-stage-retries/v1', 'entries': {}, 'updated_at': ''}
+        return empty
     entries = payload.get('entries') if isinstance(payload.get('entries'), dict) else {}
-    return {'schema_version': 'pipeline-stage-retries/v1', 'entries': entries, 'updated_at': str(payload.get('updated_at') or '')}
+    pruned_entries = prune_stage_retry_entries(entries)
+    normalized = {
+        'schema_version': 'pipeline-stage-retries/v1',
+        'entries': pruned_entries,
+        'updated_at': str(payload.get('updated_at') or ''),
+    }
+    if pruned_entries != entries:
+        save_stage_retry_registry(normalized, path)
+    return normalized
 
 
 def save_stage_retry_registry(payload: dict[str, Any], path: Path | None = None) -> None:
     path = path or STAGE_RETRY_REGISTRY_PATH
     path.parent.mkdir(parents=True, exist_ok=True)
+    entries = payload.get('entries') if isinstance(payload.get('entries'), dict) else {}
+    payload['schema_version'] = 'pipeline-stage-retries/v1'
+    payload['entries'] = prune_stage_retry_entries(entries)
     payload['updated_at'] = utc_now_iso()
     path.write_text(json.dumps(payload, indent=2) + '\n')
 
@@ -153,7 +189,61 @@ def stage_retry_identity(case_result: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+def classify_recovered_nonterminal_case_result(case_result: dict[str, Any]) -> dict[str, Any]:
+    if bool(case_result.get('ok')):
+        return {'recovered': False}
+    error = str(case_result.get('error') or '').strip()
+    if error not in DEFERABLE_NONTERMINAL_CASE_ERRORS:
+        return {'recovered': False}
+
+    pipeline_summary = case_result.get('pipeline_summary') if isinstance(case_result.get('pipeline_summary'), dict) else {}
+    watchdog_result = case_result.get('watchdog_result') if isinstance(case_result.get('watchdog_result'), dict) else {}
+    after = watchdog_result.get('after') if isinstance(watchdog_result.get('after'), dict) else {}
+    if not after:
+        return {'recovered': False}
+
+    before_status = str(pipeline_summary.get('status') or '').strip()
+    after_status = str(after.get('status') or '').strip()
+    before_stage = str(pipeline_summary.get('current_stage') or '').strip()
+    after_stage = str(after.get('current_stage') or '').strip()
+    before_stage_statuses = pipeline_summary.get('stage_statuses') if isinstance(pipeline_summary.get('stage_statuses'), dict) else {}
+    after_stage_statuses = after.get('stage_statuses') if isinstance(after.get('stage_statuses'), dict) else {}
+    before_stage_details = pipeline_summary.get('stage_detail_states') if isinstance(pipeline_summary.get('stage_detail_states'), dict) else {}
+    after_stage_details = after.get('stage_detail_states') if isinstance(after.get('stage_detail_states'), dict) else {}
+
+    status_changed = after_status != before_status
+    stage_changed = after_stage != before_stage
+    statuses_changed = after_stage_statuses != before_stage_statuses
+    details_changed = after_stage_details != before_stage_details
+    advanced_to_terminal = after_status in TERMINAL_PIPELINE_STATUSES
+    synthesized = after_stage_statuses.get('synthesis') == 'completed' and before_stage_statuses.get('synthesis') != 'completed'
+    decision_started = after_stage_statuses.get('decision') in {'running', 'completed'} and before_stage_statuses.get('decision') not in {'running', 'completed'}
+
+    recovered = bool(advanced_to_terminal or status_changed or stage_changed or statuses_changed or details_changed or synthesized or decision_started)
+    if not recovered:
+        return {'recovered': False}
+
+    return {
+        'recovered': True,
+        'reason': 'pipeline_state_advanced_despite_watchdog_failure',
+        'before_status': before_status,
+        'after_status': after_status,
+        'before_stage': before_stage,
+        'after_stage': after_stage,
+        'before_stage_statuses': before_stage_statuses,
+        'after_stage_statuses': after_stage_statuses,
+        'before_stage_detail_states': before_stage_details,
+        'after_stage_detail_states': after_stage_details,
+    }
+
+
 def classify_nonterminal_case_result(case_result: dict[str, Any], *, policy: dict[str, Any]) -> dict[str, Any]:
+    recovered = classify_recovered_nonterminal_case_result(case_result)
+    if recovered.get('recovered'):
+        return {
+            'mode': 'recovered_progress',
+            'recovery': recovered,
+        }
     if not should_defer_nonterminal_case_result(case_result, policy=policy):
         return {'mode': 'none'}
     identity = stage_retry_identity(case_result)
@@ -359,6 +449,15 @@ def run_sequencer_pass(
             progress_callback=progress_callback,
         )
         handling = classify_nonterminal_case_result(case_result, policy=policy)
+        if handling.get('mode') == 'recovered_progress':
+            return {
+                'ok': True,
+                'status': 'existing_case_recovered_progress',
+                'policy': policy,
+                'case_key': case_key,
+                'case_result': case_result,
+                'recovery': handling.get('recovery') or {},
+            }
         if handling.get('mode') == 'defer':
             pipeline_summary = case_result.get('pipeline_summary') if isinstance(case_result.get('pipeline_summary'), dict) else {}
             return {
@@ -574,6 +673,18 @@ def run_sequencer_pass(
                 progress_callback=progress_callback,
             )
             handling = classify_nonterminal_case_result(case_result, policy=policy)
+            if handling.get('mode') == 'recovered_progress':
+                return {
+                    'ok': True,
+                    'status': 'refresh_case_recovered_progress',
+                    'policy': policy,
+                    'case_key': case_key,
+                    'refresh_candidate': refresh_candidate,
+                    'refresh_plan': refresh_plan,
+                    'prepare_result': prepared,
+                    'case_result': case_result,
+                    'recovery': handling.get('recovery') or {},
+                }
             if handling.get('mode') == 'defer':
                 pipeline_summary = case_result.get('pipeline_summary') if isinstance(case_result.get('pipeline_summary'), dict) else {}
                 return {
@@ -689,6 +800,16 @@ def run_sequencer_pass(
         progress_callback=progress_callback,
     )
     handling = classify_nonterminal_case_result(case_result, policy=policy)
+    if handling.get('mode') == 'recovered_progress':
+        return {
+            'ok': True,
+            'status': 'new_case_recovered_progress',
+            'policy': policy,
+            'case_key': case_key,
+            'prepare_result': prepared,
+            'case_result': case_result,
+            'recovery': handling.get('recovery') or {},
+        }
     if handling.get('mode') == 'defer':
         pipeline_summary = case_result.get('pipeline_summary') if isinstance(case_result.get('pipeline_summary'), dict) else {}
         return {

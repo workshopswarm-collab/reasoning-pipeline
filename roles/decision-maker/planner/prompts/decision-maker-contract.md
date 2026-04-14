@@ -25,7 +25,9 @@ Optimize for:
 
 ## Required top-level keys
 
-Return a single JSON object with:
+Return a single JSON object.
+
+The final persisted decision packet will contain these keys:
 - `schema_version`
 - `generated_at`
 - `context`
@@ -38,6 +40,11 @@ Return a single JSON object with:
 - `epistemic_status`
 - `audit`
 
+Important runtime behavior:
+- the runtime deterministically hydrates / overrides many metadata and policy fields after your response is parsed
+- you do **not** need to spend tokens recreating runtime-owned metadata perfectly
+- it is acceptable to keep runtime-owned sections minimal when you have no meaningful override to provide
+
 ## Critical enums
 
 - `decision.side`: `yes | no | none`
@@ -49,42 +56,70 @@ Return a single JSON object with:
 - quality enums: `low | medium | high`
 - `epistemic_status.decision_quality`: `clean | good_not_clean | fragile | not_ready`
 
-## Minimum required fields by section
+## Minimum model-owned fields by section
 
 ### context
-`case_key`, `dispatch_id`, `question`, `market_id`, `market_title`, `source_decision_handoff_path`, `source_syndicated_finding_path`, `decision_maker_agent`
+Focus on the judgment-bearing identifiers only:
+`case_key`, `dispatch_id`, `question`
+
+The runtime will fill market identifiers, canonical output paths, source artifact paths, and agent metadata.
 
 ### decision
-`side`, `trade_authorization`, `position_policy`, `decision_readiness`, `primary_crux`, `secondary_cruxes`, `thesis_class`
+These are the most important fields to get right:
+`side`, `trade_authorization`, `position_policy`, `decision_readiness`, `primary_crux`
+
+Useful when available:
+`secondary_cruxes`, `thesis_class`
 
 ### valuation
-`fair_value_low`, `fair_value_high`, `fair_value_mid`, `market_reference_price`, `independent_verification_quality`, `compressed_toward_market_applied`, `compression_reason`
+Model-owned core valuation fields:
+`fair_value_low`, `fair_value_high`
+
+Helpful when you have a clean estimate:
+`fair_value_mid`, `independent_verification_quality`, `compressed_toward_market_applied`, `compression_reason`
+
+The runtime will fill / normalize `market_reference_price` and recompute `edge_mid_vs_market_pct_points`.
 
 ### execution_semantics
-Use `price_axis = market_implied_true_prob`.
-Include: `price_source`, `rebalance_threshold_fraction`, `allow_auto_reversal`, `valid_until`, `quote_staleness_seconds`, `time_horizon`
+You may keep this section minimal unless you have a meaningful override.
+The runtime will enforce / hydrate:
+- `price_axis = market_implied_true_prob`
+- `price_source`
+- `rebalance_threshold_fraction`
+- `allow_auto_reversal`
+- `valid_until`
+- `quote_staleness_seconds`
 
 ### risk_controls
-`max_position_size_pct_bankroll`, `max_additional_exposure_pct_bankroll`, `max_single_order_pct_bankroll`, `slippage_tolerance_bps`, `liquidity_min_depth`, `correlation_bucket_limit_pct_bankroll`, `confidence_level`, `portfolio_constraints`, `liquidity_caution`
+You may keep this section minimal unless you have a meaningful override.
+The runtime hydrates default bankroll/risk fields and confidence metadata.
 
 ### bands
-Return all five canonical bands with `name`, `min_p`, `max_p`, `target_exposure_fraction`, `notes`.
-Required names: `max_enter`, `scaled_enter`, `hold`, `trim`, `exit`.
-Rules:
-- cover `[0,1]` with no gaps or overlaps
-- use the `market_implied_true_prob` axis
-- if `side = yes`, exposure should generally fall as price rises
-- if `side = no`, exposure should generally rise as price rises
-- if `side = none`, use zero-exposure bands
+If you have a deliberate exposure schedule, return all five canonical bands with `name`, `min_p`, `max_p`, `target_exposure_fraction`, `notes`.
+Otherwise the runtime can hydrate a deterministic default band shape from your chosen side.
 
 ### invalidation
-`thesis_breakers`, `market_structure_breakers`, `time_breakers`, `reversal_conditions`
+Provide concise lists for:
+`thesis_breakers`, `time_breakers`
+
+Useful when available:
+`market_structure_breakers`, `reversal_conditions`
 
 ### epistemic_status
-`key_uncertainties`, `reasons_to_pass`, `what_would_change_my_mind`, `decision_quality`
+Prefer concise lists for:
+`key_uncertainties`, `what_would_change_my_mind`
+
+Useful when available:
+`reasons_to_pass`, `decision_quality`
 
 ### audit
-`market_baseline_respected`, `action_bias_check_passed`, `self_preservation_bias_check_passed`, `one_sentence_rationale`, `notes`
+Model-owned must-have:
+`one_sentence_rationale`
+
+Helpful when available:
+`notes`
+
+The runtime hydrates most audit booleans and verification bookkeeping.
 
 ## Judgment guidance
 

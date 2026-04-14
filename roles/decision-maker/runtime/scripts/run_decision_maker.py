@@ -4,6 +4,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import subprocess
 import sys
 import time
@@ -63,6 +64,15 @@ DEFAULT_DECISION_AGENT_SESSION_KEY = "agent:decision-maker:main"
 
 class DecisionMakerError(RuntimeError):
     pass
+
+
+MAX_DECISION_PACKET_ATTEMPTS = 2
+STRICT_JSON_REPAIR_FOOTER = (
+    "\n\nIMPORTANT RETRY INSTRUCTION:\n"
+    "Your previous response was not a valid final decision packet. "
+    "Return exactly one valid JSON object and nothing else. "
+    "Do not include markdown fences, commentary, apologies, headings, or trailing prose."
+)
 
 
 PRICE_SOURCE_ALIAS_MAP = {
@@ -448,6 +458,41 @@ def detect_tool_activity(messages: list[Any], *, min_seq: int | None = None) -> 
     return collect_tool_usage(messages, min_seq=min_seq)
 
 
+def merge_tool_usage(base: dict[str, Any] | None, extra: dict[str, Any] | None) -> dict[str, Any]:
+    left = base if isinstance(base, dict) else {}
+    right = extra if isinstance(extra, dict) else {}
+    tool_names_sequence = list(left.get("tool_names_sequence") or []) + list(right.get("tool_names_sequence") or [])
+    tool_names: list[str] = []
+    seen_names: set[str] = set()
+    for name in list(left.get("tool_names") or []) + list(right.get("tool_names") or []):
+        normalized = coerce_string(name)
+        if not normalized or normalized in seen_names:
+            continue
+        seen_names.add(normalized)
+        tool_names.append(normalized)
+    search_queries = list(left.get("search_queries") or []) + list(right.get("search_queries") or [])
+    fetched_urls = list(left.get("fetched_urls") or []) + list(right.get("fetched_urls") or [])
+    source_families: list[str] = []
+    seen_families: set[str] = set()
+    for family in list(left.get("source_families") or []) + list(right.get("source_families") or []):
+        normalized = coerce_string(family)
+        if not normalized or normalized in seen_families:
+            continue
+        seen_families.add(normalized)
+        source_families.append(normalized)
+    return {
+        "tool_activity_detected": bool(tool_names_sequence or left.get("tool_activity_detected") or right.get("tool_activity_detected")),
+        "tool_names": tool_names,
+        "tool_names_sequence": tool_names_sequence,
+        "search_queries": search_queries,
+        "fetched_urls": fetched_urls,
+        "search_query_count": len(search_queries),
+        "source_fetch_count": len(fetched_urls),
+        "source_families": source_families,
+        "distinct_source_family_count": len(source_families),
+    }
+
+
 def wait_for_assistant_result(session_key: str, *, min_seq: int | None, timeout_seconds: float) -> dict[str, Any]:
     deadline = time.time() + max(timeout_seconds, 1.0)
     last_messages: list[Any] = []
@@ -503,56 +548,156 @@ def extract_text_from_gateway_response(payload: Any) -> str:
     raise DecisionMakerError("could not extract assistant text from sessions.send response")
 
 
+def _parse_json_object_candidate(candidate: str) -> dict[str, Any] | None:
+    text = candidate.strip()
+    if not text:
+        return None
+    try:
+        obj = json.loads(text)
+    except json.JSONDecodeError:
+        return None
+    return obj if isinstance(obj, dict) else None
+
+
+
 def extract_json_payload(text: str) -> dict[str, Any]:
     stripped = text.strip()
     if not stripped:
         raise DecisionMakerError("empty decision-maker response text")
-    try:
-        obj = json.loads(stripped)
-        if isinstance(obj, dict):
-            return obj
-    except json.JSONDecodeError:
-        pass
 
-    if "```json" in stripped:
-        start = stripped.find("```json") + len("```json")
-        end = stripped.find("```", start)
-        if end != -1:
-            candidate = stripped[start:end].strip()
-            try:
-                obj = json.loads(candidate)
-                if isinstance(obj, dict):
-                    return obj
-            except json.JSONDecodeError:
-                pass
-    if "```" in stripped:
-        start = stripped.find("```") + len("```")
-        end = stripped.find("```", start)
-        if end != -1:
-            candidate = stripped[start:end].strip()
-            try:
-                obj = json.loads(candidate)
-                if isinstance(obj, dict):
-                    return obj
-            except json.JSONDecodeError:
-                pass
+    direct = _parse_json_object_candidate(stripped)
+    if direct is not None:
+        return direct
+
+    fenced_pattern = re.compile(r"```(?:json|JSON)?\s*(.*?)```", re.DOTALL)
+    for match in fenced_pattern.finditer(stripped):
+        candidate = match.group(1).strip()
+        parsed = _parse_json_object_candidate(candidate)
+        if parsed is not None:
+            return parsed
+        lines = candidate.splitlines()
+        if lines and re.fullmatch(r"[A-Za-z0-9_.+-]+", lines[0].strip()):
+            parsed = _parse_json_object_candidate("\n".join(lines[1:]))
+            if parsed is not None:
+                return parsed
 
     decoder = json.JSONDecoder()
     for index, ch in enumerate(stripped):
         if ch != "{":
             continue
         try:
-            obj, _ = decoder.raw_decode(stripped[index:])
+            obj, end = decoder.raw_decode(stripped[index:])
             if isinstance(obj, dict):
+                tail = stripped[index + end :].strip()
+                if not tail or tail.startswith("```") or tail.lower().startswith(("thanks", "thank you", "done", "note:", "explanation:", "here is", "here's")):
+                    return obj
                 return obj
         except json.JSONDecodeError:
             continue
+
+    start = stripped.find('{')
+    end = stripped.rfind('}')
+    if start != -1 and end != -1 and end > start:
+        parsed = _parse_json_object_candidate(stripped[start:end + 1])
+        if parsed is not None:
+            return parsed
+
     raise DecisionMakerError("could not parse JSON object from decision-maker response text")
 
 
-def start_decision_maker_turn(prompt_path: Path, args: argparse.Namespace) -> dict[str, Any]:
+def decision_runtime_artifact_dir(case_key: str) -> Path:
+    return WORKSPACE_ROOT / "roles" / "decision-maker" / "runtime" / "artifacts" / case_key
+
+
+
+def _attempt_suffix(attempt: int) -> str:
+    return "" if int(attempt) <= 1 else f"-attempt-{int(attempt)}"
+
+
+
+def decision_gateway_response_path(case_key: str, dispatch_id: str, *, attempt: int = 1) -> Path:
+    suffix = _attempt_suffix(attempt)
+    filename = "decision-gateway-response.json" if not dispatch_id else f"decision-gateway-response-{dispatch_id}{suffix}.json"
+    return decision_runtime_artifact_dir(case_key) / filename
+
+
+
+def decision_raw_response_text_path(case_key: str, dispatch_id: str, *, attempt: int = 1) -> Path:
+    suffix = _attempt_suffix(attempt)
+    filename = "decision-response.raw.txt" if not dispatch_id else f"decision-response-{dispatch_id}{suffix}.raw.txt"
+    return decision_runtime_artifact_dir(case_key) / filename
+
+
+
+def decision_parse_failure_artifact_path(case_key: str, dispatch_id: str, *, attempt: int = 1) -> Path:
+    suffix = _attempt_suffix(attempt)
+    filename = "decision-parse-failure.json" if not dispatch_id else f"decision-parse-failure-{dispatch_id}{suffix}.json"
+    return decision_runtime_artifact_dir(case_key) / filename
+
+
+
+def write_raw_response_text(path: Path, text: str) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(text)
+
+
+
+def write_decision_parse_failure_artifact(
+    *,
+    case_key: str,
+    dispatch_id: str,
+    prompt_path: Path,
+    error: str,
+    raw_text_path: Path,
+    gateway_response_path: Path | None,
+    tool_usage: dict[str, Any] | None = None,
+    attempt: int = 1,
+    failure_kind: str = "parse_failure",
+    validation_errors: list[str] | None = None,
+    validation_warnings: list[str] | None = None,
+) -> Path:
+    payload = {
+        "artifact_type": "decision_parse_failure",
+        "schema_version": "decision-parse-failure/v1",
+        "at": utc_now_iso(),
+        "case_key": case_key,
+        "dispatch_id": dispatch_id,
+        "attempt": int(attempt),
+        "failure_kind": failure_kind,
+        "error": error,
+        "prompt_path": relative_to_workspace(prompt_path),
+        "raw_text_path": relative_to_workspace(raw_text_path),
+        "gateway_response_path": relative_to_workspace(gateway_response_path) if gateway_response_path is not None else "",
+        "tool_usage": tool_usage or {},
+    }
+    if validation_errors:
+        payload["validation_errors"] = list(validation_errors)
+    if validation_warnings:
+        payload["validation_warnings"] = list(validation_warnings)
+    artifact_path = decision_parse_failure_artifact_path(case_key, dispatch_id, attempt=attempt)
+    write_json(artifact_path, payload, pretty=True)
+    latest_path = decision_parse_failure_artifact_path(case_key, dispatch_id)
+    if artifact_path != latest_path:
+        write_json(latest_path, payload, pretty=True)
+    return artifact_path
+
+
+
+def retry_prompt(original_prompt: str, *, error: str = "", validation_errors: list[str] | None = None) -> str:
+    details: list[str] = [original_prompt.rstrip(), STRICT_JSON_REPAIR_FOOTER]
+    if error:
+        details.append(f"Previous failure: {error}")
+    if validation_errors:
+        details.append("Validation errors to fix exactly:")
+        for item in validation_errors:
+            details.append(f"- {item}")
+    return "\n".join(part for part in details if part).rstrip() + "\n"
+
+
+
+def start_decision_maker_turn(prompt_path: Path, args: argparse.Namespace, *, prompt_text: str | None = None) -> dict[str, Any]:
     baseline_seq = latest_session_seq(args.session_key)
-    prompt = prompt_path.read_text()
+    prompt = prompt_path.read_text() if prompt_text is None else prompt_text
     payload = {
         "sessionKey": args.session_key,
         "message": prompt,
@@ -581,7 +726,7 @@ def finish_decision_maker_turn(*, session_key: str, baseline_seq: int, timeout_s
     result = wait_for_assistant_result(session_key, min_seq=baseline_seq, timeout_seconds=timeout_seconds)
     text = result["text"]
     return {
-        "packet": extract_json_payload(text),
+        "raw_text": text,
         "tool_activity_detected": bool(result.get("tool_activity_detected")),
         "tool_names": list(result.get("tool_names") or []),
         "tool_names_sequence": list(result.get("tool_names_sequence") or []),
@@ -599,14 +744,17 @@ def invoke_decision_maker(prompt_path: Path, args: argparse.Namespace) -> dict[s
         path = Path(args.result_json)
         if not path.is_absolute():
             path = WORKSPACE_ROOT / path
-        return {"packet": load_json(path), "tool_activity_detected": False, "tool_names": [], "accepted": True, "status": "offline_result_json"}
+        packet = load_json(path)
+        return {"packet": packet, "raw_text": json.dumps(packet, ensure_ascii=False), "tool_activity_detected": False, "tool_names": [], "accepted": True, "status": "offline_result_json"}
 
     started = start_decision_maker_turn(prompt_path, args)
     if not started.get("accepted"):
         raise DecisionMakerError(f"decision-maker handoff was not accepted: {started.get('gateway_response')}")
     finished = finish_decision_maker_turn(session_key=args.session_key, baseline_seq=int(started.get("baseline_seq", -1)), timeout_seconds=args.timeout_seconds)
+    raw_text = str(finished.get("raw_text") or "")
     return {
         **finished,
+        "packet": extract_json_payload(raw_text),
         "accepted": True,
         "status": started.get("status", "accepted"),
         "baseline_seq": started.get("baseline_seq", -1),
@@ -965,6 +1113,16 @@ def main() -> None:
         }, indent=2 if args.pretty else None))
         return
 
+    gateway_response_path = decision_gateway_response_path(case_key, dispatch_id, attempt=1)
+    raw_response_path = decision_raw_response_text_path(case_key, dispatch_id, attempt=1)
+    parse_failure_path = decision_parse_failure_artifact_path(case_key, dispatch_id, attempt=1)
+    with locked_status(status_path) as status:
+        status["raw_gateway_response_path"] = relative_to_workspace(gateway_response_path)
+        status["raw_response_text_path"] = relative_to_workspace(raw_response_path)
+        status["decision_parse_failure_artifact_path"] = relative_to_workspace(parse_failure_path)
+        status["decision_parse_attempt_count"] = 0
+        status["decision_recovered_after_retry"] = False
+
     bootstrap_lane_if_possible(status_path)
 
     update_case_pipeline_status(
@@ -980,73 +1138,284 @@ def main() -> None:
     )
 
     try:
+        gateway_response_payload: dict[str, Any] = {}
+        original_prompt_text = prompt_path.read_text()
+        aggregated_tool_usage: dict[str, Any] = {
+            "tool_activity_detected": False,
+            "tool_names": [],
+            "tool_names_sequence": [],
+            "search_queries": [],
+            "fetched_urls": [],
+            "search_query_count": 0,
+            "source_fetch_count": 0,
+            "source_families": [],
+            "distinct_source_family_count": 0,
+        }
+        validation: dict[str, Any] = {"ok": True, "errors": [], "warnings": []}
+        packet: dict[str, Any] | None = None
+        final_attempt = 1
+        recovered_after_retry = False
+
         if args.result_json:
             with locked_status(status_path) as status:
                 append_stage_event(status, stage="decision_receipt", state="offline_result_loaded", message="Loaded Decision-Maker result from provided JSON instead of live handoff")
                 set_overall_status(status, "decision_analysis_running", stage="decision_execution", message="Decision-Maker packet loading started from provided JSON", extra={"prompt_path": relative_to_workspace(prompt_path)})
+            result_path = Path(args.result_json) if Path(args.result_json).is_absolute() else WORKSPACE_ROOT / args.result_json
+            raw_text = result_path.read_text()
+            write_raw_response_text(raw_response_path, raw_text)
+            raw_packet = load_json(result_path)
+            packet = hydrate_packet_from_context(raw_packet, context, selected_bundle, targeted_verification_pack, valid_hours=args.valid_hours, tool_usage=aggregated_tool_usage)
+            validation = validate_decision_packet_payload(packet)
         else:
-            started = start_decision_maker_turn(prompt_path, args)
-            if not started.get("accepted"):
+            retry_error = ""
+            retry_validation_errors: list[str] = []
+            for attempt in range(1, MAX_DECISION_PACKET_ATTEMPTS + 1):
+                final_attempt = attempt
+                gateway_response_path = decision_gateway_response_path(case_key, dispatch_id, attempt=attempt)
+                raw_response_path = decision_raw_response_text_path(case_key, dispatch_id, attempt=attempt)
+                parse_failure_path = decision_parse_failure_artifact_path(case_key, dispatch_id, attempt=attempt)
+                prompt_text = original_prompt_text if attempt == 1 else retry_prompt(original_prompt_text, error=retry_error, validation_errors=retry_validation_errors)
+                if attempt > 1:
+                    with locked_status(status_path) as status:
+                        append_stage_event(
+                            status,
+                            stage="decision_execution",
+                            state="decision_retry_requested",
+                            message="Decision-Maker output invalid; requested one strict JSON retry",
+                            extra={"attempt": attempt, "retry_error": retry_error, "validation_errors": retry_validation_errors},
+                        )
+                        set_overall_status(
+                            status,
+                            "decision_analysis_running",
+                            stage="decision_execution",
+                            message="Decision-Maker retry requested after invalid packet output",
+                            extra={"attempt": attempt, "retry_error": retry_error, "validation_errors": retry_validation_errors},
+                        )
+                started = start_decision_maker_turn(prompt_path, args, prompt_text=prompt_text)
+                gateway_response_payload = started.get("gateway_response", {}) if isinstance(started.get("gateway_response", {}), dict) else {}
+                write_json(gateway_response_path, gateway_response_payload, pretty=True)
                 with locked_status(status_path) as status:
-                    set_overall_status(status, "decision_failed", stage="decision_receipt", message="Decision-Maker handoff was not accepted", extra={"gateway_response": started.get("gateway_response", {})})
-                raise DecisionMakerError(f"decision-maker handoff was not accepted: {started.get('gateway_response')}")
-            maybe_send_visible_marker(status_path, marker_key="decision_receipt_marker_sent_at", stage="decision_receipt", message=coerce_string(load_json(status_path).get("decision_visible_receipt_marker")))
-            with locked_status(status_path) as status:
-                append_stage_event(status, stage="decision_receipt", state="accepted", message="Decision-Maker handoff accepted", extra={"session_key": args.session_key, "handoff_status": started.get("status", "accepted")})
-                set_overall_status(status, "decision_analysis_running", stage="decision_execution", message="Decision-Maker agent invocation accepted and analysis started", extra={"session_key": args.session_key, "prompt_path": relative_to_workspace(prompt_path), "handoff_status": started.get("status", "accepted")})
-            maybe_send_visible_marker(status_path, marker_key="decision_analysis_marker_sent_at", stage="decision_execution", message=coerce_string(load_json(status_path).get("decision_visible_start_marker")))
+                    status["raw_gateway_response_path"] = relative_to_workspace(gateway_response_path)
+                    status["raw_response_text_path"] = relative_to_workspace(raw_response_path)
+                    status["decision_parse_failure_artifact_path"] = relative_to_workspace(parse_failure_path)
+                    status["decision_parse_attempt_count"] = attempt
+                if not started.get("accepted"):
+                    with locked_status(status_path) as status:
+                        set_overall_status(status, "decision_failed", stage="decision_receipt", message="Decision-Maker handoff was not accepted", extra={"gateway_response": gateway_response_payload, "attempt": attempt})
+                    raise DecisionMakerError(f"decision-maker handoff was not accepted: {started.get('gateway_response')}")
+                if attempt == 1:
+                    maybe_send_visible_marker(status_path, marker_key="decision_receipt_marker_sent_at", stage="decision_receipt", message=coerce_string(load_json(status_path).get("decision_visible_receipt_marker")))
+                    with locked_status(status_path) as status:
+                        append_stage_event(status, stage="decision_receipt", state="accepted", message="Decision-Maker handoff accepted", extra={"session_key": args.session_key, "handoff_status": started.get("status", "accepted"), "gateway_response_path": relative_to_workspace(gateway_response_path)})
+                        set_overall_status(status, "decision_analysis_running", stage="decision_execution", message="Decision-Maker agent invocation accepted and analysis started", extra={"session_key": args.session_key, "prompt_path": relative_to_workspace(prompt_path), "handoff_status": started.get("status", "accepted")})
+                    maybe_send_visible_marker(status_path, marker_key="decision_analysis_marker_sent_at", stage="decision_execution", message=coerce_string(load_json(status_path).get("decision_visible_start_marker")))
+                else:
+                    with locked_status(status_path) as status:
+                        append_stage_event(status, stage="decision_execution", state="decision_retry_accepted", message="Decision-Maker retry accepted", extra={"attempt": attempt, "session_key": args.session_key, "gateway_response_path": relative_to_workspace(gateway_response_path)})
+                invocation = finish_decision_maker_turn(session_key=args.session_key, baseline_seq=int(started.get("baseline_seq", -1)), timeout_seconds=args.timeout_seconds)
+                invocation.update({"accepted": True, "status": started.get("status", "accepted"), "baseline_seq": started.get("baseline_seq", -1), "gateway_response": gateway_response_payload})
+                raw_text = str(invocation.get("raw_text") or "")
+                write_raw_response_text(raw_response_path, raw_text)
+                attempt_tool_usage = {
+                    "tool_activity_detected": bool(invocation.get("tool_activity_detected")),
+                    "tool_names": list(invocation.get("tool_names") or []),
+                    "tool_names_sequence": list(invocation.get("tool_names_sequence") or []),
+                    "search_queries": list(invocation.get("search_queries") or []),
+                    "fetched_urls": list(invocation.get("fetched_urls") or []),
+                    "search_query_count": int(invocation.get("search_query_count") or 0),
+                    "source_fetch_count": int(invocation.get("source_fetch_count") or 0),
+                    "source_families": list(invocation.get("source_families") or []),
+                    "distinct_source_family_count": int(invocation.get("distinct_source_family_count") or 0),
+                }
+                aggregated_tool_usage = merge_tool_usage(aggregated_tool_usage, attempt_tool_usage)
+                try:
+                    raw_packet = extract_json_payload(raw_text)
+                except DecisionMakerError as exc:
+                    artifact_path = write_decision_parse_failure_artifact(
+                        case_key=case_key,
+                        dispatch_id=dispatch_id,
+                        prompt_path=prompt_path,
+                        error=str(exc),
+                        raw_text_path=raw_response_path,
+                        gateway_response_path=gateway_response_path if gateway_response_path.exists() else None,
+                        tool_usage=aggregated_tool_usage,
+                        attempt=attempt,
+                        failure_kind="parse_failure",
+                    )
+                    retry_error = str(exc)
+                    retry_validation_errors = []
+                    state = "decision_parse_failed_retrying" if attempt < MAX_DECISION_PACKET_ATTEMPTS else "decision_parse_failed_exhausted"
+                    message = "Decision-Maker output was not valid JSON; retrying once" if attempt < MAX_DECISION_PACKET_ATTEMPTS else "Decision-Maker output remained invalid JSON after retry budget exhausted"
+                    with locked_status(status_path) as status:
+                        append_stage_event(
+                            status,
+                            stage="decision_execution",
+                            state=state,
+                            message=message,
+                            extra={
+                                "attempt": attempt,
+                                "error": str(exc),
+                                "raw_response_text_path": relative_to_workspace(raw_response_path),
+                                "gateway_response_path": relative_to_workspace(gateway_response_path) if gateway_response_path.exists() else "",
+                                "parse_failure_artifact_path": relative_to_workspace(artifact_path),
+                            },
+                        )
+                    if attempt < MAX_DECISION_PACKET_ATTEMPTS:
+                        continue
+                    with locked_status(status_path) as status:
+                        set_overall_status(status, "decision_failed", stage="decision_execution", message="Decision-Maker output was not valid JSON", extra={"error": str(exc), "raw_response_text_path": relative_to_workspace(raw_response_path), "parse_failure_artifact_path": relative_to_workspace(artifact_path), "attempt": attempt})
+                    update_case_pipeline_status(
+                        case_key=case_key,
+                        dispatch_id=dispatch_id,
+                        market_id=coerce_string(market.get("market_id")),
+                        market_title=coerce_string(market.get("market_title")),
+                        status="pipeline_failed",
+                        current_stage="decision",
+                        stage_status_patch={"decision": "failed"},
+                        runner_id="run_decision_maker",
+                        message="Decision-Maker output was not valid JSON",
+                        terminal_summary_patch={
+                            "failure_reason": str(exc),
+                            "failed_stage": "decision",
+                            "raw_response_text_path": relative_to_workspace(raw_response_path),
+                            "raw_gateway_response_path": relative_to_workspace(gateway_response_path) if gateway_response_path.exists() else "",
+                            "decision_parse_failure_artifact_path": relative_to_workspace(artifact_path),
+                            "decision_parse_attempt_count": attempt,
+                        },
+                    )
+                    print(json.dumps({
+                        "ok": False,
+                        "decision_context_path": relative_to_workspace(context_path),
+                        "verification_mode_path": relative_to_workspace(verification_mode_path),
+                        "selected_input_bundle_path": relative_to_workspace(selected_input_bundle_path),
+                        "targeted_verification_pack_path": relative_to_workspace(targeted_verification_pack_path) if targeted_verification_pack_path else "",
+                        "prompt_path": relative_to_workspace(prompt_path),
+                        "error": str(exc),
+                        "raw_response_text_path": relative_to_workspace(raw_response_path),
+                        "raw_gateway_response_path": relative_to_workspace(gateway_response_path) if gateway_response_path.exists() else "",
+                        "decision_parse_failure_artifact_path": relative_to_workspace(artifact_path),
+                        "tool_usage": aggregated_tool_usage,
+                        "decision_parse_attempt_count": attempt,
+                    }, indent=2 if args.pretty else None))
+                    raise SystemExit(1)
 
-        if args.result_json:
-            invocation = {"packet": load_json(Path(args.result_json) if Path(args.result_json).is_absolute() else WORKSPACE_ROOT / args.result_json), "tool_activity_detected": False, "tool_names": [], "accepted": True, "status": "offline_result_json"}
-        else:
-            invocation = finish_decision_maker_turn(session_key=args.session_key, baseline_seq=int(started.get("baseline_seq", -1)), timeout_seconds=args.timeout_seconds)
-            invocation.update({"accepted": True, "status": started.get("status", "accepted"), "baseline_seq": started.get("baseline_seq", -1), "gateway_response": started.get("gateway_response", {})})
-        raw_packet = invocation["packet"]
-        tool_usage = {
-            "tool_activity_detected": bool(invocation.get("tool_activity_detected")),
-            "tool_names": list(invocation.get("tool_names") or []),
-            "tool_names_sequence": list(invocation.get("tool_names_sequence") or []),
-            "search_queries": list(invocation.get("search_queries") or []),
-            "fetched_urls": list(invocation.get("fetched_urls") or []),
-            "search_query_count": int(invocation.get("search_query_count") or 0),
-            "source_fetch_count": int(invocation.get("source_fetch_count") or 0),
-            "source_families": list(invocation.get("source_families") or []),
-            "distinct_source_family_count": int(invocation.get("distinct_source_family_count") or 0),
-        }
-        try:
-            enforce_verification_tool_policy(selected_bundle, tool_usage, raw_packet)
-        except DecisionMakerError as exc:
-            with locked_status(status_path) as status:
-                set_overall_status(status, "decision_failed", stage="decision_execution", message="Decision-Maker violated verification tool policy", extra={"error": str(exc), "tool_usage": tool_usage, "verification_mode": selected_bundle.get("verification_mode")})
-            update_case_pipeline_status(
-                case_key=case_key,
-                dispatch_id=dispatch_id,
-                market_id=coerce_string(market.get("market_id")),
-                market_title=coerce_string(market.get("market_title")),
-                status="pipeline_failed",
-                current_stage="decision",
-                stage_status_patch={"decision": "failed"},
-                runner_id="run_decision_maker",
-                message="Decision-Maker violated verification tool policy",
-                terminal_summary_patch={"failure_reason": str(exc), "failed_stage": "decision"},
-            )
-            print(json.dumps({
-                "ok": False,
-                "decision_context_path": relative_to_workspace(context_path),
-                "verification_mode_path": relative_to_workspace(verification_mode_path),
-                "selected_input_bundle_path": relative_to_workspace(selected_input_bundle_path),
-                "targeted_verification_pack_path": relative_to_workspace(targeted_verification_pack_path) if targeted_verification_pack_path else "",
-                "prompt_path": relative_to_workspace(prompt_path),
-                "error": str(exc),
-                "tool_usage": tool_usage,
-            }, indent=2 if args.pretty else None))
+                try:
+                    enforce_verification_tool_policy(selected_bundle, aggregated_tool_usage, raw_packet)
+                except DecisionMakerError as exc:
+                    with locked_status(status_path) as status:
+                        set_overall_status(status, "decision_failed", stage="decision_execution", message="Decision-Maker violated verification tool policy", extra={"error": str(exc), "tool_usage": aggregated_tool_usage, "verification_mode": selected_bundle.get("verification_mode")})
+                    update_case_pipeline_status(
+                        case_key=case_key,
+                        dispatch_id=dispatch_id,
+                        market_id=coerce_string(market.get("market_id")),
+                        market_title=coerce_string(market.get("market_title")),
+                        status="pipeline_failed",
+                        current_stage="decision",
+                        stage_status_patch={"decision": "failed"},
+                        runner_id="run_decision_maker",
+                        message="Decision-Maker violated verification tool policy",
+                        terminal_summary_patch={"failure_reason": str(exc), "failed_stage": "decision", "decision_parse_attempt_count": attempt},
+                    )
+                    print(json.dumps({
+                        "ok": False,
+                        "decision_context_path": relative_to_workspace(context_path),
+                        "verification_mode_path": relative_to_workspace(verification_mode_path),
+                        "selected_input_bundle_path": relative_to_workspace(selected_input_bundle_path),
+                        "targeted_verification_pack_path": relative_to_workspace(targeted_verification_pack_path) if targeted_verification_pack_path else "",
+                        "prompt_path": relative_to_workspace(prompt_path),
+                        "error": str(exc),
+                        "tool_usage": aggregated_tool_usage,
+                    }, indent=2 if args.pretty else None))
+                    raise SystemExit(1)
+
+                candidate_packet = hydrate_packet_from_context(raw_packet, context, selected_bundle, targeted_verification_pack, valid_hours=args.valid_hours, tool_usage=aggregated_tool_usage)
+                validation = validate_decision_packet_payload(candidate_packet)
+                if not validation["ok"]:
+                    artifact_path = write_decision_parse_failure_artifact(
+                        case_key=case_key,
+                        dispatch_id=dispatch_id,
+                        prompt_path=prompt_path,
+                        error="; ".join(validation["errors"]) or "Decision packet failed validation",
+                        raw_text_path=raw_response_path,
+                        gateway_response_path=gateway_response_path if gateway_response_path.exists() else None,
+                        tool_usage=aggregated_tool_usage,
+                        attempt=attempt,
+                        failure_kind="validation_failure",
+                        validation_errors=validation["errors"],
+                        validation_warnings=validation["warnings"],
+                    )
+                    retry_error = "; ".join(validation["errors"]) or "Decision packet failed validation"
+                    retry_validation_errors = list(validation["errors"])
+                    state = "decision_validation_failed_retrying" if attempt < MAX_DECISION_PACKET_ATTEMPTS else "decision_validation_failed_exhausted"
+                    message = "Decision packet failed validation; retrying once" if attempt < MAX_DECISION_PACKET_ATTEMPTS else "Decision packet remained invalid after retry budget exhausted"
+                    with locked_status(status_path) as status:
+                        append_stage_event(
+                            status,
+                            stage="decision_validation",
+                            state=state,
+                            message=message,
+                            extra={
+                                "attempt": attempt,
+                                "errors": validation["errors"],
+                                "warnings": validation["warnings"],
+                                "raw_response_text_path": relative_to_workspace(raw_response_path),
+                                "gateway_response_path": relative_to_workspace(gateway_response_path) if gateway_response_path.exists() else "",
+                                "parse_failure_artifact_path": relative_to_workspace(artifact_path),
+                            },
+                        )
+                    if attempt < MAX_DECISION_PACKET_ATTEMPTS:
+                        continue
+                    with locked_status(status_path) as status:
+                        set_overall_status(status, "decision_failed", stage="decision_validation", message="Decision packet failed validation", extra={"errors": validation["errors"], "warnings": validation["warnings"], "attempt": attempt})
+                    update_case_pipeline_status(
+                        case_key=case_key,
+                        dispatch_id=dispatch_id,
+                        market_id=coerce_string(market.get("market_id")),
+                        market_title=coerce_string(market.get("market_title")),
+                        status="pipeline_failed",
+                        current_stage="decision",
+                        stage_status_patch={"decision": "failed"},
+                        runner_id="run_decision_maker",
+                        message="Decision packet failed validation",
+                        terminal_summary_patch={
+                            "failure_reason": "; ".join(validation["errors"]),
+                            "failed_stage": "decision",
+                            "raw_response_text_path": relative_to_workspace(raw_response_path),
+                            "raw_gateway_response_path": relative_to_workspace(gateway_response_path) if gateway_response_path.exists() else "",
+                            "decision_parse_failure_artifact_path": relative_to_workspace(artifact_path),
+                            "decision_parse_attempt_count": attempt,
+                        },
+                    )
+                    print(json.dumps({
+                        "ok": False,
+                        "decision_context_path": relative_to_workspace(context_path),
+                        "verification_mode_path": relative_to_workspace(verification_mode_path),
+                        "selected_input_bundle_path": relative_to_workspace(selected_input_bundle_path),
+                        "targeted_verification_pack_path": relative_to_workspace(targeted_verification_pack_path) if targeted_verification_pack_path else "",
+                        "prompt_path": relative_to_workspace(prompt_path),
+                        "errors": validation["errors"],
+                        "warnings": validation["warnings"],
+                        "raw_response_text_path": relative_to_workspace(raw_response_path),
+                        "raw_gateway_response_path": relative_to_workspace(gateway_response_path) if gateway_response_path.exists() else "",
+                        "decision_parse_failure_artifact_path": relative_to_workspace(artifact_path),
+                        "decision_parse_attempt_count": attempt,
+                    }, indent=2 if args.pretty else None))
+                    raise SystemExit(1)
+
+                packet = candidate_packet
+                recovered_after_retry = attempt > 1
+                break
+
+            if packet is None:
+                raise SystemExit(1)
+
+        tool_usage = aggregated_tool_usage
+        if packet is None:
             raise SystemExit(1)
-
-        packet = hydrate_packet_from_context(raw_packet, context, selected_bundle, targeted_verification_pack, valid_hours=args.valid_hours, tool_usage=tool_usage)
-        validation = validate_decision_packet_payload(packet)
         if not validation["ok"]:
+            failure_reason = "; ".join(validation["errors"]) or "Decision packet failed validation"
             with locked_status(status_path) as status:
-                set_overall_status(status, "decision_failed", stage="decision_validation", message="Decision packet failed validation", extra={"errors": validation["errors"], "warnings": validation["warnings"]})
+                set_overall_status(status, "decision_failed", stage="decision_validation", message="Decision packet failed validation", extra={"errors": validation["errors"], "warnings": validation["warnings"], "attempt": final_attempt})
             update_case_pipeline_status(
                 case_key=case_key,
                 dispatch_id=dispatch_id,
@@ -1057,7 +1426,7 @@ def main() -> None:
                 stage_status_patch={"decision": "failed"},
                 runner_id="run_decision_maker",
                 message="Decision packet failed validation",
-                terminal_summary_patch={"failure_reason": "; ".join(validation["errors"]), "failed_stage": "decision"},
+                terminal_summary_patch={"failure_reason": failure_reason, "failed_stage": "decision", "decision_parse_attempt_count": final_attempt},
             )
             print(json.dumps({
                 "ok": False,
@@ -1068,6 +1437,7 @@ def main() -> None:
                 "prompt_path": relative_to_workspace(prompt_path),
                 "errors": validation["errors"],
                 "warnings": validation["warnings"],
+                "decision_parse_attempt_count": final_attempt,
             }, indent=2 if args.pretty else None))
             raise SystemExit(1)
 
@@ -1099,11 +1469,13 @@ def main() -> None:
             status["decision_readiness"] = (packet.get("decision") or {}).get("decision_readiness", "")
             status["recommended_side"] = (packet.get("decision") or {}).get("side", "")
             status["timeline_update"] = timeline_update
+            status["decision_parse_attempt_count"] = final_attempt
+            status["decision_recovered_after_retry"] = recovered_after_retry
             if forecast_persist_summary is not None:
                 status["forecast_decision_persist"] = forecast_persist_summary
             if forecast_persist_error:
                 status["forecast_decision_persist_error"] = forecast_persist_error
-            set_overall_status(status, "decision_completed", stage="decision_execution", message="Decision-Maker completed and packet rendered", extra={"warnings": validation["warnings"], "forecast_decision_persist_error": forecast_persist_error})
+            set_overall_status(status, "decision_completed", stage="decision_execution", message="Decision-Maker completed and packet rendered", extra={"warnings": validation["warnings"], "forecast_decision_persist_error": forecast_persist_error, "decision_parse_attempt_count": final_attempt, "decision_recovered_after_retry": recovered_after_retry})
 
         maybe_send_visible_marker(status_path, marker_key="decision_completion_marker_sent_at", stage="decision_execution", message=coerce_string(load_json(status_path).get("decision_visible_finish_marker")))
 
@@ -1120,6 +1492,10 @@ def main() -> None:
             terminal_summary_patch={
                 "decision_packet_json": relative_to_workspace(packet_json_path),
                 "decision_packet_markdown": packet_markdown_path,
+                "raw_response_text_path": relative_to_workspace(raw_response_path),
+                "raw_gateway_response_path": relative_to_workspace(gateway_response_path) if gateway_response_path.exists() else "",
+                "decision_parse_attempt_count": final_attempt,
+                "decision_recovered_after_retry": recovered_after_retry,
                 "trade_authorization": (packet.get("decision") or {}).get("trade_authorization", ""),
                 "position_policy": (packet.get("decision") or {}).get("position_policy", ""),
                 "decision_readiness": (packet.get("decision") or {}).get("decision_readiness", ""),
@@ -1136,12 +1512,16 @@ def main() -> None:
             "selected_input_bundle_path": relative_to_workspace(selected_input_bundle_path),
             "targeted_verification_pack_path": relative_to_workspace(targeted_verification_pack_path) if targeted_verification_pack_path else "",
             "prompt_path": relative_to_workspace(prompt_path),
+            "raw_response_text_path": relative_to_workspace(raw_response_path),
+            "raw_gateway_response_path": relative_to_workspace(gateway_response_path) if gateway_response_path.exists() else "",
             "packet_json": relative_to_workspace(packet_json_path),
             "decision_packet_path": packet_markdown_path,
             "decision_stage_status_path": relative_to_workspace(status_path),
             "timeline_update": timeline_update,
             "forecast_decision_persist": forecast_persist_summary or {},
             "forecast_decision_persist_error": forecast_persist_error,
+            "decision_parse_attempt_count": final_attempt,
+            "decision_recovered_after_retry": recovered_after_retry,
             "warnings": validation["warnings"],
         }, indent=2 if args.pretty else None))
     except SystemExit:

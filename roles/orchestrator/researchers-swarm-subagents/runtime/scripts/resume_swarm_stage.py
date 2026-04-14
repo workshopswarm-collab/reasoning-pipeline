@@ -16,7 +16,7 @@ LAUNCH_SYNTHESIS = REPO_ROOT / 'roles' / 'orchestrator' / 'synthesis-subagent' /
 if str(REPO_ROOT / 'scripts') not in sys.path:
     sys.path.insert(0, str(REPO_ROOT / 'scripts'))
 
-from case_pipeline_status import update_case_pipeline_status_with_followups as update_case_pipeline_status  # noqa: E402
+from case_pipeline_status import summarize_case_pipeline_status, update_case_pipeline_status_with_followups as update_case_pipeline_status  # noqa: E402
 
 
 class ResumeError(RuntimeError):
@@ -105,14 +105,21 @@ def main() -> None:
         result['action'] = 'wait_current_swarm'
 
     if case_key:
-        update_case_pipeline_status(
-            case_key=case_key,
-            dispatch_id=dispatch_id,
-            status='pipeline_in_progress',
-            current_stage='swarm' if status in {'in_progress', 'stale'} else 'synthesis',
-            runner_id='resume_swarm_stage',
-            message=f"Swarm resume helper action: {result['action']}",
-        )
+        current_summary = summarize_case_pipeline_status(case_key)
+        current_status = str(current_summary.get('status') or '').strip()
+        if current_status not in {'pipeline_completed', 'pipeline_failed', 'pipeline_skipped'}:
+            update_case_pipeline_status(
+                case_key=case_key,
+                dispatch_id=dispatch_id,
+                status='pipeline_in_progress',
+                current_stage='swarm' if status in {'in_progress', 'stale'} else 'synthesis' if status == 'ready_for_synthesis' else 'decision' if status == 'completed' else 'swarm',
+                stage_status_patch={'swarm': 'completed'} if status in {'completed', 'ready_for_synthesis'} else None,
+                runner_id='resume_swarm_stage',
+                message=f"Swarm resume helper action: {result['action']}",
+            )
+        else:
+            result['canonical_update_skipped'] = True
+            result['canonical_status_preserved'] = current_status
 
     print(json.dumps(result, indent=2 if args.pretty else None))
 

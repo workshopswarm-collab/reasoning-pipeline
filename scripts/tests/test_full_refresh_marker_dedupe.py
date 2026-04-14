@@ -33,7 +33,7 @@ class FullRefreshMarkerDedupeTests(unittest.TestCase):
             registry_path = tmp / 'controller-marker-registry.json'
             manifest = {
                 'runtime_defaults': {
-                    'refresh_finish_marker': 'FULL REFRESH SWARM COMPLETED | case=case-test | dispatch_id=dispatch-test | next_stage=synthesis'
+                    'refresh_finish_marker': 'FINISHED FULL REFRESH SWARM | case=case-test | dispatch_id=dispatch-test | next_stage=synthesis'
                 },
                 'bootstrap_state': {
                     'chat_id': '123',
@@ -58,18 +58,64 @@ class FullRefreshMarkerDedupeTests(unittest.TestCase):
                     dispatch_id='dispatch-test',
                 )
 
-        self.assertIsNone(first_error)
-        self.assertIsNotNone(first_result)
-        self.assertIsNone(second_error)
-        self.assertIsNone(second_result)
-        send_mock.assert_called_once()
-        saved_manifest = json.loads(manifest_path.read_text())
-        self.assertEqual(
-            saved_manifest['bootstrap_state']['refresh_finish_marker_sent_at'],
-            '2026-04-14T02:44:00Z',
-        )
-        saved_registry = json.loads(registry_path.read_text())
-        self.assertIn('dispatch-test:refresh_finish', saved_registry['entries'])
+                self.assertIsNone(first_error)
+                self.assertIsNotNone(first_result)
+                self.assertIsNone(second_error)
+                self.assertIsNone(second_result)
+                send_mock.assert_called_once()
+                saved_manifest = json.loads(manifest_path.read_text())
+                self.assertEqual(
+                    saved_manifest['bootstrap_state']['refresh_finish_marker_sent_at'],
+                    '2026-04-14T02:44:00Z',
+                )
+                saved_registry = json.loads(registry_path.read_text())
+                self.assertIn('dispatch-test:refresh_finish', saved_registry['entries'])
+
+    def test_refresh_finish_marker_claim_suppresses_resend_after_post_send_failure(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp = Path(tmpdir)
+            manifest_path = tmp / 'dispatch.json'
+            registry_path = tmp / 'controller-marker-registry.json'
+            manifest = {
+                'runtime_defaults': {
+                    'refresh_finish_marker': 'FINISHED FULL REFRESH SWARM | case=case-test | dispatch_id=dispatch-test | next_stage=synthesis'
+                },
+                'bootstrap_state': {
+                    'chat_id': '123',
+                    'controller_topic': {'topic_id': '456'},
+                },
+            }
+            manifest_path.write_text(json.dumps(manifest) + '\n')
+
+            with patch.object(finalize_dispatch_after_swarm, 'MARKER_REGISTRY_PATH', registry_path), patch.object(
+                finalize_dispatch_after_swarm,
+                'send_visible_telegram_message',
+                return_value={'ok': True, 'sentAt': '2026-04-14T02:44:00Z'},
+            ) as send_mock, patch.object(
+                finalize_dispatch_after_swarm,
+                'write_manifest',
+                side_effect=RuntimeError('manifest write failed after send'),
+            ):
+                first_result, first_error = finalize_dispatch_after_swarm.maybe_send_refresh_finish_marker(
+                    manifest=manifest,
+                    manifest_path=manifest_path,
+                    dispatch_id='dispatch-test',
+                )
+                second_result, second_error = finalize_dispatch_after_swarm.maybe_send_refresh_finish_marker(
+                    manifest=manifest,
+                    manifest_path=manifest_path,
+                    dispatch_id='dispatch-test',
+                )
+
+            self.assertIsNone(first_result)
+            self.assertIn('manifest write failed', str(first_error))
+            self.assertIsNone(second_error)
+            self.assertIsNone(second_result)
+            send_mock.assert_called_once()
+            saved_registry = json.loads(registry_path.read_text())
+            entry = saved_registry['entries']['dispatch-test:refresh_finish']
+            self.assertIn('claimed_at', entry)
+            self.assertNotIn('sent_at', entry)
 
 
 if __name__ == '__main__':

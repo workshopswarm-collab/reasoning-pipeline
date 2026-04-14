@@ -452,6 +452,10 @@ def first_blocking_case_without_completed_decision_packet() -> dict[str, Any]:
     for summary in list_case_pipeline_statuses(include_terminal=True):
         terminal_summary = summary.get("terminal_summary") if isinstance(summary.get("terminal_summary"), dict) else {}
         status = str(summary.get("status") or "").strip()
+        if status == "pipeline_skipped":
+            continue
+        if status == "pipeline_failed" and bool(terminal_summary.get("quarantined")):
+            continue
         if status != "pipeline_completed":
             return summary
         if not str(terminal_summary.get("decision_packet_markdown") or "").strip():

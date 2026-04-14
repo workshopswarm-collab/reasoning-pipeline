@@ -36,6 +36,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument('--skip-artifact-contract-check', action='store_true')
     parser.add_argument('--decided-market-watcher-heartbeat-file', default=str(DEFAULT_DECIDED_MARKET_WATCHER_HEARTBEAT_FILE))
     parser.add_argument('--max-decided-market-watcher-age-seconds', type=float, default=120.0)
+    parser.add_argument('--max-decided-market-watcher-consecutive-failures', type=int, default=2)
     parser.add_argument('--skip-decided-market-watcher-check', action='store_true')
     parser.add_argument('--market-checker-env-file', default=str(DEFAULT_DB_ENV_FILE))
     parser.add_argument('--market-checker-db-url', default=os.getenv('PREDQUANT_ADMIN_URL', ''))
@@ -299,18 +300,62 @@ def evaluate(args: argparse.Namespace) -> dict[str, Any]:
     if not args.skip_decided_market_watcher_check:
         decided_market_watcher_report = load_json_file(decided_market_watcher_heartbeat_path)
         watcher_age = age_seconds(decided_market_watcher_report.get('completed_at') or decided_market_watcher_report.get('started_at'), now=now)
+        last_success_age = age_seconds(decided_market_watcher_report.get('last_success_at'), now=now)
         if decided_market_watcher_report:
             decided_market_watcher_report['age_seconds'] = round(watcher_age, 1) if watcher_age is not None else None
+            decided_market_watcher_report['last_success_age_seconds'] = round(last_success_age, 1) if last_success_age is not None else None
 
         tracked_market_count = int(decided_market_watcher_report.get('tracked_market_count') or 0) if decided_market_watcher_report else 0
         watcher_activity_expected = tracked_market_count > 0
+        consecutive_failures = int(decided_market_watcher_report.get('consecutive_failures') or 0) if decided_market_watcher_report else 0
+        failure_budget = max(1, int(getattr(args, 'max_decided_market_watcher_consecutive_failures', 2)))
 
         if decided_market_watcher_report and not decided_market_watcher_report.get('ok', False):
+            if not watcher_activity_expected:
+                add_issue(
+                    issues,
+                    level='warn',
+                    code='decided_market_watcher_failed_without_tracked_markets',
+                    message='Decided-market watcher reported a failed run while tracking zero markets',
+                    decided_market_watcher=decided_market_watcher_report,
+                )
+            elif consecutive_failures >= failure_budget:
+                add_issue(
+                    issues,
+                    level='error',
+                    code='decided_market_watcher_failed',
+                    message='Decided-market watcher exceeded the consecutive failure budget',
+                    consecutive_failures=consecutive_failures,
+                    max_consecutive_failures=failure_budget,
+                    decided_market_watcher=decided_market_watcher_report,
+                )
+            else:
+                add_issue(
+                    issues,
+                    level='warn',
+                    code='decided_market_watcher_recent_failure',
+                    message='Decided-market watcher reported a recent failure but remains within the consecutive failure budget',
+                    consecutive_failures=consecutive_failures,
+                    max_consecutive_failures=failure_budget,
+                    decided_market_watcher=decided_market_watcher_report,
+                )
+
+        if watcher_activity_expected and last_success_age is None:
+            add_issue(
+                issues,
+                level='warn',
+                code='missing_decided_market_watcher_success_timestamp',
+                message='Decided-market watcher is tracking markets but has no recorded successful run yet',
+                decided_market_watcher=decided_market_watcher_report,
+            )
+        elif watcher_activity_expected and last_success_age is not None and last_success_age > float(args.max_decided_market_watcher_age_seconds):
             add_issue(
                 issues,
                 level='error',
-                code='decided_market_watcher_failed',
-                message='Decided-market watcher reported a failed run',
+                code='stale_decided_market_watcher',
+                message='Decided-market watcher last successful run is stale while tracking markets',
+                age_seconds=round(last_success_age, 1),
+                max_age_seconds=float(args.max_decided_market_watcher_age_seconds),
                 decided_market_watcher=decided_market_watcher_report,
             )
         elif watcher_activity_expected and watcher_age is None:
@@ -319,16 +364,6 @@ def evaluate(args: argparse.Namespace) -> dict[str, Any]:
                 level='warn',
                 code='missing_decided_market_watcher_activity_timestamp',
                 message='Decided-market watcher is tracking markets but did not record a completion timestamp',
-                decided_market_watcher=decided_market_watcher_report,
-            )
-        elif watcher_activity_expected and watcher_age is not None and watcher_age > float(args.max_decided_market_watcher_age_seconds):
-            add_issue(
-                issues,
-                level='error',
-                code='stale_decided_market_watcher',
-                message='Decided-market watcher heartbeat is stale while tracking markets',
-                age_seconds=round(watcher_age, 1),
-                max_age_seconds=float(args.max_decided_market_watcher_age_seconds),
                 decided_market_watcher=decided_market_watcher_report,
             )
 

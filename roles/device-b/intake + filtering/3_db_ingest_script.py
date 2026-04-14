@@ -83,7 +83,7 @@ upserted_market AS (
               AND c.status = 'open'
         )
         THEN 'closed'::processing_status
-        WHEN markets.pipeline_status IN ('ignored', 'executed') 
+        WHEN markets.pipeline_status IN ('ignored', 'executed', 'closed') 
              AND ABS(COALESCE(markets.last_reasoned_price, 0) - EXCLUDED.current_price) >= 0.05 
         THEN 'pending_research'::processing_status
         ELSE markets.pipeline_status

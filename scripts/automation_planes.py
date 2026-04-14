@@ -144,9 +144,19 @@ def set_pipeline_planes(*, enabled: bool) -> dict[str, Any]:
 
 def enable_launchd_plane(name: str, helper: Path) -> dict[str, Any]:
     status = plane_status(helper)
+    restaged: dict[str, Any] | None = None
     if bool(status.get('bootstrapped')):
+        if not bool(status.get('target_exists')):
+            restaged = run_json([sys.executable, str(helper), 'install'])
         kick = kickstart_launchd(str(status.get('launchctl_label') or ''))
-        return {'ok': bool(kick.get('ok')), 'action': 'kickstarted', 'status': status, 'kickstart': kick, 'plane': name}
+        return {
+            'ok': bool((restaged or {}).get('ok', True)) and bool(kick.get('ok')),
+            'action': 'restaged_and_kickstarted' if restaged is not None else 'kickstarted',
+            'status': status,
+            'restage': restaged,
+            'kickstart': kick,
+            'plane': name,
+        }
     result = run_json([sys.executable, str(helper), 'install', '--bootstrap', '--kickstart'])
     result['plane'] = name
     return result
@@ -240,7 +250,8 @@ def ensure_plane_running(name: str, helper: Path, plane_state: dict[str, Any], *
     service = plane_state.get('service') if isinstance(plane_state.get('service'), dict) else {}
     heartbeat = plane_state.get('heartbeat') if isinstance(plane_state.get('heartbeat'), dict) else {}
     actions: list[dict[str, Any]] = []
-    if not bool(service.get('bootstrapped')):
+    target_exists = service.get('target_exists')
+    if not bool(service.get('bootstrapped')) or target_exists is False:
         actions.append(enable_launchd_plane(name, helper))
     elif restart_stale and (not bool(heartbeat.get('exists')) or bool(heartbeat.get('stale'))):
         actions.append({'plane': name, 'action': 'kickstart_for_stale_heartbeat', 'result': kickstart_launchd(str(service.get('launchctl_label') or ''))})

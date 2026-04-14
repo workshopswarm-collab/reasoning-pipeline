@@ -12,6 +12,16 @@ DEFAULT_CONTROL_FILE = REPO_ROOT / 'scripts' / '.runtime-state' / 'pipeline-auto
 DEFAULT_EFFECTIVE_POLICY_FILE = REPO_ROOT / 'scripts' / '.runtime-state' / 'pipeline-automation-effective.json'
 
 
+def default_effective_output_path(control_path: Path) -> Path:
+    candidate = Path(control_path)
+    if candidate == DEFAULT_CONTROL_FILE:
+        return DEFAULT_EFFECTIVE_POLICY_FILE
+    name = candidate.name
+    if 'control' in name:
+        return candidate.with_name(name.replace('control', 'effective', 1))
+    return candidate.with_name(f'{candidate.stem}-effective{candidate.suffix}')
+
+
 def utc_now_iso() -> str:
     return datetime.now(timezone.utc).isoformat()
 
@@ -87,12 +97,23 @@ def load_control_file(path: Path = DEFAULT_CONTROL_FILE) -> dict[str, Any]:
     return normalize_control_payload(payload if isinstance(payload, dict) else {})
 
 
+def write_effective_payload(control_path: Path, output_path: Path | None = None) -> Path:
+    candidate = Path(control_path)
+    output = Path(output_path) if output_path is not None else default_effective_output_path(candidate)
+    payload = build_effective_payload(candidate)
+    output.parent.mkdir(parents=True, exist_ok=True)
+    output.write_text(json.dumps(payload, indent=2, sort_keys=True) + '\n')
+    return output
+
+
+
 def write_control_file(payload: dict[str, Any], path: Path = DEFAULT_CONTROL_FILE) -> Path:
     candidate = Path(path)
     candidate.parent.mkdir(parents=True, exist_ok=True)
     normalized = normalize_control_payload(payload)
     normalized['updated_at'] = utc_now_iso()
     candidate.write_text(json.dumps(normalized, indent=2, sort_keys=True) + '\n')
+    write_effective_payload(candidate)
     return candidate
 
 
@@ -246,9 +267,8 @@ def cmd_effective(path: Path) -> None:
 
 
 def cmd_write_effective(path: Path, output: Path) -> None:
+    output = write_effective_payload(path, output)
     payload = build_effective_payload(path)
-    output.parent.mkdir(parents=True, exist_ok=True)
-    output.write_text(json.dumps(payload, indent=2, sort_keys=True) + '\n')
     print(json.dumps({'status': 'ok', 'output': str(output), 'summary': payload['summary']}, indent=2))
 
 

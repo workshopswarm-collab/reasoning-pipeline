@@ -5,6 +5,7 @@ import argparse
 import fcntl
 import json
 import os
+import random
 import subprocess
 import sys
 import time
@@ -12,6 +13,7 @@ from contextlib import contextmanager
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Iterator
+from urllib.error import HTTPError, URLError
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 
@@ -23,6 +25,10 @@ DEFAULT_PSQL = '/opt/homebrew/opt/postgresql@16/bin/psql'
 GAMMA_MARKETS_URL = 'https://gamma-api.polymarket.com/markets'
 DEFAULT_PRICE_DELTA = 0.05
 DEFAULT_BATCH_SIZE = 50
+DEFAULT_GAMMA_TIMEOUT_SECONDS = 30.0
+DEFAULT_GAMMA_MAX_ATTEMPTS = 3
+DEFAULT_GAMMA_BACKOFF_SECONDS = 1.0
+DEFAULT_DECIDED_MARKET_WATCHER_FAILURE_BUDGET = 2
 
 TRACKED_MARKETS_SQL = r'''
 WITH tracked AS (
@@ -53,7 +59,7 @@ WITH tracked AS (
    AND mr.resolution_status = 'resolved'
   WHERE m.platform = 'polymarket'
     AND m.status = 'open'
-    AND m.pipeline_status IN ('ignored', 'executed')
+    AND m.pipeline_status IN ('ignored', 'executed', 'closed')
     AND m.last_reasoned_price IS NOT NULL
     AND COALESCE(m.external_market_id, '') <> ''
     AND COALESCE(lfd.decision_status, '') = 'recorded'
@@ -100,7 +106,7 @@ WITH incoming AS (
             AND c.status = 'open'
         )
         THEN 'closed'::processing_status
-        WHEN m.pipeline_status IN ('ignored', 'executed')
+        WHEN m.pipeline_status IN ('ignored', 'executed', 'closed')
              AND ABS(COALESCE(m.last_reasoned_price, 0) - i.yes_price) >= :'min_price_delta'::numeric
         THEN 'pending_research'::processing_status
         ELSE m.pipeline_status
@@ -145,7 +151,11 @@ SELECT json_build_object(
 
 
 class WatcherError(RuntimeError):
-    pass
+    def __init__(self, message: str, *, http_status: int | None = None, retryable: bool = False, benign: bool = False) -> None:
+        super().__init__(message)
+        self.http_status = http_status
+        self.retryable = retryable
+        self.benign = benign
 
 
 def utc_now_iso() -> str:
@@ -161,6 +171,9 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument('--report-file', default=str(DEFAULT_REPORT_FILE))
     parser.add_argument('--min-price-delta', type=float, default=DEFAULT_PRICE_DELTA)
     parser.add_argument('--batch-size', type=int, default=DEFAULT_BATCH_SIZE)
+    parser.add_argument('--gamma-timeout-seconds', type=float, default=DEFAULT_GAMMA_TIMEOUT_SECONDS)
+    parser.add_argument('--gamma-max-attempts', type=int, default=DEFAULT_GAMMA_MAX_ATTEMPTS)
+    parser.add_argument('--gamma-backoff-seconds', type=float, default=DEFAULT_GAMMA_BACKOFF_SECONDS)
     parser.add_argument('--apply', action='store_true', help='Persist watched prices/snapshots and reopen materially moved markets')
     parser.add_argument('--pretty', action='store_true')
     return parser.parse_args()
@@ -188,7 +201,7 @@ def process_lock(path: Path) -> Iterator[None]:
         try:
             fcntl.flock(handle.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
         except BlockingIOError as exc:
-            raise WatcherError(f'decided-market watcher already running (lock: {path})') from exc
+            raise WatcherError(f'decided-market watcher already running (lock: {path})', benign=True) from exc
         try:
             yield
         finally:
@@ -230,23 +243,96 @@ def chunked(items: list[Any], size: int) -> Iterator[list[Any]]:
         yield items[i:i + max(1, size)]
 
 
-def fetch_gamma_markets(condition_ids: list[str]) -> list[dict[str, Any]]:
-    if not condition_ids:
-        return []
-    params: list[tuple[str, str]] = [('closed', 'false')]
+def gamma_request_headers() -> dict[str, str]:
+    return {
+        'User-Agent': 'Mozilla/5.0 (compatible; OpenClaw decided-market watcher)',
+        'Accept': 'application/json',
+    }
+
+
+def should_retry_http_status(status: int | None) -> bool:
+    return status in {403, 408, 409, 425, 429, 500, 502, 503, 504}
+
+
+def fetch_gamma_market_batch(
+    condition_ids: list[str],
+    *,
+    timeout_seconds: float,
+    max_attempts: int,
+    backoff_seconds: float,
+) -> list[dict[str, Any]]:
+    params: list[tuple[str, str]] = [('closed', 'false'), ('limit', str(max(len(condition_ids), 1)))]
     for cid in condition_ids:
         params.append(('condition_ids', cid))
     url = f"{GAMMA_MARKETS_URL}?{urlencode(params, doseq=True)}"
-    request = Request(url, headers={
-        'User-Agent': 'Mozilla/5.0 (compatible; OpenClaw decided-market watcher)',
-        'Accept': 'application/json',
-    })
-    with urlopen(request, timeout=30) as response:  # noqa: S310
-        status = getattr(response, 'status', 200)
-        if status >= 400:
-            raise WatcherError(f'Gamma request failed with HTTP {status}')
-        payload = json.loads(response.read().decode('utf-8'))
-    return payload if isinstance(payload, list) else []
+    last_error: WatcherError | None = None
+    attempts = max(1, int(max_attempts))
+    for attempt in range(1, attempts + 1):
+        request = Request(url, headers=gamma_request_headers())
+        try:
+            with urlopen(request, timeout=max(1.0, float(timeout_seconds))) as response:  # noqa: S310
+                status = getattr(response, 'status', 200)
+                if status >= 400:
+                    raise WatcherError(f'Gamma request failed with HTTP {status}', http_status=status, retryable=should_retry_http_status(status))
+                payload = json.loads(response.read().decode('utf-8'))
+                return payload if isinstance(payload, list) else []
+        except HTTPError as exc:
+            body = ''
+            try:
+                body = exc.read().decode('utf-8', 'replace')
+            except Exception:
+                body = ''
+            detail = f'Gamma request failed with HTTP {exc.code}'
+            if body.strip():
+                detail += f': {body.strip()[:300]}'
+            last_error = WatcherError(detail, http_status=int(exc.code), retryable=should_retry_http_status(int(exc.code)))
+        except URLError as exc:
+            last_error = WatcherError(f'Gamma request failed: {exc.reason}', retryable=True)
+        except TimeoutError as exc:
+            last_error = WatcherError(f'Gamma request timed out: {exc}', retryable=True)
+        except json.JSONDecodeError as exc:
+            raise WatcherError(f'Gamma response was not valid JSON: {exc}') from exc
+        if not last_error or not last_error.retryable or attempt >= attempts:
+            break
+        sleep_seconds = max(0.0, float(backoff_seconds)) * (2 ** (attempt - 1)) + random.uniform(0.0, 0.25)
+        if sleep_seconds > 0.0:
+            time.sleep(sleep_seconds)
+    raise last_error or WatcherError('Gamma request failed')
+
+
+def fetch_gamma_markets(
+    condition_ids: list[str],
+    *,
+    timeout_seconds: float,
+    max_attempts: int,
+    backoff_seconds: float,
+) -> list[dict[str, Any]]:
+    if not condition_ids:
+        return []
+    try:
+        return fetch_gamma_market_batch(
+            condition_ids,
+            timeout_seconds=timeout_seconds,
+            max_attempts=max_attempts,
+            backoff_seconds=backoff_seconds,
+        )
+    except WatcherError as exc:
+        if len(condition_ids) <= 1 or exc.http_status not in {403, 414}:
+            raise
+        midpoint = max(1, len(condition_ids) // 2)
+        left = fetch_gamma_markets(
+            condition_ids[:midpoint],
+            timeout_seconds=timeout_seconds,
+            max_attempts=max_attempts,
+            backoff_seconds=backoff_seconds,
+        )
+        right = fetch_gamma_markets(
+            condition_ids[midpoint:],
+            timeout_seconds=timeout_seconds,
+            max_attempts=max_attempts,
+            backoff_seconds=backoff_seconds,
+        )
+        return [*left, *right]
 
 
 def coerce_float(value: Any) -> float | None:
@@ -323,6 +409,42 @@ def persist_snapshots(*, psql_bin: str, db_url: str, snapshots: list[dict[str, A
     )
 
 
+def load_existing_report(path: Path) -> dict[str, Any]:
+    if not path.exists():
+        return {}
+    try:
+        payload = json.loads(path.read_text())
+    except Exception:
+        return {}
+    return payload if isinstance(payload, dict) else {}
+
+
+def merge_report_history(report: dict[str, Any], previous: dict[str, Any]) -> dict[str, Any]:
+    previous_success = str(previous.get('last_success_at') or previous.get('completed_at') or '').strip() if isinstance(previous, dict) else ''
+    previous_failures = int(previous.get('consecutive_failures') or 0) if isinstance(previous, dict) else 0
+    previous_failure_at = str(previous.get('last_failure_at') or '').strip() if isinstance(previous, dict) else ''
+    previous_failure_streak_started_at = str(previous.get('failure_streak_started_at') or '').strip() if isinstance(previous, dict) else ''
+    if report.get('noop'):
+        report['last_success_at'] = previous_success
+        report['last_failure_at'] = previous_failure_at
+        report['consecutive_failures'] = previous_failures
+        report['failure_streak_started_at'] = previous_failure_streak_started_at
+    elif report.get('ok'):
+        report['last_success_at'] = str(report.get('completed_at') or '')
+        report['last_failure_at'] = ''
+        report['consecutive_failures'] = 0
+        report['failure_streak_started_at'] = ''
+    else:
+        report['last_success_at'] = previous_success
+        report['last_failure_at'] = str(report.get('completed_at') or '')
+        report['consecutive_failures'] = previous_failures + 1
+        if previous_failures > 0 and previous_failure_streak_started_at:
+            report['failure_streak_started_at'] = previous_failure_streak_started_at
+        else:
+            report['failure_streak_started_at'] = str(report.get('started_at') or report.get('completed_at') or '')
+    return report
+
+
 def write_report(path: Path, payload: dict[str, Any]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(payload, indent=2, sort_keys=True) + '\n')
@@ -338,6 +460,7 @@ def main() -> int:
     started_monotonic = time.monotonic()
     lock_file = Path(args.lock_file).expanduser().resolve()
     report_file = Path(args.report_file).expanduser().resolve()
+    previous_report = load_existing_report(report_file)
     report: dict[str, Any] = {
         'artifact_type': 'decided_market_watcher_heartbeat',
         'schema_version': 'decided-market-watcher/v1',
@@ -348,6 +471,10 @@ def main() -> int:
         'apply': bool(args.apply),
         'min_price_delta': float(args.min_price_delta),
         'batch_size': int(args.batch_size),
+        'gamma_markets_url': GAMMA_MARKETS_URL,
+        'gamma_timeout_seconds': float(args.gamma_timeout_seconds),
+        'gamma_max_attempts': int(args.gamma_max_attempts),
+        'gamma_backoff_seconds': float(args.gamma_backoff_seconds),
         'tracked_market_count': 0,
         'fetched_market_count': 0,
         'snapshot_count': 0,
@@ -355,6 +482,10 @@ def main() -> int:
         'reopened_markets': [],
         'missing_condition_ids': [],
         'market_samples': [],
+        'last_success_at': str(previous_report.get('last_success_at') or previous_report.get('completed_at') or ''),
+        'last_failure_at': str(previous_report.get('last_failure_at') or ''),
+        'consecutive_failures': int(previous_report.get('consecutive_failures') or 0),
+        'failure_streak_started_at': str(previous_report.get('failure_streak_started_at') or ''),
     }
 
     try:
@@ -367,7 +498,12 @@ def main() -> int:
                 by_condition = {str(item.get('condition_id') or ''): item for item in tracked if str(item.get('condition_id') or '').strip()}
                 fetched: list[dict[str, Any]] = []
                 for batch in chunked(list(by_condition.keys()), int(args.batch_size)):
-                    fetched.extend(fetch_gamma_markets(batch))
+                    fetched.extend(fetch_gamma_markets(
+                        batch,
+                        timeout_seconds=float(args.gamma_timeout_seconds),
+                        max_attempts=int(args.gamma_max_attempts),
+                        backoff_seconds=float(args.gamma_backoff_seconds),
+                    ))
                 report['fetched_market_count'] = len(fetched)
                 fetched_by_condition = {str(item.get('conditionId') or ''): item for item in fetched if str(item.get('conditionId') or '').strip()}
                 report['missing_condition_ids'] = sorted([cid for cid in by_condition if cid not in fetched_by_condition])
@@ -416,9 +552,17 @@ def main() -> int:
                 report['ok'] = True
     except Exception as exc:  # noqa: BLE001
         report['error'] = str(exc)
+        if isinstance(exc, WatcherError):
+            if exc.http_status is not None:
+                report['http_status'] = int(exc.http_status)
+            if exc.benign:
+                report['noop'] = True
+                report['ok'] = True
+                report['reason'] = 'already_running'
     finally:
         report['completed_at'] = utc_now_iso()
         report['duration_seconds'] = round(time.monotonic() - started_monotonic, 3)
+        merge_report_history(report, previous_report)
         write_report(report_file, report)
 
     print(json.dumps(report, indent=2 if args.pretty else None))

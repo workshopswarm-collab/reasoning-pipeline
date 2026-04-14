@@ -34,6 +34,7 @@ LAUNCH_SYNTHESIS_IF_READY = SCRIPTS_DIR.parents[2] / "synthesis-subagent" / "run
 REPAIR_LOCK_BYPASS_ENV = 'OPENCLAW_REPAIR_LOCK_HELD'
 LOCK_DIR = WORKSPACE_ROOT / 'roles' / 'orchestrator' / 'researchers-swarm-subagents' / 'runtime' / '.runtime-state' / 'runrepairs'
 MARKER_REGISTRY_PATH = WORKSPACE_ROOT / 'roles' / 'orchestrator' / 'researchers-swarm-subagents' / 'runtime' / '.runtime-state' / 'controller-marker-registry.json'
+MARKER_SEND_CLAIM_TTL_SECONDS = 300.0
 
 
 def parse_args() -> argparse.Namespace:
@@ -61,7 +62,7 @@ def load_json(path: Path) -> dict:
 
 def load_marker_registry(path: Path | None = None) -> dict:
     path = path or MARKER_REGISTRY_PATH
-    payload = load_json_dict(path, artifact_name='controller marker registry', default={}) if path.exists() else {}
+    payload = load_json_dict(path, artifact_name='controller marker registry') if path.exists() else {}
     if not isinstance(payload, dict):
         return {'schema_version': 'controller-marker-registry/v1', 'entries': {}}
     entries = payload.get('entries') if isinstance(payload.get('entries'), dict) else {}
@@ -82,10 +83,41 @@ def controller_marker_registry_key(*, dispatch_id: str, marker_kind: str) -> str
 
 
 def marker_already_sent(*, dispatch_id: str, marker_kind: str, bootstrap_state: dict, registry: dict) -> bool:
+    from datetime import datetime, timezone
+
     if marker_kind == 'refresh_finish' and str(bootstrap_state.get('refresh_finish_marker_sent_at') or '').strip():
         return True
     entries = registry.get('entries') if isinstance(registry.get('entries'), dict) else {}
-    return controller_marker_registry_key(dispatch_id=dispatch_id, marker_kind=marker_kind) in entries
+    entry = entries.get(controller_marker_registry_key(dispatch_id=dispatch_id, marker_kind=marker_kind)) if isinstance(entries, dict) else None
+    if not isinstance(entry, dict):
+        return False
+    if str(entry.get('sent_at') or '').strip():
+        return True
+    claimed_at = str(entry.get('claimed_at') or '').strip()
+    if not claimed_at:
+        return False
+    try:
+        claim_dt = datetime.fromisoformat(claimed_at.replace('Z', '+00:00'))
+    except ValueError:
+        return False
+    if claim_dt.tzinfo is None:
+        claim_dt = claim_dt.replace(tzinfo=timezone.utc)
+    age_seconds = (datetime.now(timezone.utc) - claim_dt.astimezone(timezone.utc)).total_seconds()
+    return age_seconds < float(MARKER_SEND_CLAIM_TTL_SECONDS)
+
+
+def claim_marker_send(*, dispatch_id: str, marker_kind: str, marker_text: str, registry: dict) -> str:
+    from datetime import datetime, timezone
+
+    claimed_at = datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z')
+    entries = registry.setdefault('entries', {}) if isinstance(registry, dict) else {}
+    entries[controller_marker_registry_key(dispatch_id=dispatch_id, marker_kind=marker_kind)] = {
+        'dispatch_id': dispatch_id,
+        'marker_kind': marker_kind,
+        'marker_text': marker_text,
+        'claimed_at': claimed_at,
+    }
+    return claimed_at
 
 
 def record_marker_sent(*, dispatch_id: str, marker_kind: str, marker_text: str, bootstrap_state: dict, registry: dict) -> str:
@@ -96,12 +128,17 @@ def record_marker_sent(*, dispatch_id: str, marker_kind: str, marker_text: str, 
     if marker_kind == 'refresh_finish':
         bootstrap_state['refresh_finish_marker_sent_at'] = sent_at
     entries = registry.setdefault('entries', {}) if isinstance(registry, dict) else {}
-    entries[controller_marker_registry_key(dispatch_id=dispatch_id, marker_kind=marker_kind)] = {
+    prior = entries.get(controller_marker_registry_key(dispatch_id=dispatch_id, marker_kind=marker_kind)) if isinstance(entries, dict) else None
+    claimed_at = str(prior.get('claimed_at') or '').strip() if isinstance(prior, dict) else ''
+    entry = {
         'dispatch_id': dispatch_id,
         'marker_kind': marker_kind,
         'marker_text': marker_text,
         'sent_at': sent_at,
     }
+    if claimed_at:
+        entry['claimed_at'] = claimed_at
+    entries[controller_marker_registry_key(dispatch_id=dispatch_id, marker_kind=marker_kind)] = entry
     return sent_at
 
 
@@ -151,6 +188,13 @@ def maybe_send_refresh_finish_marker(*, manifest: dict, manifest_path: Path, dis
         return None, None
 
     try:
+        claim_marker_send(
+            dispatch_id=dispatch_id,
+            marker_kind='refresh_finish',
+            marker_text=refresh_finish_marker,
+            registry=marker_registry,
+        )
+        save_marker_registry(marker_registry)
         refresh_finish_result = send_visible_telegram_message(
             chat_id=str(bootstrap_state.get('chat_id')),
             topic_id=str(controller_topic.get('topic_id')),
