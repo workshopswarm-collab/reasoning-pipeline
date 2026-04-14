@@ -8,6 +8,7 @@
 	<array>
 		<string>/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/bin/python3.14</string>
 		<string>/Users/agent2/.openclaw/orchestrator/scripts/watch_pipeline.py</string>
+		<string>--loop</string>
 		<string>--poll-seconds</string>
 		<string>60</string>
 		<string>--lock-file</string>
@@ -21,8 +22,11 @@
 	<string>/Users/agent2/.openclaw/orchestrator</string>
 	<key>RunAtLoad</key>
 	<true/>
-	<key>StartInterval</key>
-	<integer>60</integer>
+	<key>KeepAlive</key>
+	<dict>
+		<key>SuccessfulExit</key>
+		<false/>
+	</dict>
 	<key>StandardOutPath</key>
 	<string>/Users/agent2/.openclaw/orchestrator/scripts/.runtime-state/launchd/pipeline-watchdog.stdout.log</string>
 	<key>StandardErrorPath</key>

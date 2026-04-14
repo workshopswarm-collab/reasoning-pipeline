@@ -3,8 +3,10 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sys
 import time
+from datetime import datetime, timezone
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -27,6 +29,34 @@ from pipeline_automation_actions import (  # noqa: E402
 )
 
 DEFAULT_LOCK = REPO_ROOT / 'scripts' / '.runtime-state' / 'pipeline-watchdog.lock'
+DEFAULT_HEARTBEAT = REPO_ROOT / 'scripts' / '.runtime-state' / 'pipeline-watchdog-heartbeat.json'
+
+
+def utc_now_iso() -> str:
+    return datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z')
+
+
+def write_heartbeat(path: Path, payload: dict[str, object]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    payload['schema_version'] = 'pipeline-watchdog-heartbeat/v1'
+    payload['updated_at'] = utc_now_iso()
+    path.write_text(json.dumps(payload, indent=2) + '\n')
+
+
+def heartbeat_base(args: argparse.Namespace) -> dict[str, object]:
+    heartbeat_file = str(Path(args.heartbeat_file).expanduser().resolve())
+    return {
+        'runner': 'watch_pipeline',
+        'pid': os.getpid(),
+        'started_at': utc_now_iso(),
+        'state': 'starting',
+        'heartbeat_file': heartbeat_file,
+        'control_managed': bool(args.control_managed),
+        'lock_file': str(Path(args.lock_file).expanduser().resolve()),
+        'poll_seconds': float(args.poll_seconds),
+        'stale_seconds': float(args.stale_seconds),
+        'loop_mode': bool(args.loop),
+    }
 
 
 def parse_args() -> argparse.Namespace:
@@ -44,6 +74,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument('--control-managed', action='store_true', help='Load repair/apply policy from the persisted automation control file each pass')
     parser.add_argument('--control-file', default=str(DEFAULT_CONTROL_FILE), help='Automation control file path used with --control-managed')
     parser.add_argument('--lock-file', default=str(DEFAULT_LOCK), help='Process lock to prevent concurrent watchdog loops')
+    parser.add_argument('--heartbeat-file', default=str(DEFAULT_HEARTBEAT), help='Heartbeat JSON path written each pass')
     parser.add_argument('--pretty', action='store_true')
     return parser.parse_args()
 
@@ -222,12 +253,52 @@ def watchdog_pass(args: argparse.Namespace) -> dict[str, object]:
     }
 
 
+def update_heartbeat_for_summary(heartbeat: dict[str, object], summary: dict[str, object], *, sleeping: bool = False) -> dict[str, object]:
+    results = summary.get('results') if isinstance(summary.get('results'), list) else []
+    first_result = results[0] if results and isinstance(results[0], dict) else {}
+    after = first_result.get('after') if isinstance(first_result.get('after'), dict) else {}
+    before = first_result.get('before') if isinstance(first_result.get('before'), dict) else {}
+    current = after or before
+    heartbeat['state'] = 'idle_sleep' if sleeping else 'running'
+    heartbeat['last_pass'] = {
+        'ok': bool(summary.get('ok')),
+        'status': str(summary.get('status') or ''),
+        'active_case_count': int(summary.get('active_case_count') or 0),
+        'updated_at': utc_now_iso(),
+    }
+    heartbeat['current_activity'] = {
+        'phase': 'watchdog_pass',
+        'updated_at': utc_now_iso(),
+        'active_case_count': int(summary.get('active_case_count') or 0),
+        'case_key': str(current.get('case_key') or ''),
+        'dispatch_id': str(current.get('dispatch_id') or ''),
+        'market_id': str(current.get('market_id') or ''),
+        'current_stage': str(current.get('current_stage') or ''),
+        'stage_statuses': current.get('stage_statuses') or {},
+        'stage_detail_states': current.get('stage_detail_states') or {},
+        'proposed_actions': first_result.get('proposed_actions') or [],
+        'executed_actions': [
+            str((item.get('name') if isinstance(item, dict) else item) or '')
+            for item in ((first_result.get('executed_actions') if isinstance(first_result.get('executed_actions'), list) else []) or [])
+        ],
+    }
+    if sleeping:
+        heartbeat['last_idle_sleep_started_at'] = utc_now_iso()
+        heartbeat['last_idle_sleep_seconds'] = heartbeat.get('poll_seconds')
+    return heartbeat
+
+
 def main() -> None:
     args = parse_args()
     lock_path = Path(args.lock_file).expanduser().resolve()
+    heartbeat_path = Path(args.heartbeat_file).expanduser().resolve()
+    heartbeat = heartbeat_base(args)
+    write_heartbeat(heartbeat_path, heartbeat)
     with exclusive_lock(lock_path, error_message=f'another watchdog instance already holds {lock_path}'):
         if not args.loop:
             summary = watchdog_pass(args)
+            heartbeat = update_heartbeat_for_summary(heartbeat, summary)
+            write_heartbeat(heartbeat_path, heartbeat)
             print(json.dumps(summary, indent=2 if args.pretty else None))
             if not summary.get('ok'):
                 raise SystemExit(1)
@@ -235,7 +306,11 @@ def main() -> None:
 
         while True:
             summary = watchdog_pass(args)
+            heartbeat = update_heartbeat_for_summary(heartbeat, summary)
+            write_heartbeat(heartbeat_path, heartbeat)
             print(json.dumps(summary, indent=2 if args.pretty else None), flush=True)
+            heartbeat = update_heartbeat_for_summary(heartbeat, summary, sleeping=True)
+            write_heartbeat(heartbeat_path, heartbeat)
             time.sleep(args.poll_seconds)
 
 

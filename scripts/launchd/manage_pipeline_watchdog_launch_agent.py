@@ -26,12 +26,13 @@ class LaunchdError(RuntimeError):
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description='Render/install/status for the observe-only pipeline watchdog launch agent')
+    parser = argparse.ArgumentParser(description='Render/install/status for the persistent pipeline watchdog launch agent')
     sub = parser.add_subparsers(dest='command', required=True)
 
     def add_common_render_flags(cmd: argparse.ArgumentParser) -> None:
         cmd.add_argument('--label', default=DEFAULT_LABEL)
-        cmd.add_argument('--poll-seconds', type=int, default=60, help='launchd StartInterval seconds')
+        cmd.add_argument('--poll-seconds', type=int, default=60, help='Watchdog loop poll interval seconds')
+        cmd.add_argument('--keepalive-successful-exit', action='store_true', help='Use KeepAlive=true instead of restart-on-unsuccessful-exit only')
         cmd.add_argument('--python-bin', default=shutil.which('python3') or sys.executable, help='Absolute python3 path used by launchd')
         cmd.add_argument('--stdout-log', default=str(RUNTIME_STATE_DIR / 'pipeline-watchdog.stdout.log'))
         cmd.add_argument('--stderr-log', default=str(RUNTIME_STATE_DIR / 'pipeline-watchdog.stderr.log'))
@@ -79,6 +80,7 @@ def watchdog_program_arguments(args: argparse.Namespace) -> list[str]:
     program = [
         str(Path(args.python_bin).expanduser().resolve()),
         str(WATCHDOG_SCRIPT),
+        '--loop',
         '--poll-seconds',
         str(args.poll_seconds),
         '--lock-file',
@@ -111,7 +113,7 @@ def render_plist_payload(args: argparse.Namespace) -> dict[str, Any]:
         'ProgramArguments': watchdog_program_arguments(args),
         'WorkingDirectory': str(REPO_ROOT),
         'RunAtLoad': True,
-        'StartInterval': int(args.poll_seconds),
+        'KeepAlive': True if args.keepalive_successful_exit else {'SuccessfulExit': False},
         'StandardOutPath': str(stdout_log),
         'StandardErrorPath': str(stderr_log),
         'ProcessType': 'Background',
