@@ -78,14 +78,8 @@ eligible AS (
       WHERE c.market_id = m.id
         AND c.status = 'open'
     )
-    AND (
-      m.pipeline_status = 'new'
-      OR NOT EXISTS (
-        SELECT 1
-        FROM cases c_prior
-        WHERE c_prior.market_id = m.id
-      )
-    )
+    -- no prior-case-history gate here; eligibility is already bounded by
+    -- pipeline_status, open/future timing, and the no-open-case check below.
 ),
 ranked AS (
   SELECT *
