@@ -61,6 +61,7 @@ Operationally, Orchestrator should hand off decision work to the separate `decis
 - the separate `decision-maker` agent provides the actual judgment by returning the decision packet JSON
 - in `targeted_escalation`, the agent may perform bounded independent search/fetch work itself rather than relying on a runtime-selected source list
 - Orchestrator-hosted runtime performs deterministic validation, transcript-budget auditing, rendering, and status persistence against canonical case paths
+- Decision-Maker runtime now defaults to case-scoped agent sessions (`agent:decision-maker:case:<case-key>`) unless an explicit shared/override session key is requested, reducing cross-case contamination risk
 
 The Decision-Maker agent should operate against the canonical Orchestrator paths rather than creating a parallel implementation tree in its own workspace.
 

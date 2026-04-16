@@ -1,0 +1,157 @@
+{
+  "schema_version": "decision-packet/v1",
+  "generated_at": "2026-04-14T10:43:00-04:00",
+  "context": {
+    "case_key": "case-20260414-9f18b170",
+    "dispatch_id": "refresh-case-20260414-9f18b170-20260414T144254Z",
+    "question": "Will Bitcoin reach $76,000 April 13-19?",
+    "market_id": "case-20260414-9f18b170",
+    "market_title": "Will Bitcoin reach $76,000 April 13-19?",
+    "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260414-9f18b170/synthesizer-agent/decision-handoff.md",
+    "source_syndicated_finding_path": "qualitative-db/40-research/cases/case-20260414-9f18b170/synthesizer-agent/syndicated-finding.md",
+    "decision_maker_agent": "decision-maker",
+    "canonical_markdown_path": "decision-maker-packet.md",
+    "canonical_json_path": "artifacts/decision-maker-packet.json",
+    "external_market_id": "0xf51551b39d50396009471492879718c582a9b1e7c8448793544f480991c1c019",
+    "market_slug": "will-bitcoin-reach-76k-april-13-19",
+    "platform": "polymarket",
+    "primary_market_url": "https://polymarket.com/event/will-bitcoin-reach-76k-april-13-19",
+    "source_light_refresh_brief_path": "qualitative-db/40-research/cases/case-20260414-9f18b170/decision-maker/refreshes/refresh-case-20260414-9f18b170-20260414T144254Z/light-refresh-brief.json",
+    "refresh_mode": "light"
+  },
+  "decision": {
+    "side": "yes",
+    "trade_authorization": "watch_only",
+    "position_policy": "hold_only",
+    "decision_readiness": "ready",
+    "primary_crux": "This now looks like a market repricing toward fair value rather than a factual regime change: BTC reaching $76,000 during Apr 13-19 remains likely because Binance is already trading just below the threshold and only a 1-minute high is needed, but 0.98 is clearly beyond what can be justified without a directly verified qualifying Binance print.",
+    "secondary_cruxes": [
+      "The prior crux is intact: touch-style mechanics make Yes the right directional side, but unresolved venue-specific execution still matters until an actual $76,000 Binance print is shown.",
+      "The refresh brief shows a major price jump from 0.89 to 0.98 without any new independently verified qualifying Binance high in the compact package.",
+      "At 0.98, even small path-failure or venue-specific settlement tails become economically important, so the residual uncertainty is no longer negligible."
+    ],
+    "thesis_class": "price_not_good_enough"
+  },
+  "valuation": {
+    "fair_value_low": 0.85,
+    "fair_value_high": 0.91,
+    "fair_value_mid": 0.88,
+    "market_reference_price": 0.98,
+    "edge_mid_vs_market_pct_points": -10.0,
+    "independent_verification_quality": "medium",
+    "compressed_toward_market_applied": false,
+    "compression_reason": "BTC's proximity to the threshold and touch mechanics justify a strong Yes probability, but absent a verified qualifying Binance 1-minute high there is no basis to follow the market up to near-certainty."
+  },
+  "execution_semantics": {
+    "price_axis": "market_implied_true_prob",
+    "price_source": "market_snapshot_quote",
+    "rebalance_threshold_fraction": 0.03,
+    "allow_auto_reversal": false,
+    "valid_until": "2026-04-18T23:59:00-04:00",
+    "quote_staleness_seconds": 7200,
+    "time_horizon": "Apr 13-19 Binance BTC/USDT intrawindow high-touch resolution"
+  },
+  "risk_controls": {
+    "max_position_size_pct_bankroll": 0.005,
+    "max_additional_exposure_pct_bankroll": 0.0,
+    "max_single_order_pct_bankroll": 0.0,
+    "slippage_tolerance_bps": 40,
+    "liquidity_min_depth": 1500,
+    "correlation_bucket_limit_pct_bankroll": 0.05,
+    "confidence_level": "medium",
+    "portfolio_constraints": [
+      "Do not initiate fresh exposure from this packet because the market has repriced far above bounded fair value.",
+      "Existing aligned exposure may be held, but refresh on any verified Binance print near or above $76,000 or a sharp pullback below $75,000 before adjusting.",
+      "Treat venue-specific threshold-touch markets as execution-sensitive once pricing enters near-certainty territory."
+    ],
+    "liquidity_caution": "low"
+  },
+  "bands": [
+    {
+      "name": "max_enter",
+      "min_p": 0,
+      "max_p": 0.72,
+      "target_exposure_fraction": 0,
+      "notes": "No autonomous entry from this packet; much cheaper pricing would require a fresh live-path check."
+    },
+    {
+      "name": "scaled_enter",
+      "min_p": 0.72,
+      "max_p": 0.84,
+      "target_exposure_fraction": 0,
+      "notes": "No entry authorized because the market is already materially richer than justified fair value."
+    },
+    {
+      "name": "hold",
+      "min_p": 0.84,
+      "max_p": 0.9,
+      "target_exposure_fraction": 0,
+      "notes": "Hold zone consistent with a high-probability Yes outcome but no remaining valuation cushion."
+    },
+    {
+      "name": "trim",
+      "min_p": 0.9,
+      "max_p": 0.97,
+      "target_exposure_fraction": 0,
+      "notes": "Trim or avoid increasing as price rises above fair value and residual venue-specific path risk dominates."
+    },
+    {
+      "name": "exit",
+      "min_p": 0.97,
+      "max_p": 1,
+      "target_exposure_fraction": 0,
+      "notes": "Exit/avoid at extreme prices because no verified qualifying Binance print had yet been shown in the reviewed checks."
+    }
+  ],
+  "invalidation": {
+    "thesis_breakers": [
+      "A verified Binance BTC/USDT 1-minute high at or above $76,000 immediately resolves the market and supersedes this packet.",
+      "BTC fails repeated tests below $76,000 and then sells off materially away from the threshold.",
+      "Fresh evidence shows the relevant Binance highs remain systematically weaker than implied by broader spot markets."
+    ],
+    "market_structure_breakers": [
+      "The market reprices sharply again on new Binance path information before a fresh packet is produced.",
+      "Exchange-specific liquidity, wick behavior, or volatility conditions change enough to invalidate the current near-threshold calibration.",
+      "A clearer rule-text capture reveals materially stricter settlement mechanics than assumed."
+    ],
+    "time_breakers": [
+      "A single fresh Binance wick to $76,000 can change the forecast immediately.",
+      "As the remaining window shortens, stale path assumptions should be refreshed rather than extrapolated."
+    ],
+    "reversal_conditions": [
+      "Move toward authorized yes only after a fresh packet if a qualifying Binance print occurs while price remains favorable for residual execution.",
+      "Move materially lower if BTC rejects and pulls away from the threshold.",
+      "Do not auto-reverse from this packet."
+    ]
+  },
+  "epistemic_status": {
+    "key_uncertainties": [
+      "Whether a qualifying Binance $76,000 print has already occurred since the last reviewed checks.",
+      "How much residual path-failure risk survives when BTC is trading within roughly 0.2%-0.4% of the trigger.",
+      "How much of the current 0.98 price reflects informed flow versus simple threshold-chasing or stale repricing."
+    ],
+    "reasons_to_pass": [
+      "The market has now repriced far beyond bounded fair value, leaving no realistic room for error.",
+      "The compact package still does not show a direct verified qualifying Binance print.",
+      "Short-dated touch markets can still fail on repeated near-misses, and those tails matter economically at 98%."
+    ],
+    "what_would_change_my_mind": [
+      "A fresh verified Binance print at or above $76,000 would collapse the residual tail and move confidence toward resolution.",
+      "A clear rejection followed by a move back below $75,000 would lower fair value materially.",
+      "A cleaner rules capture removing residual source-specific uncertainty would slightly improve confidence but would not justify 0.98 without a qualifying print."
+    ],
+    "decision_quality": "good_not_clean"
+  },
+  "audit": {
+    "market_baseline_respected": true,
+    "action_bias_check_passed": true,
+    "self_preservation_bias_check_passed": true,
+    "one_sentence_rationale": "BTC is still likely to touch $76,000 during Apr 13-19 because Binance is already trading just below the threshold and the contract only needs one 1-minute high, but the jump to 0.98 now prices the event as too close to automatic without a directly verified qualifying Binance print, so the disciplined posture remains watch-only rather than chasing near-certainty.",
+    "notes": "This refresh is a valuation update, not a thesis change: the market has moved from near-fair toward clear overconfidence, while the underlying directional case remains the same.",
+    "structured_handoff_primary_used": true,
+    "prose_fallback_used": true,
+    "verification_mode_used": "targeted_escalation",
+    "additional_verification_performed": true,
+    "additional_verification_notes": "targeted_pack"
+  }
+}

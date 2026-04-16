@@ -1,0 +1,62 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Full April 13-19 Binance 1-minute coverage was not exhaustively audited in this run.",
+    "Short-horizon crypto volatility can change the probability quickly.",
+    "The estimate depends heavily on exchange-specific wick behavior."
+  ],
+  "key_assumptions": [
+    "A Binance-specific 1-minute wick to 90 is materially easier than a close-above-90 outcome.",
+    "SOL trading in the high-80s leaves a real but not overwhelming chance of touching 90 before April 19 ends.",
+    "No major crypto risk-off move interrupts the setup."
+  ],
+  "main_logical_chain": [
+    "Start from the market's 0.74 prior and ask what it is assuming.",
+    "Interpret the contract: any Binance SOL/USDT 1-minute high >=90 settles Yes, which favors wick probability over close-based intuition.",
+    "Check direct Binance data: recent sampled highs reached 89.15 but not 90.",
+    "Use contextual price/resistance data to confirm 90 is near but not trivial.",
+    "Conclude Yes is still more likely than No, but less likely than the market price implies."
+  ],
+  "main_thesis": "The market is correctly pricing the easier touch-market structure, but 0.74 looks somewhat rich versus direct Binance evidence that recent highs remain below 90.",
+  "own_probability": 0.62,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "This market will immediately resolve to \"Yes\" if any Binance 1-minute candle for SOL/USDT ... has a final \"High\" price equal to or greater than the price specified in the title.",
+    "sampled window maximum high: 89.15",
+    "The current price of Solana (SOL) is 87.55 USD"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "contract_interpretation",
+    "technical_reference",
+    "scenario_analysis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-143465dc",
+    "dispatch_id": "dispatch-case-20260416-143465dc-20260416T191321Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "2d9132f2-60e4-4b10-ba84-1d2091e0201c",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-143465dc/researcher-analyses/2026-04-16/dispatch-case-20260416-143465dc-20260416T191321Z/personas/market-implied.md",
+    "source_persona_sha256": "aa6d32f58aaeb62aeaf8eb88bce0b02384d488f9bb19d41f9e8e93c99a35a23c"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Rule clarity is high because Polymarket explicitly names Binance SOL/USDT 1-minute highs as the source of truth; verification completeness is moderate because the Binance pass was sampled recent-window data rather than a full interval audit.",
+  "strongest_disconfirmers": [
+    "The verified Binance sample still remained below 90, so the event is not already effectively done.",
+    "Nearby resistance around 88-89 means the final move still requires follow-through, not just drift."
+  ],
+  "strongest_supports": [
+    "Polymarket resolves on Binance SOL/USDT 1-minute highs, which lowers the bar for Yes.",
+    "Direct Binance verification found a sampled recent high of 89.15, showing the threshold is close.",
+    "TradingView context put SOL around 87.55 with upside targets above 90 if 88 is cleared."
+  ],
+  "timing_relevance": "Highly timing-sensitive: the remaining days and any fast intraday wick on Binance can decide the market immediately.",
+  "unresolved_ambiguities": [
+    "Whether a full-window Binance audit would reveal stronger prior approach behavior to 90.",
+    "How much latent wick probability the market is embedding beyond visible spot references."
+  ],
+  "what_would_change_view": "A full Binance 1-minute interval check, repeated failures below 89, or a decisive risk-on/risk-off move in the broader crypto tape would materially change the estimate."
+}

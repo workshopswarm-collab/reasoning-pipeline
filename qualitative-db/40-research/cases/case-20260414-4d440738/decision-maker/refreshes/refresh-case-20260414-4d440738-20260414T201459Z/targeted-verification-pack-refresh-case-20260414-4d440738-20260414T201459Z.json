@@ -1,0 +1,78 @@
+{
+  "artifact_type": "targeted_verification_pack",
+  "schema_version": "decision-targeted-verification-pack/v1",
+  "case_key": "case-20260414-4d440738",
+  "dispatch_id": "refresh-case-20260414-4d440738-20260414T201459Z",
+  "required": true,
+  "verification_mode": "targeted_escalation",
+  "pack_purpose": "Deterministic narrow follow-up pack for targeted escalation. It defines the crux questions and operational budgets, while source choice may remain model-driven within runtime-enforced tool guardrails.",
+  "verification_questions": [
+    "Does the latest available information materially change the decision, given: BTC can reprice sharply over the weekend and the contract resolves on a Monday noon ET minute close.?",
+    "How decision-relevant is the remaining contract/source-of-truth ambiguity: Exact ET-to-Binance minute mapping is clear enough but single-minute settlement mechanics remain operationally sensitive.?",
+    "Are the current blockers still material to final judgment: No decisive independently verified volatility/base-rate model for the chance of an 8%+ drawdown by settlement.?",
+    "Is the main verification gap still decision-material: No strong independent quantification of six-day downside-tail frequency from a 74k-to-68k starting point was added beyond lane-level reasoning.?"
+  ],
+  "structured_handoff_focus": {
+    "contract_ambiguity_level": "minor",
+    "contract_ambiguity_reason": "Exact ET-to-Binance minute mapping is clear enough but single-minute settlement mechanics remain operationally sensitive.",
+    "verification_gap_summary": "No strong independent quantification of six-day downside-tail frequency from a 74k-to-68k starting point was added beyond lane-level reasoning.",
+    "best_countercase_summary": "An ordinary crypto drawdown or venue-specific bad print into the exact settlement minute can still flip NO despite BTC being comfortably above strike today.",
+    "main_reason_for_disagreement": "Remaining disagreement is mostly about how much probability to haircut for minute-specific settlement and crypto downside-tail risk.",
+    "resolution_mechanics_summary": "Resolve from Binance BTC/USDT final close of the April 20 12:00 ET one-minute candle; price must be strictly above 68000.",
+    "freshness_sensitive": "yes",
+    "freshness_driver": "BTC can reprice sharply over the weekend and the contract resolves on a Monday noon ET minute close.",
+    "decision_blockers": [
+      "No decisive independently verified volatility/base-rate model for the chance of an 8%+ drawdown by settlement.",
+      "Single-minute Binance settlement leaves residual venue and microstructure fragility.",
+      "Any fresh weekend or Monday-morning macro/crypto shock could materially change the estimate."
+    ],
+    "disagreement_type": "market_pricing"
+  },
+  "supporting_persona_summaries": [
+    {
+      "persona": "market-implied",
+      "recommended_weight": "medium",
+      "own_probability": 0.88,
+      "main_thesis": "Market is directionally right that >68k is likely, but 93.5-94% looks somewhat overconfident given six-day BTC volatility and the exact Binance noon-ET minute-close condition.",
+      "main_logical_chain": [
+        "Market implies about 93.5-94% Yes because current Binance spot is comfortably above 68k.",
+        "Direct Binance data supports a strong Yes lean because recent spot and range have stayed above the strike.",
+        "But the contract is narrow and short-horizon crypto downside tails are not negligible.",
+        "So the correct update is high-probability Yes, but modestly below market at 88%."
+      ],
+      "strongest_supports": [
+        "Binance BTC/USDT traded around 74.2k during the run, about 9.2% above the 68k strike.",
+        "Recent Binance daily lows in the sampled week stayed above roughly 70.5k."
+      ],
+      "strongest_disconfirmers": [
+        "BTC can still move 8-10% in six days.",
+        "Resolution depends on one exact Binance 1-minute close at noon ET, adding timing and venue-specific risk."
+      ],
+      "unresolved_ambiguities": [
+        "Exact short-horizon downside-tail frequency was not quantified in a formal base-rate study.",
+        "Noon-ET candle operational mapping appears clear from rules but still matters mechanically."
+      ],
+      "what_would_change_view": "A move of Binance BTC/USDT back near 70k, a new macro/crypto shock, or evidence of Binance-specific settlement noise would lower the estimate; continued stable trading above 72k would raise it.",
+      "timing_relevance": "High: the market resolves on April 20, 2026 at the Binance BTC/USDT 12:00 ET 1-minute close, so date/time precision is material.",
+      "source_quality_view": "Primary contract source and settlement venue data are strong, but evidence independence is only medium and no authoritative future-settling source exists yet.",
+      "persona_finding_path": "qualitative-db/40-research/cases/case-20260414-4d440738/researcher-analyses/2026-04-14/dispatch-case-20260414-4d440738-20260414T195302Z/personas/market-implied.md",
+      "assumption_artifact_paths": [
+        "qualitative-db/40-research/cases/case-20260414-4d440738/researcher-analyses/2026-04-14/dispatch-case-20260414-4d440738-20260414T195302Z/assumptions/market-implied.md"
+      ],
+      "evidence_artifact_paths": [
+        "qualitative-db/40-research/cases/case-20260414-4d440738/researcher-analyses/2026-04-14/dispatch-case-20260414-4d440738-20260414T195302Z/evidence/market-implied.md"
+      ]
+    }
+  ],
+  "selected_assumption_snippets": [],
+  "selected_evidence_snippets": [],
+  "selected_supporting_note_snippets": [],
+  "pack_budget": {
+    "max_chars": 6000,
+    "actual_chars_before_trim": 7882,
+    "actual_chars_after_trim": 5451,
+    "approx_tokens_before_trim": 1970,
+    "approx_tokens_after_trim": 1362,
+    "trim_applied": true
+  }
+}

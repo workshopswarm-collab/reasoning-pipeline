@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Single-minute settlement granularity.",
+    "Short-horizon BTC volatility.",
+    "Potential Binance-specific operational or pricing anomaly near the target minute."
+  ],
+  "key_assumptions": [
+    "A roughly 6%+ cushion above 70k is enough to survive ordinary five-day BTC volatility.",
+    "No major downside macro or crypto shock arrives before the April 20 noon ET settlement minute.",
+    "Binance remains the operative venue without material settlement-window disruption."
+  ],
+  "main_logical_chain": [
+    "Start from the market's 86% prior and ask whether the current price cushion makes that level reasonable.",
+    "Verify contract mechanics and confirm the governing source is Binance BTC/USDT 12:00 ET one-minute close, strictly above 70k.",
+    "Check direct Binance spot data and recent daily closes; BTC is comfortably above 70k now and has recently held above it.",
+    "Discount slightly because the contract is a narrow timestamp event rather than a broad end-of-day condition."
+  ],
+  "main_thesis": "The market's 86% Yes price is broadly justified by BTC trading well above 70k, but I discount slightly for narrow timestamp risk and normal five-day crypto volatility.",
+  "own_probability": 0.82,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "Resolve Yes if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone has a final Close price higher than 70000.",
+    "Binance ticker during research was about 74529-74543 BTCUSDT."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-b4a49d1b",
+    "dispatch_id": "dispatch-case-20260415-b4a49d1b-20260415T000939Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "1e6bc1fd-88d4-4648-9b5c-801f025b7c56",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-b4a49d1b/researcher-analyses/2026-04-15/dispatch-case-20260415-b4a49d1b-20260415T000939Z/personas/market-implied.md",
+    "source_persona_sha256": "db852f513feb13deb616922317b32a2e5a4f2ff011093bbc96a47234781e56c8"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is medium-high: contract mechanics are clear, Binance is the governing venue for direct price context, and CoinGecko offered a useful but limited independent cross-check.",
+  "strongest_disconfirmers": [
+    "The contract settles on one exact one-minute close, so a >6% downside move before noon ET April 20 is enough to flip the result.",
+    "Crypto can move that magnitude within five days, especially on fresh macro or crypto-specific stress."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT spot during research was around 74.5k, materially above the 70k threshold.",
+    "Recent Binance daily closes in the sampled week all remained above 70k.",
+    "CoinGecko cross-check was directionally consistent with Binance spot."
+  ],
+  "timing_relevance": "This is a date-sensitive, timezone-specific market resolved at noon ET on April 20 using a single Binance one-minute close.",
+  "unresolved_ambiguities": [
+    "Whether realized volatility between now and April 20 is low enough to fully justify an 86% price rather than a slightly lower one.",
+    "How much latent event risk the market may already be incorporating beyond visible public spot context."
+  ],
+  "what_would_change_view": "I would cut the estimate if BTC loses most of its cushion toward 70k, if downside volatility spikes, or if Binance-specific issues emerge; I would move closer to market if BTC stays comfortably above the mid-74k area into the weekend."
+}

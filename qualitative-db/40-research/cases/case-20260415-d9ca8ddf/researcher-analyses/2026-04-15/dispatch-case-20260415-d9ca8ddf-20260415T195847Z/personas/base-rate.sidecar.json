@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Short-horizon crypto volatility can erase a 4% cushion quickly.",
+    "Daily klines are contextual and do not directly show the exact settlement-minute behavior.",
+    "Exchange-specific anomalies or interpretation disputes, while not central, could complicate edge cases."
+  ],
+  "key_assumptions": [
+    "BTC stays within roughly the recent realized range into the April 17 noon ET settlement window.",
+    "No sharp downside shock pushes Binance BTCUSDT below 72000 at the exact 12:00 ET 1-minute close.",
+    "Settlement follows the straightforward Binance BTCUSDT 1-minute candle close interpretation in the posted rules."
+  ],
+  "main_logical_chain": [
+    "Read the Polymarket rules to identify the exact resolution source, time, pair, and threshold.",
+    "Check Binance-native current price and recent realized range on the named venue.",
+    "Observe that BTC is clearly above 72000 now and has mostly closed above it recently, implying a high Yes prior.",
+    "Discount that prior because crypto can move several percent quickly and settlement depends on one exact minute rather than a broad daily level.",
+    "Conclude that Yes is likely but that a low-90s market price is somewhat too confident; estimate 84%."
+  ],
+  "main_thesis": "Yes is more likely than not because Binance BTCUSDT is currently well above 72000 and recent closes were mostly above that level, but the market is somewhat overconfident because exact-minute settlement and ordinary crypto volatility still leave meaningful downside path risk.",
+  "own_probability": 0.84,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone (noon) ... has a final 'Close' price higher than the price specified.",
+    "Binance ticker fetch showed BTCUSDT at 74,984.29 on 2026-04-15."
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "contract_interpretation",
+    "market_anchor"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-d9ca8ddf",
+    "dispatch_id": "dispatch-case-20260415-d9ca8ddf-20260415T195847Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "e10e8b08-0318-442a-ae83-c2d6c5fc4f6c",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-d9ca8ddf/researcher-analyses/2026-04-15/dispatch-case-20260415-d9ca8ddf-20260415T195847Z/personas/base-rate.md",
+    "source_persona_sha256": "4e5a7558a0ee5d3eaea8a0069ba7381f6eac95ae7bb3b0d835aff8b128fd1e1a"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Adequate and audit-friendly: Polymarket rules clearly define the contract, while Binance-native data provides venue-consistent context. Independence is medium and final settlement remains future-dated.",
+  "strongest_disconfirmers": [
+    "A recent Binance daily close at 70740.98 shows the threshold is still reachable on ordinary downside volatility.",
+    "The contract settles on one exact 12:00 ET 1-minute close, which adds path/timing risk beyond a general bullish view."
+  ],
+  "strongest_supports": [
+    "Current Binance BTCUSDT spot was about 74984, roughly 4.1% above the threshold.",
+    "Recent Binance daily closes were mostly above 72000, so the threshold sits below the current trading regime.",
+    "Yes only requires BTC to avoid a moderate downside move by one specific minute, not to make new highs."
+  ],
+  "timing_relevance": "Very high; the market resolves on the Binance BTCUSDT 12:00 ET 1-minute candle close on April 17, so exact timing and timezone interpretation matter.",
+  "unresolved_ambiguities": [
+    "How often BTC revisits sub-72000 levels on shorter intraday windows right before settlement was not fully quantified here.",
+    "The exact April 17 12:00 ET candle is of course not yet observable."
+  ],
+  "what_would_change_view": "I would move up if shorter-interval Binance data showed sustained comfortable trading above 72000 into April 16-17, and move down if BTC began revisiting the low-72k/high-71k area or a fresh downside catalyst appeared."
+}

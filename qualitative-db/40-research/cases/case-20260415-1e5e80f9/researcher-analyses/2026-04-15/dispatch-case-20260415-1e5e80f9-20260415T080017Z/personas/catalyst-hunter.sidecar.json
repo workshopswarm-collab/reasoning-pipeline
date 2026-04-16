@@ -1,0 +1,54 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A single sharp risk-off move before noon ET can erase the current cushion.",
+    "The analysis is intentionally concentrated on direct settlement-surface evidence rather than broad independent news flow."
+  ],
+  "key_assumptions": [
+    "The current >72k Binance buffer persists absent a discrete downside catalyst.",
+    "No overlooked scheduled event before noon ET April 16 has enough information value to drive a >2% downside move."
+  ],
+  "main_logical_chain": [
+    "Polymarket rules say settlement depends on the Binance BTC/USDT 12:00 ET one-minute close on April 16.",
+    "Binance direct data shows spot is currently well above 72,000 and recent minute closes never breached 72,000 in the checked sample.",
+    "Without a clearly identified high-information downside catalyst before settlement, Yes remains more likely than the market price implies."
+  ],
+  "main_thesis": "BTC/USDT is already comfortably above 72,000 on Binance and no clearly identified scheduled catalyst before noon ET on April 16 obviously justifies pricing a sub-72,000 settlement close as likely.",
+  "own_probability": 0.88,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "This market will resolve to \"Yes\" if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone... has a final \"Close\" price higher than the price specified in the title.",
+    "lowest close observed was 73,566.00"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "catalyst_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-1e5e80f9",
+    "dispatch_id": "dispatch-case-20260415-1e5e80f9-20260415T080017Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "ce05868d-25c6-4002-89ef-731d34e3057c",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-1e5e80f9/researcher-analyses/2026-04-15/dispatch-case-20260415-1e5e80f9-20260415T080017Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "72ab26da8cc2f598bbfe2334f7553717b57e22d630cca55e658c68fc681ceb7f"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High on direct settlement mechanics and current price state, with low-to-medium ambiguity because the contract names Binance UI while this run also relied on Binance API semantics.",
+  "strongest_disconfirmers": [
+    "BTC can easily move more than 2% in a short window, so an overnight macro or crypto-specific selloff could still break the threshold."
+  ],
+  "strongest_supports": [
+    "Binance ticker was about 73,728.64 during the run, leaving roughly a 2.4% cushion above 72,000.",
+    "The checked 1,000-minute Binance 1m kline sample had no closes at or below 72,000."
+  ],
+  "timing_relevance": "This is a short-horizon threshold market where timing risk into one specific noon ET minute matters more than broad long-run Bitcoin fundamentals.",
+  "unresolved_ambiguities": [
+    "The rules name the Binance trading UI as the resolution surface, while verification here also used Binance API docs and outputs.",
+    "Unscheduled macro or exchange-specific headlines remain inherently hard to pre-verify."
+  ],
+  "what_would_change_view": "I would lower the estimate materially if BTC/USDT compresses toward 72.5k, if a concrete downside catalyst appears before settlement, or if the candle timing/source interpretation proves different from the plain reading."
+}

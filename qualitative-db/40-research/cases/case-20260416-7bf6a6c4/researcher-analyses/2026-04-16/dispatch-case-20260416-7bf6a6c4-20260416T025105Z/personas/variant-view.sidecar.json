@@ -1,0 +1,58 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "The variant edge disappears if BTC holds comfortably above 75000 into the settlement window.",
+    "This run used limited contextual sources beyond direct rules plus direct venue data."
+  ],
+  "key_assumptions": [
+    "Traders may be over-anchoring to BTC currently trading above 74000 rather than the exact 12:00 ET close condition.",
+    "An ~860 point cushion is helpful but not decisive over the remaining overnight and U.S. morning window.",
+    "The published rule language fully captures the governing settlement mechanics."
+  ],
+  "main_logical_chain": [
+    "The contract resolves from the Binance BTC/USDT 12:00 ET 1-minute candle close, not from a touch or broad daily level.",
+    "BTC is currently above 74000 on the governing venue, so Yes is still the base case.",
+    "But exact-timestamp close fragility creates more path dependence than a casual above-threshold framing suggests.",
+    "Therefore Yes should remain favored, but somewhat below the market-implied 0.66-0.71 range."
+  ],
+  "main_thesis": "Yes remains the base case, but the market may be modestly overpricing it by underweighting the stricter exact-noon-close requirement on Binance.",
+  "own_probability": 0.62,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone has a final 'Close' price higher than the price specified.",
+    "BTCUSDT = 74860.46"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "contract_interpretation",
+    "variant_hypothesis",
+    "technical_reference"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-7bf6a6c4",
+    "dispatch_id": "dispatch-case-20260416-7bf6a6c4-20260416T025105Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "d9390331-d5ea-4393-9f6e-c636a3f328c3",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-7bf6a6c4/researcher-analyses/2026-04-16/dispatch-case-20260416-7bf6a6c4-20260416T025105Z/personas/variant-view.md",
+    "source_persona_sha256": "bde886ea37b5917177e2e5d54c601841874a928c0389be7f33a47bc73719f368"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary settlement mechanics are clear and low-ambiguity; direct Binance API context is high relevance, but evidence independence is only medium because both sources anchor to the same venue/mechanism.",
+  "strongest_disconfirmers": [
+    "Current governing-venue price is already meaningfully above 74000, so persistent support into late morning would make the below-market view too cautious.",
+    "The exact-minute-close discount may be smaller than the variant case assumes if BTC remains comfortably above the line."
+  ],
+  "strongest_supports": [
+    "Direct Binance API context showed BTCUSDT around 74860, already above the threshold on the governing venue.",
+    "Recent captured Binance 1-minute closes were all above 74000."
+  ],
+  "timing_relevance": "This is a <24h exact-minute close market, so near-term path dependence and timezone precision matter directly.",
+  "unresolved_ambiguities": [
+    "How stable the current above-74000 cushion will be through the overnight and U.S. morning session.",
+    "Whether current market pricing has already fully incorporated the exact-close-versus-touch distinction."
+  ],
+  "what_would_change_view": "I would move toward or above the market if BTC holds comfortably above 75000 and Binance 1-minute closes remain stably above 74000 into late morning ET on April 17."
+}

@@ -1,0 +1,155 @@
+{
+  "schema_version": "decision-packet/v1",
+  "generated_at": "2026-04-15T04:09:00-04:00",
+  "context": {
+    "case_key": "case-20260415-3f432366",
+    "dispatch_id": "refresh-case-20260415-3f432366-20260415T080902Z",
+    "question": "Will the price of Bitcoin be above $72,000 on April 17?",
+    "market_id": "34b19a2f-03db-4e0f-ba94-a0ddb3b0670c",
+    "external_market_id": "0x278e937ecb8ff1da49c4e04aba52d1922b3e0a7a15d09e621bbf33154c230287",
+    "market_slug": "bitcoin-above-72k-on-april-17",
+    "platform": "polymarket",
+    "primary_market_url": "https://polymarket.com/event/bitcoin-above-72k-on-april-17",
+    "market_title": "Will the price of Bitcoin be above $72,000 on April 17?",
+    "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260415-3f432366/synthesizer-agent/decision-handoff.md",
+    "source_syndicated_finding_path": "qualitative-db/40-research/cases/case-20260415-3f432366/synthesizer-agent/syndicated-finding.md",
+    "source_light_refresh_brief_path": "qualitative-db/40-research/cases/case-20260415-3f432366/decision-maker/refreshes/refresh-case-20260415-3f432366-20260415T080902Z/light-refresh-brief.json",
+    "refresh_mode": "light",
+    "decision_maker_agent": "decision-maker",
+    "canonical_markdown_path": "decision-maker-packet.md",
+    "canonical_json_path": "artifacts/decision-maker-packet.json"
+  },
+  "decision": {
+    "side": "yes",
+    "trade_authorization": "watch_only",
+    "position_policy": "hold_only",
+    "decision_readiness": "ready",
+    "primary_crux": "The move from 0.745 to 0.765 is best treated as repricing rather than a broken thesis: BTC is still more likely than not to close above $72,000 on the April 17 noon ET Binance minute, but the market is now further above the bounded fair-value range and the exact-minute downside-tail risk remains the decisive discount.",
+    "secondary_cruxes": [
+      "The disagreement remains mostly about confidence calibration, not direction; Yes is still favored, but not at the market's updated level.",
+      "With no new governing-source evidence and only a small time change, this refresh mainly weakens any prior value case rather than changing the directional estimate.",
+      "Residual Binance UI-versus-API ambiguity is minor, but the larger issue is still ordinary crypto volatility landing on one exact settlement minute."
+    ],
+    "thesis_class": "price_not_good_enough"
+  },
+  "valuation": {
+    "fair_value_low": 0.69,
+    "fair_value_high": 0.73,
+    "fair_value_mid": 0.71,
+    "independent_verification_quality": "medium",
+    "compressed_toward_market_applied": false,
+    "compression_reason": "No new bounded evidence justifies changing the prior probability range; the refresh is primarily a market repricing against the same exact-minute settlement risk.",
+    "market_reference_price": 0.765,
+    "edge_mid_vs_market_pct_points": -5.5
+  },
+  "execution_semantics": {
+    "price_source": "market_snapshot_quote",
+    "price_axis": "market_implied_true_prob",
+    "rebalance_threshold_fraction": 0.1,
+    "allow_auto_reversal": false,
+    "quote_staleness_seconds": 300,
+    "valid_until": "2026-04-16T08:10:05.437610+00:00"
+  },
+  "risk_controls": {
+    "confidence_level": "medium",
+    "portfolio_constraints": [
+      "Do not add fresh exposure at the updated market price.",
+      "Treat exact-minute Binance settlement risk as the dominant execution constraint even when spot remains above strike.",
+      "Reopen only if price cheapens materially or a fresher same-venue check near settlement improves the cushion."
+    ],
+    "liquidity_caution": "low",
+    "max_position_size_pct_bankroll": 0.02,
+    "max_additional_exposure_pct_bankroll": 0.01,
+    "max_single_order_pct_bankroll": 0.005,
+    "slippage_tolerance_bps": 100,
+    "liquidity_min_depth": 0,
+    "correlation_bucket_limit_pct_bankroll": 0.05
+  },
+  "bands": [
+    {
+      "name": "max_enter",
+      "min_p": 0.0,
+      "max_p": 0.62,
+      "target_exposure_fraction": 0.0,
+      "notes": "Would require a much cheaper price and still a fresh Binance check near settlement."
+    },
+    {
+      "name": "scaled_enter",
+      "min_p": 0.62,
+      "max_p": 0.69,
+      "target_exposure_fraction": 0.0,
+      "notes": "Potential value zone only if same-venue price state remains comfortably above strike."
+    },
+    {
+      "name": "hold",
+      "min_p": 0.69,
+      "max_p": 0.73,
+      "target_exposure_fraction": 0.0,
+      "notes": "Bounded fair-value zone; maintain watch-only hold posture."
+    },
+    {
+      "name": "trim",
+      "min_p": 0.73,
+      "max_p": 0.82,
+      "target_exposure_fraction": 0.0,
+      "notes": "Above fair value for a one-minute settlement contract with meaningful path risk."
+    },
+    {
+      "name": "exit",
+      "min_p": 0.82,
+      "max_p": 1.0,
+      "target_exposure_fraction": 0.0,
+      "notes": "Avoid or exit at rich prices because exact-minute downside tail dominates residual certainty."
+    }
+  ],
+  "invalidation": {
+    "thesis_breakers": [
+      "BTC falls back toward or below 72k on Binance before the Apr 17 fixing window.",
+      "A concrete downside macro or crypto catalyst emerges that materially raises the odds of a sub-72k settlement minute.",
+      "Evidence appears that Binance's operative settlement surface differs from the assumed UI/API equivalence."
+    ],
+    "time_breakers": [
+      "A fresh direct Binance observation closer to Apr 17 12:00 ET should supersede this packet before any action.",
+      "The actual Apr 17 12:00 ET Binance 1-minute close fully resolves and obsoletes this judgment."
+    ],
+    "market_structure_breakers": [
+      "Market reprices sharply again without corresponding same-venue spot support, changing the value comparison.",
+      "Binance operational or microstructure issues emerge near settlement."
+    ],
+    "reversal_conditions": [
+      "Upgrade only if price becomes materially cheaper relative to fair value or if a fresh pre-fix Binance check shows a meaningfully larger cushion.",
+      "Downgrade if BTC loses cushion or if downside volatility or catalyst risk increases.",
+      "Do not auto-reverse from this packet."
+    ]
+  },
+  "epistemic_status": {
+    "key_uncertainties": [
+      "The true probability of an ordinary 2-3% drawdown landing exactly at the settlement minute.",
+      "Whether the market embeds fresher venue-specific information than the bounded package contains.",
+      "How much residual UI-versus-API settlement-surface uncertainty matters in practice."
+    ],
+    "what_would_change_my_mind": [
+      "A fresh Binance check near settlement showing sustained trade materially above 72k would move me closer to market.",
+      "A move back toward 72k or evidence of elevated downside catalyst risk would lower fair value materially.",
+      "A materially cheaper market price with unchanged Binance cushion would create a cleaner edge."
+    ],
+    "reasons_to_pass": [
+      "The updated market price is now even further above bounded fair value.",
+      "This remains a single-minute single-venue settlement contract where path risk matters more than broad BTC direction.",
+      "The refresh added price movement, not new evidence that would justify raising probability."
+    ],
+    "decision_quality": "good_not_clean"
+  },
+  "audit": {
+    "one_sentence_rationale": "BTC is still more likely than not to finish above $72,000 on the April 17 Binance noon minute, but the market's move up to 0.765 only makes the previous below-market valuation view worse, so the disciplined output remains watch-only with fair value anchored near 0.71 rather than chasing a richer price.",
+    "notes": "This refresh is a pure valuation update: same directional Yes, weaker anti-market execution case.",
+    "market_baseline_respected": true,
+    "action_bias_check_passed": true,
+    "self_preservation_bias_check_passed": true,
+    "structured_handoff_primary_used": true,
+    "prose_fallback_used": true,
+    "verification_mode_used": "targeted_escalation",
+    "additional_verification_performed": true,
+    "additional_verification_notes": "targeted_pack"
+  }
+}

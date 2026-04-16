@@ -1,0 +1,61 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Weekend/short-dated crypto volatility could erase a 5-6% cushion.",
+    "Exchange-specific noon pricing on Binance matters more than broader cross-venue strength.",
+    "The estimate is sensitive to whether traders are implicitly treating this as near-settled."
+  ],
+  "key_assumptions": [
+    "Current Binance SOL/USDT trading above $80 is informative but not dispositive for the Apr 19 noon ET close.",
+    "A roughly 5.9% cushion is meaningful but still leaves real multi-day noon-close timing risk.",
+    "API-based Binance checks are valid governing-source-family verification even though the final settlement wording names the Binance UI candle surface."
+  ],
+  "main_logical_chain": [
+    "Verify the contract resolves from Binance SOL/USDT 1-minute close at 12:00 ET on Apr 19.",
+    "Check Binance directly and confirm SOL is currently above $80 with timestamp alignment for 1-minute candles.",
+    "Apply a haircut versus spot-based intuition because the contract depends on one exact future minute close.",
+    "Conclude Yes remains favored, but below the market-implied 88.5%."
+  ],
+  "main_thesis": "SOL is likely to finish above $80 on the relevant Binance noon candle, but the market is somewhat overconfident because this is a single future minute close, not a touch market or current-spot question.",
+  "own_probability": 0.81,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "Binance SOL/USDT 12:00 ET one-minute candle final Close",
+    "current direct check around 84.74",
+    "single future minute close, not a touch market"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation",
+    "variant_hypothesis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-a8277fc8",
+    "dispatch_id": "dispatch-case-20260416-a8277fc8-20260416T001420Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "11a62521-e945-4f29-906d-350ae46533b5",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-a8277fc8/researcher-analyses/2026-04-16/dispatch-case-20260416-a8277fc8-20260416T001420Z/personas/variant-view.md",
+    "source_persona_sha256": "b7733889686ce594f1a2e6ffe828a342b4697b5753dc43b2d82e626f3a9b8d70"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is good for mechanism and current state because the run used Polymarket rules plus direct Binance checks, but evidence independence is only medium because the core proof cluster is one governing source family.",
+  "strongest_disconfirmers": [
+    "The contract resolves off one exact future one-minute close, so a several-percent crypto move before noon ET on Apr 19 can still flip the outcome.",
+    "This is not a touch/high market, so current-above-threshold status deserves less confidence than touch-style setups."
+  ],
+  "strongest_supports": [
+    "Direct Binance checks showed SOL/USDT around 84.74, already above the $80 threshold.",
+    "Only several days remain until the relevant noon ET candle.",
+    "Polymarket rules are explicit about the exact instrument and timing, reducing major mechanism ambiguity."
+  ],
+  "timing_relevance": "The relevant candle occurs at 12:00 ET on 2026-04-19; at research time on 2026-04-15 20:16 EDT, the event had not yet occurred, so current price is supportive but not dispositive.",
+  "unresolved_ambiguities": [
+    "Final settlement uses the Binance UI candle surface, while the run verified the same instrument family via public API.",
+    "No direct final-candle proof is possible yet because the event has not occurred."
+  ],
+  "what_would_change_view": "A stronger upward extension in SOL or a nearer-to-resolution Binance check well above $80 would move the estimate upward; a retreat toward low 80s or below would move it down materially."
+}

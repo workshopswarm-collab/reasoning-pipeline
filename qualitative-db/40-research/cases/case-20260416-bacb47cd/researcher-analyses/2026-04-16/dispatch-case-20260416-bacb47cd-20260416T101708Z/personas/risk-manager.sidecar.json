@@ -1,0 +1,62 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A direct RKSI/Wunderground forecast at 18\u00b0C or above would quickly weaken this view.",
+    "Forecast-source dispersion is high, so model error could be large.",
+    "The estimate depends heavily on station-mapping risk being real and underpriced."
+  ],
+  "key_assumptions": [
+    "Incheon Intl Airport Station is materially cooler than generic Seoul-city forecast surfaces.",
+    "Open-Meteo airport-proximate forecast is directionally informative even though it is not the governing source.",
+    "Traders may be over-anchoring to the market label 'Seoul' rather than the exact station in the rules."
+  ],
+  "main_logical_chain": [
+    "The contract resolves on a specific airport station, not generic Seoul weather.",
+    "Station-proximate forecast evidence gathered here is materially cooler than the threshold.",
+    "That creates downside risk that the market is overconfident due to location anchoring.",
+    "Therefore a below-market probability is warranted until direct RKSI evidence turns warmer."
+  ],
+  "main_thesis": "The market is too confident on 18\u00b0C or higher because the governing Incheon airport station may run materially cooler than generic Seoul forecasts.",
+  "own_probability": 0.43,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "The market looks too confident on `18\u00b0C or higher`.",
+    "The primary governing source of truth is the Wunderground daily history page for Incheon Intl Airport Station (RKSI) once finalized.",
+    "Resolution precision: whole-degree Celsius."
+  ],
+  "reasoning_mode": [
+    "risk_management",
+    "contract_interpretation",
+    "scenario_analysis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-bacb47cd",
+    "dispatch_id": "dispatch-case-20260416-bacb47cd-20260416T101708Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "d196eba0-72ee-4489-95b7-e90d4234fe00",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-bacb47cd/researcher-analyses/2026-04-16/dispatch-case-20260416-bacb47cd-20260416T101708Z/personas/risk-manager.md",
+    "source_persona_sha256": "78d69275c67a8edd9971bf857b9e2e492a5e3ae6af3346cc0be702550e8c2a02"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Mechanism quality is strong because the governing source is explicit, but outcome forecasting quality is only medium because station-specific pre-event evidence was limited and contextual sources diverged.",
+  "strongest_disconfirmers": [
+    "Timeanddate showed a much warmer 22\u00b0C high for Seoul on Apr 17.",
+    "The market itself is priced at about 71%, implying many traders see a warm-enough setup.",
+    "Direct pre-event Wunderground station-specific forecast evidence was weak in this run."
+  ],
+  "strongest_supports": [
+    "Polymarket rules explicitly resolve on Incheon Intl Airport Station via Wunderground daily history.",
+    "Open-Meteo forecast near Incheon airport showed 13.1\u00b0C max for 2026-04-17.",
+    "Open-Meteo central Seoul forecast was only 17.0\u00b0C, still below the 18\u00b0C threshold."
+  ],
+  "timing_relevance": "This is a date-specific Apr 17 local-day market; the event has not yet occurred, so current work is forecast-based rather than verification-based.",
+  "unresolved_ambiguities": [
+    "Exact pre-event Wunderground forecast signal for RKSI was not cleanly available.",
+    "It remains unclear how much of the city-airport temperature gap is model difference versus true location effect.",
+    "No authoritative realized-temperature proof exists yet because the event date has not occurred."
+  ],
+  "what_would_change_view": "A direct RKSI/Wunderground or other airport-specific forecast at 18\u00b0C or above would move me meaningfully toward the market; repeated low-to-mid-teens airport forecasts would move me further away."
+}

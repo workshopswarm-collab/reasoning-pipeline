@@ -1,0 +1,157 @@
+{
+  "schema_version": "decision-packet/v1",
+  "generated_at": "2026-04-13T15:35:00-04:00",
+  "context": {
+    "case_key": "case-20260413-9dc5221c",
+    "dispatch_id": "refresh-case-20260413-9dc5221c-20260413T193521Z",
+    "question": "Will Javokhir Sindarov win the 2026 FIDE Candidates Tournament?",
+    "market_id": "case-20260413-9dc5221c",
+    "market_title": "Will Javokhir Sindarov win the 2026 FIDE Candidates Tournament?",
+    "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/synthesizer-agent/decision-handoff.md",
+    "source_syndicated_finding_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/synthesizer-agent/syndicated-finding.md",
+    "decision_maker_agent": "decision-maker",
+    "canonical_markdown_path": "decision-maker-packet.md",
+    "canonical_json_path": "artifacts/decision-maker-packet.json",
+    "external_market_id": "0xddbfffed3078bc556ff8fabc7ff92515c092b5f38db97e557b5f8ee8af8b2597",
+    "market_slug": "will-javokhir-sindarov-win-the-2026-fide-candidates-tournament",
+    "platform": "polymarket",
+    "primary_market_url": "https://polymarket.com/event/will-javokhir-sindarov-win-the-2026-fide-candidates-tournament",
+    "source_light_refresh_brief_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/refreshes/refresh-case-20260413-9dc5221c-20260413T193521Z/light-refresh-brief.json",
+    "refresh_mode": "light"
+  },
+  "decision": {
+    "side": "yes",
+    "trade_authorization": "watch_only",
+    "position_policy": "hold_only",
+    "decision_readiness": "ready",
+    "primary_crux": "This bounded refresh still supports a strong Yes view on Sindarov, but not a 99.05% executable price: there is still no independently verified official clinch or winner declaration to justify collapsing the residual tail that far.",
+    "secondary_cruxes": [
+      "The refresh brief indicates a price move, not a demonstrated factual regime change, so the prior crux remains intact.",
+      "The best bounded evidence still says Sindarov was two points clear after round 12 with two rounds left and guaranteed at least a playoff, which is highly favorable but not yet an official tournament win.",
+      "The unresolved verification gap around clean official FIDE standings/clinch remains small enough to allow judgment but large enough to make the market price unattractive."
+    ],
+    "thesis_class": "price_not_good_enough"
+  },
+  "valuation": {
+    "fair_value_low": 0.91,
+    "fair_value_high": 0.96,
+    "fair_value_mid": 0.935,
+    "market_reference_price": 0.9905,
+    "edge_mid_vs_market_pct_points": -5.5,
+    "independent_verification_quality": "medium",
+    "compressed_toward_market_applied": false,
+    "compression_reason": "No new primary-source result or official clinch evidence arrived in the bounded update layer, so the prior high-Yes estimate should stay broadly stable rather than chase the market higher."
+  },
+  "execution_semantics": {
+    "price_axis": "market_implied_true_prob",
+    "price_source": "market_snapshot_quote",
+    "rebalance_threshold_fraction": 0.1,
+    "allow_auto_reversal": false,
+    "valid_until": "2026-04-14T23:59:00-04:00",
+    "quote_staleness_seconds": 900,
+    "time_horizon": "Round 13 onward through official FIDE winner declaration"
+  },
+  "risk_controls": {
+    "max_position_size_pct_bankroll": 0.015,
+    "max_additional_exposure_pct_bankroll": 0.0,
+    "max_single_order_pct_bankroll": 0.0,
+    "slippage_tolerance_bps": 60,
+    "liquidity_min_depth": 500,
+    "correlation_bucket_limit_pct_bankroll": 0.05,
+    "confidence_level": "medium",
+    "portfolio_constraints": [
+      "Do not open fresh exposure from this packet because the market has repriced above independently justified fair value.",
+      "Existing aligned exposure may be held, but do not add unless a refreshed official source shows a true clinch or the market price falls materially.",
+      "Refresh on any official standings/result change before taking action because the case is freshness-sensitive."
+    ],
+    "liquidity_caution": "medium"
+  },
+  "bands": [
+    {
+      "name": "max_enter",
+      "min_p": 0,
+      "max_p": 0.8,
+      "target_exposure_fraction": 0,
+      "notes": "No autonomous entry from this packet; a much cheaper market would require a fresh official-state review."
+    },
+    {
+      "name": "scaled_enter",
+      "min_p": 0.8,
+      "max_p": 0.9,
+      "target_exposure_fraction": 0,
+      "notes": "No autonomous entry authorized because the bounded evidence is not stronger than the repricing."
+    },
+    {
+      "name": "hold",
+      "min_p": 0.9,
+      "max_p": 0.96,
+      "target_exposure_fraction": 0,
+      "notes": "Hold-only zone consistent with a very likely Sindarov win but insufficient confidence for new adds."
+    },
+    {
+      "name": "trim",
+      "min_p": 0.96,
+      "max_p": 0.985,
+      "target_exposure_fraction": 0,
+      "notes": "Trim or avoid increasing as price moves above the upper end of justified fair value."
+    },
+    {
+      "name": "exit",
+      "min_p": 0.985,
+      "max_p": 1,
+      "target_exposure_fraction": 0,
+      "notes": "Exit or avoid at extreme prices because residual competitive, playoff, and official-declaration tails still matter."
+    }
+  ],
+  "invalidation": {
+    "thesis_breakers": [
+      "Official FIDE standings/results show Sindarov's lead is smaller than reported or he fails to convert a key round.",
+      "A rival closes the gap materially or creates a more complicated playoff path than currently assumed.",
+      "Official reporting contradicts the bounded secondary reporting that Sindarov is guaranteed at least a playoff."
+    ],
+    "market_structure_breakers": [
+      "A clean official FIDE standings/clinch page materially changes the live state relative to the current bounded interpretation.",
+      "The market reprices sharply again on actual round results or official declaration, making this packet stale.",
+      "A rules or tiebreak clarification materially changes the conversion odds from the currently assumed late-stage lead."
+    ],
+    "time_breakers": [
+      "This packet expires at valid_until unless refreshed with later round results or official FIDE standings.",
+      "Once an official winner is declared, this in-progress packet should be replaced immediately."
+    ],
+    "reversal_conditions": [
+      "Reverse only on a new packet after refreshed official evidence shows a materially worse state for Sindarov.",
+      "Do not auto-reverse from this packet.",
+      "Suspend this packet if official and secondary reporting diverge materially."
+    ]
+  },
+  "epistemic_status": {
+    "key_uncertainties": [
+      "A clean official FIDE live standings/clinch page still was not independently captured.",
+      "Two rounds and possible playoff/tiebreak mechanics still leave a nonzero failure path.",
+      "The market may reflect stronger live-state information than was available in this bounded refresh."
+    ],
+    "reasons_to_pass": [
+      "The market move mainly removes valuation edge rather than disproving the underlying high-Yes thesis.",
+      "At 99.05%, even modest residual tails are economically important.",
+      "The bounded refresh still lacks enough new primary-source confirmation to justify joining the market at near-certainty."
+    ],
+    "what_would_change_my_mind": [
+      "A clean official FIDE confirmation that Sindarov has clinched would move fair value much closer to the current market.",
+      "A round result or official standings update showing the race reopened would push fair value materially lower.",
+      "A materially cheaper market without loss of the current late-stage lead would restore a potential value case."
+    ],
+    "decision_quality": "good_not_clean"
+  },
+  "audit": {
+    "market_baseline_respected": true,
+    "action_bias_check_passed": true,
+    "self_preservation_bias_check_passed": true,
+    "one_sentence_rationale": "Sindarov still looks overwhelmingly likely to win, but because the 99.05% market price is not matched by independently verified official-state improvement, the disciplined posture is watch-only rather than chasing the move.",
+    "notes": "This was a bounded light refresh on a material price move; no new independently verified official evidence changed the underlying thesis, only the market valuation.",
+    "structured_handoff_primary_used": true,
+    "prose_fallback_used": true,
+    "verification_mode_used": "targeted_escalation",
+    "additional_verification_performed": true,
+    "additional_verification_notes": "targeted_pack"
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Single-minute settlement makes path risk more important than usual.",
+    "Short-dated BTC volatility can overwhelm the current cushion.",
+    "Price-context evidence is supportive, not dispositive, because it is not the final settling candle."
+  ],
+  "key_assumptions": [
+    "No macro or crypto-specific shock drives Binance BTCUSDT down more than about 4% before the resolving minute.",
+    "Binance remains operationally normal and its BTCUSDT candle is a fair settlement reference.",
+    "The decisive candle is the 12:00 ET / 16:00 UTC 1-minute close on April 17, 2026."
+  ],
+  "main_logical_chain": [
+    "The contract resolves on a very specific Binance BTC/USDT 1-minute close rather than a broad daily price concept.",
+    "Current Binance price context puts BTC materially above the 72k threshold.",
+    "Therefore the central catalyst is downside volatility into the deadline, not the arrival of a new bullish trigger.",
+    "Because that downside path is plausible but still not the base case, Yes remains likely but slightly less certain than the market price implies."
+  ],
+  "main_thesis": "BTC is already comfortably above 72k, so the main near-term catalyst is a downside shock large enough to break the cushion before the exact Binance noon-ET close on April 17; absent that, Yes remains favored.",
+  "own_probability": 0.89,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "This market will resolve to \"Yes\" if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone ... has a final \"Close\" price higher than the price specified.",
+    "BTCUSDT lastPrice verified around 74892.83 on Binance at research time."
+  ],
+  "reasoning_mode": [
+    "catalyst_analysis",
+    "market_anchor",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-d9ca8ddf",
+    "dispatch_id": "dispatch-case-20260415-d9ca8ddf-20260415T195847Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "993b6147-3131-478b-b659-d86272d5b996",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-d9ca8ddf/researcher-analyses/2026-04-15/dispatch-case-20260415-d9ca8ddf-20260415T195847Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "832e3893f05cf5e7edac8924fb691ccdfff35a04f2f4a2f2738e040a00d95ffc"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Good source quality for a short-dated threshold case: contract mechanics are clear and Binance direct market data confirms current cushion, though evidence independence is only medium because most context still routes through Binance surfaces.",
+  "strongest_disconfirmers": [
+    "BTC can move more than 4% in under two days, and this contract resolves on one exact minute close.",
+    "A late risk-off move or crypto-specific negative headline could erase the cushion quickly.",
+    "Binance-specific dislocation or operational issues could matter because the contract is venue-specific."
+  ],
+  "strongest_supports": [
+    "Binance spot was verified around 74.9k, leaving roughly a 2.9k cushion above 72k.",
+    "Polymarket rules clearly define Binance BTC/USDT 1-minute close as the governing source of truth.",
+    "No fresh bullish catalyst is required; regime persistence alone can get the market to Yes."
+  ],
+  "timing_relevance": "Very high: the thesis depends on whether BTC avoids a >4% drawdown into the exact April 17 12:00 ET / 16:00 UTC Binance 1-minute close.",
+  "unresolved_ambiguities": [
+    "Whether any unsourced macro or crypto headline emerges before April 17 noon ET.",
+    "Small implementation ambiguity between Binance UI settlement language and API-based verification context."
+  ],
+  "what_would_change_view": "A sharp drawdown toward or below 72k before Friday morning ET, a major risk-off headline, or evidence of Binance-specific settlement/operational issues would reduce confidence materially."
+}

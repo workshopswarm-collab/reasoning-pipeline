@@ -1,0 +1,58 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "If BTC trades materially higher before resolution, the variant edge largely disappears.",
+    "This view depends on ordinary BTC intraday volatility remaining relevant into tomorrow noon ET."
+  ],
+  "key_assumptions": [
+    "A roughly 1.8% cushion above 74k is meaningful but not enough to eliminate settlement-minute downside risk.",
+    "Ordinary BTC intraday volatility can still produce a sub-74k noon ET minute close even without a broader bearish reversal.",
+    "Binance API kline mechanics are a reliable proxy for the settlement object referenced in the Polymarket rules."
+  ],
+  "main_logical_chain": [
+    "BTC is currently trading above the 74k strike on Binance, so Yes should remain favored.",
+    "The contract resolves on one exact 12:00 ET Binance one-minute candle close, not on a broader daily price condition.",
+    "That narrower settlement mechanic leaves nontrivial path-dependent downside risk.",
+    "Therefore the market's 81.5% Yes pricing looks a bit rich, though Yes still remains the base case."
+  ],
+  "main_thesis": "The market is directionally right but likely a bit overconfident because this contract settles on one exact Binance noon ET minute close rather than a broader daily BTC-above-74k condition.",
+  "own_probability": 0.74,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone has a final 'Close' price higher than the price specified.",
+    "Kline/candlestick bars for a symbol... response contains close price and timezone support."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "contract_interpretation",
+    "scenario_analysis",
+    "variant_hypothesis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-d1f59d32",
+    "dispatch_id": "dispatch-case-20260414-d1f59d32-20260414T144613Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "19ce49e0-ddbb-47e9-8fbf-df5d0d971775",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-d1f59d32/researcher-analyses/2026-04-14/dispatch-case-20260414-d1f59d32-20260414T144613Z/personas/variant-view.md",
+    "source_persona_sha256": "9c9dc14c33f4c8692541d4710476cfc9a93d9d5e8d5b43764302af4d9a1c8a69"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source-of-truth quality is high and ambiguity is low; evidence independence is medium because distinct sources still converge on Binance as the same governing venue.",
+  "strongest_disconfirmers": [
+    "With less than a day left, a ~1.8% cushion may simply be enough and 81.5% could be fair or conservative if volatility stays subdued."
+  ],
+  "strongest_supports": [
+    "Live Binance BTCUSDT during the run was about 75.36k, above the 74k strike.",
+    "Recent Binance 1-minute closes during the run were around 75.30k-75.36k.",
+    "Polymarket rules and Binance docs make venue, pair, interval, timezone, and close-price field fairly explicit."
+  ],
+  "timing_relevance": "High: this is a date-specific, noon-ET settlement-minute contract with less than a day to resolution.",
+  "unresolved_ambiguities": [
+    "Exact UI-display versus API-surfaced kline equivalence was not independently verified beyond the shared Binance market-data object.",
+    "No dedicated volatility study for the final hours before settlement was performed."
+  ],
+  "what_would_change_view": "I would move toward or above the market if BTC builds a larger cushion above 74k or if volatility clearly compresses into the final hours; I would move more bearish if BTC loses the cushion and trades back near/below 74k before settlement."
+}

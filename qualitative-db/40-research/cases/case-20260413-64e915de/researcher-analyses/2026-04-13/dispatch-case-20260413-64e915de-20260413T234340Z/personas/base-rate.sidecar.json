@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "If the rules require something stricter than a simple touch, the probability drops.",
+    "If ETH loses momentum and moves away from the threshold early in the window, the high prior weakens."
+  ],
+  "key_assumptions": [
+    "The contract is effectively a threshold-touch market rather than a close-above requirement.",
+    "ETH remains in an ordinary short-horizon volatility regime through the window.",
+    "No major negative shock drives ETH materially away from $2,400 before expiry."
+  ],
+  "main_logical_chain": [
+    "Treat the question as a short-horizon threshold-touch setup rather than a sustain-above setup.",
+    "Start from the outside view that a 1% move in ETH over a week is common in normal volatility.",
+    "Use the extreme market price as evidence but require extra verification before matching it.",
+    "Independent price verification kept the event favorable but not close enough to certainty to fully agree with the market."
+  ],
+  "main_thesis": "ETH is likely to reach $2,400 during April 13-19, but the market is priced too close to certainty.",
+  "own_probability": 0.84,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "Current market-implied probability from current_price is 90.5%.",
+    "Own probability estimate: 84%.",
+    "The strongest disconfirming consideration is that my independent verification source still showed ETH below $2,400 as of review time."
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "market_anchor",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260413-64e915de",
+    "dispatch_id": "dispatch-case-20260413-64e915de-20260413T234340Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "c68f2c43-8bb5-470e-a302-be302f47d634",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260413-64e915de/researcher-analyses/2026-04-13/dispatch-case-20260413-64e915de-20260413T234340Z/personas/base-rate.md",
+    "source_persona_sha256": "a23b1d83e24705a022896c58486ef2809338a5fa5240ea28f137508a5948e927"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary contract surface was clear enough for market baseline, secondary price verification was meaningful and independent enough for a low-difficulty extra-check case, but detailed source-of-truth wording remained only partially verified.",
+  "strongest_disconfirmers": [
+    "Independent external verification still showed ETH below $2,400 at review time.",
+    "The exact settlement-source rules were not cleanly exposed in the fetched Polymarket page extract."
+  ],
+  "strongest_supports": [
+    "Market implied probability was about 90-92%, showing traders viewed the touch as highly likely.",
+    "Independent CoinGecko verification had ETH around $2,374.36, leaving only about a 1% gap to the target.",
+    "A 1% move in ETH over a week is usually within normal crypto volatility."
+  ],
+  "timing_relevance": "High: this is a one-week date-specific threshold market, so distance to target and ordinary short-horizon volatility dominate the base-rate view.",
+  "unresolved_ambiguities": [
+    "Exact Polymarket settlement source and wording were not fully extracted from the rendered page.",
+    "Hourly aggregator data could miss a brief intrahour wick."
+  ],
+  "what_would_change_view": "A clean rules check showing a stricter condition than a touch, or price action moving materially away from $2,400, would lower the estimate; confirmation from the governing source that ETH already hit $2,400 would raise it."
+}

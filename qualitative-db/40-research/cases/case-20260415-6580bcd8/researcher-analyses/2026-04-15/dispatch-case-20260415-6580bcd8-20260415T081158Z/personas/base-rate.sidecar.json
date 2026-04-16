@@ -1,0 +1,55 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Short-horizon BTC volatility is high relative to the remaining cushion above 72k.",
+    "Exact-minute settlement raises path dependence and threshold fragility."
+  ],
+  "key_assumptions": [
+    "BTC remains in a roughly normal short-horizon volatility regime over the next ~56 hours.",
+    "No Binance-specific dislocation materially distorts the settlement candle versus normal spot trading."
+  ],
+  "main_logical_chain": [
+    "Verify the contract settles on Binance BTC/USDT using the final close of the 12:00 ET one-minute candle.",
+    "Check direct Binance price and kline data to confirm the threshold is currently in the money and timestamps map cleanly into ET.",
+    "Apply outside-view reasoning: with BTC already ~2.4% above threshold and ~56 hours left, Yes should be favored but not near-certain because that downside distance is easily traversed in normal BTC volatility.",
+    "Conclude that the market direction is sensible but slightly too bullish at 77%."
+  ],
+  "main_thesis": "BTC is already above 72k on Binance, so Yes is favored, but the market is slightly too confident for a narrow exact-minute settlement event in a volatile asset.",
+  "own_probability": 0.72,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "The deciding field is the candle's final Close.",
+    "My estimate is 72% Yes."
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "market_anchor",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-6580bcd8",
+    "dispatch_id": "dispatch-case-20260415-6580bcd8-20260415T081158Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "d192f3f6-9d9c-4245-b44c-191596228ad7",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-6580bcd8/researcher-analyses/2026-04-15/dispatch-case-20260415-6580bcd8-20260415T081158Z/personas/base-rate.md",
+    "source_persona_sha256": "6bbaa0760bb1977307f58fac52375bd3575d245a4fb39120e22d67b446e94413"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary source quality is high because Binance direct data was checked; contextual rules quality is adequate via Polymarket. Independence is only medium-low because both ultimately hinge on Binance.",
+  "strongest_disconfirmers": [
+    "BTC can easily move 2-3% in under two days, and the contract settles on a very narrow exact-minute window.",
+    "A routine downside move could push the noon ET Binance close below 72k even if broader trend stays constructive."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT spot was about 73.7k at check time, already above the 72k threshold.",
+    "The contract only requires the final close of the 12:00 ET one-minute candle to be above 72k, and current price has a modest cushion."
+  ],
+  "timing_relevance": "Settlement is determined by the April 17, 2026 12:00 ET Binance one-minute candle close, so timing mechanics are central rather than incidental.",
+  "unresolved_ambiguities": [
+    "Minor practical ambiguity remains between Binance UI wording and API representation, though not enough to move the estimate materially."
+  ],
+  "what_would_change_view": "A move back toward or below 72k on Binance before settlement, or evidence of rising downside volatility, would move the estimate materially toward No; a sustained rise farther above threshold would move it somewhat toward the market."
+}

@@ -1,0 +1,155 @@
+{
+  "schema_version": "decision-packet/v1",
+  "generated_at": "2026-04-15T20:24:00-04:00",
+  "context": {
+    "case_key": "case-20260415-e4a8d83c",
+    "dispatch_id": "refresh-case-20260415-e4a8d83c-20260416T002353Z",
+    "question": "Will the price of Bitcoin be above $74,000 on April 17?",
+    "market_id": "367ed8d7-c08e-4588-a449-c83aead47ec3",
+    "external_market_id": "0x0457acf7468ed957f2422686cf5e63fb54d69fb116b67f74f6b64fd8e8b377dc",
+    "market_slug": "bitcoin-above-74k-on-april-17",
+    "platform": "polymarket",
+    "primary_market_url": "https://polymarket.com/event/bitcoin-above-74k-on-april-17",
+    "market_title": "Will the price of Bitcoin be above $74,000 on April 17?",
+    "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260415-e4a8d83c/synthesizer-agent/decision-handoff.md",
+    "source_syndicated_finding_path": "qualitative-db/40-research/cases/case-20260415-e4a8d83c/synthesizer-agent/syndicated-finding.md",
+    "source_light_refresh_brief_path": "qualitative-db/40-research/cases/case-20260415-e4a8d83c/decision-maker/refreshes/refresh-case-20260415-e4a8d83c-20260416T002353Z/light-refresh-brief.json",
+    "refresh_mode": "light",
+    "decision_maker_agent": "decision-maker",
+    "canonical_markdown_path": "decision-maker-packet.md",
+    "canonical_json_path": "artifacts/decision-maker-packet.json"
+  },
+  "decision": {
+    "side": "yes",
+    "trade_authorization": "watch_only",
+    "position_policy": "hold_only",
+    "decision_readiness": "ready",
+    "primary_crux": "The move from a prior fair-value center near 0.67 to a market price of 0.62 is best treated as repricing rather than a broken thesis: Bitcoin is still only modestly more likely than not to close above $74,000 on the April 17 noon ET Binance minute because spot remains above strike, and the market has now moved below bounded fair value enough to create a positive value gap, though exact-minute path fragility keeps authorization capped at watch-only.",
+    "secondary_cruxes": [
+      "There is no major new directional information in the refresh brief; the main change is valuation improvement after price moved lower.",
+      "The contract is still a narrow hold-the-line question where a routine sub-1.5% selloff or exact-minute wick can decide the outcome, so positive edge does not eliminate execution risk.",
+      "Independent verification remains only medium, so this is a modest edge with real operational and settlement-minute tail, not a clean authorization case."
+    ],
+    "thesis_class": "edge_present"
+  },
+  "valuation": {
+    "fair_value_low": 0.65,
+    "fair_value_high": 0.69,
+    "fair_value_mid": 0.67,
+    "independent_verification_quality": "medium",
+    "compressed_toward_market_applied": true,
+    "compression_reason": "Current Binance spot above strike supports a modest Yes lean and the market now sits below bounded fair value, but the exact-minute settlement structure and only medium verification quality still justify a conservative, non-authorized posture.",
+    "market_reference_price": 0.62,
+    "edge_mid_vs_market_pct_points": 5.0
+  },
+  "execution_semantics": {
+    "price_source": "market_snapshot_quote",
+    "price_axis": "market_implied_true_prob",
+    "rebalance_threshold_fraction": 0.1,
+    "allow_auto_reversal": false,
+    "quote_staleness_seconds": 300,
+    "valid_until": "2026-04-17T00:24:50.101476+00:00"
+  },
+  "risk_controls": {
+    "confidence_level": "medium",
+    "portfolio_constraints": [
+      "Do not add fresh exposure aggressively despite the improved valuation.",
+      "Treat exact-minute Binance settlement risk as the dominant execution constraint.",
+      "Prefer reassessment closer to settlement if the market remains cheap and BTC retains the cushion."
+    ],
+    "liquidity_caution": "low",
+    "max_position_size_pct_bankroll": 0.02,
+    "max_additional_exposure_pct_bankroll": 0.01,
+    "max_single_order_pct_bankroll": 0.005,
+    "slippage_tolerance_bps": 100,
+    "liquidity_min_depth": 0,
+    "correlation_bucket_limit_pct_bankroll": 0.05
+  },
+  "bands": [
+    {
+      "name": "max_enter",
+      "min_p": 0.0,
+      "max_p": 0.55,
+      "target_exposure_fraction": 0.0,
+      "notes": "Would be a clearly attractive price only with refreshed same-venue confirmation."
+    },
+    {
+      "name": "scaled_enter",
+      "min_p": 0.55,
+      "max_p": 0.65,
+      "target_exposure_fraction": 0.0,
+      "notes": "Potential value zone if BTC remains above 74k with a stable cushion."
+    },
+    {
+      "name": "hold",
+      "min_p": 0.65,
+      "max_p": 0.69,
+      "target_exposure_fraction": 0.0,
+      "notes": "Bounded fair-value zone; current packet remains watch-only because exact-minute execution risk still dominates."
+    },
+    {
+      "name": "trim",
+      "min_p": 0.69,
+      "max_p": 0.77,
+      "target_exposure_fraction": 0.0,
+      "notes": "Above fair value for a narrow one-minute crypto settlement with a modest spot cushion."
+    },
+    {
+      "name": "exit",
+      "min_p": 0.77,
+      "max_p": 1.0,
+      "target_exposure_fraction": 0.0,
+      "notes": "Avoid or exit at rich prices because a routine intraday move can still decide the contract."
+    }
+  ],
+  "invalidation": {
+    "thesis_breakers": [
+      "BTC loses the 74k level on Binance and fails to reclaim it before the Apr 17 fixing window.",
+      "A downside macro, crypto, or exchange-specific shock materially raises the probability of a sub-74k settlement minute.",
+      "Binance-specific pricing, liquidity, operational, or display-surface issues emerge near resolution."
+    ],
+    "time_breakers": [
+      "A fresh direct Binance observation closer to Apr 17 12:00 ET should supersede this packet before any action.",
+      "The actual Apr 17 12:00 ET Binance 1-minute close fully resolves and obsoletes this judgment."
+    ],
+    "market_structure_breakers": [
+      "Market reprices materially again without corresponding same-venue spot deterioration, changing the value comparison.",
+      "Binance microstructure or settlement-surface behavior near the fixing window becomes abnormal."
+    ],
+    "reversal_conditions": [
+      "Upgrade only if later pre-fix Binance checks show BTC still holding comfortably above 74k and the price remains meaningfully below fair value.",
+      "Downgrade if BTC loses the strike area or if volatility expands.",
+      "Do not auto-reverse from this packet."
+    ]
+  },
+  "epistemic_status": {
+    "key_uncertainties": [
+      "The true probability that the modest above-74k cushion survives the exact settlement minute over the remaining horizon.",
+      "Whether an unobserved late catalyst emerges before the fixing window.",
+      "How much residual discount exact-minute Binance UI-versus-API ambiguity deserves at a near-threshold strike."
+    ],
+    "what_would_change_my_mind": [
+      "Later same-venue checks showing BTC still comfortably above 74k into the final hours would improve confidence in the current positive edge.",
+      "A move back below 74k or into the low-73k area would reduce fair value materially.",
+      "A rebound in market price back toward or above fair value would erase the current value case."
+    ],
+    "reasons_to_pass": [
+      "This is still a one-minute single-venue settlement contract where path risk dominates because the cushion is small.",
+      "Independent verification quality remains only medium.",
+      "Even with a positive edge, the execution case is not clean enough to authorize."
+    ],
+    "decision_quality": "good_not_clean"
+  },
+  "audit": {
+    "one_sentence_rationale": "BTC is still only modestly more likely than not to finish above $74,000 on the April 17 Binance noon minute, but with fair value near 0.67 and the market now down at 0.62, the valuation has improved enough to mark edge_present while keeping the disciplined output at watch-only because exact-minute downside fragility remains live.",
+    "notes": "This refresh is primarily a valuation improvement: same directional Yes, better price, but not enough cleanliness to authorize.",
+    "market_baseline_respected": true,
+    "action_bias_check_passed": true,
+    "self_preservation_bias_check_passed": true,
+    "structured_handoff_primary_used": true,
+    "prose_fallback_used": true,
+    "verification_mode_used": "targeted_escalation",
+    "additional_verification_performed": true,
+    "additional_verification_notes": "targeted_pack"
+  }
+}

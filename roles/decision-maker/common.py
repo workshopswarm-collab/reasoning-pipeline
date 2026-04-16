@@ -79,6 +79,13 @@ def coerce_string(value: Any) -> str:
     return "" if value is None else str(value).strip()
 
 
+def default_decision_agent_session_key(case_key: str) -> str:
+    normalized = re.sub(r"[^a-zA-Z0-9:_-]+", "-", coerce_string(case_key)).strip("-")
+    if not normalized:
+        normalized = "unknown-case"
+    return f"agent:decision-maker:case:{normalized}"
+
+
 def normalize_probability(value: Any) -> float | None:
     if value is None or value == "" or isinstance(value, bool):
         return None

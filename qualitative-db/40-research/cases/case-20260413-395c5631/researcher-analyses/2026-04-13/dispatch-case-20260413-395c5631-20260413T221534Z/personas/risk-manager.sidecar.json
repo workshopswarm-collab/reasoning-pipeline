@@ -1,0 +1,58 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Exact-minute settlement risk",
+    "Binance-specific source risk",
+    "Thin independent forward-looking catalyst coverage in this run"
+  ],
+  "key_assumptions": [
+    "The current roughly 1.8k cushion above 72k is enough to survive ordinary volatility over the next ~42 hours.",
+    "No major risk-off move or Binance-specific disruption occurs before the deciding minute."
+  ],
+  "main_logical_chain": [
+    "The contract resolves using Binance BTC/USDT 12:00 ET 1-minute close on April 15, so rule mechanics and exact timing matter.",
+    "BTC is currently above 72k on the named exchange by a nontrivial amount, which makes Yes more likely than not.",
+    "Because the deciding event is one exact future minute, ordinary BTC volatility and path risk still prevent very high confidence.",
+    "That leaves a moderate Yes lean slightly above the market, not a near-certain Yes."
+  ],
+  "main_thesis": "BTC is currently above 72k on Binance, so Yes is favored, but the edge is fragile because settlement depends on one exact Binance 1-minute close at noon ET on April 15.",
+  "own_probability": 0.76,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone ... has a final 'Close' price higher than the price specified in the title.",
+    "Klines are uniquely identified by their open time."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "risk_management",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260413-395c5631",
+    "dispatch_id": "dispatch-case-20260413-395c5631-20260413T221534Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "c2460820-4ec8-40ac-8c7e-7f89436a3201",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260413-395c5631/researcher-analyses/2026-04-13/dispatch-case-20260413-395c5631-20260413T221534Z/personas/risk-manager.md",
+    "source_persona_sha256": "4545ea64fb75462d098c172be2eef08671d05cb058421739714a9cc14c3f7ec4"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Adequate for a medium-difficulty run: one primary contract source plus one strong exchange-native contextual/mechanics source, with medium independence and low-to-medium source-of-truth ambiguity.",
+  "strongest_disconfirmers": [
+    "BTC can move more than the current cushion in under two days, and the contract resolves on one exact minute.",
+    "The market is venue-specific to Binance BTC/USDT rather than cross-exchange consensus."
+  ],
+  "strongest_supports": [
+    "Live Binance BTCUSDT was about 73825.51 at review time, already above the threshold.",
+    "Polymarket rules cleanly define Binance BTC/USDT 1-minute close as the governing source of truth."
+  ],
+  "timing_relevance": "The deciding candle is the April 15, 2026 12:00 ET minute, which is 16:00 UTC; there were roughly 42 hours of path risk remaining at review time.",
+  "unresolved_ambiguities": [
+    "Polymarket references Binance UI while implementation confidence comes from Binance API docs.",
+    "No independent catalyst source was added to refine the forward distribution into the settlement window."
+  ],
+  "what_would_change_view": "A sustained move below 73k or especially below 72k on Binance before settlement, elevated realized volatility, or Binance-specific pricing/operational issues would push the view toward No; stable trade above 73k-74k into April 15 would strengthen Yes."
+}

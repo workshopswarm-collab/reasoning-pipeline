@@ -1,0 +1,55 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A broad crypto selloff before Apr. 19 noon ET could push SOL below 80.",
+    "Small operational ambiguity remains between Binance web-chart wording and API-based verification, though source-of-truth ambiguity is still low to medium."
+  ],
+  "key_assumptions": [
+    "The recent Binance SOL/USDT trading regime in the low-to-mid 80s broadly persists through Apr. 19 noon ET absent a material crypto-wide shock.",
+    "The relevant settlement candle is the Binance SOL/USDT 1-minute candle opening at 12:00 ET and closing at 12:00:59.999 ET."
+  ],
+  "main_logical_chain": [
+    "The governing contract uses the Binance SOL/USDT 12:00 ET 1-minute close on Apr. 19 and requires it to be strictly above 80.",
+    "Current Binance spot is in the mid-80s and recent Binance closes have overwhelmingly stayed above 80.",
+    "That makes Yes the right directional call, but single-minute crypto threshold markets still retain more downside tail risk than an 89.5% market price suggests."
+  ],
+  "main_thesis": "Yes is favored because SOL is currently trading in the mid-80s on Binance and has spent most recent daily and hourly closes above 80, but the market is somewhat too confident for a single exact-minute crypto price threshold event.",
+  "own_probability": 0.82,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "My base-rate estimate is 82% Yes, below the market-implied 89.5%.",
+    "This should be read as a Yes-leaning but not near-lock setup."
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-33b4e3b5",
+    "dispatch_id": "dispatch-case-20260416-33b4e3b5-20260416T021538Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "73b44e74-00ec-4391-a543-946067d5baa6",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-33b4e3b5/researcher-analyses/2026-04-16/dispatch-case-20260416-33b4e3b5-20260416T021538Z/personas/base-rate.md",
+    "source_persona_sha256": "5d13ba0988f8223dd9273592443f4611ebe8dd321aae90d874d108148db3e42b"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality direct exchange data plus explicit market rules; evidence independence is medium because contextual verification still comes from Binance-related surfaces.",
+  "strongest_disconfirmers": [
+    "This resolves on one exact minute several days away, so a routine crypto drawdown could flip the outcome.",
+    "Only 22 of the last 29 daily lows stayed above 80, showing several recent intraday dips below the threshold despite mostly above-80 closes."
+  ],
+  "strongest_supports": [
+    "Current Binance SOL/USDT spot during the run was about 84.8-84.9, roughly 6% above the threshold.",
+    "28 of the last 29 completed daily Binance closes were above 80.",
+    "167 of the last 167 completed hourly Binance closes were above 80."
+  ],
+  "timing_relevance": "Timing is central because the market resolves on one exact 12:00 ET minute on Apr. 19 rather than a daily close or average.",
+  "unresolved_ambiguities": [
+    "Whether short-horizon volatility between now and settlement rises enough to make a sub-80 noon print materially more likely.",
+    "The market wording points to the Binance web chart, while this run verified timing via Binance API docs/endpoints."
+  ],
+  "what_would_change_view": "A drift toward 80-82, a broad risk-off crypto move, or new evidence that the relevant noon-ET candle should be interpreted differently would lower the estimate."
+}

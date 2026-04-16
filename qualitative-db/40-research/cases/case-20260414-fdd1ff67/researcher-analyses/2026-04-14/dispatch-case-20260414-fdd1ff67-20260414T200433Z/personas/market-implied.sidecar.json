@@ -1,0 +1,61 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "medium",
+  "fragility_points": [
+    "Independent sportsbook or team-news verification was not recovered cleanly from lightweight public fetches.",
+    "If traders have real lineup/injury information not visible here, the market could be more efficient than this memo credits.",
+    "The resolution source is explicit but not easily inspectable from simple fetch."
+  ],
+  "key_assumptions": [
+    "The assigned 0.76 price accurately reflects the live draw market.",
+    "The page preview text is at least directionally indicative of trader thinking, even if weak as evidence.",
+    "No hidden contract quirk is driving the extreme draw price beyond the explicit regulation-time wording."
+  ],
+  "main_logical_chain": [
+    "Start from the market's 76% draw prior and ask what would make it efficient.",
+    "Verify from raw HTML that the contract really is a draw market with regulation-time settlement and explicit source of truth.",
+    "Infer the market's likely thesis from embedded narrative and matchup metadata.",
+    "Conclude that while substantial draw risk is plausible, the auditable public evidence does not support the extreme 76% level."
+  ],
+  "main_thesis": "The market likely has a real draw thesis, but the publicly auditable evidence available here does not justify a 76% draw probability; the price looks overextended.",
+  "own_probability": 0.42,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "If the game ends in a draw, this market will resolve to \"Yes\".",
+    "This market will resolve according to the official final score published on slstat.com."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "contract_interpretation",
+    "other"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-fdd1ff67",
+    "dispatch_id": "dispatch-case-20260414-fdd1ff67-20260414T200433Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "6e871ccd-f860-4edd-ac7e-43b1a8d528f5",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-fdd1ff67/researcher-analyses/2026-04-14/dispatch-case-20260414-fdd1ff67-20260414T200433Z/personas/market-implied.md",
+    "source_persona_sha256": "e84ccad26e82737b2673b1e3d19322536d8596314b505623b38c61b9abd34b03"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Good for contract interpretation, weak-to-moderate for independent sports evidence because the meaningful sources were concentrated on one market surface.",
+  "strongest_disconfirmers": [
+    "A 76% draw probability is extraordinarily high for a standard league soccer match.",
+    "The contextual evidence used to infer trader logic comes from the same Polymarket surface and has low independence.",
+    "I could not independently verify the off-page sports facts that might justify the extreme price."
+  ],
+  "strongest_supports": [
+    "Raw Polymarket HTML confirms this is truly the draw market, not a mislabeled winner market.",
+    "Embedded page narrative suggests injuries, low-event conditions, and tight matchup balance may be supporting draw demand.",
+    "Meaningful market participation means the price should be taken seriously as an information-rich prior."
+  ],
+  "timing_relevance": "This is an April 23, 2026 match; pricing can still move materially on lineup and injury news closer to kickoff.",
+  "unresolved_ambiguities": [
+    "Whether mainstream external odds are anywhere near the market-implied draw probability.",
+    "Whether the preview-text injury and absence claims are fully accurate and current.",
+    "How much of the market price reflects informed trading versus UI/narrative distortion."
+  ],
+  "what_would_change_view": "Independent sportsbook consensus near the same level, or strong verified team-news evidence making the match unusually draw-prone, would move me materially toward the market."
+}

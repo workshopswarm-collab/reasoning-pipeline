@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "medium",
+  "fragility_points": [
+    "A pullback away from mid-$75k would erode the thesis quickly.",
+    "An unfavorable rule detail could make broad spot highs non-governing.",
+    "This is a short-dated contract, so timing decay matters fast if momentum stalls."
+  ],
+  "key_assumptions": [
+    "BTC only needs an ordinary short-horizon volatility burst from current spot to touch $76k once during the window.",
+    "The designated settlement source will behave close enough to broad spot pricing that a true market-wide $76k tag would count.",
+    "The contract is effectively about a threshold touch/high, not maintaining the level."
+  ],
+  "main_logical_chain": [
+    "Start from the 75% market prior and ask what would justify it.",
+    "Verify whether BTC is actually near the threshold on independent spot venues.",
+    "Confirm that current realized range makes a sub-1% additional move plausible over the remaining days.",
+    "Discount modestly because the threshold has not yet been verified as hit and the exact governing benchmark could not be fully inspected."
+  ],
+  "main_thesis": "The market is directionally right that a $76k BTC touch this week is likely because live spot is already near $75.4k, but 75% looks slightly rich given no verified $76k print yet and unresolved rule-source ambiguity.",
+  "own_probability": 0.68,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "BTC spot was less than 1% below the threshold on Binance, Kraken, and Coinbase.",
+    "The strongest disconfirming consideration is that none of the evidence I verified showed a clean $76k print yet."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-9c18e804",
+    "dispatch_id": "dispatch-case-20260414-9c18e804-20260414T135145Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "e4d115b9-d075-470e-b2b1-b1104c095c2b",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-9c18e804/researcher-analyses/2026-04-14/dispatch-case-20260414-9c18e804-20260414T135145Z/personas/market-implied.md",
+    "source_persona_sha256": "dc5ca71ba7b06956cf42d6d96700118f1440c15ebc09e95e984eff9e6f9f7afc"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Good contextual price evidence from direct spot venues plus CoinGecko, but only partial visibility into the governing Polymarket rule surface.",
+  "strongest_disconfirmers": [
+    "No verified source in this run showed an actual $76k print yet.",
+    "Polymarket rule-text retrieval was incomplete, leaving medium-high source-of-truth ambiguity for the precise benchmark."
+  ],
+  "strongest_supports": [
+    "Binance, Kraken, and Coinbase all showed BTC around $75.3k-$75.4k, less than 1% below the threshold.",
+    "CoinGecko range data showed BTC already moved from roughly $70.7k to $74.8k in the sampled window, indicating active realized volatility.",
+    "A multi-day touch contract has a lower hurdle than a close-above contract."
+  ],
+  "timing_relevance": "High; the contract is a multi-day threshold-touch question and remaining time plus near-threshold spot level drive most of the probability.",
+  "unresolved_ambiguities": [
+    "Exact Polymarket rule text and official data source were not fully retrievable from the event page fetch.",
+    "It remains unverified whether any governing benchmark already printed $76k outside the checked sources."
+  ],
+  "what_would_change_view": "A verified rule detail narrowing the benchmark, a material BTC pullback, or proof that the governing source already printed $76k would move the estimate meaningfully."
+}

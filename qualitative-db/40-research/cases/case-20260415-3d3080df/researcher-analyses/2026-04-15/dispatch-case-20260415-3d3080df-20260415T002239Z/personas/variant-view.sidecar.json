@@ -1,0 +1,62 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Short-horizon BTC volatility could erase the cushion quickly.",
+    "The exact noon ET minute increases path dependence.",
+    "Exchange-specific prints on Binance matter more than broader BTC references."
+  ],
+  "key_assumptions": [
+    "Current Binance BTCUSDT pricing around 74.5k is a reasonable anchor for the next four days.",
+    "A roughly 6% drop into the exact noon ET settlement minute is possible but not the base case.",
+    "Binance remains a usable and credible source for the target candle."
+  ],
+  "main_logical_chain": [
+    "Binance is the governing source of truth, so current Binance BTCUSDT is the most relevant direct anchor.",
+    "Current price around 74.5k makes Yes the base case.",
+    "But the contract is narrower than headline framing because only the April 20 noon ET 1-minute Binance close matters.",
+    "That narrowness makes an 85%+ market price look somewhat rich.",
+    "Net result is lean Yes, but below market confidence, at 79%."
+  ],
+  "main_thesis": "Yes remains the base case because Binance BTC/USDT is already well above 70k, but the market is somewhat overconfident because the contract depends on one exact noon ET Binance minute close.",
+  "own_probability": 0.79,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone has a final 'Close' price higher than 70,000.",
+    "BTCUSDT ticker checked at 74,534.15 during research."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation",
+    "variant_hypothesis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-3d3080df",
+    "dispatch_id": "dispatch-case-20260415-3d3080df-20260415T002239Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "29a9b491-26db-4f17-b52e-080c411c745c",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-3d3080df/researcher-analyses/2026-04-15/dispatch-case-20260415-3d3080df-20260415T002239Z/personas/variant-view.md",
+    "source_persona_sha256": "c522ac4d210c6accd5f00cf430e89a5a9fc6947a0973a9244f6d8a1a0b96f565"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is medium-high overall: Binance API is the strongest direct price anchor and Polymarket rules clearly define settlement mechanics, with low-to-medium remaining ambiguity after explicit timezone verification.",
+  "strongest_disconfirmers": [
+    "A single-minute, single-exchange timestamp contract can fail even if BTC stays broadly bullish.",
+    "A 4.5k cushion is meaningful but not enormous for BTC over four days.",
+    "Exchange-specific dislocation or short-lived noon ET volatility could still matter."
+  ],
+  "strongest_supports": [
+    "Direct Binance ticker and recent 1-minute klines place BTC/USDT roughly 4.5k above the threshold.",
+    "Only a few days remain until settlement, limiting time for a sustained breakdown.",
+    "Rules are straightforward once parsed: exact Binance BTC/USDT noon ET close above 70k wins."
+  ],
+  "timing_relevance": "The relevant candle is the Binance BTC/USDT 1-minute candle aligned with April 20, 2026 12:00 ET, which converts to 2026-04-20 16:00:00 UTC.",
+  "unresolved_ambiguities": [
+    "How noisy Binance noon ET minute prints tend to be versus broader spot around U.S. market hours.",
+    "Whether any exchange-specific stress emerges before settlement."
+  ],
+  "what_would_change_view": "I would move closer to the market if BTC holds comfortably above the low-mid 74k area into April 19-20 with muted volatility; I would move lower if BTC breaks toward 72k, a macro risk-off shock hits, or Binance-specific dislocation risk rises."
+}

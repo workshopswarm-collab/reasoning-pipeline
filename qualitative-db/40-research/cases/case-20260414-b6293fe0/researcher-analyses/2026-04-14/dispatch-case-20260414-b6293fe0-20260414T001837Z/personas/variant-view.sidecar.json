@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Unparsed rules text could hide a venue/index-specific condition.",
+    "This is a high-confidence case only if intraperiod highs count as implied by title/outcome ladder."
+  ],
+  "key_assumptions": [
+    "The contract resolves on whether BTC hit 74k during the stated window rather than on a closing price.",
+    "The governing benchmark is close enough to major spot venues that Binance/Coinbase prints above 74k are highly informative."
+  ],
+  "main_logical_chain": [
+    "Market implies 89% for BTC reaching 74k in April 13-19.",
+    "Major exchange data already shows BTC above 74k during the window.",
+    "If the contract is the standard threshold-hit structure, the event is effectively already satisfied.",
+    "Residual uncertainty comes mainly from possible settlement-source or rules nuance."
+  ],
+  "main_thesis": "BTC likely already satisfied the 74k threshold in substance, leaving only a small settlement-source nuance risk.",
+  "own_probability": 0.97,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "market price 0.89 => 89% implied",
+    "Coinbase BTC-USD spot: 74370.945",
+    "residual risk is mostly source-of-truth ambiguity"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "contract_interpretation",
+    "technical_reference",
+    "variant_hypothesis"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260414-b6293fe0",
+    "dispatch_id": "dispatch-case-20260414-b6293fe0-20260414T001837Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "ac43542b-64dc-4a36-acf6-1718cfe26265",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-b6293fe0/researcher-analyses/2026-04-14/dispatch-case-20260414-b6293fe0-20260414T001837Z/personas/variant-view.md",
+    "source_persona_sha256": "7e216f72193936cb8630a258ed1d65d2eea9b384115c714ed55c6f41abf8c1e5"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary contract surface is strong, exchange verification is strong contextual evidence, but exact settlement-rule extraction remained incomplete.",
+  "strongest_disconfirmers": [
+    "The exact Polymarket rules block was not fully extracted, leaving small source-of-truth ambiguity.",
+    "A settlement benchmark mismatch could in principle invalidate major-venue spot checks."
+  ],
+  "strongest_supports": [
+    "Binance daily OHLC showed BTC trading above 74k during the target week.",
+    "Coinbase spot returned 74370.945, independently confirming BTC above 74k.",
+    "Polymarket event framing indicates a threshold-hit ladder market."
+  ],
+  "timing_relevance": "High: this is a date-bounded threshold market, and the key fact is that BTC already traded above the threshold during the relevant week.",
+  "unresolved_ambiguities": [
+    "Exact settlement source and edge-case wording in the full rules block.",
+    "Whether Polymarket uses a specific reference price that differs from visible exchange spot."
+  ],
+  "what_would_change_view": "A parsed official rules block showing a benchmark or timing rule under which 74k was not actually reached would cut confidence materially."
+}

@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Overnight macro or crypto-specific liquidation could push ETH below 2200 at the exact settlement minute.",
+    "Binance-specific wick or dislocation risk matters more than in a multi-venue reference.",
+    "If realized volatility stays very subdued, the variant discount may be too conservative."
+  ],
+  "key_assumptions": [
+    "The main route to No is a sharp short-horizon volatility event or exchange-specific dislocation rather than gradual drift.",
+    "Binance public ticker and kline data are a reliable practical proxy for validating the settlement mechanics.",
+    "No hidden contract nuance supersedes the plain close-price-above-2200 rule."
+  ],
+  "main_logical_chain": [
+    "The contract resolves from Binance ETH/USDT's 12:00 ET 1-minute candle close on April 17.",
+    "Current Binance ETHUSDT is materially above 2200, so Yes is the base case.",
+    "But a single-exchange, single-minute threshold contract has more path and venue risk than broad spot intuition suggests.",
+    "That justifies a modest discount versus the market's 97.5% implied probability, landing around 92% Yes."
+  ],
+  "main_thesis": "Yes remains likely, but the market is modestly overconfident because this resolves on a single Binance ETH/USDT 1-minute noon ET close rather than a broader daily price level.",
+  "own_probability": 0.92,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for ETH/USDT 12:00 in the ET timezone has a final 'Close' price higher than the price specified in the title.",
+    "My estimate is 92% Yes."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation",
+    "variant_hypothesis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-305ed3c4",
+    "dispatch_id": "dispatch-case-20260416-305ed3c4-20260416T190054Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "0da729e3-5949-4a51-95d8-667acc9a15f7",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-305ed3c4/researcher-analyses/2026-04-16/dispatch-case-20260416-305ed3c4-20260416T190054Z/personas/variant-view.md",
+    "source_persona_sha256": "85ddcbe99c34abb02950dc11a06d8336aff705b49c388dc12b94e525e31b182e"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality direct settlement and market-state sources, but only medium-low independence because the key evidence is tightly tied to the governing source.",
+  "strongest_disconfirmers": [
+    "ETH only needs to avoid about a 6% drop by tomorrow noon ET, which may make the market's 97.5% confidence reasonable if volatility stays ordinary.",
+    "The strongest evidence is close to the settlement source, so it is accurate but not very independent."
+  ],
+  "strongest_supports": [
+    "Binance spot check showed ETHUSDT around 2343.62, roughly 6.5% above the threshold.",
+    "Recent 1-minute Binance closes were clustered around 2343-2345.",
+    "Polymarket rules explicitly define the source and exact settlement condition."
+  ],
+  "timing_relevance": "This is highly timing-sensitive because the market resolves at 2026-04-17 12:00 ET, equivalent to 16:00 UTC, on a single 1-minute close.",
+  "unresolved_ambiguities": [
+    "Small residual ambiguity remains between Binance UI candle display and API-based verification.",
+    "I did not independently quantify the exact short-horizon probability of a 6% drop before noon ET."
+  ],
+  "what_would_change_view": "I would move closer to market if volatility remains subdued and ETH stays comfortably above 2200 into tomorrow morning; I would move lower on sharp overnight downside, macro shock, or Binance-specific irregularity."
+}

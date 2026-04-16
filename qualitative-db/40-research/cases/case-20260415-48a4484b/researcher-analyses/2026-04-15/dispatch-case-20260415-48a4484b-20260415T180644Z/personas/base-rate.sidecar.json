@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A sharp overnight BTC selloff would quickly erode the cushion.",
+    "Any ambiguity or operational issue in Binance candle labeling near settlement would matter disproportionately."
+  ],
+  "key_assumptions": [
+    "BTC does not suffer a roughly 3% or larger downside move before the settlement minute.",
+    "Binance minute-candle and ET-to-UTC mapping behave normally.",
+    "Current ~74.2k Binance level is a meaningful anchor for the remaining sub-24h window."
+  ],
+  "main_logical_chain": [
+    "Read contract rules and identify Binance BTCUSDT 12:00 ET 1-minute close as the governing source of truth.",
+    "Check current Binance spot and minute-candle data; observe BTC near 74.2k with persistent buffer above 72k.",
+    "Cross-check with CoinGecko and verify ET/UTC timing mechanics.",
+    "Apply outside-view discount for crypto volatility and exact-minute settlement fragility, yielding 89% rather than the market's 93.5%."
+  ],
+  "main_thesis": "BTC is likely to stay above 72000 into the Binance noon-ET settlement minute on April 16, but the market is slightly overconfident because crypto can still move several percent in a day and the contract settles on one exact minute close.",
+  "own_probability": 0.89,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone (noon) on the date specified in the title has a final 'Close' price higher than the price specified in the title.",
+    "The governing source of truth is Binance BTC/USDT, not other exchanges or BTC/USD aggregates.",
+    "89% Yes."
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "contract_interpretation",
+    "market_anchor"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-48a4484b",
+    "dispatch_id": "dispatch-case-20260415-48a4484b-20260415T180644Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "7b79b7d2-ba17-4f1c-8a60-b748031c8e44",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-48a4484b/researcher-analyses/2026-04-15/dispatch-case-20260415-48a4484b-20260415T180644Z/personas/base-rate.md",
+    "source_persona_sha256": "2b0d97dbe91e9c67353792bcdaf4bcb34570822465049da1ffa167989376faa6"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality primary rule/source-of-truth set via Polymarket rules plus Binance; CoinGecko is a useful but non-authoritative contextual cross-check; overall independence is medium.",
+  "strongest_disconfirmers": [
+    "BTC can plausibly fall more than 3% in under 24 hours.",
+    "The market settles on one exact Binance 1-minute close, so even a brief wick could flip the outcome."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT was around 74.2k, about 2.2k above the threshold.",
+    "A 60-minute Binance sample remained entirely above 72k.",
+    "CoinGecko independently showed Bitcoin around 74.3k."
+  ],
+  "timing_relevance": "The market resolves in about 18 hours from the research run, and the exact noon-ET minute on April 16 is dispositive.",
+  "unresolved_ambiguities": [
+    "Exact Binance UI candle labeling at the settlement minute was inferred from API/server-time checks rather than observed live near settlement.",
+    "No specific catalyst was identified, so residual downside risk is mostly structural volatility risk."
+  ],
+  "what_would_change_view": "A retrace toward or below 73k before the window, a new bearish catalyst, or evidence of Binance timezone/candle ambiguity would lower the estimate materially."
+}

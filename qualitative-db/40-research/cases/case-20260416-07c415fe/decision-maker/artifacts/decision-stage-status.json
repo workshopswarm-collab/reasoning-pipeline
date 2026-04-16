@@ -1,0 +1,280 @@
+{
+  "actor": "decision-maker",
+  "agent_tool_use_allowed": true,
+  "artifact_type": "decision_stage_status",
+  "case_key": "case-20260416-07c415fe",
+  "decision_context_path": "roles/decision-maker/runtime/artifacts/case-20260416-07c415fe/decision-context-dispatch-case-20260416-07c415fe-20260416T031541Z.json",
+  "decision_lane": {
+    "topic_id": "4227",
+    "topic_title": "case-20260416-07c415fe | decision | T031541Z",
+    "session_key": "agent:main:telegram:group:-1003846500961:topic:4227"
+  },
+  "decision_launch_claim": {
+    "claimed_at": "2026-04-16T03:25:12.632961Z",
+    "decision_context_path": "roles/decision-maker/runtime/artifacts/case-20260416-07c415fe/decision-context-dispatch-case-20260416-07c415fe-20260416T031541Z.json",
+    "launch_log_path": "scripts/.runtime-state/decision-maker-launches/case-20260416-07c415fe-20260416T032512Z.log",
+    "launcher": "pipeline_automation_actions.launch_decision_maker",
+    "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260416-07c415fe/decision-prompt-dispatch-case-20260416-07c415fe-20260416T031541Z.md",
+    "runner_pid": 65984
+  },
+  "decision_prompt_path": "roles/decision-maker/runtime/artifacts/case-20260416-07c415fe/decision-prompt-dispatch-case-20260416-07c415fe-20260416T031541Z.md",
+  "decision_readiness": "ready",
+  "decision_target_chat_id": "-1003846500961",
+  "decision_target_session_key": "agent:main:telegram:group:-1003846500961:topic:4227",
+  "decision_visible_finish_marker": "DECISION-MAKING COMPLETED, DECISION PACKAGE CREATED | market=Will the price of Solana be above $80 on April 19? | dispatch_id=dispatch-case-20260416-07c415fe-20260416T031541Z | packet_path=qualitative-db/40-research/cases/case-20260416-07c415fe/decision-maker/decision-maker-packet.md",
+  "decision_visible_receipt_marker": "SYNTHESIS RECEIVED | market=Will the price of Solana be above $80 on April 19? | dispatch_id=dispatch-case-20260416-07c415fe-20260416T031541Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260416-07c415fe/decision-context-dispatch-case-20260416-07c415fe-20260416T031541Z.json",
+  "decision_visible_start_marker": "DECISION-MAKING ANALYSIS UNDERWAY | market=Will the price of Solana be above $80 on April 19? | dispatch_id=dispatch-case-20260416-07c415fe-20260416T031541Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260416-07c415fe/decision-context-dispatch-case-20260416-07c415fe-20260416T031541Z.json",
+  "dispatch_id": "dispatch-case-20260416-07c415fe-20260416T031541Z",
+  "last_stage_event": {
+    "at": "2026-04-16T03:26:03.687154Z",
+    "stage": "decision_execution",
+    "state": "visible_marker_sent",
+    "message": "DECISION-MAKING COMPLETED, DECISION PACKAGE CREATED | market=Will the price of Solana be above $80 on April 19? | dispatch_id=dispatch-case-20260416-07c415fe-20260416T031541Z | packet_path=qualitative-db/40-research/cases/case-20260416-07c415fe/decision-maker/decision-maker-packet.md"
+  },
+  "packet_json_path": "qualitative-db/40-research/cases/case-20260416-07c415fe/decision-maker/artifacts/decision-maker-packet.json",
+  "packet_markdown_path": "qualitative-db/40-research/cases/case-20260416-07c415fe/decision-maker/decision-maker-packet.md",
+  "position_policy": "hold_only",
+  "question": "Will the price of Solana be above $80 on April 19?",
+  "recommended_side": "yes",
+  "schema_version": "decision-stage-status/v1",
+  "selected_input_bundle_estimated_tokens": 3896,
+  "selected_input_bundle_mode": "targeted_escalation",
+  "selected_input_bundle_path": "roles/decision-maker/runtime/artifacts/case-20260416-07c415fe/selected-inputs-dispatch-case-20260416-07c415fe-20260416T031541Z.json",
+  "stage_events": [
+    {
+      "at": "2026-04-16T03:25:11.934881Z",
+      "message": "Decision-Maker stage initialized from synthesis handoff",
+      "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260416-07c415fe/synthesizer-agent/decision-handoff.md",
+      "stage": "kickoff",
+      "state": "decision_ready_for_receipt"
+    },
+    {
+      "agent_tool_use_allowed": true,
+      "approx_tokens_after_trim": 3896,
+      "at": "2026-04-16T03:25:12.597513Z",
+      "message": "Built deterministic Decision-Maker selected-input bundle",
+      "selected_input_bundle_path": "roles/decision-maker/runtime/artifacts/case-20260416-07c415fe/selected-inputs-dispatch-case-20260416-07c415fe-20260416T031541Z.json",
+      "stage": "decision_input_selection",
+      "state": "built",
+      "verification_mode": "targeted_escalation",
+      "verification_mode_path": "roles/decision-maker/runtime/artifacts/case-20260416-07c415fe/verification-mode-dispatch-case-20260416-07c415fe-20260416T031541Z.json"
+    },
+    {
+      "approx_tokens_after_trim": 1422,
+      "at": "2026-04-16T03:25:12.597745Z",
+      "message": "Built deterministic targeted verification pack",
+      "stage": "decision_targeted_verification",
+      "state": "built",
+      "targeted_verification_pack_path": "roles/decision-maker/runtime/artifacts/case-20260416-07c415fe/targeted-verification-pack-dispatch-case-20260416-07c415fe-20260416T031541Z.json"
+    },
+    {
+      "at": "2026-04-16T03:25:12.597923Z",
+      "message": "Built Decision-Maker prompt from compact selected-input bundle",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260416-07c415fe/decision-prompt-dispatch-case-20260416-07c415fe-20260416T031541Z.md",
+      "stage": "decision_prompt",
+      "state": "built"
+    },
+    {
+      "at": "2026-04-16T03:25:12.599210Z",
+      "message": "Decision-Maker inputs prepared; awaiting launch claim",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260416-07c415fe/decision-prompt-dispatch-case-20260416-07c415fe-20260416T031541Z.md",
+      "stage": "decision_prepare",
+      "state": "handoff_prepared"
+    },
+    {
+      "at": "2026-04-16T03:25:12.632961Z",
+      "decision_context_path": "roles/decision-maker/runtime/artifacts/case-20260416-07c415fe/decision-context-dispatch-case-20260416-07c415fe-20260416T031541Z.json",
+      "launch_log_path": "scripts/.runtime-state/decision-maker-launches/case-20260416-07c415fe-20260416T032512Z.log",
+      "message": "Decision-Maker launch claimed by automation controller",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260416-07c415fe/decision-prompt-dispatch-case-20260416-07c415fe-20260416T031541Z.md",
+      "runner_pid": 65984,
+      "stage": "decision_receipt",
+      "state": "handoff_sent"
+    },
+    {
+      "at": "2026-04-16T03:25:12.816936Z",
+      "stage": "kickoff",
+      "state": "reentered",
+      "message": "Decision-Maker executor resumed from existing prepared/running state",
+      "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260416-07c415fe/synthesizer-agent/decision-handoff.md"
+    },
+    {
+      "at": "2026-04-16T03:25:13.473271Z",
+      "stage": "decision_input_selection",
+      "state": "built",
+      "message": "Built deterministic Decision-Maker selected-input bundle",
+      "verification_mode_path": "roles/decision-maker/runtime/artifacts/case-20260416-07c415fe/verification-mode-dispatch-case-20260416-07c415fe-20260416T031541Z.json",
+      "selected_input_bundle_path": "roles/decision-maker/runtime/artifacts/case-20260416-07c415fe/selected-inputs-dispatch-case-20260416-07c415fe-20260416T031541Z.json",
+      "verification_mode": "targeted_escalation",
+      "approx_tokens_after_trim": 3896,
+      "agent_tool_use_allowed": true
+    },
+    {
+      "at": "2026-04-16T03:25:13.473508Z",
+      "stage": "decision_targeted_verification",
+      "state": "built",
+      "message": "Built deterministic targeted verification pack",
+      "targeted_verification_pack_path": "roles/decision-maker/runtime/artifacts/case-20260416-07c415fe/targeted-verification-pack-dispatch-case-20260416-07c415fe-20260416T031541Z.json",
+      "approx_tokens_after_trim": 1422
+    },
+    {
+      "at": "2026-04-16T03:25:13.473682Z",
+      "stage": "decision_prompt",
+      "state": "built",
+      "message": "Built Decision-Maker prompt from compact selected-input bundle",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260416-07c415fe/decision-prompt-dispatch-case-20260416-07c415fe-20260416T031541Z.md"
+    },
+    {
+      "at": "2026-04-16T03:25:18.578489Z",
+      "stage": "decision_lane_bootstrap",
+      "state": "created",
+      "message": "Created dedicated Telegram decision lane",
+      "topic_id": "4227",
+      "topic_title": "case-20260416-07c415fe | decision | T031541Z",
+      "session_key": "agent:main:telegram:group:-1003846500961:topic:4227"
+    },
+    {
+      "at": "2026-04-16T03:25:33.928026Z",
+      "stage": "decision_receipt",
+      "state": "visible_marker_sent",
+      "message": "SYNTHESIS RECEIVED | market=Will the price of Solana be above $80 on April 19? | dispatch_id=dispatch-case-20260416-07c415fe-20260416T031541Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260416-07c415fe/decision-context-dispatch-case-20260416-07c415fe-20260416T031541Z.json"
+    },
+    {
+      "at": "2026-04-16T03:25:33.929738Z",
+      "stage": "decision_receipt",
+      "state": "accepted",
+      "message": "Decision-Maker handoff accepted",
+      "session_key": "agent:decision-maker:main",
+      "handoff_status": "started",
+      "gateway_response_path": "roles/decision-maker/runtime/artifacts/case-20260416-07c415fe/decision-gateway-response-dispatch-case-20260416-07c415fe-20260416T031541Z.json"
+    },
+    {
+      "at": "2026-04-16T03:25:33.929965Z",
+      "stage": "decision_execution",
+      "state": "decision_analysis_running",
+      "message": "Decision-Maker agent invocation accepted and analysis started",
+      "session_key": "agent:decision-maker:main",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260416-07c415fe/decision-prompt-dispatch-case-20260416-07c415fe-20260416T031541Z.md",
+      "handoff_status": "started"
+    },
+    {
+      "at": "2026-04-16T03:25:42.400149Z",
+      "stage": "decision_execution",
+      "state": "visible_marker_sent",
+      "message": "DECISION-MAKING ANALYSIS UNDERWAY | market=Will the price of Solana be above $80 on April 19? | dispatch_id=dispatch-case-20260416-07c415fe-20260416T031541Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260416-07c415fe/decision-context-dispatch-case-20260416-07c415fe-20260416T031541Z.json"
+    },
+    {
+      "at": "2026-04-16T03:25:54.834666Z",
+      "stage": "decision_execution",
+      "state": "decision_completed",
+      "message": "Decision-Maker completed and packet rendered",
+      "warnings": [],
+      "forecast_decision_persist_error": "",
+      "decision_parse_attempt_count": 1,
+      "decision_recovered_after_retry": false
+    },
+    {
+      "at": "2026-04-16T03:26:03.687154Z",
+      "stage": "decision_execution",
+      "state": "visible_marker_sent",
+      "message": "DECISION-MAKING COMPLETED, DECISION PACKAGE CREATED | market=Will the price of Solana be above $80 on April 19? | dispatch_id=dispatch-case-20260416-07c415fe-20260416T031541Z | packet_path=qualitative-db/40-research/cases/case-20260416-07c415fe/decision-maker/decision-maker-packet.md"
+    }
+  ],
+  "status": "decision_completed",
+  "targeted_verification_pack_path": "roles/decision-maker/runtime/artifacts/case-20260416-07c415fe/targeted-verification-pack-dispatch-case-20260416-07c415fe-20260416T031541Z.json",
+  "targeted_verification_pack_required": true,
+  "trade_authorization": "watch_only",
+  "updated_at": "2026-04-16T03:26:03.687199Z",
+  "verification_mode_path": "roles/decision-maker/runtime/artifacts/case-20260416-07c415fe/verification-mode-dispatch-case-20260416-07c415fe-20260416T031541Z.json",
+  "warnings": [],
+  "previous_status": "handoff_sent",
+  "raw_gateway_response_path": "roles/decision-maker/runtime/artifacts/case-20260416-07c415fe/decision-gateway-response-dispatch-case-20260416-07c415fe-20260416T031541Z.json",
+  "raw_response_text_path": "roles/decision-maker/runtime/artifacts/case-20260416-07c415fe/decision-response-dispatch-case-20260416-07c415fe-20260416T031541Z.raw.txt",
+  "decision_parse_failure_artifact_path": "roles/decision-maker/runtime/artifacts/case-20260416-07c415fe/decision-parse-failure-dispatch-case-20260416-07c415fe-20260416T031541Z.json",
+  "decision_parse_attempt_count": 1,
+  "decision_recovered_after_retry": false,
+  "decision_lane_topic_id": "4227",
+  "decision_lane_topic_title": "case-20260416-07c415fe | decision | T031541Z",
+  "decision_lane_session_key": "agent:main:telegram:group:-1003846500961:topic:4227",
+  "decision_target_topic_id": "4227",
+  "decision_target_topic_title": "case-20260416-07c415fe | decision | T031541Z",
+  "decision_receipt_marker_sent_at": "2026-04-16T03:25:33.927975+00:00",
+  "decision_analysis_marker_sent_at": "2026-04-16T03:25:42.400107+00:00",
+  "timeline_update": {
+    "appended": true,
+    "case_key": "case-20260416-07c415fe",
+    "dispatch_id": "dispatch-case-20260416-07c415fe-20260416T031541Z",
+    "packet_path": "qualitative-db/40-research/cases/case-20260416-07c415fe/decision-maker/decision-maker-packet.md",
+    "entry": "- 2026-04-16T03:25:54.833113+00:00 — completed decision-making `dispatch-case-20260416-07c415fe-20260416T031541Z` with packet `qualitative-db/40-research/cases/case-20260416-07c415fe/decision-maker/decision-maker-packet.md`."
+  },
+  "forecast_decision_persist": {
+    "ok": true,
+    "packet_json": "qualitative-db/40-research/cases/case-20260416-07c415fe/decision-maker/artifacts/decision-maker-packet.json",
+    "persisted": {
+      "forecast_id": "dispatch-case-20260416-07c415fe-20260416T031541Z",
+      "market_id": "139f80d9-bf3b-4b6b-9dea-031313b6ae5b",
+      "contract_id": "yes",
+      "forecast_prob": 0.865,
+      "decision_status": "recorded",
+      "decision_packet_path": "qualitative-db/40-research/cases/case-20260416-07c415fe/decision-maker/artifacts/decision-maker-packet.json",
+      "supersedes_forecast_id": "refresh-case-20260416-d529376c-20260416T031241Z",
+      "superseded_forecast_ids": [
+        "dispatch-case-20260415-5ecb60de-20260416T000100Z",
+        "dispatch-case-20260416-c395460f-20260416T022702Z",
+        "dispatch-case-20260416-33b4e3b5-20260416T021538Z",
+        "dispatch-case-20260416-a8277fc8-20260416T001420Z",
+        "dispatch-case-20260415-540d9abf-20260415T234706Z",
+        "refresh-case-20260415-540d9abf-20260415T235725Z"
+      ],
+      "market_state": {
+        "market_id": "139f80d9-bf3b-4b6b-9dea-031313b6ae5b",
+        "current_price": 0.92,
+        "last_reasoned_price": 0.865,
+        "pipeline_status": "executed"
+      }
+    },
+    "record": {
+      "forecast_id": "dispatch-case-20260416-07c415fe-20260416T031541Z",
+      "decision_ts": "2026-04-15T23:25:00-04:00",
+      "case_id": "case-20260416-07c415fe",
+      "dispatch_id": "dispatch-case-20260416-07c415fe-20260416T031541Z",
+      "market_id": "139f80d9-bf3b-4b6b-9dea-031313b6ae5b",
+      "contract_id": "yes",
+      "platform": "polymarket",
+      "market_slug": "solana-above-80-on-april-19",
+      "question": "Will the price of Solana be above $80 on April 19?",
+      "forecast_prob": "0.865",
+      "forecast_direction": "yes",
+      "confidence_label": "medium",
+      "confidence_score": "",
+      "time_horizon_label": "",
+      "verification_mode": "targeted_escalation",
+      "decision_status": "recorded",
+      "rationale_summary": "SOL above $80 on the April 19 Binance noon minute remains more likely than not, but with fair value around 0.865 and the market at 0.92, the disciplined output stays watch-only because the exact-minute weekend settlement still leaves too much downside path risk for the quoted price.",
+      "decision_packet_path": "qualitative-db/40-research/cases/case-20260416-07c415fe/decision-maker/artifacts/decision-maker-packet.json",
+      "decision_handoff_path": "qualitative-db/40-research/cases/case-20260416-07c415fe/synthesizer-agent/decision-handoff.md",
+      "syndicated_finding_path": "qualitative-db/40-research/cases/case-20260416-07c415fe/synthesizer-agent/syndicated-finding.md"
+    },
+    "warnings": []
+  },
+  "terminal_summary": {
+    "at": "2026-04-16T03:26:03.687230Z",
+    "status": "decision_completed",
+    "decision_lane": {
+      "topic_id": "4227",
+      "topic_title": "case-20260416-07c415fe | decision | T031541Z",
+      "session_key": "agent:main:telegram:group:-1003846500961:topic:4227"
+    },
+    "packet_json_path": "qualitative-db/40-research/cases/case-20260416-07c415fe/decision-maker/artifacts/decision-maker-packet.json",
+    "packet_markdown_path": "qualitative-db/40-research/cases/case-20260416-07c415fe/decision-maker/decision-maker-packet.md",
+    "trade_authorization": "watch_only",
+    "decision_readiness": "ready",
+    "last_stage_event": {
+      "at": "2026-04-16T03:26:03.687154Z",
+      "stage": "decision_execution",
+      "state": "visible_marker_sent",
+      "message": "DECISION-MAKING COMPLETED, DECISION PACKAGE CREATED | market=Will the price of Solana be above $80 on April 19? | dispatch_id=dispatch-case-20260416-07c415fe-20260416T031541Z | packet_path=qualitative-db/40-research/cases/case-20260416-07c415fe/decision-maker/decision-maker-packet.md"
+    }
+  },
+  "decision_completion_marker_sent_at": "2026-04-16T03:26:03.687087+00:00"
+}

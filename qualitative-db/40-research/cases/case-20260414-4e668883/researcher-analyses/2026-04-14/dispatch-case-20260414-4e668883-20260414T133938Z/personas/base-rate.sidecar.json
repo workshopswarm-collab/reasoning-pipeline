@@ -1,0 +1,57 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A volatility collapse or broader crypto pullback would reduce touch odds quickly.",
+    "Exchange-specific print mechanics matter because Binance alone governs resolution."
+  ],
+  "key_assumptions": [
+    "Ordinary ETH intraday volatility remains sufficient over the remaining Apr 14-19 window for a nearby threshold touch.",
+    "Binance remains a fair operational proxy for whether the threshold is hit because it is the governing settlement source."
+  ],
+  "main_logical_chain": [
+    "Interpret the contract using Polymarket's rule text: Binance 1-minute ETH/USDT High is the source of truth.",
+    "Check current and recent Binance highs: price got close but remained below $2,400.",
+    "Cross-check spot context on Coinbase/CoinGecko/Binance: ETH is already within about 0.5% of the threshold.",
+    "Apply outside-view logic: multi-day crypto windows often produce nearby threshold touches, but not with 92% certainty when the touch has not yet occurred.",
+    "Conclude Yes is favored, but less strongly than the market implies."
+  ],
+  "main_thesis": "ETH reaching $2,400 by Apr 19 is more likely than not because it is already trading within roughly 0.5% of the threshold, but the market's 92.35% probability overstates certainty for a still-unrealized short-horizon crypto touch event.",
+  "own_probability": 0.78,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "Market resolves Yes if any Binance 1-minute ETH/USDT candle ... has a final High >= $2,400.",
+    "My estimate is 78%."
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "market_anchor",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-4e668883",
+    "dispatch_id": "dispatch-case-20260414-4e668883-20260414T133938Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "07f5c4de-3cf3-4e78-85c3-95b94e8e8324",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-4e668883/researcher-analyses/2026-04-14/dispatch-case-20260414-4e668883-20260414T133938Z/personas/base-rate.md",
+    "source_persona_sha256": "b1a262377f0ee36234bd4a0b3233ec5f68d689704d8a160954f87eeb17a6d653"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality source-of-truth interpretation from Polymarket rules plus direct Binance data; contextual spot cross-check is strong but only medium-independence.",
+  "strongest_disconfirmers": [
+    "ETH had still not actually printed $2,400 on the governing Binance metric at check time despite getting close already.",
+    "Near-threshold rejection can repeat, so proximity should not be treated as near-certainty."
+  ],
+  "strongest_supports": [
+    "Checked spot across Binance, Coinbase, and CoinGecko was about $2,387-$2,389, only $11-$13 below the threshold.",
+    "Binance recent highs reached 2396.03, showing the market already came within a few dollars of the trigger."
+  ],
+  "timing_relevance": "High: this is a short-dated threshold-touch market, so residual path risk over the remaining days is the key variable.",
+  "unresolved_ambiguities": [
+    "Future realized volatility over the remaining window is uncertain.",
+    "The exact path dependence of whether Binance prints 2400 before Apr 19 remains unresolved."
+  ],
+  "what_would_change_view": "I would move higher on renewed Binance momentum into 2397-2399 or a broad crypto risk-on move, and lower on repeated rejection below $2,400 or a pullback that moves ETH materially away from the threshold."
+}

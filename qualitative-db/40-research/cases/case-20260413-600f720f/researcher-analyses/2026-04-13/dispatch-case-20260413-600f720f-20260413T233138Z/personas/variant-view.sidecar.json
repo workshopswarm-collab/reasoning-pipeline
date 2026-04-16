@@ -1,0 +1,61 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "medium",
+  "fragility_points": [
+    "This view is fragile to a single strong breakout session.",
+    "Exact Polymarket benchmark wording was not cleanly exposed in retrieval."
+  ],
+  "key_assumptions": [
+    "Closeness to threshold is being overweighted versus the chance of stalling below resistance.",
+    "Recent rejection context is relevant over a one-week horizon.",
+    "Settlement benchmark differences are small enough not to dominate the directional call."
+  ],
+  "main_logical_chain": [
+    "Market implies 75% because BTC is already near the target.",
+    "Direct price data confirm yes is favored but not settled.",
+    "Independent contextual evidence suggests nearby resistance and no confirmed breakout.",
+    "Therefore the strongest credible variant is a near-miss timing failure, not a bearish collapse.",
+    "That supports a modest under at 68% rather than matching the market."
+  ],
+  "main_thesis": "BTC is close enough to $76k to keep yes favored, but the 75% market price looks slightly too confident because nearby resistance could produce a timed-out near miss.",
+  "own_probability": 0.68,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "current_price: 0.75",
+    "Binance lastPrice 74643.78 / highPrice 74900.00",
+    "TradingView: repeated resistance near $74,000; no breakout"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "variant_hypothesis",
+    "contract_interpretation",
+    "technical_reference"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260413-600f720f",
+    "dispatch_id": "dispatch-case-20260413-600f720f-20260413T233138Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "0c65c4f8-4b8f-4611-a9c9-af04386a5fe0",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260413-600f720f/researcher-analyses/2026-04-13/dispatch-case-20260413-600f720f-20260413T233138Z/personas/variant-view.md",
+    "source_persona_sha256": "e898320e48dff7779133cd75afe0ae7dfa920f726b9bcd07fb1e732debe27833"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Good enough for a low-difficulty case: one governing contract surface, one direct exchange-data source, and one independent contextual source; source-of-truth wording remains somewhat ambiguous.",
+  "strongest_disconfirmers": [
+    "A small additional upside move could clear $76k quickly after an already strong day.",
+    "If BTC breaks above the recent high zone early in the week, the mild-under thesis likely fails."
+  ],
+  "strongest_supports": [
+    "Binance showed BTC around $74.6k, only about 1.8% below the threshold.",
+    "BTC posted a +5.689% 24h move, showing the target is reachable within ordinary crypto volatility.",
+    "TradingView context still pointed to repeated rejection near the nearby resistance zone."
+  ],
+  "timing_relevance": "Very high; this is a one-week threshold market where path and timing matter as much as direction.",
+  "unresolved_ambiguities": [
+    "Exact official Polymarket benchmark/index methodology for 'reach'.",
+    "How persistent the reported resistance structure will be over the remaining week."
+  ],
+  "what_would_change_view": "A clean breakout above the recent highs, especially sustained trade through $75k toward $76k, or cleaner settlement-source evidence that materially changes what counts as a hit."
+}

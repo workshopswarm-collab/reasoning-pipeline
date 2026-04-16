@@ -1,0 +1,62 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Exact-minute settlement can punish a short, badly timed downdraft.",
+    "This is not a touch market; spending most of the day above 2200 is insufficient if noon ET closes below.",
+    "Small practical gap remains between API prechecks and the chart-interface settlement surface."
+  ],
+  "key_assumptions": [
+    "Current Binance cushion above 2200 persists into the April 17 noon ET settlement minute.",
+    "Binance API values are a good practical proxy for the chart-based settlement surface named in the contract.",
+    "No Binance-specific anomaly distorts the governing minute close."
+  ],
+  "main_logical_chain": [
+    "Primary rules source says settlement depends only on Binance ETH/USDT 1-minute candle close at 12:00 ET on April 17 being strictly above 2200.",
+    "Current Binance ETH/USDT price and recent 24-hour range are both above 2200, supporting a high Yes probability.",
+    "Because only one future minute matters, residual risk is concentrated in overnight volatility and exchange-specific timing rather than broad ETH direction.",
+    "That supports a high-Yes but slightly below-market estimate of 83%."
+  ],
+  "main_thesis": "ETH/USDT on Binance is currently comfortably above 2200, so Yes is still favored, but exact-minute noon ET close risk keeps this below near-certainty.",
+  "own_probability": 0.83,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for ETH/USDT 12:00 in the ET timezone (noon) ... has a final 'Close' price higher than the price specified in the title.",
+    "ticker/price: {\"symbol\":\"ETHUSDT\",\"price\":\"2298.16000000\"}",
+    "future target-minute kline query returned []"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "risk_management",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-605a067d",
+    "dispatch_id": "dispatch-case-20260416-605a067d-20260416T142910Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "462a53a5-a84b-4046-b50b-38278daf2730",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-605a067d/researcher-analyses/2026-04-16/dispatch-case-20260416-605a067d-20260416T142910Z/personas/risk-manager.md",
+    "source_persona_sha256": "ae24243adbb65f7d95704a27bad245d75111422a6d5bbb18d3d8cbb2bff611c7"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is solid: explicit Polymarket rules plus direct Binance market-state checks; independence is medium and source-of-truth ambiguity is low to medium.",
+  "strongest_disconfirmers": [
+    "A 4-5% crypto selloff before noon ET could erase the current cushion and flip the market to No.",
+    "The contract depends on one exact future Binance minute close, so path and timing risk matter more than broad directional strength.",
+    "Binance-specific deviations matter even if other exchanges remain above 2200."
+  ],
+  "strongest_supports": [
+    "Direct Binance spot check showed ETH/USDT around 2298-2299, roughly 4.5% above threshold.",
+    "Binance 24-hour low of 2285.10 was still above 2200.",
+    "Polymarket rules make this a single exact-minute close-above test, not a harder full-day condition."
+  ],
+  "timing_relevance": "Timing is central because the market resolves from one exact Binance 1-minute close at April 17 12:00 ET (16:00 UTC), not from an intraday touch or end-of-day average.",
+  "unresolved_ambiguities": [
+    "How much overnight and U.S. morning volatility will compress the current cushion before settlement.",
+    "Whether Binance prints remain aligned with broader ETH venues near the governing minute."
+  ],
+  "what_would_change_view": "A fresh pre-settlement Binance check still showing a wide cushion would move me closer to or above market; a sharp drawdown toward 2200 or a Binance-specific anomaly would move me materially lower."
+}

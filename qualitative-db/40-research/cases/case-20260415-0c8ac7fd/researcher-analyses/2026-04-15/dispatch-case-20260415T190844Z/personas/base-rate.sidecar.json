@@ -1,0 +1,54 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "schema_version": "v1",
+  "persona": "base-rate",
+  "main_thesis": "BTC is already comfortably above 72000, so the outside view favors persistence through April 17 noon ET, but the exact one-minute close mechanic makes 87% somewhat rich; estimate 81% Yes.",
+  "own_probability": 0.81,
+  "reasoning_mode": ["base_rate", "contract_interpretation"],
+  "key_assumptions": [
+    "BTC remains in roughly its current trading regime through April 17 noon ET.",
+    "No major downside shock erases the current 3% to 4% cushion above 72000.",
+    "Binance remains the clear operative resolution surface without material ambiguity."
+  ],
+  "strongest_supports": [
+    "Direct Binance checks on April 15 show BTC/USDT around 74659, already well above 72000.",
+    "Recent Binance daily data show repeated trading and several closes above 72000 rather than a one-off spike.",
+    "Short-horizon persistence is the relevant outside-view frame because the asset is already above the strike."
+  ],
+  "strongest_disconfirmers": [
+    "The contract settles on one exact Binance one-minute close, not on a touch or daily close.",
+    "BTC can move several percent in two days, enough to erase the current cushion."
+  ],
+  "main_logical_chain": [
+    "Verify the contract settles on Binance BTC/USDT 12:00 ET April 17 one-minute close above 72000.",
+    "Observe BTC is currently around 74659 on Binance, so Yes requires persistence rather than a fresh breakout.",
+    "Discount from near-certainty because a single-minute close is stricter than a touch-style threshold market.",
+    "Land below the 87% market price but still clearly Yes-leaning at 81%."
+  ],
+  "fragility_points": [
+    "A sudden BTC selloff before the governing minute would quickly undermine the thesis.",
+    "Close-specific mechanics make last-minute volatility more important than broader above-threshold trading."
+  ],
+  "unresolved_ambiguities": [
+    "No direct proof of the governing candle is possible yet because the resolving minute has not occurred.",
+    "The exact Binance chart UI named in the rules was not machine-extractable, so contextual verification used Binance API instead."
+  ],
+  "timing_relevance": "The event resolves in about two days, so current above-threshold price state matters a lot, but the exact noon ET minute on April 17 still dominates final risk.",
+  "source_quality_view": "High-quality contract wording from Polymarket plus direct Binance price data; source-of-truth ambiguity is low, but evidence independence is only medium-low because everything anchors to Binance.",
+  "what_would_change_view": "A drop back below 72000 on Binance, late-stage price weakness toward the threshold, or newly discovered settlement ambiguity would lower the estimate materially.",
+  "recommended_weight": "medium",
+  "confidence_in_extract": "high",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone has a final 'Close' price higher than the price specified.",
+    "ticker/price for BTCUSDT = 74,659.41"
+  ],
+  "runtime_metadata": {
+    "generation_mode": "researcher_sidecar_v1",
+    "case_key": "case-20260415-0c8ac7fd",
+    "dispatch_id": "dispatch-case-20260415-0c8ac7fd-20260415T190844Z",
+    "research_run_id": "50fa720d-a864-40e4-8184-6a9f5b56bbba",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-0c8ac7fd/researcher-analyses/2026-04-15/dispatch-case-20260415-0c8ac7fd-20260415T190844Z/personas/base-rate.md",
+    "source_persona_sha256": "1d8decd55551ecf22f0800674243b93cbf015f30799ff5c799f5864f35dbd696",
+    "prompt_contract_version": "researcher-sidecar-v1"
+  }
+}

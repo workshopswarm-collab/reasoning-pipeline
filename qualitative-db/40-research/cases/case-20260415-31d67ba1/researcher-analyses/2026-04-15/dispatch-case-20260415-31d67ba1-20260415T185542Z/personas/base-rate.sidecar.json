@@ -1,0 +1,58 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A sharp BTC drawdown toward or below 70k before noon ET Friday would quickly weaken the thesis.",
+    "Exact-minute settlement means a near-threshold move at the wrong time can flip the outcome."
+  ],
+  "key_assumptions": [
+    "Current Binance pricing near 74.4k is representative rather than transient.",
+    "No major downside shock hits BTC before the April 17 noon ET resolution minute.",
+    "Binance BTC/USDT remains a normal reflection of broader BTC pricing."
+  ],
+  "main_logical_chain": [
+    "The contract resolves from a single Binance BTC/USDT 1-minute close at 12:00 ET on April 17.",
+    "Current Binance BTCUSDT is around 74.4k, comfortably above the 70k threshold.",
+    "Therefore Yes is the base-rate outcome unless a meaningful downside move or exchange-specific dislocation occurs before the exact resolution minute.",
+    "Because the market implies ~97%, haircut confidence modestly for short-horizon crypto volatility and narrow settlement mechanics."
+  ],
+  "main_thesis": "BTC trading around 74.4k with less than two days left makes Yes likely, but the exact-minute Binance settlement rule means 97% is a bit too confident.",
+  "own_probability": 0.93,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone (noon) ... has a final 'Close' price higher than ... 70,000.",
+    "My estimate is 93% Yes, below the market's roughly 97% implied probability."
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "contract_interpretation",
+    "market_anchor"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-31d67ba1",
+    "dispatch_id": "dispatch-case-20260415-31d67ba1-20260415T185542Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "bd826fc0-6790-4533-8f4c-a8048e139e3c",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-31d67ba1/researcher-analyses/2026-04-15/dispatch-case-20260415-31d67ba1-20260415T185542Z/personas/base-rate.md",
+    "source_persona_sha256": "af657ad264d64e0f1074a19bbc95137ab3ed226d27c0827f2913447b3e5e4d08"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality primary source for settlement mechanics and reference price from Polymarket rules plus Binance; CoinGecko is a useful but non-governing secondary cross-check; overall source-of-truth ambiguity is low to medium.",
+  "strongest_disconfirmers": [
+    "Crypto can still move 6% in under two days.",
+    "The contract settles on one exact Binance BTC/USDT 12:00 ET one-minute close, so timing and exchange-specific risks matter."
+  ],
+  "strongest_supports": [
+    "Binance spot and recent minute-candle data place BTC around 74.3k-74.4k, about 6% above the 70k threshold.",
+    "CoinGecko independently shows bitcoin around 74,375, supporting that the market is not near the strike.",
+    "With under 48 hours left, the outside-view prior favors staying above a threshold already well cleared absent a meaningful selloff."
+  ],
+  "timing_relevance": "Resolution is Friday, April 17, 2026 at 12:00 PM ET and depends on one exact 1-minute Binance candle close.",
+  "unresolved_ambiguities": [
+    "Minor practical ambiguity remains around exact candle labeling/timezone alignment at settlement, though the rules are fairly explicit.",
+    "The magnitude of sub-48-hour BTC downside tail risk is uncertain even from a strong starting level."
+  ],
+  "what_would_change_view": "A drop toward 72k or below on Binance, evidence of Binance-specific pricing dislocation, or a major crypto/macro shock before the exact resolution minute would lower the estimate materially."
+}

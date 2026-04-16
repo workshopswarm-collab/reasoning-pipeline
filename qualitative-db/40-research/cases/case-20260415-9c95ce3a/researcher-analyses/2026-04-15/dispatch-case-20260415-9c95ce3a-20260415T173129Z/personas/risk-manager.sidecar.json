@@ -1,0 +1,61 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Exact-minute resolution mechanics create timing fragility.",
+    "A small drawdown can flip the outcome despite a generally bullish weekly picture.",
+    "Confidence is sensitive to late macro or geopolitical headlines."
+  ],
+  "key_assumptions": [
+    "Current above-threshold Binance BTC/USDT spot persists through the exact Apr 17 12:00 ET closing minute.",
+    "No adverse macro or geopolitical shock produces a quick drawdown before resolution.",
+    "Binance reference pricing remains operationally straightforward at the relevant timestamp."
+  ],
+  "main_logical_chain": [
+    "The governing rules say Yes requires the final Binance BTC/USDT 1-minute candle close at Apr 17 12:00 ET to be strictly above 72,000.",
+    "Current Binance BTC/USDT is already above 72,000, so the directional lean remains Yes.",
+    "But because the contract is timestamp-specific and the price cushion is modest, short-horizon volatility materially weakens confidence.",
+    "Therefore the right stance is lean Yes with a lower probability than the market's 82%."
+  ],
+  "main_thesis": "Lean Yes, but the 82% market price overstates confidence because this contract depends on one exact Binance BTC/USDT 1-minute close at noon ET on April 17 and only a modest reversal below 72,000 is needed to lose.",
+  "own_probability": 0.74,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone ... has a final 'Close' price higher than the price specified in the title.",
+    "BTCUSDT ticker during run: 74118.80000000"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "risk_management",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-9c95ce3a",
+    "dispatch_id": "dispatch-case-20260415-9c95ce3a-20260415T173129Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "288df859-d4d3-44fb-8545-d4ae749fc59f",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-9c95ce3a/researcher-analyses/2026-04-15/dispatch-case-20260415-9c95ce3a-20260415T173129Z/personas/risk-manager.md",
+    "source_persona_sha256": "b3878909b1bba17bf10ffb3275e97070ae05b98e09e34abfecb69ec7e6b43d14"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Good enough for a medium-difficulty case: direct contract rules plus Binance primary market data, with one secondary contextual source for volatility framing; source-of-truth ambiguity is low-medium because the resolution source is clear but timestamp-sensitive.",
+  "strongest_disconfirmers": [
+    "The contract is extremely narrow: only the final Binance BTC/USDT 1-minute close at 12:00 ET on Apr 17 counts.",
+    "The current cushion over 72,000 is only about 2.1k, which crypto can give back quickly.",
+    "Recent context showed BTC near 70,741 on Apr 13, so a modest reversal is plausible over short windows."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT spot during the run was about 74,118.8, roughly 2.9% above threshold.",
+    "Recent sampled Binance 1m and 1h klines kept BTC/USDT in the 74k area.",
+    "Market baseline at 0.82 is directionally consistent with current above-threshold spot."
+  ],
+  "timing_relevance": "Very high: the contract resolves on a single Binance 1-minute close at Apr 17 12:00 ET, which should correspond to 16:00 UTC.",
+  "unresolved_ambiguities": [
+    "How much short-term realized volatility will hit BTC before Apr 17 noon ET.",
+    "Whether the market is underpricing the gap between current spot and exact-minute resolution risk."
+  ],
+  "what_would_change_view": "I would move toward the market if Binance BTC/USDT still held comfortably above 72k on a closer-to-resolution verification pass with calmer volatility; I would move lower if BTC lost 73k, volatility rose, or fresh macro/geopolitical stress hit before the print."
+}

@@ -1,0 +1,58 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "medium",
+  "fragility_points": [
+    "A narrow bracket means small data changes can flip the outcome.",
+    "Lack of strong independent consensus evidence leaves the estimate somewhat under-verified."
+  ],
+  "key_assumptions": [
+    "The contract resolves on the initial NBS Q1 2026 GDP release rather than later revisions.",
+    "March data will not move the first official print outside the 5.0%-5.5% bracket.",
+    "The market is pricing the official first print more than underlying true activity."
+  ],
+  "main_logical_chain": [
+    "Start from the 0.74 market price as an information-rich prior.",
+    "Verify that the contract resolves on the initial NBS Q1 GDP release and boundary/fallback rules are straightforward.",
+    "Check the closest official pre-release macro evidence, which shows a solid Jan-Feb start to 2026.",
+    "Conclude that the market's yes lean is defensible, but trim confidence because independence is limited and March could still matter near a narrow bracket edge."
+  ],
+  "main_thesis": "The market's 74% yes price is directionally justified by official quarter-to-date strength and clean first-print settlement mechanics, but it is slightly too confident given limited evidence independence and missing March data.",
+  "own_probability": 0.66,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "The market's 0.74 yes price looks directionally defensible but a bit rich.",
+    "The governing source of truth is the initial NBS English press-release publication."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "contract_interpretation",
+    "scenario_analysis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260413-17ac3b05",
+    "dispatch_id": "dispatch-case-20260413-17ac3b05-20260413T185719Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "a670cc47-f2b6-4430-b2ee-a7f10aa4094b",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260413-17ac3b05/researcher-analyses/2026-04-13/dispatch-case-20260413-17ac3b05-20260413T185719Z/personas/market-implied.md",
+    "source_persona_sha256": "d281bd7980cfa90873f580b632c987a0a715272cbaa3ed9d74464106847cfc57"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Good primary-source mechanics and useful direct official context, but overall independence is only low-to-medium.",
+  "strongest_disconfirmers": [
+    "Evidence independence is limited because the strongest context and the resolving number both come from the same official system.",
+    "March remains unobserved in the reviewed source set and could push the print just below 5.0% or just above 5.5%."
+  ],
+  "strongest_supports": [
+    "NBS Jan-Feb 2026 activity data show broad stabilization across industry, services, retail, investment, and trade.",
+    "Settlement mechanics point cleanly to the initial NBS release, reducing rule ambiguity.",
+    "The 5.0%-5.5% bracket is the most plausible policy-comfort zone for an ordinary first official print."
+  ],
+  "timing_relevance": "High: the market closes before the scheduled Q1 release, and missing March data is the main residual uncertainty.",
+  "unresolved_ambiguities": [
+    "Exact April release-day handling is less important than the confirmed governing release surface, but still not fully visible in fetched calendar text.",
+    "The extent to which the market is pricing official first-print behavior versus underlying growth remains partly inferential."
+  ],
+  "what_would_change_view": "A credible independent consensus outside the bracket, materially weak/strong March data, or a clarified source-of-truth issue would move the estimate."
+}

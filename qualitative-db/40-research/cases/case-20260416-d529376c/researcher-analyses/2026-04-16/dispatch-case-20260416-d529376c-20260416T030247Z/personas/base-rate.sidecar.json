@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A sharp downside move before Apr 19 could quickly erase the modest cushion over $80.",
+    "ET-to-UTC settlement-minute mapping needs care when the market actually resolves.",
+    "This run used daily Binance data for contextual verification rather than one-minute historical settlement-window data."
+  ],
+  "key_assumptions": [
+    "Recent Binance SOL/USDT trading in the low-to-mid 80s broadly persists into Apr 19.",
+    "There is no major crypto-wide downside shock before the settlement minute.",
+    "Binance market functioning and candle mapping remain normal at settlement."
+  ],
+  "main_logical_chain": [
+    "Confirm the contract resolves using the Binance SOL/USDT 12:00 ET one-minute candle close on Apr 19.",
+    "Check recent Binance venue-specific SOL/USDT price distribution around the $80 threshold.",
+    "Use that outside-view prior to conclude Yes is favored, but haircut heavily for single-minute settlement risk.",
+    "Compare the resulting estimate to the 91.5% market price and conclude the market is too confident."
+  ],
+  "main_thesis": "Yes is more likely than No because recent Binance SOL/USDT trading has mostly been above $80, but the market's 91.5% price overstates confidence for a single-minute noon ET threshold contract.",
+  "own_probability": 0.68,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for SOL/USDT 12:00 in the ET timezone (noon) on the date specified in the title has a final 'Close' price higher than the price specified in the title.",
+    "My base-rate view is that Yes is more likely than No, but not nearly as likely as the market implies."
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "market_anchor",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-d529376c",
+    "dispatch_id": "dispatch-case-20260416-d529376c-20260416T030247Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "67ab0b3e-739e-41d0-a60a-16d6588377ff",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-d529376c/researcher-analyses/2026-04-16/dispatch-case-20260416-d529376c-20260416T030247Z/personas/base-rate.md",
+    "source_persona_sha256": "4f2cbd26202fe08562abb1b621623140bfc09c1a47f55a0e7723343a25e08ed4"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Good for a medium-difficulty run: direct market rules plus direct Binance venue data, but the contextual Binance check used daily rather than exact one-minute history.",
+  "strongest_disconfirmers": [
+    "The contract resolves on one exact 12:00 ET one-minute close, so timing noise matters more than daily-level intuition.",
+    "Recent Binance intraday lows sometimes fell below $80 even when daily closes finished above it."
+  ],
+  "strongest_supports": [
+    "Binance daily closes were above $80 on 13 of 15 completed days in the Apr 1-15 sample.",
+    "Retrieved spot context remained in the mid-80s, leaving cushion over the threshold.",
+    "The resolution venue and contextual price source are aligned on Binance SOL/USDT."
+  ],
+  "timing_relevance": "High: the market resolves on a single one-minute close at 12:00 ET on Apr 19, 2026, so ordinary intraday volatility can dominate the outcome.",
+  "unresolved_ambiguities": [
+    "Exact Binance UI candle labeling at the ET noon mapping was not independently verified beyond the contract rules.",
+    "Intraday distribution near noon ET on comparable nearby days was not directly sampled."
+  ],
+  "what_would_change_view": "I would move up if SOL carries a larger cushion above $80 near settlement or if direct intraday noon-window evidence shows limited downside risk; I would move down if SOL loses the low-80s zone or broader crypto turns risk-off."
+}

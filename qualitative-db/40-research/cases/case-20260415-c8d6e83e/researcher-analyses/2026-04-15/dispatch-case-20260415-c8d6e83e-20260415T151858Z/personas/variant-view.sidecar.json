@@ -1,0 +1,62 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A sharp risk-off move or liquidation cascade could still push the relevant minute below 68k.",
+    "Exact ET-to-Binance candle mapping remains operationally important near settlement.",
+    "The variant edge is modest, not a strong contrarian call."
+  ],
+  "key_assumptions": [
+    "Current ~74.1k spot leaves a meaningful cushion but not an airtight one over five days.",
+    "A one-minute Binance settlement leaves more residual tail risk than a broad daily-close framing.",
+    "Recent Binance spot behavior is relevant context for short-horizon downside risk."
+  ],
+  "main_logical_chain": [
+    "Polymarket rules define a narrow Binance BTC/USDT one-minute-close contract at noon ET on April 20.",
+    "Binance spot and recent daily closes show BTC materially above 68k right now.",
+    "That makes Yes the base case.",
+    "But a five-day horizon plus one exact settlement minute still leaves nontrivial path risk for a volatile asset.",
+    "Therefore fair odds look slightly lower than the market's 95.5%, around 90%."
+  ],
+  "main_thesis": "Yes is still the base case, but the market is slightly overconfident because a five-day BTC contract settling on one exact Binance minute still carries more path risk than 95.5% implies.",
+  "own_probability": 0.9,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone (noon)",
+    "current_price: 0.955",
+    "ticker price: 74105.85"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation",
+    "variant_hypothesis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-c8d6e83e",
+    "dispatch_id": "dispatch-case-20260415-c8d6e83e-20260415T151858Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "84904658-c84c-4521-adab-fe937eb3afbf",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-c8d6e83e/researcher-analyses/2026-04-15/dispatch-case-20260415-c8d6e83e-20260415T151858Z/personas/variant-view.md",
+    "source_persona_sha256": "e339b5c1c474a4b93b4227aeb25b8a0ba40bf56e94d51bb1adba683ae636dc69"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Good contract clarity plus direct venue-specific price context; independence is medium and source-of-truth ambiguity is low-to-medium because exact timestamp mechanics still matter.",
+  "strongest_disconfirmers": [
+    "The current cushion is large enough that the market may simply be right to price mid-90s Yes.",
+    "Recent spot behavior has mostly stayed well above the threshold."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT spot was about 74.1k during verification, roughly 8% above the threshold.",
+    "Recent Binance daily closes in the sampled window were all above 68k.",
+    "The contract only requires BTC to stay above the line, not rally further."
+  ],
+  "timing_relevance": "The case resolves in five days at a single noon-ET Binance minute, so short-horizon volatility matters more than longer-run BTC strength.",
+  "unresolved_ambiguities": [
+    "How much weekend or macro event risk sits between now and the settlement minute.",
+    "Whether market participants are already fully pricing timestamp-specific path risk."
+  ],
+  "what_would_change_view": "I would move closer to market if BTC stays comfortably above low-70s into April 19-20 with compressed volatility; I would turn more bearish if BTC loses ~72k or risk events raise settlement-minute fragility."
+}

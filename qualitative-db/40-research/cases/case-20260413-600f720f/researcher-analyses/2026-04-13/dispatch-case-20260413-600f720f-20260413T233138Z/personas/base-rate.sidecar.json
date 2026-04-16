@@ -1,0 +1,58 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A single follow-through breakout could invalidate the below-market stance quickly.",
+    "Exact Polymarket settlement-source wording was not exposed in the readable fetch."
+  ],
+  "key_assumptions": [
+    "The Apr 13 rebound does not automatically extend another full leg to $76k within the remaining week.",
+    "Standard threshold-touch interpretation applies: YES if the governing source prints at or above $76,000 during Apr 13-19.",
+    "Checked contextual price sources are directionally representative of the governing settlement source."
+  ],
+  "main_logical_chain": [
+    "Market implies 75% YES.",
+    "Checked contextual data show BTC below $76,000 despite a strong rally.",
+    "Being close to a round-number threshold is not the same as crossing it.",
+    "Therefore YES remains live but is less likely than the market implies."
+  ],
+  "main_thesis": "BTC reaching $76,000 this week is still more likely than not, but the 75% market price looks too aggressive given checked prices remained below the threshold and close is not the same as crossed.",
+  "own_probability": 0.61,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "current price 0.75 implies 75%",
+    "CoinGecko max about $74,724",
+    "Binance high $74,900"
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "market_anchor",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260413-600f720f",
+    "dispatch_id": "dispatch-case-20260413-600f720f-20260413T233138Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "b49ccd98-45e0-4768-bf63-3521fbea1539",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260413-600f720f/researcher-analyses/2026-04-13/dispatch-case-20260413-600f720f-20260413T233138Z/personas/base-rate.md",
+    "source_persona_sha256": "c4a6d54ea8f34d26b210e91d083e2eaff20c37f45a6b3e3df2cbbc3a4b143d78"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary contract surface plus two independent contextual price checks; good enough for a low-difficulty call, but exact settlement-source wording remains mildly ambiguous.",
+  "strongest_disconfirmers": [
+    "BTC was already within roughly 1.5%-1.8% of the threshold, a move well within normal crypto volatility over a week."
+  ],
+  "strongest_supports": [
+    "CoinGecko range data showed a max observed price around $74,724, still below $76,000.",
+    "Binance daily candle for 2026-04-13 showed a high of $74,900, also below the threshold.",
+    "Short-horizon threshold markets can overprice the final leg after one strong momentum burst."
+  ],
+  "timing_relevance": "Very high: this is a weekly threshold-touch market and the estimate depends on how much path remains after Apr 13's rally.",
+  "unresolved_ambiguities": [
+    "Exact settlement-source text on the Polymarket rules page was not independently captured.",
+    "Contextual price sources may not be identical to the final settlement source."
+  ],
+  "what_would_change_view": "A verified print at or above $76,000, a sustained breakout above current weekly highs, or direct rule text showing a materially different interpretation would move the estimate upward."
+}

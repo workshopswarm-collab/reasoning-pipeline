@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "No clean official FIDE live standings page was captured in this run.",
+    "Contextual sources may share underlying information and are not fully independent."
+  ],
+  "key_assumptions": [
+    "Secondary live standings accurately reflect the event state.",
+    "No fair-play, appeal, withdrawal, or scoring dispute materially changes the field.",
+    "A two-point lead with two rounds left is overwhelming but not equivalent to official settlement."
+  ],
+  "main_logical_chain": [
+    "The contract resolves on an actual FIDE-declared winner, not merely on a dominant in-progress position.",
+    "Secondary sources indicate Sindarov is in a hugely favorable late-stage position.",
+    "Because two rounds and possible tiebreaks still remain, residual competitive and administrative tails are not zero.",
+    "Therefore the right view is strongly yes, but slightly below the 95.05% market price."
+  ],
+  "main_thesis": "Sindarov is very likely to win, but the market is slightly overconfident because the tournament is not yet officially settled and residual tiebreak/admin tails still exist.",
+  "own_probability": 0.92,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "guaranteed at least a playoff",
+    "two points clear with two rounds to go",
+    "official information from FIDE"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation",
+    "variant_hypothesis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260413-9dc5221c",
+    "dispatch_id": "dispatch-case-20260413-9dc5221c-20260413T190728Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "b471d4f2-df8d-4446-8e05-58685bbafa22",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/researcher-analyses/2026-04-13/dispatch-case-20260413-9dc5221c-20260413T190728Z/personas/variant-view.md",
+    "source_persona_sha256": "da4b6a59491b4df0e605701872baf15c67457f85bb97b61a778c0937bad0943c"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Good enough for a high-confidence directional yes, but not perfect for a 95%+ certainty claim because live-state verification relied mainly on secondary reporting.",
+  "strongest_disconfirmers": [
+    "A two-point lead with two rounds left in this format may make 95% entirely fair or even slightly low if standings are accurate.",
+    "The bearish case is mostly about tail-risk pricing rather than a plausible mainline loss narrative."
+  ],
+  "strongest_supports": [
+    "Contextual standings show Sindarov leading 9/12 by two points with two rounds left.",
+    "Chess.com round-12 coverage says he is guaranteed at least a playoff.",
+    "WSJ context supports that his run is genuinely dominant, not cosmetic."
+  ],
+  "timing_relevance": "Very high; this is a late-stage tournament market where each remaining round can move the probability sharply.",
+  "unresolved_ambiguities": [
+    "Exact official live standings/tiebreak math were not reconstructed from a primary FIDE event page.",
+    "Low-probability off-board complications remain hard to rule out completely."
+  ],
+  "what_would_change_view": "An official FIDE confirmation that Sindarov has clinched or clean official standings with no complications would push the estimate up; contradictory official reporting or a sharply narrowed lead would push it down."
+}

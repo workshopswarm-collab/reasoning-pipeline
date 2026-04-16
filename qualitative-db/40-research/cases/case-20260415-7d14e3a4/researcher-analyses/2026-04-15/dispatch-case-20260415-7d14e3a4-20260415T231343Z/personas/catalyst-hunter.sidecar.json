@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Crypto can move more than 3-4% in a few days.",
+    "A noon-ET single-minute print is more fragile than a broader closing-window metric.",
+    "Confidence would fall quickly if BTC retraces toward 72k before resolution."
+  ],
+  "key_assumptions": [
+    "No major bearish catalyst hits before Apr 19 noon ET.",
+    "Binance remains a clean operational source of truth at resolution.",
+    "Current price cushion above 72k is more important than residual short-horizon volatility."
+  ],
+  "main_logical_chain": [
+    "Polymarket rules define resolution as the Binance BTC/USDT 12:00 ET one-minute close on Apr 19 being strictly above 72,000.",
+    "Binance direct market data shows BTC already trading materially above the threshold.",
+    "Therefore the market mainly fails if a bearish catalyst or timing shock pushes BTC back below 72k by the target minute.",
+    "No dominant downside catalyst was identified in this run, so yes remains more likely than no, though slightly less likely than the market implies."
+  ],
+  "main_thesis": "BTC is already comfortably above 72k on Binance, so the key issue is whether a bearish shock or source-specific issue can force the Apr 19 12:00 ET one-minute close back below the strike.",
+  "own_probability": 0.82,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "the Binance BTC/USDT 1-minute candle close at 12:00 ET on 2026-04-19",
+    "Bitcoin can absolutely move more than 3-4% in a few days"
+  ],
+  "reasoning_mode": [
+    "catalyst_analysis",
+    "contract_interpretation",
+    "market_anchor"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-7d14e3a4",
+    "dispatch_id": "dispatch-case-20260415-7d14e3a4-20260415T231343Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "13a3c0c4-4a22-48a6-afdb-30fbc708fffd",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-7d14e3a4/researcher-analyses/2026-04-15/dispatch-case-20260415-7d14e3a4-20260415T231343Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "d2f48fa124513d2b9df4c728b5bf02ab264f1cc898541950e7238c2372be2a74"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is fairly strong for a narrow price-threshold market: Polymarket provides the governing rules and Binance provides direct underlying price context, though evidence independence is only medium.",
+  "strongest_disconfirmers": [
+    "A roughly 3.6% drawdown from sampled spot would be enough to flip the contract.",
+    "This is a single-minute-close market, so temporary timing/path shocks matter a lot.",
+    "Binance-specific operational ambiguity is low-probability but non-zero."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT was sampled around 74,721, about 2,721 above the threshold.",
+    "Recent 1m, 4h, and 1d Binance klines all showed context above 72k.",
+    "The contract needs only a hold above threshold at one timestamp, not a further rally."
+  ],
+  "timing_relevance": "Timing is central because the contract resolves on a single 12:00 ET one-minute close and BTC only needs to avoid a modest downside move over the next four days.",
+  "unresolved_ambiguities": [
+    "Small operational ambiguity remains because the contract references the Binance chart candle/UI surface rather than a formal API spec.",
+    "No specific scheduled downside catalyst dominated this run, so residual event risk is broad rather than precisely identified."
+  ],
+  "what_would_change_view": "A move back toward 72k, a clear bearish macro/crypto catalyst, or Binance operational irregularity near the target candle would make me cut the probability materially."
+}

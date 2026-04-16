@@ -1,0 +1,58 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Dependence on extracted page-source rules rather than a separately rendered rules panel capture.",
+    "Lack of archived Binance 1-minute candle evidence in the artifact set."
+  ],
+  "key_assumptions": [
+    "The embedded Polymarket rules text extracted from page source is operative for this outcome.",
+    "The resolved/closed state shown in page source is current and not a stale frontend artifact.",
+    "Later sub-$2,400 trading does not matter once a qualifying Binance 1-minute high already occurred."
+  ],
+  "main_logical_chain": [
+    "Read the contract as a narrow venue-specific threshold-touch market rather than a broad week-ahead ETH directional market.",
+    "Verify the governing source of truth from Polymarket embedded rules: Binance ETH/USDT 1-minute Highs during the ET date window.",
+    "Check whether the relevant outcome appears already settled on the market page source.",
+    "Conclude that the decisive catalyst already occurred, so Yes is effectively the answer unless the rules/state were misread."
+  ],
+  "main_thesis": "The market is effectively already decided because the governing catalyst was a Binance ETH/USDT 1-minute touch above $2,400, and the Polymarket page source shows the \u2191 2,400 leg already resolved Yes.",
+  "own_probability": 0.99,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "This market will immediately resolve to Yes if any Binance 1-minute candle for ETH/USDT... has a final High price equal to or greater than the price specified in the title.",
+    "Prices from other exchanges, different trading pairs, or spot markets will not be considered for the resolution of this market."
+  ],
+  "reasoning_mode": [
+    "catalyst_analysis",
+    "contract_interpretation",
+    "technical_reference"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260414-4ed80a0a",
+    "dispatch_id": "dispatch-case-20260414-4ed80a0a-20260414T174040Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "d66c734c-2974-4d14-8528-3843c0bbd96e",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-4ed80a0a/researcher-analyses/2026-04-14/dispatch-case-20260414-4ed80a0a-20260414T174040Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "db24a44894c678ddb064150a1dec4db3c3bb61d28b0b89959558e6195596957a"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary evidence quality is high for contract interpretation but somewhat concentrated on Polymarket page source; independent confirmation is moderate and mainly contextual.",
+  "strongest_disconfirmers": [
+    "I did not independently retrieve the exact Binance historical 1-minute candle that crossed $2,400.",
+    "If the page-source resolution state were stale or malformed, confidence would be too high."
+  ],
+  "strongest_supports": [
+    "Polymarket embedded rules specify Binance ETH/USDT 1-minute Highs as the sole resolution source.",
+    "The \u2191 2,400 leg showed outcomePrices [1,0], closed true, and umaResolutionStatus resolved in page source.",
+    "Kraken showed a same-day ETH/USD high above $2,400, making a Binance threshold breach plausible."
+  ],
+  "timing_relevance": "Timing mattered almost entirely through an already-realized threshold-touch catalyst; once that happened, the rest of the week became much less relevant.",
+  "unresolved_ambiguities": [
+    "Exact timestamp of the qualifying Binance 1-minute high was not preserved in the notes.",
+    "Whether a later auditor will want direct Binance candle export for maximal provenance."
+  ],
+  "what_would_change_view": "Direct Binance 1-minute historical data showing no qualifying high, or evidence that the Polymarket resolved state/rules were misread, would materially change the view."
+}

@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A quick 6%+ crypto drawdown would erase the cushion.",
+    "Single-minute close mechanics create more tail risk than broader averaging windows.",
+    "The main sources are not highly independent because Polymarket delegates to Binance."
+  ],
+  "key_assumptions": [
+    "No sharp BTC drawdown of roughly 6%+ occurs before the April 16 noon ET settlement minute.",
+    "No Binance-specific pricing anomaly or data issue distorts the settlement candle close.",
+    "Binance UI and API candle representations are operationally aligned for the relevant minute."
+  ],
+  "main_logical_chain": [
+    "Verify the governing source of truth and exact settlement mechanics on Polymarket.",
+    "Check current Binance BTCUSDT spot relative to the 70k threshold.",
+    "Apply the outside view: being well above a near-dated threshold usually implies a high hold probability.",
+    "Discount that prior for Bitcoin's short-horizon volatility and single-minute single-venue settlement fragility.",
+    "Conclude Yes is likely, but not quite as likely as the market implies."
+  ],
+  "main_thesis": "BTC is already comfortably above 70k, so Yes is likely by base rate, but a single-minute single-venue settlement still leaves enough volatility risk that the true probability is somewhat below the market's mid-90s pricing.",
+  "own_probability": 0.91,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone (noon) on the date specified in the title has a final 'Close' price higher than the price specified in the title.",
+    "{\"symbol\": \"BTCUSDT\", \"price\": \"74664.77000000\"}"
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "contract_interpretation",
+    "risk_management"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-94e8aad1",
+    "dispatch_id": "dispatch-case-20260414-94e8aad1-20260414T175223Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "655fe3c6-882e-4cb8-b28e-5a86a5564a63",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-94e8aad1/researcher-analyses/2026-04-14/dispatch-case-20260414-94e8aad1-20260414T175223Z/personas/base-rate.md",
+    "source_persona_sha256": "fea3424f5b70fa6938408fbaebb953c32f5e14f002f74a6ae97c5ff4e80140be"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is good for a narrow contract: direct Polymarket rules plus direct Binance price/context checks, with moderate limitations from low evidence independence.",
+  "strongest_disconfirmers": [
+    "Bitcoin can fall more than 6% in two days, and the contract resolves on one specific minute on one exchange."
+  ],
+  "strongest_supports": [
+    "Direct Binance BTCUSDT spot observed around 74,664.77, leaving a substantial cushion over 70,000.",
+    "Short-horizon threshold markets are usually strongly favored when the asset already sits materially above the strike.",
+    "Polymarket rules clearly define the exact venue, pair, minute, and close field."
+  ],
+  "timing_relevance": "The market resolves at 2026-04-16 12:00 ET on a single 1-minute Binance BTCUSDT close, so short-horizon volatility and exact timing matter more than broad longer-run BTC narratives.",
+  "unresolved_ambiguities": [
+    "Minor implementation ambiguity remains between Binance chart UI and API representation, though they should ordinarily match.",
+    "No deeper historical distribution study was completed in this run."
+  ],
+  "what_would_change_view": "I would move lower if BTC weakens toward 72k, a macro shock hits crypto, or Binance-specific instability appears; I would move higher if BTC stays comfortably above 75k into late April 15 with calm volatility."
+}

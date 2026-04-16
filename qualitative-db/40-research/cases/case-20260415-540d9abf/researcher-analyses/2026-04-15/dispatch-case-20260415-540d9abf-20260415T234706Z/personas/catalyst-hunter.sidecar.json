@@ -1,0 +1,62 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Single-minute settlement design.",
+    "Weekend or macro-driven crypto volatility.",
+    "Potential Solana reliability or Binance operational disruption near settlement."
+  ],
+  "key_assumptions": [
+    "No sharp macro or crypto-specific selloff pushes SOL below $80 into the exact Apr 19 noon ET minute.",
+    "Binance trading and candle publication remain operationally normal at settlement.",
+    "No material Solana-specific outage or negative shock forces rapid repricing before resolution."
+  ],
+  "main_logical_chain": [
+    "Verify the exact contract mechanics and named settlement source.",
+    "Check current Binance SOL/USDT level relative to the $80 strike.",
+    "Verify recent daily and intraday Binance klines to see whether SOL is comfortably in an above-$80 regime.",
+    "Conclude that persistence is the base case, but discount confidence because the market resolves on one narrow timestamp."
+  ],
+  "main_thesis": "SOL is already trading materially above $80 on Binance, so the base case is that the April 19 noon ET 1-minute close stays above the strike unless a sharp late selloff or operational disruption hits before settlement.",
+  "own_probability": 0.86,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "Yes if the Binance 1 minute candle for SOL/USDT 12:00 ET has a final close higher than $80.",
+    "Binance SOLUSDT spot during run: about 84.99.",
+    "Own estimate: 86% Yes versus market-implied 90%."
+  ],
+  "reasoning_mode": [
+    "catalyst_analysis",
+    "contract_interpretation",
+    "technical_reference",
+    "market_anchor"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260415-540d9abf",
+    "dispatch_id": "dispatch-case-20260415-540d9abf-20260415T234706Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "0c2cbef2-5728-4527-9793-376dd5cb38dd",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-540d9abf/researcher-analyses/2026-04-15/dispatch-case-20260415-540d9abf-20260415T234706Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "0a418766fc7b86951562c0a1fb4b7812065bd95c7cd1acecf192ff220633894a"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality direct rule and exchange-source verification, with moderate evidence independence because the contract itself points to Binance; source-of-truth ambiguity is low after checking the rules.",
+  "strongest_disconfirmers": [
+    "The contract settles on a single exact one-minute close, so path dependence and late volatility matter a lot.",
+    "A broad crypto drawdown or Solana-specific negative headline could erase the current price buffer quickly.",
+    "No strong independent scheduled positive catalyst was identified that would justify extreme confidence above the current market level."
+  ],
+  "strongest_supports": [
+    "Binance SOLUSDT spot was about 84.99 during the run, leaving a several-dollar buffer over the strike.",
+    "Recent Binance daily, 4h, and 1h klines showed SOL trading in an above-$80 regime rather than barely over the threshold.",
+    "Polymarket rules clearly specify Binance SOL/USDT 1-minute close at 12:00 ET, reducing source-of-truth ambiguity."
+  ],
+  "timing_relevance": "Timing is central because the contract resolves on the Binance SOL/USDT 12:00 ET one-minute close on Apr 19, so late price path matters more than broad medium-term fundamentals.",
+  "unresolved_ambiguities": [
+    "No clean high-information scheduled catalyst was identified; the main catalyst is negative-tape risk rather than a known event.",
+    "Exact late-stage market conditions closer to Apr 19 remain unknown."
+  ],
+  "what_would_change_view": "A drop back toward or below the low-80s, a broad crypto selloff, or a Solana/Binance operational issue before Apr 19 noon ET would lower the estimate materially."
+}

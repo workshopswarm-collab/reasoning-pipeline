@@ -4,6 +4,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import statistics
 import subprocess
 from typing import Any
 
@@ -119,6 +120,9 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--market-id", default="")
     parser.add_argument("--since", dest="since_ts", default="")
     parser.add_argument("--until", dest="until_ts", default="")
+    parser.add_argument("--cohort-min-yes", type=float, default=0.70)
+    parser.add_argument("--cohort-max-yes", type=float, default=0.98)
+    parser.add_argument("--cohort-min-volume-usd", type=float, default=10000.0)
     parser.add_argument("--db-url", default=os.getenv("PREDQUANT_EVALUATOR_URL") or os.getenv("PREDQUANT_ORCHESTRATOR_URL") or os.getenv("PREDQUANT_ADMIN_URL", ""))
     parser.add_argument("--psql", default=os.getenv("PSQL_BIN", DEFAULT_PSQL))
     parser.add_argument("--pretty", action="store_true")
@@ -141,6 +145,79 @@ def exec_sql(psql_bin: str, db_url: str, sql: str, variables: dict[str, str]) ->
     return json.loads(stdout.splitlines()[-1])
 
 
+def mean_brier(rows: list[dict[str, Any]], probability: float) -> float | None:
+    values = []
+    for row in rows:
+        resolved = row.get("resolved_value")
+        if resolved is None:
+            continue
+        try:
+            resolved_value = float(resolved)
+        except Exception:
+            continue
+        values.append((resolved_value - probability) ** 2)
+    if not values:
+        return None
+    return sum(values) / len(values)
+
+
+def filtered_cohort_benchmarks(payload: dict[str, Any], *, cohort_min_yes: float, cohort_max_yes: float, cohort_min_volume_usd: float) -> dict[str, Any]:
+    metrics = payload.get("metrics") if isinstance(payload.get("metrics"), dict) else payload
+    latest_rows = metrics.get("latest_rows") or []
+    latest_metric = metrics.get("latest") or {}
+    actual_brier = latest_metric.get("brier")
+    midpoint = round((cohort_min_yes + cohort_max_yes) / 2.0, 4)
+    avg_forecast_prob = latest_metric.get("avg_forecast_prob")
+    latest_probs = []
+    for row in latest_rows:
+        try:
+            latest_probs.append(float(row.get("forecast_prob")))
+        except Exception:
+            pass
+
+    baseline_defs = [
+        ("gate_floor", cohort_min_yes, False),
+        ("gate_midpoint", midpoint, False),
+        ("gate_ceiling", cohort_max_yes, False),
+    ]
+    if avg_forecast_prob is not None:
+        baseline_defs.append(("latest_cohort_mean_forecast", float(avg_forecast_prob), True))
+    if latest_probs:
+        baseline_defs.append(("latest_cohort_median_forecast", float(statistics.median(latest_probs)), True))
+
+    baselines = []
+    for label, probability, ex_post in baseline_defs:
+        brier = mean_brier(latest_rows, probability)
+        baselines.append({
+            "label": label,
+            "probability": round(float(probability), 6),
+            "brier": brier,
+            "pipeline_advantage_vs_baseline": None if brier is None or actual_brier is None else round(float(brier) - float(actual_brier), 10),
+            "ex_post_descriptive": ex_post,
+        })
+
+    return {
+        "filtered_cohort_latest": {
+            "assumed_gate": {
+                "min_volume_usd": cohort_min_volume_usd,
+                "yes_probability_min": cohort_min_yes,
+                "yes_probability_max": cohort_max_yes,
+                "yes_probability_midpoint": midpoint,
+            },
+            "latest_sample_n": latest_metric.get("n"),
+            "actual_latest_brier": actual_brier,
+            "latest_avg_forecast_prob": avg_forecast_prob,
+            "latest_avg_resolved_value": latest_metric.get("avg_resolved_value"),
+            "baselines": baselines,
+            "notes": [
+                "gate_floor/midpoint/ceiling are simple constant-probability baselines tied to the assumed filtered cohort.",
+                "latest_cohort_mean_forecast and latest_cohort_median_forecast are descriptive ex-post baselines for sanity checking, not pure ex-ante trading baselines.",
+                "Positive pipeline_advantage_vs_baseline means the pipeline beat that baseline on Brier; negative means the baseline was better."
+            ],
+        }
+    }
+
+
 def main() -> int:
     args = parse_args()
     payload = exec_sql(
@@ -154,6 +231,12 @@ def main() -> int:
             "since_ts": args.since_ts,
             "until_ts": args.until_ts,
         },
+    )
+    payload["benchmarks"] = filtered_cohort_benchmarks(
+        payload,
+        cohort_min_yes=args.cohort_min_yes,
+        cohort_max_yes=args.cohort_max_yes,
+        cohort_min_volume_usd=args.cohort_min_volume_usd,
     )
     print(json.dumps(payload, indent=2 if args.pretty else None, default=str))
     return 0

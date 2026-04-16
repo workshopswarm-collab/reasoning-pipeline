@@ -1,0 +1,62 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Earnings date could slip.",
+    "Official materials could complicate the operative GAAP EPS figure.",
+    "Consensus context is not fully clean or independent."
+  ],
+  "key_assumptions": [
+    "Netflix reports on normal cadence around April 16, 2026.",
+    "Official earnings materials include diluted GAAP EPS usable for settlement.",
+    "Actual GAAP EPS remains comfortably above the $0.76 strike after rounding."
+  ],
+  "main_logical_chain": [
+    "The strike is low relative to available consensus-like context.",
+    "Historical SEC filing cadence lowers timing-failure risk.",
+    "But the market price embeds near-certainty before the official release exists.",
+    "Therefore Yes remains favored, but at a discounted probability versus market."
+  ],
+  "main_thesis": "Netflix is likely to beat the $0.76 GAAP EPS strike, but the market's 94.5% price overstates certainty because timing and contract-mechanics risk still matter before the official release.",
+  "own_probability": 0.88,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "88% Yes / 12% No",
+    "governing source of truth: Netflix's official earnings documents",
+    "strongest disconfirming consideration is that this is not a pure fundamentals-only market"
+  ],
+  "reasoning_mode": [
+    "risk_management",
+    "contract_interpretation",
+    "scenario_analysis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-ba1899b5",
+    "dispatch_id": "dispatch-case-20260415-ba1899b5-20260415T121723Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "c92035f3-e234-430b-8203-280d8525f4dd",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-ba1899b5/researcher-analyses/2026-04-15/dispatch-case-20260415-ba1899b5-20260415T121723Z/personas/risk-manager.md",
+    "source_persona_sha256": "06068682b88f5d2338111aee684db593cf375f6b5b5361db05a9f55384a3c877"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary timing source quality is high via SEC EDGAR; contextual estimate source quality is medium and partly degraded; overall independence is medium.",
+  "strongest_disconfirmers": [
+    "This is a multi-condition, date-sensitive contract rather than a pure business-fundamentals bet.",
+    "The authoritative April 2026 earnings document is not yet available.",
+    "A print of exactly $0.76 resolves No, so rounding/definition risk is nonzero."
+  ],
+  "strongest_supports": [
+    "SEC EDGAR shows a stable historical Netflix earnings-filing cadence.",
+    "Nasdaq contextual estimate check shows visible estimated EPS around 1.00, above the 0.76 strike.",
+    "Contract primary source of truth is the company's official earnings documents, which is a standard path for Netflix."
+  ],
+  "timing_relevance": "High: market closes and resolves on 2026-04-16 America/New_York and includes explicit timing/fallback conditions.",
+  "unresolved_ambiguities": [
+    "Exact April 2026 release timing is not yet officially confirmed in gathered sources.",
+    "Exact final diluted GAAP EPS is still unknown pre-release.",
+    "Fallback-source logic would matter if official GAAP EPS presentation is unusual."
+  ],
+  "what_would_change_view": "Official timing confirmation plus clean independent consensus comfortably above 0.76 would move me toward market; timing slippage or credible expectation near/below 0.76 would move me away."
+}

@@ -1,0 +1,58 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "One-day downside volatility could still move BTC below the threshold.",
+    "Small residual UI/API parity ambiguity remains because rules cite the Binance web candle surface."
+  ],
+  "key_assumptions": [
+    "Binance API prices are a good proxy for the Binance candle surface named in the rules.",
+    "BTC does not fall more than roughly 3.5% before the 2026-04-16 noon ET settlement minute.",
+    "No Binance-specific outage or pricing anomaly distorts the settlement candle."
+  ],
+  "main_logical_chain": [
+    "Start from the 95.5% market prior and ask what must be true for it to make sense.",
+    "Verify the contract resolves from the Binance BTC/USDT 12:00 ET 1-minute candle close.",
+    "Check direct Binance price and kline data to see current distance from the 72000 threshold.",
+    "Conclude the market is mostly pricing barrier distance correctly, but trim for remaining one-day volatility and minute-specific settlement risk."
+  ],
+  "main_thesis": "The market's 95.5% Yes price is broadly justified because Binance BTC/USDT was trading around 74.6k, but a single-minute settlement and one day of remaining crypto volatility keep the fair probability a bit lower at 93%.",
+  "own_probability": 0.93,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "ticker/price returned BTCUSDT = 74626.32000000",
+    "resolve to Yes if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone has a final Close price higher than 72000"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "contract_interpretation",
+    "risk_management"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260415-9a9c8ea3",
+    "dispatch_id": "dispatch-case-20260415-9a9c8ea3-20260415T192028Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "89723c47-6224-48db-ab78-5528e8967657",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-9a9c8ea3/researcher-analyses/2026-04-15/dispatch-case-20260415-9a9c8ea3-20260415T192028Z/personas/market-implied.md",
+    "source_persona_sha256": "5651a4b33f554772505326716a5d827b75a7c4f5c4003baa53d0417a9b8cd194"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Good for this case: first-party Binance data plus the governing Polymarket rules text, with medium evidence independence and low-to-medium source-of-truth ambiguity.",
+  "strongest_disconfirmers": [
+    "BTC still had roughly 21 hours to fall more than 3.5%, which is plausible in crypto.",
+    "A single-minute, single-venue settlement can be defeated by a temporary Binance-specific dip."
+  ],
+  "strongest_supports": [
+    "Direct Binance check showed BTC/USDT at 74626.32 on 2026-04-15 15:22 ET.",
+    "Polymarket rules make the contract a narrow Binance-only noon ET minute-close question.",
+    "Spot was already materially above the 72000 barrier."
+  ],
+  "timing_relevance": "Highly timing-sensitive: the contract settles on the Binance BTC/USDT 12:00 ET one-minute candle on 2026-04-16, about 21 hours after the direct price check used here.",
+  "unresolved_ambiguities": [
+    "Whether Binance web UI and API would show any edge-case difference for the relevant close.",
+    "Whether overnight macro or crypto news materially changes short-horizon volatility before settlement."
+  ],
+  "what_would_change_view": "A drop toward 72k before settlement, a Binance-specific outage or pricing anomaly, or evidence of candle-definition ambiguity would make me materially less confident in Yes."
+}

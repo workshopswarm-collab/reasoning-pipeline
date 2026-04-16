@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Short-horizon BTC volatility around the threshold.",
+    "Reliance on API data for inference while website candle is the formal settlement source.",
+    "A late shift in BTC back into the high-60k to low-71k region would materially weaken the thesis."
+  ],
+  "key_assumptions": [
+    "Binance website candle data used for settlement tracks the same underlying BTC/USDT market behavior as the accessible Binance API data checked during research.",
+    "No exchange or settlement-data anomaly materially distorts the noon ET 1-minute close on April 17.",
+    "The recent BTC regime near or above 72000 broadly persists over the next two days."
+  ],
+  "main_logical_chain": [
+    "The contract resolves on a precise Binance BTC/USDT noon ET 1-minute close on April 17, so timestamp mechanics matter.",
+    "BTC is currently above 72000 and has recently closed above that level several times, which makes Yes the base-rate favorite.",
+    "But BTC has also moved repeatedly through this region, so the market's 84.5% confidence looks somewhat high for a narrow timestamp contract.",
+    "Net result: Yes favored, but below market confidence at 74%."
+  ],
+  "main_thesis": "Yes is more likely than No because BTC is already above 72000 and recent trading has often held above that level, but the market is somewhat too confident for a single-timestamp crypto threshold contract.",
+  "own_probability": 0.74,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone (noon) on the date specified in the title has a final 'Close' price higher than the price specified in the title.",
+    "Binance ticker retrieval: BTCUSDT 74002.00000000"
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "market_anchor",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-1cbf2a82",
+    "dispatch_id": "dispatch-case-20260415-1cbf2a82-20260415T144104Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "932f4045-a4d2-4d9f-aedd-340a296255ae",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-1cbf2a82/researcher-analyses/2026-04-15/dispatch-case-20260415-1cbf2a82-20260415T144104Z/personas/base-rate.md",
+    "source_persona_sha256": "7031752ca3e8a95827ff86583c61b5004d3010c4a5ee15c9e70623ad83d7707a"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary rule source is strong and explicit; Binance data is directly relevant for state/range; CoinGecko adds a useful independent contextual cross-check. Overall source quality is good but not perfect because settlement uses the website candle specifically.",
+  "strongest_disconfirmers": [
+    "This is a single-minute timestamp market on a volatile asset, so a modest drawdown by the relevant minute can flip the outcome.",
+    "A roughly 2.8% move down from observed spot would put the contract at risk, which is not a large move for BTC over two days."
+  ],
+  "strongest_supports": [
+    "Binance spot at retrieval was about 74002, already above the 72000 threshold.",
+    "Recent Binance daily closes were above 72000 on multiple recent days.",
+    "Independent CoinGecko context also places BTC in a recent regime frequently near or above the low-70k band."
+  ],
+  "timing_relevance": "High: the market depends on one specific 12:00 ET 1-minute close on 2026-04-17 rather than a daily average or end-of-day price.",
+  "unresolved_ambiguities": [
+    "This run did not directly capture the Binance website candle interface that Polymarket cites, only contract text plus API data and contextual cross-checks.",
+    "Intraday conditions near noon ET on April 17 remain inherently unresolved."
+  ],
+  "what_would_change_view": "A sharp BTC selloff before April 17 noon ET, evidence of Binance website/API mismatch, or a late contract/source clarification would push the estimate lower; stable trading materially above 75k would push it closer to market."
+}

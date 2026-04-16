@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Short-horizon BTC downside volatility could erase the current cushion before settlement.",
+    "The market may be underpricing narrow settlement-window risk versus a general BTC-direction view.",
+    "Exchange-specific anomalies on Binance would matter more than usual because Binance is the governing source."
+  ],
+  "key_assumptions": [
+    "BTC retains enough cushion above 72,000 into the Apr 17 noon ET settlement window.",
+    "Binance remains a clean and usable source of truth for the relevant one-minute close.",
+    "The market is pricing a looser directional thesis somewhat more confidently than the exact settlement mechanics warrant."
+  ],
+  "main_logical_chain": [
+    "Verify the exact settlement mechanics from Polymarket and confirm the relevant time is Apr 17 12:00 ET.",
+    "Check Binance BTC/USDT current price and recent one-minute candles to see whether the threshold is currently in the money.",
+    "Discount the bullish baseline because the contract settles on one future minute close on one exchange, which leaves meaningful path and venue-specific risk.",
+    "Conclude that Yes is still favored, but less strongly than the 0.85 market price implies."
+  ],
+  "main_thesis": "Yes remains favored because Binance BTC/USDT is currently above 72,000, but the market is somewhat overconfident for a single future one-minute exchange-specific settlement.",
+  "own_probability": 0.78,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "Binance BTC/USDT 1-minute candle for 12:00 in the ET timezone",
+    "market-implied roughly 85% baseline",
+    "about 78%"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "risk_management",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-68974052",
+    "dispatch_id": "dispatch-case-20260415-68974052-20260415T183011Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "c04de9ac-e383-46b7-9467-9944b182c6a7",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-68974052/researcher-analyses/2026-04-15/dispatch-case-20260415-68974052-20260415T183011Z/personas/risk-manager.md",
+    "source_persona_sha256": "a2a73b1dce013b7a8895783721fa9e077f5284dc0156dfdabda6526d3db5a1fa"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source-of-truth mechanics quality is high and ambiguity is low, but evidence independence is only medium-low because the key sources center on the same settlement design.",
+  "strongest_disconfirmers": [
+    "A roughly 2.2k cushion is not huge for BTC over nearly two days when settlement depends on a single one-minute close.",
+    "Binance-specific print or microstructure risk matters because resolution is venue-specific."
+  ],
+  "strongest_supports": [
+    "Current Binance BTC/USDT price was about 74,233.75, materially above the 72,000 threshold.",
+    "Polymarket rules are explicit about venue, pair, metric, and time, so contract mechanics ambiguity is low."
+  ],
+  "timing_relevance": "The contract resolves on Apr 17, 2026 at 12:00 ET, which I explicitly verified equals 16:00 UTC; the exact one-minute timing is central to the risk discount.",
+  "unresolved_ambiguities": [
+    "How much probability mass should be assigned to ordinary BTC volatility over the remaining two-day horizon.",
+    "Whether Binance-specific microstructure risk deserves more or less discount than applied here."
+  ],
+  "what_would_change_view": "I would move toward the market if BTC holds comfortably above 73k-74k into the final hours without Binance-specific anomalies, and away from it if BTC trades back near 72k or Binance shows settlement-relevant irregularities."
+}

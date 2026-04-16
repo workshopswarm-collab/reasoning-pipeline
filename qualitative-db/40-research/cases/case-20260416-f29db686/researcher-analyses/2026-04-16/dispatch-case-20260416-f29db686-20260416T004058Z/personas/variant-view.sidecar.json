@@ -1,0 +1,63 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "medium",
+  "fragility_points": [
+    "A sustained move above roughly 75.5k-76k into April 17 morning would weaken the variant thesis.",
+    "A bullish catalyst before noon ET could overwhelm timing-risk concerns.",
+    "The estimate lacks a fuller historical conditional distribution study of noon ET closes."
+  ],
+  "key_assumptions": [
+    "Intraday timing/path dependence is somewhat underweighted by the market.",
+    "No major bullish catalyst arrives before the noon ET resolution point.",
+    "A roughly 1.1% cushion above strike is not especially safe relative to recent realized range."
+  ],
+  "main_logical_chain": [
+    "Start from market-implied baseline of 60.5% Yes.",
+    "Check governing contract rules and confirm the exact source of truth is Binance BTC/USDT 1-minute close at 12:00 ET.",
+    "Check Binance docs and live exchange data to verify current price, candle mechanics, and recent range.",
+    "Note that spot is above strike but only modestly so relative to realized range.",
+    "Conclude that narrow timing/path dependence makes the contract slightly less favorable than the market implies."
+  ],
+  "main_thesis": "The market may be slightly overpricing a broad bullish BTC narrative relative to the narrower probability that Binance BTC/USDT prints a strictly above-74,000 final 12:00 ET one-minute close on April 17.",
+  "own_probability": 0.55,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "Yes if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone has a final Close price higher than 74,000.",
+    "Klines are uniquely identified by their open time."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation",
+    "variant_hypothesis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-f29db686",
+    "dispatch_id": "dispatch-case-20260416-f29db686-20260416T004058Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "a7e2708b-5f64-4919-97d2-073867d17ad8",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-f29db686/researcher-analyses/2026-04-16/dispatch-case-20260416-f29db686-20260416T004058Z/personas/variant-view.md",
+    "source_persona_sha256": "8eac1d59df97e39d64ebdd704ce9380bf9825555c6892058cff4bec9a854071c"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Good enough for a medium-difficulty run: governing contract source plus Binance primary technical/data sources; independence is medium and source-of-truth ambiguity is low-to-medium.",
+  "strongest_disconfirmers": [
+    "The contract resolves on one exact Binance 12:00 ET one-minute close, not broad same-day direction.",
+    "Current price is only about 792 points above strike, a modest cushion relative to recent range.",
+    "Binance 24h range crossed both below and above 74k, implying ordinary movement can flip the outcome."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT traded around 74.79k during the run, already above strike.",
+    "Recent 24h high around 75.43k shows the threshold is clearly reachable.",
+    "Yes does not require a fresh breakout, only maintenance above strike into the decision minute."
+  ],
+  "timing_relevance": "This is a date-sensitive, narrow-resolution market where one Binance one-minute close at noon ET determines settlement, so intraday timing matters more than broad BTC direction.",
+  "unresolved_ambiguities": [
+    "Exact mapping between Binance UI presentation and API interpretation is likely close but not perfectly verified here.",
+    "The Polymarket page quote differed from assignment baseline during the run.",
+    "No independent volatility study was obtained due search/tooling limits."
+  ],
+  "what_would_change_view": "I would move more bullish if BTC holds materially above 75.5k-76k into the April 17 morning ET session or if a credible bullish catalyst emerges before noon ET; I would move more bearish if Binance BTCUSDT loses 74k before the observation window."
+}

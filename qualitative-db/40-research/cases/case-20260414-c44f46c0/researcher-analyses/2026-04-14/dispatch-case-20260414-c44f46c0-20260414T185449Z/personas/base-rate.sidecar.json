@@ -1,0 +1,61 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A sharp BTC drawdown toward 68k before settlement.",
+    "Binance-specific data or execution anomaly around the relevant minute."
+  ],
+  "key_assumptions": [
+    "No outsized BTC downside shock occurs before April 19 noon ET.",
+    "Binance BTCUSDT trading and candle data remain operationally normal.",
+    "Current spot distance above 68k remains a meaningful cushion into settlement."
+  ],
+  "main_logical_chain": [
+    "The contract resolves on a single Binance BTCUSDT 1-minute close at 12:00 ET on April 19.",
+    "Current Binance spot and recent closes are materially above the 68k strike.",
+    "Base rates favor clearing a threshold that far below spot over five days absent a shock.",
+    "Because BTC remains volatile and the contract is minute-specific, the probability should stay below near-certainty.",
+    "That yields a high-Yes but slightly sub-market estimate around 91%."
+  ],
+  "main_thesis": "BTC being materially above 68k with only five days left makes Yes likely, but the market is a bit too close to certainty given crypto volatility and single-minute Binance settlement mechanics.",
+  "own_probability": 0.91,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "Base-rate view: Yes is more likely than not by a wide margin, but the market is slightly too confident.",
+    "My estimate is 91%.",
+    "The strongest disconfirming consideration is plain crypto volatility."
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "market_anchor",
+    "contract_interpretation",
+    "risk_management"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-c44f46c0",
+    "dispatch_id": "dispatch-case-20260414-c44f46c0-20260414T185449Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "a07f770c-7a57-4e84-a0e8-3e523cf11699",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-c44f46c0/researcher-analyses/2026-04-14/dispatch-case-20260414-c44f46c0-20260414T185449Z/personas/base-rate.md",
+    "source_persona_sha256": "5c3cece7ce0e4fd29f49a73b64a3c5fc0406f3f87fa74ff4728c7d0298a653d4"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary sources are strong on contract mechanics and exchange price context; independence is medium because core evidence is Binance-linked, but source-of-truth ambiguity is still low to medium rather than high.",
+  "strongest_disconfirmers": [
+    "BTC can drop more than 8% over five days.",
+    "Resolution depends on one exact minute on one exact exchange, which raises timing and operational sensitivity."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT spot during the run was around 74.1k, comfortably above 68k.",
+    "Recent Binance daily closes before the run were all above 68k.",
+    "Polymarket and Binance mechanics both point to a clearly defined 12:00 ET 1-minute BTCUSDT close test."
+  ],
+  "timing_relevance": "Timing is central because the contract keys off the 2026-04-19 12:00 ET candle, which is 16:00 UTC.",
+  "unresolved_ambiguities": [
+    "Mild operational ambiguity remains because settlement references the Binance candle display for one exact minute.",
+    "Near-term catalysts before April 19 could still shift realized volatility materially."
+  ],
+  "what_would_change_view": "I would cut the estimate if BTC falls toward 69k-70k, if downside-tail risk rises materially, or if Binance-specific candle ambiguity appears; I would raise it if BTC stays comfortably above 72k into the final day."
+}

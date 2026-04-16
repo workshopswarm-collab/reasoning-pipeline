@@ -1,0 +1,886 @@
+{
+  "artifact_type": "decision_stage_status",
+  "schema_version": "decision-stage-status/v1",
+  "case_key": "case-20260413-9dc5221c",
+  "dispatch_id": "refresh-case-20260413-9dc5221c-20260413T193521Z",
+  "question": "Will Javokhir Sindarov win the 2026 FIDE Candidates Tournament?",
+  "decision_context_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/refreshes/refresh-case-20260413-9dc5221c-20260413T193521Z/decision-context-light-refresh.json",
+  "actor": "decision-maker",
+  "decision_target_chat_id": "-1003846500961",
+  "decision_target_session_key": "agent:main:telegram:group:-1003846500961:topic:1178",
+  "trade_authorization": "watch_only",
+  "position_policy": "hold_only",
+  "decision_readiness": "ready",
+  "recommended_side": "yes",
+  "warnings": [],
+  "packet_json_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/artifacts/decision-maker-packet.json",
+  "packet_markdown_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/decision-maker-packet.md",
+  "decision_visible_receipt_marker": "SYNTHESIS RECEIVED | market=Will Javokhir Sindarov win the 2026 FIDE Candidates Tournament? | dispatch_id=refresh-case-20260413-9dc5221c-20260413T193521Z | decision_context_path=qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/refreshes/refresh-case-20260413-9dc5221c-20260413T193521Z/decision-context-light-refresh.json",
+  "decision_visible_start_marker": "DECISION-MAKING ANALYSIS UNDERWAY | market=Will Javokhir Sindarov win the 2026 FIDE Candidates Tournament? | dispatch_id=refresh-case-20260413-9dc5221c-20260413T193521Z | decision_context_path=qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/refreshes/refresh-case-20260413-9dc5221c-20260413T193521Z/decision-context-light-refresh.json",
+  "decision_visible_finish_marker": "DECISION-MAKING COMPLETED, DECISION PACKAGE CREATED | market=Will Javokhir Sindarov win the 2026 FIDE Candidates Tournament? | dispatch_id=refresh-case-20260413-9dc5221c-20260413T193521Z | packet_path=qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/decision-maker-packet.md",
+  "status": "decision_completed",
+  "stage_events": [
+    {
+      "at": "2026-04-13T19:15:49.300173Z",
+      "stage": "kickoff",
+      "state": "decision_ready_for_receipt",
+      "message": "Decision-Maker stage initialized from synthesis handoff",
+      "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/synthesizer-agent/decision-handoff.md"
+    },
+    {
+      "at": "2026-04-13T19:15:49.436782Z",
+      "stage": "decision_input_selection",
+      "state": "built",
+      "message": "Built deterministic Decision-Maker selected-input bundle",
+      "verification_mode_path": "roles/decision-maker/runtime/artifacts/case-20260413-9dc5221c/verification-mode-dispatch-case-20260413-9dc5221c-20260413T190728Z.json",
+      "selected_input_bundle_path": "roles/decision-maker/runtime/artifacts/case-20260413-9dc5221c/selected-inputs-dispatch-case-20260413-9dc5221c-20260413T190728Z.json",
+      "verification_mode": "targeted_escalation",
+      "approx_tokens_after_trim": 4421,
+      "agent_tool_use_allowed": true
+    },
+    {
+      "at": "2026-04-13T19:15:49.436833Z",
+      "stage": "decision_targeted_verification",
+      "state": "built",
+      "message": "Built deterministic targeted verification pack",
+      "targeted_verification_pack_path": "roles/decision-maker/runtime/artifacts/case-20260413-9dc5221c/targeted-verification-pack-dispatch-case-20260413-9dc5221c-20260413T190728Z.json",
+      "approx_tokens_after_trim": 2065
+    },
+    {
+      "at": "2026-04-13T19:15:49.436863Z",
+      "stage": "decision_prompt",
+      "state": "built",
+      "message": "Built Decision-Maker prompt from compact selected-input bundle",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260413-9dc5221c/decision-prompt-dispatch-case-20260413-9dc5221c-20260413T190728Z.md"
+    },
+    {
+      "at": "2026-04-13T19:15:51.053351Z",
+      "stage": "decision_lane_bootstrap",
+      "state": "created",
+      "message": "Created dedicated Telegram decision lane",
+      "topic_id": "1178",
+      "topic_title": "case-20260413-9dc5221c | decision | T190728Z",
+      "session_key": "agent:main:telegram:group:-1003846500961:topic:1178"
+    },
+    {
+      "at": "2026-04-13T19:15:55.000576Z",
+      "stage": "decision_receipt",
+      "state": "visible_marker_sent",
+      "message": "SYNTHESIS RECEIVED | market=Will Javokhir Sindarov win the 2026 FIDE Candidates Tournament? | dispatch_id=dispatch-case-20260413-9dc5221c-20260413T190728Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260413-9dc5221c/decision-context-dispatch-case-20260413-9dc5221c-20260413T190728Z.json"
+    },
+    {
+      "at": "2026-04-13T19:15:55.001199Z",
+      "stage": "decision_receipt",
+      "state": "accepted",
+      "message": "Decision-Maker handoff accepted",
+      "session_key": "agent:decision-maker:main",
+      "handoff_status": "started"
+    },
+    {
+      "at": "2026-04-13T19:15:55.001368Z",
+      "stage": "decision_execution",
+      "state": "decision_analysis_running",
+      "message": "Decision-Maker agent invocation accepted and analysis started",
+      "session_key": "agent:decision-maker:main",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260413-9dc5221c/decision-prompt-dispatch-case-20260413-9dc5221c-20260413T190728Z.md",
+      "handoff_status": "started"
+    },
+    {
+      "at": "2026-04-13T19:15:57.061764Z",
+      "stage": "decision_execution",
+      "state": "visible_marker_sent",
+      "message": "DECISION-MAKING ANALYSIS UNDERWAY | market=Will Javokhir Sindarov win the 2026 FIDE Candidates Tournament? | dispatch_id=dispatch-case-20260413-9dc5221c-20260413T190728Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260413-9dc5221c/decision-context-dispatch-case-20260413-9dc5221c-20260413T190728Z.json"
+    },
+    {
+      "at": "2026-04-13T19:16:41.062928Z",
+      "stage": "decision_execution",
+      "state": "decision_completed",
+      "message": "Decision-Maker completed and packet rendered",
+      "warnings": [],
+      "forecast_decision_persist_error": ""
+    },
+    {
+      "at": "2026-04-13T19:16:43.279485Z",
+      "stage": "decision_execution",
+      "state": "visible_marker_sent",
+      "message": "DECISION-MAKING COMPLETED, DECISION PACKAGE CREATED | market=Will Javokhir Sindarov win the 2026 FIDE Candidates Tournament? | dispatch_id=dispatch-case-20260413-9dc5221c-20260413T190728Z | packet_path=qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/decision-maker-packet.md"
+    },
+    {
+      "at": "2026-04-13T19:27:43.227175Z",
+      "stage": "kickoff",
+      "state": "decision_ready_for_receipt",
+      "message": "Decision-Maker stage initialized from synthesis handoff",
+      "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/synthesizer-agent/decision-handoff.md"
+    },
+    {
+      "at": "2026-04-13T19:27:43.372237Z",
+      "stage": "decision_input_selection",
+      "state": "built",
+      "message": "Built deterministic Decision-Maker selected-input bundle",
+      "verification_mode_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/refreshes/refresh-case-20260413-9dc5221c-20260413T192736Z/verification-mode-refresh-case-20260413-9dc5221c-20260413T192736Z.json",
+      "selected_input_bundle_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/refreshes/refresh-case-20260413-9dc5221c-20260413T192736Z/selected-inputs-refresh-case-20260413-9dc5221c-20260413T192736Z.json",
+      "verification_mode": "targeted_escalation",
+      "approx_tokens_after_trim": 4429,
+      "agent_tool_use_allowed": true
+    },
+    {
+      "at": "2026-04-13T19:27:43.372300Z",
+      "stage": "decision_targeted_verification",
+      "state": "built",
+      "message": "Built deterministic targeted verification pack",
+      "targeted_verification_pack_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/refreshes/refresh-case-20260413-9dc5221c-20260413T192736Z/targeted-verification-pack-refresh-case-20260413-9dc5221c-20260413T192736Z.json",
+      "approx_tokens_after_trim": 2065
+    },
+    {
+      "at": "2026-04-13T19:27:43.372337Z",
+      "stage": "decision_prompt",
+      "state": "built",
+      "message": "Built Decision-Maker prompt from compact selected-input bundle",
+      "prompt_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/refreshes/refresh-case-20260413-9dc5221c-20260413T192736Z/decision-prompt-refresh-case-20260413-9dc5221c-20260413T192736Z.md"
+    },
+    {
+      "at": "2026-04-13T19:27:44.798702Z",
+      "stage": "decision_receipt",
+      "state": "accepted",
+      "message": "Decision-Maker handoff accepted",
+      "session_key": "agent:decision-maker:main",
+      "handoff_status": "started"
+    },
+    {
+      "at": "2026-04-13T19:27:44.798816Z",
+      "stage": "decision_execution",
+      "state": "decision_analysis_running",
+      "message": "Decision-Maker agent invocation accepted and analysis started",
+      "session_key": "agent:decision-maker:main",
+      "prompt_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/refreshes/refresh-case-20260413-9dc5221c-20260413T192736Z/decision-prompt-refresh-case-20260413-9dc5221c-20260413T192736Z.md",
+      "handoff_status": "started"
+    },
+    {
+      "at": "2026-04-13T19:28:05.247776Z",
+      "stage": "decision_finalize_repair",
+      "state": "repair_applied",
+      "message": "Refreshed decision-stage status from existing valid packet artifacts",
+      "previous_health": "stale_status"
+    },
+    {
+      "at": "2026-04-13T19:28:05.247882Z",
+      "stage": "decision_finalize_repair",
+      "state": "decision_completed",
+      "message": "Decision-stage status finalized from existing valid artifacts",
+      "warnings": [],
+      "previous_health": "stale_status"
+    },
+    {
+      "at": "2026-04-13T19:28:38.463781Z",
+      "stage": "decision_execution",
+      "state": "decision_completed",
+      "message": "Decision-Maker completed and packet rendered",
+      "warnings": [],
+      "forecast_decision_persist_error": ""
+    },
+    {
+      "at": "2026-04-13T19:28:45.370347Z",
+      "stage": "kickoff",
+      "state": "decision_ready_for_receipt",
+      "message": "Decision-Maker stage initialized from synthesis handoff",
+      "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/synthesizer-agent/decision-handoff.md"
+    },
+    {
+      "at": "2026-04-13T19:28:45.507694Z",
+      "stage": "decision_input_selection",
+      "state": "built",
+      "message": "Built deterministic Decision-Maker selected-input bundle",
+      "verification_mode_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/refreshes/refresh-case-20260413-9dc5221c-20260413T192841Z/verification-mode-refresh-case-20260413-9dc5221c-20260413T192841Z.json",
+      "selected_input_bundle_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/refreshes/refresh-case-20260413-9dc5221c-20260413T192841Z/selected-inputs-refresh-case-20260413-9dc5221c-20260413T192841Z.json",
+      "verification_mode": "targeted_escalation",
+      "approx_tokens_after_trim": 4429,
+      "agent_tool_use_allowed": true
+    },
+    {
+      "at": "2026-04-13T19:28:45.507753Z",
+      "stage": "decision_targeted_verification",
+      "state": "built",
+      "message": "Built deterministic targeted verification pack",
+      "targeted_verification_pack_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/refreshes/refresh-case-20260413-9dc5221c-20260413T192841Z/targeted-verification-pack-refresh-case-20260413-9dc5221c-20260413T192841Z.json",
+      "approx_tokens_after_trim": 2065
+    },
+    {
+      "at": "2026-04-13T19:28:45.507788Z",
+      "stage": "decision_prompt",
+      "state": "built",
+      "message": "Built Decision-Maker prompt from compact selected-input bundle",
+      "prompt_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/refreshes/refresh-case-20260413-9dc5221c-20260413T192841Z/decision-prompt-refresh-case-20260413-9dc5221c-20260413T192841Z.md"
+    },
+    {
+      "at": "2026-04-13T19:28:46.866173Z",
+      "stage": "decision_receipt",
+      "state": "accepted",
+      "message": "Decision-Maker handoff accepted",
+      "session_key": "agent:decision-maker:main",
+      "handoff_status": "started"
+    },
+    {
+      "at": "2026-04-13T19:28:46.866268Z",
+      "stage": "decision_execution",
+      "state": "decision_analysis_running",
+      "message": "Decision-Maker agent invocation accepted and analysis started",
+      "session_key": "agent:decision-maker:main",
+      "prompt_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/refreshes/refresh-case-20260413-9dc5221c-20260413T192841Z/decision-prompt-refresh-case-20260413-9dc5221c-20260413T192841Z.md",
+      "handoff_status": "started"
+    },
+    {
+      "at": "2026-04-13T19:29:05.473541Z",
+      "stage": "decision_finalize_repair",
+      "state": "repair_applied",
+      "message": "Refreshed decision-stage status from existing valid packet artifacts",
+      "previous_health": "stale_status"
+    },
+    {
+      "at": "2026-04-13T19:29:05.473753Z",
+      "stage": "decision_finalize_repair",
+      "state": "decision_completed",
+      "message": "Decision-stage status finalized from existing valid artifacts",
+      "warnings": [],
+      "previous_health": "stale_status"
+    },
+    {
+      "at": "2026-04-13T19:29:18.912550Z",
+      "stage": "decision_execution",
+      "state": "decision_completed",
+      "message": "Decision-Maker completed and packet rendered",
+      "warnings": [],
+      "forecast_decision_persist_error": ""
+    },
+    {
+      "at": "2026-04-13T19:29:25.563089Z",
+      "stage": "kickoff",
+      "state": "decision_ready_for_receipt",
+      "message": "Decision-Maker stage initialized from synthesis handoff",
+      "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/synthesizer-agent/decision-handoff.md"
+    },
+    {
+      "at": "2026-04-13T19:29:25.706085Z",
+      "stage": "decision_input_selection",
+      "state": "built",
+      "message": "Built deterministic Decision-Maker selected-input bundle",
+      "verification_mode_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/refreshes/refresh-case-20260413-9dc5221c-20260413T192921Z/verification-mode-refresh-case-20260413-9dc5221c-20260413T192921Z.json",
+      "selected_input_bundle_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/refreshes/refresh-case-20260413-9dc5221c-20260413T192921Z/selected-inputs-refresh-case-20260413-9dc5221c-20260413T192921Z.json",
+      "verification_mode": "targeted_escalation",
+      "approx_tokens_after_trim": 4429,
+      "agent_tool_use_allowed": true
+    },
+    {
+      "at": "2026-04-13T19:29:25.706141Z",
+      "stage": "decision_targeted_verification",
+      "state": "built",
+      "message": "Built deterministic targeted verification pack",
+      "targeted_verification_pack_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/refreshes/refresh-case-20260413-9dc5221c-20260413T192921Z/targeted-verification-pack-refresh-case-20260413-9dc5221c-20260413T192921Z.json",
+      "approx_tokens_after_trim": 2065
+    },
+    {
+      "at": "2026-04-13T19:29:25.706178Z",
+      "stage": "decision_prompt",
+      "state": "built",
+      "message": "Built Decision-Maker prompt from compact selected-input bundle",
+      "prompt_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/refreshes/refresh-case-20260413-9dc5221c-20260413T192921Z/decision-prompt-refresh-case-20260413-9dc5221c-20260413T192921Z.md"
+    },
+    {
+      "at": "2026-04-13T19:29:27.128697Z",
+      "stage": "decision_receipt",
+      "state": "accepted",
+      "message": "Decision-Maker handoff accepted",
+      "session_key": "agent:decision-maker:main",
+      "handoff_status": "started"
+    },
+    {
+      "at": "2026-04-13T19:29:27.128991Z",
+      "stage": "decision_execution",
+      "state": "decision_analysis_running",
+      "message": "Decision-Maker agent invocation accepted and analysis started",
+      "session_key": "agent:decision-maker:main",
+      "prompt_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/refreshes/refresh-case-20260413-9dc5221c-20260413T192921Z/decision-prompt-refresh-case-20260413-9dc5221c-20260413T192921Z.md",
+      "handoff_status": "started"
+    },
+    {
+      "at": "2026-04-13T19:30:02.567788Z",
+      "stage": "decision_execution",
+      "state": "decision_completed",
+      "message": "Decision-Maker completed and packet rendered",
+      "warnings": [],
+      "forecast_decision_persist_error": ""
+    },
+    {
+      "at": "2026-04-13T19:30:09.753229Z",
+      "stage": "kickoff",
+      "state": "decision_ready_for_receipt",
+      "message": "Decision-Maker stage initialized from synthesis handoff",
+      "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/synthesizer-agent/decision-handoff.md"
+    },
+    {
+      "at": "2026-04-13T19:30:09.894451Z",
+      "stage": "decision_input_selection",
+      "state": "built",
+      "message": "Built deterministic Decision-Maker selected-input bundle",
+      "verification_mode_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/refreshes/refresh-case-20260413-9dc5221c-20260413T193005Z/verification-mode-refresh-case-20260413-9dc5221c-20260413T193005Z.json",
+      "selected_input_bundle_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/refreshes/refresh-case-20260413-9dc5221c-20260413T193005Z/selected-inputs-refresh-case-20260413-9dc5221c-20260413T193005Z.json",
+      "verification_mode": "targeted_escalation",
+      "approx_tokens_after_trim": 4429,
+      "agent_tool_use_allowed": true
+    },
+    {
+      "at": "2026-04-13T19:30:09.894505Z",
+      "stage": "decision_targeted_verification",
+      "state": "built",
+      "message": "Built deterministic targeted verification pack",
+      "targeted_verification_pack_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/refreshes/refresh-case-20260413-9dc5221c-20260413T193005Z/targeted-verification-pack-refresh-case-20260413-9dc5221c-20260413T193005Z.json",
+      "approx_tokens_after_trim": 2065
+    },
+    {
+      "at": "2026-04-13T19:30:09.894541Z",
+      "stage": "decision_prompt",
+      "state": "built",
+      "message": "Built Decision-Maker prompt from compact selected-input bundle",
+      "prompt_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/refreshes/refresh-case-20260413-9dc5221c-20260413T193005Z/decision-prompt-refresh-case-20260413-9dc5221c-20260413T193005Z.md"
+    },
+    {
+      "at": "2026-04-13T19:30:11.329644Z",
+      "stage": "decision_receipt",
+      "state": "accepted",
+      "message": "Decision-Maker handoff accepted",
+      "session_key": "agent:decision-maker:main",
+      "handoff_status": "started"
+    },
+    {
+      "at": "2026-04-13T19:30:11.329742Z",
+      "stage": "decision_execution",
+      "state": "decision_analysis_running",
+      "message": "Decision-Maker agent invocation accepted and analysis started",
+      "session_key": "agent:decision-maker:main",
+      "prompt_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/refreshes/refresh-case-20260413-9dc5221c-20260413T193005Z/decision-prompt-refresh-case-20260413-9dc5221c-20260413T193005Z.md",
+      "handoff_status": "started"
+    },
+    {
+      "at": "2026-04-13T19:30:43.213870Z",
+      "stage": "decision_execution",
+      "state": "decision_completed",
+      "message": "Decision-Maker completed and packet rendered",
+      "warnings": [],
+      "forecast_decision_persist_error": ""
+    },
+    {
+      "at": "2026-04-13T19:30:50.043459Z",
+      "stage": "kickoff",
+      "state": "decision_ready_for_receipt",
+      "message": "Decision-Maker stage initialized from synthesis handoff",
+      "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/synthesizer-agent/decision-handoff.md"
+    },
+    {
+      "at": "2026-04-13T19:30:50.180946Z",
+      "stage": "decision_input_selection",
+      "state": "built",
+      "message": "Built deterministic Decision-Maker selected-input bundle",
+      "verification_mode_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/refreshes/refresh-case-20260413-9dc5221c-20260413T193045Z/verification-mode-refresh-case-20260413-9dc5221c-20260413T193045Z.json",
+      "selected_input_bundle_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/refreshes/refresh-case-20260413-9dc5221c-20260413T193045Z/selected-inputs-refresh-case-20260413-9dc5221c-20260413T193045Z.json",
+      "verification_mode": "targeted_escalation",
+      "approx_tokens_after_trim": 4429,
+      "agent_tool_use_allowed": true
+    },
+    {
+      "at": "2026-04-13T19:30:50.181005Z",
+      "stage": "decision_targeted_verification",
+      "state": "built",
+      "message": "Built deterministic targeted verification pack",
+      "targeted_verification_pack_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/refreshes/refresh-case-20260413-9dc5221c-20260413T193045Z/targeted-verification-pack-refresh-case-20260413-9dc5221c-20260413T193045Z.json",
+      "approx_tokens_after_trim": 2065
+    },
+    {
+      "at": "2026-04-13T19:30:50.181042Z",
+      "stage": "decision_prompt",
+      "state": "built",
+      "message": "Built Decision-Maker prompt from compact selected-input bundle",
+      "prompt_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/refreshes/refresh-case-20260413-9dc5221c-20260413T193045Z/decision-prompt-refresh-case-20260413-9dc5221c-20260413T193045Z.md"
+    },
+    {
+      "at": "2026-04-13T19:30:51.559809Z",
+      "stage": "decision_receipt",
+      "state": "accepted",
+      "message": "Decision-Maker handoff accepted",
+      "session_key": "agent:decision-maker:main",
+      "handoff_status": "started"
+    },
+    {
+      "at": "2026-04-13T19:30:51.559904Z",
+      "stage": "decision_execution",
+      "state": "decision_analysis_running",
+      "message": "Decision-Maker agent invocation accepted and analysis started",
+      "session_key": "agent:decision-maker:main",
+      "prompt_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/refreshes/refresh-case-20260413-9dc5221c-20260413T193045Z/decision-prompt-refresh-case-20260413-9dc5221c-20260413T193045Z.md",
+      "handoff_status": "started"
+    },
+    {
+      "at": "2026-04-13T19:31:05.779318Z",
+      "stage": "decision_finalize_repair",
+      "state": "repair_applied",
+      "message": "Refreshed decision-stage status from existing valid packet artifacts",
+      "previous_health": "stale_status"
+    },
+    {
+      "at": "2026-04-13T19:31:05.779442Z",
+      "stage": "decision_finalize_repair",
+      "state": "decision_completed",
+      "message": "Decision-stage status finalized from existing valid artifacts",
+      "warnings": [],
+      "previous_health": "stale_status"
+    },
+    {
+      "at": "2026-04-13T19:31:26.820261Z",
+      "stage": "decision_execution",
+      "state": "decision_completed",
+      "message": "Decision-Maker completed and packet rendered",
+      "warnings": [],
+      "forecast_decision_persist_error": ""
+    },
+    {
+      "at": "2026-04-13T19:31:34.365901Z",
+      "stage": "kickoff",
+      "state": "decision_ready_for_receipt",
+      "message": "Decision-Maker stage initialized from synthesis handoff",
+      "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/synthesizer-agent/decision-handoff.md"
+    },
+    {
+      "at": "2026-04-13T19:31:34.511707Z",
+      "stage": "decision_input_selection",
+      "state": "built",
+      "message": "Built deterministic Decision-Maker selected-input bundle",
+      "verification_mode_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/refreshes/refresh-case-20260413-9dc5221c-20260413T193129Z/verification-mode-refresh-case-20260413-9dc5221c-20260413T193129Z.json",
+      "selected_input_bundle_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/refreshes/refresh-case-20260413-9dc5221c-20260413T193129Z/selected-inputs-refresh-case-20260413-9dc5221c-20260413T193129Z.json",
+      "verification_mode": "targeted_escalation",
+      "approx_tokens_after_trim": 4429,
+      "agent_tool_use_allowed": true
+    },
+    {
+      "at": "2026-04-13T19:31:34.511769Z",
+      "stage": "decision_targeted_verification",
+      "state": "built",
+      "message": "Built deterministic targeted verification pack",
+      "targeted_verification_pack_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/refreshes/refresh-case-20260413-9dc5221c-20260413T193129Z/targeted-verification-pack-refresh-case-20260413-9dc5221c-20260413T193129Z.json",
+      "approx_tokens_after_trim": 2065
+    },
+    {
+      "at": "2026-04-13T19:31:34.511803Z",
+      "stage": "decision_prompt",
+      "state": "built",
+      "message": "Built Decision-Maker prompt from compact selected-input bundle",
+      "prompt_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/refreshes/refresh-case-20260413-9dc5221c-20260413T193129Z/decision-prompt-refresh-case-20260413-9dc5221c-20260413T193129Z.md"
+    },
+    {
+      "at": "2026-04-13T19:31:35.989931Z",
+      "stage": "decision_receipt",
+      "state": "accepted",
+      "message": "Decision-Maker handoff accepted",
+      "session_key": "agent:decision-maker:main",
+      "handoff_status": "started"
+    },
+    {
+      "at": "2026-04-13T19:31:35.990030Z",
+      "stage": "decision_execution",
+      "state": "decision_analysis_running",
+      "message": "Decision-Maker agent invocation accepted and analysis started",
+      "session_key": "agent:decision-maker:main",
+      "prompt_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/refreshes/refresh-case-20260413-9dc5221c-20260413T193129Z/decision-prompt-refresh-case-20260413-9dc5221c-20260413T193129Z.md",
+      "handoff_status": "started"
+    },
+    {
+      "at": "2026-04-13T19:32:05.980348Z",
+      "stage": "decision_finalize_repair",
+      "state": "repair_applied",
+      "message": "Refreshed decision-stage status from existing valid packet artifacts",
+      "previous_health": "stale_status"
+    },
+    {
+      "at": "2026-04-13T19:32:05.980485Z",
+      "stage": "decision_finalize_repair",
+      "state": "decision_completed",
+      "message": "Decision-stage status finalized from existing valid artifacts",
+      "warnings": [],
+      "previous_health": "stale_status"
+    },
+    {
+      "at": "2026-04-13T19:32:11.251865Z",
+      "stage": "decision_execution",
+      "state": "decision_completed",
+      "message": "Decision-Maker completed and packet rendered",
+      "warnings": [],
+      "forecast_decision_persist_error": ""
+    },
+    {
+      "at": "2026-04-13T19:32:19.984034Z",
+      "stage": "kickoff",
+      "state": "decision_ready_for_receipt",
+      "message": "Decision-Maker stage initialized from synthesis handoff",
+      "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/synthesizer-agent/decision-handoff.md"
+    },
+    {
+      "at": "2026-04-13T19:32:20.127917Z",
+      "stage": "decision_input_selection",
+      "state": "built",
+      "message": "Built deterministic Decision-Maker selected-input bundle",
+      "verification_mode_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/refreshes/refresh-case-20260413-9dc5221c-20260413T193215Z/verification-mode-refresh-case-20260413-9dc5221c-20260413T193215Z.json",
+      "selected_input_bundle_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/refreshes/refresh-case-20260413-9dc5221c-20260413T193215Z/selected-inputs-refresh-case-20260413-9dc5221c-20260413T193215Z.json",
+      "verification_mode": "targeted_escalation",
+      "approx_tokens_after_trim": 4429,
+      "agent_tool_use_allowed": true
+    },
+    {
+      "at": "2026-04-13T19:32:20.127977Z",
+      "stage": "decision_targeted_verification",
+      "state": "built",
+      "message": "Built deterministic targeted verification pack",
+      "targeted_verification_pack_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/refreshes/refresh-case-20260413-9dc5221c-20260413T193215Z/targeted-verification-pack-refresh-case-20260413-9dc5221c-20260413T193215Z.json",
+      "approx_tokens_after_trim": 2065
+    },
+    {
+      "at": "2026-04-13T19:32:20.128017Z",
+      "stage": "decision_prompt",
+      "state": "built",
+      "message": "Built Decision-Maker prompt from compact selected-input bundle",
+      "prompt_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/refreshes/refresh-case-20260413-9dc5221c-20260413T193215Z/decision-prompt-refresh-case-20260413-9dc5221c-20260413T193215Z.md"
+    },
+    {
+      "at": "2026-04-13T19:32:21.537171Z",
+      "stage": "decision_receipt",
+      "state": "accepted",
+      "message": "Decision-Maker handoff accepted",
+      "session_key": "agent:decision-maker:main",
+      "handoff_status": "started"
+    },
+    {
+      "at": "2026-04-13T19:32:21.537278Z",
+      "stage": "decision_execution",
+      "state": "decision_analysis_running",
+      "message": "Decision-Maker agent invocation accepted and analysis started",
+      "session_key": "agent:decision-maker:main",
+      "prompt_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/refreshes/refresh-case-20260413-9dc5221c-20260413T193215Z/decision-prompt-refresh-case-20260413-9dc5221c-20260413T193215Z.md",
+      "handoff_status": "started"
+    },
+    {
+      "at": "2026-04-13T19:32:54.050575Z",
+      "stage": "decision_execution",
+      "state": "decision_completed",
+      "message": "Decision-Maker completed and packet rendered",
+      "warnings": [],
+      "forecast_decision_persist_error": ""
+    },
+    {
+      "at": "2026-04-13T19:33:01.223306Z",
+      "stage": "kickoff",
+      "state": "decision_ready_for_receipt",
+      "message": "Decision-Maker stage initialized from synthesis handoff",
+      "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/synthesizer-agent/decision-handoff.md"
+    },
+    {
+      "at": "2026-04-13T19:33:01.421007Z",
+      "stage": "decision_input_selection",
+      "state": "built",
+      "message": "Built deterministic Decision-Maker selected-input bundle",
+      "verification_mode_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/refreshes/refresh-case-20260413-9dc5221c-20260413T193256Z/verification-mode-refresh-case-20260413-9dc5221c-20260413T193256Z.json",
+      "selected_input_bundle_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/refreshes/refresh-case-20260413-9dc5221c-20260413T193256Z/selected-inputs-refresh-case-20260413-9dc5221c-20260413T193256Z.json",
+      "verification_mode": "targeted_escalation",
+      "approx_tokens_after_trim": 4429,
+      "agent_tool_use_allowed": true
+    },
+    {
+      "at": "2026-04-13T19:33:01.421096Z",
+      "stage": "decision_targeted_verification",
+      "state": "built",
+      "message": "Built deterministic targeted verification pack",
+      "targeted_verification_pack_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/refreshes/refresh-case-20260413-9dc5221c-20260413T193256Z/targeted-verification-pack-refresh-case-20260413-9dc5221c-20260413T193256Z.json",
+      "approx_tokens_after_trim": 2065
+    },
+    {
+      "at": "2026-04-13T19:33:01.421135Z",
+      "stage": "decision_prompt",
+      "state": "built",
+      "message": "Built Decision-Maker prompt from compact selected-input bundle",
+      "prompt_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/refreshes/refresh-case-20260413-9dc5221c-20260413T193256Z/decision-prompt-refresh-case-20260413-9dc5221c-20260413T193256Z.md"
+    },
+    {
+      "at": "2026-04-13T19:33:02.836483Z",
+      "stage": "decision_receipt",
+      "state": "accepted",
+      "message": "Decision-Maker handoff accepted",
+      "session_key": "agent:decision-maker:main",
+      "handoff_status": "started"
+    },
+    {
+      "at": "2026-04-13T19:33:02.836573Z",
+      "stage": "decision_execution",
+      "state": "decision_analysis_running",
+      "message": "Decision-Maker agent invocation accepted and analysis started",
+      "session_key": "agent:decision-maker:main",
+      "prompt_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/refreshes/refresh-case-20260413-9dc5221c-20260413T193256Z/decision-prompt-refresh-case-20260413-9dc5221c-20260413T193256Z.md",
+      "handoff_status": "started"
+    },
+    {
+      "at": "2026-04-13T19:33:06.139788Z",
+      "stage": "decision_finalize_repair",
+      "state": "repair_applied",
+      "message": "Refreshed decision-stage status from existing valid packet artifacts",
+      "previous_health": "stale_status"
+    },
+    {
+      "at": "2026-04-13T19:33:06.139921Z",
+      "stage": "decision_finalize_repair",
+      "state": "decision_completed",
+      "message": "Decision-stage status finalized from existing valid artifacts",
+      "warnings": [],
+      "previous_health": "stale_status"
+    },
+    {
+      "at": "2026-04-13T19:33:37.857696Z",
+      "stage": "decision_execution",
+      "state": "decision_completed",
+      "message": "Decision-Maker completed and packet rendered",
+      "warnings": [],
+      "forecast_decision_persist_error": ""
+    },
+    {
+      "at": "2026-04-13T19:33:44.817742Z",
+      "stage": "kickoff",
+      "state": "decision_ready_for_receipt",
+      "message": "Decision-Maker stage initialized from synthesis handoff",
+      "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/synthesizer-agent/decision-handoff.md"
+    },
+    {
+      "at": "2026-04-13T19:33:44.965065Z",
+      "stage": "decision_input_selection",
+      "state": "built",
+      "message": "Built deterministic Decision-Maker selected-input bundle",
+      "verification_mode_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/refreshes/refresh-case-20260413-9dc5221c-20260413T193340Z/verification-mode-refresh-case-20260413-9dc5221c-20260413T193340Z.json",
+      "selected_input_bundle_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/refreshes/refresh-case-20260413-9dc5221c-20260413T193340Z/selected-inputs-refresh-case-20260413-9dc5221c-20260413T193340Z.json",
+      "verification_mode": "targeted_escalation",
+      "approx_tokens_after_trim": 4429,
+      "agent_tool_use_allowed": true
+    },
+    {
+      "at": "2026-04-13T19:33:44.965116Z",
+      "stage": "decision_targeted_verification",
+      "state": "built",
+      "message": "Built deterministic targeted verification pack",
+      "targeted_verification_pack_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/refreshes/refresh-case-20260413-9dc5221c-20260413T193340Z/targeted-verification-pack-refresh-case-20260413-9dc5221c-20260413T193340Z.json",
+      "approx_tokens_after_trim": 2065
+    },
+    {
+      "at": "2026-04-13T19:33:44.965152Z",
+      "stage": "decision_prompt",
+      "state": "built",
+      "message": "Built Decision-Maker prompt from compact selected-input bundle",
+      "prompt_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/refreshes/refresh-case-20260413-9dc5221c-20260413T193340Z/decision-prompt-refresh-case-20260413-9dc5221c-20260413T193340Z.md"
+    },
+    {
+      "at": "2026-04-13T19:33:46.421880Z",
+      "stage": "decision_receipt",
+      "state": "accepted",
+      "message": "Decision-Maker handoff accepted",
+      "session_key": "agent:decision-maker:main",
+      "handoff_status": "started"
+    },
+    {
+      "at": "2026-04-13T19:33:46.422009Z",
+      "stage": "decision_execution",
+      "state": "decision_analysis_running",
+      "message": "Decision-Maker agent invocation accepted and analysis started",
+      "session_key": "agent:decision-maker:main",
+      "prompt_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/refreshes/refresh-case-20260413-9dc5221c-20260413T193340Z/decision-prompt-refresh-case-20260413-9dc5221c-20260413T193340Z.md",
+      "handoff_status": "started"
+    },
+    {
+      "at": "2026-04-13T19:34:06.384385Z",
+      "stage": "decision_finalize_repair",
+      "state": "repair_applied",
+      "message": "Refreshed decision-stage status from existing valid packet artifacts",
+      "previous_health": "stale_status"
+    },
+    {
+      "at": "2026-04-13T19:34:06.384570Z",
+      "stage": "decision_finalize_repair",
+      "state": "decision_completed",
+      "message": "Decision-stage status finalized from existing valid artifacts",
+      "warnings": [],
+      "previous_health": "stale_status"
+    },
+    {
+      "at": "2026-04-13T19:35:18.404785Z",
+      "stage": "decision_execution",
+      "state": "decision_completed",
+      "message": "Decision-Maker completed and packet rendered",
+      "warnings": [],
+      "forecast_decision_persist_error": ""
+    },
+    {
+      "at": "2026-04-13T19:35:25.742930Z",
+      "stage": "kickoff",
+      "state": "decision_ready_for_receipt",
+      "message": "Decision-Maker stage initialized from synthesis handoff",
+      "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/synthesizer-agent/decision-handoff.md"
+    },
+    {
+      "at": "2026-04-13T19:35:25.889601Z",
+      "stage": "decision_input_selection",
+      "state": "built",
+      "message": "Built deterministic Decision-Maker selected-input bundle",
+      "verification_mode_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/refreshes/refresh-case-20260413-9dc5221c-20260413T193521Z/verification-mode-refresh-case-20260413-9dc5221c-20260413T193521Z.json",
+      "selected_input_bundle_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/refreshes/refresh-case-20260413-9dc5221c-20260413T193521Z/selected-inputs-refresh-case-20260413-9dc5221c-20260413T193521Z.json",
+      "verification_mode": "targeted_escalation",
+      "approx_tokens_after_trim": 4429,
+      "agent_tool_use_allowed": true
+    },
+    {
+      "at": "2026-04-13T19:35:25.889661Z",
+      "stage": "decision_targeted_verification",
+      "state": "built",
+      "message": "Built deterministic targeted verification pack",
+      "targeted_verification_pack_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/refreshes/refresh-case-20260413-9dc5221c-20260413T193521Z/targeted-verification-pack-refresh-case-20260413-9dc5221c-20260413T193521Z.json",
+      "approx_tokens_after_trim": 2065
+    },
+    {
+      "at": "2026-04-13T19:35:25.889696Z",
+      "stage": "decision_prompt",
+      "state": "built",
+      "message": "Built Decision-Maker prompt from compact selected-input bundle",
+      "prompt_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/refreshes/refresh-case-20260413-9dc5221c-20260413T193521Z/decision-prompt-refresh-case-20260413-9dc5221c-20260413T193521Z.md"
+    },
+    {
+      "at": "2026-04-13T19:35:27.322252Z",
+      "stage": "decision_receipt",
+      "state": "accepted",
+      "message": "Decision-Maker handoff accepted",
+      "session_key": "agent:decision-maker:main",
+      "handoff_status": "started"
+    },
+    {
+      "at": "2026-04-13T19:35:27.322343Z",
+      "stage": "decision_execution",
+      "state": "decision_analysis_running",
+      "message": "Decision-Maker agent invocation accepted and analysis started",
+      "session_key": "agent:decision-maker:main",
+      "prompt_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/refreshes/refresh-case-20260413-9dc5221c-20260413T193521Z/decision-prompt-refresh-case-20260413-9dc5221c-20260413T193521Z.md",
+      "handoff_status": "started"
+    },
+    {
+      "at": "2026-04-13T19:35:56.594942Z",
+      "stage": "decision_execution",
+      "state": "decision_completed",
+      "message": "Decision-Maker completed and packet rendered",
+      "warnings": [],
+      "forecast_decision_persist_error": ""
+    }
+  ],
+  "last_stage_event": {
+    "at": "2026-04-13T19:35:56.594942Z",
+    "stage": "decision_execution",
+    "state": "decision_completed",
+    "message": "Decision-Maker completed and packet rendered",
+    "warnings": [],
+    "forecast_decision_persist_error": ""
+  },
+  "updated_at": "2026-04-13T19:35:56.595584Z",
+  "decision_lane": {
+    "topic_id": "1178",
+    "topic_title": "case-20260413-9dc5221c | decision | T190728Z",
+    "session_key": "agent:main:telegram:group:-1003846500961:topic:1178"
+  },
+  "verification_mode_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/refreshes/refresh-case-20260413-9dc5221c-20260413T193521Z/verification-mode-refresh-case-20260413-9dc5221c-20260413T193521Z.json",
+  "selected_input_bundle_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/refreshes/refresh-case-20260413-9dc5221c-20260413T193521Z/selected-inputs-refresh-case-20260413-9dc5221c-20260413T193521Z.json",
+  "selected_input_bundle_mode": "targeted_escalation",
+  "selected_input_bundle_estimated_tokens": 4429,
+  "targeted_verification_pack_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/refreshes/refresh-case-20260413-9dc5221c-20260413T193521Z/targeted-verification-pack-refresh-case-20260413-9dc5221c-20260413T193521Z.json",
+  "targeted_verification_pack_required": true,
+  "decision_prompt_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/refreshes/refresh-case-20260413-9dc5221c-20260413T193521Z/decision-prompt-refresh-case-20260413-9dc5221c-20260413T193521Z.md",
+  "agent_tool_use_allowed": true,
+  "decision_lane_topic_id": "1178",
+  "decision_lane_topic_title": "case-20260413-9dc5221c | decision | T190728Z",
+  "decision_lane_session_key": "agent:main:telegram:group:-1003846500961:topic:1178",
+  "decision_target_topic_id": "1178",
+  "decision_target_topic_title": "case-20260413-9dc5221c | decision | T190728Z",
+  "decision_receipt_marker_sent_at": "2026-04-13T19:15:55.000554+00:00",
+  "decision_analysis_marker_sent_at": "2026-04-13T19:15:57.061744+00:00",
+  "timeline_update": {
+    "appended": true,
+    "case_key": "case-20260413-9dc5221c",
+    "dispatch_id": "refresh-case-20260413-9dc5221c-20260413T193521Z",
+    "packet_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/decision-maker-packet.md",
+    "entry": "- 2026-04-13T19:35:56.593854+00:00 — completed decision-making `refresh-case-20260413-9dc5221c-20260413T193521Z` with packet `qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/decision-maker-packet.md`."
+  },
+  "forecast_decision_persist": {
+    "ok": true,
+    "packet_json": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/artifacts/decision-maker-packet.json",
+    "persisted": {
+      "forecast_id": "refresh-case-20260413-9dc5221c-20260413T193521Z",
+      "market_id": "case-20260413-9dc5221c",
+      "contract_id": "yes",
+      "forecast_prob": 0.935,
+      "decision_status": "recorded",
+      "decision_packet_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/artifacts/decision-maker-packet.json",
+      "supersedes_forecast_id": "refresh-case-20260413-9dc5221c-20260413T193340Z",
+      "superseded_forecast_ids": [
+        "refresh-case-20260413-9dc5221c-20260413T193005Z",
+        "refresh-case-20260413-9dc5221c-20260413T192921Z",
+        "refresh-case-20260413-9dc5221c-20260413T192841Z",
+        "refresh-case-20260413-9dc5221c-20260413T193256Z",
+        "refresh-case-20260413-9dc5221c-20260413T193129Z",
+        "refresh-case-20260413-9dc5221c-20260413T193215Z",
+        "refresh-case-20260413-9dc5221c-20260413T193340Z",
+        "refresh-case-20260413-9dc5221c-20260413T193045Z",
+        "refresh-case-20260413-9dc5221c-20260413T192736Z"
+      ],
+      "market_state": {}
+    },
+    "record": {
+      "forecast_id": "refresh-case-20260413-9dc5221c-20260413T193521Z",
+      "decision_ts": "2026-04-13T15:35:00-04:00",
+      "case_id": "case-20260413-9dc5221c",
+      "dispatch_id": "refresh-case-20260413-9dc5221c-20260413T193521Z",
+      "market_id": "case-20260413-9dc5221c",
+      "contract_id": "yes",
+      "platform": "polymarket",
+      "market_slug": "will-javokhir-sindarov-win-the-2026-fide-candidates-tournament",
+      "question": "Will Javokhir Sindarov win the 2026 FIDE Candidates Tournament?",
+      "forecast_prob": "0.935",
+      "forecast_direction": "yes",
+      "confidence_label": "medium",
+      "confidence_score": "",
+      "time_horizon_label": "Round 13 onward through official FIDE winner declaration",
+      "verification_mode": "targeted_escalation",
+      "decision_status": "recorded",
+      "rationale_summary": "Sindarov still looks overwhelmingly likely to win, but because the 99.05% market price is not matched by independently verified official-state improvement, the disciplined posture is watch-only rather than chasing the move.",
+      "decision_packet_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/artifacts/decision-maker-packet.json",
+      "decision_handoff_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/synthesizer-agent/decision-handoff.md",
+      "syndicated_finding_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/synthesizer-agent/syndicated-finding.md"
+    },
+    "warnings": []
+  },
+  "decision_completion_marker_sent_at": "2026-04-13T19:16:43.279460+00:00",
+  "previous_status": "decision_completed",
+  "terminal_summary": {
+    "at": "2026-04-13T19:35:56.595586Z",
+    "status": "decision_completed",
+    "decision_lane": {
+      "topic_id": "1178",
+      "topic_title": "case-20260413-9dc5221c | decision | T190728Z",
+      "session_key": "agent:main:telegram:group:-1003846500961:topic:1178"
+    },
+    "packet_json_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/artifacts/decision-maker-packet.json",
+    "packet_markdown_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/decision-maker-packet.md",
+    "trade_authorization": "watch_only",
+    "decision_readiness": "ready",
+    "last_stage_event": {
+      "at": "2026-04-13T19:35:56.594942Z",
+      "stage": "decision_execution",
+      "state": "decision_completed",
+      "message": "Decision-Maker completed and packet rendered",
+      "warnings": [],
+      "forecast_decision_persist_error": ""
+    }
+  }
+}

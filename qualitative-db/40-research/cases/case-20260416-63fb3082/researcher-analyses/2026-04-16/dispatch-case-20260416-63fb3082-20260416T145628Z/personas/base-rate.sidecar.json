@@ -1,0 +1,56 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A sharp risk-off move before April 21 could erase the cushion quickly.",
+    "Single-minute settlement timing creates more tail risk than daily-close style framing."
+  ],
+  "key_assumptions": [
+    "The current roughly 5.9k cushion above 68000 is large enough that ordinary five-day volatility is more likely than not to leave BTC above the threshold.",
+    "Binance API prices fairly reflect the same underlying exchange data used for settlement."
+  ],
+  "main_logical_chain": [
+    "The contract resolves on Binance BTC/USDT 12:00 ET 1-minute close on April 21, so exact source and timing matter.",
+    "Current Binance price is roughly 73.9k, giving about a 5.9k cushion over the threshold.",
+    "Recent Binance and CoinGecko history indicate 68k has usually been below prevailing price in the recent regime.",
+    "Because the settlement is a single minute and BTC is volatile, yes should be likely but not as close to certain as the 95.25% market price implies."
+  ],
+  "main_thesis": "Yes is likely because BTC/USDT is currently well above 68000, but the market is somewhat too confident for a single-minute settlement contract with five days of residual volatility.",
+  "own_probability": 0.89,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone (noon) ... has a final 'Close' price higher than ... 68000.",
+    "Base-rate view: Yes is more likely than not and still likely, but the market looks somewhat too confident at 95.25%."
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "market_anchor",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-63fb3082",
+    "dispatch_id": "dispatch-case-20260416-63fb3082-20260416T145628Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "29698f00-c60e-46f2-bd4f-eb376c34a72f",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-63fb3082/researcher-analyses/2026-04-16/dispatch-case-20260416-63fb3082-20260416T145628Z/personas/base-rate.md",
+    "source_persona_sha256": "bc65bf59457a781272135baad82f953ba9f5562fed88abec7021e6216c366982"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary source quality is high because settlement is explicitly tied to Binance BTC/USDT and contract rules; CoinGecko is a useful but secondary contextual check. Evidence independence is medium and source-of-truth ambiguity is low-to-medium.",
+  "strongest_disconfirmers": [
+    "Bitcoin can move more than 8% in five days, and the contract resolves on a single noon ET one-minute close rather than a broader average."
+  ],
+  "strongest_supports": [
+    "Binance BTC/USDT was around 73.9k at retrieval, well above 68k.",
+    "Reviewed Binance daily closes from April 5 through April 16 were all above 68k.",
+    "CoinGecko contextual data show BTC above 68k on about 71% of the last 91 days and 73% of the last 30 days."
+  ],
+  "timing_relevance": "Very high: the contract settles on the Binance BTC/USDT 12:00 ET one-minute close on 2026-04-21, so short-horizon volatility and exact timestamp mapping matter.",
+  "unresolved_ambiguities": [
+    "Exact ET-to-Binance candle mapping appears straightforward but remains worth noting in a single-minute contract.",
+    "No dedicated event-risk calendar was reviewed in this base-rate pass."
+  ],
+  "what_would_change_view": "A fast drop toward or below 70k, evidence of elevated near-term event risk, or any contract-interpretation issue around candle timing would move the estimate down; stable trading above 72k into April 20 would move it up somewhat."
+}

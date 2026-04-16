@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A sharp pre-settlement BTC selloff.",
+    "Binance-specific data or candle-labeling anomaly near the operative minute."
+  ],
+  "key_assumptions": [
+    "BTC stays in roughly its current regime and does not suffer a >6% drawdown before settlement.",
+    "Binance remains the stable operative settlement source for the relevant 1-minute candle."
+  ],
+  "main_logical_chain": [
+    "Market implies 99.05% Yes.",
+    "Named settlement venue is Binance BTC/USDT, so direct Binance data is the right primary check.",
+    "Current Binance price sits materially above 70000 with less than a day to go.",
+    "That makes Yes highly likely under ordinary conditions.",
+    "But one-day crypto downside tails are real, so 99% is slightly too aggressive; 96% is more defensible."
+  ],
+  "main_thesis": "BTC/USDT on Binance is already comfortably above 70000, so Yes is very likely by Apr. 17 noon ET, but not quite as certain as the market's 99% price implies.",
+  "own_probability": 0.96,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "current_price: 0.9905",
+    "final Close price higher than 70000",
+    "Binance BTC/USDT 12:00 ET 1-minute candle"
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "market_anchor",
+    "contract_interpretation",
+    "risk_management"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260416-881aa4d0",
+    "dispatch_id": "dispatch-case-20260416-881aa4d0-20260416T044756Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "96e5bef4-5a68-4025-b05a-4322e6fb205e",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-881aa4d0/researcher-analyses/2026-04-16/dispatch-case-20260416-881aa4d0-20260416T044756Z/personas/base-rate.md",
+    "source_persona_sha256": "68ead21956e8928e972bfcd68781233eca0d9fd805c04d76e6c7cdba3836f873"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is strong enough for a medium-difficulty case: contract mechanics came from the Polymarket rules page and market-state verification came from direct Binance API checks plus an additional Binance verification pass.",
+  "strongest_disconfirmers": [
+    "BTC can still fall 6-7% in under a day, which is enough to flip this single-minute settlement market to No.",
+    "There is residual timestamp / operational edge-case risk in single-minute exchange-settlement contracts."
+  ],
+  "strongest_supports": [
+    "Direct Binance API checks showed BTC/USDT around 74.7k-74.9k, well above the threshold.",
+    "Additional 24h Binance stats showed the sampled low still above 73.5k.",
+    "Contract mechanics are explicit about Binance, BTC/USDT, 12:00 ET, and final Close > 70000."
+  ],
+  "timing_relevance": "This is a date-specific one-minute settlement market for Apr. 17, 2026 at 12:00 ET, so short-horizon volatility and exact candle timing matter more than broader BTC narratives.",
+  "unresolved_ambiguities": [
+    "Small residual ambiguity remains around practical ET-to-candle mapping until the final settlement minute arrives."
+  ],
+  "what_would_change_view": "I would cut the probability if later Binance checks showed BTC much closer to 70000, if volatility expanded sharply, or if credible evidence emerged of a Binance settlement-minute data anomaly."
+}

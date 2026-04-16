@@ -1,0 +1,155 @@
+{
+  "schema_version": "decision-packet/v1",
+  "generated_at": "2026-04-15T03:24:00-04:00",
+  "context": {
+    "case_key": "case-20260415-f07c9e26",
+    "dispatch_id": "refresh-case-20260415-f07c9e26-20260415T072338Z",
+    "question": "Will the price of Bitcoin be above $72,000 on April 16?",
+    "market_id": "7da0bb87-594f-4bdb-a7ae-fddfc3f0f8bd",
+    "external_market_id": "0xee2d4eeeae30d06342d630e97c23ff423da2e542cbfb30a8ce252b9f47ccc9e3",
+    "market_slug": "bitcoin-above-72k-on-april-16",
+    "platform": "polymarket",
+    "primary_market_url": "https://polymarket.com/event/bitcoin-above-72k-on-april-16",
+    "market_title": "Will the price of Bitcoin be above $72,000 on April 16?",
+    "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260415-f07c9e26/synthesizer-agent/decision-handoff.md",
+    "source_syndicated_finding_path": "qualitative-db/40-research/cases/case-20260415-f07c9e26/synthesizer-agent/syndicated-finding.md",
+    "source_light_refresh_brief_path": "qualitative-db/40-research/cases/case-20260415-f07c9e26/decision-maker/refreshes/refresh-case-20260415-f07c9e26-20260415T072338Z/light-refresh-brief.json",
+    "refresh_mode": "light",
+    "decision_maker_agent": "decision-maker",
+    "canonical_markdown_path": "decision-maker-packet.md",
+    "canonical_json_path": "artifacts/decision-maker-packet.json"
+  },
+  "decision": {
+    "side": "yes",
+    "trade_authorization": "watch_only",
+    "position_policy": "hold_only",
+    "decision_readiness": "ready",
+    "primary_crux": "The market move from 0.875 to 0.805 does not invalidate the prior directional crux; BTC is still more likely than not to be above $72,000 on the April 16 noon ET Binance minute because same-venue spot remained materially above strike, but the repricing has materially compressed and likely inverted the prior valuation gap, so the disciplined output remains non-authorized while waiting for fresher price-state confirmation.",
+    "secondary_cruxes": [
+      "This looks primarily like market repricing rather than a rules change, but the drop is large enough that prior under-market skepticism no longer obviously survives.",
+      "With only about 33 hours left, if the spot cushion is still largely intact then the market may now be closer to fair or even slightly conservative.",
+      "Single-minute settlement and late-move risk still matter, so the contract is not clean enough to authorize from a bounded refresh alone."
+    ],
+    "thesis_class": "edge_too_small"
+  },
+  "valuation": {
+    "fair_value_low": 0.86,
+    "fair_value_high": 0.89,
+    "fair_value_mid": 0.875,
+    "independent_verification_quality": "medium",
+    "compressed_toward_market_applied": true,
+    "compression_reason": "The refresh is a price move without a new bounded evidence bundle showing regime failure; prior synthesis still supports a high-probability Yes view, but the market has moved far enough toward that view that any previous below-market edge has been largely or fully erased.",
+    "market_reference_price": 0.805,
+    "edge_mid_vs_market_pct_points": 7.0
+  },
+  "execution_semantics": {
+    "price_source": "market_snapshot_quote",
+    "price_axis": "market_implied_true_prob",
+    "rebalance_threshold_fraction": 0.1,
+    "allow_auto_reversal": false,
+    "quote_staleness_seconds": 300,
+    "valid_until": "2026-04-16T07:24:41.392152+00:00"
+  },
+  "risk_controls": {
+    "confidence_level": "medium",
+    "portfolio_constraints": [
+      "Do not initiate fresh exposure from this packet because the repricing has likely erased the prior valuation edge.",
+      "Refresh on a fresh same-venue BTC check before settlement if action is reconsidered.",
+      "Treat this as an exact-minute Binance-close contract rather than a broad BTC directional view."
+    ],
+    "liquidity_caution": "low",
+    "max_position_size_pct_bankroll": 0.02,
+    "max_additional_exposure_pct_bankroll": 0.01,
+    "max_single_order_pct_bankroll": 0.005,
+    "slippage_tolerance_bps": 100,
+    "liquidity_min_depth": 0,
+    "correlation_bucket_limit_pct_bankroll": 0.05
+  },
+  "bands": [
+    {
+      "name": "max_enter",
+      "min_p": 0,
+      "max_p": 0.78,
+      "target_exposure_fraction": 0,
+      "notes": "No autonomous entry from this packet; materially cheaper pricing would require a fresh venue and path-risk check."
+    },
+    {
+      "name": "scaled_enter",
+      "min_p": 0.78,
+      "max_p": 0.86,
+      "target_exposure_fraction": 0,
+      "notes": "No entry authorized because the prior edge has likely compressed away under the new market price."
+    },
+    {
+      "name": "hold",
+      "min_p": 0.86,
+      "max_p": 0.89,
+      "target_exposure_fraction": 0,
+      "notes": "Hold zone consistent with bounded fair value for a high-probability Yes outcome."
+    },
+    {
+      "name": "trim",
+      "min_p": 0.89,
+      "max_p": 0.96,
+      "target_exposure_fraction": 0,
+      "notes": "Trim or avoid increasing if price returns above bounded fair value and exact-minute risk again dominates."
+    },
+    {
+      "name": "exit",
+      "min_p": 0.96,
+      "max_p": 1,
+      "target_exposure_fraction": 0,
+      "notes": "Exit or avoid at extreme prices because remaining uncertainty is almost entirely timing, path, and venue-specific."
+    }
+  ],
+  "invalidation": {
+    "thesis_breakers": [
+      "BTC falls materially toward or below 72k on Binance before the April 16 noon ET minute.",
+      "A macro, crypto-specific, or Binance-specific shock materially raises downside risk before settlement.",
+      "Evidence emerges of a Binance-specific print, timestamp, or operational anomaly affecting the governing minute."
+    ],
+    "time_breakers": [
+      "A fresh pre-settlement BTC check should supersede this packet before any action.",
+      "The exact April 16 12:00 ET Binance candle should replace all prior reasoning once observed."
+    ],
+    "market_structure_breakers": [
+      "The current quote is stale relative to a materially changed Binance state.",
+      "The operative Binance settlement surface differs meaningfully from the assumed one-minute close representation."
+    ],
+    "reversal_conditions": [
+      "Move back toward below-market skepticism only on a fresh packet if the market re-expands without matching deterioration in spot state.",
+      "Move materially lower on a fresh packet if BTC drifts toward the threshold or downside catalysts intensify.",
+      "Do not auto-reverse from this packet."
+    ]
+  },
+  "epistemic_status": {
+    "key_uncertainties": [
+      "Whether the large market repricing reflects genuine spot deterioration not captured in the bounded refresh.",
+      "The true short-horizon downside distribution for BTC into the exact fixing minute.",
+      "Whether any Binance-specific wick or microstructure event matters at settlement."
+    ],
+    "what_would_change_my_mind": [
+      "A fresh same-venue check confirming BTC still comfortably above 74k into the final window would make the new lower market price look more attractive.",
+      "A drop toward 72k-73k or below would validate the repricing and reduce fair value materially.",
+      "Evidence of Binance-specific operational or settlement-surface anomalies would lower confidence even if spot remains above strike."
+    ],
+    "reasons_to_pass": [
+      "The repricing has likely erased or inverted the prior valuation edge.",
+      "This is still a one-minute single-venue crypto settlement with meaningful path risk.",
+      "The bounded refresh does not provide enough fresh state evidence to upgrade from watch-only."
+    ],
+    "decision_quality": "fragile"
+  },
+  "audit": {
+    "one_sentence_rationale": "Bitcoin is still more likely than not to finish above $72,000 on the April 16 noon ET Binance minute, but the drop from 0.875 to 0.805 likely compresses or reverses the prior below-market edge, so the disciplined output remains watch-only rather than treating the old thesis as unchanged alpha.",
+    "notes": "This refresh is mainly a valuation update: same directional lean, but prior anti-market skepticism is now much weaker and may no longer be positive EV without fresher spot confirmation.",
+    "market_baseline_respected": true,
+    "action_bias_check_passed": true,
+    "self_preservation_bias_check_passed": true,
+    "structured_handoff_primary_used": true,
+    "prose_fallback_used": true,
+    "verification_mode_used": "targeted_escalation",
+    "additional_verification_performed": true,
+    "additional_verification_notes": "targeted_pack"
+  }
+}

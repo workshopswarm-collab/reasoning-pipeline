@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Single-minute settlement timing",
+    "Single-exchange and single-pair dependence",
+    "Possible Binance-specific wick or operational issue"
+  ],
+  "key_assumptions": [
+    "Binance BTC/USDT stays above 70000 through the 12:00 ET April 16 settlement minute.",
+    "No Binance-specific operational or microstructure anomaly distorts the relevant one-minute close."
+  ],
+  "main_logical_chain": [
+    "Contract resolves from a narrowly specified Binance BTC/USDT one-minute close at noon ET on April 16.",
+    "Direct Binance checks show BTC materially above 70000 today.",
+    "Therefore Yes is favored, but contract mechanics concentrate tail risk into one minute and one venue.",
+    "That concentrated fragility justifies a modest discount versus the 95.95% market price."
+  ],
+  "main_thesis": "Base case remains Yes because Binance BTC/USDT is comfortably above 70000, but single-minute single-exchange settlement mechanics leave slightly more downside tail than the market implies.",
+  "own_probability": 0.93,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "The strongest disconfirming consideration is contract fragility at the exact settlement minute.",
+    "93% Yes."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "risk_management",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260414-94e8aad1",
+    "dispatch_id": "dispatch-case-20260414-94e8aad1-20260414T175223Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "b73d7c37-a0ca-4b44-9b81-707089044fae",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-94e8aad1/researcher-analyses/2026-04-14/dispatch-case-20260414-94e8aad1-20260414T175223Z/personas/risk-manager.md",
+    "source_persona_sha256": "461202b1fd51d32cbca1f736901f01ef4ffe461318deb2c5cadb517a41d80109"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Low source-of-truth ambiguity with medium evidence independence: Polymarket rules and Binance are direct, CoinGecko is only a contextual cross-check.",
+  "strongest_disconfirmers": [
+    "A sharp selloff, wick, or Binance-specific anomaly at the exact settlement minute could still resolve No.",
+    "The current cushion is meaningful but not impossibly large for crypto over two days."
+  ],
+  "strongest_supports": [
+    "Polymarket rules clearly define Binance BTC/USDT 1m close at 12:00 ET as source of truth.",
+    "Current Binance BTCUSDT spot and recent 1m closes are around 74650-74700, leaving roughly 4.6k cushion.",
+    "CoinGecko context check is directionally consistent with Binance spot."
+  ],
+  "timing_relevance": "This is highly timing-sensitive because the contract resolves on one exact 12:00 ET one-minute close on April 16.",
+  "unresolved_ambiguities": [
+    "Whether any Binance display/API edge case could matter at settlement.",
+    "How much short-horizon volatility emerges before noon ET on April 16."
+  ],
+  "what_would_change_view": "I would move up if BTC stays comfortably above roughly 73k into final hours, and move down quickly if the cushion compresses or Binance shows instability."
+}

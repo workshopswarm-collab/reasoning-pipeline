@@ -1,0 +1,624 @@
+{
+  "artifact_type": "decision_context_bundle",
+  "schema_version": "decision-context/v1",
+  "built_at": "2026-04-13T19:35:59.212271+00:00",
+  "builder": "roles/decision-maker/runtime/scripts/build_decision_context.py",
+  "case_key": "case-20260413-9dc5221c",
+  "dispatch_id": "refresh-case-20260413-9dc5221c-20260413T193559Z",
+  "question": "Will Javokhir Sindarov win the 2026 FIDE Candidates Tournament?",
+  "market": {
+    "market_id": "10fd2777-fd8a-44c4-8b93-580862fcb3f5",
+    "external_market_id": "0xddbfffed3078bc556ff8fabc7ff92515c092b5f38db97e557b5f8ee8af8b2597",
+    "market_slug": "will-javokhir-sindarov-win-the-2026-fide-candidates-tournament",
+    "platform": "polymarket",
+    "primary_market_url": "https://polymarket.com/event/will-javokhir-sindarov-win-the-2026-fide-candidates-tournament",
+    "market_title": "Will Javokhir Sindarov win the 2026 FIDE Candidates Tournament?",
+    "market_reference_price": 0.9905,
+    "quote_timestamp": "2026-04-13T19:16:47.787022+00:00",
+    "price_source": "market_snapshot_quote"
+  },
+  "upstream": {
+    "decision_handoff_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/synthesizer-agent/decision-handoff.md",
+    "syndicated_runtime_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/synthesizer-agent/syndicated-finding.runtime.json",
+    "syndicated_finding_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/synthesizer-agent/syndicated-finding.md",
+    "synthesis_stage_status_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/researcher-analyses/2026-04-13/dispatch-case-20260413-9dc5221c-20260413T190728Z/synthesis-stage-status.json",
+    "sidecar_synthesis_bundle_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/researcher-analyses/2026-04-13/dispatch-case-20260413-9dc5221c-20260413T190728Z/sidecar-synthesis-bundle.json",
+    "sidecar_synthesis_bundle_artifact_type": "sidecar_synthesis_bundle",
+    "sidecar_bundle_coverage_status": "complete",
+    "sidecar_bundle_sidecar_count": 5,
+    "ready_sidecar_personas": [
+      "base-rate",
+      "catalyst-hunter",
+      "market-implied",
+      "risk-manager",
+      "variant-view"
+    ],
+    "ready_sidecar_count": 5,
+    "pending_sidecar_personas": [],
+    "pending_sidecar_count": 0,
+    "syndicated_probability_low": 0.89,
+    "syndicated_probability_high": 0.94,
+    "syndicated_probability_midpoint": 0.915,
+    "relation_to_market": "below_market",
+    "edge_quality": "moderate",
+    "edge_independent_verification_quality": "medium",
+    "compressed_toward_market_due_to_verification": "no",
+    "contract_ambiguity_level": "minor",
+    "contract_ambiguity_reason": "official winner not yet declared; current confidence relies partly on contextual live-standings reporting rather than a clean official standings capture",
+    "independently_verified_points": [
+      "FIDE is the governing resolution source",
+      "Sindarov was reported two points clear after round 12 with two rounds left",
+      "Chess.com reported Sindarov was guaranteed at least a playoff",
+      "Round 13 vs Giri was the main remaining swing catalyst"
+    ],
+    "verification_gap_summary": "I did not obtain a clean official FIDE live standings or clinch page directly in the synthesis pass.",
+    "best_countercase_summary": "If the live-state interpretation is overstated or Sindarov loses round 13, the race can reopen quickly and 95% was too high.",
+    "main_reason_for_disagreement": "Different weighting of missing direct official standings verification versus strong contextual late-stage lead evidence.",
+    "resolution_mechanics_summary": "Resolve to the official FIDE-declared winner, with consensus credible reporting only as fallback.",
+    "disagreement_intensity": "",
+    "freshness_sensitive": "yes",
+    "freshness_driver": "Round 13 and any official FIDE standings/result update can move the probability materially.",
+    "decision_blockers": [
+      "No clean official FIDE standings/clinch page was captured directly in the synthesis pass",
+      "The tournament was not yet officially finished at analysis time"
+    ],
+    "blockers_require_new_research": "no",
+    "disagreement_type": "mixed",
+    "follow_up_needed": "yes",
+    "edge_mid_vs_market_pct_points": -7.6,
+    "light_refresh_brief_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/refreshes/refresh-case-20260413-9dc5221c-20260413T193559Z/light-refresh-brief.json",
+    "light_refresh_mode": "light",
+    "source_dispatch_id": "dispatch-case-20260413-9dc5221c-20260413T190728Z",
+    "source_decision_context_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/refreshes/refresh-case-20260413-9dc5221c-20260413T193559Z/decision-context-light-refresh.json"
+  },
+  "telegram": {
+    "controller_chat_id": "-1003846500961",
+    "synthesis_topic_id": "1175",
+    "synthesis_topic_title": "case-20260413-9dc5221c | synthesis | T190728Z",
+    "synthesis_session_key": "agent:main:telegram:group:-1003846500961:topic:1175"
+  },
+  "portfolio_context": {
+    "status": "disabled",
+    "notes": [
+      "Portfolio-aware gating and execution context are currently out of scope for Decision-Maker."
+    ]
+  },
+  "verification_policy": {
+    "policy_version": "decision-verification/v1",
+    "default_mode": "bounded_internal_audit",
+    "mode_descriptions": {
+      "bounded_internal_audit": "Use synthesis as the starting compression, reread only the most decisive upstream artifacts, and avoid broad re-research by default.",
+      "targeted_escalation": "Use a bounded internal audit plus a small number of targeted checks when a narrow ambiguity or meaningful edge justifies it.",
+      "not_ready_reopen_recommended": "If responsible verification would require a much broader reread or new research pass, prefer a not-ready/non-action packet over pretending bounded verification was enough."
+    },
+    "default_artifact_budget": {
+      "persona_findings_max": 2,
+      "assumption_artifacts_max": 1,
+      "evidence_artifacts_max": 1,
+      "countercase_or_supporting_note_bundles_max": 1
+    },
+    "default_external_budget": {
+      "external_source_surfaces_max": 2,
+      "live_market_or_tracker_checks_max": 1
+    },
+    "escalation_triggers": [
+      "large_apparent_edge_vs_market",
+      "source_of_truth_or_contract_ambiguity",
+      "freshness_sensitive_catalyst",
+      "internal_inconsistency_in_package"
+    ],
+    "priority_order": [
+      "verify_exact_crux",
+      "verify_freshness_or_source_of_truth_mechanics",
+      "verify_strongest_countercase",
+      "only_then_expand_broader_reread"
+    ],
+    "hard_rule": "Decision-Maker is allowed to do targeted additional verification, but should not become a routine second synthesis pass. If adequate verification would require broader reread or new research, prefer a not-ready or non-action packet."
+  },
+  "canonical_runtime": {
+    "build_decision_prompt_script": "roles/decision-maker/planner/scripts/build_decision_prompt.py",
+    "run_decision_maker_script": "roles/decision-maker/runtime/scripts/run_decision_maker.py",
+    "validate_decision_packet_script": "roles/decision-maker/runtime/scripts/validate_decision_packet.py",
+    "render_decision_packet_script": "roles/decision-maker/runtime/scripts/render_decision_packet.py",
+    "bootstrap_decision_telegram_lane_script": "roles/decision-maker/runtime/scripts/bootstrap_decision_telegram_lane.py",
+    "show_decision_stage_status_script": "roles/decision-maker/runtime/scripts/show_decision_stage_status.py"
+  },
+  "canonical_outputs": {
+    "decision_packet_markdown": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/decision-maker-packet.md",
+    "decision_packet_json": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/artifacts/decision-maker-packet.json",
+    "decision_stage_status_json": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/artifacts/decision-stage-status.json"
+  },
+  "recommended_runtime_defaults": {
+    "valid_for_hours": 24,
+    "quote_staleness_seconds": 300,
+    "allow_auto_reversal": false,
+    "rebalance_threshold_fraction": 0.1,
+    "price_source": "market_snapshot_quote",
+    "decision_agent_session_key": "agent:decision-maker:main"
+  },
+  "source_excerpt": {
+    "decision_handoff_frontmatter": {
+      "type": "synthesis_decision_handoff",
+      "case_key": "case-20260413-9dc5221c",
+      "dispatch_id": "dispatch-case-20260413-9dc5221c-20260413T190728Z",
+      "question": "Will Javokhir Sindarov win the 2026 FIDE Candidates Tournament?",
+      "source_syndicated_finding_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/researcher-analyses/2026-04-13/dispatch-case-20260413-9dc5221c-20260413T190728Z/syndicated-finding.md",
+      "market_implied_probability": 0.9505,
+      "syndicated_probability_low": 0.89,
+      "syndicated_probability_high": 0.94,
+      "syndicated_probability_midpoint": 0.915,
+      "relation_to_market": "below_market",
+      "edge_quality": "moderate",
+      "edge_independent_verification_quality": "medium",
+      "compressed_toward_market_due_to_verification": "no",
+      "contract_ambiguity_level": "minor",
+      "contract_ambiguity_reason": "official winner not yet declared; current confidence relies partly on contextual live-standings reporting rather than a clean official standings capture",
+      "independently_verified_points": [
+        "FIDE is the governing resolution source",
+        "Sindarov was reported two points clear after round 12 with two rounds left",
+        "Chess.com reported Sindarov was guaranteed at least a playoff",
+        "Round 13 vs Giri was the main remaining swing catalyst"
+      ],
+      "verification_gap_summary": "I did not obtain a clean official FIDE live standings or clinch page directly in the synthesis pass.",
+      "best_countercase_summary": "If the live-state interpretation is overstated or Sindarov loses round 13, the race can reopen quickly and 95% was too high.",
+      "main_reason_for_disagreement": "Different weighting of missing direct official standings verification versus strong contextual late-stage lead evidence.",
+      "resolution_mechanics_summary": "Resolve to the official FIDE-declared winner, with consensus credible reporting only as fallback.",
+      "freshness_sensitive": "yes",
+      "freshness_driver": "Round 13 and any official FIDE standings/result update can move the probability materially.",
+      "decision_blockers": [
+        "No clean official FIDE standings/clinch page was captured directly in the synthesis pass",
+        "The tournament was not yet officially finished at analysis time"
+      ],
+      "blockers_require_new_research": "no",
+      "disagreement_type": "mixed",
+      "follow_up_needed": "yes"
+    },
+    "decision_handoff_body": "\n# Decision summary\n\nJavokhir Sindarov is very likely to win the 2026 FIDE Candidates Tournament, but the best post-synthesis estimate is still slightly below the 95.05% market because the strongest independently checked evidence supports an overwhelming late lead rather than a fully settled official result.\n\n## Why this may matter now\n\nMarket-implied probability is 0.9505. My syndicated range is 0.89 to 0.94. That is still a strong yes view, but the edge versus market is marginal-to-negative rather than actionable. The market may be a touch rich because it is pricing a near-converted lead almost like an already-declared win.\n\n## Shift versus swarm baseline\n\nThis is not a large move from the swarm-implied center around 0.91. I stay close to it because the strongest lanes were broadly right: the visible state is not generic player-strength optimism but a specific late-event lead. I lean slightly toward the upper half of the swarm because the synthesis-stage check supported the key catalyst-hunter claim that Sindarov was two points clear and at least playoff-secured. I do not move up to market because direct official standings verification remained imperfect.\n\n## Edge verification status\n\nIndependent verification was medium, not high. What was checked well enough: multiple persona lanes converged on the same late-state picture; the raw findings consistently cited FIDE as the governing source; and the synthesis-stage fetch of Chess.com news successfully surfaced text stating Sindarov was guaranteed at least a playoff and two points clear with two rounds to go. What remained weak: web search failed, one FIDE fetch landed on an unrelated page, and I did not directly capture a clean official FIDE standings/clinch page. That is enough to reject the most bearish 0.58-style view, but not enough to fully endorse 95%+ certainty.\n\n## Compression toward market\n\nNo. The final range did not compress toward the market; if anything, it stayed modestly below it. Verification was strong enough to support the core late-stage bullish thesis, but not strong enough to eliminate all residual tail risk. So the synthesis preserved the swarm's below-market posture rather than reverting upward.\n\n## Timing and catalyst posture\n\nThe next critical checkpoint is round 13, especially Sindarov vs Giri. That appears to be the only remaining clearly material catalyst. If Sindarov avoids defeat, probability should widen toward near-certainty; if he loses, the market should compress sharply. Waiting until after round 13 is more likely to improve decision quality than acting on tiny pre-round mispricings.\n\n## Key blockers\n\nMain blockers are modest rather than fatal: no clean official FIDE standings/clinch page was directly captured, and the tournament was still live. There is no major contract blocker; the main issue is calibration at extreme probability, not source-of-truth confusion.\n\n## Best countercase\n\nThe best countercase came from risk-manager, with some support from base-rate: the 95% price may be overconfident if it relies on inferred late-state context not directly verified from official standings, and one bad result against Giri could quickly reopen the event. That countercase survived synthesis, but only as a tail-risk/pricing caution, not as the mainline forecast.\n\n## What would change the view\n\nAn official FIDE standings or round report showing Sindarov has effectively clinched would push me toward or even above the current market. A round-13 loss, an official correction to the standings interpretation, or any fair-play/administrative complication would move me down materially. Even a draw could matter depending on exact remaining pairings and tiebreak math.\n\n## Recommended next action\n\nWait for official FIDE reporting after round 13. If Sindarov avoids defeat, request decision-maker review with a near-certainty update. If he loses, rerun at least catalyst-hunter and risk-manager immediately with exact official standings and playoff implications.\n\n## Verification impact\n\nYes, synthesis-stage verification was used, though bounded. Cross-lane comparison materially weakened the most bearish persona by showing that its missing-context objection was partially answered elsewhere. It also exposed a consistent provenance weakness across even the bullish lanes: everyone ultimately wanted a cleaner official standings capture than the run achieved.\n",
+    "syndicated_runtime": {
+      "artifact_type": "syndicated_finding_runtime_metadata",
+      "artifact_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/synthesizer-agent/syndicated-finding.md",
+      "case_key": "case-20260413-9dc5221c",
+      "dispatch_id": "dispatch-case-20260413-9dc5221c-20260413T190728Z",
+      "question": "Will Javokhir Sindarov win the 2026 FIDE Candidates Tournament?",
+      "generated_by": "orchestrator",
+      "synthesis_method": "dispatch_bundle_v1",
+      "synthesis_status": "rendered",
+      "market_snapshot_time": "2026-04-13T19:07:28.677088+00:00",
+      "source_personas": [],
+      "missing_personas": [],
+      "source_finding_paths": [],
+      "source_supporting_artifacts": [],
+      "source_persona_count": 0,
+      "missing_persona_count": 0,
+      "supporting_artifact_count": 0,
+      "upstream_inputs": [],
+      "downstream_uses": []
+    },
+    "synthesis_stage_status": {
+      "artifact_type": "synthesis_stage_status",
+      "dispatch_id": "dispatch-case-20260413-9dc5221c-20260413T190728Z",
+      "case_key": "case-20260413-9dc5221c",
+      "bundle_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/researcher-analyses/2026-04-13/dispatch-case-20260413-9dc5221c-20260413T190728Z/synthesis-bundle.json",
+      "reasoning_sidecar_requests": [
+        {
+          "persona": "base-rate",
+          "artifact_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/researcher-analyses/2026-04-13/dispatch-case-20260413-9dc5221c-20260413T190728Z/personas/base-rate.sidecar.json",
+          "status": "completed",
+          "artifact_state": "current"
+        },
+        {
+          "persona": "catalyst-hunter",
+          "artifact_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/researcher-analyses/2026-04-13/dispatch-case-20260413-9dc5221c-20260413T190728Z/personas/catalyst-hunter.sidecar.json",
+          "status": "completed",
+          "artifact_state": "current"
+        },
+        {
+          "persona": "market-implied",
+          "artifact_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/researcher-analyses/2026-04-13/dispatch-case-20260413-9dc5221c-20260413T190728Z/personas/market-implied.sidecar.json",
+          "status": "completed",
+          "artifact_state": "current"
+        },
+        {
+          "persona": "risk-manager",
+          "artifact_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/researcher-analyses/2026-04-13/dispatch-case-20260413-9dc5221c-20260413T190728Z/personas/risk-manager.sidecar.json",
+          "status": "completed",
+          "artifact_state": "current"
+        },
+        {
+          "persona": "variant-view",
+          "artifact_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/researcher-analyses/2026-04-13/dispatch-case-20260413-9dc5221c-20260413T190728Z/personas/variant-view.sidecar.json",
+          "status": "completed",
+          "artifact_state": "current"
+        }
+      ],
+      "ready_sidecar_personas": [
+        "base-rate",
+        "catalyst-hunter",
+        "market-implied",
+        "risk-manager",
+        "variant-view"
+      ],
+      "pending_sidecar_personas": [],
+      "structured_bundle_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/researcher-analyses/2026-04-13/dispatch-case-20260413-9dc5221c-20260413T190728Z/sidecar-synthesis-bundle.json",
+      "structured_bundle_artifact_type": "sidecar_synthesis_bundle",
+      "synthesis_prompt_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/researcher-analyses/2026-04-13/dispatch-case-20260413-9dc5221c-20260413T190728Z/synthesis-prompt.md",
+      "synthesis_subagent_label": "synthesis-final:dispatch-case-20260413-9dc5221c-20260413T190728Z",
+      "synthesis_visible_start_marker": "STARTING SYNTHESIS | market=Will Javokhir Sindarov win the 2026 FIDE Candidates Tournament? | dispatch_id=dispatch-case-20260413-9dc5221c-20260413T190728Z",
+      "synthesis_visible_finish_marker": "FINISHED SYNTHESIS | market=Will Javokhir Sindarov win the 2026 FIDE Candidates Tournament? | dispatch_id=dispatch-case-20260413-9dc5221c-20260413T190728Z",
+      "synthesis_target_chat_id": "-1003846500961",
+      "synthesis_target_topic_id": "1175",
+      "synthesis_target_topic_title": "case-20260413-9dc5221c | synthesis | T190728Z",
+      "synthesis_target_session_key": "agent:main:telegram:group:-1003846500961:topic:1175",
+      "status": "synthesis_completed",
+      "stage_events": [
+        {
+          "at": "2026-04-13T19:14:22.287313Z",
+          "stage": "kickoff",
+          "state": "ready_for_final_synthesis",
+          "message": "Synthesis kickoff prepared current-stage artifacts",
+          "request_status_counts": {
+            "completed": 5
+          },
+          "ready_sidecar_personas": [
+            "base-rate",
+            "catalyst-hunter",
+            "market-implied",
+            "risk-manager",
+            "variant-view"
+          ],
+          "pending_sidecar_personas": [],
+          "structured_bundle_artifact_type": "sidecar_synthesis_bundle"
+        },
+        {
+          "at": "2026-04-13T19:14:22.365295Z",
+          "stage": "synthesis_promotion",
+          "state": "final_synthesis_launching",
+          "message": "Claimed final synthesis launch",
+          "request_status_counts": {
+            "completed": 5
+          },
+          "launch_claim_pid": 57296
+        },
+        {
+          "at": "2026-04-13T19:14:24.019674Z",
+          "stage": "synthesis_lane_bootstrap",
+          "state": "created",
+          "message": "Created dedicated Telegram synthesis lane",
+          "request_status_counts": {
+            "completed": 5
+          },
+          "topic_id": "1175",
+          "topic_title": "case-20260413-9dc5221c | synthesis | T190728Z",
+          "session_key": "agent:main:telegram:group:-1003846500961:topic:1175"
+        },
+        {
+          "at": "2026-04-13T19:14:24.030699Z",
+          "stage": "synthesis_promotion",
+          "state": "final_synthesis_launched",
+          "message": "Launched final synthesis executor",
+          "request_status_counts": {
+            "completed": 5
+          },
+          "pid": 57302,
+          "launch_log_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/researcher-analyses/2026-04-13/dispatch-case-20260413-9dc5221c-20260413T190728Z/final-synthesis-launch.log"
+        },
+        {
+          "at": "2026-04-13T19:14:24.112514Z",
+          "stage": "final_synthesis_execution",
+          "state": "running",
+          "message": "Final synthesis executor started",
+          "request_status_counts": {
+            "completed": 5
+          },
+          "prompt_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/researcher-analyses/2026-04-13/dispatch-case-20260413-9dc5221c-20260413T190728Z/synthesis-prompt.md"
+        },
+        {
+          "at": "2026-04-13T19:15:44.786836Z",
+          "stage": "final_synthesis_execution",
+          "state": "synthesis_completed",
+          "message": "Final synthesis completed and artifacts rendered",
+          "request_status_counts": {
+            "completed": 5
+          }
+        }
+      ],
+      "last_stage_event": {
+        "at": "2026-04-13T19:15:44.786836Z",
+        "stage": "final_synthesis_execution",
+        "state": "synthesis_completed",
+        "message": "Final synthesis completed and artifacts rendered",
+        "request_status_counts": {
+          "completed": 5
+        }
+      },
+      "updated_at": "2026-04-13T19:15:44.786897Z",
+      "request_status_counts": {
+        "completed": 5
+      },
+      "synthesis_lane": {
+        "topic_id": "1175",
+        "topic_title": "case-20260413-9dc5221c | synthesis | T190728Z",
+        "session_key": "agent:main:telegram:group:-1003846500961:topic:1175"
+      },
+      "synthesis_lane_topic_id": "1175",
+      "synthesis_lane_topic_title": "case-20260413-9dc5221c | synthesis | T190728Z",
+      "synthesis_lane_session_key": "agent:main:telegram:group:-1003846500961:topic:1175",
+      "final_synthesis_launch_log_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/researcher-analyses/2026-04-13/dispatch-case-20260413-9dc5221c-20260413T190728Z/final-synthesis-launch.log",
+      "final_synthesis_pid": 57302,
+      "result_json": "qualitative-db/40-research/cases/case-20260413-9dc5221c/researcher-analyses/2026-04-13/dispatch-case-20260413-9dc5221c-20260413T190728Z/synthesis-result.json",
+      "raw_response_text_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/researcher-analyses/2026-04-13/dispatch-case-20260413-9dc5221c-20260413T190728Z/synthesis-response.raw.txt",
+      "last_gateway_response_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/researcher-analyses/2026-04-13/dispatch-case-20260413-9dc5221c-20260413T190728Z/synthesis-response.json",
+      "synthesis_attempt_count": 1,
+      "synthesis_parse_failures": [],
+      "synthesis_parse_recovered": false,
+      "final_artifact_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/researcher-analyses/2026-04-13/dispatch-case-20260413-9dc5221c-20260413T190728Z/syndicated-finding.md",
+      "final_sidecar_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/researcher-analyses/2026-04-13/dispatch-case-20260413-9dc5221c-20260413T190728Z/syndicated-finding.runtime.json",
+      "final_decision_handoff_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/researcher-analyses/2026-04-13/dispatch-case-20260413-9dc5221c-20260413T190728Z/decision-handoff.md",
+      "timeline_update": {
+        "appended": true,
+        "case_key": "case-20260413-9dc5221c",
+        "dispatch_id": "dispatch-case-20260413-9dc5221c-20260413T190728Z",
+        "artifact_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/researcher-analyses/2026-04-13/dispatch-case-20260413-9dc5221c-20260413T190728Z/syndicated-finding.md",
+        "entry": "- 2026-04-13T19:15:42.322978+00:00 — completed synthesis `dispatch-case-20260413-9dc5221c-20260413T190728Z` with artifact `qualitative-db/40-research/cases/case-20260413-9dc5221c/researcher-analyses/2026-04-13/dispatch-case-20260413-9dc5221c-20260413T190728Z/syndicated-finding.md`."
+      },
+      "terminal_summary": {
+        "at": "2026-04-13T19:15:44.786911Z",
+        "status": "synthesis_completed",
+        "request_status_counts": {
+          "completed": 5
+        },
+        "final_artifact_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/researcher-analyses/2026-04-13/dispatch-case-20260413-9dc5221c-20260413T190728Z/syndicated-finding.md",
+        "final_sidecar_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/researcher-analyses/2026-04-13/dispatch-case-20260413-9dc5221c-20260413T190728Z/syndicated-finding.runtime.json",
+        "final_decision_handoff_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/researcher-analyses/2026-04-13/dispatch-case-20260413-9dc5221c-20260413T190728Z/decision-handoff.md",
+        "synthesis_lane": {
+          "topic_id": "1175",
+          "topic_title": "case-20260413-9dc5221c | synthesis | T190728Z",
+          "session_key": "agent:main:telegram:group:-1003846500961:topic:1175"
+        },
+        "synthesis_attempt_count": 1,
+        "synthesis_parse_failure_count": 0,
+        "synthesis_parse_recovered": false,
+        "last_parse_failure": {},
+        "last_stage_event": {
+          "at": "2026-04-13T19:15:44.786836Z",
+          "stage": "final_synthesis_execution",
+          "state": "synthesis_completed",
+          "message": "Final synthesis completed and artifacts rendered",
+          "request_status_counts": {
+            "completed": 5
+          }
+        }
+      }
+    }
+  },
+  "light_refresh": {
+    "artifact_type": "light_refresh_brief",
+    "schema_version": "light-refresh/v1",
+    "built_at": "2026-04-13T19:35:59.171259+00:00",
+    "case_key": "case-20260413-9dc5221c",
+    "market": {
+      "market_id": "10fd2777-fd8a-44c4-8b93-580862fcb3f5",
+      "platform": "polymarket",
+      "external_market_id": "0xddbfffed3078bc556ff8fabc7ff92515c092b5f38db97e557b5f8ee8af8b2597",
+      "slug": "will-javokhir-sindarov-win-the-2026-fide-candidates-tournament",
+      "title": "Will Javokhir Sindarov win the 2026 FIDE Candidates Tournament?",
+      "description": "This market will resolve to the player that wins the 2026 FIDE Candidates Tournament scheduled for March 29 - April 16, 2026.\n\nIf at any point it becomes impossible for a listed player to win the 2026 FIDE Candidates Tournament per the rules of the FIDE, the corresponding market will resolve to “No”.\n\nIf the 2026 FIDE Candidates Tournament is cancelled, or postponed after April 30, 2026, or there is otherwise no winner declared within that timeframe, this market will resolve to “Other”.\n\nThe primary resolution source will be official information from FIDE; however, a consensus of credible reporting may also be used.",
+      "category": "polymarket-discovery",
+      "status": "open",
+      "current_price": 0.9905,
+      "last_reasoned_price": 0.925,
+      "closes_at": "2026-04-16T20:00:00-04:00",
+      "resolves_at": "2026-04-16T20:00:00-04:00",
+      "quote_timestamp": "2026-04-13T19:16:47.787022+00:00"
+    },
+    "latest_forecast": {
+      "forecast_id": "dispatch-case-20260413-9dc5221c-20260413T190728Z",
+      "case_id": "case-20260413-9dc5221c",
+      "dispatch_id": "dispatch-case-20260413-9dc5221c-20260413T190728Z",
+      "market_id": "10fd2777-fd8a-44c4-8b93-580862fcb3f5",
+      "contract_id": "yes",
+      "question": "Will Javokhir Sindarov win the 2026 FIDE Candidates Tournament?",
+      "forecast_prob": 0.925,
+      "forecast_direction": "yes",
+      "confidence_label": "medium",
+      "decision_status": "recorded",
+      "rationale_summary": "Sindarov still looks very likely to win because credible late-stage reporting says he leads by two points with two rounds left and has at least a playoff guaranteed, but without a clean official FIDE standings capture the market's 95% price is too rich for fresh action.",
+      "decision_packet_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/artifacts/decision-maker-packet.json",
+      "decision_ts": "2026-04-13T15:15:00-04:00",
+      "created_at": "2026-04-13T15:16:41.015962-04:00",
+      "resolution_status": null,
+      "resolved_outcome": null,
+      "resolved_value": null,
+      "resolved_ts": null
+    },
+    "snapshot_summary": {
+      "snapshot_count": 12,
+      "min_reference_price": 0.8935,
+      "max_reference_price": 0.9905,
+      "avg_reference_price": 0.9317916666666667,
+      "oldest_observed_at": "2026-04-09T11:00:00-04:00",
+      "latest_observed_at": "2026-04-13T15:16:47.787022-04:00"
+    },
+    "recent_snapshots": [
+      {
+        "observed_at": "2026-04-13T15:16:47.787022-04:00",
+        "last_price": 0.9905,
+        "yes_price": 0.9905,
+        "no_price": 0.0095,
+        "best_bid": 0.99,
+        "best_ask": 0.991,
+        "volume": 679225.026199,
+        "open_interest": 37945.47783,
+        "reference_price": 0.9905
+      },
+      {
+        "observed_at": "2026-04-11T12:45:00-04:00",
+        "last_price": 0.9505,
+        "yes_price": 0.9505,
+        "no_price": 0.0495,
+        "best_bid": null,
+        "best_ask": null,
+        "volume": 607892.738913,
+        "open_interest": 13486.26486,
+        "reference_price": 0.9505
+      },
+      {
+        "observed_at": "2026-04-11T12:30:00-04:00",
+        "last_price": 0.9365,
+        "yes_price": 0.9365,
+        "no_price": 0.0635,
+        "best_bid": null,
+        "best_ask": null,
+        "volume": 607632.738913,
+        "open_interest": 12000.51152,
+        "reference_price": 0.9365
+      },
+      {
+        "observed_at": "2026-04-11T12:15:00-04:00",
+        "last_price": 0.9255,
+        "yes_price": 0.9255,
+        "no_price": 0.0745,
+        "best_bid": null,
+        "best_ask": null,
+        "volume": 607512.208913,
+        "open_interest": 11067.24611,
+        "reference_price": 0.9255
+      },
+      {
+        "observed_at": "2026-04-11T12:00:00-04:00",
+        "last_price": 0.9395,
+        "yes_price": 0.9395,
+        "no_price": 0.0605,
+        "best_bid": null,
+        "best_ask": null,
+        "volume": 606894.443652,
+        "open_interest": 10872.11454,
+        "reference_price": 0.9395
+      },
+      {
+        "observed_at": "2026-04-11T11:45:00-04:00",
+        "last_price": 0.9295,
+        "yes_price": 0.9295,
+        "no_price": 0.0705,
+        "best_bid": null,
+        "best_ask": null,
+        "volume": 606540.252721,
+        "open_interest": 11892.47308,
+        "reference_price": 0.9295
+      },
+      {
+        "observed_at": "2026-04-11T11:30:00-04:00",
+        "last_price": 0.9355,
+        "yes_price": 0.9355,
+        "no_price": 0.0645,
+        "best_bid": null,
+        "best_ask": null,
+        "volume": 605668.285443,
+        "open_interest": 12023.79456,
+        "reference_price": 0.9355
+      },
+      {
+        "observed_at": "2026-04-11T11:15:01-04:00",
+        "last_price": 0.9225,
+        "yes_price": 0.9225,
+        "no_price": 0.0775,
+        "best_bid": null,
+        "best_ask": null,
+        "volume": 605553.187568,
+        "open_interest": 11514.62121,
+        "reference_price": 0.9225
+      },
+      {
+        "observed_at": "2026-04-11T11:00:00-04:00",
+        "last_price": 0.928,
+        "yes_price": 0.928,
+        "no_price": 0.072,
+        "best_bid": null,
+        "best_ask": null,
+        "volume": 604919.527568,
+        "open_interest": 11142.38158,
+        "reference_price": 0.928
+      },
+      {
+        "observed_at": "2026-04-11T11:00:00-04:00",
+        "last_price": 0.928,
+        "yes_price": 0.928,
+        "no_price": 0.072,
+        "best_bid": null,
+        "best_ask": null,
+        "volume": 604919.527568,
+        "open_interest": 11142.38158,
+        "reference_price": 0.928
+      },
+      {
+        "observed_at": "2026-04-09T11:15:00-04:00",
+        "last_price": 0.902,
+        "yes_price": 0.902,
+        "no_price": 0.098,
+        "best_bid": null,
+        "best_ask": null,
+        "volume": 545346.241532,
+        "open_interest": 15854.34797,
+        "reference_price": 0.902
+      },
+      {
+        "observed_at": "2026-04-09T11:00:00-04:00",
+        "last_price": 0.8935,
+        "yes_price": 0.8935,
+        "no_price": 0.1065,
+        "best_bid": null,
+        "best_ask": null,
+        "volume": 544934.841532,
+        "open_interest": 14753.79604,
+        "reference_price": 0.8935
+      }
+    ],
+    "live_market_probe": {
+      "slug": "will-javokhir-sindarov-win-the-2026-fide-candidates-tournament",
+      "question": "Will Javokhir Sindarov win the 2026 FIDE Candidates Tournament?",
+      "closed": false,
+      "archived": false,
+      "acceptingOrders": true,
+      "automaticallyResolved": false,
+      "umaResolutionStatus": "",
+      "endDate": "2026-04-17T00:00:00Z",
+      "updatedAt": "2026-04-13T19:31:22.611437Z",
+      "outcomes": [
+        "Yes",
+        "No"
+      ],
+      "outcomePrices": [
+        "0.9905",
+        "0.0095"
+      ],
+      "oneDayPriceChange": 0.001,
+      "oneHourPriceChange": 0.0005,
+      "volumeNum": 679225.0261990019,
+      "liquidityNum": 38263.45708
+    },
+    "refresh_assessment": {
+      "recommended_mode": "light",
+      "reasons": [
+        "material_price_move"
+      ],
+      "price_delta": 0.0655,
+      "price_delta_pct_points": 6.6,
+      "hours_since_last_forecast": 0.35,
+      "hours_to_close": 76.4,
+      "forecast_vs_market_gap_pct_points": -6.6
+    },
+    "focused_questions": [
+      "Did the market move invalidate the prior crux, or is this mainly repricing without new information?",
+      "Does the new price imply the previous edge has materially compressed or inverted?",
+      "Has time-to-close changed the appropriate confidence or action threshold?",
+      "Can we update priors responsibly using prior synthesis plus current market state without rerunning the full swarm?"
+    ]
+  },
+  "refresh_bundle": {
+    "refresh_id": "refresh-case-20260413-9dc5221c-20260413T193559Z",
+    "root": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/refreshes/refresh-case-20260413-9dc5221c-20260413T193559Z",
+    "light_refresh_brief_json": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/refreshes/refresh-case-20260413-9dc5221c-20260413T193559Z/light-refresh-brief.json",
+    "light_refresh_brief_markdown": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/refreshes/refresh-case-20260413-9dc5221c-20260413T193559Z/light-refresh-brief.md",
+    "decision_context_json": "qualitative-db/40-research/cases/case-20260413-9dc5221c/decision-maker/refreshes/refresh-case-20260413-9dc5221c-20260413T193559Z/decision-context-light-refresh.json"
+  }
+}

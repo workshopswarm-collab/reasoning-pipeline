@@ -1,0 +1,113 @@
+{
+  "artifact_type": "light_refresh_brief",
+  "schema_version": "light-refresh/v1",
+  "built_at": "2026-04-15T23:57:25.622718+00:00",
+  "case_key": "case-20260415-540d9abf",
+  "market": {
+    "market_id": "139f80d9-bf3b-4b6b-9dea-031313b6ae5b",
+    "platform": "polymarket",
+    "external_market_id": "0x00b28e37776a7f2f56ceec3bc4cf4f49d832b1c9db1ddd1cb597fb4438918f95",
+    "slug": "solana-above-80-on-april-19",
+    "title": "Will the price of Solana be above $80 on April 19?",
+    "description": "This market will resolve to \"Yes\" if the Binance 1 minute candle for SOL/USDT 12:00 in the ET timezone (noon) on the date specified in the title has a final \"Close\" price higher than the price specified in the title. Otherwise, this market will resolve to \"No\".\n\nThe resolution source for this market is Binance, specifically the SOL/USDT \"Close\" prices currently available at https://www.binance.com/en/trade/SOL_USDT with \"1m\" and \"Candles\" selected on the top bar.\n\nPlease note that this market is about the price according to Binance SOL/USDT, not according to other exchanges or trading pairs.\n\nPrice precision is determined by the number of decimal places in the source.",
+    "category": "polymarket-discovery",
+    "status": "open",
+    "current_price": 0.9,
+    "last_reasoned_price": 0.835,
+    "closes_at": "2026-04-19T12:00:00-04:00",
+    "resolves_at": "2026-04-19T12:00:00-04:00",
+    "quote_timestamp": "2026-04-15T23:56:42.190566+00:00"
+  },
+  "latest_forecast": {
+    "forecast_id": "dispatch-case-20260415-540d9abf-20260415T234706Z",
+    "case_id": "case-20260415-540d9abf",
+    "dispatch_id": "dispatch-case-20260415-540d9abf-20260415T234706Z",
+    "market_id": "139f80d9-bf3b-4b6b-9dea-031313b6ae5b",
+    "contract_id": "yes",
+    "question": "Will the price of Solana be above $80 on April 19?",
+    "forecast_prob": 0.835,
+    "forecast_direction": "yes",
+    "confidence_label": "medium",
+    "decision_status": "recorded",
+    "rationale_summary": "SOL is still more likely than not to finish above $80 on the April 19 Binance noon minute, but with fair value closer to 0.835 than the 0.90 market and meaningful exact-minute downside tail still live, the disciplined output remains watch-only rather than an authorized Yes trade.",
+    "decision_packet_path": "qualitative-db/40-research/cases/case-20260415-540d9abf/decision-maker/artifacts/decision-maker-packet.json",
+    "decision_ts": "2026-04-15T19:55:00-04:00",
+    "created_at": "2026-04-15T19:56:17.724517-04:00",
+    "resolution_status": null,
+    "resolved_outcome": null,
+    "resolved_value": null,
+    "resolved_ts": null
+  },
+  "snapshot_summary": {
+    "snapshot_count": 2,
+    "min_reference_price": 0.9,
+    "max_reference_price": 0.9,
+    "avg_reference_price": 0.9,
+    "oldest_observed_at": "2026-04-15T19:45:00-04:00",
+    "latest_observed_at": "2026-04-15T19:56:42.190566-04:00"
+  },
+  "recent_snapshots": [
+    {
+      "observed_at": "2026-04-15T19:56:42.190566-04:00",
+      "last_price": 0.9,
+      "yes_price": 0.9,
+      "no_price": 0.1,
+      "best_bid": 0.89,
+      "best_ask": 0.91,
+      "volume": 10015.908402,
+      "open_interest": 18528.847,
+      "reference_price": 0.9
+    },
+    {
+      "observed_at": "2026-04-15T19:45:00-04:00",
+      "last_price": 0.9,
+      "yes_price": 0.9,
+      "no_price": 0.1,
+      "best_bid": null,
+      "best_ask": null,
+      "volume": 10015.908402,
+      "open_interest": 18426.802,
+      "reference_price": 0.9
+    }
+  ],
+  "live_market_probe": {
+    "slug": "solana-above-80-on-april-19",
+    "question": "Will the price of Solana be above $80 on April 19?",
+    "closed": false,
+    "archived": false,
+    "acceptingOrders": true,
+    "automaticallyResolved": false,
+    "umaResolutionStatus": "",
+    "endDate": "2026-04-19T16:00:00Z",
+    "updatedAt": "2026-04-15T23:47:34.992906Z",
+    "outcomes": [
+      "Yes",
+      "No"
+    ],
+    "outcomePrices": [
+      "0.9",
+      "0.1"
+    ],
+    "oneDayPriceChange": 0.11,
+    "oneHourPriceChange": -0.01,
+    "volumeNum": 10015.908402000001,
+    "liquidityNum": 18376.8014
+  },
+  "refresh_assessment": {
+    "recommended_mode": "light",
+    "reasons": [
+      "material_price_move"
+    ],
+    "price_delta": 0.065,
+    "price_delta_pct_points": 6.5,
+    "hours_since_last_forecast": 0.04,
+    "hours_to_close": 88.04,
+    "forecast_vs_market_gap_pct_points": -6.5
+  },
+  "focused_questions": [
+    "Did the market move invalidate the prior crux, or is this mainly repricing without new information?",
+    "Does the new price imply the previous edge has materially compressed or inverted?",
+    "Has time-to-close changed the appropriate confidence or action threshold?",
+    "Can we update priors responsibly using prior synthesis plus current market state without rerunning the full swarm?"
+  ]
+}

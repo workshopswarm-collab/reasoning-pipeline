@@ -1,0 +1,61 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Exact-minute settlement at noon ET concentrates risk into one candle.",
+    "A 3-4% drawdown before settlement could be enough to flip the outcome.",
+    "Exchange-specific operational or interpretation issues could matter at the margin."
+  ],
+  "key_assumptions": [
+    "Current Binance cushion above 72000 is large enough to survive normal BTC volatility into April 19 noon ET.",
+    "No Binance-specific anomaly or display issue complicates interpretation of the settlement candle.",
+    "Recent above-threshold closes reflect real support rather than a fragile short-lived spike."
+  ],
+  "main_logical_chain": [
+    "Polymarket rules define a narrow Binance BTC/USDT 1-minute noon-ET settlement condition.",
+    "Current Binance pricing and recent closes place BTC above the threshold with a nontrivial cushion.",
+    "Because the contract is exact-minute and strict-greater-than, path risk remains meaningful.",
+    "That supports a Yes lean, but below the market's 86.5% confidence."
+  ],
+  "main_thesis": "Yes is still more likely than No, but the market is somewhat overconfident because this contract settles on one exact Binance BTC/USDT 1-minute close at noon ET.",
+  "own_probability": 0.78,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone has a final 'Close' price higher than the price specified in the title.",
+    "Binance ticker returned BTCUSDT price 74676.98000000 on 2026-04-15."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "risk_management",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-7d14e3a4",
+    "dispatch_id": "dispatch-case-20260415-7d14e3a4-20260415T231343Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "a704258f-8c1e-4f6e-9857-8ac2f5424e69",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-7d14e3a4/researcher-analyses/2026-04-15/dispatch-case-20260415-7d14e3a4-20260415T231343Z/personas/risk-manager.md",
+    "source_persona_sha256": "08b3de9a890f018e22816dac3b7055f2ed938dd84251f3e673d6543404bc43b1"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High relevance primary sources, but evidence independence is only medium-low because the analysis relies mostly on Polymarket rules plus Binance-native data.",
+  "strongest_disconfirmers": [
+    "Resolution depends on one exact 1-minute candle close at 12:00 ET, so a modest pullback could flip the market.",
+    "The cushion above 72000 is meaningful but not huge for BTC over several days.",
+    "Settlement still carries some operational dependence on Binance candle visibility and interpretation."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT spot was about 74676.98 on 2026-04-15, leaving roughly a 3.7% cushion above 72000.",
+    "Recent Binance daily closes stayed above 72000 for multiple consecutive days.",
+    "Only four days remain, so existing above-threshold positioning matters materially."
+  ],
+  "timing_relevance": "Timing is central: 2026-04-19 12:00 ET corresponds to 16:00 UTC, and only that 1-minute Binance candle close determines resolution.",
+  "unresolved_ambiguities": [
+    "How large BTC's volatility will be over the remaining four days.",
+    "Whether Binance UI/data behavior at settlement could create minor ambiguity despite clear stated rules."
+  ],
+  "what_would_change_view": "A sustained move back toward or below 72000 on Binance would push the estimate down fast; a wider cushion above 74000-75000 into settlement would move the estimate upward toward the market."
+}

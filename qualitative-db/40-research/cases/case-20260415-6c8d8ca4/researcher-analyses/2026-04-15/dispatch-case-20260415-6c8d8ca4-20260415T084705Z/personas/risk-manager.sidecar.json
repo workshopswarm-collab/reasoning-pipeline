@@ -1,0 +1,62 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Settlement depends on one specific minute rather than the broader day.",
+    "Current cushion over the strike is meaningful but not large for BTC.",
+    "Confidence is sensitive to short-horizon volatility and exchange-specific behavior."
+  ],
+  "key_assumptions": [
+    "Binance BTC/USDT remains above 72000 through the April 17 12:00 ET settlement minute.",
+    "No Binance-specific pricing dislocation creates a below-strike settlement close.",
+    "Short-horizon BTC volatility does not erase the current roughly 2.7% cushion above the strike."
+  ],
+  "main_logical_chain": [
+    "Polymarket rules make Binance BTC/USDT 12:00 ET one-minute close the governing condition.",
+    "Current Binance spot is roughly 2037 points above 72000, so Yes is favored directionally.",
+    "Because the contract is narrow and BTC can move more than 2.7% over two days, confidence should be discounted.",
+    "That yields a lean-Yes view below the market price rather than a bearish disagreement on direction."
+  ],
+  "main_thesis": "Yes is more likely than No because Binance BTC/USDT is currently above 72000, but the market appears somewhat overconfident because the contract depends on one exact noon ET one-minute close.",
+  "own_probability": 0.74,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone has a final 'Close' price higher than the price specified in the title.",
+    "Ticker payload: BTCUSDT price 74037.08000000"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "risk_management",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-6c8d8ca4",
+    "dispatch_id": "dispatch-case-20260415-6c8d8ca4-20260415T084705Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "f8f73c4f-55be-4d85-9bb7-b2ca07acd76c",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-6c8d8ca4/researcher-analyses/2026-04-15/dispatch-case-20260415-6c8d8ca4-20260415T084705Z/personas/risk-manager.md",
+    "source_persona_sha256": "bfc3e1c836647dff2a0a573483e76e101b491d2fc983eac2b3a6b35c7798792e"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is fairly strong for a medium-difficulty case: Polymarket provides the contract wording and Binance provides direct venue data, with low source-of-truth ambiguity but only medium evidence independence.",
+  "strongest_disconfirmers": [
+    "The contract resolves on a single exact one-minute close, so broad BTC strength is not enough.",
+    "A roughly 2.7% drawdown over two days is not unusual for BTC and would be enough to flip the outcome.",
+    "A Binance-specific wick or dislocation near settlement could resolve No even if the broader market stays firm."
+  ],
+  "strongest_supports": [
+    "Direct Binance ticker showed BTCUSDT around 74037, above the 72000 strike.",
+    "Recent Binance one-minute candles were clustered around 74033-74060 rather than hovering near the threshold.",
+    "Polymarket rules clearly specify the governing source and settlement condition."
+  ],
+  "timing_relevance": "Timing is central because the contract resolves on the final close of the Binance BTC/USDT 12:00 ET one-minute candle on April 17, not on general daily trading levels.",
+  "unresolved_ambiguities": [
+    "How much realized volatility BTC will show before the April 17 noon ET settlement minute.",
+    "Whether any macro or crypto-specific shock emerges before settlement.",
+    "Whether the market is mildly overconfident versus correctly pricing current path risk."
+  ],
+  "what_would_change_view": "I would move toward the market if BTC stays well above 72000 into April 17 morning ET, and further away if spot compresses toward 73000, volatility rises, or Binance-specific pricing looks unstable."
+}

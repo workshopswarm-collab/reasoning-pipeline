@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A sharp overnight selloff could erase the current buffer quickly.",
+    "Exact candle timing and exchange-specific pricing make the contract narrower than a generic BTC price call."
+  ],
+  "key_assumptions": [
+    "BTC stays in roughly its current trading regime through the April 16 noon ET settlement window.",
+    "There is no Binance-specific dislocation near the relevant minute.",
+    "Recent short-horizon persistence above 72k is more informative than distant full-cycle history for this case."
+  ],
+  "main_logical_chain": [
+    "The contract resolves off the Binance BTC/USDT 1-minute close at 12:00 ET on April 16.",
+    "BTC is currently trading well above 72000 on Binance, so the directional base case favors Yes.",
+    "Recent short-horizon Binance data show persistence above 72000, but not enough to justify near-certainty.",
+    "Therefore Yes is favored, but at a lower probability than the market's 88.5% pricing."
+  ],
+  "main_thesis": "Yes remains more likely than No because BTC/USDT is already materially above 72000 on Binance, but the market overstates certainty for an exact one-minute threshold contract.",
+  "own_probability": 0.8,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone (noon) ... has a final 'Close' price higher than ... 72,000.",
+    "Market-implied baseline: 0.885 = 88.5% Yes.",
+    "Own probability estimate: 80% Yes."
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "market_anchor",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-2cba3460",
+    "dispatch_id": "dispatch-case-20260415-2cba3460-20260415T115730Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "fab60610-8941-4017-90f1-46f69c7d0edc",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-2cba3460/researcher-analyses/2026-04-15/dispatch-case-20260415-2cba3460-20260415T115730Z/personas/base-rate.md",
+    "source_persona_sha256": "8070023a13be6358b7b800a1084323511109909a2ba20708a537f237be671304"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality direct Binance data plus a clear Polymarket rule surface; low-to-medium source-of-truth ambiguity after explicit timezone verification.",
+  "strongest_disconfirmers": [
+    "This is an exact one-minute timestamp contract, so crypto volatility can still flip the outcome despite current spot being above the line.",
+    "Only 59 of the last 120 Binance daily closes were above 72000, and one recent daily close was 70740.98 on April 12."
+  ],
+  "strongest_supports": [
+    "Binance BTC/USDT was around 74187.69 during research, about 2.2k above the threshold.",
+    "Recent Binance daily closes and comparable noon-ET-adjacent checkpoints were mostly above 72000.",
+    "The contract has only about one day left, so current spot regime persistence matters heavily."
+  ],
+  "timing_relevance": "High: the contract depends on the Binance 1m close at 12:00 ET on 2026-04-16, which is 16:00 UTC during daylight saving time.",
+  "unresolved_ambiguities": [
+    "The exact final 12:00 ET April 16 candle is not yet observable.",
+    "Short-horizon BTC volatility can dominate broader base-rate comparisons at this time scale."
+  ],
+  "what_would_change_view": "I would move up if BTC keeps holding comfortably above 74k into settlement with low volatility, and move down sharply if Binance BTC/USDT loses the 73k-72k area or prints repeated hourly closes below 72k ahead of noon ET."
+}

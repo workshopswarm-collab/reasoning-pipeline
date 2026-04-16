@@ -1,0 +1,65 @@
+{
+  "artifact_type": "decision_verification_mode",
+  "schema_version": "decision-verification-mode/v1",
+  "case_key": "case-20260414-4d440738",
+  "dispatch_id": "refresh-case-20260414-4d440738-20260414T201459Z",
+  "mode": "targeted_escalation",
+  "triggers": [
+    "large_apparent_edge_vs_market",
+    "freshness_sensitive_catalyst",
+    "decision_blockers_present"
+  ],
+  "reasons": [
+    "High-confidence sufficiency gate did not pass, so extra bounded context is required before final judgment.",
+    "edge_independent_verification_quality is not high",
+    "freshness-sensitive case requires extra verification",
+    "decision blockers are present",
+    "disagreement intensity is not low",
+    "edge magnitude is above the high-confidence no-extra-verification threshold",
+    "Deterministic search/fetch budget set to queries=5, fetches=3, min_families=2 based on uncertainty score 5."
+  ],
+  "signals": {
+    "edge_mid_vs_market_pct_points_abs": 5.0,
+    "verification_quality": "medium",
+    "probability_span": 0.01,
+    "contract_ambiguity_detected": false,
+    "contract_ambiguity_level": "minor",
+    "contract_ambiguity_reason": "Exact ET-to-Binance minute mapping is clear enough but single-minute settlement mechanics remain operationally sensitive.",
+    "contract_ambiguity_source": "synthesis_frontmatter",
+    "freshness_sensitive": true,
+    "freshness_driver": "BTC can reprice sharply over the weekend and the contract resolves on a Monday noon ET minute close.",
+    "freshness_source": "synthesis_frontmatter",
+    "decision_blocker_count": 3,
+    "blockers_require_new_research": false,
+    "disagreement_type": "market_pricing",
+    "disagreement_intensity": "medium",
+    "internal_inconsistency": false,
+    "sidecar_count": 5,
+    "high_confidence_no_extra_verification_passed": false,
+    "high_confidence_gate_reasons": [
+      "edge_independent_verification_quality is not high",
+      "freshness-sensitive case requires extra verification",
+      "decision blockers are present",
+      "disagreement intensity is not low",
+      "edge magnitude is above the high-confidence no-extra-verification threshold"
+    ],
+    "targeted_search_uncertainty_score": 5,
+    "targeted_search_budget_reasons": [
+      "freshness-sensitive case",
+      "decision blockers present",
+      "medium independent verification quality",
+      "meaningful apparent edge vs market"
+    ]
+  },
+  "budgets": {
+    "persona_sidecars_max": 3,
+    "assumption_snippets_max": 1,
+    "evidence_snippets_max": 1,
+    "supporting_note_snippets_max": 1,
+    "search_queries_allowed": 5,
+    "source_fetches_allowed": 3,
+    "minimum_distinct_source_families": 2,
+    "preferred_distinct_source_families": 2,
+    "max_selected_bundle_chars": 18000
+  }
+}

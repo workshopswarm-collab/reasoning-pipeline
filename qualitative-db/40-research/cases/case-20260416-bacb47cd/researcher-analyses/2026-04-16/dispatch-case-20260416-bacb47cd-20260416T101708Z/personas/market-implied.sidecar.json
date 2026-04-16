@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Small station/model differences can swing the result across a whole-degree threshold.",
+    "Forecast disagreement near the line makes overconfidence costly."
+  ],
+  "key_assumptions": [
+    "RKSI may run slightly warmer than the most conservative public forecast.",
+    "Public Seoul-area forecasts are imperfect proxies for the settlement station.",
+    "The true distribution is centered near the 17C/18C threshold."
+  ],
+  "main_logical_chain": [
+    "Read Polymarket rules to identify the governing source and market-implied probability.",
+    "Check whether independent public forecasts support the market's warm threshold view.",
+    "Forecasts cluster around the threshold, supporting Yes direction but not full confidence in 0.71.",
+    "Discount the market slightly because the clearest structured forecast found is 17.0C."
+  ],
+  "main_thesis": "Market direction is reasonable but 0.71 looks mildly rich; 18C+ is more likely than not but closer to 0.62.",
+  "own_probability": 0.62,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "highest temperature recorded at the Incheon Intl Airport Station",
+    "The resolution source ... Wunderground",
+    "Open-Meteo daily max 17.0C for 2026-04-17"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "technical_reference",
+    "other"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-bacb47cd",
+    "dispatch_id": "dispatch-case-20260416-bacb47cd-20260416T101708Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "26d4af54-7883-4c21-9bbb-bc4335deca85",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-bacb47cd/researcher-analyses/2026-04-16/dispatch-case-20260416-bacb47cd-20260416T101708Z/personas/market-implied.md",
+    "source_persona_sha256": "eda2726e9e77edfd95590265ec91fd776a58d01e11f1ff32ba4e81f75ad864ce"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Settlement mechanics are clear and low-ambiguity; ex ante meteorological evidence is decent but only medium-independence and partly proxy-based.",
+  "strongest_disconfirmers": [
+    "Open-Meteo forecasts a 17.0C max for Apr 17, directly supporting the main non-Yes bucket.",
+    "Final settlement is station-specific RKSI data, while easy public forecasts are mostly city-level proxies."
+  ],
+  "strongest_supports": [
+    "Polymarket bucket structure suggests 17C is the main alternative, not a broad cool miss.",
+    "Timeanddate shows a 22C Seoul high for Apr 17.",
+    "Whole-degree settlement means a small warm drift can flip the market to Yes."
+  ],
+  "timing_relevance": "Date and local-station timing are central because the contract resolves on finalized RKSI Wunderground data for Apr 17 local date.",
+  "unresolved_ambiguities": [
+    "Whether RKSI will run warmer or cooler than generic Seoul-area forecasts.",
+    "How much trader information goes beyond the public forecast set checked here."
+  ],
+  "what_would_change_view": "A fresh RKSI-targeted forecast clearly above 18C would move the estimate toward market; convergence toward 16-17C would move it lower."
+}

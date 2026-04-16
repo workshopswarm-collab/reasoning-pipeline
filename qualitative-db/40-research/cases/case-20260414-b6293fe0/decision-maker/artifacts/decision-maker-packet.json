@@ -1,0 +1,157 @@
+{
+  "schema_version": "decision-packet/v1",
+  "generated_at": "2026-04-13T20:25:00-04:00",
+  "context": {
+    "case_key": "case-20260414-b6293fe0",
+    "dispatch_id": "dispatch-case-20260414-b6293fe0-20260414T001837Z",
+    "question": "Will Bitcoin reach $74,000 April 13-19?",
+    "market_id": "case-20260414-b6293fe0",
+    "market_title": "Will Bitcoin reach $74,000 April 13-19?",
+    "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260414-b6293fe0/synthesizer-agent/decision-handoff.md",
+    "source_syndicated_finding_path": "qualitative-db/40-research/cases/case-20260414-b6293fe0/synthesizer-agent/syndicated-finding.md",
+    "decision_maker_agent": "decision-maker",
+    "canonical_markdown_path": "decision-maker-packet.md",
+    "canonical_json_path": "artifacts/decision-maker-packet.json",
+    "external_market_id": "0x7932ba47d328116e97bb3c037c2229aa61a00508a3b3be64fd3334050d085ff0",
+    "market_slug": "will-bitcoin-reach-74k-april-13-19",
+    "platform": "polymarket",
+    "primary_market_url": "https://polymarket.com/event/will-bitcoin-reach-74k-april-13-19",
+    "source_light_refresh_brief_path": "",
+    "refresh_mode": ""
+  },
+  "decision": {
+    "side": "yes",
+    "trade_authorization": "watch_only",
+    "position_policy": "hold_only",
+    "decision_readiness": "ready",
+    "primary_crux": "This is overwhelmingly likely Yes because broad independent evidence indicates BTC traded above $74,000 during the relevant window and the contract only requires a qualifying Binance BTC/USDT 1-minute high, but without the archived exact Binance 1-minute candle in the bundle the residual uncertainty is operational rather than directional.",
+    "secondary_cruxes": [
+      "The sporting-style directional question is basically settled in favor of Yes; the remaining tail is contract-source mechanics, not market direction.",
+      "Polymarket state near 0.9995 in one lane strongly suggests the market itself believed the qualifying print had effectively occurred.",
+      "Because the current reference price is only 0.89, the market appears below any reasonable high-confidence estimate, but the missing direct archived Binance 1-minute artifact prevents treating the edge as fully clean."
+    ],
+    "thesis_class": "edge_present"
+  },
+  "valuation": {
+    "fair_value_low": 0.96,
+    "fair_value_high": 0.995,
+    "fair_value_mid": 0.98,
+    "market_reference_price": 0.89,
+    "edge_mid_vs_market_pct_points": 9.0,
+    "independent_verification_quality": "medium",
+    "compressed_toward_market_applied": true,
+    "compression_reason": "Cross-venue and market-state evidence strongly support that the threshold was already hit in substance, but the lack of an archived direct qualifying Binance 1-minute candle keeps a small operational tail and prevents a full 0.99+ conviction estimate."
+  },
+  "execution_semantics": {
+    "price_axis": "market_implied_true_prob",
+    "price_source": "market_snapshot_quote",
+    "rebalance_threshold_fraction": 0.03,
+    "allow_auto_reversal": false,
+    "valid_until": "2026-04-16T23:59:00-04:00",
+    "quote_staleness_seconds": 3600,
+    "time_horizon": "Apr 13-19 Binance BTC/USDT intrawindow high-touch resolution"
+  },
+  "risk_controls": {
+    "max_position_size_pct_bankroll": 0.01,
+    "max_additional_exposure_pct_bankroll": 0.003,
+    "max_single_order_pct_bankroll": 0.005,
+    "slippage_tolerance_bps": 40,
+    "liquidity_min_depth": 1500,
+    "correlation_bucket_limit_pct_bankroll": 0.05,
+    "confidence_level": "medium",
+    "portfolio_constraints": [
+      "Fresh exposure is only appropriate if execution can still be obtained near the quoted market and no settlement dispute has emerged.",
+      "Recheck the governing Binance 1-minute print or market status before sizing because residual risk is almost entirely operational.",
+      "Do not rely on other venues or broader BTC/USD proxies if a source-specific settlement dispute appears."
+    ],
+    "liquidity_caution": "low"
+  },
+  "bands": [
+    {
+      "name": "max_enter",
+      "min_p": 0,
+      "max_p": 0.86,
+      "target_exposure_fraction": 0.01,
+      "notes": "Strong enter zone because the contract appears effectively already satisfied in substance and pricing would be far below justified value."
+    },
+    {
+      "name": "scaled_enter",
+      "min_p": 0.86,
+      "max_p": 0.93,
+      "target_exposure_fraction": 0.006,
+      "notes": "Still attractive if executable because the remaining risk is mostly settlement-source nuance."
+    },
+    {
+      "name": "hold",
+      "min_p": 0.93,
+      "max_p": 0.975,
+      "target_exposure_fraction": 0.003,
+      "notes": "Hold/add-light zone as price approaches high-confidence fair value."
+    },
+    {
+      "name": "trim",
+      "min_p": 0.975,
+      "max_p": 0.992,
+      "target_exposure_fraction": 0.001,
+      "notes": "Trim as residual operational tail dominates remaining upside."
+    },
+    {
+      "name": "exit",
+      "min_p": 0.992,
+      "max_p": 1,
+      "target_exposure_fraction": 0,
+      "notes": "Exit/avoid at extreme prices because any remaining value is negligible relative to settlement-process tail risk."
+    }
+  ],
+  "invalidation": {
+    "thesis_breakers": [
+      "Direct Binance BTC/USDT 1-minute evidence shows no qualifying high at or above 74,000 in the relevant ET window.",
+      "A legitimate Polymarket rules or settlement dispute establishes that broader venue prints do not map to a qualifying Binance print.",
+      "An official market update or settlement notice contradicts the current high-confidence Yes interpretation."
+    ],
+    "market_structure_breakers": [
+      "The 0.89 quote is stale, crossed, or reflects a moment before the market incorporated the qualifying print.",
+      "Execution venue status changes or liquidity disappears, eliminating practical ability to capture the edge.",
+      "A rules-interpretation dispute emerges around ET windowing or qualifying candle methodology."
+    ],
+    "time_breakers": [
+      "Once a direct Binance qualifying candle is archived or the market resolves, this packet should be replaced immediately.",
+      "As the market reprices toward certainty, remaining value decays rapidly and operational tail dominates."
+    ],
+    "reversal_conditions": [
+      "Move sharply lower only if direct Binance 1-minute evidence or official settlement guidance breaks against the current interpretation.",
+      "Do not auto-reverse from this packet.",
+      "Suspend fresh adds if a credible settlement-source dispute appears."
+    ]
+  },
+  "epistemic_status": {
+    "key_uncertainties": [
+      "Whether the exact archived qualifying Binance BTC/USDT 1-minute candle can be produced from the reviewed bundle.",
+      "Whether any edge-case settlement or source-of-truth dispute remains live despite broad evidence of a 74k+ print.",
+      "Whether the 0.89 snapshot is temporally stale relative to the likely threshold hit."
+    ],
+    "reasons_to_pass": [
+      "Most remaining risk is operational rather than predictive, so execution quality depends on avoiding stale or already-collapsed prices.",
+      "If the market has already functionally repriced to certainty elsewhere, the quoted edge may be less real than it appears.",
+      "A missing direct archived Binance 1-minute artifact is a real auditability gap even when the substantive outcome looks decided."
+    ],
+    "what_would_change_my_mind": [
+      "A direct archived Binance BTC/USDT 1-minute candle showing High >= 74000 would move confidence even closer to 0.995+ and reduce the remaining tail.",
+      "Direct evidence that Binance never printed a qualifying 74000 high would cut fair value sharply.",
+      "An official settlement clarification or dispute notice would materially change readiness and sizing."
+    ],
+    "decision_quality": "good_not_clean"
+  },
+  "audit": {
+    "market_baseline_respected": true,
+    "action_bias_check_passed": true,
+    "self_preservation_bias_check_passed": true,
+    "one_sentence_rationale": "Bitcoin appears very likely to have already satisfied the $74,000 threshold under the contract's Binance 1-minute-high mechanics, so 0.89 looks below justified value, but because the reviewed bundle lacks the archived exact qualifying Binance candle the remaining risk is operational and the right posture is high-confidence but still audit-aware rather than pretending absolute certainty.",
+    "notes": "This packet is one of the rare cases where an extreme yes view is justified: the market, cross-venue evidence, and contract mechanics all point the same way, with the only meaningful residual tail coming from source-specific settlement proof rather than price-direction uncertainty.",
+    "structured_handoff_primary_used": true,
+    "prose_fallback_used": true,
+    "verification_mode_used": "targeted_escalation",
+    "additional_verification_performed": true,
+    "additional_verification_notes": "targeted_pack"
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Weekend-adjacent volatility or liquidation-driven selling could erase the 5.8% cushion.",
+    "A Binance-specific dislocation near the settlement minute could matter more than broader BTC strength."
+  ],
+  "key_assumptions": [
+    "Current Binance BTC/USDT regime above 70k is stable enough to persist into April 19 noon ET absent a fresh shock.",
+    "No major macro, leverage, or Binance-specific dislocation arrives before resolution."
+  ],
+  "main_logical_chain": [
+    "The contract resolves on Binance BTC/USDT at one specific 12:00 ET minute on April 19.",
+    "Current and recent Binance pricing are comfortably above 70000, so the market does not require a fresh upside move to resolve Yes.",
+    "Because BTC commonly moves several percent over a few days and settlement is minute-specific, fair odds should be high but below the market's 90% level."
+  ],
+  "main_thesis": "BTC is likely to finish above 70000 on the specified Binance noon ET minute, but the market overstates certainty because single-minute settlement risk and normal five-day BTC volatility still matter.",
+  "own_probability": 0.82,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "My working estimate is 82%.",
+    "single-minute settlement fragility",
+    "BTC does not need to rally further; it mainly needs to avoid a roughly 5-6% drawdown"
+  ],
+  "reasoning_mode": [
+    "catalyst_analysis",
+    "market_anchor",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-91430615",
+    "dispatch_id": "dispatch-case-20260414-91430615-20260414T235247Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "094c848f-851d-497a-92a7-760978ddacfc",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-91430615/researcher-analyses/2026-04-14/dispatch-case-20260414-91430615-20260414T235247Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "ac3e1b9f7ba0cc94a3f615799b1fb86a22d0d32e467146b321accb15ee267bdb"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is solid for a medium-difficulty case: Polymarket rules define the contract and Binance provides the named pricing source, but evidence independence is only medium because both revolve around the same venue-specific framework.",
+  "strongest_disconfirmers": [
+    "Bitcoin can move more than 5% in five days, so the present cushion is meaningful but not safe.",
+    "The contract settles on one exact Binance minute, which adds timing and venue-specific fragility."
+  ],
+  "strongest_supports": [
+    "Binance spot fetched at 74065.09, about 5.8% above the threshold.",
+    "Recent Binance daily closes have mostly been in the 71k-74k range, placing 70k below the recent trading center."
+  ],
+  "timing_relevance": "This is primarily a regime-maintenance question over five days rather than a need for a new bullish catalyst; the key catalysts are downside shocks that could force repricing before the exact noon ET settlement minute.",
+  "unresolved_ambiguities": [
+    "Operational fallback is not spelled out if Binance display/API access is impaired at resolution time.",
+    "Exact display-level minute mapping is clear enough for analysis but still inherently venue-specific."
+  ],
+  "what_would_change_view": "I would cut the estimate if BTC loses the 72k/71k area or if a macro, leverage, or Binance-specific shock appears; I would raise it if BTC holds comfortably above 72k-73k into the weekend with subdued volatility."
+}

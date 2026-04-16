@@ -1,0 +1,61 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Settlement depends on one exact minute rather than a daily close or average.",
+    "The current cushion is meaningful but not enormous for crypto.",
+    "Binance-specific anomalies would matter more here than in an index-settled market."
+  ],
+  "key_assumptions": [
+    "The current several-dollar cushion above 80 survives ordinary volatility into Apr 19 noon ET.",
+    "Binance remains a clean and representative settlement venue at the designated minute.",
+    "No abrupt broad-crypto selloff pushes SOL below 80 before settlement."
+  ],
+  "main_logical_chain": [
+    "Polymarket rules make the decisive event the Binance SOL/USDT 12:00 ET Apr 19 one-minute candle close being strictly above 80.",
+    "Current direct Binance pricing places SOL several dollars above the threshold, so Yes is the base case.",
+    "Because the contract is settled by a single venue-specific minute close, short-horizon volatility and microstructure risk justify a haircut versus the 89.5% market price.",
+    "That produces a lean-Yes estimate of 78% rather than mirroring the market's high-80s confidence."
+  ],
+  "main_thesis": "SOL is more likely than not to finish above 80 on the Binance noon-ET Apr 19 minute close, but the market is overconfident because single-minute venue-specific settlement mechanics underprice path and timing fragility.",
+  "own_probability": 0.78,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "The governing source of truth is Binance SOL/USDT, specifically the 1-minute candle for 12:00 ET on Apr 19, 2026, and the decisive value is that candle\u2019s final Close price.",
+    "Evidence-floor compliance: met with (1) a direct governing-source-of-truth check of the Polymarket rules page and (2) a direct Binance verification pass using live SOLUSDT spot and recent 1-minute kline data."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "risk_management",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-33b4e3b5",
+    "dispatch_id": "dispatch-case-20260416-33b4e3b5-20260416T021538Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "67c7c895-78bf-4dd2-bcde-7d6858f9f131",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-33b4e3b5/researcher-analyses/2026-04-16/dispatch-case-20260416-33b4e3b5-20260416T021538Z/personas/risk-manager.md",
+    "source_persona_sha256": "ba290bb793f2a68ebe9d0aa6b28a13b7db3d83fb9a1820cca1b96958edf78bb3"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is strong for a medium-difficulty case: Polymarket directly defines the contract and Binance directly provides the underlying price venue, though source independence is only medium because the sources serve different functions.",
+  "strongest_disconfirmers": [
+    "The market resolves on one exact Binance 12:00 ET 1-minute close, making timing/path risk unusually important.",
+    "A roughly 6% downside move over several days is plausible for a high-beta crypto asset.",
+    "Exchange-specific print or operational issues could matter at the exact settlement minute."
+  ],
+  "strongest_supports": [
+    "Direct Binance spot check showed SOLUSDT around 84.91, materially above 80.",
+    "Recent Binance 1-minute closes clustered around 84.76-84.94, confirming a current buffer above the threshold.",
+    "Only a short period remains until settlement, limiting time for a large bearish repricing."
+  ],
+  "timing_relevance": "Timing is central because the market resolves from a single Binance SOL/USDT 1-minute candle at 12:00 ET on Apr 19, not from a broader daily or multi-venue price.",
+  "unresolved_ambiguities": [
+    "How much weekend or macro-led volatility arrives before settlement.",
+    "Whether Binance-specific microstructure matters near the resolution minute."
+  ],
+  "what_would_change_view": "I would move toward the market if Binance checks closer to settlement still showed SOL comfortably above 80; I would move lower if SOL drifted toward 80-82, printed repeated sub-80 minutes, or Binance showed operational or pricing anomalies near noon ET."
+}

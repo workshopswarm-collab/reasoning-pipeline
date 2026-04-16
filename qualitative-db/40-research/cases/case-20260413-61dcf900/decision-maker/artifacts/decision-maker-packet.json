@@ -1,0 +1,157 @@
+{
+  "schema_version": "decision-packet/v1",
+  "generated_at": "2026-04-13T14:54:00-04:00",
+  "context": {
+    "case_key": "case-20260413-61dcf900",
+    "dispatch_id": "dispatch-case-20260413-61dcf900-20260413T184628Z",
+    "question": "Will the Los Angeles Kings make the NHL Playoffs?",
+    "market_id": "case-20260413-61dcf900",
+    "market_title": "Will the Los Angeles Kings make the NHL Playoffs?",
+    "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260413-61dcf900/synthesizer-agent/decision-handoff.md",
+    "source_syndicated_finding_path": "qualitative-db/40-research/cases/case-20260413-61dcf900/synthesizer-agent/syndicated-finding.md",
+    "decision_maker_agent": "decision-maker",
+    "canonical_markdown_path": "decision-maker-packet.md",
+    "canonical_json_path": "artifacts/decision-maker-packet.json",
+    "external_market_id": "0x9c5efdc8d5b3ee0049510642dbcc1b627a4695edad4078af860a3d1e5a3fc10c",
+    "market_slug": "will-the-los-angeles-kings-make-the-nhl-playoffs",
+    "platform": "polymarket",
+    "primary_market_url": "https://polymarket.com/event/will-the-los-angeles-kings-make-the-nhl-playoffs",
+    "source_light_refresh_brief_path": "",
+    "refresh_mode": ""
+  },
+  "decision": {
+    "side": "none",
+    "trade_authorization": "forbidden",
+    "position_policy": "flat",
+    "decision_readiness": "needs_more_research",
+    "primary_crux": "The bounded evidence says LA currently holds WC2 with a one-point edge and a game in hand, but the exact clinch/tiebreak tree was not independently rebuilt and the race can move materially within hours, so I do not have a hard enough state estimate for an execution-quality decision.",
+    "secondary_cruxes": [
+      "The package suggests the market is roughly efficient around the mid-70s rather than obviously wrong, which lowers the cost of waiting for cleaner state information.",
+      "Because late same-day Kings and Predators results can quickly compress or widen the edge, stale standings-based judgment is particularly dangerous here.",
+      "The runtime explicitly marks the case as not_ready_reopen_recommended and says blockers require new research, which is appropriate for a live playoff-race path problem with incomplete tiebreak reconstruction."
+    ],
+    "thesis_class": "not_decision_ready"
+  },
+  "valuation": {
+    "fair_value_low": 0.66,
+    "fair_value_high": 0.74,
+    "fair_value_mid": 0.7,
+    "market_reference_price": 0.735,
+    "independent_verification_quality": "medium",
+    "compressed_toward_market_applied": false,
+    "compression_reason": "No additional compression is useful because the main blocker is incomplete path-state reconstruction, not overprecision around the provisional probability estimate.",
+    "edge_mid_vs_market_pct_points": -3.5
+  },
+  "execution_semantics": {
+    "price_axis": "market_implied_true_prob",
+    "price_source": "market_snapshot_quote",
+    "rebalance_threshold_fraction": 0.1,
+    "allow_auto_reversal": false,
+    "valid_until": "2026-04-14T23:00:00-04:00",
+    "quote_staleness_seconds": 1800,
+    "time_horizon": "Final regular-season slates and clinch window"
+  },
+  "risk_controls": {
+    "max_position_size_pct_bankroll": 0.0,
+    "max_additional_exposure_pct_bankroll": 0.0,
+    "max_single_order_pct_bankroll": 0.0,
+    "slippage_tolerance_bps": 80,
+    "liquidity_min_depth": 1000,
+    "correlation_bucket_limit_pct_bankroll": 0.05,
+    "confidence_level": "low",
+    "portfolio_constraints": [
+      "Do not trade from this packet because the exact clinch/tiebreak tree was not independently rebuilt.",
+      "Require refreshed standings plus explicit clinch/elimination path verification before authorizing any exposure.",
+      "Keep target exposure at zero until live race state is reconstructed more completely."
+    ],
+    "liquidity_caution": "medium"
+  },
+  "bands": [
+    {
+      "name": "max_enter",
+      "min_p": 0,
+      "max_p": 0.2,
+      "target_exposure_fraction": 0,
+      "notes": "Zero-exposure band because this packet is not decision-ready."
+    },
+    {
+      "name": "scaled_enter",
+      "min_p": 0.2,
+      "max_p": 0.4,
+      "target_exposure_fraction": 0,
+      "notes": "Zero-exposure band because live playoff-race path information is incomplete."
+    },
+    {
+      "name": "hold",
+      "min_p": 0.4,
+      "max_p": 0.6,
+      "target_exposure_fraction": 0,
+      "notes": "Zero-exposure band; no autonomous hold/add decision is justified without a rebuilt clinch tree."
+    },
+    {
+      "name": "trim",
+      "min_p": 0.6,
+      "max_p": 0.8,
+      "target_exposure_fraction": 0,
+      "notes": "Zero-exposure band because an apparently small edge can disappear once exact remaining-path math is refreshed."
+    },
+    {
+      "name": "exit",
+      "min_p": 0.8,
+      "max_p": 1,
+      "target_exposure_fraction": 0,
+      "notes": "Zero-exposure band; remain flat until live standings and tiebreak paths are fully reconciled."
+    }
+  ],
+  "invalidation": {
+    "thesis_breakers": [
+      "A refreshed official standings/tiebreak reconstruction shows LA has effectively clinched or is materially stronger than this packet assumes.",
+      "A same-day results slate moves LA out of WC2 or sharply worsens its playoff path.",
+      "A strong independent model or official path breakdown materially contradicts the current provisional range."
+    ],
+    "market_structure_breakers": [
+      "Official NHL updates clarify clinch/elimination status in a way that removes the current ambiguity.",
+      "A corrected race-state reconstruction changes the true live baseline enough to invalidate the provisional 0.70 midpoint.",
+      "The market reprices sharply on fresh games or official clinch information, making this packet stale immediately."
+    ],
+    "time_breakers": [
+      "This packet should not be used after valid_until without a refreshed standings and tiebreak rebuild.",
+      "Because playoff-race state can change materially within hours, stale standings-based packets should be replaced promptly after each relevant game result."
+    ],
+    "reversal_conditions": [
+      "No reversal logic applies because this packet authorizes no position.",
+      "A new packet is required after refreshed clinch/tiebreak reconstruction or materially new game results.",
+      "Do not auto-reverse from flat based on this packet."
+    ]
+  },
+  "epistemic_status": {
+    "key_uncertainties": [
+      "The exact live clinch and tiebreak tree was not independently reconstructed from official state.",
+      "Late same-day Kings and Predators results can materially change the race before this packet is acted on.",
+      "The true spread between market-implied probability and best estimate may be tiny once full path math is included."
+    ],
+    "reasons_to_pass": [
+      "This looks more like a live-state reconstruction problem than a genuine high-confidence market error.",
+      "The package itself suggests the market is roughly efficient rather than obviously wrong.",
+      "Without exact clinch/tiebreak math, even a seemingly small edge is not auditable enough for execution."
+    ],
+    "what_would_change_my_mind": [
+      "A refreshed official standings/tiebreak reconstruction showing the exact path probabilities would make the case decision-ready.",
+      "An official clinch marker or explicit elimination/clinch scenario update would materially reduce uncertainty.",
+      "Fresh same-day results that widen or erase LA's edge would move the fair value materially."
+    ],
+    "decision_quality": "not_ready"
+  },
+  "audit": {
+    "market_baseline_respected": true,
+    "action_bias_check_passed": true,
+    "self_preservation_bias_check_passed": true,
+    "one_sentence_rationale": "Because the Kings' playoff race can move materially within hours and the exact clinch/tiebreak tree was not independently rebuilt, the disciplined output is to stay flat rather than pretend a small edge around a roughly efficient market is execution-ready.",
+    "notes": "I preserve the bounded provisional estimate around 0.70 only as a non-execution-ready state read; the real blocker is incomplete live race-state math, not lack of a directional opinion.",
+    "structured_handoff_primary_used": true,
+    "prose_fallback_used": false,
+    "verification_mode_used": "not_ready_reopen_recommended",
+    "additional_verification_performed": false,
+    "additional_verification_notes": ""
+  }
+}

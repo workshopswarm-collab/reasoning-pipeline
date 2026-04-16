@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A larger BTC cushion before settlement would collapse most of the variant case.",
+    "The thesis depends more on contract mechanics than on a strong bearish BTC directional view.",
+    "Limited independent contextual evidence means this is mainly a mechanics-based disagreement."
+  ],
+  "key_assumptions": [
+    "BTC keeps most of its current ~2.2k cushion over 72k into the settlement window.",
+    "The market is slightly underweighting one-minute-close path dependence.",
+    "No Binance-specific operational ambiguity materially affects the settling print."
+  ],
+  "main_logical_chain": [
+    "Rules show the contract resolves on one exact Binance BTC/USDT 12:00 ET one-minute close on Apr 16.",
+    "Direct Binance data shows BTC currently comfortably above 72k.",
+    "Because settlement depends on a single minute and strict threshold crossing, transient downside or venue-specific dislocation can still flip the result.",
+    "Therefore Yes remains favored, but the 88.5% market price looks somewhat too high; 81% better reflects residual path risk."
+  ],
+  "main_thesis": "Market is directionally right but modestly overconfident because the contract settles on one exact Binance BTC/USDT noon ET one-minute close, so path and venue-specific risk are underweighted.",
+  "own_probability": 0.81,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "the final close of that exact candle must be strictly greater than 72,000",
+    "market is a bit overconfident because this contract settles on one exact Binance BTC/USDT one-minute close"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "contract_interpretation",
+    "variant_hypothesis",
+    "scenario_analysis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-2cba3460",
+    "dispatch_id": "dispatch-case-20260415-2cba3460-20260415T115730Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "cf93d5d5-1615-45ef-b72b-d3baff19b45f",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-2cba3460/researcher-analyses/2026-04-15/dispatch-case-20260415-2cba3460-20260415T115730Z/personas/variant-view.md",
+    "source_persona_sha256": "9cb586bb099c7641f1487d4d622a0b86c440ba5af0c4ebb68c963447ac172bac"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary quality is good because rules and direct Binance 1m data were checked; independence is only medium because the case is inherently exchange-specific and contextual sourcing was light.",
+  "strongest_disconfirmers": [
+    "A ~3% cushion with only ~28 hours left is substantial, so Yes is still clearly more likely than No.",
+    "If BTC remains even roughly stable into late morning Apr 16, the narrow mechanics likely will not matter."
+  ],
+  "strongest_supports": [
+    "Direct Binance 1m data sampled on 2026-04-15 showed BTC around 74.2k, well above the 72k threshold.",
+    "Only about 28 hours remained until resolution at verification time.",
+    "Adjacent market ladder pricing is consistent with BTC trading in the mid-74k area."
+  ],
+  "timing_relevance": "Resolution occurs at 2026-04-16 12:00 EDT; verification was performed about 28 hours beforehand, so timing and path dependence remain material.",
+  "unresolved_ambiguities": [
+    "How Binance website UI and API would be handled if there were a display or data inconsistency at settlement.",
+    "Whether noon ET intraday volatility on Apr 16 will be unusually low or elevated."
+  ],
+  "what_would_change_view": "I would move toward the market if BTC builds a meaningfully larger cushion before noon ET on Apr 16; I would move more bearish if BTC trades back near 72.5k-73k or Binance-specific ambiguity appears."
+}

@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "View weakens quickly if BTC widens and holds a larger cushion above 72000 into April 17 morning.",
+    "This thesis depends more on settlement mechanics than on an independent bearish BTC macro narrative."
+  ],
+  "key_assumptions": [
+    "Traders may overweight current spot distance above 72000 relative to single-minute settlement fragility.",
+    "A venue-specific noon ET close still carries meaningful variance over the remaining ~50 hours.",
+    "No major Binance-specific anomaly will dominate beyond ordinary venue-specific noise."
+  ],
+  "main_logical_chain": [
+    "Market implies 84% Yes and current Binance spot context is supportive.",
+    "But the contract resolves on one exact Binance 1-minute close at 12:00 ET, which is narrower than a generic bullish BTC thesis.",
+    "That path dependence keeps some real failure probability alive even with BTC currently above the strike.",
+    "Therefore Yes remains the base case, but fair odds look modestly lower than market at about 76%."
+  ],
+  "main_thesis": "The market likely overprices Yes slightly because this settles on one exact Binance BTC/USDT 12:00 ET one-minute close, not a broad daily BTC direction call.",
+  "own_probability": 0.76,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone... has a final 'Close' price higher than the price specified.",
+    "47 of the last 48 hourly closes above 72,000"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "contract_interpretation",
+    "variant_hypothesis",
+    "technical_reference"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-30541231",
+    "dispatch_id": "dispatch-case-20260415-30541231-20260415T133406Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "471b7794-ef44-4fe7-afc5-f59c9506fc9f",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-30541231/researcher-analyses/2026-04-15/dispatch-case-20260415-30541231-20260415T133406Z/personas/variant-view.md",
+    "source_persona_sha256": "abfd3c526bbdd9cf67337d0a1257f560ae7cfacbda5b769584ad3342b3ddbaa7"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is adequate and audit-friendly: Polymarket supplies the authoritative contract wording and Binance supplies direct venue-specific pricing context, though evidence independence is only medium-low because both revolve around the same venue-specific settlement structure.",
+  "strongest_disconfirmers": [
+    "BTC is already comfortably above the strike and has mostly held above it recently, so the market may simply be right.",
+    "If BTC remains in the mid-74k area into resolution morning, the contract-mechanics discount may be too large."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT spot was about 74148.65 at fetch time, giving a >2k cushion above the strike.",
+    "47 of the last 48 hourly Binance closes in the verification pull were above 72000.",
+    "Polymarket rules explicitly define a narrow Binance BTC/USDT 12:00 ET 1m close as the settlement event."
+  ],
+  "timing_relevance": "Resolution is at 12:00 ET on 2026-04-17, about 50.4 hours from run time, so short-horizon volatility and exact timing mechanics matter more than broad multiweek fundamentals.",
+  "unresolved_ambiguities": [
+    "Polymarket references the Binance trading UI rather than the API formally, leaving minor implementation ambiguity.",
+    "No separate empirical estimate of noon ET minute-close variance was derived in this run."
+  ],
+  "what_would_change_view": "I would move closer to or above market if BTC sustained a materially wider and calmer cushion above 72000 into resolution morning; I would move lower if BTC revisited or lost the 72k area before settlement."
+}

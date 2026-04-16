@@ -1,0 +1,57 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Short-horizon BTC volatility can erase the current buffer without an extraordinary catalyst.",
+    "The contract is point-in-time, so even a generally bullish path can still resolve No."
+  ],
+  "key_assumptions": [
+    "Recent Binance strength is durable enough to keep BTC/USDT above 72000 through the April 16 noon ET minute.",
+    "Binance kline data is a strong verification proxy for the Binance chart surface named in the rules."
+  ],
+  "main_logical_chain": [
+    "Contract resolves from one exact Binance BTC/USDT 1-minute close at April 16 noon ET, so exchange, pair, timezone, and strict threshold all matter.",
+    "Direct Binance data shows BTC/USDT is currently above 72000 by a few thousand dollars at the relevant comparison minute.",
+    "Recent same-time failures below 72000 show the threshold is active but not secure, so near-certainty is not justified.",
+    "That supports a Yes lean but at materially lower confidence than the 90%-91% market price."
+  ],
+  "main_thesis": "Yes is more likely than No because BTC/USDT is already above 72000 on Binance, but the market overstates certainty for a volatile exact-minute threshold test.",
+  "own_probability": 0.68,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "April 14 noon-ET-equivalent closed at 75,356.48.",
+    "Same reference point was below 72,000 on April 12 and April 13.",
+    "Own probability: 68%."
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "contract_interpretation",
+    "market_anchor"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-3691b692",
+    "dispatch_id": "dispatch-case-20260414-3691b692-20260414T170231Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "af7fa7dd-08c2-478a-a7a4-873b9c39ca03",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-3691b692/researcher-analyses/2026-04-14/dispatch-case-20260414-3691b692-20260414T170231Z/personas/base-rate.md",
+    "source_persona_sha256": "79196c6f20c4e28dfb718c42184710cc115b9e7dd3a30ab599d26be2bd53251e"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Good direct evidence for mechanics and current level, with low-to-medium source-of-truth ambiguity but only medium evidence independence.",
+  "strongest_disconfirmers": [
+    "The same noon-ET-equivalent reference point was below 72000 on April 12 and April 13.",
+    "A roughly 4.7% cushion is meaningful but not decisive over a 47-hour horizon for BTC."
+  ],
+  "strongest_supports": [
+    "April 14 noon-ET-equivalent Binance 1-minute close was 75356.48, comfortably above the threshold.",
+    "Recent daily and noon-reference prints show BTC has entered a stronger low-to-mid 70k regime."
+  ],
+  "timing_relevance": "Resolution depends on the April 16, 2026 12:00 PM ET candle, which corresponds to 16:00 UTC during daylight saving time.",
+  "unresolved_ambiguities": [
+    "Rules name the Binance chart interface as source of truth, while verification used Binance API data from the same venue.",
+    "No independent secondary exchange-specific chart source was used beyond direct Binance data and the Polymarket rules surface."
+  ],
+  "what_would_change_view": "I would raise confidence if BTC stays above roughly 74k-75k through April 15 and lower it materially if Binance loses 72k and cannot reclaim it before the final 24 hours."
+}

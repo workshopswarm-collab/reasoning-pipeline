@@ -1,0 +1,58 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A modest adverse move can flip the outcome because settlement is minute-specific.",
+    "Exchange-specific issues on Binance would matter more than broad composite pricing."
+  ],
+  "key_assumptions": [
+    "The market is mostly pricing ordinary one-day ETH volatility rather than a hidden catalyst.",
+    "Current Binance spot context is informative for the April 17 noon ET close.",
+    "No Binance-specific dislocation materially affects the settlement candle."
+  ],
+  "main_logical_chain": [
+    "The governing contract resolves only on Binance ETH/USDT at the 12:00 ET one-minute close on April 17.",
+    "ETH is currently modestly above 2300 on Binance, so Yes should be favored absent a moderate downside move.",
+    "Recent volatility shows 2300 is still a live threshold, so Yes is favored but not overwhelmingly.",
+    "That makes a near-market but slightly lower estimate than the 72.5% implied price reasonable."
+  ],
+  "main_thesis": "The market's Yes lean is broadly efficient because ETH is already modestly above 2300 on Binance, but the exact-minute settlement format keeps downside fragility high enough to justify a slightly lower estimate than market.",
+  "own_probability": 0.69,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for ETH/USDT 12:00 in the ET timezone (noon) ... has a final 'Close' price higher than the price specified in the title.",
+    "Binance ETHUSDT was around 2333.19 on ticker and about 2338.63 on 5-minute average during research."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-04100395",
+    "dispatch_id": "dispatch-case-20260416-04100395-20260416T154804Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "e686ba47-1bbf-467f-990b-7d3a0753e8b4",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-04100395/researcher-analyses/2026-04-16/dispatch-case-20260416-04100395-20260416T154804Z/personas/market-implied.md",
+    "source_persona_sha256": "5bf8a38f8c10786ffb130154c2785505e6cd0cb1b0ee6b59e6c428d4c98dfde2"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High quality for contract mechanics via Polymarket and strong direct venue context via Binance; medium independence because CoinGecko is mainly a sanity check on the same underlying market complex.",
+  "strongest_disconfirmers": [
+    "Recent Binance hourly candles also showed a sharp move down into the 2285-2291 area, so sub-2300 is still inside ordinary recent volatility.",
+    "The contract resolves on one exact Binance 1-minute close, not a daily average or broad market level."
+  ],
+  "strongest_supports": [
+    "Binance ETHUSDT was around 2333-2339 during research, above the 2300 strike.",
+    "Recent ETH trading spent substantial time above 2300, making Yes the natural favorite with one day left.",
+    "Polymarket's 72.5% Yes price is directionally sensible given spot-above-strike status."
+  ],
+  "timing_relevance": "High: the contract resolves tomorrow at noon ET and depends on one exact Binance 1-minute close; timezone handling was explicitly verified as 16:00 UTC.",
+  "unresolved_ambiguities": [
+    "Whether the market embeds catalyst risk not visible in the checked sources.",
+    "How much one-day crypto volatility should be expected into the exact noon ET print."
+  ],
+  "what_would_change_view": "A sustained move below 2300 on Binance, evidence of a major pre-noon catalyst, or Binance-specific dislocation risk would push the estimate down; sustained strength well above 2350 into settlement would push it up."
+}

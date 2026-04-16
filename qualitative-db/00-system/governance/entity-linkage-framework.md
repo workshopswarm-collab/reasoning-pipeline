@@ -2,7 +2,7 @@
 type: governance_rule
 domain: vault-governance
 status: active
-last_updated: 2026-03-26
+last_updated: 2026-04-14
 owner: orchestrator
 tags: [governance, linkage, related-entities, related-drivers]
 ---
@@ -20,7 +20,7 @@ The goal is to make the vault:
 - easier to navigate semantically
 - more consistent across canonical entity notes
 - better for multi-hop reasoning
-- better for downstream quant and retrospective review
+- better for downstream quant and learning review
 
 `related_entities` is a **curated high-signal neighborhood**, not an exhaustive list of every possible connection.
 
@@ -202,7 +202,7 @@ When creating or revising a canonical note:
 
 ## Authority rule
 
-Researchers may identify missing linkages in `40-research/` or retrospective notes.
+Researchers may identify missing linkages in `40-research/` or learning notes.
 
 Stable-layer linkage updates should normally be applied by:
 - orchestrator

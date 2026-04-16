@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "BTC only needs to dip below 72k at one exact minute to resolve No.",
+    "A fresh macro or crypto headline could compress the cushion quickly."
+  ],
+  "key_assumptions": [
+    "Remaining risk is mostly ordinary short-horizon BTC volatility rather than a special Binance-specific anomaly.",
+    "Current cross-venue spot coherence means Binance is not materially off-market.",
+    "No major catalyst forces BTC back below 72k by Apr. 15 noon ET."
+  ],
+  "main_logical_chain": [
+    "Polymarket rules make Binance BTCUSDT 12:00 ET one-minute close the governing source of truth.",
+    "Current Binance price and recent one-minute candles are safely above 72k.",
+    "Independent spot checks suggest Binance is not uniquely elevated.",
+    "Therefore Yes is favored, but noon-minute path risk caps confidence."
+  ],
+  "main_thesis": "Yes is likelier than No because Binance BTCUSDT is already materially above 72k, but the contract is narrower than generic BTC direction because it settles on a single noon ET one-minute close on Binance.",
+  "own_probability": 0.78,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone has a final 'Close' price higher than the price specified.",
+    "Binance ticker check: BTCUSDT 73823.14000000"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation",
+    "variant_hypothesis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260413-395c5631",
+    "dispatch_id": "dispatch-case-20260413-395c5631-20260413T221534Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "2ad402ad-02c0-4356-a460-003569a6d9d5",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260413-395c5631/researcher-analyses/2026-04-13/dispatch-case-20260413-395c5631-20260413T221534Z/personas/variant-view.md",
+    "source_persona_sha256": "c38d69ed47a7a7f1999e5b333d8282a6f7592c23d4e4c84adc8b882a2cb8a036"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary contract and venue sources were strong; contextual spot cross-checks improved confidence. Independence is medium and source-of-truth ambiguity is low-to-medium because the rule is clear but single-minute-close contracts remain mechanically fragile.",
+  "strongest_disconfirmers": [
+    "Resolution depends on one exact Binance one-minute close at 12:00 ET, so a modest temporary selloff could still resolve No.",
+    "Single-venue settlement creates some operational and divergence risk."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT spot checked near 73823, about 1823 above strike.",
+    "Recent Binance one-minute closes were all in the mid-73k range.",
+    "CoinGecko and Coinbase spot checks also showed high-73k pricing."
+  ],
+  "timing_relevance": "High: the contract resolves on the Binance BTCUSDT 12:00 ET one-minute close on 2026-04-15, so exact date, timezone, and minute mapping matter.",
+  "unresolved_ambiguities": [
+    "Exact handling of any venue-display or post-hoc data edge case was not independently documented beyond the rule text.",
+    "No full volatility/event calendar audit was performed beyond current price verification."
+  ],
+  "what_would_change_view": "A move back toward 72k, visible Binance divergence from other venues, or evidence of settlement-minute ambiguity would lower the Yes estimate materially."
+}

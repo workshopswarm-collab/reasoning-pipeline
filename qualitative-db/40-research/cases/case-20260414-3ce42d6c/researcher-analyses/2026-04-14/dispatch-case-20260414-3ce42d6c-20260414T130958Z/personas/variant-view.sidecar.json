@@ -1,0 +1,63 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Exact timestamp dependence at 16:00 UTC / 12:00 ET.",
+    "Single-exchange, single-pair, single-field settlement dependency.",
+    "No direct archival capture of the exact resolving candle in this run."
+  ],
+  "key_assumptions": [
+    "Binance public BTCUSDT market data is a fair contextual proxy for the relevant trading state on the assignment date.",
+    "Residual uncertainty is concentrated in the exact noon-ET Binance 1-minute close rather than in broad BTC direction.",
+    "No exchange-specific anomaly altered the exact resolving candle versus the observed above-70000 context."
+  ],
+  "main_logical_chain": [
+    "Market implies near-certainty at 99.95% for Yes.",
+    "Contract mechanics show settlement depends on one exact Binance BTC/USDT noon-ET minute close, not generic BTC spot.",
+    "Binance current market data shows BTCUSDT materially above 70000, supporting the market's direction.",
+    "Because the contract is narrow and the market is extreme, the remaining risk is concentrated in exact-candle and source-mechanics fragility.",
+    "That justifies a very high but sub-market estimate of 97%."
+  ],
+  "main_thesis": "The market is directionally right that Yes is overwhelmingly likely, but the only credible variant risk is exchange-specific noon-candle settlement mechanics rather than broad BTC bearishness.",
+  "own_probability": 0.97,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "12:00 America/New_York = 16:00 UTC",
+    "BTCUSDT current price 74544.71; fetched low 70818.57",
+    "Yes only if Binance BTC/USDT 1m close is strictly greater than 70000"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "contract_interpretation",
+    "variant_hypothesis",
+    "risk_management"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-3ce42d6c",
+    "dispatch_id": "dispatch-case-20260414-3ce42d6c-20260414T130958Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "fc9667cb-b24a-4bc0-a81f-f501bdd86843",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-3ce42d6c/researcher-analyses/2026-04-14/dispatch-case-20260414-3ce42d6c-20260414T130958Z/personas/variant-view.md",
+    "source_persona_sha256": "76498fd17b7978e99122121c3bab868ccdccc93e2e26888a41d1b6fe6f56f623"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary rules source is strong for mechanics; Binance public market surface is strong contextual verification, but the exact historical settlement candle was not directly archived here.",
+  "strongest_disconfirmers": [
+    "The exact 12:00 ET Binance 1-minute historical close was not directly recovered in this runtime environment.",
+    "The contract references a chart display surface, leaving some implementation-level source ambiguity.",
+    "An abrupt move or exchange-specific edge case in the exact settlement minute could still matter."
+  ],
+  "strongest_supports": [
+    "Polymarket rules explicitly define Binance BTC/USDT 1m 12:00 ET close as the governing source.",
+    "Binance public market surface showed BTCUSDT trading at 74544.71 with fetched low 70818.57, both above 70000.",
+    "The price buffer above the strike reduces plain directional failure risk."
+  ],
+  "timing_relevance": "The relevant contract timestamp is 2026-04-14 12:00 America/New_York, explicitly verified as 16:00 UTC.",
+  "unresolved_ambiguities": [
+    "Whether Binance chart display and available public data surfaces would align perfectly for the resolving minute.",
+    "Whether the exact resolving candle had any transient anomaly despite broader above-threshold trading."
+  ],
+  "what_would_change_view": "Direct confirmation that the exact Binance noon-ET 1-minute close was at or below 70000, or evidence of Binance surface inconsistency for that minute, would materially reduce or reverse the Yes view."
+}

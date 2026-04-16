@@ -1,0 +1,63 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A sharp downside move into the exact noon ET minute could fail the contract even if the broader weekly thesis stays bullish.",
+    "Venue-specific anomalies on Binance matter more than usual because no cross-exchange averaging is allowed.",
+    "The market may be underpricing uncertainty rather than misreading direction."
+  ],
+  "key_assumptions": [
+    "BTC remains in an above-70k regime through the April 20 noon ET observation window.",
+    "No major risk-off move erases the current roughly 6% buffer before the exact settlement minute.",
+    "Binance remains operationally reliable without a settlement-relevant print anomaly."
+  ],
+  "main_logical_chain": [
+    "The contract resolves from the Binance BTC/USDT 12:00 ET one-minute final close on April 20.",
+    "Current Binance price context places BTC materially above the 70000 threshold.",
+    "Recent completed daily closes above 70000 support a Yes base case.",
+    "But short-horizon crypto volatility and timestamp-specific settlement mechanics make the market's 84.5% confidence look slightly high.",
+    "Therefore Yes remains favored, but at a discounted confidence estimate of 79%."
+  ],
+  "main_thesis": "Yes is favored because Binance BTC/USDT is currently comfortably above 70000, but the market is slightly overconfident for a single-minute timestamp-specific contract.",
+  "own_probability": 0.79,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone (noon) ... has a final 'Close' price higher than ... 70000.",
+    "Current market-implied probability is 84.5% from the assignment price of 0.845.",
+    "79%."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "risk_management",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-e15c72fe",
+    "dispatch_id": "dispatch-case-20260414-e15c72fe-20260414T193100Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "fb39ee06-fdb0-42d6-9b5d-5b1009fcb94d",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-e15c72fe/researcher-analyses/2026-04-14/dispatch-case-20260414-e15c72fe-20260414T193100Z/personas/risk-manager.md",
+    "source_persona_sha256": "4493be5d0cd8b1f380e7f1d1c2dca4a5f27d68933aab77015451d4ac3d412ded"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Low source-of-truth ambiguity and strong directness from contract rules plus Binance data, but only medium independence because the evidence set is concentrated on the same contract/venue stack.",
+  "strongest_disconfirmers": [
+    "Recent BTC daily ranges on Binance were still large enough that a sub-70k noon print remains plausible.",
+    "This contract settles on one exact one-minute close, so spot distance can overstate confidence.",
+    "Binance-only settlement creates venue-specific dislocation risk."
+  ],
+  "strongest_supports": [
+    "Binance is the named settlement venue and BTC/USDT the named pair.",
+    "Spot at retrieval time was about 74258 on Binance, well above 70000.",
+    "Recent sampled daily Binance closes were all above 70000."
+  ],
+  "timing_relevance": "Timing is central because the market settles on one exact 12:00 ET one-minute close on April 20, not on current spot or daily close.",
+  "unresolved_ambiguities": [
+    "No stronger independent causal catalyst review was obtained beyond direct price and contract checks.",
+    "Exact Binance source-surface behavior at settlement time still carries some operational uncertainty."
+  ],
+  "what_would_change_view": "I would cut the estimate if BTC trades persistently near 71k/70k before April 20 or if Binance shows venue-specific anomalies; I would move closer to market if BTC stays stably above roughly 72k-73k into the final 24-48 hours."
+}

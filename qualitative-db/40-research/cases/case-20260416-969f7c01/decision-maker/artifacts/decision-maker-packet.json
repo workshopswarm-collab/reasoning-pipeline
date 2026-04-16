@@ -1,0 +1,155 @@
+{
+  "schema_version": "decision-packet/v1",
+  "generated_at": "2026-04-15T22:00:00-04:00",
+  "context": {
+    "case_key": "case-20260416-969f7c01",
+    "dispatch_id": "refresh-case-20260416-969f7c01-20260416T020025Z",
+    "question": "Will the price of Ethereum be above $2,200 on April 17?",
+    "market_id": "30172bb7-9f35-4ca6-93a4-adb8544ba07a",
+    "external_market_id": "0x99eb86c2cf41bbf90f3df2f839525c317790ad8b8024f55a80c997255e8787f7",
+    "market_slug": "ethereum-above-2200-on-april-17",
+    "platform": "polymarket",
+    "primary_market_url": "https://polymarket.com/event/ethereum-above-2200-on-april-17",
+    "market_title": "Will the price of Ethereum be above $2,200 on April 17?",
+    "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260416-969f7c01/synthesizer-agent/decision-handoff.md",
+    "source_syndicated_finding_path": "qualitative-db/40-research/cases/case-20260416-969f7c01/synthesizer-agent/syndicated-finding.md",
+    "source_light_refresh_brief_path": "qualitative-db/40-research/cases/case-20260416-969f7c01/decision-maker/refreshes/refresh-case-20260416-969f7c01-20260416T020025Z/light-refresh-brief.json",
+    "refresh_mode": "light",
+    "decision_maker_agent": "decision-maker",
+    "canonical_markdown_path": "decision-maker-packet.md",
+    "canonical_json_path": "artifacts/decision-maker-packet.json"
+  },
+  "decision": {
+    "side": "yes",
+    "trade_authorization": "watch_only",
+    "position_policy": "hold_only",
+    "decision_readiness": "ready",
+    "primary_crux": "The move from 0.945 to 0.955 is best treated as repricing rather than a broken thesis: ETH above $2,200 on the April 17 noon ET Binance minute remains the clear base case, but the market is now even richer relative to bounded fair value for a venue-specific single-minute contract with overnight tail risk still live.",
+    "secondary_cruxes": [
+      "No new governing-source evidence in the refresh brief justifies lifting fair value.",
+      "The remaining disagreement is mostly pricing, not direction; Yes is strong, but 0.955 pushes farther into near-certainty territory than the evidence supports.",
+      "Time decay alone over the last 0.32 hours does not overcome the same exact-minute settlement and overnight-path risks identified previously."
+    ],
+    "thesis_class": "price_not_good_enough"
+  },
+  "valuation": {
+    "fair_value_low": 0.89,
+    "fair_value_high": 0.92,
+    "fair_value_mid": 0.905,
+    "independent_verification_quality": "medium",
+    "compressed_toward_market_applied": false,
+    "compression_reason": "The prior bounded synthesis already incorporated a strong above-strike ETH regime; the new market move adds price, not new evidence, so fair value stays unchanged while execution worsens.",
+    "market_reference_price": 0.955,
+    "edge_mid_vs_market_pct_points": -5.0
+  },
+  "execution_semantics": {
+    "price_source": "market_snapshot_quote",
+    "price_axis": "market_implied_true_prob",
+    "rebalance_threshold_fraction": 0.1,
+    "allow_auto_reversal": false,
+    "quote_staleness_seconds": 300,
+    "valid_until": "2026-04-17T02:01:20.988427+00:00"
+  },
+  "risk_controls": {
+    "confidence_level": "medium",
+    "portfolio_constraints": [
+      "Do not add fresh exposure at the updated market price.",
+      "Treat exact-minute Binance settlement risk as the dominant execution constraint even with a strong directional Yes view.",
+      "Reopen only if market cheapens materially or if a near-settlement Binance check preserves a large cushion above 2200."
+    ],
+    "liquidity_caution": "low",
+    "max_position_size_pct_bankroll": 0.02,
+    "max_additional_exposure_pct_bankroll": 0.01,
+    "max_single_order_pct_bankroll": 0.005,
+    "slippage_tolerance_bps": 100,
+    "liquidity_min_depth": 0,
+    "correlation_bucket_limit_pct_bankroll": 0.05
+  },
+  "bands": [
+    {
+      "name": "max_enter",
+      "min_p": 0,
+      "max_p": 0.82,
+      "target_exposure_fraction": 0,
+      "notes": "Would require an unusually large dislocation versus this packet's high Yes base case."
+    },
+    {
+      "name": "scaled_enter",
+      "min_p": 0.82,
+      "max_p": 0.89,
+      "target_exposure_fraction": 0,
+      "notes": "Potential value zone if ETH remains comfortably above strike and no new settlement-surface issues appear."
+    },
+    {
+      "name": "hold",
+      "min_p": 0.89,
+      "max_p": 0.92,
+      "target_exposure_fraction": 0,
+      "notes": "Bounded fair-value zone; maintain watch-only hold posture."
+    },
+    {
+      "name": "trim",
+      "min_p": 0.92,
+      "max_p": 0.96,
+      "target_exposure_fraction": 0,
+      "notes": "Above fair value for a one-minute crypto settlement with residual path risk."
+    },
+    {
+      "name": "exit",
+      "min_p": 0.96,
+      "max_p": 1,
+      "target_exposure_fraction": 0,
+      "notes": "Avoid or exit at near-certainty pricing because even a brief downside move can flip the result."
+    }
+  ],
+  "invalidation": {
+    "thesis_breakers": [
+      "ETH/USDT moves materially closer to 2200 or below it before the Apr 17 fixing window.",
+      "A bearish macro, crypto, or exchange-specific shock materially raises the probability of a sub-2200 settlement minute.",
+      "Binance-specific pricing, liquidity, or display-surface issues emerge near resolution."
+    ],
+    "time_breakers": [
+      "A fresh direct Binance observation on Apr 17 morning should supersede this packet before any action.",
+      "The actual Apr 17 12:00 ET Binance 1-minute close fully resolves and obsoletes this judgment."
+    ],
+    "market_structure_breakers": [
+      "Market reprices materially after fresh spot or volatility changes, altering the value comparison.",
+      "Binance settlement-surface or ET-to-UTC candle mapping behavior near the fixing window becomes abnormal."
+    ],
+    "reversal_conditions": [
+      "Upgrade only if later pre-fix Binance checks still show a wide cushion above 2200 and the market price cheapens below fair value.",
+      "Downgrade if ETH loses substantial cushion or volatility rises materially.",
+      "Do not auto-reverse from this packet."
+    ]
+  },
+  "epistemic_status": {
+    "key_uncertainties": [
+      "Whether the current cushion above 2200 survives the exact settlement minute.",
+      "Whether overnight or U.S.-morning shocks emerge before the fixing window.",
+      "How much residual discount exact-minute Binance UI-versus-API sensitivity deserves at this price level."
+    ],
+    "what_would_change_my_mind": [
+      "A fresh near-settlement Binance check still showing ETH comfortably above 2200 with stable conditions would modestly improve confidence.",
+      "A materially cheaper market price with unchanged cushion would improve the execution case.",
+      "A fast move toward 2300 or below would reduce directional confidence materially."
+    ],
+    "reasons_to_pass": [
+      "The updated market price is even further above bounded fair value.",
+      "The refresh added repricing, not stronger evidence.",
+      "The contract still resolves on one exact Binance minute rather than broad daily direction."
+    ],
+    "decision_quality": "good_not_clean"
+  },
+  "audit": {
+    "one_sentence_rationale": "ETH above $2,200 on the April 17 Binance noon minute remains the clear base case, but with fair value still around 0.905 and the market now repriced to 0.955, the disciplined output remains watch-only because the richer price further overstates confidence in a single-minute crypto settlement.",
+    "notes": "This refresh is valuation deterioration, not regime change: same directional Yes, worse execution economics.",
+    "market_baseline_respected": true,
+    "action_bias_check_passed": true,
+    "self_preservation_bias_check_passed": true,
+    "structured_handoff_primary_used": true,
+    "prose_fallback_used": true,
+    "verification_mode_used": "targeted_escalation",
+    "additional_verification_performed": true,
+    "additional_verification_notes": "targeted_pack"
+  }
+}

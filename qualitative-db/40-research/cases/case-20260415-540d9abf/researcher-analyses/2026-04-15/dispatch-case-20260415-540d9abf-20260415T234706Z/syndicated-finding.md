@@ -1,0 +1,149 @@
+---
+type: syndicated_finding
+case_key: case-20260415-540d9abf
+dispatch_id: dispatch-case-20260415-540d9abf-20260415T234706Z
+question: "Will the price of Solana be above $80 on April 19?"
+coverage_status: complete
+market_implied_probability: 0.9
+syndicated_probability_low: 0.8
+syndicated_probability_high: 0.87
+syndicated_probability_midpoint: 0.835
+edge_vs_market_pct_points: -6.5
+relation_to_market: below_market
+edge_quality: moderate
+edge_independent_verification_quality: medium
+compressed_toward_market_due_to_verification: no
+contract_ambiguity_level: minor
+contract_ambiguity_reason: "small residual Binance UI vs API candle-mapping ambiguity"
+independently_verified_points: ["Polymarket rules explicitly resolve on Binance SOL/USDT 1-minute 12:00 ET close", "Current Binance SOLUSDT spot is about 84.92, above the 80 threshold", "Recent Binance 24h low was about 82.65, still above 80", "Recent daily Binance closes show SOL trading in an above-80 regime"]
+verification_gap_summary: "The key remaining gap is short-horizon downside/timestamp volatility into the exact Apr 19 noon ET minute."
+best_countercase_summary: "A normal crypto selloff or brief noon-minute dip can still push a single-print settlement below 80 despite current spot above strike."
+main_reason_for_disagreement: "Remaining disagreement is mostly about how much to discount confidence for single-minute path risk versus current cushion."
+resolution_mechanics_summary: "Yes resolves only if Binance SOL/USDT's Apr 19 12:00 ET 1-minute candle final close is strictly above 80."
+freshness_sensitive: yes
+freshness_driver: "Binance SOL/USDT price path into the exact Apr 19 noon ET settlement minute"
+decision_blockers: ["Single-minute settlement makes ordinary crypto volatility materially relevant", "Verification is strong on mechanics but only medium on independent edge confirmation", "Minor UI-versus-API implementation ambiguity remains"]
+blockers_require_new_research: no
+disagreement_type: timing
+disagreement_intensity: medium
+synthesis_confidence_quality: medium
+staleness_risk: high
+next_checkpoint: "Recheck Binance SOL/USDT and noon-ET candle mapping on Apr 18-19 ET, especially if spot compresses toward 82 or lower."
+follow_up_needed: yes
+---
+
+# Claim
+
+SOL > $80 on the April 19 noon-ET Binance 1-minute close is still more likely than not, but the market’s ~90% Yes price looks somewhat rich for a single-minute settlement several days out in a volatile asset; my post-synthesis view is a modestly compressed Yes range centered below market.
+
+## Alpha summary
+
+Market-implied probability is about 0.90. My syndicated probability range is 0.80 to 0.87. That is a modest bearish-to-market compression, so the edge versus market looks marginal rather than actionable. The likely mispricing is overconfidence in translating a mid-80s current spot price into near-certainty for a single future one-minute Binance close.
+
+## Input coverage
+
+All five personas were available and usable: base-rate, catalyst-hunter, market-implied, risk-manager, and variant-view. Assumption/evidence artifacts were referenced where helpful, but the core synthesis relied on the raw persona findings plus a bounded fresh verification pass on Polymarket rules and live Binance data. Coverage is complete because no persona was missing and the central contract mechanics were repeatedly checked.
+
+## Market-implied baseline
+
+Baseline is 0.90 Yes from the market snapshot. Fresh external check matched that neighborhood, with the 80-strike contract trading around 91 cents Yes / 11 cents No on the fetched Polymarket page. The market appears stable in direction: strongly Yes, but not unanimously priced as certainty.
+
+## Syndicated probability estimate
+
+My final post-synthesis estimate is 0.80 to 0.87 Yes. That keeps Yes favored because SOL is currently above 80, recent Binance ranges and daily closes are above 80, and the contract is asking for persistence rather than a fresh breakout. But I keep the range below market because the outcome still depends on one exact minute close several days away in a volatile asset.
+
+## Difference from swarm-implied center
+
+The provisional swarm center was about 0.84. My final range is broadly consistent with that center and does not materially depart from it. The main synthesis adjustment was not away from the swarm but against the most bullish lane: the base-rate 0.93 looked somewhat overconfident relative to the same raw facts once the single-minute settlement fragility is taken seriously.
+
+## Agreement or disagreement with market
+
+I modestly disagree with the market. The market direction is probably right, but ~0.90 still looks a bit rich for a contract that can fail on a brief, localized dip into one noon ET Binance minute. This is not an 'above 80 sometime that day' market; it is a narrow timestamp market.
+
+## Independent verification of edge
+
+Independent verification quality is medium. I independently rechecked the Polymarket rule text and confirmed the named settlement mechanics, then rechecked Binance spot, 24h range, and recent daily klines. That verification supports the core bullish direction: SOL is around 84.92, recent 24h low is around 82.65, and recent daily closes are above 80. What remains weak is not the mechanics but the edge itself: there is no strong independent proof that a ~90% price is too high by much, because the unresolved risk is future volatility into one precise minute rather than a static factual error.
+
+## Compression toward market due to verification
+
+No. The synthesis did not compress toward market because verification was insufficient; instead it stayed near the swarm center and below market because the verification largely confirmed the swarm's caution. The synthesis also did not widen into a more bearish stance because fresh checks still show SOL comfortably above the threshold and trading in an above-80 regime.
+
+## Timing and catalyst posture
+
+The next meaningful checkpoint is the final 24 hours before Apr 19 noon ET. The dominant catalyst is not a scheduled bullish event but whether crypto tape remains stable into settlement. The edge is more likely to decay than widen unless SOL builds a materially larger cushion; waiting probably helps only if you expect better visibility on whether the price buffer survives into the exact minute.
+
+## Decision blockers
+
+No hard blocker prevents a directional judgment, but high-confidence action is limited by single-minute settlement risk, normal crypto downside volatility, and only medium-strength verification of any true edge versus market. Minor contract-surface ambiguity remains around Binance UI versus API representation, though it does not currently look outcome-changing.
+
+## Implication for the question
+
+The best current synthesis answer is Yes is more likely than No, but not as comfortably as the market price implies. Operationally, this is a hold-above-threshold question with real timestamp fragility, not a near-certain in-the-money contract.
+
+## Consensus across personas
+
+All personas agree the contract is defined by the Binance SOL/USDT 1-minute close at 12:00 ET on Apr 19. All agree SOL was trading in the mid-84s during research, giving a several-dollar cushion above 80. All agree Yes is the likelier outcome. All agree the main residual risk is short-horizon volatility combined with the narrow single-minute settlement design.
+
+## Key disagreements across personas
+
+Main disagreement is timing/risk-weighting, not facts. Base-rate weighted current cushion and short remaining horizon heavily and landed at 0.93. Market-implied and catalyst-hunter were modestly below market at 0.84-0.86, respecting both current cushion and single-minute risk. Risk-manager and variant-view were more skeptical at 0.78 because they treated a ~6% downside move over several days as too plausible for a 90% market price. There was also a minor source-of-truth disagreement about how much to care about Binance UI-versus-API mapping, but no lane found a likely outcome-changing contract wrinkle.
+
+## Best countercase
+
+The best countercase, represented most clearly by risk-manager and variant-view, is that the market is over-translating a mid-80s spot price into near-certainty even though a normal crypto drawdown or transient noon-minute dip can still resolve No. This is a confidence discount countercase, not a strong bearish catalyst thesis.
+
+## Encapsulated assumptions
+
+Shared assumptions: Binance remains the operative settlement surface; current above-80 regime remains informative; no major SOL-specific or crypto-wide shock hits before settlement. Contested assumptions: whether a ~4.9 to 6% cushion is enough to justify something close to 90%; whether recent above-80 daily closes meaningfully reduce single-minute failure risk. Fragile assumptions: Binance UI/API candle mapping stays operationally clean; noon-minute price behavior is not unusually noisy or dislocated.
+
+## Encapsulated evidence map
+
+Strongest supporting evidence: Polymarket rules clearly specify Binance SOL/USDT 1-minute noon-ET close; live Binance spot is about 84.92; recent 24h low is about 82.65; recent daily closes are above 80. Strongest contradictory evidence: crypto can move more than 6% over a few days; the contract fails on one exact minute; there is no strong independent positive catalyst that would justify extreme confidence. Governing source-of-truth evidence is clean on rules, while future path evidence remains inherently uncertain.
+
+## Evidence weighting
+
+Most weight went to governing contract text plus live Binance spot/range data, because this is a short-horizon threshold market. I downweighted generic narrative arguments and lanes that implicitly treated current spot as almost sufficient by itself. I largely ignored broader Solana fundamental discussion because it is less decision-useful than exchange-state and settlement mechanics for a 4-day single-minute contract.
+
+## Counterpoints / strongest disconfirming evidence
+
+The strongest disconfirming evidence is not a current factual contradiction but the plausibility of a normal downside move. With spot around 84.92, only a modest crypto drawdown is needed to threaten 80, and this contract can resolve No on a brief dip into one exact minute even if SOL trades above 80 much of the time before and after.
+
+## Resolution or source-of-truth interpretation
+
+Resolution should be interpreted narrowly: Yes only if the Binance SOL/USDT 1-minute candle for Apr 19 12:00 ET has a final close strictly higher than 80. Equality at 80 is No. Other exchanges, other pairs, broader intraday levels, or daily closes do not count. I treat the ET-to-UTC mapping as practically clear, while noting minor residual ambiguity because Polymarket cites the Binance chart UI and the verification path used Binance API surfaces alongside that UI-defined contract text.
+
+## Why this could create or destroy alpha
+
+If the market is modestly overpricing narrow timestamp contracts by anchoring too hard on current spot, there can be small No-side value even when directionally bullish. But this case does not show a large clean edge: the same fresh checks that support skepticism also support the market's broad Yes direction. The likely alpha question is calibration at the margin, not a major disagreement with consensus.
+
+## What would falsify this interpretation / change the view
+
+I would move closer to market or above it if SOL builds and holds a materially wider cushion, such as sustained upper-80s trading into Apr 18-19. I would move lower if SOL revisits the low-80s, if broader crypto beta weakens materially, or if anything emerges suggesting Binance settlement-surface irregularity around the noon ET candle. The single most view-changing observation would be spot compressing toward 80 close to settlement.
+
+## Highest-value next research
+
+Single highest-value next check: same-day Apr 19 ET verification of Binance SOL/USDT price cushion and the exact noon-ET 1-minute candle behavior.
+
+## Source-quality assessment
+
+Primary governing source class was first-party contract text from Polymarket plus first-party exchange data from Binance. Most important secondary source class was recent Binance range/klines as context rather than independent narrative sourcing. Evidence independence is medium at best because the case is intentionally Binance-centered. Source-of-truth ambiguity is low overall but not zero. The synthesis is not bottlenecked by missing personas, but it is bottlenecked by the irreducible fact that future one-minute volatility cannot be independently 'verified away.'
+
+## Verification impact
+
+Yes, additional synthesis-stage verification was used. It materially confirmed that the contract mechanics are clean and that current spot/range support a Yes lean. Cross-lane comparison also made clear that the real disagreement is calibration, not facts. The synthesis exposed one lane-level weakness: base-rate appears somewhat overconfident relative to the same verified mechanics and volatility structure, while the lower-confidence lanes better preserved timestamp fragility.
+
+## Persona contribution map
+
+base-rate — strongest persistence/outside-view case; useful reminder that current cushion plus short horizon makes Yes the default, but likely overconfident at 0.93. catalyst-hunter — best articulation that the main catalyst is absence of negative shock rather than presence of positive event; high-value framing for near-term monitoring. market-implied — best market-respecting calibration lane; useful benchmark for modest below-market compression without forcing a contrarian stance. risk-manager — strongest articulation of single-minute path-risk and overconfidence critique; key source for preserving the bearish-to-market countercase. variant-view — strongest methodological warning against over-translating current spot into near-certainty; useful on timestamp/precision and threshold-fragility framing.
+
+## Reusable lesson signals
+
+Possible durable lesson: single-minute crypto threshold contracts should trigger explicit confidence discounting even when spot is already above strike. Possible underbuilt driver: a more formal framework for translating spot cushion versus realized volatility into confidence for narrow timestamp markets. Possible source-quality lesson: exchange-UI settlement markets benefit from explicit API-to-UI mapping checks. Reusability confidence: medium.
+
+## Orchestrator review suggestions
+
+review later for durable lesson: yes; review later for driver candidate: yes; review later for canon or linkage issue: no; review later for swarm-method issue: yes. Reason: this case suggests a reusable calibration rule for narrow timestamp crypto contracts and shows the swarm should guard against base-rate lanes drifting too confident when path-dependent settlement dominates.
+
+## Recommended follow-up
+
+Request decision-maker review only if a marginal edge matters operationally; otherwise wait for the Apr 18-19 checkpoint and rerun a light verification pass focused on spot cushion, broader crypto tape, and noon-ET settlement mechanics.

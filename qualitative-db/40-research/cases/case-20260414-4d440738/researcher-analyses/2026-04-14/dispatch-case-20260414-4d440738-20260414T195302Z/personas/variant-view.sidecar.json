@@ -1,0 +1,58 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Late drawdown toward or below 68000 before April 20.",
+    "Binance-specific pricing or operational irregularity around settlement minute."
+  ],
+  "key_assumptions": [
+    "The current roughly 9% cushion above 68000 is large enough that ordinary six-day volatility still leaves Yes as the dominant outcome.",
+    "No Binance-specific anomaly materially distorts the settlement minute."
+  ],
+  "main_logical_chain": [
+    "The rules make Binance BTCUSDT 12:00 ET 1-minute final close the governing source of truth.",
+    "Current Binance spot and recent daily context place BTC materially above 68000, so Yes is the base case.",
+    "Because the contract is minute-specific and exchange-specific with six days remaining, confidence should be high but not as high as the market's 93.5%."
+  ],
+  "main_thesis": "BTC is likely to remain above 68000 by the April 20 noon ET Binance minute close, but the market is slightly overconfident because settlement depends on one future exchange-specific minute close rather than broad BTC direction.",
+  "own_probability": 0.89,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "market-implied 93.5% vs own 89%",
+    "Binance BTCUSDT spot 74233.62",
+    "12:00 ET equals 16:00 UTC"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation",
+    "variant_hypothesis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-4d440738",
+    "dispatch_id": "dispatch-case-20260414-4d440738-20260414T195302Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "21ed5f76-ad34-464c-a787-1243dd4b6a10",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-4d440738/researcher-analyses/2026-04-14/dispatch-case-20260414-4d440738-20260414T195302Z/personas/variant-view.md",
+    "source_persona_sha256": "d277c0d1ab4818a0435097f37d530eb25984773d44f11d776a089097a62498c7"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary source quality is strong for rules and current price context; source-of-truth ambiguity is low, but evidence independence is only moderate.",
+  "strongest_disconfirmers": [
+    "The contract resolves on a single future one-minute Binance close six days away, leaving meaningful residual path risk.",
+    "BTC can plausibly move more than 9% over that horizon in a volatile regime."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT spot was 74233.62 on 2026-04-14, about 9.17% above the threshold.",
+    "Recent Binance daily closes sampled for April 10-14 were above 68000.",
+    "CoinGecko independently showed bitcoin near 74238 USD, supporting current level sanity."
+  ],
+  "timing_relevance": "Settlement is specifically the Binance BTCUSDT 1-minute candle close at 2026-04-20 12:00 ET, which was explicitly verified as 16:00 UTC.",
+  "unresolved_ambiguities": [
+    "No future settlement-minute data exists yet, so the final outcome still depends on intervening volatility.",
+    "Cross-source independence is only moderate because Binance provides both governing spot family and recent kline context."
+  ],
+  "what_would_change_view": "I would move lower if BTC trades back toward 70000 or below before resolution or if Binance-specific irregularity appears; I would move closer to market if BTC stays comfortably above 72000-74000 into April 19-20."
+}

@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A fast downside move into April 20 could matter disproportionately because only one exact minute governs.",
+    "Residual source-of-truth implementation ambiguity remains until the exact governing surface is checked near settlement."
+  ],
+  "key_assumptions": [
+    "BTC does not suffer a roughly 7% downside move into the exact April 20 noon ET close.",
+    "Binance UI/API parity for the relevant candle close is effectively clean enough for mechanism verification.",
+    "No venue-specific disruption materially distorts the governing Binance candle near settlement."
+  ],
+  "main_logical_chain": [
+    "Market implies roughly 89.5% Yes.",
+    "Direct Binance data places BTC materially above 70000 with five days remaining.",
+    "That makes Yes the base case, but the contract settles on one exact noon-ET one-minute close rather than broad spot strength.",
+    "Therefore the best credible variant is modest overconfidence by the market, not a full bearish reversal thesis.",
+    "Final estimate: 85% Yes."
+  ],
+  "main_thesis": "Yes remains most likely because BTC is already materially above 70000, but the contract is slightly more fragile than market consensus implies because it resolves on one exact Binance noon-ET one-minute close.",
+  "own_probability": 0.85,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone (noon) ... has a final 'Close' price higher than the price specified.",
+    "Observed Binance BTC/USDT close around 15:34 ET on April 15: 74896.22"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "contract_interpretation",
+    "variant_hypothesis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-5996483c",
+    "dispatch_id": "dispatch-case-20260415-5996483c-20260415T193222Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "4a39ff71-10ae-46a1-bb1c-ceb8d45bffe1",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-5996483c/researcher-analyses/2026-04-15/dispatch-case-20260415-5996483c-20260415T193222Z/personas/variant-view.md",
+    "source_persona_sha256": "c40c0a049f7575b3ee4c0ecab301ec667f88ec011857055cd2a6ba6491a8ed86"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is medium-high: direct contract rules and direct Binance data were checked, with only modest residual ambiguity around the exact UI settlement surface.",
+  "strongest_disconfirmers": [
+    "This is an exact-timestamp market, so BTC can remain broadly strong yet still miss on the single governing one-minute close.",
+    "The rules name the Binance trading UI candle close specifically, while verification here used the public API as a close proxy."
+  ],
+  "strongest_supports": [
+    "Direct Binance data shows BTC/USDT around 74896 on April 15, about 7% above the threshold.",
+    "The observed April 15 noon ET Binance one-minute candle also closed comfortably above 70000.",
+    "The contract wording clearly identifies venue, pair, timezone, candle duration, and close-price test."
+  ],
+  "timing_relevance": "The case is highly date-sensitive because resolution depends on the April 20 12:00 ET Binance one-minute close, and about five days remained at research time.",
+  "unresolved_ambiguities": [
+    "Exact UI-versus-API parity on the settlement candle is not directly proven in this run.",
+    "Short-horizon BTC volatility over the next five days remains inherently uncertain."
+  ],
+  "what_would_change_view": "I would move closer to market if BTC stays comfortably above threshold into April 19-20 and the exact Binance governing surface is rechecked cleanly; I would move lower if BTC retraces toward 70k or venue-specific ambiguity rises."
+}

@@ -1,0 +1,58 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A continued risk-on move in SOL toward 86-88+ would erase most of the variant edge.",
+    "This thesis depends more on narrow settlement mechanics and volatility than on a bearish fundamental view."
+  ],
+  "key_assumptions": [
+    "The exact settlement-minute condition is materially riskier than the current spot cushion suggests.",
+    "Recent SOL volatility leaves a nontrivial path to a sub-80 noon ET close by April 19."
+  ],
+  "main_logical_chain": [
+    "The contract resolves on one exact Binance 12:00 ET one-minute close, not a daily average.",
+    "SOL is currently above 80, so Yes is more likely than No.",
+    "But recent price movement is still wide enough that a drop below 80 by the settlement minute is plausible.",
+    "Therefore the market is directionally right but too close to a near-lock."
+  ],
+  "main_thesis": "The strongest variant view is that Yes remains more likely than not, but the market is overconfident because settlement depends on one exact Binance 12:00 ET one-minute close rather than broad spot strength.",
+  "own_probability": 0.82,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for SOL/USDT 12:00 in the ET timezone has a final 'Close' price higher than the price specified.",
+    "The strongest credible variant view is not that Yes is wrong, but that the market is somewhat overconfident."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation",
+    "variant_hypothesis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-5ecb60de",
+    "dispatch_id": "dispatch-case-20260415-5ecb60de-20260416T000100Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "260a354b-b25f-4b75-9daf-3582247c7a86",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-5ecb60de/researcher-analyses/2026-04-16/dispatch-case-20260415-5ecb60de-20260416T000100Z/personas/variant-view.md",
+    "source_persona_sha256": "5b3b9b0a5575b60695699a8e05806b1d17fc3128045540113b69cb770db5ec1e"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality direct sources for both contract mechanics and price context, but only medium independence because both ultimately rely on Binance as the settlement source.",
+  "strongest_disconfirmers": [
+    "SOL already has a several-dollar cushion above 80 and could simply stay there into settlement.",
+    "If spot remains in the mid-80s or higher, the market's 90% could be roughly fair."
+  ],
+  "strongest_supports": [
+    "Current Binance SOL/USDT spot is around 84.8-85.4, leaving a cushion above 80.",
+    "Recent Binance daily closes have repeatedly been above 80.",
+    "Contract wording clearly keys resolution to Binance SOL/USDT with 0.01 price precision."
+  ],
+  "timing_relevance": "High: the contract is explicitly tied to the Binance SOL/USDT 12:00 ET one-minute close on April 19, 2026.",
+  "unresolved_ambiguities": [
+    "Exact pre-settlement volatility over the final 48-72 hours remains unknown.",
+    "The final outcome still depends on one future minute that has not occurred yet."
+  ],
+  "what_would_change_view": "I would move closer to the market if SOL stays comfortably above 80 and especially above 86-88 into the final day, or if additional direct Binance data show much lower breach risk than recent moves imply."
+}

@@ -1,0 +1,121 @@
+{
+  "artifact_type": "targeted_verification_pack",
+  "schema_version": "decision-targeted-verification-pack/v1",
+  "case_key": "case-20260415-6580bcd8",
+  "dispatch_id": "refresh-case-20260415-6580bcd8-20260415T083347Z",
+  "required": true,
+  "verification_mode": "targeted_escalation",
+  "pack_purpose": "Deterministic narrow follow-up pack for targeted escalation. It defines the crux questions and operational budgets, while source choice may remain model-driven within runtime-enforced tool guardrails.",
+  "verification_questions": [
+    "Does the latest available information materially change the decision, given: BTC distance from 72,000 and Binance-specific price action in the final hours before Apr 17 12:00 ET.?",
+    "How decision-relevant is the remaining contract/source-of-truth ambiguity: Low residual ambiguity around exact operational mapping of the noon-ET 1-minute Binance bar, but rules are otherwise explicit.?",
+    "Are the current blockers still material to final judgment: Edge versus market looks marginal after synthesis compression?",
+    "Is the main verification gap still decision-material: No strong independent way to quantify exact-minute downside risk beyond same-venue Binance history and current spot context.?"
+  ],
+  "structured_handoff_focus": {
+    "contract_ambiguity_level": "minor",
+    "contract_ambiguity_reason": "Low residual ambiguity around exact operational mapping of the noon-ET 1-minute Binance bar, but rules are otherwise explicit.",
+    "verification_gap_summary": "No strong independent way to quantify exact-minute downside risk beyond same-venue Binance history and current spot context.",
+    "best_countercase_summary": "A normal 2-3% BTC downdraft or one-minute Binance-specific dip near noon ET can still flip this to No.",
+    "main_reason_for_disagreement": "Weighting of narrow settlement-minute fragility versus current cushion above strike.",
+    "resolution_mechanics_summary": "Yes resolves only if Binance BTC/USDT’s Apr 17 12:00 ET 1-minute candle final Close is strictly above 72,000.",
+    "freshness_sensitive": "yes",
+    "freshness_driver": "BTC distance from 72,000 and Binance-specific price action in the final hours before Apr 17 12:00 ET.",
+    "decision_blockers": [
+      "Edge versus market looks marginal after synthesis compression",
+      "Exact-minute path dependence cannot be independently verified strongly from current data alone"
+    ],
+    "disagreement_type": "timing"
+  },
+  "supporting_persona_summaries": [
+    {
+      "persona": "market-implied",
+      "recommended_weight": "medium",
+      "own_probability": 0.73,
+      "main_thesis": "Market-implied Yes pricing is broadly reasonable because Binance BTC/USDT is already well above 72k, but the exact noon ET 1-minute close makes 77% slightly rich.",
+      "main_logical_chain": [
+        "Market implies 77% Yes and should be taken seriously as a prior.",
+        "Named settlement venue Binance currently shows BTC materially above 72k with recent realized prices mostly above strike.",
+        "That supports a high Yes probability, but single-minute-close mechanics justify a modest discount to market."
+      ],
+      "strongest_supports": [
+        "Binance spot snapshot showed BTCUSDT at 73846.60000000 during research.",
+        "Recent hourly Binance candles showed sustained trading mostly above 72k after the April 13 breakout."
+      ],
+      "strongest_disconfirmers": [
+        "The contract settles on one exact future 1-minute close, so a sharp downside move or resolution-minute noise could still flip the result."
+      ],
+      "unresolved_ambiguities": [
+        "How much intraday volatility will increase before the April 17 noon ET window.",
+        "Whether Binance-specific microstructure matters at the exact resolution minute."
+      ],
+      "what_would_change_view": "A move back toward or below 72k on Binance before resolution would lower the estimate materially; stable trading well above 74k into late April 16 would raise it.",
+      "timing_relevance": "High: the case resolves on April 17 at 12:00 ET using one specific Binance 1-minute candle close.",
+      "source_quality_view": "Low source-of-truth ambiguity and strong direct-source alignment, but evidence concentration on one exchange keeps independence only medium.",
+      "persona_finding_path": "qualitative-db/40-research/cases/case-20260415-6580bcd8/researcher-analyses/2026-04-15/dispatch-case-20260415-6580bcd8-20260415T081158Z/personas/market-implied.md",
+      "assumption_artifact_paths": [
+        "qualitative-db/40-research/cases/case-20260415-6580bcd8/researcher-analyses/2026-04-15/dispatch-case-20260415-6580bcd8-20260415T081158Z/assumptions/market-implied.md"
+      ],
+      "evidence_artifact_paths": []
+    }
+  ],
+  "selected_assumption_snippets": [
+    {
+      "path": "qualitative-db/40-research/cases/case-20260415-6580bcd8/researcher-analyses/2026-04-15/dispatch-case-20260415-6580bcd8-20260415T081158Z/assumptions/variant-view.md",
+      "frontmatter": {
+        "type": "assumption_note",
+        "case_key": "case-20260415-6580bcd8",
+        "dispatch_id": "dispatch-case-20260415-6580bcd8-20260415T081158Z",
+        "research_run_id": "a7e3a370-9ab1-4854-b2ff-1a3a349a47cf",
+        "analysis_date": "2026-04-15",
+        "persona": "variant-view",
+        "domain": "crypto",
+        "subdomain": "bitcoin",
+        "entity": "bitcoin",
+        "topic": "bitcoin-above-72k-on-april-17",
+        "question": "Will the Binance BTC/USDT 12:00 ET one-minute candle on 2026-04-17 close above 72000?",
+        "driver": "operational-risk",
+        "date_created": "2026-04-15",
+        "agent": "orchestrator",
+        "status": "active",
+        "certainty": "medium",
+        "importance": "high",
+        "time_horizon": "short",
+        "related_entities": [
+          "bitcoin"
+        ],
+        "related_drivers": [
+          "operational-risk",
+          "reliability"
+        ],
+        "proposed_entities": [],
+        "proposed_drivers": [
+          "intraday-timing-risk"
+        ],
+        "upstream_inputs": [],
+        "downstream_uses": [
+          "qualitative-db/40-research/cases/case-20260415-6580bcd8/researcher-analyses/2026-04-15/dispatch-case-20260415-6580bcd8-20260415T081158Z/personas/variant-view.md"
+        ],
+        "tags": [
+          "assumption-note",
+          "btc",
+          "timing-risk",
+          "venue-specific"
+        ]
+      },
+      "snippet": "# Assumption\nThe market’s 0.77 Yes price is slightly underweighting the chance that a narrow intraday downdraft or Binance-specific print at exactly 12:00 ET can knock BTC/USDT below 72,000 even if broader trend conditions stay constructive.\n## Why this assumption matters\nThe entire variant view depends on separating \"BTC probably remains generally strong\" from \"the contract resolves Yes.\" This market is not about end-of-day or average price; it is about one exchange, one pair, and one minute.\n## What this assumption supports\n- A modestly lower-than-market Yes estimate rather than a strong contrarian No call.\n- Emphasis on timing and venue-specific fragility as the main neglected mechanism.\n- The judgment that market confidence may be a bit too smooth for a narrow-resolution contract.\n## Evidence or logic behind the assumption\n- The threshold is only about 2.5% below live spot during this run, which sounds comfortable but is still within ordinary BTC intraday movement.\n- Recent daily range data from Binance shows swings comfortably larger than 2.5%, including a 2026-04-12 close below 72k.\n- Polymarket rules explicitly key resolution to one Binance minute candle, so local microstructure and exact timing matter more than broad consensus narrative alone.\n## What would falsify it\n- If BTC meaningfully re-rates higher and holds well above 72k into April 17, the narrow-timing risk becomes much less important.\n- If additional direct evidence shows the noon ET minute is operationally very unlikely to differ meaningfully from surrounding prices under normal conditions, then the vari …",
+      "full_char_count": 2377,
+      "snippet_char_count": 1602
+    }
+  ],
+  "selected_evidence_snippets": [],
+  "selected_supporting_note_snippets": [],
+  "pack_budget": {
+    "max_chars": 6000,
+    "actual_chars_before_trim": 9944,
+    "actual_chars_after_trim": 7718,
+    "approx_tokens_before_trim": 2486,
+    "approx_tokens_after_trim": 1929,
+    "trim_applied": true
+  }
+}

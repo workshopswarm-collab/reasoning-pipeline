@@ -1,0 +1,257 @@
+{
+  "actor": "decision-maker",
+  "agent_tool_use_allowed": false,
+  "artifact_type": "decision_stage_status",
+  "case_key": "case-20260415-d129d0ec",
+  "decision_context_path": "roles/decision-maker/runtime/artifacts/case-20260415-d129d0ec/decision-context-dispatch-case-20260415-d129d0ec-20260415T014044Z.json",
+  "decision_lane": {
+    "topic_id": "2568",
+    "topic_title": "case-20260415-d129d0ec | decision | T014044Z",
+    "session_key": "agent:main:telegram:group:-1003846500961:topic:2568"
+  },
+  "decision_launch_claim": {
+    "claimed_at": "2026-04-15T01:52:42.108231Z",
+    "decision_context_path": "roles/decision-maker/runtime/artifacts/case-20260415-d129d0ec/decision-context-dispatch-case-20260415-d129d0ec-20260415T014044Z.json",
+    "launch_log_path": "scripts/.runtime-state/decision-maker-launches/case-20260415-d129d0ec-20260415T015242Z.log",
+    "launcher": "pipeline_automation_actions.launch_decision_maker",
+    "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260415-d129d0ec/decision-prompt-dispatch-case-20260415-d129d0ec-20260415T014044Z.md",
+    "runner_pid": 5781
+  },
+  "decision_prompt_path": "roles/decision-maker/runtime/artifacts/case-20260415-d129d0ec/decision-prompt-dispatch-case-20260415-d129d0ec-20260415T014044Z.md",
+  "decision_readiness": "needs_more_research",
+  "decision_target_chat_id": "-1003846500961",
+  "decision_target_session_key": "agent:main:telegram:group:-1003846500961:topic:2568",
+  "decision_visible_finish_marker": "DECISION-MAKING COMPLETED, DECISION PACKAGE CREATED | market=Russia military action against Kyiv municipality by April 17? | dispatch_id=dispatch-case-20260415-d129d0ec-20260415T014044Z | packet_path=qualitative-db/40-research/cases/case-20260415-d129d0ec/decision-maker/decision-maker-packet.md",
+  "decision_visible_receipt_marker": "SYNTHESIS RECEIVED | market=Russia military action against Kyiv municipality by April 17? | dispatch_id=dispatch-case-20260415-d129d0ec-20260415T014044Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260415-d129d0ec/decision-context-dispatch-case-20260415-d129d0ec-20260415T014044Z.json",
+  "decision_visible_start_marker": "DECISION-MAKING ANALYSIS UNDERWAY | market=Russia military action against Kyiv municipality by April 17? | dispatch_id=dispatch-case-20260415-d129d0ec-20260415T014044Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260415-d129d0ec/decision-context-dispatch-case-20260415-d129d0ec-20260415T014044Z.json",
+  "dispatch_id": "dispatch-case-20260415-d129d0ec-20260415T014044Z",
+  "last_stage_event": {
+    "at": "2026-04-15T01:53:34.701812Z",
+    "stage": "decision_execution",
+    "state": "visible_marker_sent",
+    "message": "DECISION-MAKING COMPLETED, DECISION PACKAGE CREATED | market=Russia military action against Kyiv municipality by April 17? | dispatch_id=dispatch-case-20260415-d129d0ec-20260415T014044Z | packet_path=qualitative-db/40-research/cases/case-20260415-d129d0ec/decision-maker/decision-maker-packet.md"
+  },
+  "packet_json_path": "qualitative-db/40-research/cases/case-20260415-d129d0ec/decision-maker/artifacts/decision-maker-packet.json",
+  "packet_markdown_path": "qualitative-db/40-research/cases/case-20260415-d129d0ec/decision-maker/decision-maker-packet.md",
+  "position_policy": "flat",
+  "question": "Russia military action against Kyiv municipality by April 17?",
+  "recommended_side": "yes",
+  "schema_version": "decision-stage-status/v1",
+  "selected_input_bundle_estimated_tokens": 2907,
+  "selected_input_bundle_mode": "not_ready_reopen_recommended",
+  "selected_input_bundle_path": "roles/decision-maker/runtime/artifacts/case-20260415-d129d0ec/selected-inputs-dispatch-case-20260415-d129d0ec-20260415T014044Z.json",
+  "stage_events": [
+    {
+      "at": "2026-04-15T01:52:41.576106Z",
+      "message": "Decision-Maker stage initialized from synthesis handoff",
+      "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260415-d129d0ec/synthesizer-agent/decision-handoff.md",
+      "stage": "kickoff",
+      "state": "decision_ready_for_receipt"
+    },
+    {
+      "agent_tool_use_allowed": false,
+      "approx_tokens_after_trim": 2907,
+      "at": "2026-04-15T01:52:42.073767Z",
+      "message": "Built deterministic Decision-Maker selected-input bundle",
+      "selected_input_bundle_path": "roles/decision-maker/runtime/artifacts/case-20260415-d129d0ec/selected-inputs-dispatch-case-20260415-d129d0ec-20260415T014044Z.json",
+      "stage": "decision_input_selection",
+      "state": "built",
+      "verification_mode": "not_ready_reopen_recommended",
+      "verification_mode_path": "roles/decision-maker/runtime/artifacts/case-20260415-d129d0ec/verification-mode-dispatch-case-20260415-d129d0ec-20260415T014044Z.json"
+    },
+    {
+      "at": "2026-04-15T01:52:42.073993Z",
+      "message": "Built Decision-Maker prompt from compact selected-input bundle",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260415-d129d0ec/decision-prompt-dispatch-case-20260415-d129d0ec-20260415T014044Z.md",
+      "stage": "decision_prompt",
+      "state": "built"
+    },
+    {
+      "at": "2026-04-15T01:52:42.075298Z",
+      "message": "Decision-Maker inputs prepared; awaiting launch claim",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260415-d129d0ec/decision-prompt-dispatch-case-20260415-d129d0ec-20260415T014044Z.md",
+      "stage": "decision_prepare",
+      "state": "handoff_prepared"
+    },
+    {
+      "at": "2026-04-15T01:52:42.108231Z",
+      "decision_context_path": "roles/decision-maker/runtime/artifacts/case-20260415-d129d0ec/decision-context-dispatch-case-20260415-d129d0ec-20260415T014044Z.json",
+      "launch_log_path": "scripts/.runtime-state/decision-maker-launches/case-20260415-d129d0ec-20260415T015242Z.log",
+      "message": "Decision-Maker launch claimed by automation controller",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260415-d129d0ec/decision-prompt-dispatch-case-20260415-d129d0ec-20260415T014044Z.md",
+      "runner_pid": 5781,
+      "stage": "decision_receipt",
+      "state": "handoff_sent"
+    },
+    {
+      "at": "2026-04-15T01:52:42.292593Z",
+      "stage": "kickoff",
+      "state": "reentered",
+      "message": "Decision-Maker executor resumed from existing prepared/running state",
+      "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260415-d129d0ec/synthesizer-agent/decision-handoff.md"
+    },
+    {
+      "at": "2026-04-15T01:52:42.762237Z",
+      "stage": "decision_input_selection",
+      "state": "built",
+      "message": "Built deterministic Decision-Maker selected-input bundle",
+      "verification_mode_path": "roles/decision-maker/runtime/artifacts/case-20260415-d129d0ec/verification-mode-dispatch-case-20260415-d129d0ec-20260415T014044Z.json",
+      "selected_input_bundle_path": "roles/decision-maker/runtime/artifacts/case-20260415-d129d0ec/selected-inputs-dispatch-case-20260415-d129d0ec-20260415T014044Z.json",
+      "verification_mode": "not_ready_reopen_recommended",
+      "approx_tokens_after_trim": 2907,
+      "agent_tool_use_allowed": false
+    },
+    {
+      "at": "2026-04-15T01:52:42.762474Z",
+      "stage": "decision_prompt",
+      "state": "built",
+      "message": "Built Decision-Maker prompt from compact selected-input bundle",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260415-d129d0ec/decision-prompt-dispatch-case-20260415-d129d0ec-20260415T014044Z.md"
+    },
+    {
+      "at": "2026-04-15T01:52:48.144109Z",
+      "stage": "decision_lane_bootstrap",
+      "state": "created",
+      "message": "Created dedicated Telegram decision lane",
+      "topic_id": "2568",
+      "topic_title": "case-20260415-d129d0ec | decision | T014044Z",
+      "session_key": "agent:main:telegram:group:-1003846500961:topic:2568"
+    },
+    {
+      "at": "2026-04-15T01:53:04.020210Z",
+      "stage": "decision_receipt",
+      "state": "visible_marker_sent",
+      "message": "SYNTHESIS RECEIVED | market=Russia military action against Kyiv municipality by April 17? | dispatch_id=dispatch-case-20260415-d129d0ec-20260415T014044Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260415-d129d0ec/decision-context-dispatch-case-20260415-d129d0ec-20260415T014044Z.json"
+    },
+    {
+      "at": "2026-04-15T01:53:04.021508Z",
+      "stage": "decision_receipt",
+      "state": "accepted",
+      "message": "Decision-Maker handoff accepted",
+      "session_key": "agent:decision-maker:main",
+      "handoff_status": "started",
+      "gateway_response_path": "roles/decision-maker/runtime/artifacts/case-20260415-d129d0ec/decision-gateway-response-dispatch-case-20260415-d129d0ec-20260415T014044Z.json"
+    },
+    {
+      "at": "2026-04-15T01:53:04.021722Z",
+      "stage": "decision_execution",
+      "state": "decision_analysis_running",
+      "message": "Decision-Maker agent invocation accepted and analysis started",
+      "session_key": "agent:decision-maker:main",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260415-d129d0ec/decision-prompt-dispatch-case-20260415-d129d0ec-20260415T014044Z.md",
+      "handoff_status": "started"
+    },
+    {
+      "at": "2026-04-15T01:53:12.970621Z",
+      "stage": "decision_execution",
+      "state": "visible_marker_sent",
+      "message": "DECISION-MAKING ANALYSIS UNDERWAY | market=Russia military action against Kyiv municipality by April 17? | dispatch_id=dispatch-case-20260415-d129d0ec-20260415T014044Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260415-d129d0ec/decision-context-dispatch-case-20260415-d129d0ec-20260415T014044Z.json"
+    },
+    {
+      "at": "2026-04-15T01:53:25.727247Z",
+      "stage": "decision_execution",
+      "state": "decision_completed",
+      "message": "Decision-Maker completed and packet rendered",
+      "warnings": [],
+      "forecast_decision_persist_error": "",
+      "decision_parse_attempt_count": 1,
+      "decision_recovered_after_retry": false
+    },
+    {
+      "at": "2026-04-15T01:53:34.701812Z",
+      "stage": "decision_execution",
+      "state": "visible_marker_sent",
+      "message": "DECISION-MAKING COMPLETED, DECISION PACKAGE CREATED | market=Russia military action against Kyiv municipality by April 17? | dispatch_id=dispatch-case-20260415-d129d0ec-20260415T014044Z | packet_path=qualitative-db/40-research/cases/case-20260415-d129d0ec/decision-maker/decision-maker-packet.md"
+    }
+  ],
+  "status": "decision_completed",
+  "targeted_verification_pack_path": "",
+  "targeted_verification_pack_required": false,
+  "trade_authorization": "forbidden",
+  "updated_at": "2026-04-15T01:53:34.701847Z",
+  "verification_mode_path": "roles/decision-maker/runtime/artifacts/case-20260415-d129d0ec/verification-mode-dispatch-case-20260415-d129d0ec-20260415T014044Z.json",
+  "warnings": [],
+  "previous_status": "handoff_sent",
+  "raw_gateway_response_path": "roles/decision-maker/runtime/artifacts/case-20260415-d129d0ec/decision-gateway-response-dispatch-case-20260415-d129d0ec-20260415T014044Z.json",
+  "raw_response_text_path": "roles/decision-maker/runtime/artifacts/case-20260415-d129d0ec/decision-response-dispatch-case-20260415-d129d0ec-20260415T014044Z.raw.txt",
+  "decision_parse_failure_artifact_path": "roles/decision-maker/runtime/artifacts/case-20260415-d129d0ec/decision-parse-failure-dispatch-case-20260415-d129d0ec-20260415T014044Z.json",
+  "decision_parse_attempt_count": 1,
+  "decision_recovered_after_retry": false,
+  "decision_lane_topic_id": "2568",
+  "decision_lane_topic_title": "case-20260415-d129d0ec | decision | T014044Z",
+  "decision_lane_session_key": "agent:main:telegram:group:-1003846500961:topic:2568",
+  "decision_target_topic_id": "2568",
+  "decision_target_topic_title": "case-20260415-d129d0ec | decision | T014044Z",
+  "decision_receipt_marker_sent_at": "2026-04-15T01:53:04.020164+00:00",
+  "decision_analysis_marker_sent_at": "2026-04-15T01:53:12.970568+00:00",
+  "timeline_update": {
+    "appended": true,
+    "case_key": "case-20260415-d129d0ec",
+    "dispatch_id": "dispatch-case-20260415-d129d0ec-20260415T014044Z",
+    "packet_path": "qualitative-db/40-research/cases/case-20260415-d129d0ec/decision-maker/decision-maker-packet.md",
+    "entry": "- 2026-04-15T01:53:25.725895+00:00 — completed decision-making `dispatch-case-20260415-d129d0ec-20260415T014044Z` with packet `qualitative-db/40-research/cases/case-20260415-d129d0ec/decision-maker/decision-maker-packet.md`."
+  },
+  "forecast_decision_persist": {
+    "ok": true,
+    "packet_json": "qualitative-db/40-research/cases/case-20260415-d129d0ec/decision-maker/artifacts/decision-maker-packet.json",
+    "persisted": {
+      "forecast_id": "dispatch-case-20260415-d129d0ec-20260415T014044Z",
+      "market_id": "a90c3ddd-b00b-4c10-84b2-f88f7e865efb",
+      "contract_id": "yes",
+      "forecast_prob": 0.635,
+      "decision_status": "void",
+      "decision_packet_path": "qualitative-db/40-research/cases/case-20260415-d129d0ec/decision-maker/artifacts/decision-maker-packet.json",
+      "supersedes_forecast_id": null,
+      "superseded_forecast_ids": [],
+      "market_state": {
+        "market_id": "a90c3ddd-b00b-4c10-84b2-f88f7e865efb",
+        "current_price": 0.73,
+        "last_reasoned_price": 0.635,
+        "pipeline_status": "closed"
+      }
+    },
+    "record": {
+      "forecast_id": "dispatch-case-20260415-d129d0ec-20260415T014044Z",
+      "decision_ts": "2026-04-14T21:52:00-04:00",
+      "case_id": "case-20260415-d129d0ec",
+      "dispatch_id": "dispatch-case-20260415-d129d0ec-20260415T014044Z",
+      "market_id": "a90c3ddd-b00b-4c10-84b2-f88f7e865efb",
+      "contract_id": "yes",
+      "platform": "polymarket",
+      "market_slug": "russia-military-action-against-kyiv-municipality-by-april-17",
+      "question": "Russia military action against Kyiv municipality by April 17?",
+      "forecast_prob": "0.635",
+      "forecast_direction": "yes",
+      "confidence_label": "medium",
+      "confidence_score": "",
+      "time_horizon_label": "",
+      "verification_mode": "not_ready_reopen_recommended",
+      "decision_status": "void",
+      "rationale_summary": "Russian military action against Kyiv municipality is still plausibly more likely than not before expiry given active strike tempo and contract rules that count intercepted Kyiv-directed attacks, but because the bounded package does not independently verify a clean Kyiv-municipality-specific signal and the geography or reporting-window ambiguity is material, the disciplined output is forbidden and needs-more-research rather than an anti-market trade.",
+      "decision_packet_path": "qualitative-db/40-research/cases/case-20260415-d129d0ec/decision-maker/artifacts/decision-maker-packet.json",
+      "decision_handoff_path": "qualitative-db/40-research/cases/case-20260415-d129d0ec/synthesizer-agent/decision-handoff.md",
+      "syndicated_finding_path": "qualitative-db/40-research/cases/case-20260415-d129d0ec/synthesizer-agent/syndicated-finding.md"
+    },
+    "warnings": []
+  },
+  "terminal_summary": {
+    "at": "2026-04-15T01:53:34.701861Z",
+    "status": "decision_completed",
+    "decision_lane": {
+      "topic_id": "2568",
+      "topic_title": "case-20260415-d129d0ec | decision | T014044Z",
+      "session_key": "agent:main:telegram:group:-1003846500961:topic:2568"
+    },
+    "packet_json_path": "qualitative-db/40-research/cases/case-20260415-d129d0ec/decision-maker/artifacts/decision-maker-packet.json",
+    "packet_markdown_path": "qualitative-db/40-research/cases/case-20260415-d129d0ec/decision-maker/decision-maker-packet.md",
+    "trade_authorization": "forbidden",
+    "decision_readiness": "needs_more_research",
+    "last_stage_event": {
+      "at": "2026-04-15T01:53:34.701812Z",
+      "stage": "decision_execution",
+      "state": "visible_marker_sent",
+      "message": "DECISION-MAKING COMPLETED, DECISION PACKAGE CREATED | market=Russia military action against Kyiv municipality by April 17? | dispatch_id=dispatch-case-20260415-d129d0ec-20260415T014044Z | packet_path=qualitative-db/40-research/cases/case-20260415-d129d0ec/decision-maker/decision-maker-packet.md"
+    }
+  },
+  "decision_completion_marker_sent_at": "2026-04-15T01:53:34.701770+00:00"
+}

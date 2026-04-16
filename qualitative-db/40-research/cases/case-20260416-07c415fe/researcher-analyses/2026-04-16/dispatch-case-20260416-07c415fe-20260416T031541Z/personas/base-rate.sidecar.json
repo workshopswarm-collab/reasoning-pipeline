@@ -1,0 +1,55 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A 5-6% drawdown over a few days is common enough in crypto to matter.",
+    "Single-minute settlement increases path dependence versus broader daily-close framing."
+  ],
+  "key_assumptions": [
+    "No sharp crypto-wide or Solana-specific selloff pushes Binance SOL/USDT below 80 by the exact resolving minute.",
+    "Recent above-80 trading is a better guide than vivid short-term narratives."
+  ],
+  "main_logical_chain": [
+    "The governing contract uses Binance SOL/USDT and one exact 12:00 ET minute close on April 19.",
+    "SOL is already above the 80 threshold and recent Binance candle history shows persistence above 80 rather than requiring further upside.",
+    "That makes Yes more likely than No on an outside-view basis, but single-minute settlement risk keeps the probability below the market's high-80s pricing."
+  ],
+  "main_thesis": "Yes is more likely than No because SOL is already trading above $80 on Binance and has recently closed above that level consistently, but the market's 89% pricing still looks too high for a single-minute crypto settlement.",
+  "own_probability": 0.78,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for SOL/USDT 12:00 in the ET timezone (noon) on the date specified in the title has a final 'Close' price higher than the price specified in the title.",
+    "Polymarket showed the '$80' contract at roughly 89% Yes at research time.",
+    "My estimate is 78% Yes."
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "market_anchor",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-07c415fe",
+    "dispatch_id": "dispatch-case-20260416-07c415fe-20260416T031541Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "1560227a-88ac-4f2f-95ce-61fc5cf5940f",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-07c415fe/researcher-analyses/2026-04-16/dispatch-case-20260416-07c415fe-20260416T031541Z/personas/base-rate.md",
+    "source_persona_sha256": "2b4c45e9a35eb1d14a3508932f15919b3dfe42dc0590fea40720baa02082a4f6"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Good enough for a medium-difficulty date-sensitive threshold case: Polymarket rules define settlement and Binance directly provides the relevant market data, though independence between sources is only medium.",
+  "strongest_disconfirmers": [
+    "The contract resolves on one exact 12:00 ET minute close, so ordinary crypto volatility could still produce a temporary dip below 80.",
+    "Recent hourly context still showed a low around 81.54, so the safety margin is not enormous."
+  ],
+  "strongest_supports": [
+    "Binance spot was about 85.25 at research time, giving several dollars of cushion above 80.",
+    "Recent daily closes checked from April 7 through April 16 were all above 80."
+  ],
+  "timing_relevance": "High: the market resolves at 2026-04-19 12:00 ET, which is 16:00 UTC, and only that exact Binance 1-minute candle close matters.",
+  "unresolved_ambiguities": [
+    "No major source-of-truth ambiguity remained after review, but the exact April 19 noon ET minute is still inherently timing-sensitive."
+  ],
+  "what_would_change_view": "A drop in SOL toward or below the low-80s before April 19, clear crypto-wide risk-off conditions, or Solana-specific negative news would reduce the Yes probability materially; stable upper-80s trading into the final day would move me closer to the market."
+}

@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A roughly 2% downside move before settlement could flip the outcome.",
+    "The exact-minute-close requirement creates path risk even if the broader BTC thesis is right.",
+    "Exchange-specific print or operational issues at Binance could matter because Binance is the settlement venue."
+  ],
+  "key_assumptions": [
+    "Current Binance spot near 73.6k is a meaningful short-horizon anchor for the April 17 noon ET minute close.",
+    "No major crypto downside shock occurs before settlement.",
+    "Binance remains operationally reliable and representative at settlement."
+  ],
+  "main_logical_chain": [
+    "Read the Polymarket rules to confirm the governing settlement condition is the Binance BTC/USDT 1-minute candle close at 12:00 ET on April 17.",
+    "Check current Binance spot and recent minute closes to see whether BTC is already above the 72k strike and by how much.",
+    "Cross-check the general BTC spot level with CoinGecko to reduce single-source complacency.",
+    "Conclude that Yes is still favored because spot is above the strike, but discount the market's confidence because timing and threshold fragility remain material."
+  ],
+  "main_thesis": "BTC is already above 72k on Binance, so Yes is favored, but the market overstates confidence because resolution depends on one exact Binance noon ET minute close with only a modest cushion above the strike.",
+  "own_probability": 0.68,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "This market will resolve to \"Yes\" if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone (noon)... has a final \"Close\" price higher than the price specified in the title.",
+    "My view is lean Yes, but with less confidence than the market implies: I estimate 68%."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "risk_management",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-3f432366",
+    "dispatch_id": "dispatch-case-20260415-3f432366-20260415T074424Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "6d792eeb-7534-425f-91be-1cb9896b9436",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-3f432366/researcher-analyses/2026-04-15/dispatch-case-20260415-3f432366-20260415T074424Z/personas/risk-manager.md",
+    "source_persona_sha256": "8f19659d97ae489d6a627e7d3f4c42f1e9f8b99c5fa0f560195b1ec4b5ab6aea"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High confidence in contract mechanics, medium confidence in directional forecast; Binance is directly relevant because it is also the settlement venue, and CoinGecko provides a moderate-independence spot cross-check.",
+  "strongest_disconfirmers": [
+    "The contract resolves on one exact Binance 12:00 ET minute close, not a looser daily price condition.",
+    "BTC was down about 1.16% over the prior 24 hours during collection, and the cushion above 72k is modest for a ~2 day horizon."
+  ],
+  "strongest_supports": [
+    "Binance spot during collection was around 73.6k, already above the 72k threshold.",
+    "Recent sampled Binance 1-minute closes stayed in the 73.5k-73.6k area.",
+    "CoinGecko independently cross-checked BTC near 73.6k."
+  ],
+  "timing_relevance": "Timing is central: the market settles on the final close of one specific Binance 1-minute candle at 12:00 ET on April 17, not on a general daily close or cross-exchange price.",
+  "unresolved_ambiguities": [
+    "Short-horizon BTC realized volatility between now and the April 17 noon ET settlement minute.",
+    "Whether downside momentum continues and erodes the current cushion above 72k."
+  ],
+  "what_would_change_view": "I would move toward No if BTC/USDT weakens toward 72.5k or below before settlement; I would move closer to or above the market if BTC holds above roughly 74k with lower realized volatility into April 16-17."
+}

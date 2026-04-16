@@ -1,0 +1,57 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A sharp selloff into April 19-20 would compress the cushion quickly.",
+    "Minute-candle and timezone interpretation are source-sensitive and must be checked again at settlement."
+  ],
+  "key_assumptions": [
+    "BTC remains sufficiently above 70000 over the next five days that ordinary volatility does not push the exact noon ET minute close below the threshold.",
+    "Binance remains the usable governing resolution surface for BTCUSDT on April 20."
+  ],
+  "main_logical_chain": [
+    "Verify the governing contract mechanics directly from the market rules.",
+    "Verify current Binance BTCUSDT is materially above 70000.",
+    "Treat recent Binance daily closes as contextual evidence that BTC is operating above the threshold regime.",
+    "Discount from near-certainty because this is an exact-minute close market with five days of residual volatility."
+  ],
+  "main_thesis": "BTC is already materially above 70000 on Binance, making Yes likely by April 20 noon ET, but exact-minute close mechanics keep real downside risk alive.",
+  "own_probability": 0.91,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone (noon) on the date specified in the title has a final 'Close' price higher than the price specified in the title.",
+    "BTCUSDT price check returned 73974.00000000 on 2026-04-15."
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "contract_interpretation",
+    "market_anchor"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-90641eba",
+    "dispatch_id": "dispatch-case-20260415-90641eba-20260415T174326Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "8420de76-85c2-4d2a-80b1-c872a9e340dc",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-90641eba/researcher-analyses/2026-04-15/dispatch-case-20260415-90641eba-20260415T174326Z/personas/base-rate.md",
+    "source_persona_sha256": "2898b789bb9a9d411946e9d2ed725e88906031952233dd88aa639c88ee53f189"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary rules source and governing venue check are strong, but evidence independence is only medium-low because the contract appropriately centers on Binance.",
+  "strongest_disconfirmers": [
+    "The contract resolves on one exact 12:00 ET one-minute close, not on any touch or daily close.",
+    "A normal crypto drawdown over five days could still push BTC below 70000 at the qualifying minute."
+  ],
+  "strongest_supports": [
+    "Direct Binance ticker check showed BTCUSDT around 73974, about 5.7% above the threshold.",
+    "Recent Binance daily closes were also above 70000, suggesting the setup is not just a transient spike.",
+    "Yes does not require further upside; it mostly requires the current regime to persist."
+  ],
+  "timing_relevance": "The event resolves in about five days and depends on one exact noon ET minute close, so short-horizon volatility remains materially relevant.",
+  "unresolved_ambiguities": [
+    "Final candle-proof cannot yet be captured because the event has not occurred.",
+    "UI-specific Binance candle display nuances remain a minor source-of-truth handling risk."
+  ],
+  "what_would_change_view": "A sustained BTC move back toward or below 70000 on Binance before April 20 would move the estimate down materially; continued holding well above low-70k into April 18-19 would move it up somewhat."
+}

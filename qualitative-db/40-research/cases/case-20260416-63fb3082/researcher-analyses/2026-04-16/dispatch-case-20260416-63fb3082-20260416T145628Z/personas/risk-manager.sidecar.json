@@ -1,0 +1,57 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Exact-minute settlement rather than broader daily price.",
+    "Potential sharp BTC drawdown into the settlement window.",
+    "Small operational ambiguity from rules citing Binance UI/chart rather than explicit API wording."
+  ],
+  "key_assumptions": [
+    "Current Binance BTCUSDT cushion above 68k is large enough to survive ordinary multi-day volatility.",
+    "Binance settlement mechanics remain operationally straightforward through the April 21 noon ET candle."
+  ],
+  "main_logical_chain": [
+    "The contract resolves on Binance BTCUSDT 1m close at 12:00 ET on April 21.",
+    "Current Binance spot is materially above 68k, making Yes the base case.",
+    "But exact-minute settlement and crypto volatility keep residual downside risk higher than a 95%+ market price suggests."
+  ],
+  "main_thesis": "Yes remains the base case, but the market is slightly overconfident because it prices a narrow exact-minute Binance settlement condition as near certainty.",
+  "own_probability": 0.9,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "I estimate 90% Yes, versus the market-implied 95.25% Yes.",
+    "The strongest disconfirming consideration is timing fragility."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "risk_management",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-63fb3082",
+    "dispatch_id": "dispatch-case-20260416-63fb3082-20260416T145628Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "232e6a89-1c7b-4132-8140-74353c406096",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-63fb3082/researcher-analyses/2026-04-16/dispatch-case-20260416-63fb3082-20260416T145628Z/personas/risk-manager.md",
+    "source_persona_sha256": "484f782d3bf246f38455fbefe650c25437121982b24c763f246ac2ae0c97b6a4"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Contract mechanics are strong from Polymarket and direct pricing verification is strong from Binance; independence is only medium because Binance underlies the settlement itself.",
+  "strongest_disconfirmers": [
+    "The market resolves on one exact one-minute close, so timing/path risk is more meaningful than the extreme price implies.",
+    "BTC can move several thousand dollars over a few days, compressing the current cushion."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT was directly verified around 73.9k on April 16, well above 68k.",
+    "Polymarket rules specify a clean venue/pair/timeframe/close-price test."
+  ],
+  "timing_relevance": "Very high: 2026-04-21 12:00 ET is the only minute that matters, and it maps to 16:00 UTC on Binance-oriented data.",
+  "unresolved_ambiguities": [
+    "Whether any venue-specific display/reporting nuance could matter at settlement.",
+    "How much downside volatility arrives between now and April 21 noon ET."
+  ],
+  "what_would_change_view": "I would move toward the market if BTC holds comfortably above roughly 71k-72k into settlement, and away from it if BTC sells off toward 70k or Binance shows pricing/reporting anomalies."
+}

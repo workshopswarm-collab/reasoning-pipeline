@@ -1,0 +1,54 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A 1.8k cushion is meaningful but can disappear quickly in BTC.",
+    "Single-minute settlement creates path dependence near resolution."
+  ],
+  "key_assumptions": [
+    "BTC remains above 72k on Binance through the April 17 noon ET minute close.",
+    "Recent above-strike trading regime is more informative than short-term noise."
+  ],
+  "main_logical_chain": [
+    "Market implies 77% Yes and should be taken seriously as a prior.",
+    "Named settlement venue Binance currently shows BTC materially above 72k with recent realized prices mostly above strike.",
+    "That supports a high Yes probability, but single-minute-close mechanics justify a modest discount to market."
+  ],
+  "main_thesis": "Market-implied Yes pricing is broadly reasonable because Binance BTC/USDT is already well above 72k, but the exact noon ET 1-minute close makes 77% slightly rich.",
+  "own_probability": 0.73,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone (noon) ... has a final 'Close' price higher than the price specified.",
+    "Binance ticker snapshot: BTCUSDT 73846.60000000"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-6580bcd8",
+    "dispatch_id": "dispatch-case-20260415-6580bcd8-20260415T081158Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "aa01ae64-540d-484e-8e28-92e90c1ff792",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-6580bcd8/researcher-analyses/2026-04-15/dispatch-case-20260415-6580bcd8-20260415T081158Z/personas/market-implied.md",
+    "source_persona_sha256": "0d162fda0d01a5c455fc45ee8f90495e05270744672540a28fae49d1f58d7aaf"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Low source-of-truth ambiguity and strong direct-source alignment, but evidence concentration on one exchange keeps independence only medium.",
+  "strongest_disconfirmers": [
+    "The contract settles on one exact future 1-minute close, so a sharp downside move or resolution-minute noise could still flip the result."
+  ],
+  "strongest_supports": [
+    "Binance spot snapshot showed BTCUSDT at 73846.60000000 during research.",
+    "Recent hourly Binance candles showed sustained trading mostly above 72k after the April 13 breakout."
+  ],
+  "timing_relevance": "High: the case resolves on April 17 at 12:00 ET using one specific Binance 1-minute candle close.",
+  "unresolved_ambiguities": [
+    "How much intraday volatility will increase before the April 17 noon ET window.",
+    "Whether Binance-specific microstructure matters at the exact resolution minute."
+  ],
+  "what_would_change_view": "A move back toward or below 72k on Binance before resolution would lower the estimate materially; stable trading well above 74k into late April 16 would raise it."
+}

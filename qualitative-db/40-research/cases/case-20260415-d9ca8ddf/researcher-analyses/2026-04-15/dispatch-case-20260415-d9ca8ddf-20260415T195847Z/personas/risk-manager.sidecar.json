@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Exact-minute settlement sensitivity.",
+    "Single-exchange dependence on Binance BTC/USDT.",
+    "Moderate BTC downside before noon ET on April 17 would materially weaken the thesis."
+  ],
+  "key_assumptions": [
+    "BTC stays above 72,000 on Binance BTC/USDT through the April 17 noon ET settlement minute.",
+    "Binance BTC/USDT remains representative enough of broad BTC spot into settlement.",
+    "No operational or candle-mapping anomaly matters at the exact resolution minute."
+  ],
+  "main_logical_chain": [
+    "The rules make Binance BTC/USDT 12:00 ET on April 17 the governing settlement source.",
+    "Current live Binance spot is materially above 72,000, so Yes is the correct directional lean.",
+    "But the market's low-90s probability compresses remaining exact-minute and downside path risk too much.",
+    "That supports a slightly lower estimate than the market rather than a directional No call."
+  ],
+  "main_thesis": "Yes is still more likely than No, but the market is a bit overconfident because an exact Binance noon ET 1-minute close leaves meaningful path and timing risk despite BTC currently trading well above 72k.",
+  "own_probability": 0.86,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone (noon) ... has a final 'Close' price higher than the price specified in the title.",
+    "My estimate is ... 0.86, not the market-implied ~0.91-0.93."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "risk_management",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-d9ca8ddf",
+    "dispatch_id": "dispatch-case-20260415-d9ca8ddf-20260415T195847Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "1b1ff630-2533-4f23-8628-6940abcb378b",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-d9ca8ddf/researcher-analyses/2026-04-15/dispatch-case-20260415-d9ca8ddf-20260415T195847Z/personas/risk-manager.md",
+    "source_persona_sha256": "abf26be01dc2c40dc58efa657edb0411416e3a38455f68e1ca4362f487b208d6"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is medium-high overall: Binance is primary for venue-specific price context and Polymarket is primary for contract wording, while CoinGecko is useful but only moderately independent contextual confirmation.",
+  "strongest_disconfirmers": [
+    "The contract resolves on one exact Binance 1-minute close, so even a modest dip at the wrong time can flip the outcome.",
+    "A roughly 3.9% cushion is solid but not overwhelming for BTC over about two days."
+  ],
+  "strongest_supports": [
+    "Live Binance BTCUSDT during the run was around 74.9k, about 3.9% above the strike.",
+    "Recent Binance 1-minute closes were also comfortably above 72k.",
+    "CoinGecko broadly matched the same BTC price region in the extra verification pass."
+  ],
+  "timing_relevance": "The contract is highly timing-sensitive because it resolves on the April 17, 2026 12:00 ET Binance 1-minute candle close, not on a broader daily average or nearby price.",
+  "unresolved_ambiguities": [
+    "Short-horizon BTC volatility over the remaining window.",
+    "Potential Binance-specific dislocation or operational anomaly at resolution time."
+  ],
+  "what_would_change_view": "I would move toward the market if BTC stays comfortably above roughly 74k into late April 16 and early April 17 with calm trading; I would move lower if BTC approaches 72k-73k, volatility rises, or Binance-specific anomalies appear."
+}

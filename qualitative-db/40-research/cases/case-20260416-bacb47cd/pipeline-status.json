@@ -1,0 +1,460 @@
+{
+  "artifact_type": "case_pipeline_status",
+  "case_key": "case-20260416-bacb47cd",
+  "completed_at": "2026-04-16T10:26:09.436522+00:00",
+  "current_stage": "decision",
+  "dispatch_id": "dispatch-case-20260416-bacb47cd-20260416T101708Z",
+  "helper_status": {
+    "materialize_case_swarm_artifacts": {
+      "attempted_at": "2026-04-16T10:26:09.609629+00:00",
+      "helper": "materialize_case_swarm_artifacts",
+      "ok": true,
+      "payload": {
+        "artifact_index": "qualitative-db/40-research/cases/case-20260416-bacb47cd/artifacts/index.json",
+        "case_key": "case-20260416-bacb47cd",
+        "dispatch_dir": "qualitative-db/40-research/cases/case-20260416-bacb47cd/researcher-analyses/2026-04-16/dispatch-case-20260416-bacb47cd-20260416T101708Z",
+        "ok": true,
+        "researcher_swarm_current": "qualitative-db/40-research/cases/case-20260416-bacb47cd/researcher-swarm-current.md",
+        "researcher_swarm_summary": "qualitative-db/40-research/cases/case-20260416-bacb47cd/researcher-swarm-summary.md"
+      },
+      "returncode": 0
+    },
+    "post_case_terminal_topic_marker": {
+      "attempted_at": "2026-04-16T10:26:07.468152+00:00",
+      "helper": "post_case_terminal_topic_marker",
+      "ok": true,
+      "payload": {
+        "case_key": "case-20260416-bacb47cd",
+        "dispatch_id": "dispatch-case-20260416-bacb47cd-20260416T101708Z",
+        "noop": true,
+        "ok": true,
+        "reason": "missing_topic_binding"
+      },
+      "returncode": 0
+    }
+  },
+  "last_event": {
+    "at": "2026-04-16T10:26:09.436522+00:00",
+    "current_stage": "decision",
+    "message": "Sequential runner soft-failed and quarantined the case for later retry",
+    "quarantine": {
+      "case_key": "case-20260416-bacb47cd",
+      "market_id": "c7f5d795-5eab-4bf6-80f3-d2e38766208d",
+      "quarantined_at": "2026-04-16T10:26:09.435668Z",
+      "quarantined_at_ts": 1776335169.435667,
+      "reason": "processed_new_case",
+      "release_at_ts": 1776338769.435667,
+      "result_ok": false,
+      "result_status": "processed_new_case"
+    },
+    "retry_entry": null,
+    "soft_failed_result_status": "processed_new_case",
+    "status": "pipeline_failed"
+  },
+  "market_id": "c7f5d795-5eab-4bf6-80f3-d2e38766208d",
+  "market_title": "Will the highest temperature in Seoul be 18\u00b0C or higher on April 17?",
+  "runner_id": "run_sequential_market_pipeline",
+  "schema_version": "case-pipeline-status/v1",
+  "stage_detail_states": {
+    "decision": "handoff_sent",
+    "dispatch": "",
+    "swarm": "",
+    "synthesis": "running"
+  },
+  "stage_statuses": {
+    "decision": "failed",
+    "dispatch": "launched",
+    "swarm": "completed",
+    "synthesis": "completed"
+  },
+  "started_at": "2026-04-16T10:19:04.082901+00:00",
+  "status": "pipeline_failed",
+  "terminal_summary": {
+    "decision_handoff_path": "qualitative-db/40-research/cases/case-20260416-bacb47cd/researcher-analyses/2026-04-16/dispatch-case-20260416-bacb47cd-20260416T101708Z/decision-handoff.md",
+    "failed_stage": "decision",
+    "failure_reason": "processed_new_case",
+    "quarantined": true,
+    "swarm_stage_status_path": "qualitative-db/40-research/cases/case-20260416-bacb47cd/researcher-analyses/2026-04-16/dispatch-case-20260416-bacb47cd-20260416T101708Z/swarm-stage-status.json",
+    "synthesis_artifact_path": "qualitative-db/40-research/cases/case-20260416-bacb47cd/researcher-analyses/2026-04-16/dispatch-case-20260416-bacb47cd-20260416T101708Z/syndicated-finding.md"
+  },
+  "timeline": [
+    {
+      "at": "2026-04-16T10:19:04.082901+00:00",
+      "current_stage": "swarm",
+      "manifest_path": "/Users/agent2/.openclaw/orchestrator/roles/orchestrator/researchers-swarm-subagents/runtime/dispatch-manifests/dispatch-case-20260416-bacb47cd-20260416T101708Z.json",
+      "message": "Fresh case claimed and dispatch launched",
+      "status": "pipeline_started",
+      "target_session_key": ""
+    },
+    {
+      "at": "2026-04-16T10:19:04.560245+00:00",
+      "current_stage": "swarm",
+      "message": "Swarm stage reconciled",
+      "status": "pipeline_in_progress"
+    },
+    {
+      "at": "2026-04-16T10:19:20.298099+00:00",
+      "current_stage": "swarm",
+      "message": "Swarm stage reconciled",
+      "status": "pipeline_in_progress"
+    },
+    {
+      "at": "2026-04-16T10:19:35.832447+00:00",
+      "current_stage": "swarm",
+      "message": "Swarm stage reconciled",
+      "status": "pipeline_in_progress"
+    },
+    {
+      "at": "2026-04-16T10:19:47.090383+00:00",
+      "current_stage": "swarm",
+      "message": "Swarm stage reconciled",
+      "status": "pipeline_in_progress"
+    },
+    {
+      "at": "2026-04-16T10:19:51.376712+00:00",
+      "current_stage": "swarm",
+      "message": "Swarm stage reconciled",
+      "status": "pipeline_in_progress"
+    },
+    {
+      "at": "2026-04-16T10:20:06.907686+00:00",
+      "current_stage": "swarm",
+      "message": "Swarm stage reconciled",
+      "status": "pipeline_in_progress"
+    },
+    {
+      "at": "2026-04-16T10:20:22.238631+00:00",
+      "current_stage": "swarm",
+      "message": "Swarm stage reconciled",
+      "status": "pipeline_in_progress"
+    },
+    {
+      "at": "2026-04-16T10:20:37.766817+00:00",
+      "current_stage": "swarm",
+      "message": "Swarm stage reconciled",
+      "status": "pipeline_in_progress"
+    },
+    {
+      "at": "2026-04-16T10:20:47.681715+00:00",
+      "current_stage": "swarm",
+      "message": "Swarm stage reconciled",
+      "status": "pipeline_in_progress"
+    },
+    {
+      "at": "2026-04-16T10:20:53.311237+00:00",
+      "current_stage": "swarm",
+      "message": "Swarm stage reconciled",
+      "status": "pipeline_in_progress"
+    },
+    {
+      "at": "2026-04-16T10:21:08.857723+00:00",
+      "current_stage": "swarm",
+      "message": "Swarm stage reconciled",
+      "status": "pipeline_in_progress"
+    },
+    {
+      "at": "2026-04-16T10:21:24.392720+00:00",
+      "current_stage": "swarm",
+      "message": "Swarm stage reconciled",
+      "status": "pipeline_in_progress"
+    },
+    {
+      "at": "2026-04-16T10:21:39.872471+00:00",
+      "current_stage": "swarm",
+      "message": "Swarm stage reconciled",
+      "status": "pipeline_in_progress"
+    },
+    {
+      "at": "2026-04-16T10:21:48.289858+00:00",
+      "current_stage": "swarm",
+      "message": "Swarm stage reconciled",
+      "status": "pipeline_in_progress"
+    },
+    {
+      "at": "2026-04-16T10:21:55.400130+00:00",
+      "current_stage": "swarm",
+      "message": "Swarm stage reconciled",
+      "status": "pipeline_in_progress"
+    },
+    {
+      "at": "2026-04-16T10:22:10.901751+00:00",
+      "current_stage": "swarm",
+      "message": "Swarm stage reconciled",
+      "status": "pipeline_in_progress"
+    },
+    {
+      "at": "2026-04-16T10:22:26.437144+00:00",
+      "current_stage": "swarm",
+      "message": "Swarm stage reconciled",
+      "status": "pipeline_in_progress"
+    },
+    {
+      "at": "2026-04-16T10:22:41.964027+00:00",
+      "current_stage": "swarm",
+      "message": "Swarm stage reconciled",
+      "status": "pipeline_in_progress"
+    },
+    {
+      "at": "2026-04-16T10:22:48.879757+00:00",
+      "current_stage": "swarm",
+      "message": "Swarm stage reconciled",
+      "status": "pipeline_in_progress"
+    },
+    {
+      "at": "2026-04-16T10:22:57.492288+00:00",
+      "current_stage": "swarm",
+      "message": "Swarm stage reconciled",
+      "status": "pipeline_in_progress"
+    },
+    {
+      "at": "2026-04-16T10:23:12.956291+00:00",
+      "current_stage": "synthesis",
+      "message": "Swarm stage reconciled",
+      "status": "pipeline_in_progress"
+    },
+    {
+      "at": "2026-04-16T10:23:13.719201+00:00",
+      "current_stage": "swarm",
+      "message": "Synthesis launch check is still waiting for researcher sidecars",
+      "status": "pipeline_in_progress"
+    },
+    {
+      "at": "2026-04-16T10:23:14.081064+00:00",
+      "current_stage": "swarm",
+      "message": "Synthesis launch check is still waiting for researcher sidecars",
+      "status": "pipeline_in_progress"
+    },
+    {
+      "at": "2026-04-16T10:23:29.594007+00:00",
+      "current_stage": "synthesis",
+      "message": "Swarm stage reconciled",
+      "status": "pipeline_in_progress"
+    },
+    {
+      "at": "2026-04-16T10:23:29.985570+00:00",
+      "current_stage": "swarm",
+      "message": "Synthesis launch check is still waiting for researcher sidecars",
+      "status": "pipeline_in_progress"
+    },
+    {
+      "at": "2026-04-16T10:23:30.344651+00:00",
+      "current_stage": "swarm",
+      "message": "Synthesis launch check is still waiting for researcher sidecars",
+      "status": "pipeline_in_progress"
+    },
+    {
+      "at": "2026-04-16T10:23:45.822955+00:00",
+      "current_stage": "synthesis",
+      "message": "Swarm stage reconciled",
+      "status": "pipeline_in_progress"
+    },
+    {
+      "at": "2026-04-16T10:23:46.190233+00:00",
+      "current_stage": "synthesis",
+      "launch_reason": "already_running",
+      "message": "Synthesis launch is already in progress",
+      "status": "pipeline_in_progress"
+    },
+    {
+      "at": "2026-04-16T10:23:46.518834+00:00",
+      "current_stage": "synthesis",
+      "launch_reason": "already_running",
+      "message": "Synthesis launch is already in progress",
+      "status": "pipeline_in_progress"
+    },
+    {
+      "at": "2026-04-16T10:23:49.409355+00:00",
+      "current_stage": "synthesis",
+      "message": "Swarm stage reconciled",
+      "status": "pipeline_in_progress"
+    },
+    {
+      "at": "2026-04-16T10:23:49.608295+00:00",
+      "current_stage": "synthesis",
+      "launch_reason": "already_running",
+      "message": "Synthesis launch is already in progress",
+      "status": "pipeline_in_progress"
+    },
+    {
+      "at": "2026-04-16T10:23:49.793507+00:00",
+      "current_stage": "synthesis",
+      "launch_reason": "already_running",
+      "message": "Synthesis launch is already in progress",
+      "status": "pipeline_in_progress"
+    },
+    {
+      "at": "2026-04-16T10:24:01.982582+00:00",
+      "current_stage": "synthesis",
+      "message": "Swarm stage reconciled",
+      "status": "pipeline_in_progress"
+    },
+    {
+      "at": "2026-04-16T10:24:02.213582+00:00",
+      "current_stage": "synthesis",
+      "launch_reason": "already_running",
+      "message": "Synthesis launch is already in progress",
+      "status": "pipeline_in_progress"
+    },
+    {
+      "at": "2026-04-16T10:24:02.396996+00:00",
+      "current_stage": "synthesis",
+      "launch_reason": "already_running",
+      "message": "Synthesis launch is already in progress",
+      "status": "pipeline_in_progress"
+    },
+    {
+      "at": "2026-04-16T10:24:17.889490+00:00",
+      "current_stage": "synthesis",
+      "message": "Swarm stage reconciled",
+      "status": "pipeline_in_progress"
+    },
+    {
+      "at": "2026-04-16T10:24:18.126321+00:00",
+      "current_stage": "synthesis",
+      "launch_reason": "already_running",
+      "message": "Synthesis launch is already in progress",
+      "status": "pipeline_in_progress"
+    },
+    {
+      "at": "2026-04-16T10:24:18.320960+00:00",
+      "current_stage": "synthesis",
+      "launch_reason": "already_running",
+      "message": "Synthesis launch is already in progress",
+      "status": "pipeline_in_progress"
+    },
+    {
+      "at": "2026-04-16T10:24:33.646090+00:00",
+      "current_stage": "synthesis",
+      "message": "Swarm stage reconciled",
+      "status": "pipeline_in_progress"
+    },
+    {
+      "at": "2026-04-16T10:24:33.877409+00:00",
+      "current_stage": "synthesis",
+      "launch_reason": "already_running",
+      "message": "Synthesis launch is already in progress",
+      "status": "pipeline_in_progress"
+    },
+    {
+      "at": "2026-04-16T10:24:34.081653+00:00",
+      "current_stage": "synthesis",
+      "launch_reason": "already_running",
+      "message": "Synthesis launch is already in progress",
+      "status": "pipeline_in_progress"
+    },
+    {
+      "at": "2026-04-16T10:24:49.597906+00:00",
+      "current_stage": "synthesis",
+      "message": "Swarm stage reconciled",
+      "status": "pipeline_in_progress"
+    },
+    {
+      "at": "2026-04-16T10:24:49.829072+00:00",
+      "current_stage": "synthesis",
+      "launch_reason": "already_running",
+      "message": "Synthesis launch is already in progress",
+      "status": "pipeline_in_progress"
+    },
+    {
+      "at": "2026-04-16T10:24:50.031743+00:00",
+      "current_stage": "synthesis",
+      "launch_reason": "already_running",
+      "message": "Synthesis launch is already in progress",
+      "status": "pipeline_in_progress"
+    },
+    {
+      "at": "2026-04-16T10:24:50.325830+00:00",
+      "current_stage": "synthesis",
+      "message": "Swarm stage reconciled",
+      "status": "pipeline_in_progress"
+    },
+    {
+      "at": "2026-04-16T10:24:50.526966+00:00",
+      "current_stage": "synthesis",
+      "launch_reason": "already_running",
+      "message": "Synthesis launch is already in progress",
+      "status": "pipeline_in_progress"
+    },
+    {
+      "at": "2026-04-16T10:24:50.712693+00:00",
+      "current_stage": "synthesis",
+      "launch_reason": "already_running",
+      "message": "Synthesis launch is already in progress",
+      "status": "pipeline_in_progress"
+    },
+    {
+      "at": "2026-04-16T10:25:03.516666+00:00",
+      "current_stage": "synthesis",
+      "message": "Synthesis completed and decision handoff is ready",
+      "status": "pipeline_in_progress"
+    },
+    {
+      "at": "2026-04-16T10:25:05.512022+00:00",
+      "current_stage": "decision",
+      "message": "Swarm stage reconciled",
+      "status": "pipeline_in_progress"
+    },
+    {
+      "at": "2026-04-16T10:25:06.881565+00:00",
+      "current_stage": "decision",
+      "message": "Decision-Maker launch claimed and worker subprocess started",
+      "recovered_stale_claim": false,
+      "status": "pipeline_in_progress"
+    },
+    {
+      "at": "2026-04-16T10:25:12.966693+00:00",
+      "current_stage": "decision",
+      "message": "Decision-Maker stage started",
+      "status": "pipeline_in_progress"
+    },
+    {
+      "at": "2026-04-16T10:25:22.943913+00:00",
+      "current_stage": "decision",
+      "message": "Swarm stage reconciled",
+      "status": "pipeline_in_progress"
+    },
+    {
+      "at": "2026-04-16T10:25:38.505253+00:00",
+      "current_stage": "decision",
+      "message": "Swarm stage reconciled",
+      "status": "pipeline_in_progress"
+    },
+    {
+      "at": "2026-04-16T10:25:51.180665+00:00",
+      "current_stage": "decision",
+      "message": "Swarm stage reconciled",
+      "status": "pipeline_in_progress"
+    },
+    {
+      "at": "2026-04-16T10:25:54.052575+00:00",
+      "current_stage": "decision",
+      "message": "Swarm stage reconciled",
+      "status": "pipeline_in_progress"
+    },
+    {
+      "at": "2026-04-16T10:26:07.126488+00:00",
+      "current_stage": "decision",
+      "message": "Decision-Maker executor crashed",
+      "status": "pipeline_failed"
+    },
+    {
+      "at": "2026-04-16T10:26:09.436522+00:00",
+      "current_stage": "decision",
+      "message": "Sequential runner soft-failed and quarantined the case for later retry",
+      "quarantine": {
+        "case_key": "case-20260416-bacb47cd",
+        "market_id": "c7f5d795-5eab-4bf6-80f3-d2e38766208d",
+        "quarantined_at": "2026-04-16T10:26:09.435668Z",
+        "quarantined_at_ts": 1776335169.435667,
+        "reason": "processed_new_case",
+        "release_at_ts": 1776338769.435667,
+        "result_ok": false,
+        "result_status": "processed_new_case"
+      },
+      "retry_entry": null,
+      "soft_failed_result_status": "processed_new_case",
+      "status": "pipeline_failed"
+    }
+  ],
+  "updated_at": "2026-04-16T10:26:09.436522+00:00"
+}

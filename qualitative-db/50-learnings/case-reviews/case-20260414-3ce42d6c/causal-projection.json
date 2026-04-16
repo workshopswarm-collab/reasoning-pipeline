@@ -1,0 +1,239 @@
+{
+  "artifact_type": "case_causal_projection",
+  "schema_version": "v2",
+  "case_key": "case-20260414-3ce42d6c",
+  "review_path": "qualitative-db/50-learnings/case-reviews/case-20260414-3ce42d6c/review.md",
+  "signal_packet_path": "qualitative-db/50-learnings/case-reviews/case-20260414-3ce42d6c/signal-packet.json",
+  "learning_packet_path": "qualitative-db/50-learnings/case-reviews/case-20260414-3ce42d6c/learning-packet.json",
+  "active_nodes": [
+    "settlement-source-specificity"
+  ],
+  "candidate_edges": [
+    "settlement-source-specificity__increases__resolution-surface-ambiguity"
+  ],
+  "contested_edges": [],
+  "required_checks": [
+    {
+      "check_key": "verify_primary_resolution_source",
+      "reason": "intervention_active:capture-governing-source-proof-for-touch-markets",
+      "source": "intervention:capture-governing-source-proof-for-touch-markets",
+      "evidence_channels": [
+        "linked_intervention_active"
+      ],
+      "intervention_status": "active",
+      "support_strength": "medium"
+    },
+    {
+      "check_key": "capture_governing_source_proof_when_event_near_complete",
+      "reason": "intervention_active:capture-governing-source-proof-for-touch-markets",
+      "source": "intervention:capture-governing-source-proof-for-touch-markets",
+      "evidence_channels": [
+        "linked_intervention_active"
+      ],
+      "intervention_status": "active",
+      "support_strength": "medium"
+    },
+    {
+      "check_key": "label_unverified_vs_not_occurred_distinctly",
+      "reason": "intervention_active:capture-governing-source-proof-for-touch-markets",
+      "source": "intervention:capture-governing-source-proof-for-touch-markets",
+      "evidence_channels": [
+        "linked_intervention_active"
+      ],
+      "intervention_status": "active",
+      "support_strength": "medium"
+    },
+    {
+      "check_key": "label_event_state",
+      "reason": "intervention_draft:separate-unverified-from-not-occurred-for-source-sensitive-markets",
+      "source": "intervention:separate-unverified-from-not-occurred-for-source-sensitive-markets",
+      "evidence_channels": [
+        "linked_intervention_draft"
+      ],
+      "intervention_status": "draft",
+      "support_strength": "weak"
+    },
+    {
+      "check_key": "label_verification_state",
+      "reason": "intervention_draft:separate-unverified-from-not-occurred-for-source-sensitive-markets",
+      "source": "intervention:separate-unverified-from-not-occurred-for-source-sensitive-markets",
+      "evidence_channels": [
+        "linked_intervention_draft"
+      ],
+      "intervention_status": "draft",
+      "support_strength": "weak"
+    }
+  ],
+  "projection_metadata": {
+    "projected_by": "roles/evaluator/runtime/scripts/project_case_to_causal_map.py",
+    "projected_at": "2026-04-15T18:58:47.108992+00:00",
+    "projection_version": "v2",
+    "case_context": {
+      "platform": "polymarket",
+      "category": "polymarket-discovery",
+      "domain": [],
+      "subdomain": [],
+      "related_entities": [],
+      "related_drivers": [],
+      "tags": [
+        "learning/case_review",
+        "evaluator/draft",
+        "platform/polymarket"
+      ],
+      "question_mechanics": [
+        "threshold-touch",
+        "intraperiod-high-low"
+      ],
+      "source_of_truth_class": [
+        "authoritative_with_fallback"
+      ],
+      "categories": [],
+      "error_pattern": "resolved_case_review_pending"
+    },
+    "context_snapshot": {
+      "platforms": [
+        "polymarket"
+      ],
+      "categories": [
+        "polymarket-discovery"
+      ],
+      "question_mechanics": [
+        "threshold-touch",
+        "intraperiod-high-low"
+      ],
+      "source_of_truth_class": [
+        "authoritative_with_fallback"
+      ],
+      "domains": []
+    },
+    "feature_hits": {
+      "threshold_touch_case": [
+        "text:threshold-touch"
+      ],
+      "source_specific_settlement": [
+        "text:governing source",
+        "signal:governing source"
+      ]
+    },
+    "node_reasons": {
+      "settlement-source-specificity": [
+        "text:governing source",
+        "signal:governing source"
+      ]
+    },
+    "edge_reasons": {
+      "settlement-source-specificity__increases__resolution-surface-ambiguity": [
+        "source_node_active",
+        "context:question_mechanics",
+        "context:source_of_truth_class"
+      ]
+    },
+    "contested_edge_reasons": {},
+    "active_node_details": [
+      {
+        "node_key": "settlement-source-specificity",
+        "node_type": "source_condition",
+        "mechanism_family": "source_resolution",
+        "reasons": [
+          "text:governing source",
+          "signal:governing source"
+        ],
+        "evidence_channels": [
+          "review_text",
+          "signal_packet"
+        ],
+        "has_non_intervention_evidence": true
+      }
+    ],
+    "candidate_edge_details": [
+      {
+        "edge_key": "settlement-source-specificity__increases__resolution-surface-ambiguity",
+        "source_node_key": "settlement-source-specificity",
+        "target_node_key": "resolution-surface-ambiguity",
+        "effect_sign": "increases",
+        "mechanism_family": "source_resolution",
+        "reasons": [
+          "source_node_active",
+          "context:question_mechanics",
+          "context:source_of_truth_class"
+        ],
+        "evidence_channels": [
+          "existing_edge_evidence",
+          "frontmatter"
+        ],
+        "intervention_statuses": [
+          "active",
+          "draft"
+        ],
+        "has_non_intervention_evidence": true
+      }
+    ],
+    "contested_edge_details": [],
+    "linked_interventions": {
+      "capture-governing-source-proof-for-touch-markets": {
+        "path": "qualitative-db/50-learnings/intervention-tracking/active/intervention-capture-governing-source-proof-for-touch-markets.md",
+        "status": "active",
+        "application_surface": "researcher_prompt"
+      },
+      "separate-unverified-from-not-occurred-for-source-sensitive-markets": {
+        "path": "qualitative-db/50-learnings/intervention-tracking/draft/intervention-separate-unverified-from-not-occurred-for-source-sensitive-markets.md",
+        "status": "draft",
+        "application_surface": "researcher_prompt"
+      }
+    },
+    "evidence_channel_summary": {
+      "existing_edge_evidence": 1,
+      "frontmatter": 1,
+      "linked_intervention_active": 3,
+      "linked_intervention_draft": 2,
+      "review_text": 1,
+      "signal_packet": 1
+    },
+    "sections_present": [
+      "Driver and mechanism takeaways",
+      "Error-pattern classification",
+      "How this should be reused later",
+      "Outcome and scoring evidence",
+      "Promotion candidates for stable layers",
+      "Proposed intervention or hold decision",
+      "Source / input / workflow takeaways",
+      "What happened in reality",
+      "What the pipeline believed or did",
+      "What was being evaluated",
+      "What was missing",
+      "Which inputs were high signal",
+      "Which inputs were misleading"
+    ],
+    "signal_count": 12,
+    "graph_snapshot": {
+      "node_count": 9,
+      "edge_count": 6
+    },
+    "projection_path": "qualitative-db/50-learnings/case-reviews/case-20260414-3ce42d6c/causal-projection.json",
+    "projection_significance": {
+      "significant": false,
+      "profile": {
+        "min_active_nodes": 4,
+        "min_candidate_edges": 2,
+        "min_contested_edges": 1,
+        "min_non_intervention_active_nodes": 2,
+        "min_non_intervention_candidate_edges": 1,
+        "min_non_intervention_required_checks": 2
+      },
+      "metrics": {
+        "active_node_count": 1,
+        "candidate_edge_count": 1,
+        "contested_edge_count": 0,
+        "required_check_count": 5,
+        "non_intervention_active_node_count": 1,
+        "non_intervention_candidate_edge_count": 1,
+        "non_intervention_required_check_count": 0,
+        "active_intervention_required_check_count": 3,
+        "draft_intervention_required_check_count": 2,
+        "heuristic_required_check_count": 0
+      },
+      "reasons": [],
+      "weak_support_reasons": []
+    }
+  }
+}

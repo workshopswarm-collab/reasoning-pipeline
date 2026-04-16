@@ -1,0 +1,61 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "If SOL rallies further and holds a much wider cushion, the variant edge largely disappears.",
+    "This analysis depends heavily on Binance-linked data and contract interpretation.",
+    "A quiet tape into settlement would favor the market more than this view does."
+  ],
+  "key_assumptions": [
+    "Recent Binance volatility is the right lens for this short-dated threshold market.",
+    "The Binance API series is close enough to the settlement candle surface for practical analysis.",
+    "No hidden catalyst materially shifts SOL before Apr 17 noon ET."
+  ],
+  "main_logical_chain": [
+    "The contract settles on one exact Binance SOL/USDT 1-minute close at 12:00 ET on Apr 17.",
+    "Current Binance spot is above 80, so Yes remains the base case.",
+    "But recent Binance trading shows sub-$80 prints are not remote in the current regime.",
+    "Therefore the market's extreme confidence likely overstates the true probability of Yes."
+  ],
+  "main_thesis": "SOL above $80 on Apr 17 is still more likely than not, but the market is overconfident because it is underweighting multi-day path and settlement-minute risk.",
+  "own_probability": 0.78,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "This looks more like a high-but-not-extreme Yes than a near-lock.",
+    "The neglected mechanism is settlement-window path dependence."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation",
+    "variant_hypothesis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-082b1b3f",
+    "dispatch_id": "dispatch-case-20260414-082b1b3f-20260414T171716Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "9f2a1a56-1503-4339-aa71-4b6f97e197de",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-082b1b3f/researcher-analyses/2026-04-14/dispatch-case-20260414-082b1b3f-20260414T171716Z/personas/variant-view.md",
+    "source_persona_sha256": "192fb923bb63f4e6b9d6646428f05d6336e8d1dd256d33c1afc748f66c1b0c54"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High relevance, medium-low independence: Polymarket rules define settlement and Binance directly supplies the underlying price path.",
+  "strongest_disconfirmers": [
+    "Recent Binance candles still showed sub-$80 closes or intraday lows within the last two weeks.",
+    "About 2.5 days remained to settlement, enough for a mid-single-digit altcoin move.",
+    "The market implied ~88.5% despite only a modest distance above the threshold."
+  ],
+  "strongest_supports": [
+    "SOL was trading around 85.25 on Binance, leaving a real cushion above 80.",
+    "Recent daily closes recovered back into the low/mid-80s.",
+    "Current hourly trading was mostly in the 85-87 range."
+  ],
+  "timing_relevance": "The key issue is multi-day path risk into a single noon-ET settlement minute, not broad long-run Solana fundamentals.",
+  "unresolved_ambiguities": [
+    "Rules cite the Binance UI candle while this run checked Binance API endpoints.",
+    "No explicit near-term catalyst was identified that would force either direction before settlement."
+  ],
+  "what_would_change_view": "I would move toward the market if SOL established a larger cushion above 80 and later settlement-proximate checks showed compressed volatility and clean above-80 trading."
+}

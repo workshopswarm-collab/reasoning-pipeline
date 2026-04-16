@@ -1,0 +1,58 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A broad crypto drawdown before April 19 noon ET.",
+    "SOL-specific weakness shrinking the cushion into the 79-81 area.",
+    "Exchange-specific dislocation on Binance around settlement time."
+  ],
+  "key_assumptions": [
+    "SOL stays in roughly the current trading regime over the next three days.",
+    "No sharp selloff pushes Binance SOL/USDT below 80 at the decisive minute.",
+    "Binance remains the operative settlement venue without unusual dislocation at noon ET."
+  ],
+  "main_logical_chain": [
+    "Polymarket rules specify Binance SOL/USDT 12:00 ET 1-minute close on April 19 as the settlement test.",
+    "Binance spot and historical kline data show SOL currently above 80 and usually above 80 in recent months.",
+    "Because the threshold is already in the money and recent persistence is strong, Yes is favored.",
+    "Because settlement depends on one exact minute, probability should be discounted somewhat versus raw historical frequency."
+  ],
+  "main_thesis": "SOL above 80 at Binance noon ET on April 19 is a high-probability outcome, but slightly less certain than market pricing because settlement depends on one exact 1-minute close.",
+  "own_probability": 0.89,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for SOL/USDT 12:00 in the ET timezone (noon) ... has a final 'Close' price higher than the price specified in the title.",
+    "Current Binance SOL/USDT price is about 85.23-85.24, comfortably above the 80 threshold."
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-1f25d147",
+    "dispatch_id": "dispatch-case-20260416-1f25d147-20260416T035120Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "5afb3e7a-47ad-4114-8b44-4ea2c2320c67",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-1f25d147/researcher-analyses/2026-04-16/dispatch-case-20260416-1f25d147-20260416T035120Z/personas/base-rate.md",
+    "source_persona_sha256": "36350eb18496c1ff74de25f3b63cabdb8f42668de70fa1f5d52ef6b70b8e626a"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality direct evidence on mechanics and price source, with medium evidence independence because rules and settlement venue are linked but answer different parts of the case.",
+  "strongest_disconfirmers": [
+    "The contract settles on a single 1-minute close, so daily-close base rates likely overstate the true probability.",
+    "Crypto can move more than 6% in a few days, which is enough to break the threshold."
+  ],
+  "strongest_supports": [
+    "Current Binance SOL/USDT price is about 85.23-85.24, leaving a cushion above 80.",
+    "SOL daily closes were above 80 on 171 of the last 180 retrieved Binance sessions.",
+    "Conditional 3-day persistence above 80 was about 93% in the sampled window."
+  ],
+  "timing_relevance": "High: the contract resolves on the Binance SOL/USDT 12:00 ET 1-minute close on April 19, so date, timezone, and candle mapping are outcome-determinative.",
+  "unresolved_ambiguities": [
+    "How much narrower single-minute settlement should be discounted relative to daily-close base rates.",
+    "Whether intraday volatility near settlement will be materially higher than recent baseline."
+  ],
+  "what_would_change_view": "A selloff bringing Binance SOL/USDT near or below 80 before settlement, or fresh verification showing repeated sub-80 intraday prints near noon ET, would materially reduce confidence in Yes."
+}

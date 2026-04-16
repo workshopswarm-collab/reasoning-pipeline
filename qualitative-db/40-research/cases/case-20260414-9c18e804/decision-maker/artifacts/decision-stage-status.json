@@ -1,0 +1,267 @@
+{
+  "actor": "decision-maker",
+  "agent_tool_use_allowed": true,
+  "artifact_type": "decision_stage_status",
+  "case_key": "case-20260414-9c18e804",
+  "decision_context_path": "roles/decision-maker/runtime/artifacts/case-20260414-9c18e804/decision-context-dispatch-case-20260414-9c18e804-20260414T135145Z.json",
+  "decision_lane": {
+    "topic_id": "1751",
+    "topic_title": "case-20260414-9c18e804 | decision | T135145Z",
+    "session_key": "agent:main:telegram:group:-1003846500961:topic:1751"
+  },
+  "decision_launch_claim": {
+    "claimed_at": "2026-04-14T14:02:51.485068Z",
+    "decision_context_path": "roles/decision-maker/runtime/artifacts/case-20260414-9c18e804/decision-context-dispatch-case-20260414-9c18e804-20260414T135145Z.json",
+    "launch_log_path": "scripts/.runtime-state/decision-maker-launches/case-20260414-9c18e804-20260414T140251Z.log",
+    "launcher": "pipeline_automation_actions.launch_decision_maker",
+    "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260414-9c18e804/decision-prompt-dispatch-case-20260414-9c18e804-20260414T135145Z.md",
+    "runner_pid": 34582
+  },
+  "decision_prompt_path": "roles/decision-maker/runtime/artifacts/case-20260414-9c18e804/decision-prompt-dispatch-case-20260414-9c18e804-20260414T135145Z.md",
+  "decision_readiness": "ready",
+  "decision_target_chat_id": "-1003846500961",
+  "decision_target_session_key": "agent:main:telegram:group:-1003846500961:topic:1751",
+  "decision_visible_finish_marker": "DECISION-MAKING COMPLETED, DECISION PACKAGE CREATED | market=Will Bitcoin reach $76,000 April 13-19? | dispatch_id=dispatch-case-20260414-9c18e804-20260414T135145Z | packet_path=qualitative-db/40-research/cases/case-20260414-9c18e804/decision-maker/decision-maker-packet.md",
+  "decision_visible_receipt_marker": "SYNTHESIS RECEIVED | market=Will Bitcoin reach $76,000 April 13-19? | dispatch_id=dispatch-case-20260414-9c18e804-20260414T135145Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260414-9c18e804/decision-context-dispatch-case-20260414-9c18e804-20260414T135145Z.json",
+  "decision_visible_start_marker": "DECISION-MAKING ANALYSIS UNDERWAY | market=Will Bitcoin reach $76,000 April 13-19? | dispatch_id=dispatch-case-20260414-9c18e804-20260414T135145Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260414-9c18e804/decision-context-dispatch-case-20260414-9c18e804-20260414T135145Z.json",
+  "dispatch_id": "dispatch-case-20260414-9c18e804-20260414T135145Z",
+  "last_stage_event": {
+    "at": "2026-04-14T14:03:51.866960Z",
+    "stage": "decision_execution",
+    "state": "visible_marker_sent",
+    "message": "DECISION-MAKING COMPLETED, DECISION PACKAGE CREATED | market=Will Bitcoin reach $76,000 April 13-19? | dispatch_id=dispatch-case-20260414-9c18e804-20260414T135145Z | packet_path=qualitative-db/40-research/cases/case-20260414-9c18e804/decision-maker/decision-maker-packet.md"
+  },
+  "packet_json_path": "qualitative-db/40-research/cases/case-20260414-9c18e804/decision-maker/artifacts/decision-maker-packet.json",
+  "packet_markdown_path": "qualitative-db/40-research/cases/case-20260414-9c18e804/decision-maker/decision-maker-packet.md",
+  "position_policy": "hold_only",
+  "question": "Will Bitcoin reach $76,000 April 13-19?",
+  "recommended_side": "yes",
+  "schema_version": "decision-stage-status/v1",
+  "selected_input_bundle_estimated_tokens": 4487,
+  "selected_input_bundle_mode": "targeted_escalation",
+  "selected_input_bundle_path": "roles/decision-maker/runtime/artifacts/case-20260414-9c18e804/selected-inputs-dispatch-case-20260414-9c18e804-20260414T135145Z.json",
+  "stage_events": [
+    {
+      "at": "2026-04-14T14:02:50.756483Z",
+      "message": "Decision-Maker stage initialized from synthesis handoff",
+      "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260414-9c18e804/synthesizer-agent/decision-handoff.md",
+      "stage": "kickoff",
+      "state": "decision_ready_for_receipt"
+    },
+    {
+      "agent_tool_use_allowed": true,
+      "approx_tokens_after_trim": 4487,
+      "at": "2026-04-14T14:02:51.446909Z",
+      "message": "Built deterministic Decision-Maker selected-input bundle",
+      "selected_input_bundle_path": "roles/decision-maker/runtime/artifacts/case-20260414-9c18e804/selected-inputs-dispatch-case-20260414-9c18e804-20260414T135145Z.json",
+      "stage": "decision_input_selection",
+      "state": "built",
+      "verification_mode": "targeted_escalation",
+      "verification_mode_path": "roles/decision-maker/runtime/artifacts/case-20260414-9c18e804/verification-mode-dispatch-case-20260414-9c18e804-20260414T135145Z.json"
+    },
+    {
+      "approx_tokens_after_trim": 2078,
+      "at": "2026-04-14T14:02:51.447144Z",
+      "message": "Built deterministic targeted verification pack",
+      "stage": "decision_targeted_verification",
+      "state": "built",
+      "targeted_verification_pack_path": "roles/decision-maker/runtime/artifacts/case-20260414-9c18e804/targeted-verification-pack-dispatch-case-20260414-9c18e804-20260414T135145Z.json"
+    },
+    {
+      "at": "2026-04-14T14:02:51.447314Z",
+      "message": "Built Decision-Maker prompt from compact selected-input bundle",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260414-9c18e804/decision-prompt-dispatch-case-20260414-9c18e804-20260414T135145Z.md",
+      "stage": "decision_prompt",
+      "state": "built"
+    },
+    {
+      "at": "2026-04-14T14:02:51.448665Z",
+      "message": "Decision-Maker inputs prepared; awaiting launch claim",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260414-9c18e804/decision-prompt-dispatch-case-20260414-9c18e804-20260414T135145Z.md",
+      "stage": "decision_prepare",
+      "state": "handoff_prepared"
+    },
+    {
+      "at": "2026-04-14T14:02:51.485068Z",
+      "decision_context_path": "roles/decision-maker/runtime/artifacts/case-20260414-9c18e804/decision-context-dispatch-case-20260414-9c18e804-20260414T135145Z.json",
+      "launch_log_path": "scripts/.runtime-state/decision-maker-launches/case-20260414-9c18e804-20260414T140251Z.log",
+      "message": "Decision-Maker launch claimed by automation controller",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260414-9c18e804/decision-prompt-dispatch-case-20260414-9c18e804-20260414T135145Z.md",
+      "runner_pid": 34582,
+      "stage": "decision_receipt",
+      "state": "handoff_sent"
+    },
+    {
+      "at": "2026-04-14T14:02:51.666139Z",
+      "stage": "kickoff",
+      "state": "reentered",
+      "message": "Decision-Maker executor resumed from existing prepared/running state",
+      "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260414-9c18e804/synthesizer-agent/decision-handoff.md"
+    },
+    {
+      "at": "2026-04-14T14:02:52.351255Z",
+      "stage": "decision_input_selection",
+      "state": "built",
+      "message": "Built deterministic Decision-Maker selected-input bundle",
+      "verification_mode_path": "roles/decision-maker/runtime/artifacts/case-20260414-9c18e804/verification-mode-dispatch-case-20260414-9c18e804-20260414T135145Z.json",
+      "selected_input_bundle_path": "roles/decision-maker/runtime/artifacts/case-20260414-9c18e804/selected-inputs-dispatch-case-20260414-9c18e804-20260414T135145Z.json",
+      "verification_mode": "targeted_escalation",
+      "approx_tokens_after_trim": 4487,
+      "agent_tool_use_allowed": true
+    },
+    {
+      "at": "2026-04-14T14:02:52.351508Z",
+      "stage": "decision_targeted_verification",
+      "state": "built",
+      "message": "Built deterministic targeted verification pack",
+      "targeted_verification_pack_path": "roles/decision-maker/runtime/artifacts/case-20260414-9c18e804/targeted-verification-pack-dispatch-case-20260414-9c18e804-20260414T135145Z.json",
+      "approx_tokens_after_trim": 2078
+    },
+    {
+      "at": "2026-04-14T14:02:52.351679Z",
+      "stage": "decision_prompt",
+      "state": "built",
+      "message": "Built Decision-Maker prompt from compact selected-input bundle",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260414-9c18e804/decision-prompt-dispatch-case-20260414-9c18e804-20260414T135145Z.md"
+    },
+    {
+      "at": "2026-04-14T14:02:57.967105Z",
+      "stage": "decision_lane_bootstrap",
+      "state": "created",
+      "message": "Created dedicated Telegram decision lane",
+      "topic_id": "1751",
+      "topic_title": "case-20260414-9c18e804 | decision | T135145Z",
+      "session_key": "agent:main:telegram:group:-1003846500961:topic:1751"
+    },
+    {
+      "at": "2026-04-14T14:03:14.514018Z",
+      "stage": "decision_receipt",
+      "state": "visible_marker_sent",
+      "message": "SYNTHESIS RECEIVED | market=Will Bitcoin reach $76,000 April 13-19? | dispatch_id=dispatch-case-20260414-9c18e804-20260414T135145Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260414-9c18e804/decision-context-dispatch-case-20260414-9c18e804-20260414T135145Z.json"
+    },
+    {
+      "at": "2026-04-14T14:03:14.515170Z",
+      "stage": "decision_receipt",
+      "state": "accepted",
+      "message": "Decision-Maker handoff accepted",
+      "session_key": "agent:decision-maker:main",
+      "handoff_status": "started"
+    },
+    {
+      "at": "2026-04-14T14:03:14.515515Z",
+      "stage": "decision_execution",
+      "state": "decision_analysis_running",
+      "message": "Decision-Maker agent invocation accepted and analysis started",
+      "session_key": "agent:decision-maker:main",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260414-9c18e804/decision-prompt-dispatch-case-20260414-9c18e804-20260414T135145Z.md",
+      "handoff_status": "started"
+    },
+    {
+      "at": "2026-04-14T14:03:23.389974Z",
+      "stage": "decision_execution",
+      "state": "visible_marker_sent",
+      "message": "DECISION-MAKING ANALYSIS UNDERWAY | market=Will Bitcoin reach $76,000 April 13-19? | dispatch_id=dispatch-case-20260414-9c18e804-20260414T135145Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260414-9c18e804/decision-context-dispatch-case-20260414-9c18e804-20260414T135145Z.json"
+    },
+    {
+      "at": "2026-04-14T14:03:42.978709Z",
+      "stage": "decision_execution",
+      "state": "decision_completed",
+      "message": "Decision-Maker completed and packet rendered",
+      "warnings": [],
+      "forecast_decision_persist_error": ""
+    },
+    {
+      "at": "2026-04-14T14:03:51.866960Z",
+      "stage": "decision_execution",
+      "state": "visible_marker_sent",
+      "message": "DECISION-MAKING COMPLETED, DECISION PACKAGE CREATED | market=Will Bitcoin reach $76,000 April 13-19? | dispatch_id=dispatch-case-20260414-9c18e804-20260414T135145Z | packet_path=qualitative-db/40-research/cases/case-20260414-9c18e804/decision-maker/decision-maker-packet.md"
+    }
+  ],
+  "status": "decision_completed",
+  "targeted_verification_pack_path": "roles/decision-maker/runtime/artifacts/case-20260414-9c18e804/targeted-verification-pack-dispatch-case-20260414-9c18e804-20260414T135145Z.json",
+  "targeted_verification_pack_required": true,
+  "trade_authorization": "watch_only",
+  "updated_at": "2026-04-14T14:03:51.867013Z",
+  "verification_mode_path": "roles/decision-maker/runtime/artifacts/case-20260414-9c18e804/verification-mode-dispatch-case-20260414-9c18e804-20260414T135145Z.json",
+  "warnings": [],
+  "previous_status": "handoff_sent",
+  "decision_lane_topic_id": "1751",
+  "decision_lane_topic_title": "case-20260414-9c18e804 | decision | T135145Z",
+  "decision_lane_session_key": "agent:main:telegram:group:-1003846500961:topic:1751",
+  "decision_target_topic_id": "1751",
+  "decision_target_topic_title": "case-20260414-9c18e804 | decision | T135145Z",
+  "decision_receipt_marker_sent_at": "2026-04-14T14:03:14.513978+00:00",
+  "decision_analysis_marker_sent_at": "2026-04-14T14:03:23.389935+00:00",
+  "timeline_update": {
+    "appended": true,
+    "case_key": "case-20260414-9c18e804",
+    "dispatch_id": "dispatch-case-20260414-9c18e804-20260414T135145Z",
+    "packet_path": "qualitative-db/40-research/cases/case-20260414-9c18e804/decision-maker/decision-maker-packet.md",
+    "entry": "- 2026-04-14T14:03:42.976942+00:00 — completed decision-making `dispatch-case-20260414-9c18e804-20260414T135145Z` with packet `qualitative-db/40-research/cases/case-20260414-9c18e804/decision-maker/decision-maker-packet.md`."
+  },
+  "forecast_decision_persist": {
+    "ok": true,
+    "packet_json": "qualitative-db/40-research/cases/case-20260414-9c18e804/decision-maker/artifacts/decision-maker-packet.json",
+    "persisted": {
+      "forecast_id": "dispatch-case-20260414-9c18e804-20260414T135145Z",
+      "market_id": "68ca5139-c1c1-453d-abba-968b9e22aa50",
+      "contract_id": "yes",
+      "forecast_prob": 0.69,
+      "decision_status": "recorded",
+      "decision_packet_path": "qualitative-db/40-research/cases/case-20260414-9c18e804/decision-maker/artifacts/decision-maker-packet.json",
+      "supersedes_forecast_id": "dispatch-case-20260413-600f720f-20260413T233138Z",
+      "superseded_forecast_ids": [
+        "dispatch-case-20260413-600f720f-20260413T233138Z"
+      ],
+      "market_state": {
+        "market_id": "68ca5139-c1c1-453d-abba-968b9e22aa50",
+        "current_price": 0.88,
+        "last_reasoned_price": 0.69,
+        "pipeline_status": "executed"
+      }
+    },
+    "record": {
+      "forecast_id": "dispatch-case-20260414-9c18e804-20260414T135145Z",
+      "decision_ts": "2026-04-14T10:03:00-04:00",
+      "case_id": "case-20260414-9c18e804",
+      "dispatch_id": "dispatch-case-20260414-9c18e804-20260414T135145Z",
+      "market_id": "68ca5139-c1c1-453d-abba-968b9e22aa50",
+      "contract_id": "yes",
+      "platform": "polymarket",
+      "market_slug": "will-bitcoin-reach-76k-april-13-19",
+      "question": "Will Bitcoin reach $76,000 April 13-19?",
+      "forecast_prob": "0.69",
+      "forecast_direction": "yes",
+      "confidence_label": "medium",
+      "confidence_score": "",
+      "time_horizon_label": "Apr 13-19 Binance BTC/USDT intrawindow high-touch resolution",
+      "verification_mode": "targeted_escalation",
+      "decision_status": "recorded",
+      "rationale_summary": "BTC is still more likely than not to hit $76,000 during Apr 13-19 because a Binance touch-style trigger with spot already within about 1% of the threshold is favorable to Yes, but the market's 75% price remains too aggressive while no verified qualifying Binance print has yet been shown in the reviewed checks, so the disciplined posture is watch-only rather than chasing Yes.",
+      "decision_packet_path": "qualitative-db/40-research/cases/case-20260414-9c18e804/decision-maker/artifacts/decision-maker-packet.json",
+      "decision_handoff_path": "qualitative-db/40-research/cases/case-20260414-9c18e804/synthesizer-agent/decision-handoff.md",
+      "syndicated_finding_path": "qualitative-db/40-research/cases/case-20260414-9c18e804/synthesizer-agent/syndicated-finding.md"
+    },
+    "warnings": []
+  },
+  "terminal_summary": {
+    "at": "2026-04-14T14:03:51.867038Z",
+    "status": "decision_completed",
+    "decision_lane": {
+      "topic_id": "1751",
+      "topic_title": "case-20260414-9c18e804 | decision | T135145Z",
+      "session_key": "agent:main:telegram:group:-1003846500961:topic:1751"
+    },
+    "packet_json_path": "qualitative-db/40-research/cases/case-20260414-9c18e804/decision-maker/artifacts/decision-maker-packet.json",
+    "packet_markdown_path": "qualitative-db/40-research/cases/case-20260414-9c18e804/decision-maker/decision-maker-packet.md",
+    "trade_authorization": "watch_only",
+    "decision_readiness": "ready",
+    "last_stage_event": {
+      "at": "2026-04-14T14:03:51.866960Z",
+      "stage": "decision_execution",
+      "state": "visible_marker_sent",
+      "message": "DECISION-MAKING COMPLETED, DECISION PACKAGE CREATED | market=Will Bitcoin reach $76,000 April 13-19? | dispatch_id=dispatch-case-20260414-9c18e804-20260414T135145Z | packet_path=qualitative-db/40-research/cases/case-20260414-9c18e804/decision-maker/decision-maker-packet.md"
+    }
+  },
+  "decision_completion_marker_sent_at": "2026-04-14T14:03:51.866893+00:00"
+}

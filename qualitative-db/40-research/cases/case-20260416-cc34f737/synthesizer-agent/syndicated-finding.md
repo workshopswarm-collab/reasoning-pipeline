@@ -1,0 +1,149 @@
+---
+type: syndicated_finding
+case_key: case-20260416-cc34f737
+dispatch_id: dispatch-case-20260416-cc34f737-20260416T162722Z
+question: "Will the price of Ethereum be above $2,300 on April 17?"
+coverage_status: complete
+market_implied_probability: 0.72
+syndicated_probability_low: 0.68
+syndicated_probability_high: 0.74
+syndicated_probability_midpoint: 0.71
+edge_vs_market_pct_points: -1.0
+relation_to_market: crosses_market
+edge_quality: unclear
+edge_independent_verification_quality: medium
+compressed_toward_market_due_to_verification: yes
+contract_ambiguity_level: minor
+contract_ambiguity_reason: "UI-referenced Binance candle vs operational API/display alignment in edge cases"
+independently_verified_points: ["Binance ETHUSDT was still above 2300 during synthesis-stage check", "Binance 24h realized range still spans below and above 2300", "Contract mechanics are venue-specific 12:00 ET Binance 1m close with strict >2300 threshold", "Broader spot cross-check remained near Binance rather than showing obvious venue dislocation"]
+verification_gap_summary: "No strong independent estimate of next-day noon-minute downside probability beyond spot/range context was obtained."
+best_countercase_summary: "A routine overnight or morning crypto downdraft can still push the single governing Binance minute close to 2300 or lower."
+main_reason_for_disagreement: "Weighting of current above-strike cushion versus single-minute settlement fragility."
+resolution_mechanics_summary: "Yes requires the Binance ETH/USDT 12:00 ET April 17 one-minute candle final close to be strictly above 2300."
+freshness_sensitive: yes
+freshness_driver: "ETH short-horizon price path into the April 17 12:00 ET Binance settlement minute"
+decision_blockers: ["Single-minute settlement path dependence leaves substantial timing risk", "No robust independent distributional model for the specific noon-ET minute close", "Only medium independence in sourcing because venue data also underlies most contextual checks"]
+blockers_require_new_research: no
+disagreement_type: timing
+disagreement_intensity: medium
+synthesis_confidence_quality: medium
+staleness_risk: high
+next_checkpoint: "Recheck Binance ETH/USDT in the final 1-2 hours before April 17 12:00 ET."
+follow_up_needed: yes
+---
+
+# Claim
+
+ETH above $2,300 on the April 17 Binance noon-ET 1-minute close is still more likely than not, but the swarm’s sub-market bearish lean was not independently strengthened by a fresh verification pass; current synthesis lands near market because the remaining cushion is modest and the contract is highly path-dependent to one exact minute.
+
+## Alpha summary
+
+Market implies 0.72. My syndicated range is 0.68-0.74. That is marginal-to-unclear edge territory rather than a clean actionable disagreement. The only plausible mispricing is mild market overconfidence in a narrow one-minute settlement despite ETH trading above 2300, but fresh verification did not support pressing a strong below-market view.
+
+## Input coverage
+
+All five personas were available and usable: base-rate, catalyst-hunter, market-implied, risk-manager, and variant-view. Assumption notes and the risk-manager evidence map were reviewed. Coverage is complete because there are no missing personas and no raw finding looked unusable; the main issue is not missing coverage but shared dependence on similar venue/spot evidence.
+
+## Market-implied baseline
+
+The synthesis baseline is the 0.72 market-implied probability at the provided snapshot. Swarm lane estimates ranged 0.64-0.78 with a provisional center around 0.66, so the swarm as a whole leaned modestly below market before synthesis-stage verification.
+
+## Syndicated probability estimate
+
+Final post-synthesis judgment: 0.68-0.74. Yes remains favored because Binance ETH/USDT was above 2300 in both upstream work and the synthesis-stage spot check, and there is limited time left. But the range stays fairly tight around market because the cushion is only modest and the contract resolves on one exact Binance minute close.
+
+## Difference from swarm-implied center
+
+This is modestly above the swarm-implied center. I moved up from the swarm’s bearish tilt because fresh synthesis-stage verification showed Binance still above 2300 and did not uncover any new bearish catalyst, contract flaw, or venue-specific anomaly strong enough to justify a persistent 6-point discount to market. In other words, the swarm’s below-market lean was directionally plausible but not strongly independently verified, so I compressed back toward market.
+
+## Agreement or disagreement with market
+
+Broadly near market, with a slight lean that the market may still be a touch full. The market is defensible because spot is above strike and time-to-resolution is short. The mild reason to shade lower is that a roughly 1%-plus move is enough to lose and the contract cares only about one exact minute.
+
+## Independent verification of edge
+
+Independent verification was medium quality, not high. I independently checked live Binance ETHUSDT pricing, Binance 24h range and recent 1m candles, and a broader-spot cross-check from CoinGecko. That was enough to verify that ETH was still above 2300, that 2300 remained inside recent realized range, and that no obvious Binance dislocation was present. What remained unverified was the harder part: the actual probability distribution of the April 17 noon ET minute close and whether market participants were materially mispricing that tail/timing risk. Because that key edge claim was only partially verified, verification quality is medium rather than high.
+
+## Compression toward market due to verification
+
+Yes. The swarm’s provisional center sat meaningfully below market, but the synthesis-stage pass did not independently validate a strong bearish-vs-market edge. Fresh data still showed Binance above 2300, and the only strong bearish argument remained the already-known one-minute path dependence. With no new disconfirming catalyst or stronger independent downside evidence, I compressed the final range back toward market.
+
+## Timing and catalyst posture
+
+The decisive catalyst is simply the price path into the April 17 12:00 ET Binance minute. This edge is likely to decay rather than widen absent a fresh move, because current information is mostly just spot-relative-to-strike. Waiting until the final hours would improve accuracy materially more than adding more generic commentary now.
+
+## Decision blockers
+
+No major contract blocker. The practical blockers are timing fragility, only medium source independence, and lack of a stronger independent estimate for the exact noon-minute close distribution. Those do not force new research now, but they do force caution about claiming a large edge.
+
+## Implication for the question
+
+As of synthesis, Yes is still the likelier outcome, but not by enough to justify confidence materially above the current market. Operationally: treat this as a short-horizon hold-the-buffer question, not a fundamentals-on-ETH question.
+
+## Consensus across personas
+
+All personas agreed that Yes is favored because Binance ETH/USDT was currently above 2300. All agreed the contract is governed by the Binance ETH/USDT 12:00 ET 1-minute candle close and requires a strict close above 2300. All agreed the main vulnerability is one-minute settlement fragility rather than broad directional bearishness. All agreed the live buffer above strike was modest rather than comfortable.
+
+## Key disagreements across personas
+
+Main disagreement was timing/weighting-based. Catalyst-hunter gave more weight to the existing $30-plus cushion and absence of an identified bearish catalyst, landing at 0.78. Base-rate, risk-manager, and variant-view gave more weight to recent realized sub-2300 prints and one-minute settlement path dependence, landing 0.64-0.66. Market-implied sat between them at 0.68 and treated the setup as mostly efficient. No major factual disagreement survived; the disagreement is about how much confidence current spot deserves.
+
+## Best countercase
+
+Best surviving countercase: the market is still somewhat overconfident because recent realized Binance range already crossed below 2300, so a routine overnight or morning downswing could flip the exact governing minute even if ETH spends much of the period above strike. This was best represented by variant-view and risk-manager, with support from base-rate.
+
+## Encapsulated assumptions
+
+Shared assumptions: Binance remains the relevant venue, current above-2300 spot has predictive value, and no major new catalyst hits before settlement. Contested assumptions: whether a roughly $20-$35 cushion is enough to justify a probability near or above 0.72. Fragile assumptions: Binance-specific settlement behavior will align cleanly with observed API/UI candles and broader ETH spot will not diverge sharply into the resolving minute.
+
+## Encapsulated evidence map
+
+Strongest supporting evidence: live Binance ETHUSDT remained above 2300; broader spot checks were similar; limited time remains; contract mechanics are clear. Strongest contradictory evidence: Binance 24h range includes 2285; the contract settles on one exact minute close; only a modest downside move is needed to lose. Governing evidence: Polymarket rule framing plus Binance ETH/USDT minute-candle mechanics. Mixed evidence: current spot being above strike is clearly supportive, but not by a wide enough margin to neutralize routine crypto volatility.
+
+## Evidence weighting
+
+Most weight went to direct settlement mechanics and live Binance spot/range context. Medium weight went to broader spot cross-checks that reduced concern about isolated Binance mispricing. Downweighted evidence included generic Ethereum directional narratives and any implicit assumption that current spot mechanically maps to settlement odds. Ignored: broader fundamentals, because this market is too short-dated and rule-specific for them to dominate absent a fresh catalyst.
+
+## Counterpoints / strongest disconfirming evidence
+
+The strongest disconfirming evidence against a comfortable Yes view is that Binance’s recent 24h low was already 2285.10, below threshold, proving that sub-2300 prints are well inside ordinary realized range. Combined with one-minute settlement, that means No can occur without any dramatic market regime shift.
+
+## Resolution or source-of-truth interpretation
+
+I agree with the swarm that contract ambiguity is low but not zero. The operative interpretation is narrow and auditable: use Binance ETH/USDT, the April 17 12:00 ET 1-minute candle, and its final close; the close must be strictly greater than 2300. Minor residual ambiguity comes from the rules’ practical reference to Binance chart/candle display rather than a dedicated settlement API, but nothing reviewed suggests a materially different interpretation.
+
+## Why this could create or destroy alpha
+
+Alpha exists only if traders are misweighting current spot versus exact-minute downside risk. The market could be slightly wrong if it is over-anchoring to ETH being above 2300 now. But the signal may already be mostly priced in because everyone can see the same modest cushion and same contract mechanics. Without stronger independent evidence on the minute-close distribution, the apparent edge is easy to overstate.
+
+## What would falsify this interpretation / change the view
+
+A sustained move materially above the mid-2330s into late morning ET would push me above market because the cushion would become more robust. A drift back toward 2300-2310 or a fresh risk-off headline would push me clearly below market or toward coinflip. Evidence of Binance-specific divergence or settlement-method irregularity would also change the view materially.
+
+## Highest-value next research
+
+Single highest-value next research step: refresh Binance ETH/USDT price action and 1m candle behavior in the final 1-2 hours before the April 17 12:00 ET settlement minute.
+
+## Source-quality assessment
+
+Primary/gov­erning source class: Polymarket contract rules plus Binance direct market data. Most important secondary class: broad-spot cross-checks such as CoinGecko/Coinbase-style references. Evidence independence is medium, not high, because all pricing context ultimately reflects the same underlying ETH market and Binance is both settlement venue and main context source. Source-of-truth ambiguity is low-to-minor. The synthesis is not bottlenecked by missing personas, but it is bottlenecked by thin independent evidence about exact-minute settlement odds.
+
+## Verification impact
+
+Yes, additional synthesis-stage verification was used. It materially changed the handoff by reducing confidence in the swarm’s below-market edge: fresh checks confirmed ETH remained above 2300 and did not reveal a new bearish catalyst. Cross-lane comparison also showed that most lanes were using the same basic logic and data family, which made the apparent consensus against market less persuasive than it first looked.
+
+## Persona contribution map
+
+base-rate — established the outside-view case that Yes should be favored but not at market’s confidence because one-minute settlement is fragile. catalyst-hunter — best case for respecting the current above-strike buffer and absence of an identified bearish catalyst; only lane above market. market-implied — strongest argument that the market price is broadly defensible and this may be near-efficient. risk-manager — clearest articulation of path/timing fragility and the importance of recent realized sub-2300 prints. variant-view — best preserved minority countercase that market may be overconfident because ordinary realized range already spans both sides of the threshold.
+
+## Reusable lesson signals
+
+Possible durable lesson: when all lanes rely on the same settlement venue and similar spot context, apparent swarm disagreement with market should be discounted unless synthesis adds genuinely independent verification. Possible underbuilt driver: explicit short-horizon settlement-minute distribution modeling for crypto threshold markets. Possible source-quality lesson: UI/API settlement-surface alignment should be noted even when contract ambiguity looks low. Reusability confidence: medium.
+
+## Orchestrator review suggestions
+
+review later for durable lesson: yes; review later for driver candidate: yes; review later for canon or linkage issue: yes; review later for swarm-method issue: yes; reason: this case exposed a recurring swarm-method risk where multiple lanes create an apparent anti-market consensus from closely related venue/spot evidence without enough independent verification of the actual edge.
+
+## Recommended follow-up
+
+Wait for the final-hours checkpoint, then refresh Binance ETH/USDT and update only if the strike buffer has materially widened, compressed, or if a clear catalyst appears. If a downstream decision must be made now, treat the edge as marginal and require price-sensitive execution rather than a strong conviction call.

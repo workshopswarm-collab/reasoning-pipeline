@@ -1,0 +1,61 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Short-horizon crypto volatility can be large.",
+    "Settlement depends on one precise Binance 1-minute close rather than a broader average.",
+    "Residual ambiguity remains because the rule cites Binance UI candles rather than an API endpoint."
+  ],
+  "key_assumptions": [
+    "A roughly 7.8% cushion above 70000 is usually enough over a sub-24h window absent a sharp selloff.",
+    "Binance API spot and 1m kline data are a good proxy for the settlement surface.",
+    "No Binance-specific dislocation materially changes BTCUSDT versus broader BTC spot before noon ET April 15."
+  ],
+  "main_logical_chain": [
+    "Market implies 97.9% Yes.",
+    "Direct Binance data puts BTCUSDT around 75.46k, about 7.8% above the threshold.",
+    "Outside-view, a >7% drop by tomorrow noon is uncommon but not rare enough to justify near-certainty.",
+    "Therefore Yes is still favored, but at about 94% rather than 97.9%."
+  ],
+  "main_thesis": "BTC is materially above 70000 with less than a day left, so Yes remains likely, but the market is somewhat too close to certainty for a single-minute crypto threshold contract.",
+  "own_probability": 0.94,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "Binance BTCUSDT around 75,461.49",
+    "12:00 ET 1-minute candle final Close",
+    "94% Yes vs 97.9% market"
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "market_anchor",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-8dcead65",
+    "dispatch_id": "dispatch-case-20260414-8dcead65-20260414T160342Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "ff496968-e25f-461c-9165-04a500d94a9b",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-8dcead65/researcher-analyses/2026-04-14/dispatch-case-20260414-8dcead65-20260414T160342Z/personas/base-rate.md",
+    "source_persona_sha256": "9ad8a41c08c9885223df0db789a208b8323239e5c5119a998095d397a7c048e0"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Good enough for a medium rule-sensitive case: direct Binance venue data, direct Polymarket rules, and one contextual CoinGecko cross-check; independence is medium and source-of-truth ambiguity is low to medium.",
+  "strongest_disconfirmers": [
+    "BTC can move more than 7% in less than a day.",
+    "The contract settles on a single exact minute on one exchange, so path-dependent tail risk remains meaningful.",
+    "A crypto-wide or Binance-specific dislocation before noon ET could still produce No."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT was about 75461 at check time, well above the 70000 threshold.",
+    "Recent Binance 1-minute closes clustered around mid-75k rather than showing breakdown.",
+    "The contract is mechanically narrow: one venue, one pair, one minute, one close field."
+  ],
+  "timing_relevance": "Resolution is at 12:00 ET on 2026-04-15, so the view is dominated by short-horizon volatility into one exact minute.",
+  "unresolved_ambiguities": [
+    "Whether the Binance web UI could differ in any edge-case way from API-reported 1m close data.",
+    "Whether any last-minute exchange-specific disruption affects the noon ET print."
+  ],
+  "what_would_change_view": "A sharp drop toward 72k or below before the window, evidence of Binance-specific pricing quirks, or a new macro/crypto shock would lower the Yes estimate materially."
+}

@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "medium",
+  "fragility_points": [
+    "Full readable rules text was not accessible in the fetch, leaving some source-of-truth ambiguity.",
+    "The contextual price snapshot may stale quickly in a fast crypto market.",
+    "The disagreement is modest and mostly about residual execution risk, not a strong opposite thesis."
+  ],
+  "key_assumptions": [
+    "The market resolves on a qualifying intraperiod touch rather than a weekly close.",
+    "The accessible TradingView snapshot is directionally representative of current spot conditions.",
+    "Round-number resistance can still block a touch over a short window even after a near miss."
+  ],
+  "main_logical_chain": [
+    "The market prices the $2,400 touch as very likely.",
+    "Independent contextual evidence indicates ETH is already very close to the threshold.",
+    "That supports a yes lean, but the threshold also sits at visible resistance within a short time window.",
+    "Therefore the market is probably right directionally but somewhat too confident, yielding an ~80% estimate instead of ~89-92%."
+  ],
+  "main_thesis": "ETH likely reaches $2,400 during the window, but the market is somewhat overconfident because a short-dated round-number resistance can still preserve meaningful miss risk.",
+  "own_probability": 0.8,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "\u2191 2,400 at 89%",
+    "spiking near $2,395",
+    "Key resistance: $2,380, $2,400"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "variant_hypothesis",
+    "technical_reference"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-4e668883",
+    "dispatch_id": "dispatch-case-20260414-4e668883-20260414T133938Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "047a346a-4787-42a7-9ab2-4be7aa9aea84",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-4e668883/researcher-analyses/2026-04-14/dispatch-case-20260414-4e668883-20260414T133938Z/personas/variant-view.md",
+    "source_persona_sha256": "96a79d915f6d0c5ada1106b644b2cd1fb231ffca7397c7212cbf1601d4e5a364"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary source quality is good for market baseline but incomplete for full settlement mechanics in accessible fetch; contextual price evidence is useful but not authoritative.",
+  "strongest_disconfirmers": [
+    "If the near-$2,395 context is accurate and current, one ordinary bullish intraday move could settle the market quickly.",
+    "$2,400 was explicitly framed as nearby resistance, so repeated rejection remains plausible."
+  ],
+  "strongest_supports": [
+    "ETH was contextually described above roughly $2,350 with a spike near $2,395, leaving only a small move to $2,400.",
+    "The market baseline itself is extremely high, indicating broad consensus that the threshold is reachable."
+  ],
+  "timing_relevance": "Very high: this is a short-dated threshold market where a single intraday move can settle the outcome.",
+  "unresolved_ambiguities": [
+    "Exact governing print methodology in the Polymarket rules section.",
+    "Whether broader crypto catalysts emerge during the remaining window."
+  ],
+  "what_would_change_view": "A verified qualifying print above $2,400, full readable rules confirming an easier trigger, or stronger independent evidence of active breakout momentum would move the estimate upward."
+}

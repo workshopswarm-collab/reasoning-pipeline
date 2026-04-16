@@ -1,0 +1,63 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A fast risk-off move before April 21 could compress the cushion quickly.",
+    "The exact-noon Binance candle mechanic creates edge-case sensitivity.",
+    "The estimate is modestly assumption-sensitive because no close-to-resolution intraday check was possible yet."
+  ],
+  "key_assumptions": [
+    "Current Binance spot several days before resolution is informative but not dispositive.",
+    "The remaining No tail is driven mostly by short-horizon volatility and exact settlement mechanics rather than a broad bearish thesis.",
+    "Cross-venue price consistency today reduces but does not eliminate Binance-specific settlement risk."
+  ],
+  "main_logical_chain": [
+    "The governing venue and metric are Binance BTC/USDT 1-minute candle close at 12:00 ET on April 21.",
+    "Current Binance and cross-venue pricing place BTC materially above 68,000.",
+    "That large cushion makes Yes the clear base case.",
+    "But the narrow settlement mechanic means the remaining No tail is mostly path/timing/venue risk.",
+    "Therefore the market direction is right, but the confidence should be discounted modestly from about 95% to about 91%."
+  ],
+  "main_thesis": "The market is directionally right on Yes but slightly overconfident because this contract resolves on one exact Binance noon ET 1-minute close, so path and venue-specific tail risk remain larger than a 95% price suggests.",
+  "own_probability": 0.91,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "Yes if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone has a final Close price higher than 68,000.",
+    "Own probability estimate: 91% Yes.",
+    "The strongest credible alternative is overconfidence in settlement-path risk, not a full bearish thesis."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation",
+    "variant_hypothesis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-63fb3082",
+    "dispatch_id": "dispatch-case-20260416-63fb3082-20260416T145628Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "96d3f41f-7e72-43f1-a03c-6d81e547289c",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-63fb3082/researcher-analyses/2026-04-16/dispatch-case-20260416-63fb3082-20260416T145628Z/personas/variant-view.md",
+    "source_persona_sha256": "8ae38db6f36afc4db009232ae8beb1bd617b1dcb9269d4f9d993f206b8126dfe"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary contract language and venue pricing were strong; evidence independence was medium because Coinbase served only as a contextual cross-check, but source-of-truth for settlement was clear enough.",
+  "strongest_disconfirmers": [
+    "The contract settles on one exact Binance BTC/USDT 12:00 ET 1-minute close, not a broad BTC price measure.",
+    "BTC can move several thousand dollars within days, so a minority downside tail still exists.",
+    "A Binance-specific anomaly near settlement could matter even if broader BTC remains firm."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT was around 73.8k to 73.9k, roughly 5.8k to 5.9k above the strike.",
+    "Recent Binance daily data stayed well above 68k.",
+    "Coinbase spot cross-check was also comfortably above 68k."
+  ],
+  "timing_relevance": "Very high: the contract resolves on one exact 12:00 ET Binance 1-minute close on April 21, 2026.",
+  "unresolved_ambiguities": [
+    "How much short-horizon volatility BTC will realize before noon ET on April 21.",
+    "Whether any Binance-specific microstructure issue appears near the settlement minute."
+  ],
+  "what_would_change_view": "I would move toward the market if BTC stays comfortably above current levels into April 20-21 with clean Binance behavior, and move lower if BTC rapidly loses low-70k support or Binance-specific anomalies emerge."
+}

@@ -1,0 +1,58 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Short-dated crypto markets can gap quickly on headline risk.",
+    "Confidence falls sharply if BTC approaches 70k late on Apr 17 morning ET."
+  ],
+  "key_assumptions": [
+    "No new downside catalyst drives a >5-6% BTC selloff before the settlement minute.",
+    "Current Binance spot cushion is informative for this short-dated threshold market.",
+    "Binance remains a clean observable source for the relevant 1-minute candle."
+  ],
+  "main_logical_chain": [
+    "Verify the exact contract mechanics and timestamp using Polymarket rules.",
+    "Check Binance directly because it is the named exchange/pair family for resolution.",
+    "Measure current cushion versus the 70k threshold and recent realized trading context.",
+    "Conclude Yes remains highly likely unless a discrete downside catalyst appears before the relevant minute close."
+  ],
+  "main_thesis": "BTC is far enough above 70k on Binance that only a fresh downside shock before the Apr 17 noon ET minute close is likely to flip this market to No.",
+  "own_probability": 0.94,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "Binance BTC/USDT spot: 74338.37",
+    "12:00 ET on 2026-04-17 = 16:00 UTC",
+    "Close must be strictly higher than 70,000"
+  ],
+  "reasoning_mode": [
+    "catalyst_analysis",
+    "market_anchor",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260415-10579f0a",
+    "dispatch_id": "dispatch-case-20260415-10579f0a-20260415T184424Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "5f2f52ac-4ca5-4470-be88-b33d52510236",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-10579f0a/researcher-analyses/2026-04-15/dispatch-case-20260415-10579f0a-20260415T184424Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "5e9cf94e0e0592153caf7a621b0e357ef13b5ea2c2c898fd3b127e2ff7e8a80c"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High confidence in direct Binance data plus clear Polymarket rule language; low contract ambiguity, medium evidence independence.",
+  "strongest_disconfirmers": [
+    "BTC can still move more than 5% in under two days if a macro, regulatory, exchange, or liquidation shock hits.",
+    "Because settlement depends on one exact minute candle, a temporary spike down near the deadline could matter disproportionately."
+  ],
+  "strongest_supports": [
+    "Binance BTC/USDT spot checked at 74338.37 on 2026-04-15, about 4338 above the threshold.",
+    "Recent Binance daily closes remained above 70k.",
+    "Polymarket rules clearly tie settlement to Binance BTC/USDT 12:00 ET 1-minute close."
+  ],
+  "timing_relevance": "The decisive timestamp is Apr 17 2026 12:00 ET, which maps to 16:00 UTC; catalyst risk is concentrated in the next ~48 hours.",
+  "unresolved_ambiguities": [
+    "No major source-of-truth ambiguity remains, but future volatility near the exact settlement minute cannot be ruled out."
+  ],
+  "what_would_change_view": "A sharp selloff toward 72k or below, a liquidation cascade, a major adverse macro/regulatory shock, or any Binance-specific anomaly near the relevant candle would reduce confidence materially."
+}

@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Single-minute settlement mechanics.",
+    "Single-venue dependence on Binance.",
+    "Potential late volatility shock."
+  ],
+  "key_assumptions": [
+    "BTC will not suffer a greater than roughly 7% selloff into the noon ET settlement minute.",
+    "Binance BTC/USDT data remains operationally coherent at settlement.",
+    "Observed spot around 75.6k is representative rather than a transient anomaly."
+  ],
+  "main_logical_chain": [
+    "Polymarket rules define settlement as the Binance BTC/USDT 12:00 ET 1-minute candle close being strictly above 70,000.",
+    "12:00 ET was verified as 16:00 UTC on the contract date.",
+    "Binance spot and 24-hour range put BTC materially above the threshold shortly before settlement.",
+    "An independent Kraken cross-check supports the broad price level.",
+    "Therefore Yes is highly likely, but not quite as certain as the market's 99.95% implied probability."
+  ],
+  "main_thesis": "BTC is trading far enough above 70,000 shortly before the relevant noon ET Binance close that Yes is very likely, though not literally riskless because the contract settles on one exact minute and one venue.",
+  "own_probability": 0.985,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone ... has a final 'Close' price higher than the price specified in the title.",
+    "Binance ticker price response: 75617.42000000"
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "contract_interpretation",
+    "risk_management"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260414-d5888900",
+    "dispatch_id": "dispatch-case-20260414-d5888900-20260414T143228Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "d3654bc0-aaba-49c6-80a3-c2a468cba100",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-d5888900/researcher-analyses/2026-04-14/dispatch-case-20260414-d5888900-20260414T143228Z/personas/base-rate.md",
+    "source_persona_sha256": "0df778548ff7810fc7ddb82e2d6950d5f7df69eed237a5e6eae2f71dca6ec976"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Good for a medium-difficulty narrow-resolution case: authoritative contract wording from Polymarket, direct venue context from Binance, and an independent price-level cross-check from Kraken; independence is medium rather than high.",
+  "strongest_disconfirmers": [
+    "The contract resolves on one exact Binance 1-minute close, so a sudden selloff, wick, or venue-specific issue could still flip the result.",
+    "Market-implied probability near 100% can understate small operational and tail-price risks."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT spot was around 75.6k, leaving a large cushion above 70k.",
+    "Binance 24-hour low was still above 71.6k.",
+    "Kraken cross-check also showed BTC around 75.7k."
+  ],
+  "timing_relevance": "This is an intraday, date-sensitive market; the exact noon ET / 16:00 UTC timing and the remaining short window to settlement are central to the estimate.",
+  "unresolved_ambiguities": [
+    "No direct observation of the future 12:00 ET candle was available at research time.",
+    "Residual operational ambiguity remains whenever settlement depends on one venue and exact minute."
+  ],
+  "what_would_change_view": "A rapid drop toward 70k before noon ET, major breaking news causing disorderly selling, or Binance data/reliability issues near settlement would lower confidence materially."
+}

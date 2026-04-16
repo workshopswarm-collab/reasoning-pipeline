@@ -1,0 +1,57 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Short-horizon crypto volatility can erase a $30 buffer quickly.",
+    "Venue-specific settlement means Binance underperformance versus broader spot would matter disproportionately."
+  ],
+  "key_assumptions": [
+    "The current roughly $30+ buffer above 2300 is enough to survive ordinary sub-24h volatility.",
+    "No fresh macro or crypto-specific bearish catalyst hits before the resolving minute.",
+    "Binance settlement mechanics are interpreted correctly as the 12:00 ET one-minute close needing to be strictly above 2300."
+  ],
+  "main_logical_chain": [
+    "The contract settles to Binance ETH/USDT 12:00 ET one-minute close, so Binance minute data is the primary evidence.",
+    "Current Binance spot is around 2332-2337, which is above the 2300 threshold by roughly $32-$37.",
+    "Independent contextual pricing also shows ETH around 2334, reducing concern that the above-strike read is a single-venue artifact.",
+    "With less than 24 hours left, the main catalyst is whether any bearish move erases the cushion before settlement.",
+    "Absent such a move, Yes should be somewhat more likely than the 72% market-implied baseline."
+  ],
+  "main_thesis": "ETH/USDT is already trading modestly above 2300 on Binance, so absent a fresh bearish catalyst before noon ET on April 17 the resolving one-minute close is more likely than not to stay above the strike.",
+  "own_probability": 0.78,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "Binance sampled closes near research time were all above 2300.",
+    "The final Close must be strictly greater than 2300.00 for Yes."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "catalyst_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-cc34f737",
+    "dispatch_id": "dispatch-case-20260416-cc34f737-20260416T162722Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "71199cd0-f24a-4b4a-a2ff-3bf86a8bacb9",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-cc34f737/researcher-analyses/2026-04-16/dispatch-case-20260416-cc34f737-20260416T162722Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "36d03b2fb57d74341ae55fd5778e17192e0c45ee5a682b9c4969380da7651a89"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High quality on settlement mechanics via Binance; medium quality contextual independence via CoinGecko; low remaining source-of-truth ambiguity after explicit timezone and strict-threshold review.",
+  "strongest_disconfirmers": [
+    "This is an exact-time, one-minute, venue-specific contract, so a moderate selloff could still flip the outcome despite current spot being above 2300."
+  ],
+  "strongest_supports": [
+    "Binance minute candles during the run closed around 2332-2337, above the strike.",
+    "CoinGecko context also placed ETH around 2334, supporting that the broader spot regime is above 2300.",
+    "Less than one day remains, so the question is mainly whether the current cushion holds into the exact print."
+  ],
+  "timing_relevance": "Timing is central: the decisive issue is whether ETH holds above 2300 specifically into the noon ET resolving minute on April 17, not whether Ethereum looks good over a longer horizon.",
+  "unresolved_ambiguities": [
+    "No fully independent catalyst calendar source was identified in retrieval, so the view relies more on current buffer and contract mechanics than on a mapped event schedule."
+  ],
+  "what_would_change_view": "A move of Binance ETH/USDT down toward 2300-2310 before settlement, a sharp bearish macro/crypto headline, or new contract-detail ambiguity would push the estimate materially lower."
+}

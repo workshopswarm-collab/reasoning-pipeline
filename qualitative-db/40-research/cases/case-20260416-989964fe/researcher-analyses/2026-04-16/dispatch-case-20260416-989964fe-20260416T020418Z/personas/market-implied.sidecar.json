@@ -1,0 +1,58 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A sharp overnight or morning selloff could still push the settlement minute below 2200.",
+    "A Binance-specific anomaly near settlement could matter even if broader ETH pricing stays firmer."
+  ],
+  "key_assumptions": [
+    "Binance ETH/USDT will not fall roughly 6.6-7% or more before the 12:00 ET settlement minute.",
+    "Binance remains a functioning and representative venue at settlement."
+  ],
+  "main_logical_chain": [
+    "Read current price 0.955 as a 95.5% market-implied Yes prior.",
+    "Verify rules: only the Binance ETH/USDT 12:00 ET 1-minute candle close on April 17 matters.",
+    "Check governing venue: Binance spot and recent 1m candles show ETH around 2354-2356, well above 2200.",
+    "Cross-check with CoinGecko: broad ETH/USD level is essentially the same, so the threshold is not barely in range.",
+    "Conclude the market is mostly efficient but trim slightly for short-horizon downside and single-minute settlement risk."
+  ],
+  "main_thesis": "The market's 95.5% Yes price is broadly justified because Binance ETH/USDT is already well above 2200 and the contract mechanics are clear, but exact-minute single-venue settlement leaves enough tail risk that 92% is a slightly better estimate.",
+  "own_probability": 0.92,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "Binance ETHUSDT price: 2355.61000000",
+    "CoinGecko ETH USD: 2354.45",
+    "Resolves from Binance ETH/USDT 12:00 ET 1m candle close"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260416-989964fe",
+    "dispatch_id": "dispatch-case-20260416-989964fe-20260416T020418Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "bc1386c8-af21-4134-ab96-549437c00cbc",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-989964fe/researcher-analyses/2026-04-16/dispatch-case-20260416-989964fe-20260416T020418Z/personas/market-implied.md",
+    "source_persona_sha256": "1be48c17dc1d9ba5a631b14294ec933a8b18a4c570bf41d8b7cd22ff418100ee"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary source quality is high because Polymarket supplies the rule text and Binance supplies the governing venue data; CoinGecko is a useful but non-settling contextual cross-check. Evidence independence is medium and source-of-truth ambiguity is low.",
+  "strongest_disconfirmers": [
+    "Crypto can move several percent in less than a day, and one exact-minute close determines settlement.",
+    "Single-venue settlement leaves some Binance-specific microstructure or operational risk."
+  ],
+  "strongest_supports": [
+    "Binance spot fetched around 2355.61, comfortably above 2200.",
+    "Recent Binance 1m closes were in the mid-2350s rather than near the threshold.",
+    "CoinGecko cross-check around 2354.45 supports that Binance is not an isolated outlier."
+  ],
+  "timing_relevance": "This is a <24h, date-sensitive contract resolving at 12:00 PM ET on 2026-04-17 from one exact Binance 1-minute close, so short-horizon volatility matters more than medium-term ETH fundamentals.",
+  "unresolved_ambiguities": [
+    "No major wording ambiguity remains after checking the rules; remaining uncertainty is mostly timing and venue-specific execution risk."
+  ],
+  "what_would_change_view": "I would move lower if Binance ETH/USDT fell into the low 2200s before settlement, if broad crypto sold off sharply, or if Binance showed operational or microstructure issues near the noon ET close."
+}

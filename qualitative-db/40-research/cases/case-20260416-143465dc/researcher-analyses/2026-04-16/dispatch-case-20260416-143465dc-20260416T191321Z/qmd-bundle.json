@@ -1,0 +1,85 @@
+{
+  "qmd_tier": "tier2",
+  "qmd_used": true,
+  "query_profile": {
+    "difficulty_class": "high",
+    "prior_case_count": 0,
+    "prior_dispatch_count": 0,
+    "rerun_scope": null,
+    "run_kind": "novel",
+    "source_of_truth_class": "multi_source_ambiguous",
+    "suppress_same_case": true,
+    "suppress_same_market": false
+  },
+  "result_paths": [
+    "qualitative-db/20-entities/tokens/sol.md",
+    "qualitative-db/20-entities/protocols/solana.md",
+    "qualitative-db/40-research/cases/case-20260415-540d9abf/researcher-swarm-current.md",
+    "qualitative-db/40-research/cases/case-20260415-5ecb60de/researcher-swarm-current.md",
+    "qualitative-db/40-research/cases/case-20260416-07c415fe/researcher-swarm-current.md"
+  ],
+  "results": {
+    "driver_notes": [],
+    "entity_notes": [
+      {
+        "artifact_exists": true,
+        "path": "qualitative-db/20-entities/tokens/sol.md",
+        "retrieval_role": "canonical_context",
+        "retrieval_score": 6.0,
+        "slug": "sol",
+        "summary": "SOL is a high-yield token entity because it links Solana network activity, validator economics, speculative demand, and broader high-beta crypto sentiment.",
+        "type": "entity",
+        "why_retrieved": "matched market title via entity alias `solana`"
+      },
+      {
+        "artifact_exists": true,
+        "path": "qualitative-db/20-entities/protocols/solana.md",
+        "retrieval_role": "canonical_context",
+        "retrieval_score": 6.0,
+        "slug": "solana",
+        "summary": "Solana is a high-throughput blockchain whose narrative strength depends heavily on application traction, performance, and consumer-financial activity.",
+        "type": "entity",
+        "why_retrieved": "matched market title via entity alias `solana`"
+      }
+    ],
+    "similar_cases": [
+      {
+        "artifact_exists": true,
+        "case_key": "case-20260415-540d9abf",
+        "path": "qualitative-db/40-research/cases/case-20260415-540d9abf/researcher-swarm-current.md",
+        "retrieval_role": "analog",
+        "retrieval_score": 12.25,
+        "summary": "Will the price of Solana be above $80 on April 19?",
+        "type": "case",
+        "why_retrieved": "high-bar analog (meaningful token overlap=1; shared canonical entity context; shared numeric threshold/date cues; same category; same platform; score=12.2)"
+      },
+      {
+        "artifact_exists": true,
+        "case_key": "case-20260415-5ecb60de",
+        "path": "qualitative-db/40-research/cases/case-20260415-5ecb60de/researcher-swarm-current.md",
+        "retrieval_role": "analog",
+        "retrieval_score": 12.25,
+        "summary": "Will the price of Solana be above $80 on April 19?",
+        "type": "case",
+        "why_retrieved": "high-bar analog (meaningful token overlap=1; shared canonical entity context; shared numeric threshold/date cues; same category; same platform; score=12.2)"
+      },
+      {
+        "artifact_exists": true,
+        "case_key": "case-20260416-07c415fe",
+        "path": "qualitative-db/40-research/cases/case-20260416-07c415fe/researcher-swarm-current.md",
+        "retrieval_role": "analog",
+        "retrieval_score": 12.25,
+        "summary": "Will the price of Solana be above $80 on April 19?",
+        "type": "case",
+        "why_retrieved": "high-bar analog (meaningful token overlap=1; shared canonical entity context; shared numeric threshold/date cues; same category; same platform; score=12.2)"
+      }
+    ]
+  },
+  "retrieval_policy": {
+    "analog_second": true,
+    "artifact_existence_gating": true,
+    "canon_first": true,
+    "similar_case_strategy": "rerun_or_tier2_only"
+  },
+  "status": "ok"
+}

@@ -1,0 +1,257 @@
+{
+  "actor": "decision-maker",
+  "agent_tool_use_allowed": false,
+  "artifact_type": "decision_stage_status",
+  "case_key": "case-20260415-ba1899b5",
+  "decision_context_path": "roles/decision-maker/runtime/artifacts/case-20260415-ba1899b5/decision-context-dispatch-case-20260415-ba1899b5-20260415T121723Z.json",
+  "decision_lane": {
+    "topic_id": "2884",
+    "topic_title": "case-20260415-ba1899b5 | decision | T121723Z",
+    "session_key": "agent:main:telegram:group:-1003846500961:topic:2884"
+  },
+  "decision_launch_claim": {
+    "claimed_at": "2026-04-15T12:26:35.938531Z",
+    "decision_context_path": "roles/decision-maker/runtime/artifacts/case-20260415-ba1899b5/decision-context-dispatch-case-20260415-ba1899b5-20260415T121723Z.json",
+    "launch_log_path": "scripts/.runtime-state/decision-maker-launches/case-20260415-ba1899b5-20260415T122635Z.log",
+    "launcher": "pipeline_automation_actions.launch_decision_maker",
+    "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260415-ba1899b5/decision-prompt-dispatch-case-20260415-ba1899b5-20260415T121723Z.md",
+    "runner_pid": 49385
+  },
+  "decision_prompt_path": "roles/decision-maker/runtime/artifacts/case-20260415-ba1899b5/decision-prompt-dispatch-case-20260415-ba1899b5-20260415T121723Z.md",
+  "decision_readiness": "needs_more_research",
+  "decision_target_chat_id": "-1003846500961",
+  "decision_target_session_key": "agent:main:telegram:group:-1003846500961:topic:2884",
+  "decision_visible_finish_marker": "DECISION-MAKING COMPLETED, DECISION PACKAGE CREATED | market=Will Netflix Inc (NFLX) beat quarterly earnings? | dispatch_id=dispatch-case-20260415-ba1899b5-20260415T121723Z | packet_path=qualitative-db/40-research/cases/case-20260415-ba1899b5/decision-maker/decision-maker-packet.md",
+  "decision_visible_receipt_marker": "SYNTHESIS RECEIVED | market=Will Netflix Inc (NFLX) beat quarterly earnings? | dispatch_id=dispatch-case-20260415-ba1899b5-20260415T121723Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260415-ba1899b5/decision-context-dispatch-case-20260415-ba1899b5-20260415T121723Z.json",
+  "decision_visible_start_marker": "DECISION-MAKING ANALYSIS UNDERWAY | market=Will Netflix Inc (NFLX) beat quarterly earnings? | dispatch_id=dispatch-case-20260415-ba1899b5-20260415T121723Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260415-ba1899b5/decision-context-dispatch-case-20260415-ba1899b5-20260415T121723Z.json",
+  "dispatch_id": "dispatch-case-20260415-ba1899b5-20260415T121723Z",
+  "last_stage_event": {
+    "at": "2026-04-15T12:27:26.253917Z",
+    "stage": "decision_execution",
+    "state": "visible_marker_sent",
+    "message": "DECISION-MAKING COMPLETED, DECISION PACKAGE CREATED | market=Will Netflix Inc (NFLX) beat quarterly earnings? | dispatch_id=dispatch-case-20260415-ba1899b5-20260415T121723Z | packet_path=qualitative-db/40-research/cases/case-20260415-ba1899b5/decision-maker/decision-maker-packet.md"
+  },
+  "packet_json_path": "qualitative-db/40-research/cases/case-20260415-ba1899b5/decision-maker/artifacts/decision-maker-packet.json",
+  "packet_markdown_path": "qualitative-db/40-research/cases/case-20260415-ba1899b5/decision-maker/decision-maker-packet.md",
+  "position_policy": "flat",
+  "question": "Will Netflix Inc (NFLX) beat quarterly earnings?",
+  "recommended_side": "yes",
+  "schema_version": "decision-stage-status/v1",
+  "selected_input_bundle_estimated_tokens": 2775,
+  "selected_input_bundle_mode": "not_ready_reopen_recommended",
+  "selected_input_bundle_path": "roles/decision-maker/runtime/artifacts/case-20260415-ba1899b5/selected-inputs-dispatch-case-20260415-ba1899b5-20260415T121723Z.json",
+  "stage_events": [
+    {
+      "at": "2026-04-15T12:26:35.484114Z",
+      "message": "Decision-Maker stage initialized from synthesis handoff",
+      "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260415-ba1899b5/synthesizer-agent/decision-handoff.md",
+      "stage": "kickoff",
+      "state": "decision_ready_for_receipt"
+    },
+    {
+      "agent_tool_use_allowed": false,
+      "approx_tokens_after_trim": 2775,
+      "at": "2026-04-15T12:26:35.910779Z",
+      "message": "Built deterministic Decision-Maker selected-input bundle",
+      "selected_input_bundle_path": "roles/decision-maker/runtime/artifacts/case-20260415-ba1899b5/selected-inputs-dispatch-case-20260415-ba1899b5-20260415T121723Z.json",
+      "stage": "decision_input_selection",
+      "state": "built",
+      "verification_mode": "not_ready_reopen_recommended",
+      "verification_mode_path": "roles/decision-maker/runtime/artifacts/case-20260415-ba1899b5/verification-mode-dispatch-case-20260415-ba1899b5-20260415T121723Z.json"
+    },
+    {
+      "at": "2026-04-15T12:26:35.910892Z",
+      "message": "Built Decision-Maker prompt from compact selected-input bundle",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260415-ba1899b5/decision-prompt-dispatch-case-20260415-ba1899b5-20260415T121723Z.md",
+      "stage": "decision_prompt",
+      "state": "built"
+    },
+    {
+      "at": "2026-04-15T12:26:35.911533Z",
+      "message": "Decision-Maker inputs prepared; awaiting launch claim",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260415-ba1899b5/decision-prompt-dispatch-case-20260415-ba1899b5-20260415T121723Z.md",
+      "stage": "decision_prepare",
+      "state": "handoff_prepared"
+    },
+    {
+      "at": "2026-04-15T12:26:35.938531Z",
+      "decision_context_path": "roles/decision-maker/runtime/artifacts/case-20260415-ba1899b5/decision-context-dispatch-case-20260415-ba1899b5-20260415T121723Z.json",
+      "launch_log_path": "scripts/.runtime-state/decision-maker-launches/case-20260415-ba1899b5-20260415T122635Z.log",
+      "message": "Decision-Maker launch claimed by automation controller",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260415-ba1899b5/decision-prompt-dispatch-case-20260415-ba1899b5-20260415T121723Z.md",
+      "runner_pid": 49385,
+      "stage": "decision_receipt",
+      "state": "handoff_sent"
+    },
+    {
+      "at": "2026-04-15T12:26:36.039595Z",
+      "stage": "kickoff",
+      "state": "reentered",
+      "message": "Decision-Maker executor resumed from existing prepared/running state",
+      "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260415-ba1899b5/synthesizer-agent/decision-handoff.md"
+    },
+    {
+      "at": "2026-04-15T12:26:36.481390Z",
+      "stage": "decision_input_selection",
+      "state": "built",
+      "message": "Built deterministic Decision-Maker selected-input bundle",
+      "verification_mode_path": "roles/decision-maker/runtime/artifacts/case-20260415-ba1899b5/verification-mode-dispatch-case-20260415-ba1899b5-20260415T121723Z.json",
+      "selected_input_bundle_path": "roles/decision-maker/runtime/artifacts/case-20260415-ba1899b5/selected-inputs-dispatch-case-20260415-ba1899b5-20260415T121723Z.json",
+      "verification_mode": "not_ready_reopen_recommended",
+      "approx_tokens_after_trim": 2775,
+      "agent_tool_use_allowed": false
+    },
+    {
+      "at": "2026-04-15T12:26:36.481621Z",
+      "stage": "decision_prompt",
+      "state": "built",
+      "message": "Built Decision-Maker prompt from compact selected-input bundle",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260415-ba1899b5/decision-prompt-dispatch-case-20260415-ba1899b5-20260415T121723Z.md"
+    },
+    {
+      "at": "2026-04-15T12:26:41.762020Z",
+      "stage": "decision_lane_bootstrap",
+      "state": "created",
+      "message": "Created dedicated Telegram decision lane",
+      "topic_id": "2884",
+      "topic_title": "case-20260415-ba1899b5 | decision | T121723Z",
+      "session_key": "agent:main:telegram:group:-1003846500961:topic:2884"
+    },
+    {
+      "at": "2026-04-15T12:26:57.048318Z",
+      "stage": "decision_receipt",
+      "state": "visible_marker_sent",
+      "message": "SYNTHESIS RECEIVED | market=Will Netflix Inc (NFLX) beat quarterly earnings? | dispatch_id=dispatch-case-20260415-ba1899b5-20260415T121723Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260415-ba1899b5/decision-context-dispatch-case-20260415-ba1899b5-20260415T121723Z.json"
+    },
+    {
+      "at": "2026-04-15T12:26:57.049917Z",
+      "stage": "decision_receipt",
+      "state": "accepted",
+      "message": "Decision-Maker handoff accepted",
+      "session_key": "agent:decision-maker:main",
+      "handoff_status": "started",
+      "gateway_response_path": "roles/decision-maker/runtime/artifacts/case-20260415-ba1899b5/decision-gateway-response-dispatch-case-20260415-ba1899b5-20260415T121723Z.json"
+    },
+    {
+      "at": "2026-04-15T12:26:57.050123Z",
+      "stage": "decision_execution",
+      "state": "decision_analysis_running",
+      "message": "Decision-Maker agent invocation accepted and analysis started",
+      "session_key": "agent:decision-maker:main",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260415-ba1899b5/decision-prompt-dispatch-case-20260415-ba1899b5-20260415T121723Z.md",
+      "handoff_status": "started"
+    },
+    {
+      "at": "2026-04-15T12:27:05.521134Z",
+      "stage": "decision_execution",
+      "state": "visible_marker_sent",
+      "message": "DECISION-MAKING ANALYSIS UNDERWAY | market=Will Netflix Inc (NFLX) beat quarterly earnings? | dispatch_id=dispatch-case-20260415-ba1899b5-20260415T121723Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260415-ba1899b5/decision-context-dispatch-case-20260415-ba1899b5-20260415T121723Z.json"
+    },
+    {
+      "at": "2026-04-15T12:27:17.920286Z",
+      "stage": "decision_execution",
+      "state": "decision_completed",
+      "message": "Decision-Maker completed and packet rendered",
+      "warnings": [],
+      "forecast_decision_persist_error": "",
+      "decision_parse_attempt_count": 1,
+      "decision_recovered_after_retry": false
+    },
+    {
+      "at": "2026-04-15T12:27:26.253917Z",
+      "stage": "decision_execution",
+      "state": "visible_marker_sent",
+      "message": "DECISION-MAKING COMPLETED, DECISION PACKAGE CREATED | market=Will Netflix Inc (NFLX) beat quarterly earnings? | dispatch_id=dispatch-case-20260415-ba1899b5-20260415T121723Z | packet_path=qualitative-db/40-research/cases/case-20260415-ba1899b5/decision-maker/decision-maker-packet.md"
+    }
+  ],
+  "status": "decision_completed",
+  "targeted_verification_pack_path": "",
+  "targeted_verification_pack_required": false,
+  "trade_authorization": "forbidden",
+  "updated_at": "2026-04-15T12:27:26.253968Z",
+  "verification_mode_path": "roles/decision-maker/runtime/artifacts/case-20260415-ba1899b5/verification-mode-dispatch-case-20260415-ba1899b5-20260415T121723Z.json",
+  "warnings": [],
+  "previous_status": "handoff_sent",
+  "raw_gateway_response_path": "roles/decision-maker/runtime/artifacts/case-20260415-ba1899b5/decision-gateway-response-dispatch-case-20260415-ba1899b5-20260415T121723Z.json",
+  "raw_response_text_path": "roles/decision-maker/runtime/artifacts/case-20260415-ba1899b5/decision-response-dispatch-case-20260415-ba1899b5-20260415T121723Z.raw.txt",
+  "decision_parse_failure_artifact_path": "roles/decision-maker/runtime/artifacts/case-20260415-ba1899b5/decision-parse-failure-dispatch-case-20260415-ba1899b5-20260415T121723Z.json",
+  "decision_parse_attempt_count": 1,
+  "decision_recovered_after_retry": false,
+  "decision_lane_topic_id": "2884",
+  "decision_lane_topic_title": "case-20260415-ba1899b5 | decision | T121723Z",
+  "decision_lane_session_key": "agent:main:telegram:group:-1003846500961:topic:2884",
+  "decision_target_topic_id": "2884",
+  "decision_target_topic_title": "case-20260415-ba1899b5 | decision | T121723Z",
+  "decision_receipt_marker_sent_at": "2026-04-15T12:26:57.048274+00:00",
+  "decision_analysis_marker_sent_at": "2026-04-15T12:27:05.521088+00:00",
+  "timeline_update": {
+    "appended": true,
+    "case_key": "case-20260415-ba1899b5",
+    "dispatch_id": "dispatch-case-20260415-ba1899b5-20260415T121723Z",
+    "packet_path": "qualitative-db/40-research/cases/case-20260415-ba1899b5/decision-maker/decision-maker-packet.md",
+    "entry": "- 2026-04-15T12:27:17.919371+00:00 — completed decision-making `dispatch-case-20260415-ba1899b5-20260415T121723Z` with packet `qualitative-db/40-research/cases/case-20260415-ba1899b5/decision-maker/decision-maker-packet.md`."
+  },
+  "forecast_decision_persist": {
+    "ok": true,
+    "packet_json": "qualitative-db/40-research/cases/case-20260415-ba1899b5/decision-maker/artifacts/decision-maker-packet.json",
+    "persisted": {
+      "forecast_id": "dispatch-case-20260415-ba1899b5-20260415T121723Z",
+      "market_id": "f4307377-9cd2-46fb-b820-eea6b442c45f",
+      "contract_id": "yes",
+      "forecast_prob": 0.82,
+      "decision_status": "void",
+      "decision_packet_path": "qualitative-db/40-research/cases/case-20260415-ba1899b5/decision-maker/artifacts/decision-maker-packet.json",
+      "supersedes_forecast_id": null,
+      "superseded_forecast_ids": [],
+      "market_state": {
+        "market_id": "f4307377-9cd2-46fb-b820-eea6b442c45f",
+        "current_price": 0.945,
+        "last_reasoned_price": 0.82,
+        "pipeline_status": "closed"
+      }
+    },
+    "record": {
+      "forecast_id": "dispatch-case-20260415-ba1899b5-20260415T121723Z",
+      "decision_ts": "2026-04-15T08:26:00-04:00",
+      "case_id": "case-20260415-ba1899b5",
+      "dispatch_id": "dispatch-case-20260415-ba1899b5-20260415T121723Z",
+      "market_id": "f4307377-9cd2-46fb-b820-eea6b442c45f",
+      "contract_id": "yes",
+      "platform": "polymarket",
+      "market_slug": "nflx-quarterly-earnings-gaap-eps-04-16-2026-0pt76",
+      "question": "Will Netflix Inc (NFLX) beat quarterly earnings?",
+      "forecast_prob": "0.82",
+      "forecast_direction": "yes",
+      "confidence_label": "medium",
+      "confidence_score": "",
+      "time_horizon_label": "",
+      "verification_mode": "not_ready_reopen_recommended",
+      "decision_status": "void",
+      "rationale_summary": "Netflix is still the directional favorite to beat, but because the strike exactly matches the company's prior $0.76 guide and the bounded package lacks a clean final consensus source proving the street moved safely above that line, the disciplined output is forbidden and needs-more-research rather than paying 0.945 for Yes.",
+      "decision_packet_path": "qualitative-db/40-research/cases/case-20260415-ba1899b5/decision-maker/artifacts/decision-maker-packet.json",
+      "decision_handoff_path": "qualitative-db/40-research/cases/case-20260415-ba1899b5/synthesizer-agent/decision-handoff.md",
+      "syndicated_finding_path": "qualitative-db/40-research/cases/case-20260415-ba1899b5/synthesizer-agent/syndicated-finding.md"
+    },
+    "warnings": []
+  },
+  "terminal_summary": {
+    "at": "2026-04-15T12:27:26.253987Z",
+    "status": "decision_completed",
+    "decision_lane": {
+      "topic_id": "2884",
+      "topic_title": "case-20260415-ba1899b5 | decision | T121723Z",
+      "session_key": "agent:main:telegram:group:-1003846500961:topic:2884"
+    },
+    "packet_json_path": "qualitative-db/40-research/cases/case-20260415-ba1899b5/decision-maker/artifacts/decision-maker-packet.json",
+    "packet_markdown_path": "qualitative-db/40-research/cases/case-20260415-ba1899b5/decision-maker/decision-maker-packet.md",
+    "trade_authorization": "forbidden",
+    "decision_readiness": "needs_more_research",
+    "last_stage_event": {
+      "at": "2026-04-15T12:27:26.253917Z",
+      "stage": "decision_execution",
+      "state": "visible_marker_sent",
+      "message": "DECISION-MAKING COMPLETED, DECISION PACKAGE CREATED | market=Will Netflix Inc (NFLX) beat quarterly earnings? | dispatch_id=dispatch-case-20260415-ba1899b5-20260415T121723Z | packet_path=qualitative-db/40-research/cases/case-20260415-ba1899b5/decision-maker/decision-maker-packet.md"
+    }
+  },
+  "decision_completion_marker_sent_at": "2026-04-15T12:27:26.253871+00:00"
+}

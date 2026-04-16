@@ -1,0 +1,152 @@
+{
+  "schema_version": "decision-packet/v1",
+  "generated_at": "2026-04-16T04:01:00Z",
+  "context": {
+    "case_key": "case-20260416-1f25d147",
+    "dispatch_id": "dispatch-case-20260416-1f25d147-20260416T035120Z",
+    "question": "Will the price of Solana be above $80 on April 19?",
+    "market_id": "139f80d9-bf3b-4b6b-9dea-031313b6ae5b",
+    "external_market_id": "0x00b28e37776a7f2f56ceec3bc4cf4f49d832b1c9db1ddd1cb597fb4438918f95",
+    "market_slug": "solana-above-80-on-april-19",
+    "platform": "polymarket",
+    "primary_market_url": "https://polymarket.com/event/solana-above-80-on-april-19",
+    "market_title": "Will the price of Solana be above $80 on April 19?",
+    "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260416-1f25d147/synthesizer-agent/decision-handoff.md",
+    "source_syndicated_finding_path": "qualitative-db/40-research/cases/case-20260416-1f25d147/synthesizer-agent/syndicated-finding.md",
+    "source_light_refresh_brief_path": "",
+    "refresh_mode": "",
+    "decision_maker_agent": "decision-maker",
+    "canonical_markdown_path": "decision-maker-packet.md",
+    "canonical_json_path": "artifacts/decision-maker-packet.json"
+  },
+  "decision": {
+    "side": "none",
+    "trade_authorization": "watch_only",
+    "position_policy": "flat",
+    "decision_readiness": "needs_market_update",
+    "thesis_class": "not_decision_ready",
+    "primary_crux": "Current spot appears comfortably above $80, but this contract resolves on one exact Binance 12:00 ET 1-minute close on April 19, and for a short-dated crypto contract that exact-minute path risk plus the need for a fresher pre-settlement check makes the current edge assessment insufficiently decision-ready at a 0.92 market price.",
+    "secondary_cruxes": [
+      "The market already prices a very high Yes probability, so even a modestly bearish adjustment for exact-minute settlement fragility likely leaves little or negative edge.",
+      "A final judgment would benefit materially from one fresh market update closer to April 19 morning ET.",
+      "There is a minor but real operational mismatch between the formal Binance UI resolution surface and most verification being API-adjacent rather than direct UI observation."
+    ]
+  },
+  "valuation": {
+    "fair_value_low": 0.84,
+    "fair_value_high": 0.89,
+    "fair_value_mid": 0.865,
+    "independent_verification_quality": "medium",
+    "compressed_toward_market_applied": false,
+    "compression_reason": "Base estimate remains below market because the decisive discount is exact-minute settlement fragility into a short-dated crypto close, not lack of directional evidence that SOL is currently above $80.",
+    "market_reference_price": 0.92,
+    "edge_mid_vs_market_pct_points": -5.5
+  },
+  "execution_semantics": {
+    "price_source": "market_snapshot_quote",
+    "price_axis": "market_implied_true_prob",
+    "rebalance_threshold_fraction": 0.1,
+    "allow_auto_reversal": false,
+    "quote_staleness_seconds": 300,
+    "valid_until": "2026-04-17T04:02:19.025101+00:00"
+  },
+  "risk_controls": {
+    "max_position_size_pct_bankroll": 0.02,
+    "max_additional_exposure_pct_bankroll": 0.01,
+    "max_single_order_pct_bankroll": 0.005,
+    "slippage_tolerance_bps": 100,
+    "liquidity_min_depth": 0,
+    "correlation_bucket_limit_pct_bankroll": 0.05,
+    "confidence_level": "medium",
+    "portfolio_constraints": [],
+    "liquidity_caution": "medium"
+  },
+  "bands": [
+    {
+      "name": "max_enter",
+      "min_p": 0.0,
+      "max_p": 0.2,
+      "target_exposure_fraction": 0.0,
+      "notes": "default fallback band"
+    },
+    {
+      "name": "scaled_enter",
+      "min_p": 0.2,
+      "max_p": 0.4,
+      "target_exposure_fraction": 0.0,
+      "notes": "default fallback band"
+    },
+    {
+      "name": "hold",
+      "min_p": 0.4,
+      "max_p": 0.6,
+      "target_exposure_fraction": 0.0,
+      "notes": "default fallback band"
+    },
+    {
+      "name": "trim",
+      "min_p": 0.6,
+      "max_p": 0.8,
+      "target_exposure_fraction": 0.0,
+      "notes": "default fallback band"
+    },
+    {
+      "name": "exit",
+      "min_p": 0.8,
+      "max_p": 1.0,
+      "target_exposure_fraction": 0.0,
+      "notes": "default fallback band"
+    }
+  ],
+  "invalidation": {
+    "thesis_breakers": [
+      "A refreshed pre-settlement check showing SOL holding materially and stably above $80 into April 19 morning or noon ET would likely remove the not-ready status and move the estimate closer to market.",
+      "A sharp selloff toward the low-80s or below before settlement would strengthen the bearish discount versus the current market price.",
+      "Direct confirmation that the Binance website candle behavior around settlement is fully aligned with the verification method would modestly reduce operational ambiguity."
+    ],
+    "time_breakers": [
+      "This packet should not be used without a fresh update materially closer to settlement.",
+      "Once the market has materially moved from the 0.92 reference or the calendar is near the final trading window, this valuation is stale."
+    ],
+    "market_structure_breakers": [
+      "Meaningful late move in implied probability without corresponding spot change could alter trade attractiveness even if the directional view is unchanged."
+    ],
+    "reversal_conditions": [
+      "Authorize a Yes-leaning trade only after a fresh settlement-window update shows sufficient cushion above $80 and a price materially better than this fair-value range.",
+      "Consider a No-leaning trade only if spot deteriorates enough that the exact-minute close risk is no longer over-discounted by the market."
+    ]
+  },
+  "epistemic_status": {
+    "key_uncertainties": [
+      "Minute-level SOL volatility at the exact Binance noon ET settlement candle.",
+      "How much probability mass should be assigned to a drop from mid-80s spot to sub-80 at the precise settlement minute.",
+      "Residual operational ambiguity from formal resolution on Binance website UI versus API-adjacent verification."
+    ],
+    "what_would_change_my_mind": [
+      "A fresh check closer to April 19 showing SOL still comfortably above $80 would push me toward decision-ready and closer to the market.",
+      "A meaningful decline in SOL before settlement would push fair value lower and could make No more actionable.",
+      "Cleaner direct verification of the formal resolution surface would modestly improve confidence."
+    ],
+    "reasons_to_pass": [
+      "Negative or negligible edge versus a 0.92 market reference.",
+      "Freshness-sensitive contract with exact-minute settlement mechanics.",
+      "Decision quality improves materially with a later refresh, so acting now is avoidable."
+    ],
+    "decision_quality": "not_ready"
+  },
+  "audit": {
+    "one_sentence_rationale": "Yes is more likely than not, but with fair value around 0.84 to 0.89 versus a 0.92 market and a freshness-sensitive exact-minute Binance settlement mechanic, the economically correct call is to stay flat and require a later market update rather than force a trade now.",
+    "notes": [
+      "Upstream synthesis is directionally persuasive that Yes is favored, but not persuasive enough to justify paying 0.92 before a closer-in refresh.",
+      "Main disagreement with the market is confidence level, not directional sign."
+    ],
+    "market_baseline_respected": true,
+    "action_bias_check_passed": true,
+    "self_preservation_bias_check_passed": true,
+    "structured_handoff_primary_used": true,
+    "prose_fallback_used": false,
+    "verification_mode_used": "not_ready_reopen_recommended",
+    "additional_verification_performed": false,
+    "additional_verification_notes": ""
+  }
+}

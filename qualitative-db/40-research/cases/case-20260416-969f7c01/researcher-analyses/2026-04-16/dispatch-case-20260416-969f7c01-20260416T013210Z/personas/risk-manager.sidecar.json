@@ -1,0 +1,61 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Overnight crypto risk-off move before settlement.",
+    "Sharp intraminute drop into the exact noon ET window.",
+    "Small but nonzero timestamp/candle interpretation confusion."
+  ],
+  "key_assumptions": [
+    "ETH remains comfortably above 2200 into the April 17 noon ET settlement minute.",
+    "No major macro or crypto-specific shock forces a sharp drawdown before settlement.",
+    "Binance noon-ET candle interpretation remains operationally straightforward."
+  ],
+  "main_logical_chain": [
+    "The contract resolves on Binance ETH/USDT for a specific 12:00 ET one-minute candle close above 2200.",
+    "Current Binance spot and recent klines place ETH materially above 2200, so baseline direction favors Yes.",
+    "Because the contract is narrow and time-specific, the residual risk is concentrated in short-horizon path risk rather than broad directional thesis.",
+    "That supports a high Yes probability, but slightly below the market's ~94.5%-95% confidence."
+  ],
+  "main_thesis": "ETH is likely to settle above 2200 on Binance at the April 17 noon ET minute, but the market is slightly overconfident because narrow settlement-window path risk remains underpriced.",
+  "own_probability": 0.9,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "Own probability estimate: 90% Yes.",
+    "The strongest disconfirming consideration is simple: this is a one-minute, noon-ET settlement contract, not a broad daily-close question.",
+    "The governing source of truth is Binance ETH/USDT, specifically the 1-minute candle for 12:00 ET on April 17."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "risk_management",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260416-969f7c01",
+    "dispatch_id": "dispatch-case-20260416-969f7c01-20260416T013210Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "4e7d083c-b8c1-42b2-8b29-6600d2f3e6b9",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-969f7c01/researcher-analyses/2026-04-16/dispatch-case-20260416-969f7c01-20260416T013210Z/personas/risk-manager.md",
+    "source_persona_sha256": "96dd217b322a429e0556d63cee28850639b6484ea3e430bb9ba5de83fe677b27"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality primary evidence from Binance exchange data, medium independence overall, low-to-medium source-of-truth ambiguity due mainly to narrow candle-timing interpretation.",
+  "strongest_disconfirmers": [
+    "This is a one-minute, noon-ET settlement contract, so a sharp selloff in the exact window can still resolve No.",
+    "Extreme market pricing may underweight residual timing and path risk."
+  ],
+  "strongest_supports": [
+    "Direct Binance spot price during the run was about 2353.68, roughly 154 points above the threshold.",
+    "Recent Binance 1h and 1m klines were centered in the low-to-mid 2300s rather than near 2200.",
+    "Contract wording is clear on venue, pair, threshold, and noon ET timing."
+  ],
+  "timing_relevance": "Very high: only the Binance ETH/USDT one-minute candle at 12:00 ET on April 17 matters for settlement.",
+  "unresolved_ambiguities": [
+    "Practical retrieval/display convention for the exact noon ET candle remains slightly fragile in edge-case discussion.",
+    "No strong independent catalyst check was obtained beyond direct exchange data and docs."
+  ],
+  "what_would_change_view": "I would cut the estimate materially if ETH fell toward 2250 or below ahead of settlement, if a broad crypto selloff accelerated, or if credible evidence showed more contract-timing ambiguity than currently appears."
+}

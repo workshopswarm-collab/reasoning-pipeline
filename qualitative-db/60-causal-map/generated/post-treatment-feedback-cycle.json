@@ -1,0 +1,2925 @@
+{
+  "summary": {
+    "generated_at": "2026-04-16T19:15:04.527923+00:00",
+    "experiment_id": "researcher-lmd-v1",
+    "cycle_count": 0,
+    "resolved_cycle_count": 0,
+    "ready_for_outcome_learning_count": 0,
+    "ready_for_trial_outcome_learning_count": 0,
+    "lmd_logging_complete_count": 0,
+    "trial_logging_complete_count": 0,
+    "cases_with_warnings_count": 0,
+    "repair_attempt_count": 0,
+    "repair_error_count": 0,
+    "refresh_step_count": 11,
+    "refresh_error_count": 0,
+    "retuning_ready": false,
+    "proposal_retuning_ready": false,
+    "latest_lmd_exposure_at": null,
+    "latest_trial_exposure_at": null,
+    "latest_review_update_at": null,
+    "latest_relevant_signal_at": null,
+    "latest_relevant_signal_age_seconds": null,
+    "live_graph_cycle_ok": true,
+    "live_graph_pre_repair_violation_count": 0,
+    "live_graph_violation_count": 0,
+    "live_graph_repair_count": 0,
+    "live_graph_recommended_count": 0,
+    "live_graph_blocked_count": 3
+  },
+  "audits": [],
+  "repairs": [],
+  "refresh_steps": [
+    {
+      "ok": true,
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "/Users/agent2/.openclaw/orchestrator/roles/evaluator/runtime/scripts/advance_proposed_causal_candidates.py",
+        "--psql",
+        "/opt/homebrew/opt/postgresql@16/bin/psql",
+        "--db-url",
+        "postgresql://pq_orchestrator:KsDjg-lbfWx914dQmTUHMJkCcTceoc2r@localhost:5432/predquant"
+      ],
+      "returncode": 0,
+      "payload": {
+        "ok": true,
+        "dry_run": false,
+        "proposal_count": 15,
+        "proposal_stage_counts": {
+          "shadow_candidate": 7,
+          "trial_candidate": 1,
+          "aggregated": 7
+        },
+        "trial_candidate_ids": [
+          "node:verification-state-separation"
+        ],
+        "promotion_ready_ids": [],
+        "trial_eligible_ids": [
+          "node:verification-state-separation"
+        ],
+        "promotion_ready_eligible_ids": [],
+        "transition_count": 0,
+        "transitions": [],
+        "summary_path": "qualitative-db/60-causal-map/generated/proposed-causal-candidates-summary.json",
+        "index_path": "qualitative-db/60-causal-map/generated/proposed-causal-candidates-index.md"
+      },
+      "stderr": null,
+      "step": "advance_proposed_causal_candidates.py"
+    },
+    {
+      "ok": true,
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "/Users/agent2/.openclaw/orchestrator/roles/evaluator/runtime/scripts/update_lmd_candidate_stats.py",
+        "--psql",
+        "/opt/homebrew/opt/postgresql@16/bin/psql",
+        "--db-url",
+        "postgresql://pq_orchestrator:KsDjg-lbfWx914dQmTUHMJkCcTceoc2r@localhost:5432/predquant",
+        "--experiment-id",
+        "researcher-lmd-v1"
+      ],
+      "returncode": 0,
+      "payload": {
+        "ok": true,
+        "experiment_id": "researcher-lmd-v1",
+        "exposure_row_count": 0,
+        "control_pool_count": 1,
+        "candidate_count": 0,
+        "persisted_count": 0,
+        "table_present": true,
+        "results": []
+      },
+      "stderr": null,
+      "step": "update_lmd_candidate_stats.py"
+    },
+    {
+      "ok": true,
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "/Users/agent2/.openclaw/orchestrator/roles/evaluator/runtime/scripts/run_live_causal_graph_cycle.py",
+        "--psql",
+        "/opt/homebrew/opt/postgresql@16/bin/psql",
+        "--db-url",
+        "postgresql://pq_orchestrator:KsDjg-lbfWx914dQmTUHMJkCcTceoc2r@localhost:5432/predquant",
+        "--experiment-id",
+        "researcher-lmd-v1",
+        "--repair-apply"
+      ],
+      "returncode": 0,
+      "payload": {
+        "ok": true,
+        "dry_run": false,
+        "repair_apply": true,
+        "controller_apply": false,
+        "step_count": 5,
+        "summaries": [
+          {
+            "step": "update_causal_node_stats",
+            "node_count": 9,
+            "persisted_count": 9,
+            "warning": null
+          },
+          {
+            "step": "update_causal_edge_stats",
+            "edge_count": 6,
+            "persisted_count": 6,
+            "warning": null
+          },
+          {
+            "step": "scan_causal_graph_health",
+            "violation_count": 0,
+            "violation_class_counts": {},
+            "inserted_count": 0,
+            "updated_count": 0,
+            "resolved_count": 0,
+            "warnings": []
+          },
+          {
+            "step": "repair_causal_graph",
+            "repair_count": 0,
+            "deferred_count": 0,
+            "pre_repair": {
+              "violation_count": 0,
+              "violation_class_counts": {},
+              "severity_counts": {}
+            },
+            "post_repair_projection": {
+              "violation_count": 0,
+              "violation_class_counts": {},
+              "severity_counts": {}
+            },
+            "warnings": []
+          },
+          {
+            "step": "advance_live_causal_graph_items",
+            "recommended_count": 0,
+            "blocked_count": 3,
+            "warning": null,
+            "stats_presence": {
+              "causal_node_stats": true,
+              "causal_edge_stats": true,
+              "causal_graph_health_violations": true
+            }
+          }
+        ],
+        "steps": [
+          {
+            "step": "update_causal_node_stats",
+            "payload": {
+              "ok": true,
+              "experiment_id": "researcher-lmd-v1",
+              "table_present": true,
+              "node_count": 9,
+              "persisted_count": 9,
+              "dry_run": false,
+              "rows": [
+                {
+                  "row": {
+                    "node_key": "fair-value-discounting-pressure",
+                    "mechanism_family": "workflow_pricing",
+                    "lifecycle_stage": "hold",
+                    "projected_case_count": 1,
+                    "matched_case_count": 1,
+                    "exposure_count": 0,
+                    "injection_count": 0,
+                    "helpful_case_count": 0,
+                    "supporting_case_count": 1,
+                    "contested_case_count": 1,
+                    "raw_uplift": null,
+                    "shrunken_uplift": null,
+                    "learned_weight": -0.04,
+                    "decay_score": 0.0,
+                    "status": "hold",
+                    "status_reason": "negative_or_contested_weight",
+                    "stats_metadata": {
+                      "experiment_id": "researcher-lmd-v1",
+                      "shrinkage_k": 5.0,
+                      "projected_case_keys": [
+                        "case-20260414-4e668883"
+                      ],
+                      "contested_case_keys": [
+                        "case-20260414-4e668883"
+                      ],
+                      "treatment_case_keys": [],
+                      "control_case_keys": [
+                        "case-20260414-4e668883"
+                      ],
+                      "helpful_case_keys": [],
+                      "harmful_case_keys": [],
+                      "helpful_case_count": 0,
+                      "harmful_case_count": 0,
+                      "treatment_mean_brier": null,
+                      "control_mean_brier": 0.00030625,
+                      "genericity_penalty": 0.03
+                    }
+                  },
+                  "db_result": {
+                    "node_key": "fair-value-discounting-pressure",
+                    "status": "hold",
+                    "learned_weight": -0.04,
+                    "exposure_count": 0
+                  }
+                },
+                {
+                  "row": {
+                    "node_key": "price-near-threshold",
+                    "mechanism_family": "threshold_touch",
+                    "lifecycle_stage": "active",
+                    "projected_case_count": 1,
+                    "matched_case_count": 1,
+                    "exposure_count": 0,
+                    "injection_count": 0,
+                    "helpful_case_count": 0,
+                    "supporting_case_count": 1,
+                    "contested_case_count": 0,
+                    "raw_uplift": null,
+                    "shrunken_uplift": null,
+                    "learned_weight": 0.02,
+                    "decay_score": 0.0,
+                    "status": "active",
+                    "status_reason": "matched_node_with_support",
+                    "stats_metadata": {
+                      "experiment_id": "researcher-lmd-v1",
+                      "shrinkage_k": 5.0,
+                      "projected_case_keys": [
+                        "case-20260414-4e668883"
+                      ],
+                      "contested_case_keys": [],
+                      "treatment_case_keys": [],
+                      "control_case_keys": [
+                        "case-20260414-4e668883"
+                      ],
+                      "helpful_case_keys": [],
+                      "harmful_case_keys": [],
+                      "helpful_case_count": 0,
+                      "harmful_case_count": 0,
+                      "treatment_mean_brier": null,
+                      "control_mean_brier": 0.00030625,
+                      "genericity_penalty": 0.03
+                    }
+                  },
+                  "db_result": {
+                    "node_key": "price-near-threshold",
+                    "status": "active",
+                    "learned_weight": 0.02,
+                    "exposure_count": 0
+                  }
+                },
+                {
+                  "row": {
+                    "node_key": "publication-window-timing",
+                    "mechanism_family": "publication_timing",
+                    "lifecycle_stage": "draft",
+                    "projected_case_count": 0,
+                    "matched_case_count": 0,
+                    "exposure_count": 0,
+                    "injection_count": 0,
+                    "helpful_case_count": 0,
+                    "supporting_case_count": 0,
+                    "contested_case_count": 0,
+                    "raw_uplift": null,
+                    "shrunken_uplift": null,
+                    "learned_weight": -0.03,
+                    "decay_score": 0.0,
+                    "status": "draft",
+                    "status_reason": "no_support_or_exposures_yet",
+                    "stats_metadata": {
+                      "experiment_id": "researcher-lmd-v1",
+                      "shrinkage_k": 5.0,
+                      "projected_case_keys": [],
+                      "contested_case_keys": [],
+                      "treatment_case_keys": [],
+                      "control_case_keys": [],
+                      "helpful_case_keys": [],
+                      "harmful_case_keys": [],
+                      "helpful_case_count": 0,
+                      "harmful_case_count": 0,
+                      "treatment_mean_brier": null,
+                      "control_mean_brier": null,
+                      "genericity_penalty": 0.03
+                    }
+                  },
+                  "db_result": {
+                    "node_key": "publication-window-timing",
+                    "status": "draft",
+                    "learned_weight": -0.03,
+                    "exposure_count": 0
+                  }
+                },
+                {
+                  "row": {
+                    "node_key": "reporting-state-uncertainty",
+                    "mechanism_family": "publication_timing",
+                    "lifecycle_stage": "draft",
+                    "projected_case_count": 0,
+                    "matched_case_count": 0,
+                    "exposure_count": 0,
+                    "injection_count": 0,
+                    "helpful_case_count": 0,
+                    "supporting_case_count": 0,
+                    "contested_case_count": 0,
+                    "raw_uplift": null,
+                    "shrunken_uplift": null,
+                    "learned_weight": -0.03,
+                    "decay_score": 0.0,
+                    "status": "draft",
+                    "status_reason": "no_support_or_exposures_yet",
+                    "stats_metadata": {
+                      "experiment_id": "researcher-lmd-v1",
+                      "shrinkage_k": 5.0,
+                      "projected_case_keys": [],
+                      "contested_case_keys": [],
+                      "treatment_case_keys": [],
+                      "control_case_keys": [],
+                      "helpful_case_keys": [],
+                      "harmful_case_keys": [],
+                      "helpful_case_count": 0,
+                      "harmful_case_count": 0,
+                      "treatment_mean_brier": null,
+                      "control_mean_brier": null,
+                      "genericity_penalty": 0.03
+                    }
+                  },
+                  "db_result": {
+                    "node_key": "reporting-state-uncertainty",
+                    "status": "draft",
+                    "learned_weight": -0.03,
+                    "exposure_count": 0
+                  }
+                },
+                {
+                  "row": {
+                    "node_key": "resolution-surface-ambiguity",
+                    "mechanism_family": "source_resolution",
+                    "lifecycle_stage": "active",
+                    "projected_case_count": 1,
+                    "matched_case_count": 1,
+                    "exposure_count": 0,
+                    "injection_count": 0,
+                    "helpful_case_count": 0,
+                    "supporting_case_count": 1,
+                    "contested_case_count": 0,
+                    "raw_uplift": null,
+                    "shrunken_uplift": null,
+                    "learned_weight": 0.02,
+                    "decay_score": 0.0,
+                    "status": "active",
+                    "status_reason": "matched_node_with_support",
+                    "stats_metadata": {
+                      "experiment_id": "researcher-lmd-v1",
+                      "shrinkage_k": 5.0,
+                      "projected_case_keys": [
+                        "case-20260414-4e668883"
+                      ],
+                      "contested_case_keys": [],
+                      "treatment_case_keys": [],
+                      "control_case_keys": [
+                        "case-20260414-4e668883"
+                      ],
+                      "helpful_case_keys": [],
+                      "harmful_case_keys": [],
+                      "helpful_case_count": 0,
+                      "harmful_case_count": 0,
+                      "treatment_mean_brier": null,
+                      "control_mean_brier": 0.00030625,
+                      "genericity_penalty": 0.03
+                    }
+                  },
+                  "db_result": {
+                    "node_key": "resolution-surface-ambiguity",
+                    "status": "active",
+                    "learned_weight": 0.02,
+                    "exposure_count": 0
+                  }
+                },
+                {
+                  "row": {
+                    "node_key": "settlement-source-specificity",
+                    "mechanism_family": "source_resolution",
+                    "lifecycle_stage": "active",
+                    "projected_case_count": 5,
+                    "matched_case_count": 5,
+                    "exposure_count": 0,
+                    "injection_count": 0,
+                    "helpful_case_count": 0,
+                    "supporting_case_count": 5,
+                    "contested_case_count": 0,
+                    "raw_uplift": null,
+                    "shrunken_uplift": null,
+                    "learned_weight": 0.22,
+                    "decay_score": 0.0,
+                    "status": "active",
+                    "status_reason": "matched_node_with_support",
+                    "stats_metadata": {
+                      "experiment_id": "researcher-lmd-v1",
+                      "shrinkage_k": 5.0,
+                      "projected_case_keys": [
+                        "case-20260414-3ce42d6c",
+                        "case-20260414-4e668883",
+                        "case-20260414-9c18e804",
+                        "case-20260414-9f18b170",
+                        "case-20260414-d5888900"
+                      ],
+                      "contested_case_keys": [],
+                      "treatment_case_keys": [],
+                      "control_case_keys": [
+                        "case-20260414-4e668883"
+                      ],
+                      "helpful_case_keys": [],
+                      "harmful_case_keys": [],
+                      "helpful_case_count": 0,
+                      "harmful_case_count": 0,
+                      "treatment_mean_brier": null,
+                      "control_mean_brier": 0.00030625,
+                      "genericity_penalty": 0.03
+                    }
+                  },
+                  "db_result": {
+                    "node_key": "settlement-source-specificity",
+                    "status": "active",
+                    "learned_weight": 0.22,
+                    "exposure_count": 0
+                  }
+                },
+                {
+                  "row": {
+                    "node_key": "time-remaining-nontrivial",
+                    "mechanism_family": "threshold_touch",
+                    "lifecycle_stage": "active",
+                    "projected_case_count": 1,
+                    "matched_case_count": 1,
+                    "exposure_count": 0,
+                    "injection_count": 0,
+                    "helpful_case_count": 0,
+                    "supporting_case_count": 1,
+                    "contested_case_count": 0,
+                    "raw_uplift": null,
+                    "shrunken_uplift": null,
+                    "learned_weight": 0.02,
+                    "decay_score": 0.0,
+                    "status": "active",
+                    "status_reason": "matched_node_with_support",
+                    "stats_metadata": {
+                      "experiment_id": "researcher-lmd-v1",
+                      "shrinkage_k": 5.0,
+                      "projected_case_keys": [
+                        "case-20260414-4e668883"
+                      ],
+                      "contested_case_keys": [],
+                      "treatment_case_keys": [],
+                      "control_case_keys": [
+                        "case-20260414-4e668883"
+                      ],
+                      "helpful_case_keys": [],
+                      "harmful_case_keys": [],
+                      "helpful_case_count": 0,
+                      "harmful_case_count": 0,
+                      "treatment_mean_brier": null,
+                      "control_mean_brier": 0.00030625,
+                      "genericity_penalty": 0.03
+                    }
+                  },
+                  "db_result": {
+                    "node_key": "time-remaining-nontrivial",
+                    "status": "active",
+                    "learned_weight": 0.02,
+                    "exposure_count": 0
+                  }
+                },
+                {
+                  "row": {
+                    "node_key": "touch-probability",
+                    "mechanism_family": "threshold_touch",
+                    "lifecycle_stage": "active",
+                    "projected_case_count": 1,
+                    "matched_case_count": 1,
+                    "exposure_count": 0,
+                    "injection_count": 0,
+                    "helpful_case_count": 0,
+                    "supporting_case_count": 1,
+                    "contested_case_count": 0,
+                    "raw_uplift": null,
+                    "shrunken_uplift": null,
+                    "learned_weight": 0.02,
+                    "decay_score": 0.0,
+                    "status": "active",
+                    "status_reason": "matched_node_with_support",
+                    "stats_metadata": {
+                      "experiment_id": "researcher-lmd-v1",
+                      "shrinkage_k": 5.0,
+                      "projected_case_keys": [
+                        "case-20260414-4e668883"
+                      ],
+                      "contested_case_keys": [],
+                      "treatment_case_keys": [],
+                      "control_case_keys": [
+                        "case-20260414-4e668883"
+                      ],
+                      "helpful_case_keys": [],
+                      "harmful_case_keys": [],
+                      "helpful_case_count": 0,
+                      "harmful_case_count": 0,
+                      "treatment_mean_brier": null,
+                      "control_mean_brier": 0.00030625,
+                      "genericity_penalty": 0.03
+                    }
+                  },
+                  "db_result": {
+                    "node_key": "touch-probability",
+                    "status": "active",
+                    "learned_weight": 0.02,
+                    "exposure_count": 0
+                  }
+                },
+                {
+                  "row": {
+                    "node_key": "verification-caution",
+                    "mechanism_family": "workflow_pricing",
+                    "lifecycle_stage": "hold",
+                    "projected_case_count": 1,
+                    "matched_case_count": 1,
+                    "exposure_count": 0,
+                    "injection_count": 0,
+                    "helpful_case_count": 0,
+                    "supporting_case_count": 1,
+                    "contested_case_count": 1,
+                    "raw_uplift": null,
+                    "shrunken_uplift": null,
+                    "learned_weight": -0.04,
+                    "decay_score": 0.0,
+                    "status": "hold",
+                    "status_reason": "negative_or_contested_weight",
+                    "stats_metadata": {
+                      "experiment_id": "researcher-lmd-v1",
+                      "shrinkage_k": 5.0,
+                      "projected_case_keys": [
+                        "case-20260414-4e668883"
+                      ],
+                      "contested_case_keys": [
+                        "case-20260414-4e668883"
+                      ],
+                      "treatment_case_keys": [],
+                      "control_case_keys": [
+                        "case-20260414-4e668883"
+                      ],
+                      "helpful_case_keys": [],
+                      "harmful_case_keys": [],
+                      "helpful_case_count": 0,
+                      "harmful_case_count": 0,
+                      "treatment_mean_brier": null,
+                      "control_mean_brier": 0.00030625,
+                      "genericity_penalty": 0.03
+                    }
+                  },
+                  "db_result": {
+                    "node_key": "verification-caution",
+                    "status": "hold",
+                    "learned_weight": -0.04,
+                    "exposure_count": 0
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "step": "update_causal_edge_stats",
+            "payload": {
+              "ok": true,
+              "experiment_id": "researcher-lmd-v1",
+              "edge_count": 6,
+              "persisted_count": 6,
+              "table_present": true,
+              "results": [
+                {
+                  "record": {
+                    "edge_key": "price-near-threshold__increases__touch-probability",
+                    "exposure_count": 0,
+                    "projected_case_count": 1,
+                    "supporting_case_count": 1,
+                    "contested_case_count": 0,
+                    "treatment_case_count": 0,
+                    "control_case_count": 1,
+                    "treatment_mean_brier": null,
+                    "control_mean_brier": 0.00030625,
+                    "raw_uplift": null,
+                    "shrunken_uplift": null,
+                    "genericity_penalty": 0.03,
+                    "learned_weight": 0.24,
+                    "status": "active",
+                    "status_reason": "reviewed_edge_with_support",
+                    "stats_metadata": {
+                      "experiment_id": "researcher-lmd-v1",
+                      "shrinkage_k": 5.0,
+                      "projected_case_keys": [
+                        "case-20260414-4e668883"
+                      ],
+                      "support_case_keys": [
+                        "case-20260414-4e668883"
+                      ],
+                      "contested_case_keys": [],
+                      "treatment_case_keys": [],
+                      "control_case_keys": [
+                        "case-20260414-4e668883"
+                      ],
+                      "helpful_case_keys": [],
+                      "harmful_case_keys": [],
+                      "helpful_case_count": 0,
+                      "harmful_case_count": 0,
+                      "treatment_mean_brier": null,
+                      "control_mean_brier": 0.00030625
+                    }
+                  },
+                  "db_result": {
+                    "edge_key": "price-near-threshold__increases__touch-probability",
+                    "status": "active",
+                    "learned_weight": 0.24,
+                    "exposure_count": 0
+                  }
+                },
+                {
+                  "record": {
+                    "edge_key": "publication-window-timing__increases__reporting-state-uncertainty",
+                    "exposure_count": 0,
+                    "projected_case_count": 0,
+                    "supporting_case_count": 0,
+                    "contested_case_count": 0,
+                    "treatment_case_count": 0,
+                    "control_case_count": 0,
+                    "treatment_mean_brier": null,
+                    "control_mean_brier": null,
+                    "raw_uplift": null,
+                    "shrunken_uplift": null,
+                    "genericity_penalty": 0.06,
+                    "learned_weight": -0.06,
+                    "status": "draft",
+                    "status_reason": "no_support_or_exposures_yet",
+                    "stats_metadata": {
+                      "experiment_id": "researcher-lmd-v1",
+                      "shrinkage_k": 5.0,
+                      "projected_case_keys": [],
+                      "support_case_keys": [],
+                      "contested_case_keys": [],
+                      "treatment_case_keys": [],
+                      "control_case_keys": [],
+                      "helpful_case_keys": [],
+                      "harmful_case_keys": [],
+                      "helpful_case_count": 0,
+                      "harmful_case_count": 0,
+                      "treatment_mean_brier": null,
+                      "control_mean_brier": null
+                    }
+                  },
+                  "db_result": {
+                    "edge_key": "publication-window-timing__increases__reporting-state-uncertainty",
+                    "status": "draft",
+                    "learned_weight": -0.06,
+                    "exposure_count": 0
+                  }
+                },
+                {
+                  "record": {
+                    "edge_key": "resolution-surface-ambiguity__increases__verification-caution",
+                    "exposure_count": 0,
+                    "projected_case_count": 1,
+                    "supporting_case_count": 1,
+                    "contested_case_count": 0,
+                    "treatment_case_count": 0,
+                    "control_case_count": 1,
+                    "treatment_mean_brier": null,
+                    "control_mean_brier": 0.00030625,
+                    "raw_uplift": null,
+                    "shrunken_uplift": null,
+                    "genericity_penalty": 0.03,
+                    "learned_weight": 0.21,
+                    "status": "active",
+                    "status_reason": "reviewed_edge_with_support",
+                    "stats_metadata": {
+                      "experiment_id": "researcher-lmd-v1",
+                      "shrinkage_k": 5.0,
+                      "projected_case_keys": [
+                        "case-20260414-4e668883"
+                      ],
+                      "support_case_keys": [
+                        "case-20260414-4e668883"
+                      ],
+                      "contested_case_keys": [],
+                      "treatment_case_keys": [],
+                      "control_case_keys": [
+                        "case-20260414-4e668883"
+                      ],
+                      "helpful_case_keys": [],
+                      "harmful_case_keys": [],
+                      "helpful_case_count": 0,
+                      "harmful_case_count": 0,
+                      "treatment_mean_brier": null,
+                      "control_mean_brier": 0.00030625
+                    }
+                  },
+                  "db_result": {
+                    "edge_key": "resolution-surface-ambiguity__increases__verification-caution",
+                    "status": "active",
+                    "learned_weight": 0.21,
+                    "exposure_count": 0
+                  }
+                },
+                {
+                  "record": {
+                    "edge_key": "settlement-source-specificity__increases__resolution-surface-ambiguity",
+                    "exposure_count": 0,
+                    "projected_case_count": 5,
+                    "supporting_case_count": 1,
+                    "contested_case_count": 0,
+                    "treatment_case_count": 0,
+                    "control_case_count": 1,
+                    "treatment_mean_brier": null,
+                    "control_mean_brier": 0.00030625,
+                    "raw_uplift": null,
+                    "shrunken_uplift": null,
+                    "genericity_penalty": 0.06,
+                    "learned_weight": 0.19,
+                    "status": "active",
+                    "status_reason": "reviewed_edge_with_support",
+                    "stats_metadata": {
+                      "experiment_id": "researcher-lmd-v1",
+                      "shrinkage_k": 5.0,
+                      "projected_case_keys": [
+                        "case-20260414-3ce42d6c",
+                        "case-20260414-4e668883",
+                        "case-20260414-9c18e804",
+                        "case-20260414-9f18b170",
+                        "case-20260414-d5888900"
+                      ],
+                      "support_case_keys": [
+                        "case-20260414-4e668883"
+                      ],
+                      "contested_case_keys": [],
+                      "treatment_case_keys": [],
+                      "control_case_keys": [
+                        "case-20260414-4e668883"
+                      ],
+                      "helpful_case_keys": [],
+                      "harmful_case_keys": [],
+                      "helpful_case_count": 0,
+                      "harmful_case_count": 0,
+                      "treatment_mean_brier": null,
+                      "control_mean_brier": 0.00030625
+                    }
+                  },
+                  "db_result": {
+                    "edge_key": "settlement-source-specificity__increases__resolution-surface-ambiguity",
+                    "status": "active",
+                    "learned_weight": 0.19,
+                    "exposure_count": 0
+                  }
+                },
+                {
+                  "record": {
+                    "edge_key": "time-remaining-nontrivial__increases__touch-probability",
+                    "exposure_count": 0,
+                    "projected_case_count": 1,
+                    "supporting_case_count": 1,
+                    "contested_case_count": 0,
+                    "treatment_case_count": 0,
+                    "control_case_count": 1,
+                    "treatment_mean_brier": null,
+                    "control_mean_brier": 0.00030625,
+                    "raw_uplift": null,
+                    "shrunken_uplift": null,
+                    "genericity_penalty": 0.03,
+                    "learned_weight": 0.19,
+                    "status": "active",
+                    "status_reason": "reviewed_edge_with_support",
+                    "stats_metadata": {
+                      "experiment_id": "researcher-lmd-v1",
+                      "shrinkage_k": 5.0,
+                      "projected_case_keys": [
+                        "case-20260414-4e668883"
+                      ],
+                      "support_case_keys": [
+                        "case-20260414-4e668883"
+                      ],
+                      "contested_case_keys": [],
+                      "treatment_case_keys": [],
+                      "control_case_keys": [
+                        "case-20260414-4e668883"
+                      ],
+                      "helpful_case_keys": [],
+                      "harmful_case_keys": [],
+                      "helpful_case_count": 0,
+                      "harmful_case_count": 0,
+                      "treatment_mean_brier": null,
+                      "control_mean_brier": 0.00030625
+                    }
+                  },
+                  "db_result": {
+                    "edge_key": "time-remaining-nontrivial__increases__touch-probability",
+                    "status": "active",
+                    "learned_weight": 0.19,
+                    "exposure_count": 0
+                  }
+                },
+                {
+                  "record": {
+                    "edge_key": "verification-caution__increases__fair-value-discounting-pressure",
+                    "exposure_count": 0,
+                    "projected_case_count": 1,
+                    "supporting_case_count": 1,
+                    "contested_case_count": 0,
+                    "treatment_case_count": 0,
+                    "control_case_count": 1,
+                    "treatment_mean_brier": null,
+                    "control_mean_brier": 0.00030625,
+                    "raw_uplift": null,
+                    "shrunken_uplift": null,
+                    "genericity_penalty": 0.03,
+                    "learned_weight": 0.15,
+                    "status": "active",
+                    "status_reason": "reviewed_edge_with_support",
+                    "stats_metadata": {
+                      "experiment_id": "researcher-lmd-v1",
+                      "shrinkage_k": 5.0,
+                      "projected_case_keys": [
+                        "case-20260414-4e668883"
+                      ],
+                      "support_case_keys": [
+                        "case-20260414-4e668883"
+                      ],
+                      "contested_case_keys": [],
+                      "treatment_case_keys": [],
+                      "control_case_keys": [
+                        "case-20260414-4e668883"
+                      ],
+                      "helpful_case_keys": [],
+                      "harmful_case_keys": [],
+                      "helpful_case_count": 0,
+                      "harmful_case_count": 0,
+                      "treatment_mean_brier": null,
+                      "control_mean_brier": 0.00030625
+                    }
+                  },
+                  "db_result": {
+                    "edge_key": "verification-caution__increases__fair-value-discounting-pressure",
+                    "status": "active",
+                    "learned_weight": 0.15,
+                    "exposure_count": 0
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "step": "scan_causal_graph_health",
+            "payload": {
+              "ok": true,
+              "dry_run": false,
+              "entry_count": 15,
+              "violation_count": 0,
+              "violation_class_counts": {},
+              "severity_counts": {},
+              "stats_presence": {
+                "causal_node_stats": true,
+                "causal_edge_stats": true,
+                "causal_graph_health_violations": true
+              },
+              "warnings": [],
+              "violations": [],
+              "persistence": {
+                "inserted_count": 0,
+                "updated_count": 0,
+                "resolved_count": 0,
+                "db_actions": []
+              }
+            }
+          },
+          {
+            "step": "repair_causal_graph",
+            "payload": {
+              "ok": true,
+              "apply": true,
+              "scan_first": true,
+              "entry_count": 15,
+              "warnings": [],
+              "stats_presence": {
+                "causal_node_stats": true,
+                "causal_edge_stats": true,
+                "causal_graph_health_violations": true
+              },
+              "pre_repair": {
+                "violation_count": 0,
+                "violation_class_counts": {},
+                "severity_counts": {}
+              },
+              "post_repair_projection": {
+                "violation_count": 0,
+                "violation_class_counts": {},
+                "severity_counts": {}
+              },
+              "repair_count": 0,
+              "deferred_count": 0,
+              "repairs": [],
+              "deferred": [],
+              "violations_before": [],
+              "violations_after_projection": [],
+              "health_table_reconciliation": {
+                "inserted_count": 0,
+                "updated_count": 0,
+                "resolved_count": 0,
+                "db_actions": []
+              }
+            }
+          },
+          {
+            "step": "advance_live_causal_graph_items",
+            "payload": {
+              "ok": true,
+              "apply": false,
+              "transitioned_at": "2026-04-16T19:14:54Z",
+              "entry_count": 15,
+              "recommended_count": 0,
+              "blocked_count": 3,
+              "family_state_after_selection": {
+                "workflow_pricing": {
+                  "trial_total": 0,
+                  "active_nodes": 0,
+                  "active_edges": 0
+                },
+                "threshold_touch": {
+                  "trial_total": 0,
+                  "active_nodes": 3,
+                  "active_edges": 2
+                },
+                "publication_timing": {
+                  "trial_total": 0,
+                  "active_nodes": 0,
+                  "active_edges": 0
+                },
+                "source_resolution": {
+                  "trial_total": 0,
+                  "active_nodes": 2,
+                  "active_edges": 1
+                }
+              },
+              "recommendations": [],
+              "blocked": [
+                {
+                  "entity_type": "node",
+                  "entity_key": "publication-window-timing",
+                  "target_stage": "trial",
+                  "reason": [
+                    "insufficient_support_cases_for_trial",
+                    "nonpositive_learned_weight"
+                  ],
+                  "preview": {
+                    "entity_type": "node",
+                    "entity_key": "publication-window-timing",
+                    "mechanism_family": "publication_timing",
+                    "current_stage": "draft",
+                    "status": "draft",
+                    "learned_weight": -0.03,
+                    "shrunken_uplift": 0.0,
+                    "supporting_case_count": 0,
+                    "contested_case_count": 0,
+                    "judged_case_count": 0,
+                    "helpful_case_count": 0,
+                    "open_violation_count": 0,
+                    "decay_score": 0.0
+                  }
+                },
+                {
+                  "entity_type": "node",
+                  "entity_key": "reporting-state-uncertainty",
+                  "target_stage": "trial",
+                  "reason": [
+                    "insufficient_support_cases_for_trial",
+                    "nonpositive_learned_weight"
+                  ],
+                  "preview": {
+                    "entity_type": "node",
+                    "entity_key": "reporting-state-uncertainty",
+                    "mechanism_family": "publication_timing",
+                    "current_stage": "draft",
+                    "status": "draft",
+                    "learned_weight": -0.03,
+                    "shrunken_uplift": 0.0,
+                    "supporting_case_count": 0,
+                    "contested_case_count": 0,
+                    "judged_case_count": 0,
+                    "helpful_case_count": 0,
+                    "open_violation_count": 0,
+                    "decay_score": 0.0
+                  }
+                },
+                {
+                  "entity_type": "edge",
+                  "entity_key": "publication-window-timing__increases__reporting-state-uncertainty",
+                  "target_stage": "trial",
+                  "reason": [
+                    "insufficient_support_cases_for_trial",
+                    "nonpositive_learned_weight"
+                  ],
+                  "preview": {
+                    "entity_type": "edge",
+                    "entity_key": "publication-window-timing__increases__reporting-state-uncertainty",
+                    "mechanism_family": "publication_timing",
+                    "current_stage": "draft",
+                    "status": "draft",
+                    "learned_weight": -0.06,
+                    "shrunken_uplift": 0.0,
+                    "supporting_case_count": 0,
+                    "contested_case_count": 0,
+                    "judged_case_count": 0,
+                    "helpful_case_count": 0,
+                    "open_violation_count": 0,
+                    "decay_score": 0.0
+                  }
+                }
+              ],
+              "stats_presence": {
+                "causal_node_stats": true,
+                "causal_edge_stats": true,
+                "causal_graph_health_violations": true
+              }
+            }
+          }
+        ]
+      },
+      "stderr": null,
+      "step": "run_live_causal_graph_cycle.py"
+    },
+    {
+      "ok": true,
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "/Users/agent2/.openclaw/orchestrator/roles/evaluator/runtime/scripts/learn_phase11_retrieval_policy.py",
+        "--psql",
+        "/opt/homebrew/opt/postgresql@16/bin/psql",
+        "--db-url",
+        "postgresql://pq_orchestrator:KsDjg-lbfWx914dQmTUHMJkCcTceoc2r@localhost:5432/predquant"
+      ],
+      "returncode": 0,
+      "payload": {
+        "ok": true,
+        "warnings": [],
+        "policy": {
+          "policy_version": "phase11-learned-policy-v1",
+          "loaded_from_file": false,
+          "source_path": "/Users/agent2/.openclaw/orchestrator/qualitative-db/60-causal-map/generated/phase11-retrieval-policy.json",
+          "weights": {
+            "candidate_bonus": {
+              "learned_weight_bonus": 0.712,
+              "shrunken_uplift_bonus": 0.525,
+              "genericity_penalty": 0.262,
+              "status_penalty": 0.18
+            },
+            "live_graph": {
+              "node": {
+                "learned_weight_bonus": 1.13,
+                "negative_weight_penalty": 1.504,
+                "uplift_bonus": 0.825,
+                "negative_uplift_penalty": 0.862,
+                "support_bonus": 0.614,
+                "helpful_bonus": 0.338,
+                "contestation_penalty": 0.852,
+                "decay_penalty": 0.525,
+                "family_crowding_penalty": 0.9,
+                "trust_tier_bonus": {
+                  "active_reviewed": 0.522,
+                  "trial_experimental": 0.12,
+                  "review_only": -0.202
+                },
+                "status_penalty": {
+                  "hold_or_draft": 0.28,
+                  "retired_or_archived": 0.45
+                }
+              },
+              "edge": {
+                "learned_weight_bonus": 1.29,
+                "negative_weight_penalty": 1.417,
+                "uplift_bonus": 0.825,
+                "negative_uplift_penalty": 0.862,
+                "support_bonus": 0.735,
+                "helpful_bonus": 0.338,
+                "contestation_penalty": 0.6,
+                "decay_penalty": 0.525,
+                "family_crowding_penalty": 0.9,
+                "trust_tier_bonus": {
+                  "active_reviewed": 0.464,
+                  "trial_experimental": 0.12,
+                  "review_only": -0.208
+                },
+                "status_penalty": {
+                  "hold_or_draft": 0.28,
+                  "retired_or_archived": 0.45
+                }
+              }
+            },
+            "intervention": {
+              "required_check_bonus": 0.383,
+              "mechanic_live_bonus": 0.468,
+              "source_live_bonus": 0.637,
+              "workflow_live_bonus": 0.51
+            },
+            "aggregate_note": {
+              "shared_contested_workflow_edge": 0.722,
+              "threshold_workflow_family": 0.468,
+              "workflow_live_bonus": 0.68,
+              "shared_source_family": 0.765,
+              "source_live_bonus": 0.722
+            },
+            "overlay": {
+              "shadow_trial_score": 0.788,
+              "trial_shrunken_utility": 0.712,
+              "trial_helpful": 0.413,
+              "shadow_helpful": 0.338,
+              "non_intervention_support": 0.413,
+              "distinct_cases": 0.24,
+              "genericity_penalty": 0.845,
+              "harmful_shadow_penalty": 0.413,
+              "trial_harmful_rate_penalty": 0.488,
+              "family_crowding_penalty": 0.9,
+              "merge_penalty": 0.562
+            }
+          },
+          "learning_metadata": {
+            "sample_counts": {
+              "candidate_rows": 0,
+              "node_rows": 9,
+              "edge_rows": 6,
+              "proposal_rows": 15
+            },
+            "signals": {
+              "candidate_bonus": {
+                "learned_weight_bonus": {
+                  "count": 0,
+                  "correlation": 0.0,
+                  "aligned_signal": 0.0,
+                  "shrinkage": 0.0,
+                  "effective_signal": 0.0
+                },
+                "shrunken_uplift_bonus": {
+                  "count": 0,
+                  "correlation": 0.0,
+                  "aligned_signal": 0.0,
+                  "shrinkage": 0.0,
+                  "effective_signal": 0.0
+                },
+                "genericity_penalty": {
+                  "count": 0,
+                  "correlation": 0.0,
+                  "aligned_signal": 0.0,
+                  "shrinkage": 0.0,
+                  "effective_signal": 0.0
+                }
+              },
+              "live_graph": {
+                "node": {
+                  "learned_weight_bonus": {
+                    "count": 9,
+                    "correlation": 0.416463,
+                    "aligned_signal": 0.416463,
+                    "shrinkage": 0.529412,
+                    "effective_signal": 0.220481
+                  },
+                  "negative_weight_penalty": {
+                    "count": 9,
+                    "correlation": -0.983188,
+                    "aligned_signal": 0.983188,
+                    "shrinkage": 0.529412,
+                    "effective_signal": 0.520511
+                  },
+                  "uplift_bonus": {
+                    "count": 9,
+                    "correlation": 0.0,
+                    "aligned_signal": 0.0,
+                    "shrinkage": 0.529412,
+                    "effective_signal": 0.0
+                  },
+                  "negative_uplift_penalty": {
+                    "count": 9,
+                    "correlation": 0.0,
+                    "aligned_signal": 0.0,
+                    "shrinkage": 0.529412,
+                    "effective_signal": 0.0
+                  },
+                  "support_bonus": {
+                    "count": 9,
+                    "correlation": 0.343745,
+                    "aligned_signal": 0.343745,
+                    "shrinkage": 0.529412,
+                    "effective_signal": 0.181983
+                  },
+                  "helpful_bonus": {
+                    "count": 9,
+                    "correlation": 0.0,
+                    "aligned_signal": 0.0,
+                    "shrinkage": 0.529412,
+                    "effective_signal": 0.0
+                  },
+                  "contestation_penalty": {
+                    "count": 9,
+                    "correlation": -0.848697,
+                    "aligned_signal": 0.848697,
+                    "shrinkage": 0.529412,
+                    "effective_signal": 0.44931
+                  },
+                  "decay_penalty": {
+                    "count": 9,
+                    "correlation": 0.0,
+                    "aligned_signal": 0.0,
+                    "shrinkage": 0.529412,
+                    "effective_signal": 0.0
+                  }
+                },
+                "edge": {
+                  "learned_weight_bonus": {
+                    "count": 6,
+                    "correlation": 0.93867,
+                    "aligned_signal": 0.93867,
+                    "shrinkage": 0.428571,
+                    "effective_signal": 0.402287
+                  },
+                  "negative_weight_penalty": {
+                    "count": 6,
+                    "correlation": -1.0,
+                    "aligned_signal": 1.0,
+                    "shrinkage": 0.428571,
+                    "effective_signal": 0.428571
+                  },
+                  "uplift_bonus": {
+                    "count": 6,
+                    "correlation": 0.0,
+                    "aligned_signal": 0.0,
+                    "shrinkage": 0.428571,
+                    "effective_signal": 0.0
+                  },
+                  "negative_uplift_penalty": {
+                    "count": 6,
+                    "correlation": 0.0,
+                    "aligned_signal": 0.0,
+                    "shrinkage": 0.428571,
+                    "effective_signal": 0.0
+                  },
+                  "support_bonus": {
+                    "count": 6,
+                    "correlation": 1.0,
+                    "aligned_signal": 1.0,
+                    "shrinkage": 0.428571,
+                    "effective_signal": 0.428571
+                  },
+                  "helpful_bonus": {
+                    "count": 6,
+                    "correlation": 0.0,
+                    "aligned_signal": 0.0,
+                    "shrinkage": 0.428571,
+                    "effective_signal": 0.0
+                  },
+                  "contestation_penalty": {
+                    "count": 6,
+                    "correlation": 0.0,
+                    "aligned_signal": 0.0,
+                    "shrinkage": 0.428571,
+                    "effective_signal": 0.0
+                  },
+                  "decay_penalty": {
+                    "count": 6,
+                    "correlation": 0.0,
+                    "aligned_signal": 0.0,
+                    "shrinkage": 0.428571,
+                    "effective_signal": 0.0
+                  }
+                },
+                "trust_tier_learning": {
+                  "node": {
+                    "active_reviewed": {
+                      "stage": "active",
+                      "count": 5,
+                      "mean_target": 1.0,
+                      "overall_mean": 0.466667,
+                      "shrinkage": 0.384615
+                    },
+                    "trial_experimental": {
+                      "stage": "trial",
+                      "count": 0,
+                      "mean_target": 0.0,
+                      "overall_mean": 0.0
+                    },
+                    "review_only": {
+                      "stage": "draft",
+                      "count": 2,
+                      "mean_target": 0.15,
+                      "overall_mean": 0.466667,
+                      "shrinkage": 0.2
+                    }
+                  },
+                  "edge": {
+                    "active_reviewed": {
+                      "stage": "active",
+                      "count": 3,
+                      "mean_target": 1.0,
+                      "overall_mean": 0.858333,
+                      "shrinkage": 0.272727
+                    },
+                    "trial_experimental": {
+                      "stage": "trial",
+                      "count": 0,
+                      "mean_target": 0.0,
+                      "overall_mean": 0.0
+                    },
+                    "review_only": {
+                      "stage": "draft",
+                      "count": 1,
+                      "mean_target": 0.15,
+                      "overall_mean": 0.858333,
+                      "shrinkage": 0.111111
+                    }
+                  }
+                }
+              },
+              "overlay": {
+                "shadow_trial_score": {
+                  "count": 15,
+                  "correlation": 0.0,
+                  "aligned_signal": 0.0,
+                  "shrinkage": 0.652174,
+                  "effective_signal": 0.0
+                },
+                "trial_shrunken_utility": {
+                  "count": 15,
+                  "correlation": 0.0,
+                  "aligned_signal": 0.0,
+                  "shrinkage": 0.652174,
+                  "effective_signal": 0.0
+                },
+                "trial_helpful": {
+                  "count": 15,
+                  "correlation": 0.0,
+                  "aligned_signal": 0.0,
+                  "shrinkage": 0.652174,
+                  "effective_signal": 0.0
+                },
+                "shadow_helpful": {
+                  "count": 15,
+                  "correlation": 0.0,
+                  "aligned_signal": 0.0,
+                  "shrinkage": 0.652174,
+                  "effective_signal": 0.0
+                },
+                "non_intervention_support": {
+                  "count": 15,
+                  "correlation": 0.0,
+                  "aligned_signal": 0.0,
+                  "shrinkage": 0.652174,
+                  "effective_signal": 0.0
+                },
+                "distinct_cases": {
+                  "count": 15,
+                  "correlation": 0.0,
+                  "aligned_signal": 0.0,
+                  "shrinkage": 0.652174,
+                  "effective_signal": 0.0
+                },
+                "genericity_penalty": {
+                  "count": 15,
+                  "correlation": -1.0,
+                  "aligned_signal": 1.0,
+                  "shrinkage": 0.652174,
+                  "effective_signal": 0.652174
+                },
+                "harmful_shadow_penalty": {
+                  "count": 15,
+                  "correlation": 0.0,
+                  "aligned_signal": 0.0,
+                  "shrinkage": 0.652174,
+                  "effective_signal": 0.0
+                },
+                "trial_harmful_rate_penalty": {
+                  "count": 15,
+                  "correlation": 0.0,
+                  "aligned_signal": 0.0,
+                  "shrinkage": 0.652174,
+                  "effective_signal": 0.0
+                },
+                "merge_penalty": {
+                  "count": 15,
+                  "correlation": 0.274062,
+                  "aligned_signal": 0.0,
+                  "shrinkage": 0.652174,
+                  "effective_signal": 0.0
+                }
+              },
+              "structural_surfaces": {
+                "intervention": {
+                  "count": 0,
+                  "correlation": 0.0,
+                  "aligned_signal": 0.0,
+                  "shrinkage": 0.0,
+                  "effective_signal": 0.0
+                },
+                "aggregate_note": {
+                  "count": 0,
+                  "correlation": 0.0,
+                  "aligned_signal": 0.0,
+                  "shrinkage": 0.0,
+                  "effective_signal": 0.0
+                }
+              }
+            }
+          }
+        },
+        "written_to": "/Users/agent2/.openclaw/orchestrator/qualitative-db/60-causal-map/generated/phase11-retrieval-policy.json"
+      },
+      "stderr": null,
+      "step": "learn_phase11_retrieval_policy.py"
+    },
+    {
+      "ok": true,
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "/Users/agent2/.openclaw/orchestrator/roles/evaluator/runtime/scripts/report_phase11_retrieval_policy.py",
+        "--psql",
+        "/opt/homebrew/opt/postgresql@16/bin/psql",
+        "--db-url",
+        "postgresql://pq_orchestrator:KsDjg-lbfWx914dQmTUHMJkCcTceoc2r@localhost:5432/predquant"
+      ],
+      "returncode": 0,
+      "payload": {
+        "ok": true,
+        "case_count": 5,
+        "json_out": "qualitative-db/60-causal-map/generated/phase11-retrieval-policy-report.json",
+        "md_out": "qualitative-db/60-causal-map/generated/phase11-retrieval-policy-report.md",
+        "summary": {
+          "generated_at": "2026-04-16T19:15:00.140687+00:00",
+          "comparison_mode": "default_normalized_priors_vs_normalized_plus_learned_overrides",
+          "policy_path": "/Users/agent2/.openclaw/orchestrator/qualitative-db/60-causal-map/generated/phase11-retrieval-policy.json",
+          "case_count": 5,
+          "cases_with_any_top1_change": 0,
+          "cases_with_any_surface_change": 5,
+          "top1_change_counts": {
+            "case_reviews": 0,
+            "active_interventions": 0,
+            "aggregate_notes": 0,
+            "trial_overlay": 0,
+            "live_nodes": 0,
+            "live_edges": 0
+          },
+          "any_change_counts": {
+            "case_reviews": 5,
+            "active_interventions": 4,
+            "aggregate_notes": 4,
+            "trial_overlay": 5,
+            "live_nodes": 5,
+            "live_edges": 1
+          }
+        },
+        "cases": [
+          {
+            "case_key": "case-20260416-143465dc",
+            "title": "Will Solana reach $90 April 13-19?",
+            "top1_change_flags": {
+              "case_reviews": false,
+              "active_interventions": false,
+              "aggregate_notes": false,
+              "trial_overlay": false,
+              "live_nodes": false,
+              "live_edges": false
+            },
+            "any_change_flags": {
+              "case_reviews": true,
+              "active_interventions": true,
+              "aggregate_notes": true,
+              "trial_overlay": true,
+              "live_nodes": true,
+              "live_edges": true
+            }
+          },
+          {
+            "case_key": "case-20260416-305ed3c4",
+            "title": "Will the price of Ethereum be above $2,200 on April 17?",
+            "top1_change_flags": {
+              "case_reviews": false,
+              "active_interventions": false,
+              "aggregate_notes": false,
+              "trial_overlay": false,
+              "live_nodes": false,
+              "live_edges": false
+            },
+            "any_change_flags": {
+              "case_reviews": true,
+              "active_interventions": true,
+              "aggregate_notes": true,
+              "trial_overlay": true,
+              "live_nodes": true,
+              "live_edges": false
+            }
+          },
+          {
+            "case_key": "case-20260416-8fa68833",
+            "title": "Will FC Barcelona win on 2026-04-22?",
+            "top1_change_flags": {
+              "case_reviews": false,
+              "active_interventions": false,
+              "aggregate_notes": false,
+              "trial_overlay": false,
+              "live_nodes": false,
+              "live_edges": false
+            },
+            "any_change_flags": {
+              "case_reviews": true,
+              "active_interventions": false,
+              "aggregate_notes": false,
+              "trial_overlay": true,
+              "live_nodes": true,
+              "live_edges": false
+            }
+          },
+          {
+            "case_key": "case-20260416-cc34f737",
+            "title": "Will the price of Ethereum be above $2,300 on April 17?",
+            "top1_change_flags": {
+              "case_reviews": false,
+              "active_interventions": false,
+              "aggregate_notes": false,
+              "trial_overlay": false,
+              "live_nodes": false,
+              "live_edges": false
+            },
+            "any_change_flags": {
+              "case_reviews": true,
+              "active_interventions": true,
+              "aggregate_notes": true,
+              "trial_overlay": true,
+              "live_nodes": true,
+              "live_edges": false
+            }
+          },
+          {
+            "case_key": "case-20260416-243d5bed",
+            "title": "Will the price of Ethereum be above $2,300 on April 17?",
+            "top1_change_flags": {
+              "case_reviews": false,
+              "active_interventions": false,
+              "aggregate_notes": false,
+              "trial_overlay": false,
+              "live_nodes": false,
+              "live_edges": false
+            },
+            "any_change_flags": {
+              "case_reviews": true,
+              "active_interventions": true,
+              "aggregate_notes": true,
+              "trial_overlay": true,
+              "live_nodes": true,
+              "live_edges": false
+            }
+          }
+        ]
+      },
+      "stderr": null,
+      "step": "report_phase11_retrieval_policy.py"
+    },
+    {
+      "ok": true,
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "/Users/agent2/.openclaw/orchestrator/roles/evaluator/runtime/scripts/backfill_lmd_causal_dispatch_audits.py",
+        "--psql",
+        "/opt/homebrew/opt/postgresql@16/bin/psql",
+        "--db-url",
+        "postgresql://pq_orchestrator:KsDjg-lbfWx914dQmTUHMJkCcTceoc2r@localhost:5432/predquant",
+        "--experiment-id",
+        "researcher-lmd-v1",
+        "--recent-treatment-cases",
+        "5"
+      ],
+      "returncode": 0,
+      "payload": {
+        "ok": true,
+        "audit_result_count": 5,
+        "written_count": 0,
+        "skipped_count": 5,
+        "results": [
+          {
+            "case_key": "case-20260416-8bef05aa",
+            "dispatch_id": "dispatch-case-20260416-8bef05aa-20260416T144205Z",
+            "skipped": true,
+            "reason": "audit_already_present",
+            "audit_path": "/Users/agent2/.openclaw/orchestrator/qualitative-db/40-research/cases/case-20260416-8bef05aa/researcher-analyses/2026-04-16/dispatch-case-20260416-8bef05aa-20260416T144205Z/lmd-causal-audit.json"
+          },
+          {
+            "case_key": "case-20260416-605a067d",
+            "dispatch_id": "dispatch-case-20260416-605a067d-20260416T142910Z",
+            "skipped": true,
+            "reason": "audit_already_present",
+            "audit_path": "/Users/agent2/.openclaw/orchestrator/qualitative-db/40-research/cases/case-20260416-605a067d/researcher-analyses/2026-04-16/dispatch-case-20260416-605a067d-20260416T142910Z/lmd-causal-audit.json"
+          },
+          {
+            "case_key": "case-20260416-66f6f47e",
+            "dispatch_id": "dispatch-case-20260416-66f6f47e-20260416T141457Z",
+            "skipped": true,
+            "reason": "audit_already_present",
+            "audit_path": "/Users/agent2/.openclaw/orchestrator/qualitative-db/40-research/cases/case-20260416-66f6f47e/researcher-analyses/2026-04-16/dispatch-case-20260416-66f6f47e-20260416T141457Z/lmd-causal-audit.json"
+          },
+          {
+            "case_key": "case-20260416-bacb47cd",
+            "dispatch_id": "dispatch-case-20260416-bacb47cd-20260416T101708Z",
+            "skipped": true,
+            "reason": "audit_already_present",
+            "audit_path": "/Users/agent2/.openclaw/orchestrator/qualitative-db/40-research/cases/case-20260416-bacb47cd/researcher-analyses/2026-04-16/dispatch-case-20260416-bacb47cd-20260416T101708Z/lmd-causal-audit.json"
+          },
+          {
+            "case_key": "case-20260416-f08c3dae",
+            "dispatch_id": "dispatch-case-20260416-f08c3dae-20260416T041907Z",
+            "skipped": true,
+            "reason": "audit_already_present",
+            "audit_path": "/Users/agent2/.openclaw/orchestrator/qualitative-db/40-research/cases/case-20260416-f08c3dae/researcher-analyses/2026-04-16/dispatch-case-20260416-f08c3dae-20260416T041907Z/lmd-causal-audit.json"
+          }
+        ]
+      },
+      "stderr": null,
+      "step": "backfill_lmd_causal_dispatch_audits.py"
+    },
+    {
+      "ok": true,
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "/Users/agent2/.openclaw/orchestrator/roles/evaluator/runtime/scripts/reconcile_lmd_causal_runtime.py",
+        "--psql",
+        "/opt/homebrew/opt/postgresql@16/bin/psql",
+        "--db-url",
+        "postgresql://pq_orchestrator:KsDjg-lbfWx914dQmTUHMJkCcTceoc2r@localhost:5432/predquant",
+        "--experiment-id",
+        "researcher-lmd-v1",
+        "--recent-treatment-cases",
+        "5"
+      ],
+      "returncode": 0,
+      "payload": {
+        "summary": {
+          "generated_at": "2026-04-16T19:15:01.094177+00:00",
+          "cycle_count": 5,
+          "cycles_with_warnings_count": 5,
+          "unresolved_cycle_count": 5,
+          "missing_bundle_count": 0,
+          "missing_audit_file_count": 0,
+          "lmd_row_mismatch_count": 0,
+          "trial_row_mismatch_count": 0,
+          "retry_queue_depth": 0,
+          "post_treatment_report_generated_at": "2026-04-16T19:02:27.213144+00:00",
+          "latest_relevant_signal_at": "2026-04-16T14:43:06.480937+00:00",
+          "post_treatment_report_stale": false
+        },
+        "cycles": [
+          {
+            "case_key": "case-20260416-8bef05aa",
+            "dispatch_id": "dispatch-case-20260416-8bef05aa-20260416T144205Z",
+            "research_run_id": "10c09e80-4f03-4413-96f9-a7f7cd26c9a5",
+            "experiment_id": "researcher-lmd-v1",
+            "arm": "treatment",
+            "generator_version": "lmd-generator-v0",
+            "policy_version": "lmd-policy-v0",
+            "bundle_path": "qualitative-db/40-research/cases/case-20260416-8bef05aa/researcher-analyses/2026-04-16/dispatch-case-20260416-8bef05aa-20260416T144205Z/lmd-bundle.json",
+            "first_exposure_at": "2026-04-16T10:43:06.331892-04:00",
+            "last_exposure_at": "2026-04-16T10:43:06.480937-04:00",
+            "trial_last_exposure_at": "2026-04-16T10:43:05.119518-04:00",
+            "review_updated_at": null,
+            "bundle_found": true,
+            "bundle_status": "treatment_ready",
+            "lmd_used": true,
+            "trial_overlay_enabled": true,
+            "trial_overlay_mode": "treatment_injected",
+            "trial_overlay_preview_only": false,
+            "selected_trial_candidate_ids": [
+              "node:verification-state-separation"
+            ],
+            "expected_lmd_rows": 3,
+            "actual_lmd_rows": 3,
+            "expected_trial_rows": 1,
+            "actual_trial_rows": 1,
+            "expected_trial_injected_rows": 1,
+            "actual_trial_injected_rows": 1,
+            "actual_trial_judged_rows": 0,
+            "resolution_status": null,
+            "latest_brier_component": null,
+            "lmd_logging_complete": true,
+            "trial_logging_complete": true,
+            "ready_for_outcome_learning": false,
+            "ready_for_trial_outcome_learning": false,
+            "warnings": [
+              "case_not_resolved_yet"
+            ],
+            "audit_file_path": "/Users/agent2/.openclaw/orchestrator/qualitative-db/40-research/cases/case-20260416-8bef05aa/researcher-analyses/2026-04-16/dispatch-case-20260416-8bef05aa-20260416T144205Z/lmd-causal-audit.json",
+            "audit_file_present": true
+          },
+          {
+            "case_key": "case-20260416-605a067d",
+            "dispatch_id": "dispatch-case-20260416-605a067d-20260416T142910Z",
+            "research_run_id": "06ea1314-3533-4052-bc99-aee9cc2f7022",
+            "experiment_id": "researcher-lmd-v1",
+            "arm": "treatment",
+            "generator_version": "lmd-generator-v0",
+            "policy_version": "lmd-policy-v0",
+            "bundle_path": "qualitative-db/40-research/cases/case-20260416-605a067d/researcher-analyses/2026-04-16/dispatch-case-20260416-605a067d-20260416T142910Z/lmd-bundle.json",
+            "first_exposure_at": "2026-04-16T10:30:18.382781-04:00",
+            "last_exposure_at": "2026-04-16T10:30:18.658422-04:00",
+            "trial_last_exposure_at": "2026-04-16T10:30:17.195082-04:00",
+            "review_updated_at": null,
+            "bundle_found": true,
+            "bundle_status": "treatment_ready",
+            "lmd_used": true,
+            "trial_overlay_enabled": true,
+            "trial_overlay_mode": "treatment_injected",
+            "trial_overlay_preview_only": false,
+            "selected_trial_candidate_ids": [
+              "node:verification-state-separation"
+            ],
+            "expected_lmd_rows": 5,
+            "actual_lmd_rows": 5,
+            "expected_trial_rows": 1,
+            "actual_trial_rows": 1,
+            "expected_trial_injected_rows": 1,
+            "actual_trial_injected_rows": 1,
+            "actual_trial_judged_rows": 0,
+            "resolution_status": null,
+            "latest_brier_component": null,
+            "lmd_logging_complete": true,
+            "trial_logging_complete": true,
+            "ready_for_outcome_learning": false,
+            "ready_for_trial_outcome_learning": false,
+            "warnings": [
+              "case_not_resolved_yet"
+            ],
+            "audit_file_path": "/Users/agent2/.openclaw/orchestrator/qualitative-db/40-research/cases/case-20260416-605a067d/researcher-analyses/2026-04-16/dispatch-case-20260416-605a067d-20260416T142910Z/lmd-causal-audit.json",
+            "audit_file_present": true
+          },
+          {
+            "case_key": "case-20260416-66f6f47e",
+            "dispatch_id": "dispatch-case-20260416-66f6f47e-20260416T141457Z",
+            "research_run_id": "0d922415-b733-427b-8a17-e364db4f1539",
+            "experiment_id": "researcher-lmd-v1",
+            "arm": "treatment",
+            "generator_version": "lmd-generator-v0",
+            "policy_version": "lmd-policy-v0",
+            "bundle_path": "qualitative-db/40-research/cases/case-20260416-66f6f47e/researcher-analyses/2026-04-16/dispatch-case-20260416-66f6f47e-20260416T141457Z/lmd-bundle.json",
+            "first_exposure_at": "2026-04-16T10:15:56.489977-04:00",
+            "last_exposure_at": "2026-04-16T10:15:56.635171-04:00",
+            "trial_last_exposure_at": "2026-04-16T10:15:55.302988-04:00",
+            "review_updated_at": null,
+            "bundle_found": true,
+            "bundle_status": "treatment_ready",
+            "lmd_used": true,
+            "trial_overlay_enabled": true,
+            "trial_overlay_mode": "treatment_injected",
+            "trial_overlay_preview_only": false,
+            "selected_trial_candidate_ids": [
+              "node:verification-state-separation"
+            ],
+            "expected_lmd_rows": 3,
+            "actual_lmd_rows": 3,
+            "expected_trial_rows": 1,
+            "actual_trial_rows": 1,
+            "expected_trial_injected_rows": 1,
+            "actual_trial_injected_rows": 1,
+            "actual_trial_judged_rows": 0,
+            "resolution_status": null,
+            "latest_brier_component": null,
+            "lmd_logging_complete": true,
+            "trial_logging_complete": true,
+            "ready_for_outcome_learning": false,
+            "ready_for_trial_outcome_learning": false,
+            "warnings": [
+              "case_not_resolved_yet"
+            ],
+            "audit_file_path": "/Users/agent2/.openclaw/orchestrator/qualitative-db/40-research/cases/case-20260416-66f6f47e/researcher-analyses/2026-04-16/dispatch-case-20260416-66f6f47e-20260416T141457Z/lmd-causal-audit.json",
+            "audit_file_present": true
+          },
+          {
+            "case_key": "case-20260416-bacb47cd",
+            "dispatch_id": "dispatch-case-20260416-bacb47cd-20260416T101708Z",
+            "research_run_id": "70e33f05-5b05-4a8b-a54b-94c67284f7cb",
+            "experiment_id": "researcher-lmd-v1",
+            "arm": "treatment",
+            "generator_version": "lmd-generator-v0",
+            "policy_version": "lmd-policy-v0",
+            "bundle_path": "qualitative-db/40-research/cases/case-20260416-bacb47cd/researcher-analyses/2026-04-16/dispatch-case-20260416-bacb47cd-20260416T101708Z/lmd-bundle.json",
+            "first_exposure_at": "2026-04-16T06:18:12.792516-04:00",
+            "last_exposure_at": "2026-04-16T06:18:12.870379-04:00",
+            "trial_last_exposure_at": "2026-04-16T06:18:11.688088-04:00",
+            "review_updated_at": null,
+            "bundle_found": true,
+            "bundle_status": "treatment_ready",
+            "lmd_used": true,
+            "trial_overlay_enabled": true,
+            "trial_overlay_mode": "treatment_injected",
+            "trial_overlay_preview_only": false,
+            "selected_trial_candidate_ids": [
+              "node:verification-state-separation"
+            ],
+            "expected_lmd_rows": 2,
+            "actual_lmd_rows": 2,
+            "expected_trial_rows": 1,
+            "actual_trial_rows": 1,
+            "expected_trial_injected_rows": 1,
+            "actual_trial_injected_rows": 1,
+            "actual_trial_judged_rows": 0,
+            "resolution_status": null,
+            "latest_brier_component": null,
+            "lmd_logging_complete": true,
+            "trial_logging_complete": true,
+            "ready_for_outcome_learning": false,
+            "ready_for_trial_outcome_learning": false,
+            "warnings": [
+              "case_not_resolved_yet"
+            ],
+            "audit_file_path": "/Users/agent2/.openclaw/orchestrator/qualitative-db/40-research/cases/case-20260416-bacb47cd/researcher-analyses/2026-04-16/dispatch-case-20260416-bacb47cd-20260416T101708Z/lmd-causal-audit.json",
+            "audit_file_present": true
+          },
+          {
+            "case_key": "case-20260416-f08c3dae",
+            "dispatch_id": "dispatch-case-20260416-f08c3dae-20260416T041907Z",
+            "research_run_id": "edb971fb-e344-40a8-81e0-3a3e166a0201",
+            "experiment_id": "researcher-lmd-v1",
+            "arm": "treatment",
+            "generator_version": "lmd-generator-v0",
+            "policy_version": "lmd-policy-v0",
+            "bundle_path": "qualitative-db/40-research/cases/case-20260416-f08c3dae/researcher-analyses/2026-04-16/dispatch-case-20260416-f08c3dae-20260416T041907Z/lmd-bundle.json",
+            "first_exposure_at": "2026-04-16T00:20:10.915851-04:00",
+            "last_exposure_at": "2026-04-16T00:20:10.958681-04:00",
+            "trial_last_exposure_at": "2026-04-16T00:20:10.079667-04:00",
+            "review_updated_at": null,
+            "bundle_found": true,
+            "bundle_status": "treatment_ready",
+            "lmd_used": true,
+            "trial_overlay_enabled": true,
+            "trial_overlay_mode": "treatment_injected",
+            "trial_overlay_preview_only": false,
+            "selected_trial_candidate_ids": [
+              "node:verification-state-separation"
+            ],
+            "expected_lmd_rows": 2,
+            "actual_lmd_rows": 2,
+            "expected_trial_rows": 1,
+            "actual_trial_rows": 1,
+            "expected_trial_injected_rows": 1,
+            "actual_trial_injected_rows": 1,
+            "actual_trial_judged_rows": 0,
+            "resolution_status": null,
+            "latest_brier_component": null,
+            "lmd_logging_complete": true,
+            "trial_logging_complete": true,
+            "ready_for_outcome_learning": false,
+            "ready_for_trial_outcome_learning": false,
+            "warnings": [
+              "case_not_resolved_yet"
+            ],
+            "audit_file_path": "/Users/agent2/.openclaw/orchestrator/qualitative-db/40-research/cases/case-20260416-f08c3dae/researcher-analyses/2026-04-16/dispatch-case-20260416-f08c3dae-20260416T041907Z/lmd-causal-audit.json",
+            "audit_file_present": true
+          }
+        ],
+        "retry_queue": []
+      },
+      "stderr": null,
+      "step": "reconcile_lmd_causal_runtime.py"
+    },
+    {
+      "ok": true,
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "/Users/agent2/.openclaw/orchestrator/roles/evaluator/runtime/scripts/report_lmd_causal_runtime_status.py",
+        "--psql",
+        "/opt/homebrew/opt/postgresql@16/bin/psql",
+        "--db-url",
+        "postgresql://pq_orchestrator:KsDjg-lbfWx914dQmTUHMJkCcTceoc2r@localhost:5432/predquant"
+      ],
+      "returncode": 0,
+      "payload": {
+        "summary": {
+          "generated_at": "2026-04-16T19:15:02.876257+00:00",
+          "assignments_by_arm": {
+            "control": 83,
+            "treatment": 14
+          },
+          "exposures_by_arm": {
+            "treatment": 46
+          },
+          "trial_modes": {
+            "preview_only": 23,
+            "treatment_injected": 5
+          },
+          "resolved_treatment_case_count": 0,
+          "pending_treatment_case_count": 10,
+          "proposal_funnel_total": 15,
+          "proposal_funnel": [
+            {
+              "lifecycle_stage": "aggregated",
+              "promotion_status": "insufficient_support",
+              "count": 7
+            },
+            {
+              "lifecycle_stage": "shadow_candidate",
+              "promotion_status": "insufficient_support",
+              "count": 7
+            },
+            {
+              "lifecycle_stage": "trial_candidate",
+              "promotion_status": "insufficient_support",
+              "count": 1
+            }
+          ],
+          "live_nodes_by_stage": {
+            "active": 5,
+            "draft": 2,
+            "hold": 2
+          },
+          "live_edges_by_stage": {
+            "active": 3,
+            "draft": 1,
+            "hold": 2
+          },
+          "open_graph_violation_count": 0,
+          "coverage_counts": {
+            "strong": 11
+          },
+          "case_mix_counts": {
+            "difficulty:low": 2,
+            "difficulty:medium": 9,
+            "resolution_risk:low": 2,
+            "resolution_risk:medium": 9
+          },
+          "counterfactual_control_preview_count": 1,
+          "retry_queue_depth": 0,
+          "report_timestamps": {
+            "post_treatment_feedback": "2026-04-16T19:02:27.213144+00:00",
+            "phase11_retrieval_policy_report": "2026-04-16T19:15:00.140687+00:00",
+            "reconciliation": "2026-04-16T19:15:01.094177+00:00",
+            "governance": "2026-04-16T19:02:26.617756+00:00",
+            "trial_packets": "2026-04-16T19:02:26.923102+00:00",
+            "shadow_vs_live": "2026-04-16T19:02:27.182626+00:00"
+          }
+        },
+        "audit_derived": {
+          "coverage_counts": {
+            "strong": 11
+          },
+          "case_mix_counts": {
+            "difficulty:low": 2,
+            "difficulty:medium": 9,
+            "resolution_risk:low": 2,
+            "resolution_risk:medium": 9
+          },
+          "pending_treatment_cohort": [
+            {
+              "case_key": "case-20260415-0c8ac7fd",
+              "dispatch_id": "dispatch-case-20260415-0c8ac7fd-20260415T190844Z",
+              "bundle_status": "treatment_ready",
+              "trial_selected_count": 0,
+              "trial_injected_count": 0
+            },
+            {
+              "case_key": "case-20260415-5996483c",
+              "dispatch_id": "dispatch-case-20260415-5996483c-20260415T193222Z",
+              "bundle_status": "treatment_ready",
+              "trial_selected_count": 0,
+              "trial_injected_count": 0
+            },
+            {
+              "case_key": "case-20260415-0735f476",
+              "dispatch_id": "dispatch-case-20260415-0735f476-20260415T201136Z",
+              "bundle_status": "treatment_ready",
+              "trial_selected_count": 0,
+              "trial_injected_count": 0
+            },
+            {
+              "case_key": "case-20260416-a8277fc8",
+              "dispatch_id": "dispatch-case-20260416-a8277fc8-20260416T001420Z",
+              "bundle_status": "treatment_ready",
+              "trial_selected_count": 0,
+              "trial_injected_count": 0
+            },
+            {
+              "case_key": "case-20260416-7bf6a6c4",
+              "dispatch_id": "dispatch-case-20260416-7bf6a6c4-20260416T025105Z",
+              "bundle_status": "treatment_ready",
+              "trial_selected_count": 0,
+              "trial_injected_count": 0
+            },
+            {
+              "case_key": "case-20260416-f08c3dae",
+              "dispatch_id": "dispatch-case-20260416-f08c3dae-20260416T041907Z",
+              "bundle_status": "treatment_ready",
+              "trial_selected_count": 1,
+              "trial_injected_count": 1
+            },
+            {
+              "case_key": "case-20260416-bacb47cd",
+              "dispatch_id": "dispatch-case-20260416-bacb47cd-20260416T101708Z",
+              "bundle_status": "treatment_ready",
+              "trial_selected_count": 1,
+              "trial_injected_count": 1
+            },
+            {
+              "case_key": "case-20260416-66f6f47e",
+              "dispatch_id": "dispatch-case-20260416-66f6f47e-20260416T141457Z",
+              "bundle_status": "treatment_ready",
+              "trial_selected_count": 1,
+              "trial_injected_count": 1
+            },
+            {
+              "case_key": "case-20260416-605a067d",
+              "dispatch_id": "dispatch-case-20260416-605a067d-20260416T142910Z",
+              "bundle_status": "treatment_ready",
+              "trial_selected_count": 1,
+              "trial_injected_count": 1
+            },
+            {
+              "case_key": "case-20260416-8bef05aa",
+              "dispatch_id": "dispatch-case-20260416-8bef05aa-20260416T144205Z",
+              "bundle_status": "treatment_ready",
+              "trial_selected_count": 1,
+              "trial_injected_count": 1
+            }
+          ],
+          "coverage_gap_cases": [],
+          "counterfactual_control_preview_count": 1
+        },
+        "candidate_outcome_ledger": [
+          {
+            "proposal_id": "node:verification-state-separation",
+            "mechanism_family": "source_resolution",
+            "lifecycle_stage": "trial_candidate",
+            "promotion_status": "insufficient_support",
+            "distinct_case_count": 1,
+            "shadow_match_count": 40,
+            "shadow_positive_count": 0,
+            "trial_exposure_count": 28,
+            "trial_preview_count": 23,
+            "trial_injected_count": 5,
+            "trial_helpful_count": 0,
+            "trial_harmful_count": 0,
+            "trial_judged_count": 0,
+            "merge_recommended": false,
+            "merge_candidate_key": null
+          },
+          {
+            "proposal_id": "edge:verification-caution__conditions__resolution-risk-path-separation",
+            "mechanism_family": "workflow_pricing",
+            "lifecycle_stage": "shadow_candidate",
+            "promotion_status": "insufficient_support",
+            "distinct_case_count": 1,
+            "shadow_match_count": 61,
+            "shadow_positive_count": 0,
+            "trial_exposure_count": 0,
+            "trial_preview_count": 0,
+            "trial_injected_count": 0,
+            "trial_helpful_count": 0,
+            "trial_harmful_count": 0,
+            "trial_judged_count": 0,
+            "merge_recommended": false,
+            "merge_candidate_key": null
+          },
+          {
+            "proposal_id": "node:governing-source-proof-capture",
+            "mechanism_family": "source_resolution",
+            "lifecycle_stage": "shadow_candidate",
+            "promotion_status": "insufficient_support",
+            "distinct_case_count": 1,
+            "shadow_match_count": 54,
+            "shadow_positive_count": 0,
+            "trial_exposure_count": 0,
+            "trial_preview_count": 0,
+            "trial_injected_count": 0,
+            "trial_helpful_count": 0,
+            "trial_harmful_count": 0,
+            "trial_judged_count": 0,
+            "merge_recommended": false,
+            "merge_candidate_key": null
+          },
+          {
+            "proposal_id": "node:primary-resolution-source-identification",
+            "mechanism_family": "source_resolution",
+            "lifecycle_stage": "shadow_candidate",
+            "promotion_status": "insufficient_support",
+            "distinct_case_count": 1,
+            "shadow_match_count": 54,
+            "shadow_positive_count": 0,
+            "trial_exposure_count": 0,
+            "trial_preview_count": 0,
+            "trial_injected_count": 0,
+            "trial_helpful_count": 0,
+            "trial_harmful_count": 0,
+            "trial_judged_count": 0,
+            "merge_recommended": false,
+            "merge_candidate_key": null
+          },
+          {
+            "proposal_id": "node:resolution-risk-path-separation",
+            "mechanism_family": "workflow_pricing",
+            "lifecycle_stage": "shadow_candidate",
+            "promotion_status": "insufficient_support",
+            "distinct_case_count": 1,
+            "shadow_match_count": 39,
+            "shadow_positive_count": 0,
+            "trial_exposure_count": 0,
+            "trial_preview_count": 0,
+            "trial_injected_count": 0,
+            "trial_helpful_count": 0,
+            "trial_harmful_count": 0,
+            "trial_judged_count": 0,
+            "merge_recommended": false,
+            "merge_candidate_key": null
+          },
+          {
+            "proposal_id": "edge:time-remaining-nontrivial__increases__path-volatility-pressure",
+            "mechanism_family": "threshold_touch",
+            "lifecycle_stage": "shadow_candidate",
+            "promotion_status": "insufficient_support",
+            "distinct_case_count": 1,
+            "shadow_match_count": 30,
+            "shadow_positive_count": 0,
+            "trial_exposure_count": 0,
+            "trial_preview_count": 0,
+            "trial_injected_count": 0,
+            "trial_helpful_count": 0,
+            "trial_harmful_count": 0,
+            "trial_judged_count": 0,
+            "merge_recommended": false,
+            "merge_candidate_key": null
+          },
+          {
+            "proposal_id": "edge:settlement-source-specificity__increases__primary-resolution-source-identification",
+            "mechanism_family": "source_resolution",
+            "lifecycle_stage": "shadow_candidate",
+            "promotion_status": "insufficient_support",
+            "distinct_case_count": 1,
+            "shadow_match_count": 23,
+            "shadow_positive_count": 0,
+            "trial_exposure_count": 0,
+            "trial_preview_count": 0,
+            "trial_injected_count": 0,
+            "trial_helpful_count": 0,
+            "trial_harmful_count": 0,
+            "trial_judged_count": 0,
+            "merge_recommended": false,
+            "merge_candidate_key": null
+          },
+          {
+            "proposal_id": "edge:resolution-surface-ambiguity__increases__governing-source-proof-capture",
+            "mechanism_family": "source_resolution",
+            "lifecycle_stage": "shadow_candidate",
+            "promotion_status": "insufficient_support",
+            "distinct_case_count": 1,
+            "shadow_match_count": 9,
+            "shadow_positive_count": 0,
+            "trial_exposure_count": 0,
+            "trial_preview_count": 0,
+            "trial_injected_count": 0,
+            "trial_helpful_count": 0,
+            "trial_harmful_count": 0,
+            "trial_judged_count": 0,
+            "merge_recommended": false,
+            "merge_candidate_key": null
+          },
+          {
+            "proposal_id": "edge:price-near-threshold__increases__threshold-distance-scaling",
+            "mechanism_family": "threshold_touch",
+            "lifecycle_stage": "aggregated",
+            "promotion_status": "insufficient_support",
+            "distinct_case_count": 1,
+            "shadow_match_count": 0,
+            "shadow_positive_count": 0,
+            "trial_exposure_count": 0,
+            "trial_preview_count": 0,
+            "trial_injected_count": 0,
+            "trial_helpful_count": 0,
+            "trial_harmful_count": 0,
+            "trial_judged_count": 0,
+            "merge_recommended": false,
+            "merge_candidate_key": null
+          },
+          {
+            "proposal_id": "edge:resolution-surface-ambiguity__increases__verification-state-separation",
+            "mechanism_family": "source_resolution",
+            "lifecycle_stage": "aggregated",
+            "promotion_status": "insufficient_support",
+            "distinct_case_count": 1,
+            "shadow_match_count": 0,
+            "shadow_positive_count": 0,
+            "trial_exposure_count": 0,
+            "trial_preview_count": 0,
+            "trial_injected_count": 0,
+            "trial_helpful_count": 0,
+            "trial_harmful_count": 0,
+            "trial_judged_count": 0,
+            "merge_recommended": true,
+            "merge_candidate_key": "resolution-surface-ambiguity__increases__verification-caution"
+          },
+          {
+            "proposal_id": "node:ex-post-assimilation-labeling",
+            "mechanism_family": "workflow_pricing",
+            "lifecycle_stage": "aggregated",
+            "promotion_status": "insufficient_support",
+            "distinct_case_count": 1,
+            "shadow_match_count": 0,
+            "shadow_positive_count": 0,
+            "trial_exposure_count": 0,
+            "trial_preview_count": 0,
+            "trial_injected_count": 0,
+            "trial_helpful_count": 0,
+            "trial_harmful_count": 0,
+            "trial_judged_count": 0,
+            "merge_recommended": false,
+            "merge_candidate_key": null
+          },
+          {
+            "proposal_id": "node:hazard-rate-touch-framing",
+            "mechanism_family": "threshold_touch",
+            "lifecycle_stage": "aggregated",
+            "promotion_status": "insufficient_support",
+            "distinct_case_count": 1,
+            "shadow_match_count": 0,
+            "shadow_positive_count": 0,
+            "trial_exposure_count": 0,
+            "trial_preview_count": 0,
+            "trial_injected_count": 0,
+            "trial_helpful_count": 0,
+            "trial_harmful_count": 0,
+            "trial_judged_count": 0,
+            "merge_recommended": false,
+            "merge_candidate_key": null
+          },
+          {
+            "proposal_id": "node:path-volatility-pressure",
+            "mechanism_family": "threshold_touch",
+            "lifecycle_stage": "aggregated",
+            "promotion_status": "insufficient_support",
+            "distinct_case_count": 1,
+            "shadow_match_count": 0,
+            "shadow_positive_count": 0,
+            "trial_exposure_count": 0,
+            "trial_preview_count": 0,
+            "trial_injected_count": 0,
+            "trial_helpful_count": 0,
+            "trial_harmful_count": 0,
+            "trial_judged_count": 0,
+            "merge_recommended": false,
+            "merge_candidate_key": null
+          },
+          {
+            "proposal_id": "node:resistance-discount-justification",
+            "mechanism_family": "workflow_pricing",
+            "lifecycle_stage": "aggregated",
+            "promotion_status": "insufficient_support",
+            "distinct_case_count": 1,
+            "shadow_match_count": 0,
+            "shadow_positive_count": 0,
+            "trial_exposure_count": 0,
+            "trial_preview_count": 0,
+            "trial_injected_count": 0,
+            "trial_helpful_count": 0,
+            "trial_harmful_count": 0,
+            "trial_judged_count": 0,
+            "merge_recommended": false,
+            "merge_candidate_key": null
+          },
+          {
+            "proposal_id": "node:threshold-distance-scaling",
+            "mechanism_family": "threshold_touch",
+            "lifecycle_stage": "aggregated",
+            "promotion_status": "insufficient_support",
+            "distinct_case_count": 1,
+            "shadow_match_count": 0,
+            "shadow_positive_count": 0,
+            "trial_exposure_count": 0,
+            "trial_preview_count": 0,
+            "trial_injected_count": 0,
+            "trial_helpful_count": 0,
+            "trial_harmful_count": 0,
+            "trial_judged_count": 0,
+            "merge_recommended": false,
+            "merge_candidate_key": null
+          }
+        ]
+      },
+      "stderr": null,
+      "step": "report_lmd_causal_runtime_status.py"
+    },
+    {
+      "ok": true,
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "/Users/agent2/.openclaw/orchestrator/roles/evaluator/runtime/scripts/report_causal_governance.py",
+        "--psql",
+        "/opt/homebrew/opt/postgresql@16/bin/psql",
+        "--db-url",
+        "postgresql://pq_orchestrator:KsDjg-lbfWx914dQmTUHMJkCcTceoc2r@localhost:5432/predquant"
+      ],
+      "returncode": 0,
+      "payload": {
+        "summary": {
+          "generated_at": "2026-04-16T19:15:03.873383+00:00",
+          "merge_recommendation_count": 1,
+          "hold_item_count": 4,
+          "reactivation_candidate_count": 0,
+          "recommended_family_quarantine_count": 1,
+          "open_structural_violation_count": 0
+        },
+        "merge_recommendations": [
+          {
+            "proposal_id": "edge:resolution-surface-ambiguity__increases__verification-state-separation",
+            "candidate_type": "edge",
+            "mechanism_family": "source_resolution",
+            "lifecycle_stage": "aggregated",
+            "promotion_status": "insufficient_support",
+            "merge_candidate_key": "resolution-surface-ambiguity__increases__verification-caution",
+            "merge_recommended": true,
+            "near_live_graph_keys": [
+              "resolution-surface-ambiguity__increases__verification-caution",
+              "publication-window-timing__increases__reporting-state-uncertainty"
+            ],
+            "promotion_blockers": [
+              "below_draft_min_cases",
+              "below_draft_non_intervention_support_cases",
+              "below_proposed_min_cases",
+              "merge_recommended"
+            ]
+          }
+        ],
+        "hold_items": [
+          {
+            "entity_type": "node",
+            "entity_key": "fair-value-discounting-pressure",
+            "mechanism_family": "workflow_pricing",
+            "lifecycle_stage": "hold",
+            "status": "hold",
+            "superseded_by_key": null
+          },
+          {
+            "entity_type": "node",
+            "entity_key": "verification-caution",
+            "mechanism_family": "workflow_pricing",
+            "lifecycle_stage": "hold",
+            "status": "hold",
+            "superseded_by_key": null
+          },
+          {
+            "entity_type": "edge",
+            "entity_key": "resolution-surface-ambiguity__increases__verification-caution",
+            "mechanism_family": "source_resolution",
+            "lifecycle_stage": "hold",
+            "status": "hold",
+            "superseded_by_key": null
+          },
+          {
+            "entity_type": "edge",
+            "entity_key": "verification-caution__increases__fair-value-discounting-pressure",
+            "mechanism_family": "workflow_pricing",
+            "lifecycle_stage": "hold",
+            "status": "hold",
+            "superseded_by_key": null
+          }
+        ],
+        "reactivation_candidates": [],
+        "recommended_family_quarantines": [
+          {
+            "mechanism_family": "workflow_pricing",
+            "hold_count": 3,
+            "high_severity_open_violations": 0,
+            "policy_enabled": true,
+            "reason": "repeated_hold_state"
+          }
+        ],
+        "policy_controls": {
+          "publication_timing": {
+            "enabled": true,
+            "notes": {
+              "default_risk": "moderate",
+              "priority": "medium"
+            }
+          },
+          "source_resolution": {
+            "enabled": true,
+            "notes": {
+              "default_risk": "moderate",
+              "priority": "high",
+              "exploratory_trial": {
+                "enabled": true,
+                "max_candidates": 1,
+                "require_base_proposal_threshold": false,
+                "min_shadow_judged_count": 4,
+                "min_shadow_helpful_count": 0,
+                "min_non_intervention_support_cases": 1,
+                "min_shadow_trial_score": 0.0
+              }
+            }
+          },
+          "threshold_touch": {
+            "enabled": true,
+            "notes": {
+              "default_risk": "moderate",
+              "priority": "high"
+            }
+          },
+          "unassigned": {
+            "enabled": false,
+            "notes": {
+              "default_risk": "blocked",
+              "priority": "none"
+            }
+          },
+          "workflow_pricing": {
+            "enabled": true,
+            "notes": {
+              "default_risk": "moderate",
+              "priority": "medium"
+            }
+          }
+        }
+      },
+      "stderr": null,
+      "step": "report_causal_governance.py"
+    },
+    {
+      "ok": true,
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "/Users/agent2/.openclaw/orchestrator/roles/evaluator/runtime/scripts/report_proposed_causal_trial_packets.py",
+        "--psql",
+        "/opt/homebrew/opt/postgresql@16/bin/psql",
+        "--db-url",
+        "postgresql://pq_orchestrator:KsDjg-lbfWx914dQmTUHMJkCcTceoc2r@localhost:5432/predquant"
+      ],
+      "returncode": 0,
+      "payload": {
+        "summary": {
+          "generated_at": "2026-04-16T19:15:04.191909+00:00",
+          "packet_count": 8,
+          "output_dir": "/Users/agent2/.openclaw/orchestrator/qualitative-db/60-causal-map/generated/trial-packets"
+        },
+        "packets": [
+          {
+            "generated_at": "2026-04-16T19:15:04.183567+00:00",
+            "proposal_id": "edge:resolution-surface-ambiguity__increases__governing-source-proof-capture",
+            "proposal_key": "resolution-surface-ambiguity__increases__governing-source-proof-capture",
+            "candidate_type": "edge",
+            "mechanism_family": "source_resolution",
+            "lifecycle_stage": "shadow_candidate",
+            "promotion_status": "insufficient_support",
+            "hypothesis": "resolution surface ambiguity__increases__governing source proof capture",
+            "expected_helpful_context": [
+              "resolution-surface-ambiguity__increases__verification-caution"
+            ],
+            "expected_failure_mode": [
+              "below_draft_min_cases",
+              "below_draft_non_intervention_support_cases",
+              "below_proposed_min_cases"
+            ],
+            "evidence": {
+              "distinct_case_count": 1,
+              "shadow_match_count": 9,
+              "shadow_positive_count": 0,
+              "trial_exposure_count": 0,
+              "trial_preview_count": 0,
+              "trial_judged_count": 0,
+              "trial_helpful_count": 0,
+              "trial_harmful_count": 0
+            },
+            "blockers": [
+              "below_draft_min_cases",
+              "below_draft_non_intervention_support_cases",
+              "below_proposed_min_cases"
+            ],
+            "merge_recommended": false,
+            "merge_candidate_key": null,
+            "notes": {
+              "eligibility_signal": "shadow_only"
+            }
+          },
+          {
+            "generated_at": "2026-04-16T19:15:04.184225+00:00",
+            "proposal_id": "edge:settlement-source-specificity__increases__primary-resolution-source-identification",
+            "proposal_key": "settlement-source-specificity__increases__primary-resolution-source-identification",
+            "candidate_type": "edge",
+            "mechanism_family": "source_resolution",
+            "lifecycle_stage": "shadow_candidate",
+            "promotion_status": "insufficient_support",
+            "hypothesis": "settlement source specificity__increases__primary resolution source identification",
+            "expected_helpful_context": [
+              "settlement-source-specificity__increases__resolution-surface-ambiguity"
+            ],
+            "expected_failure_mode": [
+              "below_draft_min_cases",
+              "below_draft_non_intervention_support_cases",
+              "below_proposed_min_cases"
+            ],
+            "evidence": {
+              "distinct_case_count": 1,
+              "shadow_match_count": 23,
+              "shadow_positive_count": 0,
+              "trial_exposure_count": 0,
+              "trial_preview_count": 0,
+              "trial_judged_count": 0,
+              "trial_helpful_count": 0,
+              "trial_harmful_count": 0
+            },
+            "blockers": [
+              "below_draft_min_cases",
+              "below_draft_non_intervention_support_cases",
+              "below_proposed_min_cases"
+            ],
+            "merge_recommended": false,
+            "merge_candidate_key": null,
+            "notes": {
+              "eligibility_signal": "shadow_only"
+            }
+          },
+          {
+            "generated_at": "2026-04-16T19:15:04.184250+00:00",
+            "proposal_id": "edge:time-remaining-nontrivial__increases__path-volatility-pressure",
+            "proposal_key": "time-remaining-nontrivial__increases__path-volatility-pressure",
+            "candidate_type": "edge",
+            "mechanism_family": "threshold_touch",
+            "lifecycle_stage": "shadow_candidate",
+            "promotion_status": "insufficient_support",
+            "hypothesis": "time remaining nontrivial__increases__path volatility pressure",
+            "expected_helpful_context": [
+              "time-remaining-nontrivial__increases__touch-probability",
+              "verification-caution__increases__fair-value-discounting-pressure"
+            ],
+            "expected_failure_mode": [
+              "below_draft_min_cases",
+              "below_draft_non_intervention_support_cases",
+              "below_proposed_min_cases"
+            ],
+            "evidence": {
+              "distinct_case_count": 1,
+              "shadow_match_count": 30,
+              "shadow_positive_count": 0,
+              "trial_exposure_count": 0,
+              "trial_preview_count": 0,
+              "trial_judged_count": 0,
+              "trial_helpful_count": 0,
+              "trial_harmful_count": 0
+            },
+            "blockers": [
+              "below_draft_min_cases",
+              "below_draft_non_intervention_support_cases",
+              "below_proposed_min_cases"
+            ],
+            "merge_recommended": false,
+            "merge_candidate_key": null,
+            "notes": {
+              "eligibility_signal": "shadow_only"
+            }
+          },
+          {
+            "generated_at": "2026-04-16T19:15:04.184265+00:00",
+            "proposal_id": "edge:verification-caution__conditions__resolution-risk-path-separation",
+            "proposal_key": "verification-caution__conditions__resolution-risk-path-separation",
+            "candidate_type": "edge",
+            "mechanism_family": "workflow_pricing",
+            "lifecycle_stage": "shadow_candidate",
+            "promotion_status": "insufficient_support",
+            "hypothesis": "verification caution__conditions__resolution risk path separation",
+            "expected_helpful_context": [],
+            "expected_failure_mode": [
+              "below_draft_min_cases",
+              "below_draft_non_intervention_support_cases",
+              "below_proposed_min_cases"
+            ],
+            "evidence": {
+              "distinct_case_count": 1,
+              "shadow_match_count": 61,
+              "shadow_positive_count": 0,
+              "trial_exposure_count": 0,
+              "trial_preview_count": 0,
+              "trial_judged_count": 0,
+              "trial_helpful_count": 0,
+              "trial_harmful_count": 0
+            },
+            "blockers": [
+              "below_draft_min_cases",
+              "below_draft_non_intervention_support_cases",
+              "below_proposed_min_cases"
+            ],
+            "merge_recommended": false,
+            "merge_candidate_key": null,
+            "notes": {
+              "eligibility_signal": "shadow_only"
+            }
+          },
+          {
+            "generated_at": "2026-04-16T19:15:04.184280+00:00",
+            "proposal_id": "node:governing-source-proof-capture",
+            "proposal_key": "governing-source-proof-capture",
+            "candidate_type": "node",
+            "mechanism_family": "source_resolution",
+            "lifecycle_stage": "shadow_candidate",
+            "promotion_status": "insufficient_support",
+            "hypothesis": "governing source proof capture",
+            "expected_helpful_context": [],
+            "expected_failure_mode": [
+              "below_draft_min_cases",
+              "below_draft_non_intervention_support_cases",
+              "below_proposed_min_cases"
+            ],
+            "evidence": {
+              "distinct_case_count": 1,
+              "shadow_match_count": 54,
+              "shadow_positive_count": 0,
+              "trial_exposure_count": 0,
+              "trial_preview_count": 0,
+              "trial_judged_count": 0,
+              "trial_helpful_count": 0,
+              "trial_harmful_count": 0
+            },
+            "blockers": [
+              "below_draft_min_cases",
+              "below_draft_non_intervention_support_cases",
+              "below_proposed_min_cases"
+            ],
+            "merge_recommended": false,
+            "merge_candidate_key": null,
+            "notes": {
+              "eligibility_signal": "shadow_only"
+            }
+          },
+          {
+            "generated_at": "2026-04-16T19:15:04.184293+00:00",
+            "proposal_id": "node:primary-resolution-source-identification",
+            "proposal_key": "primary-resolution-source-identification",
+            "candidate_type": "node",
+            "mechanism_family": "source_resolution",
+            "lifecycle_stage": "shadow_candidate",
+            "promotion_status": "insufficient_support",
+            "hypothesis": "primary resolution source identification",
+            "expected_helpful_context": [
+              "resolution-surface-ambiguity"
+            ],
+            "expected_failure_mode": [
+              "below_draft_min_cases",
+              "below_draft_non_intervention_support_cases",
+              "below_proposed_min_cases"
+            ],
+            "evidence": {
+              "distinct_case_count": 1,
+              "shadow_match_count": 54,
+              "shadow_positive_count": 0,
+              "trial_exposure_count": 0,
+              "trial_preview_count": 0,
+              "trial_judged_count": 0,
+              "trial_helpful_count": 0,
+              "trial_harmful_count": 0
+            },
+            "blockers": [
+              "below_draft_min_cases",
+              "below_draft_non_intervention_support_cases",
+              "below_proposed_min_cases"
+            ],
+            "merge_recommended": false,
+            "merge_candidate_key": null,
+            "notes": {
+              "eligibility_signal": "shadow_only"
+            }
+          },
+          {
+            "generated_at": "2026-04-16T19:15:04.184305+00:00",
+            "proposal_id": "node:resolution-risk-path-separation",
+            "proposal_key": "resolution-risk-path-separation",
+            "candidate_type": "node",
+            "mechanism_family": "workflow_pricing",
+            "lifecycle_stage": "shadow_candidate",
+            "promotion_status": "insufficient_support",
+            "hypothesis": "resolution risk path separation",
+            "expected_helpful_context": [],
+            "expected_failure_mode": [
+              "below_draft_min_cases",
+              "below_draft_non_intervention_support_cases",
+              "below_proposed_min_cases"
+            ],
+            "evidence": {
+              "distinct_case_count": 1,
+              "shadow_match_count": 39,
+              "shadow_positive_count": 0,
+              "trial_exposure_count": 0,
+              "trial_preview_count": 0,
+              "trial_judged_count": 0,
+              "trial_helpful_count": 0,
+              "trial_harmful_count": 0
+            },
+            "blockers": [
+              "below_draft_min_cases",
+              "below_draft_non_intervention_support_cases",
+              "below_proposed_min_cases"
+            ],
+            "merge_recommended": false,
+            "merge_candidate_key": null,
+            "notes": {
+              "eligibility_signal": "shadow_only"
+            }
+          },
+          {
+            "generated_at": "2026-04-16T19:15:04.184316+00:00",
+            "proposal_id": "node:verification-state-separation",
+            "proposal_key": "verification-state-separation",
+            "candidate_type": "node",
+            "mechanism_family": "source_resolution",
+            "lifecycle_stage": "trial_candidate",
+            "promotion_status": "insufficient_support",
+            "hypothesis": "verification state separation",
+            "expected_helpful_context": [
+              "verification-caution"
+            ],
+            "expected_failure_mode": [
+              "below_draft_min_cases",
+              "below_draft_non_intervention_support_cases",
+              "below_proposed_min_cases"
+            ],
+            "evidence": {
+              "distinct_case_count": 1,
+              "shadow_match_count": 40,
+              "shadow_positive_count": 0,
+              "trial_exposure_count": 28,
+              "trial_preview_count": 23,
+              "trial_judged_count": 0,
+              "trial_helpful_count": 0,
+              "trial_harmful_count": 0
+            },
+            "blockers": [
+              "below_draft_min_cases",
+              "below_draft_non_intervention_support_cases",
+              "below_proposed_min_cases"
+            ],
+            "merge_recommended": false,
+            "merge_candidate_key": null,
+            "notes": {
+              "eligibility_signal": "trial_live"
+            }
+          }
+        ]
+      },
+      "stderr": null,
+      "step": "report_proposed_causal_trial_packets.py"
+    },
+    {
+      "ok": true,
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "/Users/agent2/.openclaw/orchestrator/roles/evaluator/runtime/scripts/report_shadow_vs_live_proposals.py",
+        "--psql",
+        "/opt/homebrew/opt/postgresql@16/bin/psql",
+        "--db-url",
+        "postgresql://pq_orchestrator:KsDjg-lbfWx914dQmTUHMJkCcTceoc2r@localhost:5432/predquant"
+      ],
+      "returncode": 0,
+      "payload": {
+        "summary": {
+          "generated_at": "2026-04-16T19:15:04.503722+00:00",
+          "proposal_count": 8,
+          "mode_counts": {
+            "shadow_only": 7,
+            "trial_injected": 1
+          }
+        },
+        "rows": [
+          {
+            "proposal_id": "edge:resolution-surface-ambiguity__increases__governing-source-proof-capture",
+            "mechanism_family": "source_resolution",
+            "lifecycle_stage": "shadow_candidate",
+            "promotion_status": "insufficient_support",
+            "shadow_match_count": 9,
+            "shadow_positive_count": 0,
+            "trial_exposure_count": 0,
+            "trial_preview_count": 0,
+            "trial_injected_count": 0,
+            "trial_helpful_count": 0,
+            "trial_harmful_count": 0,
+            "trial_judged_count": 0,
+            "merge_recommended": false,
+            "merge_candidate_key": null,
+            "comparison_mode": "shadow_only"
+          },
+          {
+            "proposal_id": "edge:settlement-source-specificity__increases__primary-resolution-source-identification",
+            "mechanism_family": "source_resolution",
+            "lifecycle_stage": "shadow_candidate",
+            "promotion_status": "insufficient_support",
+            "shadow_match_count": 23,
+            "shadow_positive_count": 0,
+            "trial_exposure_count": 0,
+            "trial_preview_count": 0,
+            "trial_injected_count": 0,
+            "trial_helpful_count": 0,
+            "trial_harmful_count": 0,
+            "trial_judged_count": 0,
+            "merge_recommended": false,
+            "merge_candidate_key": null,
+            "comparison_mode": "shadow_only"
+          },
+          {
+            "proposal_id": "edge:time-remaining-nontrivial__increases__path-volatility-pressure",
+            "mechanism_family": "threshold_touch",
+            "lifecycle_stage": "shadow_candidate",
+            "promotion_status": "insufficient_support",
+            "shadow_match_count": 30,
+            "shadow_positive_count": 0,
+            "trial_exposure_count": 0,
+            "trial_preview_count": 0,
+            "trial_injected_count": 0,
+            "trial_helpful_count": 0,
+            "trial_harmful_count": 0,
+            "trial_judged_count": 0,
+            "merge_recommended": false,
+            "merge_candidate_key": null,
+            "comparison_mode": "shadow_only"
+          },
+          {
+            "proposal_id": "edge:verification-caution__conditions__resolution-risk-path-separation",
+            "mechanism_family": "workflow_pricing",
+            "lifecycle_stage": "shadow_candidate",
+            "promotion_status": "insufficient_support",
+            "shadow_match_count": 61,
+            "shadow_positive_count": 0,
+            "trial_exposure_count": 0,
+            "trial_preview_count": 0,
+            "trial_injected_count": 0,
+            "trial_helpful_count": 0,
+            "trial_harmful_count": 0,
+            "trial_judged_count": 0,
+            "merge_recommended": false,
+            "merge_candidate_key": null,
+            "comparison_mode": "shadow_only"
+          },
+          {
+            "proposal_id": "node:governing-source-proof-capture",
+            "mechanism_family": "source_resolution",
+            "lifecycle_stage": "shadow_candidate",
+            "promotion_status": "insufficient_support",
+            "shadow_match_count": 54,
+            "shadow_positive_count": 0,
+            "trial_exposure_count": 0,
+            "trial_preview_count": 0,
+            "trial_injected_count": 0,
+            "trial_helpful_count": 0,
+            "trial_harmful_count": 0,
+            "trial_judged_count": 0,
+            "merge_recommended": false,
+            "merge_candidate_key": null,
+            "comparison_mode": "shadow_only"
+          },
+          {
+            "proposal_id": "node:primary-resolution-source-identification",
+            "mechanism_family": "source_resolution",
+            "lifecycle_stage": "shadow_candidate",
+            "promotion_status": "insufficient_support",
+            "shadow_match_count": 54,
+            "shadow_positive_count": 0,
+            "trial_exposure_count": 0,
+            "trial_preview_count": 0,
+            "trial_injected_count": 0,
+            "trial_helpful_count": 0,
+            "trial_harmful_count": 0,
+            "trial_judged_count": 0,
+            "merge_recommended": false,
+            "merge_candidate_key": null,
+            "comparison_mode": "shadow_only"
+          },
+          {
+            "proposal_id": "node:resolution-risk-path-separation",
+            "mechanism_family": "workflow_pricing",
+            "lifecycle_stage": "shadow_candidate",
+            "promotion_status": "insufficient_support",
+            "shadow_match_count": 39,
+            "shadow_positive_count": 0,
+            "trial_exposure_count": 0,
+            "trial_preview_count": 0,
+            "trial_injected_count": 0,
+            "trial_helpful_count": 0,
+            "trial_harmful_count": 0,
+            "trial_judged_count": 0,
+            "merge_recommended": false,
+            "merge_candidate_key": null,
+            "comparison_mode": "shadow_only"
+          },
+          {
+            "proposal_id": "node:verification-state-separation",
+            "mechanism_family": "source_resolution",
+            "lifecycle_stage": "trial_candidate",
+            "promotion_status": "insufficient_support",
+            "shadow_match_count": 40,
+            "shadow_positive_count": 0,
+            "trial_exposure_count": 28,
+            "trial_preview_count": 23,
+            "trial_injected_count": 5,
+            "trial_helpful_count": 0,
+            "trial_harmful_count": 0,
+            "trial_judged_count": 0,
+            "merge_recommended": false,
+            "merge_candidate_key": null,
+            "comparison_mode": "trial_injected"
+          }
+        ]
+      },
+      "stderr": null,
+      "step": "report_shadow_vs_live_proposals.py"
+    }
+  ]
+}

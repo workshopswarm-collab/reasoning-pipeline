@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "medium",
+  "fragility_points": [
+    "The estimate could be too low if broader bookmaker consensus is also pricing the draw extremely short.",
+    "The external contextual source is not fully transparent about what its 2:2 display represents.",
+    "The exact named official settlement endpoint is not specified in the market text."
+  ],
+  "key_assumptions": [
+    "This is a standard full-time draw market settled on 90 minutes plus stoppage time.",
+    "There is no hidden special circumstance making a draw truly near-80% likely.",
+    "Lack of strong independent corroboration for the extreme draw price is informative."
+  ],
+  "main_logical_chain": [
+    "Start from the market's 76% implied draw probability and treat that as a confidence claim requiring justification.",
+    "Check contract mechanics first: Polymarket shows an ordinary 90-minute settlement structure and official-stat source hierarchy.",
+    "Review independent context: external odds context supports draw plausibility but not near-certainty.",
+    "Conclude that the main disagreement is with market confidence, not with draw plausibility itself."
+  ],
+  "main_thesis": "The draw is plausible, but the market's 76% implied probability looks too confident for a standard 90-minute soccer draw given the visible evidence.",
+  "own_probability": 0.38,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "This market refers only to the outcome within the first 90 minutes of regular play plus stoppage time.",
+    "Final result 2:2"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "risk_management",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-fdd1ff67",
+    "dispatch_id": "dispatch-case-20260414-fdd1ff67-20260414T200433Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "e01428c5-13b4-4067-937f-da1d2c5978b6",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-fdd1ff67/researcher-analyses/2026-04-14/dispatch-case-20260414-fdd1ff67-20260414T200433Z/personas/risk-manager.md",
+    "source_persona_sha256": "6c78571ab8615b65db136dc401db527a8d726c316e319859dfd835a48e2096c1"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "One high-quality primary mechanics source plus one medium-quality contextual source; adequate for a low-difficulty audit but not enough to justify near-certainty.",
+  "strongest_disconfirmers": [
+    "OddsPortal exposed a 2:2-style output for the exact fixture, which could indicate genuine draw-friendly consensus.",
+    "No clean independent bookmaker panel was captured in this run, leaving room for hidden corroboration."
+  ],
+  "strongest_supports": [
+    "Polymarket contract text indicates ordinary 90-minute settlement mechanics rather than a special-case market.",
+    "OddsPortal context is at least consistent with the fixture being real and draw-plausible."
+  ],
+  "timing_relevance": "Pre-match and still nine days from kickoff, so confidence should be discounted absent stronger corroboration.",
+  "unresolved_ambiguities": [
+    "Whether the 0.76 price reflects hidden information not visible in fetched sources.",
+    "Whether multiple independent bookmakers cluster near the same draw probability.",
+    "Which exact official Saudi Pro League or organizer stats page would serve as the cleanest final source of truth."
+  ],
+  "what_would_change_view": "A clean independent bookmaker 1X2 panel or official context showing an unusual circumstance that truly makes a draw overwhelmingly likely would move the estimate toward market."
+}

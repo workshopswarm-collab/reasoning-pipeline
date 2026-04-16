@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A quick risk-off reversal could move ETH materially away from the barrier.",
+    "The view depends on ordinary short-horizon volatility remaining available."
+  ],
+  "key_assumptions": [
+    "A sub-2% upside move is plausible for ETH over the remaining six-day window.",
+    "Binance ETH/USDT remains representative enough of broader ETH spot for barrier-touch inference.",
+    "No major negative shock keeps ETH far below the barrier for most of the week."
+  ],
+  "main_logical_chain": [
+    "Start from the 76% market price as an information-rich prior.",
+    "Verify what counts for resolution: any Binance ETH/USDT 1-minute high >= $2,400 during Apr 13-19 ET.",
+    "Check live/contextual ETH pricing across multiple sources and find spot in the mid-$2,300s.",
+    "Infer that only a modest upside wick is required over a multi-day window.",
+    "Conclude the market is broadly right but slightly rich, yielding a 72% own estimate."
+  ],
+  "main_thesis": "Market pricing near 76% looks broadly efficient because ETH is already within about 2% of the barrier and the contract resolves on any Binance 1-minute high at or above $2,400.",
+  "own_probability": 0.72,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "Binance ETH/USDT 1-minute candle high >= $2,400 counts",
+    "market 76% vs own 72%",
+    "barrier under 2% away from spot"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "contract_interpretation",
+    "scenario_analysis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260413-639ecb3f",
+    "dispatch_id": "dispatch-case-20260413-639ecb3f-20260413T225424Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "e875c3b8-3dd9-463c-94b1-40bfb6792f3e",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260413-639ecb3f/researcher-analyses/2026-04-13/dispatch-case-20260413-639ecb3f-20260413T225424Z/personas/market-implied.md",
+    "source_persona_sha256": "e69bbdc2241df8e203bf540414f735686d336dc4c496f64f03c69689e418182f"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Adequate for a low-difficulty case: primary contract/rules source plus multiple timely contextual spot checks, with medium evidence independence and low-to-medium source-of-truth ambiguity after verification.",
+  "strongest_disconfirmers": [
+    "ETH had not yet hit $2,400 at research time and a final 1.5%-2% move can still fail.",
+    "Support is mechanical/contextual rather than a full statistical volatility backtest."
+  ],
+  "strongest_supports": [
+    "ETH spot snapshots clustered around $2,356-$2,365, leaving only a modest move to $2,400.",
+    "Rules use any Binance 1-minute high, which is easier to satisfy than a close above $2,400.",
+    "Cross-venue spot checks support that the barrier is genuinely nearby, not a stale quote artifact."
+  ],
+  "timing_relevance": "Very high: this is a short-dated barrier-touch market where current distance to target and remaining calendar time drive most of the probability.",
+  "unresolved_ambiguities": [
+    "No separate exhaustive realized-volatility study was performed.",
+    "Rule clarity comes from embedded market-page text rather than an independently fetched standalone rules page."
+  ],
+  "what_would_change_view": "I would move lower if ETH loses the $2,300 area or broader crypto sentiment turns sharply risk-off; higher if ETH repeatedly probes $2,380-$2,395 early in the window."
+}

@@ -1,0 +1,157 @@
+{
+  "schema_version": "decision-packet/v1",
+  "generated_at": "2026-04-13T22:18:00-04:00",
+  "context": {
+    "case_key": "case-20260414-69f2d608",
+    "dispatch_id": "dispatch-case-20260414-69f2d608-20260414T020911Z",
+    "question": "Will the US x Iran ceasefire be extended by April 21, 2026?",
+    "market_id": "case-20260414-69f2d608",
+    "market_title": "Will the US x Iran ceasefire be extended by April 21, 2026?",
+    "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260414-69f2d608/synthesizer-agent/decision-handoff.md",
+    "source_syndicated_finding_path": "qualitative-db/40-research/cases/case-20260414-69f2d608/synthesizer-agent/syndicated-finding.md",
+    "decision_maker_agent": "decision-maker",
+    "canonical_markdown_path": "decision-maker-packet.md",
+    "canonical_json_path": "artifacts/decision-maker-packet.json",
+    "external_market_id": "0xc0be7b1f19f9b658778c2be7e6bc67596a00f347ab64392d0f5d387534c7c3b4",
+    "market_slug": "will-the-us-x-iran-ceasefire-be-extended-by-april-21-2026",
+    "platform": "polymarket",
+    "primary_market_url": "https://polymarket.com/event/will-the-us-x-iran-ceasefire-be-extended-by-april-21-2026",
+    "source_light_refresh_brief_path": "",
+    "refresh_mode": ""
+  },
+  "decision": {
+    "side": "yes",
+    "trade_authorization": "forbidden",
+    "position_policy": "flat",
+    "decision_readiness": "needs_more_research",
+    "primary_crux": "An extension is still somewhat more likely than not because the ceasefire remains intact and mediators are active, but the market's 70.5% confidence is too high relative to the strict no-gap official-confirmation mechanics and the absence of any actual bilateral extension announcement.",
+    "secondary_cruxes": [
+      "The first high-level talks already ended without agreement, so ongoing diplomacy should not be treated as equivalent to a nearly finalized extension.",
+      "This contract is unusually mechanics-sensitive: a ceasefire holding in practice is not enough unless an official extension or replacement agreement is publicly confirmed without a gap.",
+      "The strongest remaining Yes case is a late procedural rollover or second-round talks, but the bundle explicitly says whether those talks occur in time is still unclear."
+    ],
+    "thesis_class": "not_decision_ready"
+  },
+  "valuation": {
+    "fair_value_low": 0.54,
+    "fair_value_high": 0.61,
+    "fair_value_mid": 0.575,
+    "market_reference_price": 0.705,
+    "edge_mid_vs_market_pct_points": -13.0,
+    "independent_verification_quality": "medium",
+    "compressed_toward_market_applied": false,
+    "compression_reason": "The ceasefire still holding and mediator activity justify a Yes-leaning range, but the lack of official bilateral confirmation and the strict mechanics keep fair value well below the market."
+  },
+  "execution_semantics": {
+    "price_axis": "market_implied_true_prob",
+    "price_source": "market_snapshot_quote",
+    "rebalance_threshold_fraction": 0.12,
+    "allow_auto_reversal": false,
+    "valid_until": "2026-04-18T23:59:00-04:00",
+    "quote_staleness_seconds": 21600,
+    "time_horizon": "Through any no-gap extension announcement or expiry-window diplomacy before April 21"
+  },
+  "risk_controls": {
+    "max_position_size_pct_bankroll": 0.0,
+    "max_additional_exposure_pct_bankroll": 0.0,
+    "max_single_order_pct_bankroll": 0.0,
+    "slippage_tolerance_bps": 100,
+    "liquidity_min_depth": 1200,
+    "correlation_bucket_limit_pct_bankroll": 0.03,
+    "confidence_level": "low",
+    "portfolio_constraints": [
+      "No new exposure is authorized from this packet because the decisive extension-mechanics evidence is missing.",
+      "Reopen only after direct official U.S./Iran statements, confirmed second-round talks, or top-tier consensus reporting on a no-gap extension deal.",
+      "Do not trade this as a generic de-escalation view; the contract requires specific extension mechanics and public confirmation."
+    ],
+    "liquidity_caution": "high"
+  },
+  "bands": [
+    {
+      "name": "max_enter",
+      "min_p": 0,
+      "max_p": 0.2,
+      "target_exposure_fraction": 0,
+      "notes": "No entry authorized because the case is not decision-ready."
+    },
+    {
+      "name": "scaled_enter",
+      "min_p": 0.2,
+      "max_p": 0.45,
+      "target_exposure_fraction": 0,
+      "notes": "No entry authorized until extension mechanics and talks timing are directly verified."
+    },
+    {
+      "name": "hold",
+      "min_p": 0.45,
+      "max_p": 0.6,
+      "target_exposure_fraction": 0,
+      "notes": "Flat while a modest Yes lean exists but remains too mechanics-sensitive for execution."
+    },
+    {
+      "name": "trim",
+      "min_p": 0.6,
+      "max_p": 0.8,
+      "target_exposure_fraction": 0,
+      "notes": "Flat; the market appears rich relative to current evidence, but the edge is not clean enough to authorize action."
+    },
+    {
+      "name": "exit",
+      "min_p": 0.8,
+      "max_p": 1,
+      "target_exposure_fraction": 0,
+      "notes": "Flat/forbidden at high prices because the current public evidence does not support near-lock extension odds."
+    }
+  ],
+  "invalidation": {
+    "thesis_breakers": [
+      "Parallel official U.S. and Iranian confirmation of a no-gap extension or replacement agreement.",
+      "Renewed hostilities, explicit rejection of extension, or failed follow-on talks materially reduce extension odds.",
+      "Top-tier credible-media consensus reports a finalized official extension consistent with the contract mechanics."
+    ],
+    "market_structure_breakers": [
+      "The market is incorporating real backchannel knowledge of a nearly completed extension not visible in the bounded package.",
+      "Thin liquidity or geopolitical headline momentum is temporarily distorting the displayed 0.705 quote.",
+      "Deadline/operational-close interpretation changes the practical settlement path."
+    ],
+    "time_breakers": [
+      "A confirmed second round of talks or official bilateral statement could quickly dominate all current reasoning.",
+      "As the ceasefire expiry window approaches, stale assumptions about timing and no-gap mechanics should be replaced rather than extrapolated."
+    ],
+    "reversal_conditions": [
+      "Move toward authorized Yes only after a fresh packet if official confirmation or overwhelming credible-media consensus of an extension appears.",
+      "Move materially lower if talks fail again, the ceasefire breaks, or either side rejects extension publicly.",
+      "Do not auto-reverse from this packet."
+    ]
+  },
+  "epistemic_status": {
+    "key_uncertainties": [
+      "Whether a second round of talks actually occurs before the relevant expiry window.",
+      "Whether any deal would be framed publicly as a qualifying no-gap extension or replacement agreement.",
+      "How much the market price reflects hidden diplomatic progress unavailable in the bounded package."
+    ],
+    "reasons_to_pass": [
+      "The bundle explicitly says blockers require new research, especially on official extension confirmation and talks timing.",
+      "This contract is mechanics-sensitive, so generic signs of de-escalation are insufficient.",
+      "The market is materially above bounded fair value, but the missing evidence sits directly on the decisive crux."
+    ],
+    "what_would_change_my_mind": [
+      "Explicit bilateral official confirmation of extension talks or a reached extension would move fair value meaningfully higher.",
+      "Multiple top-tier reports of a finalized no-gap extension deal would improve readiness substantially.",
+      "Renewed hostilities, a failed second round, or public rejection of extension by either side would move fair value lower."
+    ],
+    "decision_quality": "not_ready"
+  },
+  "audit": {
+    "market_baseline_respected": true,
+    "action_bias_check_passed": true,
+    "self_preservation_bias_check_passed": true,
+    "one_sentence_rationale": "An extension remains somewhat more likely than not because the ceasefire is still holding and diplomacy is active, but with no official bilateral extension confirmation and a contract that is strict about no-gap mechanics, the market's 70.5% confidence is too high to trust or fade aggressively, so the disciplined output is forbidden and needs-more-research.",
+    "notes": "This packet intentionally distinguishes a broad geopolitical Yes lean from contract-level execution readiness: the unresolved issue is not whether diplomacy exists, but whether it converts into a qualifying public extension on time.",
+    "structured_handoff_primary_used": true,
+    "prose_fallback_used": false,
+    "verification_mode_used": "not_ready_reopen_recommended",
+    "additional_verification_performed": false,
+    "additional_verification_notes": ""
+  }
+}

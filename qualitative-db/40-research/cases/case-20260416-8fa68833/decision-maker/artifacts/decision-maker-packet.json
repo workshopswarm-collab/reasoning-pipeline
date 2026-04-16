@@ -1,0 +1,151 @@
+{
+  "schema_version": "decision-packet/v1",
+  "generated_at": "2026-04-16T16:47:00Z",
+  "context": {
+    "case_key": "case-20260416-8fa68833",
+    "dispatch_id": "dispatch-case-20260416-8fa68833-20260416T163913Z",
+    "question": "Will FC Barcelona win on 2026-04-22?",
+    "market_id": "15ebbfc2-b83f-4d83-a357-9dd21644ccf3",
+    "external_market_id": "0xda9243da774d9bcd9bd73cfda75f7cffc2be99af858c69d47ecf09cc9ab7629d",
+    "market_slug": "lal-bar-cel-2026-04-22-bar",
+    "platform": "polymarket",
+    "primary_market_url": "https://polymarket.com/event/lal-bar-cel-2026-04-22-bar",
+    "market_title": "Will FC Barcelona win on 2026-04-22?",
+    "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260416-8fa68833/synthesizer-agent/decision-handoff.md",
+    "source_syndicated_finding_path": "qualitative-db/40-research/cases/case-20260416-8fa68833/synthesizer-agent/syndicated-finding.md",
+    "source_light_refresh_brief_path": "",
+    "refresh_mode": "",
+    "decision_maker_agent": "decision-maker",
+    "canonical_markdown_path": "decision-maker-packet.md",
+    "canonical_json_path": "artifacts/decision-maker-packet.json"
+  },
+  "decision": {
+    "side": "none",
+    "trade_authorization": "watch_only",
+    "position_policy": "flat",
+    "decision_readiness": "needs_more_research",
+    "primary_crux": "The market is already above the bounded fair-value range in the selected bundle, and the remaining uncertainty is concentrated in late lineup, injury, and rotation information that is material enough to dominate any small apparent edge.",
+    "secondary_cruxes": [
+      "No clean independent bookmaker-consensus snapshot was verified for the exact fair price.",
+      "Barcelona are a deserved favorite, but regulation-time draw risk versus a credible Celta side appears too meaningful to justify paying 0.775 without fresher confirmation.",
+      "This is a freshness-sensitive short-dated match market where late team news can move fair value materially."
+    ],
+    "thesis_class": "not_decision_ready"
+  },
+  "valuation": {
+    "fair_value_low": 0.73,
+    "fair_value_high": 0.76,
+    "fair_value_mid": 0.745,
+    "independent_verification_quality": "medium",
+    "compressed_toward_market_applied": false,
+    "compression_reason": "The bounded advisory bundle already centers below market; the issue is not insufficient compression but unresolved late-breaking inputs that make the small apparent edge non-executable.",
+    "market_reference_price": 0.775,
+    "edge_mid_vs_market_pct_points": -3.0
+  },
+  "execution_semantics": {
+    "price_source": "market_snapshot_quote",
+    "price_axis": "market_implied_true_prob",
+    "rebalance_threshold_fraction": 0.1,
+    "allow_auto_reversal": false,
+    "quote_staleness_seconds": 300,
+    "valid_until": "2026-04-17T16:48:10.867465+00:00"
+  },
+  "risk_controls": {
+    "max_position_size_pct_bankroll": 0.02,
+    "max_additional_exposure_pct_bankroll": 0.01,
+    "max_single_order_pct_bankroll": 0.005,
+    "slippage_tolerance_bps": 100,
+    "liquidity_min_depth": 0,
+    "correlation_bucket_limit_pct_bankroll": 0.05,
+    "confidence_level": "medium",
+    "portfolio_constraints": [],
+    "liquidity_caution": "medium"
+  },
+  "bands": [
+    {
+      "name": "max_enter",
+      "min_p": 0.0,
+      "max_p": 0.2,
+      "target_exposure_fraction": 0.0,
+      "notes": "default fallback band"
+    },
+    {
+      "name": "scaled_enter",
+      "min_p": 0.2,
+      "max_p": 0.4,
+      "target_exposure_fraction": 0.0,
+      "notes": "default fallback band"
+    },
+    {
+      "name": "hold",
+      "min_p": 0.4,
+      "max_p": 0.6,
+      "target_exposure_fraction": 0.0,
+      "notes": "default fallback band"
+    },
+    {
+      "name": "trim",
+      "min_p": 0.6,
+      "max_p": 0.8,
+      "target_exposure_fraction": 0.0,
+      "notes": "default fallback band"
+    },
+    {
+      "name": "exit",
+      "min_p": 0.8,
+      "max_p": 1.0,
+      "target_exposure_fraction": 0.0,
+      "notes": "default fallback band"
+    }
+  ],
+  "invalidation": {
+    "thesis_breakers": [
+      "Verified Barcelona team news materially improves relative to expectation such that fair value rises to or above market.",
+      "Fresh independent bookmaker or exchange consensus supports a probability at or above the current market price.",
+      "Fixture, venue, competition, or settlement interpretation changes from the assumed standard regulation-time setup."
+    ],
+    "time_breakers": [
+      "Any packet produced before fresh pre-kickoff lineup and injury verification is stale for execution.",
+      "Material market movement before renewed verification should force reassessment rather than action on this packet."
+    ],
+    "market_structure_breakers": [
+      "Any change in settlement mechanics away from standard 90-minute-plus-stoppage-time result invalidates this valuation."
+    ],
+    "reversal_conditions": [
+      "Reopen as a potential Yes only if favorable late team news is verified and executable pricing moves to a clear discount versus updated fair value."
+    ]
+  },
+  "epistemic_status": {
+    "key_uncertainties": [
+      "Barcelona starting lineup, injuries, and rotation closer to kickoff.",
+      "Celta's squad condition and fatigue after the 2026-04-16 Europa match.",
+      "True independent consensus fair price once late information is reflected."
+    ],
+    "what_would_change_my_mind": [
+      "A fresh, clean bookmaker-consensus snapshot showing fair value materially above current market.",
+      "Credible late team news confirming strong Barcelona availability alongside meaningful Celta weakness.",
+      "Market softening that creates a clear discount to a still-stable updated fair value."
+    ],
+    "reasons_to_pass": [
+      "Current bounded fair-value midpoint is below the market reference price.",
+      "Verification blockers are attached to the most price-sensitive variables.",
+      "Any apparent edge is too small and too fragile for authorization."
+    ],
+    "decision_quality": "not_ready"
+  },
+  "audit": {
+    "one_sentence_rationale": "Barcelona should be favored, but with bounded fair value around 0.745 versus a 0.775 market and unresolved lineup and pricing verification on a freshness-sensitive match, this is a watch-only non-action until refreshed research.",
+    "notes": [
+      "The upstream bundle supports Barcelona as the better team, but not an executable edge at the current price.",
+      "No-trade is driven by negative implied value and unresolved high-impact pre-kickoff information, not by a view that Celta are likely favorites."
+    ],
+    "market_baseline_respected": true,
+    "action_bias_check_passed": true,
+    "self_preservation_bias_check_passed": true,
+    "structured_handoff_primary_used": true,
+    "prose_fallback_used": false,
+    "verification_mode_used": "not_ready_reopen_recommended",
+    "additional_verification_performed": false,
+    "additional_verification_notes": ""
+  }
+}

@@ -1,0 +1,153 @@
+{
+  "schema_version": "decision-packet/v1",
+  "generated_at": "2026-04-16T10:25:00Z",
+  "context": {
+    "case_key": "case-20260416-bacb47cd",
+    "dispatch_id": "dispatch-case-20260416-bacb47cd-20260416T101708Z",
+    "question": "Will the highest temperature in Seoul be 18°C or higher on April 17?",
+    "market_id": "c7f5d795-5eab-4bf6-80f3-d2e38766208d",
+    "external_market_id": "0xda9b4023aed736eff54eb3f1bb47b1ee78c6911e47d4a8e6f3e6d5fd8f9248fe",
+    "market_slug": "highest-temperature-in-seoul-on-april-17-2026-18corhigher",
+    "platform": "polymarket",
+    "primary_market_url": "https://polymarket.com/event/highest-temperature-in-seoul-on-april-17-2026-18corhigher",
+    "market_title": "Will the highest temperature in Seoul be 18°C or higher on April 17?",
+    "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260416-bacb47cd/synthesizer-agent/decision-handoff.md",
+    "source_syndicated_finding_path": "qualitative-db/40-research/cases/case-20260416-bacb47cd/synthesizer-agent/syndicated-finding.md",
+    "source_light_refresh_brief_path": "",
+    "refresh_mode": "",
+    "decision_maker_agent": "decision-maker",
+    "canonical_markdown_path": "decision-maker-packet.md",
+    "canonical_json_path": "artifacts/decision-maker-packet.json"
+  },
+  "decision": {
+    "side": "none",
+    "trade_authorization": "watch_only",
+    "position_policy": "flat",
+    "decision_readiness": "needs_more_research",
+    "thesis_class": "not_decision_ready",
+    "primary_crux": "The market is far above the synthesized probability range, but the package does not contain a sufficiently strong independent RKSI-specific forecast cluster to justify confidently fading 0.71 on a single-degree, freshness-sensitive weather threshold.",
+    "secondary_cruxes": [
+      "Resolution is governed by RKSI/Incheon airport observations rather than intuitive Seoul-city forecasts, creating real contract-surface mismatch risk.",
+      "Forecast disagreement is large relative to the 18°C cutoff, so modest late forecast changes could flip the outcome probability materially.",
+      "The evidence bundle itself flags internal inconsistency and recommends reopening verification, which lowers actionability despite the apparent edge."
+    ]
+  },
+  "valuation": {
+    "fair_value_low": 0.42,
+    "fair_value_high": 0.58,
+    "fair_value_mid": 0.5,
+    "independent_verification_quality": "medium",
+    "compressed_toward_market_applied": true,
+    "compression_reason": "Upstream range of 0.40-0.52 suggests a substantial No edge versus 0.71, but the bounded package lacks enough clean RKSI-specific confirmation and is explicitly freshness-sensitive, so I widen and center the range to reflect model/station uncertainty and avoid overstating edge.",
+    "market_reference_price": 0.71,
+    "edge_mid_vs_market_pct_points": -21.0
+  },
+  "execution_semantics": {
+    "price_source": "market_snapshot_quote",
+    "price_axis": "market_implied_true_prob",
+    "rebalance_threshold_fraction": 0.1,
+    "allow_auto_reversal": false,
+    "quote_staleness_seconds": 300,
+    "valid_until": "2026-04-17T10:26:06.559540+00:00"
+  },
+  "risk_controls": {
+    "max_position_size_pct_bankroll": 0.02,
+    "max_additional_exposure_pct_bankroll": 0.01,
+    "max_single_order_pct_bankroll": 0.005,
+    "slippage_tolerance_bps": 100,
+    "liquidity_min_depth": 0,
+    "correlation_bucket_limit_pct_bankroll": 0.05,
+    "confidence_level": "medium",
+    "portfolio_constraints": [],
+    "liquidity_caution": "medium"
+  },
+  "bands": [
+    {
+      "name": "max_enter",
+      "min_p": 0.0,
+      "max_p": 0.2,
+      "target_exposure_fraction": 0.0,
+      "notes": "default fallback band"
+    },
+    {
+      "name": "scaled_enter",
+      "min_p": 0.2,
+      "max_p": 0.4,
+      "target_exposure_fraction": 0.0,
+      "notes": "default fallback band"
+    },
+    {
+      "name": "hold",
+      "min_p": 0.4,
+      "max_p": 0.6,
+      "target_exposure_fraction": 0.0,
+      "notes": "default fallback band"
+    },
+    {
+      "name": "trim",
+      "min_p": 0.6,
+      "max_p": 0.8,
+      "target_exposure_fraction": 0.0,
+      "notes": "default fallback band"
+    },
+    {
+      "name": "exit",
+      "min_p": 0.8,
+      "max_p": 1.0,
+      "target_exposure_fraction": 0.0,
+      "notes": "default fallback band"
+    }
+  ],
+  "invalidation": {
+    "thesis_breakers": [
+      "A fresh RKSI-specific forecast cluster from independent sources moves clearly to 18°C or above for the local-day maximum.",
+      "Observed early-day station conditions or official near-term nowcasts imply a warmer midday path than the current airport-specific cooler thesis allows.",
+      "Clarification or evidence shows the practical resolution surface aligns more closely with warmer Seoul-city forecasts than with the cooler airport proxy."
+    ],
+    "time_breakers": [
+      "If materially newer station-specific forecast information is not incorporated before the local warming window, this packet should remain non-action.",
+      "If the market reprices sharply toward the 0.50 area before refreshed verification, the prior apparent edge is no longer decision-relevant."
+    ],
+    "market_structure_breakers": [
+      "Persistent trader anchoring to the market title rather than RKSI rules can keep price dislocated, but without stronger verification that is not enough to authorize a position."
+    ],
+    "reversal_conditions": [
+      "Authorize a No only if refreshed RKSI-specific verification still supports sub-0.50 fair value after late updates.",
+      "Authorize a Yes only if late station-specific forecasts converge above the threshold and eliminate the current cooler-airport concern."
+    ]
+  },
+  "epistemic_status": {
+    "key_uncertainties": [
+      "True RKSI station-specific high relative to generic Seoul-area forecasts.",
+      "Whether warmer hourly-path signals like MET Norway are better calibrated here than cooler daily-model guidance.",
+      "How much latent market information is already embedded beyond the public bundle."
+    ],
+    "what_would_change_my_mind": [
+      "A cleaner independent RKSI-specific forecast surface showing consistent highs below 18°C would make a No actionable.",
+      "A late airport-station nowcast/forecast cluster at or above 18°C would materially reduce or erase the apparent short edge.",
+      "A resolved observation source update showing station conditions tracking the warmer scenario would push me away from fading the market."
+    ],
+    "reasons_to_pass": [
+      "Verification blockers are explicit in the bundle.",
+      "Single-degree weather thresholds are highly sensitive to last-mile forecast updates.",
+      "Contract-location ambiguity increases risk of false confidence even when directionally skeptical of market price."
+    ],
+    "decision_quality": "not_ready"
+  },
+  "audit": {
+    "one_sentence_rationale": "There may be a real overpricing of Yes at 0.71, but because settlement depends on RKSI and the provided evidence lacks strong independent station-specific confirmation in a freshness-sensitive near-threshold setup, the economically correct action is to stay flat pending better verification.",
+    "notes": [
+      "Structured handoff and verification mode both indicate reopen/not-ready despite apparent edge.",
+      "I am not accepting the upstream 0.40-0.52 range at face value for trading because the missing verification is exactly on the decisive contract surface.",
+      "This is a pass for actionability reasons, not an endorsement of the current market price."
+    ],
+    "market_baseline_respected": true,
+    "action_bias_check_passed": true,
+    "self_preservation_bias_check_passed": true,
+    "structured_handoff_primary_used": true,
+    "prose_fallback_used": false,
+    "verification_mode_used": "not_ready_reopen_recommended",
+    "additional_verification_performed": false,
+    "additional_verification_notes": ""
+  }
+}

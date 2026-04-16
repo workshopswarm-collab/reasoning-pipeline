@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A routine 2-3% drawdown could flip the outcome.",
+    "Binance-specific dislocation or operational noise at the exact minute could matter more than broader spot context."
+  ],
+  "key_assumptions": [
+    "BTC remains in roughly its current trading regime through April 20 noon ET.",
+    "Binance BTC/USDT stays broadly aligned with wider spot references at the settlement minute.",
+    "No macro or crypto-specific shock causes a >2-3% downside move before settlement."
+  ],
+  "main_logical_chain": [
+    "Start from the market's 84.5% prior because threshold markets on liquid assets often aggregate information reasonably well.",
+    "Check whether public spot context supports that prior: BTC is currently above the strike, so the market mainly needs persistence rather than a new rally.",
+    "Apply a modest discount because the contract is narrow and the current buffer above the strike is not large.",
+    "Net result: stay Yes-leaning but slightly below the market at 79%."
+  ],
+  "main_thesis": "The market is directionally right that BTC is more likely than not to stay above $72,000 by April 20 noon ET, but 84.5% looks slightly rich given the modest cushion above the strike and exact-minute Binance settlement risk.",
+  "own_probability": 0.79,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "assigned current price: 0.845",
+    "Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone",
+    "Google Finance contextual BTC/USD was about $74,039.75"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-ca40bc37",
+    "dispatch_id": "dispatch-case-20260416-ca40bc37-20260416T053546Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "28bc6be8-82d1-42d3-b2ff-c6747fa0e9a5",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-ca40bc37/researcher-analyses/2026-04-16/dispatch-case-20260416-ca40bc37-20260416T053546Z/personas/market-implied.md",
+    "source_persona_sha256": "b74b5c385b8f6eb8e81e5b307ee96269452131c190f4f19c3b6a0207b541dbee"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is adequate for a medium-difficulty market-implied memo: Polymarket gives direct rules and baseline pricing, while Google Finance provides an independent contextual spot check; settlement authority is clear but future-dated.",
+  "strongest_disconfirmers": [
+    "The cushion over $72k is only a few percent, which crypto can lose in a normal four-day move.",
+    "Settlement depends on one exact Binance BTC/USDT 1-minute close at noon ET, not a daily average."
+  ],
+  "strongest_supports": [
+    "Polymarket prices the $72k line at 0.845, showing a strong crowd prior.",
+    "Google Finance contextual BTC/USD was about $74,039.75, above the threshold.",
+    "The strike ladder makes $72k much more probable than higher lines, implying the market is pricing persistence rather than unlimited upside."
+  ],
+  "timing_relevance": "This is a date-sensitive, exact-minute contract resolving at 12:00 ET on April 20, 2026, so short-horizon volatility and timezone/exchange details are materially important.",
+  "unresolved_ambiguities": [
+    "How stable BTC will be over the next four days.",
+    "Whether Binance BTC/USDT will match broader spot closely at the exact settlement print."
+  ],
+  "what_would_change_view": "I would move lower if BTC slipped back toward or below the low-$73k area or if Binance-specific risk increased, and move closer to the market if fresh spot checks near April 20 still showed a comfortable cushion above $72k."
+}

@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Exact settlement mechanics were not fully visible in fetched rule text.",
+    "A momentum reversal away from the barrier would lower the probability quickly."
+  ],
+  "key_assumptions": [
+    "Barrier proximity and remaining time matter more than any single scheduled catalyst once BTC is within roughly 0.3%-0.5% of $76k.",
+    "Polymarket resolves on standard threshold-hit logic rather than an unusually narrow source convention.",
+    "No large risk-off shock arrives before a qualifying print occurs."
+  ],
+  "main_logical_chain": [
+    "Market implied 89% Yes, so this required an extra verification pass.",
+    "Direct exchange checks showed BTC already very near $76k early in the week.",
+    "Recent daily ranges suggested the remaining required move was routine, not exceptional.",
+    "Macro calendar checks suggested no single upcoming scheduled catalyst was necessary for a touch.",
+    "Therefore the contract looked like a high-probability Yes, with only a modest discount for rule/source ambiguity."
+  ],
+  "main_thesis": "BTC was already trading in the mid-$75k area early in the Apr 13-19 window, so ordinary volatility plus remaining time made a $76k touch more likely than not and slightly more likely than the market implied.",
+  "own_probability": 0.93,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "current_price: 0.89",
+    "Coinbase spot about $75,711, Kraken about $75,761, and Binance daily high snapshot $75,739.69",
+    "governing source of truth is the Polymarket contract's own rules page"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "catalyst_analysis",
+    "scenario_analysis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-9f18b170",
+    "dispatch_id": "dispatch-case-20260414-9f18b170-20260414T142057Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "bc60b679-34fe-4bf1-a203-4fa8c7b61ead",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-9f18b170/researcher-analyses/2026-04-14/dispatch-case-20260414-9f18b170-20260414T142057Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "dc8439c4ddc6bc7907b75ed41c4ba16f3e063745fc8b56fbf7a53c2de42436ba"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Direct exchange data quality was high and recent; contextual macro calendar data was solid; source-of-truth ambiguity remained medium because full Polymarket rule text was not cleanly captured.",
+  "strongest_disconfirmers": [
+    "The fetched Polymarket page did not cleanly expose full rule text, leaving some settlement-source ambiguity.",
+    "BTC was still below $76,000 at sampled timestamps, so a near-miss remained possible."
+  ],
+  "strongest_supports": [
+    "Coinbase and Kraken spot were around $75.7k on Apr 14.",
+    "Binance daily data showed recent realized ranges large enough that a sub-1% additional move was routine.",
+    "Several days remained in the contract window."
+  ],
+  "timing_relevance": "High timing relevance: the key issue was whether BTC could make a small additional move within several remaining days, not whether a long-run thesis was correct.",
+  "unresolved_ambiguities": [
+    "Whether Polymarket uses a narrower exchange/index methodology than generic spot references.",
+    "Whether any remaining macro event inside the week could still dominate path mechanics."
+  ],
+  "what_would_change_view": "I would move lower if explicit rule text narrowed settlement eligibility or if BTC moved materially away from the threshold; I would move effectively to settled Yes on a confirmed qualifying print above $76k on the governing source."
+}

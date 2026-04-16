@@ -1,0 +1,61 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "medium",
+  "fragility_points": [
+    "Weather model disagreement is meaningful near the 18\u00b0C threshold.",
+    "A small upward revision in station-specific forecasts could move fair value materially.",
+    "Whole-degree finalization on Wunderground could matter at the margin around 17.5-18.4\u00b0C style outcomes."
+  ],
+  "key_assumptions": [
+    "Incheon airport is materially cooler than generic Seoul city forecasts for this setup.",
+    "Station-specific forecast surfaces deserve more weight than city-level forecast headlines.",
+    "MET Norway's brief 19\u00b0C peak is a plausible but not dominant scenario."
+  ],
+  "main_logical_chain": [
+    "Read the contract rules and identify Wunderground RKSI as the governing source.",
+    "Check station-aware forecasts instead of relying on the market title's Seoul wording.",
+    "Find that the airport-specific forecast picture is mixed but cooler than the 71% market pricing.",
+    "Conclude the warm bucket remains live but overpriced unless station forecasts converge upward before resolution."
+  ],
+  "main_thesis": "The market likely overprices 18\u00b0C+ because the contract settles on cooler Incheon Intl Airport Station rather than generic Seoul city forecasts, though one hourly station forecast keeps the threshold live.",
+  "own_probability": 0.42,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "This market will resolve to the temperature range that contains the highest temperature recorded at the Incheon Intl Airport Station",
+    "Open-Meteo forecast the Apr 17 max at the airport coordinates at only 14.7\u00b0C",
+    "MET Norway's hourly airport forecast briefly reaching about 18.9-19.0\u00b0C"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "catalyst_analysis",
+    "contract_interpretation",
+    "scenario_analysis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-bacb47cd",
+    "dispatch_id": "dispatch-case-20260416-bacb47cd-20260416T101708Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "70e33f05-5b05-4a8b-a54b-94c67284f7cb",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-bacb47cd/researcher-analyses/2026-04-16/dispatch-case-20260416-bacb47cd-20260416T101708Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "27384cc96dcfe2334e29cdac08ddc6118105a729991809980086490f5a0f1af2"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Low ambiguity on settlement mechanics, medium-quality contextual forecast evidence with moderate independence and meaningful model disagreement.",
+  "strongest_disconfirmers": [
+    "MET Norway hourly forecast reaches roughly 18.9-19.0\u00b0C at the airport during local daytime.",
+    "Wunderground final observations are not yet available, so direct settlement proof does not yet exist."
+  ],
+  "strongest_supports": [
+    "Polymarket rules settle on Wunderground RKSI / Incheon Intl Airport Station, not downtown Seoul.",
+    "Open-Meteo forecasts only 14.7\u00b0C max for the airport coordinates on Apr 17.",
+    "Open-Meteo central Seoul is 17.0\u00b0C, showing the city itself is near but still below threshold."
+  ],
+  "timing_relevance": "The key near-term catalyst is whether station-specific Incheon forecast surfaces move upward toward 18\u00b0C before the local day completes and Wunderground finalizes the data.",
+  "unresolved_ambiguities": [
+    "How Wunderground's finalized whole-degree daily high will map from the intraday temperature path.",
+    "Whether the warmer hourly path or cooler daily model better captures the station microclimate for Apr 17."
+  ],
+  "what_would_change_view": "I would move toward or above market if multiple station-specific sources converged clearly above 18\u00b0C or if RKSI/Wunderground surfaces showed a stronger 18\u00b0C+ expectation."
+}

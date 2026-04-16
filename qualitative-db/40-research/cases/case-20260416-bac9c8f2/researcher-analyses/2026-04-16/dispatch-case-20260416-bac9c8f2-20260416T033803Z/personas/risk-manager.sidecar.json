@@ -1,0 +1,62 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Exact-minute settlement rather than broader daily condition.",
+    "Threshold is close enough that ordinary volatility can flip the result.",
+    "Exchange-specific settlement source adds operational and basis risk."
+  ],
+  "key_assumptions": [
+    "Current Binance BTCUSDT cushion above 74000 survives normal overnight-to-noon volatility.",
+    "No Binance-specific dislocation distorts the settlement minute.",
+    "No late macro or crypto shock drives BTC below the threshold before noon ET."
+  ],
+  "main_logical_chain": [
+    "Polymarket rules make Binance BTCUSDT 12:00 ET 1-minute candle close the governing source of truth.",
+    "Current Binance price is above 74000, so yes is favored directionally.",
+    "But the cushion is modest relative to BTC volatility and the exact-minute settlement design.",
+    "Therefore yes remains more likely than no, but at lower confidence than the market's 71% implied probability."
+  ],
+  "main_thesis": "Lean yes, but confidence should be below market because a narrow Binance-specific noon ET candle close creates real timing fragility.",
+  "own_probability": 0.64,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone has a final 'Close' price higher than the price specified.",
+    "Binance check near analysis time: 74,983.50.",
+    "Current market price is 0.71, implying about 71% for YES."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "risk_management",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-bac9c8f2",
+    "dispatch_id": "dispatch-case-20260416-bac9c8f2-20260416T033803Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "b4a267a7-cce5-49d8-9c6b-235f7330313f",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-bac9c8f2/researcher-analyses/2026-04-16/dispatch-case-20260416-bac9c8f2-20260416T033803Z/personas/risk-manager.md",
+    "source_persona_sha256": "0e0db0e135a14ca73afed6af6febebafc34e6c0787e95629b26ff7f9ccf7860d"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Low source-of-truth ambiguity, medium evidence independence: Polymarket rules and Binance are directly relevant, while CoinGecko is only a contextual cross-check.",
+  "strongest_disconfirmers": [
+    "The contract resolves on one exact 12:00 ET minute, so path risk is high.",
+    "A roughly 1.3% cushion is not large for BTC over a sub-day horizon.",
+    "Settlement depends on Binance BTCUSDT specifically, not broader composite pricing."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT spot check near analysis time was 74983.50, above the threshold.",
+    "Sampled recent Binance 1-minute closes were also above 74000.",
+    "CoinGecko spot check broadly matched Binance, reducing concern about an immediate off-market Binance anomaly."
+  ],
+  "timing_relevance": "High: the market resolves on the Apr. 17 12:00 ET Binance 1-minute candle close, and analysis was done about 12 hours beforehand.",
+  "unresolved_ambiguities": [
+    "How much realized volatility will occur into the settlement window.",
+    "Whether Binance-specific prints stay closely aligned with broader spot into noon ET."
+  ],
+  "what_would_change_view": "Move toward the market if BTC rebuilds a clearly larger buffer above 74000 near settlement; move away if Binance BTCUSDT trades back near or below 74000 or shows exchange-specific weakness."
+}

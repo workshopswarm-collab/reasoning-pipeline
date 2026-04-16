@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A short sharp selloff before April 21 could erase the current cushion quickly.",
+    "Minute-level settlement timing makes the contract more fragile than a generic end-of-day price call.",
+    "Different lookback windows give materially different base rates."
+  ],
+  "key_assumptions": [
+    "BTC remains in a roughly recent volatility regime rather than suffering a regime-breaking selloff before April 21 noon ET.",
+    "Binance BTC/USDT remains a usable representative settlement source without anomalous minute-candle issues.",
+    "Recent momentum helps, but does not justify near-certainty given the narrow trigger."
+  ],
+  "main_logical_chain": [
+    "Start with the market anchor of 81.5% and verify the contract mechanics.",
+    "Check Binance as the governing source and confirm BTC is currently above the strike.",
+    "Compare short-run favorable momentum against longer-lookback frequencies and realized volatility.",
+    "Conclude Yes is still more likely than No, but not by as much as the market price suggests."
+  ],
+  "main_thesis": "BTC is more likely than not to finish above 72000 on the relevant Binance noon-ET minute, but the market's 81.5% looks too high relative to the modest cushion and ordinary crypto volatility.",
+  "own_probability": 0.64,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "Yes if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone has a final Close price higher than 72000.",
+    "Market-implied baseline 81.5%; own estimate 64%."
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "market_anchor",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-bebdf03e",
+    "dispatch_id": "dispatch-case-20260415-bebdf03e-20260415T221944Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "e3e48ad3-988e-4eb6-a48b-beb0a8ac0c60",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-bebdf03e/researcher-analyses/2026-04-15/dispatch-case-20260415-bebdf03e-20260415T221944Z/personas/base-rate.md",
+    "source_persona_sha256": "1e01776d68cec9403207048e0dee3d95bf8ac8ce718f5103f1fac2d46df05e30"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Good for a medium-difficulty case: Binance is the primary settlement-relevant source and Polymarket supplies contract mechanics, but evidence remains concentrated in one exchange/time-specific setup.",
+  "strongest_disconfirmers": [
+    "The cushion over 72000 is only about 4%, small relative to ordinary BTC volatility.",
+    "Only 20% of the last 30 Binance daily closes and 32% of the last 90 were above 72000.",
+    "Settlement depends on one exact Binance 1-minute close at 12:00 ET, not a looser daily condition."
+  ],
+  "strongest_supports": [
+    "Binance spot was around 75000 during the run, already above the 72000 strike.",
+    "Recent 7-day behavior was favorable, with most recent daily closes above 72000.",
+    "A simple recent-volatility projection still left Yes above 50%, around 62%."
+  ],
+  "timing_relevance": "High: this is a narrow timestamp market resolving on the Binance BTC/USDT 12:00 ET 1-minute close on 2026-04-21.",
+  "unresolved_ambiguities": [
+    "Exact operational mapping from 12:00 ET to the corresponding Binance minute at settlement should be checked live.",
+    "Daily close proxies are imperfect for the exact settlement minute."
+  ],
+  "what_would_change_view": "A material move in BTC relative to 72000 over the next few days, especially repeated closes back below 72000 or sustained comfortable trading well above it."
+}

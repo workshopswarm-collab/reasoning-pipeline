@@ -1,0 +1,57 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Binance-specific basis or microstructure could keep the pair below the threshold while other venues trade near it.",
+    "A sharp reversal before a qualifying print would make the market's extreme confidence look too high."
+  ],
+  "key_assumptions": [
+    "Binance BTC/USDT will likely print at least one 1-minute high at or above 76000 if broad spot stays near the mid-75k range.",
+    "There is enough time left in the weekly window for a brief upside wick even without sustained trade above 76000."
+  ],
+  "main_logical_chain": [
+    "The governing rule is a Binance BTC/USDT 1-minute High >= 76000 during Apr 13-19 ET.",
+    "BTC was already trading around 75.7k on multiple live references, so only a small additional move was needed.",
+    "Because a brief wick is sufficient, the directional Yes case is strong.",
+    "Because settlement is venue-specific, a modest haircut versus market near-certainty is still warranted."
+  ],
+  "main_thesis": "Yes is likely because BTC is already trading close to the threshold and the contract resolves on any qualifying Binance 1-minute high, but venue-specific settlement risk keeps confidence below the market.",
+  "own_probability": 0.84,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "This market will immediately resolve to Yes if any Binance 1-minute candle for BTC/USDT ... has a final High price equal to or greater than the price specified in the title.",
+    "Coinbase BTC-USD spot around 75765 and Kraken XBT/USD around 75762 at research time."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "risk_management",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-9f18b170",
+    "dispatch_id": "dispatch-case-20260414-9f18b170-20260414T142057Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "48794af2-125e-4bc3-afd4-78f6aa7af611",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-9f18b170/researcher-analyses/2026-04-14/dispatch-case-20260414-9f18b170-20260414T142057Z/personas/risk-manager.md",
+    "source_persona_sha256": "6218188bcef01f31dea79e839b495d2e4c7bd9ba87c798588f84b6ca20585bf8"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary source quality for contract interpretation is high; contextual price verification quality is medium and independent enough for a low-difficulty case, but not a direct settlement-venue confirmation.",
+  "strongest_disconfirmers": [
+    "Settlement is Binance-specific, so other venues being near or above 76000 would not guarantee resolution.",
+    "Short-horizon threshold markets can fail on timing if momentum stalls just below the trigger."
+  ],
+  "strongest_supports": [
+    "Polymarket rules only require any qualifying Binance 1-minute High during the window.",
+    "Independent live spot checks put BTC around 75.7k, leaving only a small remaining move."
+  ],
+  "timing_relevance": "High; this is a date-bounded threshold market where a brief qualifying wick on the settlement venue is enough.",
+  "unresolved_ambiguities": [
+    "This run did not directly pull Binance 1-minute candle highs.",
+    "The exact remaining basis between Binance and other venues at the margin was not directly measured."
+  ],
+  "what_would_change_view": "A direct Binance qualifying print would move the view toward certainty; persistent sub-76000 Binance trading or a sharp BTC pullback would move the view lower."
+}

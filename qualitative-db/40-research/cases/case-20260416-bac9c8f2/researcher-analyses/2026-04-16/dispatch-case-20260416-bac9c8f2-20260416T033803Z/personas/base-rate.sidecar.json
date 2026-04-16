@@ -1,0 +1,57 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A modest BTC drawdown before the target minute can flip the result because the contract is exact-time and strict-threshold.",
+    "The noon-analog sample is small and could either understate or overstate the true outside view."
+  ],
+  "key_assumptions": [
+    "BTC remains in roughly the current price regime through the target minute.",
+    "No major downside volatility shock or Binance-specific anomaly occurs before settlement."
+  ],
+  "main_logical_chain": [
+    "The contract resolves on one exact Binance BTC/USDT 1-minute close at 12:00 PM ET on April 17.",
+    "Current Binance price regime is slightly above the threshold, which supports Yes.",
+    "Recent minute-close distributions support persistence above 74,000.",
+    "Exact-time noon analogs are weaker, so confidence should be below the market-implied 71%."
+  ],
+  "main_thesis": "Yes is more likely than not because BTC is already trading near 75k and recent Binance minute-close distributions favor staying above 74k, but the market is slightly rich because exact noon-ET analogs are weaker than broad spot intuition suggests.",
+  "own_probability": 0.64,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "Yes if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone has a final Close price higher than 74,000.",
+    "12:00 PM ET on 2026-04-17 corresponds to 16:00 UTC."
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "market_anchor",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-bac9c8f2",
+    "dispatch_id": "dispatch-case-20260416-bac9c8f2-20260416T033803Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "71a26bca-9b07-47da-8a46-d9e5b0822e0e",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-bac9c8f2/researcher-analyses/2026-04-16/dispatch-case-20260416-bac9c8f2-20260416T033803Z/personas/base-rate.md",
+    "source_persona_sha256": "df98a68066cf0b79e43e0d3ee8549d18fb4670f69632b3de6b363322a617b30b"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality narrow evidence set: direct contract rules plus direct Binance price data, with medium evidence independence and low-to-medium source-of-truth ambiguity.",
+  "strongest_disconfirmers": [
+    "Only 1 of 8 available noon-ET analog closes was above 74,000.",
+    "The nearest prior noon-ET analog on April 15 closed at 73,792.01, below threshold."
+  ],
+  "strongest_supports": [
+    "Recent Binance spot context was already above 74,000 during research.",
+    "About 74.7% of last-24h minute closes and 86.6% of last-48h minute closes were above 74,000.",
+    "The threshold is close enough that persistence matters more than a fresh breakout."
+  ],
+  "timing_relevance": "High: the question depends on one exact 12:00 PM ET minute close, not an intraday touch or daily average.",
+  "unresolved_ambiguities": [
+    "Small residual operational ambiguity exists around exchange UI/API settlement surface alignment.",
+    "There may be unobserved event risk before the target window."
+  ],
+  "what_would_change_view": "A sustained move materially above 75.5k-76k would increase confidence in Yes; persistent sub-74k trading or a downside shock would move the view toward No."
+}

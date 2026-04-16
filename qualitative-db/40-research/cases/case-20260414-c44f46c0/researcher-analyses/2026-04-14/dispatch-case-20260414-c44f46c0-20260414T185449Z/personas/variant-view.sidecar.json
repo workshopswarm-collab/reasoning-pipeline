@@ -1,0 +1,62 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Weekend or macro-driven downside volatility before the exact settlement minute.",
+    "Any evidence of non-obvious Binance UI/API candle mapping differences.",
+    "Confidence depends partly on current spot buffer remaining substantial into the final 24 hours."
+  ],
+  "key_assumptions": [
+    "Binance chart settlement maps cleanly to documented Binance kline structure for the noon-ET minute.",
+    "No sharp multi-day downside move pushes BTCUSDT below 68000 by the exact settlement minute.",
+    "Binance spot remains a reliable source at resolution."
+  ],
+  "main_logical_chain": [
+    "The contract resolves on Binance BTCUSDT at one exact noon-ET 1-minute close on April 19.",
+    "Current Binance BTCUSDT pricing around 74.3k puts spot materially above the 68k threshold.",
+    "That makes Yes the base case, but not as close to locked as a 95.75% market implies because exact-minute and exchange-specific settlement mechanics still matter.",
+    "Therefore a modest discount to market confidence is justified while retaining a strong Yes lean."
+  ],
+  "main_thesis": "Yes is still the base case because Binance BTCUSDT is trading far above 68000, but the 95.75% market likely overstates confidence for an exact-minute, exchange-specific settlement contract.",
+  "own_probability": 0.91,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "current_price = 0.9575",
+    "BTCUSDT 74298.30000000",
+    "Klines are uniquely identified by their open time"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation",
+    "variant_hypothesis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-c44f46c0",
+    "dispatch_id": "dispatch-case-20260414-c44f46c0-20260414T185449Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "e7a751d8-e426-483c-af72-ad2f67b5487d",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-c44f46c0/researcher-analyses/2026-04-14/dispatch-case-20260414-c44f46c0-20260414T185449Z/personas/variant-view.md",
+    "source_persona_sha256": "ec898638c9c4178e521253f8035d6e97ffb4402dfe46da0245d8062050d57fff"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is solid for a medium-difficulty case: Polymarket rules define the contract and Binance docs/live endpoints define the named exchange mechanics and current context; independence is medium and residual source-of-truth ambiguity is low-to-medium.",
+  "strongest_disconfirmers": [
+    "The market settles on one exact minute close, so a sharp Sunday-noon drawdown could still produce No.",
+    "There is small residual mapping ambiguity because the contract points to the Binance chart UI while verification here used API docs/endpoints.",
+    "The current price buffer is large enough that a No outcome still requires a meaningful drop, limiting the strength of a bearish variant case."
+  ],
+  "strongest_supports": [
+    "Live Binance ticker during the run showed BTCUSDT around 74298, leaving about a 6300-point buffer above the strike.",
+    "Recent Binance 1-minute klines also showed BTCUSDT trading in the 74k range.",
+    "Polymarket rules clearly specify Binance BTCUSDT and the final close of the 12:00 PM ET 1-minute candle."
+  ],
+  "timing_relevance": "This is a date-sensitive, exact-minute contract: the decisive observation is the Binance BTCUSDT 12:00 PM ET 1-minute candle close on 2026-04-19, not a daily close or cross-exchange BTC price.",
+  "unresolved_ambiguities": [
+    "Whether the Binance UI presentation used by Polymarket maps perfectly to the API-based kline interpretation.",
+    "How much probability mass to assign to an 8%+ BTC drawdown over the remaining horizon without overfitting generic crypto volatility."
+  ],
+  "what_would_change_view": "I would move higher with continued 72k+ pricing into the final day and cleaner direct verification of the noon-ET candle mapping; I would move lower if BTC weakens sharply, especially below the low-70k area, or if settlement-mechanics ambiguity increases."
+}

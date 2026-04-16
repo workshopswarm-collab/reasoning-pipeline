@@ -1,0 +1,58 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "medium",
+  "fragility_points": [
+    "Polling compilation could be stale or wrong.",
+    "Coalition-label mapping could be more complicated than visible from the accessible sources.",
+    "A late campaign shock could still alter the ranking."
+  ],
+  "key_assumptions": [
+    "The compiled late-February to early-April polling table is directionally accurate.",
+    "GERB-UDF on the market maps in practice to GERB-SDS seat attribution.",
+    "No major late coalition or ballot-status shock changes the seat-ranking picture."
+  ],
+  "main_logical_chain": [
+    "The contract resolves on second place in seats, with CIK as official fallback source if reporting is ambiguous.",
+    "A party that was previously first and is still consistently polling first in seats shortly before election day is usually not the modal second-place finisher.",
+    "Available polling context shows GERB-SDS leading, so an exact second-place finish should be low probability rather than near-certain."
+  ],
+  "main_thesis": "GERB-SDS appears much more likely to finish first than second, so the market price implying 96% for second place looks badly out of line with the available outside-view evidence.",
+  "own_probability": 0.08,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "Ranking is by seats first, then votes, then alphabetical abbreviation.",
+    "Recent compiled polls place GERB-SDS first in projected seats, not second."
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "contract_interpretation",
+    "market_anchor"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260413-07f0191d",
+    "dispatch_id": "dispatch-case-20260413-07f0191d-20260413T201947Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "5ce06f01-c313-4c0b-8dad-fa0dc11eba92",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260413-07f0191d/researcher-analyses/2026-04-13/dispatch-case-20260413-07f0191d-20260413T201947Z/personas/base-rate.md",
+    "source_persona_sha256": "516aefb9df304a3392b96c1cf93a2ee8b86ca86b540ed61d9297848d7c4f993f"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary contract source quality is high, but the main empirical ranking evidence is only medium quality because it relies on a secondary polling compilation and CIK access was blocked.",
+  "strongest_disconfirmers": [
+    "The empirical evidence is less independent than ideal because the polling data was mainly checked through a Wikipedia compilation rather than direct pollster releases.",
+    "Official CIK pages were inaccessible during the run, leaving some source-of-truth verification incomplete."
+  ],
+  "strongest_supports": [
+    "GERB-SDS won the October 2024 election and enters this race from a first-place baseline.",
+    "Multiple March-April 2026 polls compiled on the election page still show GERB-SDS first in projected seats.",
+    "The main battle for second appears to be among PP-DB, DPS, and sometimes Revival, not GERB-SDS."
+  ],
+  "timing_relevance": "Election day is 2026-04-19, so the final week polling and exact contract wording are highly timing-sensitive.",
+  "unresolved_ambiguities": [
+    "Whether any direct official or pollster source would materially alter the Wikipedia-compiled polling picture.",
+    "Whether the market label hides any non-obvious mapping issue."
+  ],
+  "what_would_change_view": "Direct recent polls showing GERB-SDS actually running second in seats, credible consensus reporting that it is the likely second-place finisher, or a verified coalition-mapping issue would move me materially upward."
+}

@@ -1,0 +1,56 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Overnight macro or crypto liquidation could erase the cushion quickly",
+    "Exchange-specific pricing or operational issues near settlement could matter because the contract is Binance-specific"
+  ],
+  "key_assumptions": [
+    "No adverse move larger than roughly 3% hits Binance BTC/USDT before noon ET on April 16",
+    "Binance remains the relevant and functioning settlement source into the resolution window"
+  ],
+  "main_logical_chain": [
+    "Contract settles on Binance BTC/USDT 12:00 ET 1-minute close strictly above 72000",
+    "Current Binance spot and recent minute bars are around 74.3k, leaving a meaningful buffer",
+    "With less than one day left, default path is Yes unless a real downside catalyst arrives"
+  ],
+  "main_thesis": "BTC is likely to stay above 72,000 on the April 16 noon ET Binance close because current Binance spot is around 74.3k with limited time remaining, so absence of a sharp downside shock is the main condition.",
+  "own_probability": 0.92,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "Binance ticker spot check: 74344.93",
+    "Resolution requires Binance BTC/USDT 12:00 ET 1-minute close higher than 72000"
+  ],
+  "reasoning_mode": [
+    "catalyst_analysis",
+    "contract_interpretation",
+    "market_anchor"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260415-572502e1",
+    "dispatch_id": "dispatch-case-20260415-572502e1-20260415T124520Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "8fa2c2d2-82e7-4d01-8498-27e678f08607",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-572502e1/researcher-analyses/2026-04-15/dispatch-case-20260415-572502e1-20260415T124520Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "9b62e6196de44fee358d07248b7eadd93eb3ce97cec80330fd0900107eb1688f"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary evidence quality is high because Binance is the named settlement venue; Polymarket rules are useful for contract interpretation; overall source-of-truth ambiguity is low-medium due to narrow timing mechanics.",
+  "strongest_disconfirmers": [
+    "Settlement depends on one specific future 1-minute candle, so path risk remains material",
+    "A 3.3% cushion can still be erased by one sharp BTC downside move over roughly 24 hours"
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT spot check showed 74344.93, about 2345 points above the 72000 threshold",
+    "Recent Binance 1-minute closes clustered near 74.3k rather than barely above the line",
+    "Polymarket strike ladder was internally coherent with 72k near 90%, 74k near 57%, 76k near 18%"
+  ],
+  "timing_relevance": "Very high because the market resolves on a single Binance 1-minute candle at 12:00 ET on April 16.",
+  "unresolved_ambiguities": [
+    "No single scheduled catalyst clearly dominates; absence of shock is the main bullish condition",
+    "Exact morning-of-settlement realized volatility remains unknown"
+  ],
+  "what_would_change_view": "I would cut the probability if BTC loses the cushion and trades persistently below roughly 73k before the U.S. morning, or if Binance-specific issues emerge near settlement."
+}

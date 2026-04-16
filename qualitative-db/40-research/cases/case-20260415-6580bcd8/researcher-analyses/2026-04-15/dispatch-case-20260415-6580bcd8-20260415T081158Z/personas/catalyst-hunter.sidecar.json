@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Single-minute settlement mechanics magnify intraday volatility risk.",
+    "Binance-specific venue or microstructure issues would matter more than usual.",
+    "A drop toward the low 72k area would materially weaken the thesis."
+  ],
+  "key_assumptions": [
+    "No major adverse macro or crypto-specific shock hits before Friday noon ET.",
+    "Binance remains operational without unusual price dislocation into the settlement minute.",
+    "Recent above-threshold trading is somewhat informative for the next ~56 hours."
+  ],
+  "main_logical_chain": [
+    "The governing source of truth is the Binance BTC/USDT 1-minute candle close at 12:00 PM ET on April 17.",
+    "Current Binance spot is already above 72k by a moderate margin.",
+    "With roughly two days left, the base case is persistence unless a bearish catalyst forces a sharp drawdown.",
+    "That makes Yes more likely than the market implies, but not by much because settlement-minute fragility remains real."
+  ],
+  "main_thesis": "BTC is already above 72k on Binance with a moderate cushion, so absent a short-window shock or settlement-minute dip the April 17 noon ET close is more likely than not to finish above 72k.",
+  "own_probability": 0.81,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone (noon) ... has a final 'Close' price higher than 72000.",
+    "Binance BTCUSDT spot was about 73856.76 when checked."
+  ],
+  "reasoning_mode": [
+    "catalyst_analysis",
+    "scenario_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-6580bcd8",
+    "dispatch_id": "dispatch-case-20260415-6580bcd8-20260415T081158Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "0cd77c0e-171e-4209-9ee8-57c3fc3b0593",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-6580bcd8/researcher-analyses/2026-04-15/dispatch-case-20260415-6580bcd8-20260415T081158Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "2e33cbc0a9339ead5704191733c1d7fe5728b5bac9af4a19b2ac8e276df91684"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is adequate for a medium-difficulty narrow-resolution market: Polymarket provides explicit rules and Binance provides direct venue data, though independence is only medium because Binance is also the settlement anchor.",
+  "strongest_disconfirmers": [
+    "The contract settles on one exact Binance 1-minute noon-ET close, so a transient selloff or wick can decide the market.",
+    "BTC can move multiple percentage points within 48 hours on macro or leverage-driven shocks."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT spot was about 73856.76 when checked, roughly 1856.76 above the threshold.",
+    "Binance 24h low of 73514 remained above 72000 on the short lookback.",
+    "The market mostly needs persistence, not a fresh bullish catalyst."
+  ],
+  "timing_relevance": "The decisive period is the next ~56 hours, especially the final hours before the April 17 noon ET settlement minute.",
+  "unresolved_ambiguities": [
+    "Exact UI/candle-label handling on Binance can matter in narrow time-window markets.",
+    "No specific scheduled high-information catalyst was identified; the key risk is unscheduled shock risk."
+  ],
+  "what_would_change_view": "A move back toward 72.2k-72.5k, a material macro risk-off catalyst, or Binance-specific instability would push the estimate lower."
+}

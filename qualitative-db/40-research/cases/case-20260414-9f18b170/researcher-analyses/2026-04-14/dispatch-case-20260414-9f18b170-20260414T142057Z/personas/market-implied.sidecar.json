@@ -1,0 +1,62 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "BTC could reverse below 75k and stay weak.",
+    "Time decay plus lower realized volatility could prevent a qualifying 1m high.",
+    "Settlement depends on Binance specifically, not broad cross-exchange averages."
+  ],
+  "key_assumptions": [
+    "Near-threshold BTC conditions plus multiple remaining days make a 76k Binance 1m high likely.",
+    "Binance will reflect any marginal upside test similarly to the broader major-venue BTC market.",
+    "No hidden rules nuance makes an apparent qualifying touch non-qualifying."
+  ],
+  "main_logical_chain": [
+    "Start from the market's roughly 89%-91.5% Yes prior.",
+    "Verify the contract is a Binance-specific 1-minute high touch market, not a close-above market.",
+    "Check whether Binance is already trading close enough to the threshold to justify an extreme probability.",
+    "Observe BTC around 75.7k on Binance with days remaining, which supports a high but not certain touch probability.",
+    "Conclude the market is roughly efficient, with a modest discount for the threshold still being unmet."
+  ],
+  "main_thesis": "The market's high Yes price is mostly justified because this is a Binance 1-minute high touch contract and BTC is already trading near 75.7k, leaving only a small move over several remaining days.",
+  "own_probability": 0.88,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "This market will immediately resolve to 'Yes' if any Binance 1-minute candle for BTC/USDT ... has a final 'High' price equal to or greater than the price specified in the title.",
+    "outcomePrices:[0.915,0.085] for the 76k threshold contract at verification time",
+    "Binance BTCUSDT lastPrice about 75701.52 and highPrice about 75715.55 during the run"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation",
+    "technical_reference"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-9f18b170",
+    "dispatch_id": "dispatch-case-20260414-9f18b170-20260414T142057Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "abcd3038-d43e-479d-b74c-2b509a6fb3d6",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-9f18b170/researcher-analyses/2026-04-14/dispatch-case-20260414-9f18b170-20260414T142057Z/personas/market-implied.md",
+    "source_persona_sha256": "ada6b9b45a5db1950036e3652bef183148fc067ff84344bd94865d37f0d83d42"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Strong on rules clarity and decent on market-state verification: primary contract mechanics came from Polymarket page metadata, while Binance provided the key direct venue check and Coinbase/Kraken offered contextual corroboration.",
+  "strongest_disconfirmers": [
+    "Binance had not yet printed 76,000 in the observed data.",
+    "Near-threshold conditions can still fail if momentum fades or volatility compresses."
+  ],
+  "strongest_supports": [
+    "Polymarket rules specify any Binance BTC/USDT 1-minute candle high at or above 76,000 resolves Yes.",
+    "Binance BTCUSDT was already around 75,701 with a 24h high around 75,715 during the run.",
+    "Coinbase and Kraken also showed BTC around 75.7k, corroborating the general price level."
+  ],
+  "timing_relevance": "High; this is a short-window threshold touch market where price proximity and remaining days dominate the probability.",
+  "unresolved_ambiguities": [
+    "Exact intraday volatility path from current levels.",
+    "Whether the market has additional order-flow information not visible from public page metadata."
+  ],
+  "what_would_change_view": "A sustained move back below 75k, visibly weaker Binance highs as time decays, or clearer direct Binance kline evidence showing lower touch odds would push the estimate down; repeated highs above 75.9k or an actual 76k print would push it up."
+}

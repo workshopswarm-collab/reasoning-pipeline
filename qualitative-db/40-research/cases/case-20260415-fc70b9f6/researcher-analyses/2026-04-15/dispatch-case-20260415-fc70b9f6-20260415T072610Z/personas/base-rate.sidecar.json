@@ -1,0 +1,54 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Single-candle settlement sensitivity.",
+    "Short-horizon crypto volatility can erase a 2.3% cushion quickly."
+  ],
+  "key_assumptions": [
+    "BTC/USDT does not fall more than roughly 2.3% before the settlement minute.",
+    "Binance remains the relevant representative price surface without idiosyncratic dislocation."
+  ],
+  "main_logical_chain": [
+    "Verify that resolution depends on the Binance BTC/USDT 12:00 ET 1-minute candle close on April 16.",
+    "Check whether BTC is already above 72,000 on the relevant exchange/pair during the run.",
+    "Apply the outside-view that holding above an already-cleared threshold over about one day is more likely than a sufficiently large downside break, but far from certain in BTC."
+  ],
+  "main_thesis": "BTC is already modestly above the 72k threshold, so the outside-view favors the Binance noon ET April 16 close staying above 72,000 absent a meaningful downside move.",
+  "own_probability": 0.84,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone has a final 'Close' price higher than the price specified.",
+    "Own probability estimate: 84% Yes."
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "market_anchor",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-fc70b9f6",
+    "dispatch_id": "dispatch-case-20260415-fc70b9f6-20260415T072610Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "bed30b0d-5171-4987-9857-0fbef10fb29f",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-fc70b9f6/researcher-analyses/2026-04-15/dispatch-case-20260415-fc70b9f6-20260415T072610Z/personas/base-rate.md",
+    "source_persona_sha256": "602f0d4612cf2f2dcc80eb2f4fdaa7c026bc11f45b1d03e3d6e58e9c35a59102"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary quality is decent because the contract wording and direct Binance price surface were both checked; ambiguity is low to medium but not zero due to single-minute settlement mechanics.",
+  "strongest_disconfirmers": [
+    "BTC can move more than 2% in a day, and a single-minute settlement print is fragile to late selloffs or wicks."
+  ],
+  "strongest_supports": [
+    "Direct Binance 1m klines during the run showed BTC/USDT around 73.68k-73.73k, already above the threshold.",
+    "The contract is mechanically narrow: one exchange, one pair, one minute, one close field."
+  ],
+  "timing_relevance": "The run occurred about 29 hours before the noon ET April 16 settlement minute, so current above-threshold trading is informative but not dispositive.",
+  "unresolved_ambiguities": [
+    "Operational timestamp/candle-label handling is mostly clear but still matters in single-minute contracts.",
+    "A more precise canonical volatility/microstructure driver slug is missing from the current mapping set."
+  ],
+  "what_would_change_view": "A move back below 72k into the morning of April 16 ET, a sharp negative catalyst, or Binance-specific price dislocation would reduce or reverse the Yes lean."
+}

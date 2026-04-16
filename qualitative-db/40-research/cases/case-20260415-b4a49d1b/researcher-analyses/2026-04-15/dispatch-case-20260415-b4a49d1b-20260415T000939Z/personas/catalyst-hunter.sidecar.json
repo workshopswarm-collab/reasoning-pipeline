@@ -1,0 +1,63 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Single-minute settlement mechanics create path fragility.",
+    "Weekend or headline-driven volatility could erase the buffer quickly.",
+    "The edge versus market is modest, not large."
+  ],
+  "key_assumptions": [
+    "No large unscheduled risk-off shock arrives before Apr 20 noon ET.",
+    "Binance remains a clean operational settlement source with no anomalous noon candle behavior.",
+    "The absence of a major scheduled macro catalyst inside the remaining window modestly lowers downside repricing risk."
+  ],
+  "main_logical_chain": [
+    "Check the contract mechanics and confirm the governing source is Binance BTC/USDT 12:00 ET 1-minute close above 70,000.",
+    "Verify that current Binance spot is materially above 70,000 and recent closes have mostly held above that threshold.",
+    "Check whether any top-tier scheduled macro catalyst remains before resolution; official calendars suggest not.",
+    "Conclude that the dominant risk is an unscheduled downside shock rather than a scheduled repricing event, leaving Yes slightly more likely than the market implies."
+  ],
+  "main_thesis": "BTC is already materially above 70,000 on the named Binance venue, and with no obvious top-tier scheduled macro catalyst left before Apr 20 noon ET, the most likely path is simply staying above the threshold unless an unscheduled downside shock hits.",
+  "own_probability": 0.89,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone (noon) ... has a final 'Close' price higher than the price specified in the title.",
+    "Binance ticker endpoint returned BTCUSDT price 74500.00000000 during the run.",
+    "2026 FOMC meetings include April 28-29; March 2026 CPI release date is Apr. 10, 2026."
+  ],
+  "reasoning_mode": [
+    "catalyst_analysis",
+    "scenario_analysis",
+    "contract_interpretation",
+    "market_anchor"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-b4a49d1b",
+    "dispatch_id": "dispatch-case-20260415-b4a49d1b-20260415T000939Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "37811044-0361-41fb-a353-e9eb90ef1337",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-b4a49d1b/researcher-analyses/2026-04-15/dispatch-case-20260415-b4a49d1b-20260415T000939Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "5a36fe39f4d87f051865aaff762eb75e903eb467172ca6c327def8ab0a9c1544"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is medium-high overall: Binance is the named direct source family, Polymarket provides explicit contract rules, and Fed/BLS calendars add independent official context on scheduled catalysts.",
+  "strongest_disconfirmers": [
+    "The contract settles on one exact Binance 12:00 ET 1-minute close, so a localized dip below 70k is enough for No.",
+    "A 6% BTC move over five days is plausible in crypto.",
+    "Unscheduled macro, geopolitical, or exchange-specific shocks can still dominate the path."
+  ],
+  "strongest_supports": [
+    "Binance BTC/USDT was around 74.5k during the run, roughly 6% above the 70k threshold.",
+    "Recent Binance daily closes in the sampled output were above 70k for Apr 10-14.",
+    "Official Fed and BLS calendars showed no FOMC decision or CPI release remaining before Apr 20 noon ET."
+  ],
+  "timing_relevance": "Timing is central: the market is already in-the-money, so the key question is whether any catalyst pushes Binance BTC/USDT below 70,000 at the specific Apr 20 noon ET settlement minute.",
+  "unresolved_ambiguities": [
+    "Whether noon ET specifically could coincide with localized liquidity weakness on Binance.",
+    "Whether any missed or unscheduled catalyst emerges before Apr 20.",
+    "How much Binance UI-versus-API settlement implementation detail matters in practice."
+  ],
+  "what_would_change_view": "A decisive break below 72k on Binance, a new risk-off macro/geopolitical shock, or evidence of Binance-specific operational/pricing instability would lower the estimate."
+}

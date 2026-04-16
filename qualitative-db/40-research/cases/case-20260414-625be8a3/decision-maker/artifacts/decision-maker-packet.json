@@ -1,0 +1,157 @@
+{
+  "schema_version": "decision-packet/v1",
+  "generated_at": "2026-04-13T22:07:00-04:00",
+  "context": {
+    "case_key": "case-20260414-625be8a3",
+    "dispatch_id": "dispatch-case-20260414-625be8a3-20260414T002740Z",
+    "question": "Will the Virginia redistricting referendum pass?",
+    "market_id": "case-20260414-625be8a3",
+    "market_title": "Will the Virginia redistricting referendum pass?",
+    "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260414-625be8a3/synthesizer-agent/decision-handoff.md",
+    "source_syndicated_finding_path": "qualitative-db/40-research/cases/case-20260414-625be8a3/synthesizer-agent/syndicated-finding.md",
+    "decision_maker_agent": "decision-maker",
+    "canonical_markdown_path": "decision-maker-packet.md",
+    "canonical_json_path": "artifacts/decision-maker-packet.json",
+    "external_market_id": "0xc8e9ba9e25f5adcf7e159e62c24ca3bda9a5245a049acb94fdd534e67ed1969e",
+    "market_slug": "will-the-virginia-redistricting-referendum-pass",
+    "platform": "polymarket",
+    "primary_market_url": "https://polymarket.com/event/will-the-virginia-redistricting-referendum-pass",
+    "source_light_refresh_brief_path": "",
+    "refresh_mode": ""
+  },
+  "decision": {
+    "side": "yes",
+    "trade_authorization": "forbidden",
+    "position_policy": "flat",
+    "decision_readiness": "needs_more_research",
+    "primary_crux": "Passage is more likely than not because the referendum appears officially scheduled and actively administered, but the market's 89% confidence is not supported by directly verified likely-voter polling or fully cleared legal/process risk, so the apparent anti-market edge is not execution-ready.",
+    "secondary_cruxes": [
+      "This contract is not just about voter sentiment; it also requires the referendum to occur cleanly within the deadline window, making process and legal stability part of the predictive burden.",
+      "The bounded package supports a real Yes lean but explicitly lacks hard vote-intent evidence, which is exactly what would be needed to justify or fade an 89% price confidently.",
+      "The strongest surviving countercase is that the market may be incorporating hidden polling or field data, so a public-evidence-only anti-market stance should be treated cautiously."
+    ],
+    "thesis_class": "not_decision_ready"
+  },
+  "valuation": {
+    "fair_value_low": 0.74,
+    "fair_value_high": 0.82,
+    "fair_value_mid": 0.78,
+    "market_reference_price": 0.89,
+    "edge_mid_vs_market_pct_points": -11.0,
+    "independent_verification_quality": "medium",
+    "compressed_toward_market_applied": true,
+    "compression_reason": "Official scheduling and administration meaningfully support Yes, but absent directly verified polling and fully cleared legal/process risk, fair value should remain well below the market while avoiding an overly aggressive fade."
+  },
+  "execution_semantics": {
+    "price_axis": "market_implied_true_prob",
+    "price_source": "market_snapshot_quote",
+    "rebalance_threshold_fraction": 0.12,
+    "allow_auto_reversal": false,
+    "valid_until": "2026-04-18T23:59:00-04:00",
+    "quote_staleness_seconds": 21600,
+    "time_horizon": "Through referendum occurrence, late legal/process developments, and official statewide result reporting"
+  },
+  "risk_controls": {
+    "max_position_size_pct_bankroll": 0.0,
+    "max_additional_exposure_pct_bankroll": 0.0,
+    "max_single_order_pct_bankroll": 0.0,
+    "slippage_tolerance_bps": 100,
+    "liquidity_min_depth": 1200,
+    "correlation_bucket_limit_pct_bankroll": 0.03,
+    "confidence_level": "low",
+    "portfolio_constraints": [
+      "No new exposure is authorized from this packet because the case remains research-incomplete on the decisive public-opinion and process-risk dimensions.",
+      "Reopen only after direct likely-voter polling, stronger legal/docket verification, or late administrative confirmation materially improves evidence quality.",
+      "Do not treat official ballot scheduling alone as enough to justify or fade an extreme price in a referendum contract."
+    ],
+    "liquidity_caution": "high"
+  },
+  "bands": [
+    {
+      "name": "max_enter",
+      "min_p": 0,
+      "max_p": 0.25,
+      "target_exposure_fraction": 0,
+      "notes": "No entry authorized because the case is not decision-ready."
+    },
+    {
+      "name": "scaled_enter",
+      "min_p": 0.25,
+      "max_p": 0.55,
+      "target_exposure_fraction": 0,
+      "notes": "No entry authorized until likely-voter support and legal/process stability are directly verified."
+    },
+    {
+      "name": "hold",
+      "min_p": 0.55,
+      "max_p": 0.75,
+      "target_exposure_fraction": 0,
+      "notes": "Flat while Yes remains plausible but insufficiently verified for execution."
+    },
+    {
+      "name": "trim",
+      "min_p": 0.75,
+      "max_p": 0.9,
+      "target_exposure_fraction": 0,
+      "notes": "Flat; apparent overpricing alone is not enough without cleaner referendum-specific evidence."
+    },
+    {
+      "name": "exit",
+      "min_p": 0.9,
+      "max_p": 1,
+      "target_exposure_fraction": 0,
+      "notes": "Flat/forbidden at extreme prices because residual legal/process and voter-support uncertainty still matter."
+    }
+  ],
+  "invalidation": {
+    "thesis_breakers": [
+      "Credible independent polling or robust early-vote evidence shows the referendum is on track to pass by a wide margin.",
+      "A fresh court or election-administration disruption materially increases non-occurrence or delayed-occurrence risk.",
+      "Credible evidence shows statewide support is much weaker than implied by the market or that organized opposition is stronger than assumed."
+    ],
+    "market_structure_breakers": [
+      "The market is incorporating nonpublic polling or field data unavailable in the bounded package.",
+      "Thin liquidity or narrative momentum is distorting the displayed 0.89 price.",
+      "Official election-administration updates materially change the practical referendum path before election day."
+    ],
+    "time_breakers": [
+      "Late legal or administrative changes before the vote can dominate all current reasoning.",
+      "Official result reporting or referendum occurrence status should replace this packet immediately when available."
+    ],
+    "reversal_conditions": [
+      "Move toward authorized Yes only after direct evidence of broad support and legal stability materially improves.",
+      "Move lower if process risk increases or if credible polling shows a competitive or failing referendum.",
+      "Do not auto-reverse from this packet."
+    ]
+  },
+  "epistemic_status": {
+    "key_uncertainties": [
+      "Whether likely-voter support is actually strong enough to justify an 89% passage probability.",
+      "How much the market price reflects hidden polling or campaign field data unavailable in the bundle.",
+      "Whether residual legal/process challenges remain truly de minimis before the vote."
+    ],
+    "reasons_to_pass": [
+      "The bundle explicitly says blockers require new research, especially on polling and legal-process verification.",
+      "The gap versus market is large enough that stronger confirmation is required before acting.",
+      "The contract's occurrence/process component makes this more than a simple ballot-preference forecast."
+    ],
+    "what_would_change_my_mind": [
+      "Direct credible likely-voter polling showing strong support for passage would move fair value higher and improve readiness.",
+      "Clear primary-source legal/docket evidence that remaining challenges are weak or resolved would reduce process tail risk.",
+      "Credible polling showing a competitive or losing referendum, or fresh legal disruption, would move fair value materially lower."
+    ],
+    "decision_quality": "not_ready"
+  },
+  "audit": {
+    "market_baseline_respected": true,
+    "action_bias_check_passed": true,
+    "self_preservation_bias_check_passed": true,
+    "one_sentence_rationale": "The referendum is probably more likely than not to pass because it appears officially scheduled and actively administered, but without directly verified voter-support evidence and fully cleared legal/process risk, the market's 89% confidence is too high to accept or fade aggressively, so the disciplined output is forbidden and needs-more-research.",
+    "notes": "This packet intentionally refuses action despite a meaningful below-market valuation because the missing evidence sits directly on the decisive crux: whether passage and occurrence are both as close to locked as the market implies.",
+    "structured_handoff_primary_used": true,
+    "prose_fallback_used": false,
+    "verification_mode_used": "not_ready_reopen_recommended",
+    "additional_verification_performed": false,
+    "additional_verification_notes": ""
+  }
+}

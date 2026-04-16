@@ -1,0 +1,123 @@
+{
+  "artifact_type": "targeted_verification_pack",
+  "schema_version": "decision-targeted-verification-pack/v1",
+  "case_key": "case-20260413-9dc5221c",
+  "dispatch_id": "refresh-case-20260413-9dc5221c-20260413T193643Z",
+  "required": true,
+  "verification_mode": "targeted_escalation",
+  "pack_purpose": "Deterministic narrow follow-up pack for targeted escalation. It defines the crux questions and operational budgets, while source choice may remain model-driven within runtime-enforced tool guardrails.",
+  "verification_questions": [
+    "Does the latest available information materially change the decision, given: Round 13 and any official FIDE standings/result update can move the probability materially.?",
+    "How decision-relevant is the remaining contract/source-of-truth ambiguity: official winner not yet declared; current confidence relies partly on contextual live-standings reporting rather than a clean official standings capture?",
+    "Are the current blockers still material to final judgment: No clean official FIDE standings/clinch page was captured directly in the synthesis pass?",
+    "Is the main verification gap still decision-material: I did not obtain a clean official FIDE live standings or clinch page directly in the synthesis pass.?"
+  ],
+  "structured_handoff_focus": {
+    "contract_ambiguity_level": "minor",
+    "contract_ambiguity_reason": "official winner not yet declared; current confidence relies partly on contextual live-standings reporting rather than a clean official standings capture",
+    "verification_gap_summary": "I did not obtain a clean official FIDE live standings or clinch page directly in the synthesis pass.",
+    "best_countercase_summary": "If the live-state interpretation is overstated or Sindarov loses round 13, the race can reopen quickly and 95% was too high.",
+    "main_reason_for_disagreement": "Different weighting of missing direct official standings verification versus strong contextual late-stage lead evidence.",
+    "resolution_mechanics_summary": "Resolve to the official FIDE-declared winner, with consensus credible reporting only as fallback.",
+    "freshness_sensitive": "yes",
+    "freshness_driver": "Round 13 and any official FIDE standings/result update can move the probability materially.",
+    "decision_blockers": [
+      "No clean official FIDE standings/clinch page was captured directly in the synthesis pass",
+      "The tournament was not yet officially finished at analysis time"
+    ],
+    "disagreement_type": "mixed"
+  },
+  "supporting_persona_summaries": [
+    {
+      "persona": "market-implied",
+      "recommended_weight": "medium",
+      "own_probability": 0.91,
+      "main_thesis": "The market is directionally right because Sindarov appears to have an almost decisive late-stage lead, but 95.05% is slightly too high given residual two-round, tiebreak, and official-live-verification risk.",
+      "main_logical_chain": [
+        "Start from the 95.05% market price as a serious prior.",
+        "Ask what would justify that price: an overwhelming late-stage live lead rather than generic pre-event dominance.",
+        "Contextual standings indicate exactly that state, with Sindarov on 9/12 and nearest chaser on 7/12 after 12 rounds.",
+        "Because FIDE is the resolution authority and two rounds remain, trim modestly for residual conversion and verification risk."
+      ],
+      "strongest_supports": [
+        "Contextual live standings show Sindarov leading by two points with two rounds left.",
+        "The tournament is only 14 rounds, so there are few remaining opportunities for the field to catch up."
+      ],
+      "strongest_disconfirmers": [
+        "Two rounds plus possible tie-breaks still leave a nonzero failure path.",
+        "Official FIDE live standings were not cleanly extracted in this run, so some confidence relies on contextual sources."
+      ],
+      "unresolved_ambiguities": [
+        "Exact official live standings were not directly captured from a clean FIDE page in this run.",
+        "Residual tie scenarios depend on remaining round outcomes not yet played."
+      ],
+      "what_would_change_view": "A clean official FIDE standings/result update showing a smaller lead, a round-13 stumble, or any procedural dispute would push the estimate down materially.",
+      "timing_relevance": "Very high; this is a late-stage in-progress tournament market where one round can change the entire tail-risk profile.",
+      "source_quality_view": "Resolution authority is high-quality and clear via FIDE, while the live-state evidence is strong but more contextual than ideal, so overall source quality is medium-high rather than fully high.",
+      "persona_finding_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/researcher-analyses/2026-04-13/dispatch-case-20260413-9dc5221c-20260413T190728Z/personas/market-implied.md",
+      "assumption_artifact_paths": [
+        "qualitative-db/40-research/cases/case-20260413-9dc5221c/researcher-analyses/2026-04-13/dispatch-case-20260413-9dc5221c-20260413T190728Z/assumptions/market-implied.md"
+      ],
+      "evidence_artifact_paths": [
+        "qualitative-db/40-research/cases/case-20260413-9dc5221c/researcher-analyses/2026-04-13/dispatch-case-20260413-9dc5221c-20260413T190728Z/evidence/market-implied.md"
+      ]
+    }
+  ],
+  "selected_assumption_snippets": [
+    {
+      "path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/researcher-analyses/2026-04-13/dispatch-case-20260413-9dc5221c-20260413T190728Z/assumptions/risk-manager.md",
+      "frontmatter": {
+        "type": "assumption_note",
+        "case_key": "case-20260413-9dc5221c",
+        "dispatch_id": "dispatch-case-20260413-9dc5221c-20260413T190728Z",
+        "research_run_id": "bd3e8feb-325d-46e4-8577-8a8ce849732b",
+        "analysis_date": "2026-04-13",
+        "persona": "risk-manager",
+        "domain": "sports",
+        "subdomain": "chess",
+        "entity": "",
+        "topic": "market confidence versus field strength in 2026 FIDE Candidates",
+        "question": "Will Javokhir Sindarov win the 2026 FIDE Candidates Tournament?",
+        "driver": "reliability",
+        "date_created": "2026-04-13",
+        "agent": "Orchestrator",
+        "status": "active",
+        "certainty": "medium",
+        "importance": "high",
+        "time_horizon": "through 2026-04-16 resolution window",
+        "related_entities": [],
+        "related_drivers": [
+          "reliability",
+          "operational-risk"
+        ],
+        "proposed_entities": [
+          "javokhir-sindarov",
+          "fide-candidates-tournament"
+        ],
+        "proposed_drivers": [],
+        "upstream_inputs": [],
+        "downstream_uses": [
+          "qualitative-db/40-research/cases/case-20260413-9dc5221c/researcher-analyses/2026-04-13/dispatch-case-20260413-9dc5221c-20260413T190728Z/personas/risk-manager.md"
+        ],
+        "tags": [
+          "fragility",
+          "assumption",
+          "chess"
+        ]
+      },
+      "snippet": "# Assumption\nThe market's 95.05% price is implicitly assuming either that Javokhir Sindarov is an overwhelming pre-tournament favorite versus seven elite qualifiers or that substantial contract/listing context outside the visible rules makes his victory close to settled.\n## Why this assumption matters\nWithout that assumption, a pre-event price above 95% in an eight-player double round-robin is extremely hard to justify. The whole risk-manager view turns on whether this confidence comes from real hidden information or from market mispricing / market-structure distortion.\n## What this assumption supports\n- A view that the displayed market price is likely too confident.\n- A probability estimate materially below the market-implied baseline.\n- Elevated concern about hidden assumptions, field-strength underweighting, or book-structure issues.\n## Evidence or logic behind the assumption\n- Official FIDE page confirms a full eight-player field rather than a one-opponent match.\n- The format is long and variance-exposed: 14 rounds plus playoff if tied.\n- The official field includes multiple world-class players, so the base-rate path to 95% for any one player appears implausible absent extraordinary form or unseen disqualifying constraints.\n- Polymarket rules do not show any special shortcut that would make Sindarov nearly locked absent actual tournament play.\n## What would falsify it\n- Evidence that this market is being quoted after the tournament has largely been played and Sindarov already leads by an almost insurmountable margin.\n- Official evidence that several listed rivals are no …",
+      "full_char_count": 2465,
+      "snippet_char_count": 1602
+    }
+  ],
+  "selected_evidence_snippets": [],
+  "selected_supporting_note_snippets": [],
+  "pack_budget": {
+    "max_chars": 6000,
+    "actual_chars_before_trim": 10691,
+    "actual_chars_after_trim": 8262,
+    "approx_tokens_before_trim": 2672,
+    "approx_tokens_after_trim": 2065,
+    "trim_applied": true
+  }
+}

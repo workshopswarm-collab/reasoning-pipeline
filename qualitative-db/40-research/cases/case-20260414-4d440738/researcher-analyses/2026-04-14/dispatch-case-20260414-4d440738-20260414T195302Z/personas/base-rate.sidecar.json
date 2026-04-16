@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Short-horizon BTC volatility could erase the cushion quickly.",
+    "Single-minute settlement makes the contract more fragile than a broader average-price rule.",
+    "Evidence is mostly about current regime persistence rather than a direct read on April 20 noon ET."
+  ],
+  "key_assumptions": [
+    "BTC stays in its current trading regime and does not suffer an 8%+ drawdown into the April 20 noon ET settlement minute.",
+    "Binance remains operationally normal around the settlement window.",
+    "No hidden contract-interpretation issue overrides the stated one-minute close rule."
+  ],
+  "main_logical_chain": [
+    "The governing venue is Binance BTC/USDT and current Binance spot is materially above 68k.",
+    "A base-rate prior for a threshold already 8% in-the-money over a six-day horizon favors YES.",
+    "Crypto short-horizon volatility and one-minute settlement mechanics still leave more tail risk than a 93.5% market price suggests.",
+    "Therefore YES remains likelier, but with a modest discount versus market confidence."
+  ],
+  "main_thesis": "YES is likelier because BTC is already well above 68k on Binance, but a six-day crypto hold-above threshold is not quite as safe as the 93.5% market price implies.",
+  "own_probability": 0.88,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "Polymarket rules: resolves on the Binance BTC/USDT 12:00 ET 1-minute candle close.",
+    "Binance ticker fetched at 74230.00000000 on 2026-04-14."
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "contract_interpretation",
+    "market_anchor"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-4d440738",
+    "dispatch_id": "dispatch-case-20260414-4d440738-20260414T195302Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "7ae2405b-b585-4534-845a-57ab7ca7b3c4",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-4d440738/researcher-analyses/2026-04-14/dispatch-case-20260414-4d440738-20260414T195302Z/personas/base-rate.md",
+    "source_persona_sha256": "00816a4ea34036f06cc32f3a861dfcf6b28265a0986f535ccebf80c0b631bfd4"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Good enough for a medium-difficulty case: primary rules plus primary Binance data, cross-checked with CoinGecko. Independence is medium and source-of-truth ambiguity is low-to-medium.",
+  "strongest_disconfirmers": [
+    "BTC can still fall more than 8% over six days, especially across a weekend.",
+    "The contract settles on one exact noon ET one-minute candle, which increases path and microstructure risk.",
+    "A Binance-specific anomalous print or operational issue could matter because Binance is the governing source."
+  ],
+  "strongest_supports": [
+    "Binance ticker showed BTCUSDT around 74.23k on 2026-04-14, leaving about a 6.23k cushion above strike.",
+    "Recent Binance daily candles show BTC spending most of the recent month above 68k, with the latest cluster mostly above 70k.",
+    "CoinGecko independently showed BTC in the low-to-mid 70k area, reducing concern that Binance was a venue-specific outlier."
+  ],
+  "timing_relevance": "High: the contract resolves at the Binance BTC/USDT 12:00 ET one-minute close on 2026-04-20, so both timezone mechanics and short-horizon volatility matter.",
+  "unresolved_ambiguities": [
+    "Whether weekend volatility or any macro shock emerges before settlement.",
+    "How much practical noise remains in Binance's timezone-sensitive noon ET candle handling."
+  ],
+  "what_would_change_view": "I would cut materially if BTC loses the low-70k region before the weekend or if Binance-specific settlement risk rises; I would move closer to market if BTC still holds above roughly 72k into April 19-20 with no operational concerns."
+}

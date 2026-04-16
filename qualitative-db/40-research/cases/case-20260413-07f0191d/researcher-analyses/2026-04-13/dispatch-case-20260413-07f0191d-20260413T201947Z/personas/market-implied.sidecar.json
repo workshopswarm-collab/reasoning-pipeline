@@ -1,0 +1,62 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "medium",
+  "fragility_points": [
+    "A credible late polling shift could move GERB-SDS into consensus second place.",
+    "Hidden market information or deeper liquidity could mean the current print contains signal I could not verify.",
+    "Pre-election contextual evidence can break late in fragmented multiparty systems."
+  ],
+  "key_assumptions": [
+    "Accessible public ranking context is not missing a major late break that moved GERB-SDS from likely first to likely second.",
+    "The market price is not a deep, well-informed equilibrium but may be stale or thin.",
+    "The contract is being interpreted correctly as an exact second-place-by-seats question."
+  ],
+  "main_logical_chain": [
+    "Start from the market at 96% and ask what would justify GERB-SDS being almost locked into second.",
+    "Check contract mechanics and confirm this is an exact second-place-by-seats question with CIK as official fallback source.",
+    "Review accessible contextual election sources and find GERB-SDS presented as leading rather than second.",
+    "Conclude the public evidence does not support the market's extreme yes price; estimate stays far below market."
+  ],
+  "main_thesis": "The 0.96 second-place price for GERB-SDS looks inconsistent with accessible public evidence, which points to GERB-SDS being more likely first than second.",
+  "own_probability": 0.12,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "market-implied probability is 96%",
+    "My estimate is 12% that GERB-SDS finishes second",
+    "price looks stale, inefficient, or misread"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "contract_interpretation",
+    "scenario_analysis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260413-07f0191d",
+    "dispatch_id": "dispatch-case-20260413-07f0191d-20260413T201947Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "0a968c58-4f48-4ba0-9e30-f0ef20afb3b9",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260413-07f0191d/researcher-analyses/2026-04-13/dispatch-case-20260413-07f0191d-20260413T201947Z/personas/market-implied.md",
+    "source_persona_sha256": "3821398f3dbb2e2c01066174eb9e2f9883d5b1a51df94693512479a0e5765bf4"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Resolution mechanics are clear because the contract explicitly names CIK, but substantive competitive evidence in this run is only medium quality because it relies on one main contextual aggregation source plus Wikipedia context.",
+  "strongest_disconfirmers": [
+    "The market itself is pricing 96%, which could reflect fresher local information not accessible in this run.",
+    "I could not directly inspect CIK election subpages because of Cloudflare blocking.",
+    "I did not retrieve a fully independent domestic Bulgarian pollster page in this run."
+  ],
+  "strongest_supports": [
+    "POLITICO Bulgaria trend page shows GERB-SDS around 23.6%, ahead of visible rivals in the mid-teens.",
+    "Accessible election context frames GERB-SDS as a lead contender rather than an obvious runner-up.",
+    "Contract wording makes exact seat rank decisive, raising the bar for a 96% second-place claim."
+  ],
+  "timing_relevance": "High: election is scheduled for 2026-04-19, while the market snapshot is pre-election and therefore vulnerable to stale assumptions or late campaign shifts.",
+  "unresolved_ambiguities": [
+    "Whether recent domestic Bulgarian polling materially contradicts the accessible aggregation.",
+    "Whether the contract order book is deep and informed or stale and thin.",
+    "Whether credible-reporting consensus before official results will be clean or contested."
+  ],
+  "what_would_change_view": "Multiple independent late Bulgarian polls, strong exit polling, preliminary official counts, or clear evidence of deep informed market liquidity supporting GERB-SDS as consensus second would move the estimate up materially."
+}

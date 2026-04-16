@@ -1,0 +1,58 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A weekend drawdown of only a few percent could put the settlement minute below 72000.",
+    "Confidence depends heavily on stable pricing into one narrow settlement window."
+  ],
+  "key_assumptions": [
+    "BTC remains in roughly its current mid-70k trading regime into April 19 noon ET.",
+    "No Binance-specific pricing or operational anomaly distorts the settlement minute.",
+    "Recent Binance realized range is informative for a 4-day threshold estimate."
+  ],
+  "main_logical_chain": [
+    "Start from a cautious prior because short-dated BTC threshold markets are volatile.",
+    "Move toward Yes because current Binance spot is meaningfully above 72000 and recent realized closes were mostly above it.",
+    "Cap confidence below the market because a single future minute print can still flip the outcome after a plausible 3-5% move lower."
+  ],
+  "main_thesis": "BTC being comfortably above 72000 and recently trading mostly above that level supports Yes, but a single future 1-minute settlement print makes the market's high-80s confidence look too aggressive.",
+  "own_probability": 0.68,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "current_price: 0.865",
+    "Binance BTC/USDT 1-minute candle for 12:00 ET",
+    "spot about 74,748.92"
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "market_anchor",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-7d14e3a4",
+    "dispatch_id": "dispatch-case-20260415-7d14e3a4-20260415T231343Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "ed48befe-3f2d-4329-bdfa-5c53846c308b",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-7d14e3a4/researcher-analyses/2026-04-15/dispatch-case-20260415-7d14e3a4-20260415T231343Z/personas/base-rate.md",
+    "source_persona_sha256": "7abe232db9c5bf142f65f0c939bfbd89ac1dd46c0a1860a123b3b0271ba64205"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is good: Polymarket provides authoritative contract wording and Binance provides direct venue-aligned price data; independence is medium and source-of-truth ambiguity is low to medium.",
+  "strongest_disconfirmers": [
+    "The market resolves on one exact 12:00 ET 1-minute Binance close, not a daily close or average.",
+    "BTC traded below 72000 within the same week, including a 70740.98 daily close on April 12 and lows near 70500."
+  ],
+  "strongest_supports": [
+    "Binance spot during the run was about 74748.92, roughly 3.8% above the strike.",
+    "Recent daily closes were mostly above 72000, placing the strike below the recent central trading range.",
+    "The contract settles on Binance BTC/USDT, matching the venue used for direct price verification."
+  ],
+  "timing_relevance": "This is a date-sensitive market resolving on the Binance BTC/USDT 12:00 ET minute candle on 2026-04-19; April daylight time maps that minute to 16:00 UTC.",
+  "unresolved_ambiguities": [
+    "Small residual ambiguity remains around UI-versus-API presentation, though the contract wording is clear that Binance is governing.",
+    "Short-horizon BTC volatility into Sunday noon remains inherently hard to pin down."
+  ],
+  "what_would_change_view": "I would move up if BTC stays clearly above 74k-75k through April 17-18, and move down if BTC loses 73k/72k or if Binance-specific anomalies appear."
+}

@@ -1,0 +1,61 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Sharp overnight or morning selloff before noon ET.",
+    "Binance-specific operational or print anomaly at the settlement minute.",
+    "Residual UI-versus-API surface ambiguity."
+  ],
+  "key_assumptions": [
+    "ETH will not fall more than roughly 6% before the Apr 17 noon ET Binance 1-minute close.",
+    "Binance website chart close and public API kline close align normally for the relevant minute.",
+    "No exchange-specific disruption materially affects the settlement print."
+  ],
+  "main_logical_chain": [
+    "Verify contract mechanics and exact source of truth.",
+    "Check current Binance ETH/USDT level and recent 1-minute closes on the named venue.",
+    "Compare current cushion above 2200 against the short remaining time to settlement.",
+    "Conclude the market is mostly efficient but slightly overstates certainty because the event is not yet settled and resolves on one minute close."
+  ],
+  "main_thesis": "Market is directionally right because Binance ETH/USDT is already comfortably above 2200 on the named venue, though 97.5% looks slightly too aggressive for a single-minute crypto settlement.",
+  "own_probability": 0.94,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "ETHUSDT = 2343.56000000",
+    "Current market-implied probability ... 97.5%",
+    "94% Yes"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation",
+    "technical_reference"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260416-305ed3c4",
+    "dispatch_id": "dispatch-case-20260416-305ed3c4-20260416T190054Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "19e691be-89c6-4aca-a941-a51c15bcecb3",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-305ed3c4/researcher-analyses/2026-04-16/dispatch-case-20260416-305ed3c4-20260416T190054Z/personas/market-implied.md",
+    "source_persona_sha256": "cf09834b3671972be845ed58415364151b9d2ec86f49b9f0830c2507fd3772bd"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality direct evidence from the named resolution venue, with medium-low independence because the core evidence is concentrated in Binance-linked surfaces.",
+  "strongest_disconfirmers": [
+    "Single-minute crypto threshold markets remain vulnerable to fast downside volatility or venue-specific disturbances.",
+    "The market is already at an extreme probability, leaving little room for overlooked risks."
+  ],
+  "strongest_supports": [
+    "Direct Binance spot check showed ETHUSDT around 2343.56, about 6.5% above the strike.",
+    "Recent Binance 1-minute klines also closed around 2343.1 to 2343.56.",
+    "Polymarket contract wording is narrow and explicitly tied to Binance ETH/USDT 12:00 ET 1m close."
+  ],
+  "timing_relevance": "Settlement is the Apr 17, 2026 12:00 ET Binance 1-minute close, so date/timezone mechanics and very short-horizon volatility are central.",
+  "unresolved_ambiguities": [
+    "Formal rules cite the Binance website chart while verification used the public API and docs.",
+    "Exact pre-settlement volatility path remains unknown."
+  ],
+  "what_would_change_view": "A substantial drop toward 2250 or below before noon ET, or evidence that the Binance website settlement candle diverges from the API-observed kline close, would reduce confidence materially."
+}

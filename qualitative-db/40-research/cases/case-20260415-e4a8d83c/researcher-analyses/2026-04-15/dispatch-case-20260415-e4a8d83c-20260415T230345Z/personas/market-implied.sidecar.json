@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Single-minute settlement sensitivity.",
+    "A roughly 1% downside move would be enough to threaten Yes.",
+    "Exchange-specific settlement mechanics matter."
+  ],
+  "key_assumptions": [
+    "Current Binance spot and recent range remain informative for the April 17 noon ET resolving minute.",
+    "No major downside shock arrives before settlement.",
+    "The Binance website candle used for settlement will be directionally consistent with Binance API context."
+  ],
+  "main_logical_chain": [
+    "Market implies about 71.5% Yes and neighboring strikes suggest a plausible near-term BTC distribution.",
+    "Direct Binance data shows BTC already above 74k and recently trading above that level repeatedly.",
+    "Because the contract is about one exact minute rather than a daily close, some probability discount versus naive spot anchoring is warranted.",
+    "That leaves a final estimate near but slightly below market at 69%."
+  ],
+  "main_thesis": "The market's roughly 72% Yes price is broadly reasonable because BTC is already trading above 74k on Binance and recent range supports the threshold, but exact-minute settlement makes the contract slightly less favorable than spot alone suggests.",
+  "own_probability": 0.69,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "12:00 ET one-minute candle close strictly above 74,000",
+    "Binance BTCUSDT price 74,792.13",
+    "market roughly 71.5%-72% Yes"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-e4a8d83c",
+    "dispatch_id": "dispatch-case-20260415-e4a8d83c-20260415T230345Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "443764b2-3adf-4da1-a221-8df276bec07a",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-e4a8d83c/researcher-analyses/2026-04-15/dispatch-case-20260415-e4a8d83c-20260415T230345Z/personas/market-implied.md",
+    "source_persona_sha256": "6ccef3aa62b40829e1c2b6903366bb76b25408b3d210977307c4301539ccc5be"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Good case-fit but only medium-low independence: Polymarket defines the contract and Binance provides direct exchange context on the named pair; source-of-truth ambiguity is low.",
+  "strongest_disconfirmers": [
+    "The contract resolves on a single 12:00 ET one-minute candle close, so ordinary volatility could still produce a No even if BTC stays near current levels.",
+    "Recent intraday trading already dipped below 74k, showing the threshold is not safely out of range."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT spot was about 74,792 at research time, already above the 74,000 threshold.",
+    "Recent Binance daily candles repeatedly traded and closed above 74k.",
+    "Adjacent strike prices on Polymarket form a coherent ladder around current spot."
+  ],
+  "timing_relevance": "The contract resolves about 41 hours after research time and depends on the exact 12:00 ET April 17 one-minute close, so short-horizon timing noise is central.",
+  "unresolved_ambiguities": [
+    "No independent external catalyst check was needed, but near-term macro or crypto-specific shocks could still alter the path materially.",
+    "Formal settlement references the Binance website candle rather than the API endpoints used for context."
+  ],
+  "what_would_change_view": "A sustained move back below 74k before settlement or evidence of elevated downside volatility would move the estimate toward or below 50%, while stable trading well above 75k would increase confidence in Yes."
+}

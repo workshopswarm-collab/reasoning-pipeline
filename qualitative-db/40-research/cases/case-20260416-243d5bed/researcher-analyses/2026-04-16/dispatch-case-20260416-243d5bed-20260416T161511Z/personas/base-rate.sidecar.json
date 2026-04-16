@@ -1,0 +1,58 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A normal crypto pullback before the target minute could erase the small cushion.",
+    "Binance-specific dislocation or operational issues near settlement could matter because Binance is the sole governing source."
+  ],
+  "key_assumptions": [
+    "ETH remains in roughly its current trading regime through tomorrow noon ET.",
+    "Binance ETH/USDT remains a reliable settlement venue without meaningful dislocation.",
+    "No major late-breaking macro or crypto-specific shock appears before resolution."
+  ],
+  "main_logical_chain": [
+    "The governing contract uses Binance ETH/USDT's April 17 12:00 ET 1-minute close and requires a strict close above 2300.",
+    "Current Binance spot is modestly above 2300, so the directional prior favors Yes.",
+    "Because the cushion is small and the market resolves on one exact minute, path dependence keeps the probability materially below certainty.",
+    "That leaves a lean-Yes view below the market's 74.5% implied probability."
+  ],
+  "main_thesis": "ETH is modestly more likely than not to finish above 2300 on the specified Binance noon-ET minute, but the market overprices the probability because a single-minute threshold close remains fragile.",
+  "own_probability": 0.64,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for ETH/USDT 12:00 in the ET timezone (noon) on the date specified in the title has a final 'Close' price higher than the price specified in the title.",
+    "GET /api/v3/klines ... 'Close price'"
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "contract_interpretation",
+    "market_anchor"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-243d5bed",
+    "dispatch_id": "dispatch-case-20260416-243d5bed-20260416T161511Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "5d168321-d89e-4b52-89c8-1535c009d575",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-243d5bed/researcher-analyses/2026-04-16/dispatch-case-20260416-243d5bed-20260416T161511Z/personas/base-rate.md",
+    "source_persona_sha256": "4926ec42a05118d5434d86c34ee20b70b022e4ac460e866c9644f88c08080d98"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is medium-high overall: contract wording and Binance kline docs are strong primary sources, while CoinGecko is only contextual and not the settlement source.",
+  "strongest_disconfirmers": [
+    "The contract depends on one exact 12:00 ET one-minute close, so ordinary intraday volatility can still flip the result below 2300.",
+    "The current cushion above threshold is modest rather than robust."
+  ],
+  "strongest_supports": [
+    "Recent Binance ETHUSDT spot closes were around 2337-2345, above the 2300 threshold.",
+    "Recent ETH context shows 2300 is in the active trading zone rather than a distant upside level.",
+    "No gathered evidence points to a clear scheduled catalyst that should dominate the next day."
+  ],
+  "timing_relevance": "The contract resolves on April 17, 2026 at 12:00 ET / 16:00 UTC using one exact one-minute candle close, so short-horizon timing risk is central.",
+  "unresolved_ambiguities": [
+    "Small implementation ambiguity remains between Binance UI chart presentation and API-surfaced data, though source-of-truth risk appears low to medium.",
+    "No direct April 17 pre-resolution volatility read exists yet."
+  ],
+  "what_would_change_view": "I would raise the estimate if ETH builds a larger cushion above 2300 closer to the target window, and lower it if ETH loses 2300 decisively, volatility rises sharply, or Binance-specific issues appear."
+}

@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Exact-minute settlement design.",
+    "Threshold is close enough to current spot that ordinary BTC volatility matters.",
+    "Small residual ambiguity between API-observed prices and the named UI candle display."
+  ],
+  "key_assumptions": [
+    "Binance API data is a reliable operational proxy for the named Binance UI candle source.",
+    "BTC stays near current levels rather than breaking decisively below 74000 before settlement.",
+    "No exchange-specific anomaly distorts the relevant Binance minute close."
+  ],
+  "main_logical_chain": [
+    "Polymarket rules say the only thing that matters is the Binance BTC/USDT 1-minute candle close at 12:00 ET on April 17.",
+    "Recent Binance spot and minute closes are above 74000, so Yes is the natural directional lean.",
+    "But the cushion over strike is modest and BTC can cross that margin easily over short windows.",
+    "Therefore Yes is still more likely than No, but with lower confidence than the 0.70 market price implies."
+  ],
+  "main_thesis": "Slight Yes, but less confidently than market because the exact Binance noon ET minute close creates meaningful path and timestamp risk.",
+  "own_probability": 0.64,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone (noon) ... has a final 'Close' price higher than the price specified in the title.",
+    "Recent Binance BTC/USDT data observed on 2026-04-15 was above 74,000."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "risk_management",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-cd803ba3",
+    "dispatch_id": "dispatch-case-20260415-cd803ba3-20260415T203927Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "6f4d962f-f5d9-40ec-b349-be49bad71ac3",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-cd803ba3/researcher-analyses/2026-04-15/dispatch-case-20260415-cd803ba3-20260415T203927Z/personas/risk-manager.md",
+    "source_persona_sha256": "1683409d40d70032e12aede95f5a01ad2f44d555d2f4fb8620c9bccc1a851a1c"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary contract wording is clear and Binance API is strong direct proxy evidence; overall source quality is good, with medium independence and low-to-medium source-of-truth ambiguity.",
+  "strongest_disconfirmers": [
+    "The contract resolves on one exact 12:00 ET one-minute close, so short-horizon volatility can easily flip the result.",
+    "Current above-strike spot roughly 44 hours early is supportive but not decisive."
+  ],
+  "strongest_supports": [
+    "Recent Binance BTC/USDT prices and 1-minute closes were above 74000 on 2026-04-15.",
+    "The strike is already in the money, so no major bullish move is required from current spot."
+  ],
+  "timing_relevance": "Timing is central because the market resolves from one exact Binance minute close at 12:00 ET on 2026-04-17, not from broader daily price action.",
+  "unresolved_ambiguities": [
+    "Whether the Binance UI candle display could differ in any operationally relevant way from the public API at settlement.",
+    "How much April 17 pre-noon ET volatility will compress or erase the current above-strike buffer."
+  ],
+  "what_would_change_view": "A sustained drop below 74000 on Binance into late April 16 or April 17 would push me toward No; a stable hold above roughly 74500-75000 closer to settlement would move me toward or above market."
+}

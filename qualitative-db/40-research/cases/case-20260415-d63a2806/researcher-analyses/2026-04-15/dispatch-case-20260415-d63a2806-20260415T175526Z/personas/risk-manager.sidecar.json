@@ -1,0 +1,58 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A ~3% drawdown from current levels is enough to break the thesis.",
+    "Timestamp-specific close risk matters more than broad bullish BTC sentiment."
+  ],
+  "key_assumptions": [
+    "BTC can absorb ordinary 24-48 hour volatility and still remain above 72000 at the exact governing minute.",
+    "Binance BTC/USDT remains representative enough that exchange-specific dislocation risk is low."
+  ],
+  "main_logical_chain": [
+    "The governing source and mechanics are explicit: Binance BTC/USDT 1-minute close at 12:00 ET on April 17 must be above 72000.",
+    "Current same-venue spot is meaningfully above the line, so the directional base case is Yes.",
+    "But the contract is fragile to modest short-horizon drawdowns because only one exact minute matters.",
+    "That makes Yes more likely than No while still less certain than the 83.5% market price implies."
+  ],
+  "main_thesis": "BTC is more likely than not to close above 72000 on Binance at noon ET April 17, but the market slightly underprices single-minute timing fragility.",
+  "own_probability": 0.76,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "The governing source of truth is Binance BTC/USDT 1-minute candle close for 12:00 ET on April 17, 2026.",
+    "The strongest disconfirming consideration is straightforward: ordinary BTC volatility is large enough to erase the current cushion before the exact qualifying minute."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "risk_management",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-d63a2806",
+    "dispatch_id": "dispatch-case-20260415-d63a2806-20260415T175526Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "fb9863c0-2f1f-4188-8b6c-875f7445bbb6",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-d63a2806/researcher-analyses/2026-04-15/dispatch-case-20260415-d63a2806-20260415T175526Z/personas/risk-manager.md",
+    "source_persona_sha256": "d596bc2f52abe8916cfefd3f12389bbbaa51318f8c92664fb1a566244d651d64"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality primary rules plus high-quality same-venue price context; evidence independence is medium and source-of-truth ambiguity is low to medium due mainly to timestamp mapping.",
+  "strongest_disconfirmers": [
+    "This is a single-minute, single-venue close contract, so an ordinary retracement into the high-71k range could resolve No.",
+    "Recent Binance daily ranges have included sub-72000 territory."
+  ],
+  "strongest_supports": [
+    "Binance BTC/USDT was 74121.29 at capture time, about 2.9% above the threshold.",
+    "Recent Binance daily closes included multiple closes above 72000.",
+    "The contract only requires maintenance above an already-cleared level, not a new breakout."
+  ],
+  "timing_relevance": "Very high; the contract resolves on one exact Binance 1-minute close at noon ET on April 17 rather than on broad daily or weekly price action.",
+  "unresolved_ambiguities": [
+    "How much realized volatility BTC will exhibit into the target minute.",
+    "Whether ET-to-Binance candle mapping introduces any settlement-time interpretive friction."
+  ],
+  "what_would_change_view": "I would move down if BTC loses 73k support and trends toward low-71k before the event; I would move up if BTC holds comfortably above 73.5k-74k into late April 16 and early April 17 with calmer volatility."
+}

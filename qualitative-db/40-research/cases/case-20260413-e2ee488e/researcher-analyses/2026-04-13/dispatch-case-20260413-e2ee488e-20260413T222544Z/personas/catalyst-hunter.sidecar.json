@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Short-dated crypto can gap quickly on headlines.",
+    "Realized-vol extrapolation may understate jump risk.",
+    "The contract's exchange-specific settlement creates narrow path dependence."
+  ],
+  "key_assumptions": [
+    "No new downside catalyst forces a roughly 5-6% BTC drop into the exact resolution minute.",
+    "Binance remains a usable and representative settlement venue for the contract.",
+    "The remaining scheduled macro calendar is lighter after CPI already released on April 10."
+  ],
+  "main_logical_chain": [
+    "The market resolves on one exact Binance BTC/USDT one-minute close at noon ET on April 15, not on a broad daily average or another venue.",
+    "Current Binance spot is materially above 70000, so Yes only fails if BTC suffers a meaningful downside move before that exact minute.",
+    "The major obvious scheduled inflation catalyst already passed, so the remaining No path is mainly an unscheduled adverse shock rather than routine drift.",
+    "That leaves Yes as the higher-probability outcome, slightly above the market's already-high baseline."
+  ],
+  "main_thesis": "BTC is likely to remain above 70000 at the specific Binance BTC/USDT 12:00 ET one-minute close on April 15 because spot is currently around 74.1k, the strike sits materially below current price, and the main remaining path to No is a sharp downside catalyst before the exact resolution minute.",
+  "own_probability": 0.96,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "This market will resolve to Yes if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone has a final Close price higher than the price specified in the title.",
+    "Current Binance checks put BTCUSDT around 74.1k during the run."
+  ],
+  "reasoning_mode": [
+    "catalyst_analysis",
+    "market_anchor",
+    "contract_interpretation",
+    "technical_reference"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260413-e2ee488e",
+    "dispatch_id": "dispatch-case-20260413-e2ee488e-20260413T222544Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "889c6a8d-c463-4b7f-b440-dbc640691cc7",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260413-e2ee488e/researcher-analyses/2026-04-13/dispatch-case-20260413-e2ee488e-20260413T222544Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "41c6543886a14f535f7af5390bf9f938a579e6acceae6aff0561609690f73331"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High quality on contract mechanics and underlying price because Polymarket rules and Binance endpoints were checked directly; medium independence overall because Binance is both the live reference and settlement family, with BLS providing independent contextual timing support.",
+  "strongest_disconfirmers": [
+    "BTC can still drop 5-6% in less than two days if a real macro or crypto-specific shock hits.",
+    "Because settlement is Binance-specific, a Binance pricing dislocation or operational issue could matter more than broader market strength elsewhere."
+  ],
+  "strongest_supports": [
+    "Direct Binance checks during the run showed BTCUSDT around 74.1k, about 4.1k above the threshold.",
+    "Sampled recent Binance 1-minute history stayed above 70000 throughout the returned window.",
+    "The contract mechanics are narrow and explicit: Binance BTC/USDT, 12:00 ET, 1-minute candle, final Close."
+  ],
+  "timing_relevance": "Timing is central: this is a short-horizon threshold market where the key question is whether any new downside catalyst can force a sharp repricing before the exact April 15 12:00 ET Binance close.",
+  "unresolved_ambiguities": [
+    "The Census source pull did not cleanly expose the exact April 15 retail-sales release minute in fetched text.",
+    "There is always residual uncertainty around unscheduled macro or crypto-specific shocks before settlement."
+  ],
+  "what_would_change_view": "A sharp BTC breakdown toward 71k-72k, evidence of an underweighted major scheduled catalyst before noon ET on April 15, or a Binance-specific operational/pricing issue would reduce confidence materially."
+}

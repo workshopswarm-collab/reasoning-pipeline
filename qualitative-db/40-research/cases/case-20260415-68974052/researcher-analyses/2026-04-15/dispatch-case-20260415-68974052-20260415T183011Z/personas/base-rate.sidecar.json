@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A routine but meaningful two-day BTC drawdown could erase the current cushion.",
+    "Single-minute settlement mechanics make the outcome more path-dependent than broad daily-close wording would suggest.",
+    "Rule text references Binance UI candles while verification used Binance API semantics, leaving low but non-zero operational ambiguity."
+  ],
+  "key_assumptions": [
+    "BTC/USDT does not suffer a sustained downside move of roughly 3% or more into the exact settlement minute.",
+    "No Binance-specific operational issue materially distorts the relevant settlement candle.",
+    "Ordinary short-horizon volatility dominates the next two days rather than a fresh regime-shifting catalyst."
+  ],
+  "main_logical_chain": [
+    "Verify the governing contract mechanics: Binance BTC/USDT 12:00 ET 1-minute candle close on Apr. 17 must be strictly above 72000 for Yes.",
+    "Check current context: BTCUSDT is already around 74.2k on Binance, leaving a cushion above the strike.",
+    "Apply an outside-view prior: a threshold already in the money with two days left should lean Yes absent a fresh adverse catalyst.",
+    "Discount from market pricing because BTC's normal short-horizon volatility and the narrow single-minute settlement window leave a non-trivial failure path."
+  ],
+  "main_thesis": "BTC/USDT is more likely than not to be above 72000 at the Apr. 17 noon ET Binance one-minute close, but the market's ~85% pricing looks somewhat rich given ordinary two-day BTC volatility and the narrow single-minute settlement mechanic.",
+  "own_probability": 0.78,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone (noon) ... has a final 'Close' price higher than the price specified in the title.",
+    "ticker/price returned BTCUSDT at 74233.75000000 during the run."
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "contract_interpretation",
+    "market_anchor"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-68974052",
+    "dispatch_id": "dispatch-case-20260415-68974052-20260415T183011Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "121b882b-902e-45ec-a1c8-75c9864af574",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-68974052/researcher-analyses/2026-04-15/dispatch-case-20260415-68974052-20260415T183011Z/personas/base-rate.md",
+    "source_persona_sha256": "d050e66c80f8f6e6a6a912d39b8ac2060677a1d43372884c9748016e6da98410"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is good: Polymarket rules are the authoritative contract source, Binance docs/data directly verify mechanics and current context, independence is medium, and source-of-truth ambiguity is low.",
+  "strongest_disconfirmers": [
+    "BTC can move more than 3% in two days without an exotic trigger.",
+    "The contract settles on one exact Binance one-minute close at noon ET, so a temporary drawdown into that minute can flip the outcome to No."
+  ],
+  "strongest_supports": [
+    "Binance live ticker during the run showed BTCUSDT at 74233.75, about 2233.75 above the 72000 threshold.",
+    "Recent 1-minute Binance klines were also around 74.2k, consistent with the spot snapshot.",
+    "With only about two days left, No requires a meaningful downside move rather than merely a failed rally."
+  ],
+  "timing_relevance": "Settlement is specifically the Binance BTC/USDT 12:00 ET one-minute close on 2026-04-17, which was explicitly checked as 16:00 UTC.",
+  "unresolved_ambiguities": [
+    "Exact realized-volatility regime between now and settlement was not quantified with a separate historical series.",
+    "Small residual ambiguity remains between UI-referenced resolution wording and API-based mechanical verification."
+  ],
+  "what_would_change_view": "A decisive move back toward or below 72k before settlement, a volatility shock, or Binance-specific operational issues would make me more bearish; sustained trading well above 74k into Apr. 17 would make me more bullish."
+}

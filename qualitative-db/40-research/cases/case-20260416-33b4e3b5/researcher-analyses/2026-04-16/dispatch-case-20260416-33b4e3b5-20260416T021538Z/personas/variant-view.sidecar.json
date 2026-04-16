@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "The bearish-vs-market case weakens quickly if SOL sustains high-80s trading into the weekend.",
+    "Evidence independence is limited because both context and final settlement rely heavily on Binance."
+  ],
+  "key_assumptions": [
+    "Current mid-80s SOL pricing is not a large enough cushion to justify near-90% confidence.",
+    "A single sharp crypto risk-off move before Sunday noon ET could push the relevant Binance minute close below 80.",
+    "The contract mechanics are exactly as stated: Binance SOL/USDT, 12:00 ET, 1-minute candle final close."
+  ],
+  "main_logical_chain": [
+    "Polymarket implies about 89.5% Yes.",
+    "Direct Binance data shows SOL above 80 now, so Yes is the base case.",
+    "But the cushion above 80 is modest and April already saw a sub-80 low, so downside path risk is still real.",
+    "Because the contract settles on one exact one-minute close, temporary drawdown risk matters more than broad directional confidence.",
+    "Therefore Yes remains favored, but less strongly than market pricing suggests."
+  ],
+  "main_thesis": "Yes is still more likely than not, but the market is overconfident because a one-minute Binance noon ET settlement with only a modest spot cushion leaves meaningful short-horizon drawdown risk.",
+  "own_probability": 0.78,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "current ~89.5% market pricing looks too high given the small cushion above the threshold and the contract's path-dependent one-minute settlement mechanics",
+    "My estimate is 78% Yes"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation",
+    "variant_hypothesis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-33b4e3b5",
+    "dispatch_id": "dispatch-case-20260416-33b4e3b5-20260416T021538Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "345522ad-2755-48b0-a27f-894b7c9ef95e",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-33b4e3b5/researcher-analyses/2026-04-16/dispatch-case-20260416-33b4e3b5-20260416T021538Z/personas/variant-view.md",
+    "source_persona_sha256": "33083d414b0b250a290f79a918fc3c01a24f266cba4f148cea9a8f67199e40bd"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary sources were strong and directly relevant (Polymarket rules plus Binance market data), with low source-of-truth ambiguity but only medium-low independence.",
+  "strongest_disconfirmers": [
+    "Recent trading has repeatedly held above 80 with no direct evidence of an imminent catalyst likely to force a sub-80 print before Sunday.",
+    "The market may be right that a 4-5 day horizon from the mid-80s usually implies an above-85% chance of staying above 80 at one noon print."
+  ],
+  "strongest_supports": [
+    "Binance spot was about 84.91 during the run, above the 80 threshold.",
+    "Recent Binance daily closes were mostly in the 83-86 range.",
+    "Contract wording is explicit, reducing source-of-truth ambiguity."
+  ],
+  "timing_relevance": "This is a date-sensitive, path-dependent market: April 19, 2026 12:00 ET was explicitly verified as 2026-04-19T16:00:00Z.",
+  "unresolved_ambiguities": [
+    "No direct catalyst was identified that would specifically force a Sunday noon sub-80 print.",
+    "Short-horizon realized volatility between now and settlement could still compress materially."
+  ],
+  "what_would_change_view": "I would move closer to the market if SOL holds materially higher into the weekend or if added evidence shows downside volatility is shrinking; I would move more bearish if SOL drifts toward low 80s or broader crypto weakens."
+}

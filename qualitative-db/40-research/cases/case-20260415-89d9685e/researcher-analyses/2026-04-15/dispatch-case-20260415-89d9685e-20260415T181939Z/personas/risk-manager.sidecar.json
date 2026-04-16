@@ -1,0 +1,62 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Single-minute settlement is vulnerable to timing variance.",
+    "Exchange-specific dislocation on Binance could matter even if broader BTC markets remain stronger.",
+    "A sharp pre-noon selloff would compress the buffer quickly."
+  ],
+  "key_assumptions": [
+    "Current Binance BTC/USDT level is a useful anchor for the settlement minute.",
+    "No roughly 3%+ downside move occurs before April 16 noon ET.",
+    "The relevant noon ET candle maps to the expected UTC-converted 1-minute interval."
+  ],
+  "main_logical_chain": [
+    "Polymarket rules make Binance BTC/USDT 1-minute close at April 16 noon ET the governing condition.",
+    "Current direct Binance data places BTC/USDT materially above 72,000.",
+    "That makes Yes more likely than not, but one-minute settlement timing keeps downside path risk meaningful.",
+    "Therefore the direction matches the market, while confidence should be slightly below the market's ~93.5-94% pricing."
+  ],
+  "main_thesis": "Yes is favored because Binance BTC/USDT is currently around 74.3k, but a single-minute noon ET settlement leaves enough path risk that 94% market confidence looks a bit too high.",
+  "own_probability": 0.88,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "Buy Yes 94\u00a2",
+    "Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone",
+    "current Binance pricing around 74.3k"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "risk_management",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-89d9685e",
+    "dispatch_id": "dispatch-case-20260415-89d9685e-20260415T181939Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "5da10d14-5e35-4aca-b3c2-87262ddef2b8",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-89d9685e/researcher-analyses/2026-04-15/dispatch-case-20260415-89d9685e-20260415T181939Z/personas/risk-manager.md",
+    "source_persona_sha256": "f31f8c90c9aff6b942deb0acbcbe42a64a51e57a1dead8e0c1eb06aaac3082bb"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High direct relevance from Binance kline data, but only medium-low independence because both live verification surfaces were Binance-controlled; source-of-truth ambiguity is low-medium once ET mapping is checked.",
+  "strongest_disconfirmers": [
+    "The contract settles on one exact future minute, not the current spot level.",
+    "BTC only needs about a 3.1% decline from sampled current levels to lose, which is plausible over a day in crypto.",
+    "Verification surfaces were both Binance-controlled, limiting evidence independence."
+  ],
+  "strongest_supports": [
+    "Two Binance-controlled API surfaces showed recent BTC/USDT 1-minute closes around 74.3k.",
+    "Current sampled level sits about 3.1% above the 72,000 threshold.",
+    "Polymarket rules clearly specify Binance BTC/USDT 1-minute close as the governing source of truth."
+  ],
+  "timing_relevance": "Very high: the market resolves on one Binance BTC/USDT 1-minute close at April 16 12:00 ET.",
+  "unresolved_ambiguities": [
+    "Residual exact minute-label interpretation risk for the noon ET candle.",
+    "No independent non-Binance source can settle the market because the contract is venue-specific."
+  ],
+  "what_would_change_view": "I would move toward the market if fresh Binance checks near noon ET still show a comfortable >73k buffer; I would move away quickly if BTC loses 73k with momentum, trades near 72k, or if noon-candle interpretation becomes less clear."
+}

@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Only a short recent Binance candle sample was checked.",
+    "BTC can move enough overnight or into the U.S. morning to lose the threshold by settlement."
+  ],
+  "key_assumptions": [
+    "The market is mostly pricing persistence above 74000 rather than fresh breakout probability.",
+    "There is no meaningful venue-specific settlement anomaly beyond the stated Binance rule.",
+    "Short-term volatility before noon ET tomorrow is still enough to keep confidence below the market price."
+  ],
+  "main_logical_chain": [
+    "Start from the 0.71 market price as an information-rich prior.",
+    "Verify the governing source and exact settlement mechanics on the Polymarket rules page.",
+    "Check Binance directly and confirm BTC is currently above 74000 with recent 1-minute closes also above the threshold.",
+    "Interpret the market as pricing persistence into the settlement minute rather than initial reachability.",
+    "Shade slightly below market because a single later exact-minute close still leaves meaningful short-horizon reversal risk."
+  ],
+  "main_thesis": "The market's Yes lean is directionally sensible because BTC is already above 74000 on Binance, but I stay slightly below market because the contract settles on one exact later noon ET 1-minute close.",
+  "own_probability": 0.66,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "This market will resolve to \"Yes\" if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone has a final \"Close\" price higher than the price specified.",
+    "{\"symbol\":\"BTCUSDT\",\"price\":\"74888.89000000\"}"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-7bf6a6c4",
+    "dispatch_id": "dispatch-case-20260416-7bf6a6c4-20260416T025105Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "df85adea-03ee-4d2a-9fad-82f5faa62887",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-7bf6a6c4/researcher-analyses/2026-04-16/dispatch-case-20260416-7bf6a6c4-20260416T025105Z/personas/market-implied.md",
+    "source_persona_sha256": "64685086f7450b438ad3386a684c8170eb6f2f6960487beba6753309859e4733"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source-of-truth ambiguity is low because rules are explicit; overall source quality is good for a medium-difficulty short-horizon case, with one primary rules source and one direct governing-venue context source.",
+  "strongest_disconfirmers": [
+    "The contract settles on one exact later 12:00 ET Binance 1-minute close, not current spot.",
+    "A modest roughly 1.2% drawdown from the observed price would be enough to flip the outcome to No."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT was directly observed at 74888.89, already above the strike.",
+    "Recent fetched 1-minute Binance closes were all above 74000.",
+    "Polymarket rules clearly specify the governing source and timing condition."
+  ],
+  "timing_relevance": "This is a narrow timing contract: the decisive print is the Binance BTC/USDT 12:00 ET 1-minute close on Apr. 17, so current above-threshold trading is supportive but not dispositive.",
+  "unresolved_ambiguities": [
+    "How sticky 74000 support will be into the exact noon ET settlement minute.",
+    "Whether the live market would still sit near 0.71 after additional overnight persistence checks."
+  ],
+  "what_would_change_view": "I would move lower if Binance loses 74000 and starts printing repeated 1-minute closes below it into the U.S. morning; I would move higher if later direct Binance checks keep showing sustained support above the threshold closer to settlement."
+}

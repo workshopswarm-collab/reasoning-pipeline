@@ -1,0 +1,257 @@
+{
+  "actor": "decision-maker",
+  "agent_tool_use_allowed": false,
+  "artifact_type": "decision_stage_status",
+  "case_key": "case-20260415-894d4fca",
+  "decision_context_path": "roles/decision-maker/runtime/artifacts/case-20260415-894d4fca/decision-context-dispatch-case-20260415-894d4fca-20260415T021731Z.json",
+  "decision_lane": {
+    "topic_id": "2592",
+    "topic_title": "case-20260415-894d4fca | decision | T021731Z",
+    "session_key": "agent:main:telegram:group:-1003846500961:topic:2592"
+  },
+  "decision_launch_claim": {
+    "claimed_at": "2026-04-15T02:27:56.468512Z",
+    "decision_context_path": "roles/decision-maker/runtime/artifacts/case-20260415-894d4fca/decision-context-dispatch-case-20260415-894d4fca-20260415T021731Z.json",
+    "launch_log_path": "scripts/.runtime-state/decision-maker-launches/case-20260415-894d4fca-20260415T022756Z.log",
+    "launcher": "pipeline_automation_actions.launch_decision_maker",
+    "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260415-894d4fca/decision-prompt-dispatch-case-20260415-894d4fca-20260415T021731Z.md",
+    "runner_pid": 8522
+  },
+  "decision_prompt_path": "roles/decision-maker/runtime/artifacts/case-20260415-894d4fca/decision-prompt-dispatch-case-20260415-894d4fca-20260415T021731Z.md",
+  "decision_readiness": "needs_more_research",
+  "decision_target_chat_id": "-1003846500961",
+  "decision_target_session_key": "agent:main:telegram:group:-1003846500961:topic:2592",
+  "decision_visible_finish_marker": "DECISION-MAKING COMPLETED, DECISION PACKAGE CREATED | market=FISA Section 702 reauthorized before it expires? | dispatch_id=dispatch-case-20260415-894d4fca-20260415T021731Z | packet_path=qualitative-db/40-research/cases/case-20260415-894d4fca/decision-maker/decision-maker-packet.md",
+  "decision_visible_receipt_marker": "SYNTHESIS RECEIVED | market=FISA Section 702 reauthorized before it expires? | dispatch_id=dispatch-case-20260415-894d4fca-20260415T021731Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260415-894d4fca/decision-context-dispatch-case-20260415-894d4fca-20260415T021731Z.json",
+  "decision_visible_start_marker": "DECISION-MAKING ANALYSIS UNDERWAY | market=FISA Section 702 reauthorized before it expires? | dispatch_id=dispatch-case-20260415-894d4fca-20260415T021731Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260415-894d4fca/decision-context-dispatch-case-20260415-894d4fca-20260415T021731Z.json",
+  "dispatch_id": "dispatch-case-20260415-894d4fca-20260415T021731Z",
+  "last_stage_event": {
+    "at": "2026-04-15T02:28:47.477927Z",
+    "stage": "decision_execution",
+    "state": "visible_marker_sent",
+    "message": "DECISION-MAKING COMPLETED, DECISION PACKAGE CREATED | market=FISA Section 702 reauthorized before it expires? | dispatch_id=dispatch-case-20260415-894d4fca-20260415T021731Z | packet_path=qualitative-db/40-research/cases/case-20260415-894d4fca/decision-maker/decision-maker-packet.md"
+  },
+  "packet_json_path": "qualitative-db/40-research/cases/case-20260415-894d4fca/decision-maker/artifacts/decision-maker-packet.json",
+  "packet_markdown_path": "qualitative-db/40-research/cases/case-20260415-894d4fca/decision-maker/decision-maker-packet.md",
+  "position_policy": "flat",
+  "question": "FISA Section 702 reauthorized before it expires?",
+  "recommended_side": "yes",
+  "schema_version": "decision-stage-status/v1",
+  "selected_input_bundle_estimated_tokens": 2889,
+  "selected_input_bundle_mode": "not_ready_reopen_recommended",
+  "selected_input_bundle_path": "roles/decision-maker/runtime/artifacts/case-20260415-894d4fca/selected-inputs-dispatch-case-20260415-894d4fca-20260415T021731Z.json",
+  "stage_events": [
+    {
+      "at": "2026-04-15T02:27:55.942816Z",
+      "message": "Decision-Maker stage initialized from synthesis handoff",
+      "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260415-894d4fca/synthesizer-agent/decision-handoff.md",
+      "stage": "kickoff",
+      "state": "decision_ready_for_receipt"
+    },
+    {
+      "agent_tool_use_allowed": false,
+      "approx_tokens_after_trim": 2889,
+      "at": "2026-04-15T02:27:56.433620Z",
+      "message": "Built deterministic Decision-Maker selected-input bundle",
+      "selected_input_bundle_path": "roles/decision-maker/runtime/artifacts/case-20260415-894d4fca/selected-inputs-dispatch-case-20260415-894d4fca-20260415T021731Z.json",
+      "stage": "decision_input_selection",
+      "state": "built",
+      "verification_mode": "not_ready_reopen_recommended",
+      "verification_mode_path": "roles/decision-maker/runtime/artifacts/case-20260415-894d4fca/verification-mode-dispatch-case-20260415-894d4fca-20260415T021731Z.json"
+    },
+    {
+      "at": "2026-04-15T02:27:56.433839Z",
+      "message": "Built Decision-Maker prompt from compact selected-input bundle",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260415-894d4fca/decision-prompt-dispatch-case-20260415-894d4fca-20260415T021731Z.md",
+      "stage": "decision_prompt",
+      "state": "built"
+    },
+    {
+      "at": "2026-04-15T02:27:56.435108Z",
+      "message": "Decision-Maker inputs prepared; awaiting launch claim",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260415-894d4fca/decision-prompt-dispatch-case-20260415-894d4fca-20260415T021731Z.md",
+      "stage": "decision_prepare",
+      "state": "handoff_prepared"
+    },
+    {
+      "at": "2026-04-15T02:27:56.468512Z",
+      "decision_context_path": "roles/decision-maker/runtime/artifacts/case-20260415-894d4fca/decision-context-dispatch-case-20260415-894d4fca-20260415T021731Z.json",
+      "launch_log_path": "scripts/.runtime-state/decision-maker-launches/case-20260415-894d4fca-20260415T022756Z.log",
+      "message": "Decision-Maker launch claimed by automation controller",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260415-894d4fca/decision-prompt-dispatch-case-20260415-894d4fca-20260415T021731Z.md",
+      "runner_pid": 8522,
+      "stage": "decision_receipt",
+      "state": "handoff_sent"
+    },
+    {
+      "at": "2026-04-15T02:27:56.646380Z",
+      "stage": "kickoff",
+      "state": "reentered",
+      "message": "Decision-Maker executor resumed from existing prepared/running state",
+      "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260415-894d4fca/synthesizer-agent/decision-handoff.md"
+    },
+    {
+      "at": "2026-04-15T02:27:57.134051Z",
+      "stage": "decision_input_selection",
+      "state": "built",
+      "message": "Built deterministic Decision-Maker selected-input bundle",
+      "verification_mode_path": "roles/decision-maker/runtime/artifacts/case-20260415-894d4fca/verification-mode-dispatch-case-20260415-894d4fca-20260415T021731Z.json",
+      "selected_input_bundle_path": "roles/decision-maker/runtime/artifacts/case-20260415-894d4fca/selected-inputs-dispatch-case-20260415-894d4fca-20260415T021731Z.json",
+      "verification_mode": "not_ready_reopen_recommended",
+      "approx_tokens_after_trim": 2889,
+      "agent_tool_use_allowed": false
+    },
+    {
+      "at": "2026-04-15T02:27:57.134275Z",
+      "stage": "decision_prompt",
+      "state": "built",
+      "message": "Built Decision-Maker prompt from compact selected-input bundle",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260415-894d4fca/decision-prompt-dispatch-case-20260415-894d4fca-20260415T021731Z.md"
+    },
+    {
+      "at": "2026-04-15T02:28:02.451369Z",
+      "stage": "decision_lane_bootstrap",
+      "state": "created",
+      "message": "Created dedicated Telegram decision lane",
+      "topic_id": "2592",
+      "topic_title": "case-20260415-894d4fca | decision | T021731Z",
+      "session_key": "agent:main:telegram:group:-1003846500961:topic:2592"
+    },
+    {
+      "at": "2026-04-15T02:28:18.175073Z",
+      "stage": "decision_receipt",
+      "state": "visible_marker_sent",
+      "message": "SYNTHESIS RECEIVED | market=FISA Section 702 reauthorized before it expires? | dispatch_id=dispatch-case-20260415-894d4fca-20260415T021731Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260415-894d4fca/decision-context-dispatch-case-20260415-894d4fca-20260415T021731Z.json"
+    },
+    {
+      "at": "2026-04-15T02:28:18.176437Z",
+      "stage": "decision_receipt",
+      "state": "accepted",
+      "message": "Decision-Maker handoff accepted",
+      "session_key": "agent:decision-maker:main",
+      "handoff_status": "started",
+      "gateway_response_path": "roles/decision-maker/runtime/artifacts/case-20260415-894d4fca/decision-gateway-response-dispatch-case-20260415-894d4fca-20260415T021731Z.json"
+    },
+    {
+      "at": "2026-04-15T02:28:18.176656Z",
+      "stage": "decision_execution",
+      "state": "decision_analysis_running",
+      "message": "Decision-Maker agent invocation accepted and analysis started",
+      "session_key": "agent:decision-maker:main",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260415-894d4fca/decision-prompt-dispatch-case-20260415-894d4fca-20260415T021731Z.md",
+      "handoff_status": "started"
+    },
+    {
+      "at": "2026-04-15T02:28:26.730809Z",
+      "stage": "decision_execution",
+      "state": "visible_marker_sent",
+      "message": "DECISION-MAKING ANALYSIS UNDERWAY | market=FISA Section 702 reauthorized before it expires? | dispatch_id=dispatch-case-20260415-894d4fca-20260415T021731Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260415-894d4fca/decision-context-dispatch-case-20260415-894d4fca-20260415T021731Z.json"
+    },
+    {
+      "at": "2026-04-15T02:28:39.052613Z",
+      "stage": "decision_execution",
+      "state": "decision_completed",
+      "message": "Decision-Maker completed and packet rendered",
+      "warnings": [],
+      "forecast_decision_persist_error": "",
+      "decision_parse_attempt_count": 1,
+      "decision_recovered_after_retry": false
+    },
+    {
+      "at": "2026-04-15T02:28:47.477927Z",
+      "stage": "decision_execution",
+      "state": "visible_marker_sent",
+      "message": "DECISION-MAKING COMPLETED, DECISION PACKAGE CREATED | market=FISA Section 702 reauthorized before it expires? | dispatch_id=dispatch-case-20260415-894d4fca-20260415T021731Z | packet_path=qualitative-db/40-research/cases/case-20260415-894d4fca/decision-maker/decision-maker-packet.md"
+    }
+  ],
+  "status": "decision_completed",
+  "targeted_verification_pack_path": "",
+  "targeted_verification_pack_required": false,
+  "trade_authorization": "forbidden",
+  "updated_at": "2026-04-15T02:28:47.477982Z",
+  "verification_mode_path": "roles/decision-maker/runtime/artifacts/case-20260415-894d4fca/verification-mode-dispatch-case-20260415-894d4fca-20260415T021731Z.json",
+  "warnings": [],
+  "previous_status": "handoff_sent",
+  "raw_gateway_response_path": "roles/decision-maker/runtime/artifacts/case-20260415-894d4fca/decision-gateway-response-dispatch-case-20260415-894d4fca-20260415T021731Z.json",
+  "raw_response_text_path": "roles/decision-maker/runtime/artifacts/case-20260415-894d4fca/decision-response-dispatch-case-20260415-894d4fca-20260415T021731Z.raw.txt",
+  "decision_parse_failure_artifact_path": "roles/decision-maker/runtime/artifacts/case-20260415-894d4fca/decision-parse-failure-dispatch-case-20260415-894d4fca-20260415T021731Z.json",
+  "decision_parse_attempt_count": 1,
+  "decision_recovered_after_retry": false,
+  "decision_lane_topic_id": "2592",
+  "decision_lane_topic_title": "case-20260415-894d4fca | decision | T021731Z",
+  "decision_lane_session_key": "agent:main:telegram:group:-1003846500961:topic:2592",
+  "decision_target_topic_id": "2592",
+  "decision_target_topic_title": "case-20260415-894d4fca | decision | T021731Z",
+  "decision_receipt_marker_sent_at": "2026-04-15T02:28:18.175030+00:00",
+  "decision_analysis_marker_sent_at": "2026-04-15T02:28:26.730760+00:00",
+  "timeline_update": {
+    "appended": true,
+    "case_key": "case-20260415-894d4fca",
+    "dispatch_id": "dispatch-case-20260415-894d4fca-20260415T021731Z",
+    "packet_path": "qualitative-db/40-research/cases/case-20260415-894d4fca/decision-maker/decision-maker-packet.md",
+    "entry": "- 2026-04-15T02:28:39.051226+00:00 — completed decision-making `dispatch-case-20260415-894d4fca-20260415T021731Z` with packet `qualitative-db/40-research/cases/case-20260415-894d4fca/decision-maker/decision-maker-packet.md`."
+  },
+  "forecast_decision_persist": {
+    "ok": true,
+    "packet_json": "qualitative-db/40-research/cases/case-20260415-894d4fca/decision-maker/artifacts/decision-maker-packet.json",
+    "persisted": {
+      "forecast_id": "dispatch-case-20260415-894d4fca-20260415T021731Z",
+      "market_id": "a66cb5d4-1b1e-484e-91b4-7bfd8c0a7ac6",
+      "contract_id": "yes",
+      "forecast_prob": 0.805,
+      "decision_status": "void",
+      "decision_packet_path": "qualitative-db/40-research/cases/case-20260415-894d4fca/decision-maker/artifacts/decision-maker-packet.json",
+      "supersedes_forecast_id": null,
+      "superseded_forecast_ids": [],
+      "market_state": {
+        "market_id": "a66cb5d4-1b1e-484e-91b4-7bfd8c0a7ac6",
+        "current_price": 0.785,
+        "last_reasoned_price": 0.805,
+        "pipeline_status": "closed"
+      }
+    },
+    "record": {
+      "forecast_id": "dispatch-case-20260415-894d4fca-20260415T021731Z",
+      "decision_ts": "2026-04-14T22:28:00-04:00",
+      "case_id": "case-20260415-894d4fca",
+      "dispatch_id": "dispatch-case-20260415-894d4fca-20260415T021731Z",
+      "market_id": "a66cb5d4-1b1e-484e-91b4-7bfd8c0a7ac6",
+      "contract_id": "yes",
+      "platform": "polymarket",
+      "market_slug": "fisa-section-702-reauthorized-before-it-expires",
+      "question": "FISA Section 702 reauthorized before it expires?",
+      "forecast_prob": "0.805",
+      "forecast_direction": "yes",
+      "confidence_label": "medium",
+      "confidence_score": "",
+      "time_horizon_label": "",
+      "verification_mode": "not_ready_reopen_recommended",
+      "decision_status": "void",
+      "rationale_summary": "The contract text points toward Yes because it explicitly includes Public Law 118-49 and that law was enacted and amended Section 702, but since that reading conflicts with the live 2026 framing and the linked source reference, the disciplined output is forbidden and needs-more-research rather than trading a text-driven edge.",
+      "decision_packet_path": "qualitative-db/40-research/cases/case-20260415-894d4fca/decision-maker/artifacts/decision-maker-packet.json",
+      "decision_handoff_path": "qualitative-db/40-research/cases/case-20260415-894d4fca/synthesizer-agent/decision-handoff.md",
+      "syndicated_finding_path": "qualitative-db/40-research/cases/case-20260415-894d4fca/synthesizer-agent/syndicated-finding.md"
+    },
+    "warnings": []
+  },
+  "terminal_summary": {
+    "at": "2026-04-15T02:28:47.478000Z",
+    "status": "decision_completed",
+    "decision_lane": {
+      "topic_id": "2592",
+      "topic_title": "case-20260415-894d4fca | decision | T021731Z",
+      "session_key": "agent:main:telegram:group:-1003846500961:topic:2592"
+    },
+    "packet_json_path": "qualitative-db/40-research/cases/case-20260415-894d4fca/decision-maker/artifacts/decision-maker-packet.json",
+    "packet_markdown_path": "qualitative-db/40-research/cases/case-20260415-894d4fca/decision-maker/decision-maker-packet.md",
+    "trade_authorization": "forbidden",
+    "decision_readiness": "needs_more_research",
+    "last_stage_event": {
+      "at": "2026-04-15T02:28:47.477927Z",
+      "stage": "decision_execution",
+      "state": "visible_marker_sent",
+      "message": "DECISION-MAKING COMPLETED, DECISION PACKAGE CREATED | market=FISA Section 702 reauthorized before it expires? | dispatch_id=dispatch-case-20260415-894d4fca-20260415T021731Z | packet_path=qualitative-db/40-research/cases/case-20260415-894d4fca/decision-maker/decision-maker-packet.md"
+    }
+  },
+  "decision_completion_marker_sent_at": "2026-04-15T02:28:47.477884+00:00"
+}

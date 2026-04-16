@@ -1,0 +1,51 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "schema_version": "v1",
+  "persona": "base-rate",
+  "main_thesis": "BTC is already meaningfully above 72000 on Binance, so Yes is favored, but the market likely overstates confidence because resolution depends on a single noon ET 1-minute close.",
+  "own_probability": 0.88,
+  "reasoning_mode": ["base_rate", "market_anchor", "contract_interpretation"],
+  "key_assumptions": [
+    "BTC/USDT stays near its current mid-74k zone rather than dropping more than about 3% into the reference minute.",
+    "Binance API and practical candle reading align with the contract's intended settlement interpretation."
+  ],
+  "strongest_supports": [
+    "Direct Binance checks showed BTCUSDT around 74.2k-74.3k, already above the 72k threshold by about 2.2k+.",
+    "Polymarket rules clearly define Binance BTC/USDT 12:00 PM ET 1-minute candle close as the source of truth."
+  ],
+  "strongest_disconfirmers": [
+    "A single-minute close is path-dependent, so a sharp temporary selloff at the reference minute could still resolve No.",
+    "BTC can move several percent in a day, which makes 93.5% look somewhat too high for this exact-minute contract."
+  ],
+  "main_logical_chain": [
+    "Verify the exact contract mechanics and governing source of truth.",
+    "Check direct Binance spot and recent 1-minute data to see whether the threshold is currently in or out of the money.",
+    "Apply outside-view reasoning: an already in-the-money one-day threshold usually holds more often than not, but single-minute crypto timing risk argues against near-certainty.",
+    "Conclude Yes is favored but at a lower confidence level than the market implies."
+  ],
+  "fragility_points": [
+    "Outcome depends on one exact minute close rather than a broader average or end-of-day print.",
+    "A fast downside move before noon ET on April 16 would quickly erode the current cushion."
+  ],
+  "unresolved_ambiguities": [
+    "Minor practical ambiguity remains between Binance UI candle reading and API-based verification, though source-of-truth ambiguity is still low to medium."
+  ],
+  "timing_relevance": "The contract resolves on the Binance BTC/USDT 12:00 PM ET 1-minute close on 2026-04-16, so one-day price path and exact timestamp behavior matter more than broader daily trend.",
+  "source_quality_view": "High-quality direct sources for both contract rules and settlement venue were checked; independence is medium because both center on the same contract/exchange pair.",
+  "what_would_change_view": "A move down toward 72k before the April 16 reference minute, evidence of elevated catalyst risk, or clarified settlement mechanics would reduce confidence in Yes; stable trade above mid-74k into late morning would move the view closer to market.",
+  "recommended_weight": "medium",
+  "confidence_in_extract": "high",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone (noon)... has a final 'Close' price higher than the price specified in the title.",
+    "My estimate is 88% for Yes."
+  ],
+  "runtime_metadata": {
+    "generation_mode": "researcher_sidecar_v1",
+    "case_key": "case-20260415-89d9685e",
+    "dispatch_id": "dispatch-case-20260415-89d9685e-20260415T181939Z",
+    "research_run_id": "b72e787e-7c5c-47d0-81b7-86c2ba30dd61",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-89d9685e/researcher-analyses/2026-04-15/dispatch-case-20260415-89d9685e-20260415T181939Z/personas/base-rate.md",
+    "source_persona_sha256": "ab8f7949c33189a0f10de38c67229b284cfe7a733328009eec41dd41d028042c",
+    "prompt_contract_version": "researcher-sidecar-v1"
+  }
+}

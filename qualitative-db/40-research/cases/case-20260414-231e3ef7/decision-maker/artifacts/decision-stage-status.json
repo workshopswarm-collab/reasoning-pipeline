@@ -1,0 +1,255 @@
+{
+  "actor": "decision-maker",
+  "agent_tool_use_allowed": false,
+  "artifact_type": "decision_stage_status",
+  "case_key": "case-20260414-231e3ef7",
+  "decision_context_path": "roles/decision-maker/runtime/artifacts/case-20260414-231e3ef7/decision-context-dispatch-case-20260414-231e3ef7-20260414T140546Z.json",
+  "decision_lane": {
+    "topic_id": "1777",
+    "topic_title": "case-20260414-231e3ef7 | decision | T140546Z",
+    "session_key": "agent:main:telegram:group:-1003846500961:topic:1777"
+  },
+  "decision_launch_claim": {
+    "claimed_at": "2026-04-14T14:18:25.937178Z",
+    "decision_context_path": "roles/decision-maker/runtime/artifacts/case-20260414-231e3ef7/decision-context-dispatch-case-20260414-231e3ef7-20260414T140546Z.json",
+    "launch_log_path": "scripts/.runtime-state/decision-maker-launches/case-20260414-231e3ef7-20260414T141825Z.log",
+    "launcher": "pipeline_automation_actions.launch_decision_maker",
+    "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260414-231e3ef7/decision-prompt-dispatch-case-20260414-231e3ef7-20260414T140546Z.md",
+    "runner_pid": 36726
+  },
+  "decision_prompt_path": "roles/decision-maker/runtime/artifacts/case-20260414-231e3ef7/decision-prompt-dispatch-case-20260414-231e3ef7-20260414T140546Z.md",
+  "decision_readiness": "needs_more_research",
+  "decision_target_chat_id": "-1003846500961",
+  "decision_target_session_key": "agent:main:telegram:group:-1003846500961:topic:1777",
+  "decision_visible_finish_marker": "DECISION-MAKING COMPLETED, DECISION PACKAGE CREATED | market=Will Javokhir Sindarov win the 2026 FIDE Candidates Tournament? | dispatch_id=dispatch-case-20260414-231e3ef7-20260414T140546Z | packet_path=qualitative-db/40-research/cases/case-20260414-231e3ef7/decision-maker/decision-maker-packet.md",
+  "decision_visible_receipt_marker": "SYNTHESIS RECEIVED | market=Will Javokhir Sindarov win the 2026 FIDE Candidates Tournament? | dispatch_id=dispatch-case-20260414-231e3ef7-20260414T140546Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260414-231e3ef7/decision-context-dispatch-case-20260414-231e3ef7-20260414T140546Z.json",
+  "decision_visible_start_marker": "DECISION-MAKING ANALYSIS UNDERWAY | market=Will Javokhir Sindarov win the 2026 FIDE Candidates Tournament? | dispatch_id=dispatch-case-20260414-231e3ef7-20260414T140546Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260414-231e3ef7/decision-context-dispatch-case-20260414-231e3ef7-20260414T140546Z.json",
+  "dispatch_id": "dispatch-case-20260414-231e3ef7-20260414T140546Z",
+  "last_stage_event": {
+    "at": "2026-04-14T14:19:26.838510Z",
+    "stage": "decision_execution",
+    "state": "visible_marker_sent",
+    "message": "DECISION-MAKING COMPLETED, DECISION PACKAGE CREATED | market=Will Javokhir Sindarov win the 2026 FIDE Candidates Tournament? | dispatch_id=dispatch-case-20260414-231e3ef7-20260414T140546Z | packet_path=qualitative-db/40-research/cases/case-20260414-231e3ef7/decision-maker/decision-maker-packet.md"
+  },
+  "packet_json_path": "qualitative-db/40-research/cases/case-20260414-231e3ef7/decision-maker/artifacts/decision-maker-packet.json",
+  "packet_markdown_path": "qualitative-db/40-research/cases/case-20260414-231e3ef7/decision-maker/decision-maker-packet.md",
+  "position_policy": "hold_only",
+  "question": "Will Javokhir Sindarov win the 2026 FIDE Candidates Tournament?",
+  "recommended_side": "yes",
+  "schema_version": "decision-stage-status/v1",
+  "selected_input_bundle_estimated_tokens": 2755,
+  "selected_input_bundle_mode": "not_ready_reopen_recommended",
+  "selected_input_bundle_path": "roles/decision-maker/runtime/artifacts/case-20260414-231e3ef7/selected-inputs-dispatch-case-20260414-231e3ef7-20260414T140546Z.json",
+  "stage_events": [
+    {
+      "at": "2026-04-14T14:18:25.373305Z",
+      "message": "Decision-Maker stage initialized from synthesis handoff",
+      "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260414-231e3ef7/synthesizer-agent/decision-handoff.md",
+      "stage": "kickoff",
+      "state": "decision_ready_for_receipt"
+    },
+    {
+      "agent_tool_use_allowed": false,
+      "approx_tokens_after_trim": 2755,
+      "at": "2026-04-14T14:18:25.902211Z",
+      "message": "Built deterministic Decision-Maker selected-input bundle",
+      "selected_input_bundle_path": "roles/decision-maker/runtime/artifacts/case-20260414-231e3ef7/selected-inputs-dispatch-case-20260414-231e3ef7-20260414T140546Z.json",
+      "stage": "decision_input_selection",
+      "state": "built",
+      "verification_mode": "not_ready_reopen_recommended",
+      "verification_mode_path": "roles/decision-maker/runtime/artifacts/case-20260414-231e3ef7/verification-mode-dispatch-case-20260414-231e3ef7-20260414T140546Z.json"
+    },
+    {
+      "at": "2026-04-14T14:18:25.902442Z",
+      "message": "Built Decision-Maker prompt from compact selected-input bundle",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260414-231e3ef7/decision-prompt-dispatch-case-20260414-231e3ef7-20260414T140546Z.md",
+      "stage": "decision_prompt",
+      "state": "built"
+    },
+    {
+      "at": "2026-04-14T14:18:25.903689Z",
+      "message": "Decision-Maker inputs prepared; awaiting launch claim",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260414-231e3ef7/decision-prompt-dispatch-case-20260414-231e3ef7-20260414T140546Z.md",
+      "stage": "decision_prepare",
+      "state": "handoff_prepared"
+    },
+    {
+      "at": "2026-04-14T14:18:25.937178Z",
+      "decision_context_path": "roles/decision-maker/runtime/artifacts/case-20260414-231e3ef7/decision-context-dispatch-case-20260414-231e3ef7-20260414T140546Z.json",
+      "launch_log_path": "scripts/.runtime-state/decision-maker-launches/case-20260414-231e3ef7-20260414T141825Z.log",
+      "message": "Decision-Maker launch claimed by automation controller",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260414-231e3ef7/decision-prompt-dispatch-case-20260414-231e3ef7-20260414T140546Z.md",
+      "runner_pid": 36726,
+      "stage": "decision_receipt",
+      "state": "handoff_sent"
+    },
+    {
+      "at": "2026-04-14T14:18:26.123562Z",
+      "stage": "kickoff",
+      "state": "reentered",
+      "message": "Decision-Maker executor resumed from existing prepared/running state",
+      "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260414-231e3ef7/synthesizer-agent/decision-handoff.md"
+    },
+    {
+      "at": "2026-04-14T14:18:26.645988Z",
+      "stage": "decision_input_selection",
+      "state": "built",
+      "message": "Built deterministic Decision-Maker selected-input bundle",
+      "verification_mode_path": "roles/decision-maker/runtime/artifacts/case-20260414-231e3ef7/verification-mode-dispatch-case-20260414-231e3ef7-20260414T140546Z.json",
+      "selected_input_bundle_path": "roles/decision-maker/runtime/artifacts/case-20260414-231e3ef7/selected-inputs-dispatch-case-20260414-231e3ef7-20260414T140546Z.json",
+      "verification_mode": "not_ready_reopen_recommended",
+      "approx_tokens_after_trim": 2755,
+      "agent_tool_use_allowed": false
+    },
+    {
+      "at": "2026-04-14T14:18:26.646218Z",
+      "stage": "decision_prompt",
+      "state": "built",
+      "message": "Built Decision-Maker prompt from compact selected-input bundle",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260414-231e3ef7/decision-prompt-dispatch-case-20260414-231e3ef7-20260414T140546Z.md"
+    },
+    {
+      "at": "2026-04-14T14:18:32.141323Z",
+      "stage": "decision_lane_bootstrap",
+      "state": "created",
+      "message": "Created dedicated Telegram decision lane",
+      "topic_id": "1777",
+      "topic_title": "case-20260414-231e3ef7 | decision | T140546Z",
+      "session_key": "agent:main:telegram:group:-1003846500961:topic:1777"
+    },
+    {
+      "at": "2026-04-14T14:18:48.362443Z",
+      "stage": "decision_receipt",
+      "state": "visible_marker_sent",
+      "message": "SYNTHESIS RECEIVED | market=Will Javokhir Sindarov win the 2026 FIDE Candidates Tournament? | dispatch_id=dispatch-case-20260414-231e3ef7-20260414T140546Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260414-231e3ef7/decision-context-dispatch-case-20260414-231e3ef7-20260414T140546Z.json"
+    },
+    {
+      "at": "2026-04-14T14:18:48.363963Z",
+      "stage": "decision_receipt",
+      "state": "accepted",
+      "message": "Decision-Maker handoff accepted",
+      "session_key": "agent:decision-maker:main",
+      "handoff_status": "started",
+      "gateway_response_path": "roles/decision-maker/runtime/artifacts/case-20260414-231e3ef7/decision-gateway-response-dispatch-case-20260414-231e3ef7-20260414T140546Z.json"
+    },
+    {
+      "at": "2026-04-14T14:18:48.364134Z",
+      "stage": "decision_execution",
+      "state": "decision_analysis_running",
+      "message": "Decision-Maker agent invocation accepted and analysis started",
+      "session_key": "agent:decision-maker:main",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260414-231e3ef7/decision-prompt-dispatch-case-20260414-231e3ef7-20260414T140546Z.md",
+      "handoff_status": "started"
+    },
+    {
+      "at": "2026-04-14T14:18:57.261764Z",
+      "stage": "decision_execution",
+      "state": "visible_marker_sent",
+      "message": "DECISION-MAKING ANALYSIS UNDERWAY | market=Will Javokhir Sindarov win the 2026 FIDE Candidates Tournament? | dispatch_id=dispatch-case-20260414-231e3ef7-20260414T140546Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260414-231e3ef7/decision-context-dispatch-case-20260414-231e3ef7-20260414T140546Z.json"
+    },
+    {
+      "at": "2026-04-14T14:19:17.819588Z",
+      "stage": "decision_execution",
+      "state": "decision_completed",
+      "message": "Decision-Maker completed and packet rendered",
+      "warnings": [],
+      "forecast_decision_persist_error": ""
+    },
+    {
+      "at": "2026-04-14T14:19:26.838510Z",
+      "stage": "decision_execution",
+      "state": "visible_marker_sent",
+      "message": "DECISION-MAKING COMPLETED, DECISION PACKAGE CREATED | market=Will Javokhir Sindarov win the 2026 FIDE Candidates Tournament? | dispatch_id=dispatch-case-20260414-231e3ef7-20260414T140546Z | packet_path=qualitative-db/40-research/cases/case-20260414-231e3ef7/decision-maker/decision-maker-packet.md"
+    }
+  ],
+  "status": "decision_completed",
+  "targeted_verification_pack_path": "",
+  "targeted_verification_pack_required": false,
+  "trade_authorization": "watch_only",
+  "updated_at": "2026-04-14T14:19:26.838556Z",
+  "verification_mode_path": "roles/decision-maker/runtime/artifacts/case-20260414-231e3ef7/verification-mode-dispatch-case-20260414-231e3ef7-20260414T140546Z.json",
+  "warnings": [],
+  "previous_status": "handoff_sent",
+  "raw_gateway_response_path": "roles/decision-maker/runtime/artifacts/case-20260414-231e3ef7/decision-gateway-response-dispatch-case-20260414-231e3ef7-20260414T140546Z.json",
+  "raw_response_text_path": "roles/decision-maker/runtime/artifacts/case-20260414-231e3ef7/decision-response-dispatch-case-20260414-231e3ef7-20260414T140546Z.raw.txt",
+  "decision_parse_failure_artifact_path": "roles/decision-maker/runtime/artifacts/case-20260414-231e3ef7/decision-parse-failure-dispatch-case-20260414-231e3ef7-20260414T140546Z.json",
+  "decision_lane_topic_id": "1777",
+  "decision_lane_topic_title": "case-20260414-231e3ef7 | decision | T140546Z",
+  "decision_lane_session_key": "agent:main:telegram:group:-1003846500961:topic:1777",
+  "decision_target_topic_id": "1777",
+  "decision_target_topic_title": "case-20260414-231e3ef7 | decision | T140546Z",
+  "decision_receipt_marker_sent_at": "2026-04-14T14:18:48.362382+00:00",
+  "decision_analysis_marker_sent_at": "2026-04-14T14:18:57.261702+00:00",
+  "timeline_update": {
+    "appended": true,
+    "case_key": "case-20260414-231e3ef7",
+    "dispatch_id": "dispatch-case-20260414-231e3ef7-20260414T140546Z",
+    "packet_path": "qualitative-db/40-research/cases/case-20260414-231e3ef7/decision-maker/decision-maker-packet.md",
+    "entry": "- 2026-04-14T14:19:17.817652+00:00 — completed decision-making `dispatch-case-20260414-231e3ef7-20260414T140546Z` with packet `qualitative-db/40-research/cases/case-20260414-231e3ef7/decision-maker/decision-maker-packet.md`."
+  },
+  "forecast_decision_persist": {
+    "ok": true,
+    "packet_json": "qualitative-db/40-research/cases/case-20260414-231e3ef7/decision-maker/artifacts/decision-maker-packet.json",
+    "persisted": {
+      "forecast_id": "dispatch-case-20260414-231e3ef7-20260414T140546Z",
+      "market_id": "10fd2777-fd8a-44c4-8b93-580862fcb3f5",
+      "contract_id": "yes",
+      "forecast_prob": 0.955,
+      "decision_status": "void",
+      "decision_packet_path": "qualitative-db/40-research/cases/case-20260414-231e3ef7/decision-maker/artifacts/decision-maker-packet.json",
+      "supersedes_forecast_id": "dispatch-case-20260413-9dc5221c-20260413T190728Z",
+      "superseded_forecast_ids": [
+        "dispatch-case-20260413-9dc5221c-20260413T190728Z"
+      ],
+      "market_state": {
+        "market_id": "10fd2777-fd8a-44c4-8b93-580862fcb3f5",
+        "current_price": 0.9915,
+        "last_reasoned_price": 0.955,
+        "pipeline_status": "pending_research"
+      }
+    },
+    "record": {
+      "forecast_id": "dispatch-case-20260414-231e3ef7-20260414T140546Z",
+      "decision_ts": "2026-04-14T10:18:00-04:00",
+      "case_id": "case-20260414-231e3ef7",
+      "dispatch_id": "dispatch-case-20260414-231e3ef7-20260414T140546Z",
+      "market_id": "10fd2777-fd8a-44c4-8b93-580862fcb3f5",
+      "contract_id": "yes",
+      "platform": "polymarket",
+      "market_slug": "will-javokhir-sindarov-win-the-2026-fide-candidates-tournament",
+      "question": "Will Javokhir Sindarov win the 2026 FIDE Candidates Tournament?",
+      "forecast_prob": "0.955",
+      "forecast_direction": "yes",
+      "confidence_label": "medium",
+      "confidence_score": "",
+      "time_horizon_label": "Through remaining rounds, official FIDE standings updates, and final winner declaration",
+      "verification_mode": "not_ready_reopen_recommended",
+      "decision_status": "void",
+      "rationale_summary": "Sindarov still looks overwhelmingly likely to win, but because the 99.05% market price is not matched by a clean official FIDE crosstable or winner confirmation and the tournament remained live at analysis time, the disciplined output is watch-only and needs-more-research rather than chasing near-certainty.",
+      "decision_packet_path": "qualitative-db/40-research/cases/case-20260414-231e3ef7/decision-maker/artifacts/decision-maker-packet.json",
+      "decision_handoff_path": "qualitative-db/40-research/cases/case-20260414-231e3ef7/synthesizer-agent/decision-handoff.md",
+      "syndicated_finding_path": "qualitative-db/40-research/cases/case-20260414-231e3ef7/synthesizer-agent/syndicated-finding.md"
+    },
+    "warnings": []
+  },
+  "terminal_summary": {
+    "at": "2026-04-14T14:19:26.838577Z",
+    "status": "decision_completed",
+    "decision_lane": {
+      "topic_id": "1777",
+      "topic_title": "case-20260414-231e3ef7 | decision | T140546Z",
+      "session_key": "agent:main:telegram:group:-1003846500961:topic:1777"
+    },
+    "packet_json_path": "qualitative-db/40-research/cases/case-20260414-231e3ef7/decision-maker/artifacts/decision-maker-packet.json",
+    "packet_markdown_path": "qualitative-db/40-research/cases/case-20260414-231e3ef7/decision-maker/decision-maker-packet.md",
+    "trade_authorization": "watch_only",
+    "decision_readiness": "needs_more_research",
+    "last_stage_event": {
+      "at": "2026-04-14T14:19:26.838510Z",
+      "stage": "decision_execution",
+      "state": "visible_marker_sent",
+      "message": "DECISION-MAKING COMPLETED, DECISION PACKAGE CREATED | market=Will Javokhir Sindarov win the 2026 FIDE Candidates Tournament? | dispatch_id=dispatch-case-20260414-231e3ef7-20260414T140546Z | packet_path=qualitative-db/40-research/cases/case-20260414-231e3ef7/decision-maker/decision-maker-packet.md"
+    }
+  },
+  "decision_completion_marker_sent_at": "2026-04-14T14:19:26.838407+00:00"
+}

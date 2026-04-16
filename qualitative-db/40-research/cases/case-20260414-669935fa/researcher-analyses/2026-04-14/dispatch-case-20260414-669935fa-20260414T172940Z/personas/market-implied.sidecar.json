@@ -1,0 +1,57 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Minute-level source was inferred from hourly data rather than separately archived.",
+    "Residual risk is operational rather than directional."
+  ],
+  "key_assumptions": [
+    "A Binance hourly high above 76000 implies at least one qualifying Binance 1-minute high above 76000 in that hour.",
+    "No later Binance data correction or Polymarket admin anomaly invalidates the observed print."
+  ],
+  "main_logical_chain": [
+    "Read the contract as a Binance-specific touch market, not a weekly close market.",
+    "Check whether the named venue printed 76000 or higher during the valid window.",
+    "Observe Binance hourly high of 76038 on Apr 14 inside the window.",
+    "Conclude the market is likely efficient because traders are pricing already-satisfied conditions rather than future upside alone."
+  ],
+  "main_thesis": "The market's near-100% pricing is justified because the contract appears effectively already satisfied on the governing Binance BTC/USDT source.",
+  "own_probability": 0.997,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "This market will immediately resolve to Yes if any Binance 1-minute candle for BTC/USDT ... has a final High price equal to or greater than the price specified in the title.",
+    "2026-04-14T14:00:00 ... high 76038.00000000"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "contract_interpretation",
+    "technical_reference"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260414-669935fa",
+    "dispatch_id": "dispatch-case-20260414-669935fa-20260414T172940Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "f0de5e16-6721-4223-9e92-c774680e3d0a",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-669935fa/researcher-analyses/2026-04-14/dispatch-case-20260414-669935fa-20260414T172940Z/personas/market-implied.md",
+    "source_persona_sha256": "d0c0a5a8ebaa76a29eb68ba51e51e60da3e37468b7e31f7adfcae16b4f2113b5"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary rule source was strong and source-of-truth ambiguity was low; verification quality was high relevance but only medium independence because both sources point back to Binance.",
+  "strongest_disconfirmers": [
+    "The extra verification used 1-hour klines rather than the exact 1-minute source-of-truth series.",
+    "A data correction, dispute, or settlement-admin anomaly could still create a small residual failure path."
+  ],
+  "strongest_supports": [
+    "Polymarket rules say any Binance BTC/USDT 1-minute High >= 76000 during Apr 13-19 ET resolves Yes.",
+    "Binance kline verification showed a 2026-04-14 14:00 UTC hourly high of 76038 within the valid window.",
+    "Live market price around 0.999-1.000 matches the interpretation that the trigger already occurred."
+  ],
+  "timing_relevance": "High; this is a date-bounded touch contract and the key issue is whether the threshold was already hit during the current window.",
+  "unresolved_ambiguities": [
+    "Exact first qualifying 1-minute candle was not archived in this run.",
+    "Whether Polymarket posts a delay or dispute despite apparent threshold satisfaction."
+  ],
+  "what_would_change_view": "A Binance 1-minute series check showing no qualifying minute high, a Binance data revision below 76000, or a Polymarket dispute/admin clarification that the observed print does not count."
+}

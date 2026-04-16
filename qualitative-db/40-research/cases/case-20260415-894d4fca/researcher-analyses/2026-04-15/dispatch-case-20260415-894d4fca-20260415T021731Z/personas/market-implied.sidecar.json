@@ -1,0 +1,56 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A market clarification could say only a fresh 119th Congress bill counts.",
+    "Resolver practice may privilege the linked tracker over the explicit inclusion text."
+  ],
+  "key_assumptions": [
+    "Polymarket will treat the contract's explicit inclusion of Public Law 118-49 as controlling or highly persuasive.",
+    "Public Law 118-49 is sufficient to count as legislation reauthorizing FISA Title VII including Section 702 for this contract.",
+    "No later clarification will narrow the market to require a separate 119th Congress enactment."
+  ],
+  "main_logical_chain": [
+    "Start from the 78.5% market prior and ask why the market is pricing Yes so high.",
+    "The contract itself names Public Law 118-49 as qualifying legislation.",
+    "Official GovInfo text confirms Public Law 118-49 is enacted law from April 20, 2024 that reforms FISA and Section 702.",
+    "Therefore the main remaining risk is not congressional failure but whether the resolver follows the explicit contract text despite the awkward tracker reference."
+  ],
+  "main_thesis": "The market's high Yes price is mostly justified because the contract explicitly includes Public Law 118-49 as qualifying legislation, making remaining risk mainly about contract interpretation rather than fresh passage risk.",
+  "own_probability": 0.86,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "Qualifying legislation includes Public Law 118-49.",
+    "Apr. 20, 2024 - [H.R. 7888]"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "contract_interpretation",
+    "technical_reference"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260415-894d4fca",
+    "dispatch_id": "dispatch-case-20260415-894d4fca-20260415T021731Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "c2aa43ce-417f-4d13-842d-9e67efc96d69",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-894d4fca/researcher-analyses/2026-04-15/dispatch-case-20260415-894d4fca-20260415T021731Z/personas/market-implied.md",
+    "source_persona_sha256": "fae81102d34ad23658cdecff91f6d878a7c5d451b4a0bc923e0e71f8ab6c10b4"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality primary evidence on both the contract text and the existence of the qualifying law, with medium source-of-truth ambiguity due to the mismatched tracker reference.",
+  "strongest_disconfirmers": [
+    "The market references a Congress.gov tracker for 119th Congress House Bill 22, which appears mismatched with the explicitly named 2024 law and creates source-of-truth ambiguity."
+  ],
+  "strongest_supports": [
+    "The market rules explicitly say qualifying legislation includes Public Law 118-49.",
+    "GovInfo shows Public Law 118-49 became law on April 20, 2024 and reforms FISA including Section 702."
+  ],
+  "timing_relevance": "Deadline is April 19, 2026 at 11:59 PM ET, but the named qualifying law was enacted in 2024, so timing matters mainly for interpretation rather than future passage odds.",
+  "unresolved_ambiguities": [
+    "Whether the linked Congress.gov tracker was meant as the operative source path or is just an imperfect reference.",
+    "Whether Polymarket has precedent for resolving text-vs-source-reference conflicts of this type."
+  ],
+  "what_would_change_view": "I would turn materially less bullish if Polymarket clarified that only a new 119th Congress vehicle counts or if resolution precedent showed the explicit inclusion of Public Law 118-49 would be ignored."
+}

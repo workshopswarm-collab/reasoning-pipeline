@@ -1,0 +1,57 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Source-of-truth narrowness: venue, pair, and candle field all matter.",
+    "Residual operational ambiguity remains until final settlement or a direct 1-minute Binance artifact is captured."
+  ],
+  "key_assumptions": [
+    "A qualifying Binance BTC/USDT 1-minute high at or above 74000 already occurred during the Apr 13-19 ET window.",
+    "No hidden rule nuance or dispute invalidates the apparent threshold touch."
+  ],
+  "main_logical_chain": [
+    "Read the contract rules and identify Binance BTC/USDT 1-minute High as the governing source of truth.",
+    "Check whether independent market data shows BTC above 74000 during the relevant window.",
+    "Conclude the contract is near-certain Yes unless a narrow venue-specific settlement issue remains."
+  ],
+  "main_thesis": "The market should resolve Yes and is already functionally decided unless a narrow Binance-specific settlement issue appears.",
+  "own_probability": 0.992,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "any Binance BTC/USDT 1-minute candle",
+    "High price equal to or greater than the price specified",
+    "Prices from other exchanges, different trading pairs, or spot markets will not be considered"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "risk_management",
+    "contract_interpretation",
+    "scenario_analysis"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260414-b6293fe0",
+    "dispatch_id": "dispatch-case-20260414-b6293fe0-20260414T001837Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "38eb6f92-1ed9-4121-9c0c-4daf22c0fafe",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-b6293fe0/researcher-analyses/2026-04-14/dispatch-case-20260414-b6293fe0-20260414T001837Z/personas/risk-manager.md",
+    "source_persona_sha256": "c5c20d483cba65ee730a0d302463809e6b959faacbb12641aa2700f6e1302559"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality for contract wording, medium-high for external price-path verification, with low-to-medium source-of-truth ambiguity remaining only because the exact 1-minute candle was not archived.",
+  "strongest_disconfirmers": [
+    "Only Binance BTC/USDT 1-minute highs count; broader BTC/USD or other-venue prints would not settle the contract.",
+    "The extra verification pass used hourly or aggregated data rather than an archived Binance 1-minute candle export."
+  ],
+  "strongest_supports": [
+    "Polymarket rules define success as any Binance BTC/USDT 1-minute High >= 74000 in the stated window.",
+    "Independent price-path checks showed BTC above 74000 in the relevant period, consistent with a qualifying Binance print."
+  ],
+  "timing_relevance": "Immediate; this is a threshold-touch market that appears already effectively decided early in the weekly window.",
+  "unresolved_ambiguities": [
+    "This run did not archive the exact qualifying Binance 1-minute candle itself.",
+    "A small possibility remains of settlement-process or dispute friction despite the apparent hit."
+  ],
+  "what_would_change_view": "Direct Binance 1-minute evidence showing no qualifying 74000 high, or a legitimate Polymarket rules/settlement dispute, would cut confidence materially."
+}

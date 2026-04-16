@@ -1,0 +1,63 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A sharp selloff into the exact noon ET minute could flip resolution despite a broadly bullish backdrop.",
+    "Binance-specific anomalies could matter even if cross-exchange XRP pricing stays firm.",
+    "A 7-8% buffer is meaningful but not invulnerable in crypto over several days."
+  ],
+  "key_assumptions": [
+    "Binance XRP/USDT stays in roughly the current price regime through April 19 noon ET.",
+    "No adverse crypto-wide or XRP-specific catalyst pushes price back toward 1.30 before settlement.",
+    "Binance venue behavior at the relevant minute is operationally normal."
+  ],
+  "main_logical_chain": [
+    "Current Binance XRP/USDT spot is materially above 1.30, so the directional base case is Yes.",
+    "Recent Binance intraday and daily history shows the threshold has had a meaningful buffer.",
+    "Because settlement is one minute on one venue, confidence should be discounted for timing and venue-specific risk.",
+    "That supports a probability below the market's 95% but still clearly above 50%."
+  ],
+  "main_thesis": "Yes is still favored because Binance XRP/USDT is already materially above 1.30, but the market overstates certainty for a single-minute, single-venue contract.",
+  "own_probability": 0.88,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "My risk-manager view is Yes 88% / No 12%.",
+    "The strongest disconfirming consideration is contract narrowness.",
+    "The governing source of truth is the Polymarket rule text."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "risk_management",
+    "contract_interpretation",
+    "technical_reference"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-b80742d2",
+    "dispatch_id": "dispatch-case-20260416-b80742d2-20260416T014833Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "2e8b6169-d24a-4eb0-8935-07aac6fa87ce",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-b80742d2/researcher-analyses/2026-04-16/dispatch-case-20260416-b80742d2-20260416T014833Z/personas/risk-manager.md",
+    "source_persona_sha256": "bb0fdecd49ab2e19395ea71e052b7bb60216779f4d52b5b9fc74cd94bde5743b"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality direct rule text and Binance market data support the view, but source independence is only medium-low because the evidence stack is concentrated around Polymarket and Binance.",
+  "strongest_disconfirmers": [
+    "The contract resolves on one exact 1-minute candle, so temporary path-dependent weakness can still produce No.",
+    "Resolution depends on Binance XRP/USDT specifically, creating venue-specific operational and microstructure risk.",
+    "Independent contextual catalyst coverage was thinner than ideal in this run."
+  ],
+  "strongest_supports": [
+    "Binance spot price was around 1.4013 at research time, well above 1.30.",
+    "Recent Binance 24h range and sampled daily/5m klines stayed above 1.30.",
+    "Polymarket rules clearly define Binance XRP/USDT 1m close at 12:00 ET as the settlement source."
+  ],
+  "timing_relevance": "The market resolves on the Binance XRP/USDT 12:00 PM ET 1-minute candle on 2026-04-19, so narrow path and timing risk are central.",
+  "unresolved_ambiguities": [
+    "Practical settlement inspection may rely on Binance front-end candles even though API mechanics were used for verification.",
+    "No broad independent catalyst scan was completed because search tooling was limited."
+  ],
+  "what_would_change_view": "I would cut the probability if Binance XRP/USDT loses its buffer and trades back near 1.30, or if a clear negative catalyst or Binance-specific anomaly appears; I would move closer to the market if XRP holds comfortably above 1.35 into April 18-19."
+}

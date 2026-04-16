@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Unexpected BTC selloff before April 20.",
+    "Binance-specific pricing or operational anomaly near the resolving minute.",
+    "Unobserved realized volatility closer to settlement could make the noon close more fragile than the current pass suggests."
+  ],
+  "key_assumptions": [
+    "BTC remains in roughly the current mid-70k trading regime through April 20.",
+    "No macro or crypto-specific shock produces a drawdown greater than about 6% into the resolving minute.",
+    "Binance BTC/USDT remains a reliable and representative settlement venue at noon ET."
+  ],
+  "main_logical_chain": [
+    "Start from the market's 84.5% prior and take it seriously because short-dated threshold markets often encode useful strike-distance information.",
+    "Verify the governing rules and exact settlement source: Binance BTC/USDT 1-minute candle at 12:00 PM ET on April 20.",
+    "Check the exact venue's current price and recent context; Binance spot is comfortably above 70k and recent closes are above the threshold.",
+    "Apply a modest discount for minute-specific, venue-specific settlement risk and normal BTC volatility.",
+    "Net result: agree with the market's direction but estimate slightly lower at 82%."
+  ],
+  "main_thesis": "The market is mostly efficient: Binance BTC/USDT is currently comfortably above 70k, so Yes should be favored, but the exact noon-ET one-minute-close mechanic merits a small discount versus the market's mid/high-80s confidence.",
+  "own_probability": 0.82,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone",
+    "final \"Close\" price higher than the price specified"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "contract_interpretation",
+    "scenario_analysis"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260414-e15c72fe",
+    "dispatch_id": "dispatch-case-20260414-e15c72fe-20260414T193100Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "c958fe5d-a1eb-47f0-b106-8df07f8d1ea2",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-e15c72fe/researcher-analyses/2026-04-14/dispatch-case-20260414-e15c72fe-20260414T193100Z/personas/market-implied.md",
+    "source_persona_sha256": "216b44bb316be8dc6627c57fd7bb05e02ef7177085b3718adb6b7143bb1bedb4"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary evidence quality is strong because Binance is the named settlement venue and Polymarket supplies the contract rules; independence is only medium because the core evidence is mechanically tied to the settlement source, with CoinGecko serving as a contextual cross-check.",
+  "strongest_disconfirmers": [
+    "The contract settles on one exact Binance 1-minute close at noon ET, so a single volatile minute can flip the result.",
+    "A roughly 6% drawdown from current spot would be enough to settle No and is plausible over six days in BTC."
+  ],
+  "strongest_supports": [
+    "Direct Binance spot check showed BTCUSDT around 74,258, materially above the 70,000 threshold.",
+    "Recent Binance daily closes in the sampled window were all above 70,000.",
+    "Polymarket's own ladder was internally coherent, implying traders already price downside without rejecting a strong Yes lean."
+  ],
+  "timing_relevance": "High: the market resolves in six days on an exact minute-close, and the ET-to-UTC conversion was verified as 2026-04-20 16:00 UTC.",
+  "unresolved_ambiguities": [
+    "How volatile the exact noon ET minute is likely to be on April 20.",
+    "Whether any Binance UI/data-surface quirks could matter for practical settlement interpretation."
+  ],
+  "what_would_change_view": "I would move lower if BTC falls back toward the low-71k/high-70k area, if Binance-specific risks emerge, or if closer-to-resolution minute-level checks show materially higher noon-close fragility."
+}

@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A macro or crypto-specific selloff could erase the current cushion quickly.",
+    "Exact-minute settlement creates more fragility than a daily close or broad exchange average."
+  ],
+  "key_assumptions": [
+    "BTC does not suffer a roughly 8% drawdown into the exact Binance noon ET settlement minute.",
+    "Recent Binance volatility is a reasonable outside-view guide for the next five days.",
+    "Binance remains the clear operative settlement venue without late interpretation issues."
+  ],
+  "main_logical_chain": [
+    "The contract resolves on one exact Binance BTC/USDT minute at noon ET on April 20.",
+    "Current Binance spot is materially above 68,000, so the outside-view prior favors Yes.",
+    "Recent daily Binance closes show BTC has usually been above 68,000, reinforcing that prior.",
+    "But a single-minute crypto threshold contract still carries enough path and volatility risk that 95.5% looks too high.",
+    "Therefore Yes remains the right directional call, but at about 89% rather than near-certainty."
+  ],
+  "main_thesis": "Yes is still highly likely because BTC is materially above 68k with only about five days left, but the market is a bit too close to certainty for an exact-minute crypto threshold contract.",
+  "own_probability": 0.89,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone... has a final 'Close' price higher than the price specified.",
+    "Market-implied baseline: 95.5%; own probability estimate: 89% Yes."
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "contract_interpretation",
+    "risk_management"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-c8d6e83e",
+    "dispatch_id": "dispatch-case-20260415-c8d6e83e-20260415T151858Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "2bfac9fc-4b58-4955-87ef-dffd339d4c7d",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-c8d6e83e/researcher-analyses/2026-04-15/dispatch-case-20260415-c8d6e83e-20260415T151858Z/personas/base-rate.md",
+    "source_persona_sha256": "0575a1374a72c2a210b5b6f777690361492a7b488b14b81896c6f6d1d15549e8"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary contract wording from Polymarket plus direct Binance market data gave a solid, mostly low-ambiguity basis; independence is medium because both sources are tightly tied to the same contract setup.",
+  "strongest_disconfirmers": [
+    "Crypto can still realize sharp multi-day drawdowns, and this contract settles on one exact minute.",
+    "Recent path behavior could justify the market's mid-90s confidence more than the discount I apply."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT spot was about 74,044 when checked, leaving about a 6k cushion above 68,000.",
+    "BTC closed above 68,000 on 22 of the last 30 Binance daily candles and 11 of the last 14.",
+    "Only about five days remain until settlement."
+  ],
+  "timing_relevance": "Settlement is about 5.03 days after the run-time check, and the contract depends on the 12:00 ET one-minute close on 2026-04-20.",
+  "unresolved_ambiguities": [
+    "How much additional downside volatility emerges between now and the final 24 hours.",
+    "Whether any Binance-specific operational issue could matter near settlement."
+  ],
+  "what_would_change_view": "I would move higher if BTC stays comfortably above 72k-73k into the final 24-48 hours with lower volatility, and lower if BTC loses 70k or if venue-specific settlement risk increases."
+}

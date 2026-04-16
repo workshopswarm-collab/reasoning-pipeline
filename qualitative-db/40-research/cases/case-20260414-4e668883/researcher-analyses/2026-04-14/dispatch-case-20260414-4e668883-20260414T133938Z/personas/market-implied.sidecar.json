@@ -1,0 +1,55 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "ETH could move materially away from 2400 before printing a qualifying high.",
+    "The market may be overpaying for nearness and underpricing failure-to-tag risk."
+  ],
+  "key_assumptions": [
+    "ETH remains close enough to 2400 for ordinary intraday volatility to produce a brief qualifying high.",
+    "The main thing the market is pricing is threshold proximity plus permissive contract mechanics, not a major fresh catalyst."
+  ],
+  "main_logical_chain": [
+    "The market's source of truth is a permissive Binance 1-minute high rule rather than a sustained close.",
+    "ETH is already trading just below the threshold on independent live price checks.",
+    "Therefore a high Yes probability is rational, though the current price still looks a bit rich rather than perfectly efficient."
+  ],
+  "main_thesis": "The high Yes price is mostly justified because the contract resolves on any Binance 1-minute high at or above 2400 and ETH is already trading just below that threshold.",
+  "own_probability": 0.88,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "any Binance 1-minute candle for ETH/USDT",
+    "price equal to or greater than the price specified in the title"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "contract_interpretation",
+    "technical_reference"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-4e668883",
+    "dispatch_id": "dispatch-case-20260414-4e668883-20260414T133938Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "ab308a0a-dd19-4221-b467-b63e5bb638f5",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-4e668883/researcher-analyses/2026-04-14/dispatch-case-20260414-4e668883-20260414T133938Z/personas/market-implied.md",
+    "source_persona_sha256": "b1d3cbeaf9769a1752fad4498a56d56f701899dbcdb351cb846dc2bbd1c1044a"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary rule source quality is high and source-of-truth ambiguity is low; live price verification quality is good but evidence independence is only medium.",
+  "strongest_disconfirmers": [
+    "At >90% implied probability, even ordinary downside path risk or repeated rejection below 2400 matters.",
+    "A modest crypto selloff or volatility slump could keep Binance highs below the threshold through the remaining window."
+  ],
+  "strongest_supports": [
+    "Polymarket rule resolves Yes on any Binance 1-minute high >= 2400 during Apr 13-19.",
+    "Binance and CoinGecko spot checks both placed ETH around 2388 during review, only about 0.5% below the trigger.",
+    "Several days remain in a 24/7 market, which favors touch-event probability."
+  ],
+  "timing_relevance": "High, because this is a date-bounded weekly touch market and multiple days remain.",
+  "unresolved_ambiguities": [
+    "How much of the current price reflects informed flow versus simple threshold-chasing is still unclear."
+  ],
+  "what_would_change_view": "A material move away from 2400, broader crypto risk-off pressure, anomalously weak Binance highs, or an unsupported further rise toward certainty would make me more bearish on Yes."
+}

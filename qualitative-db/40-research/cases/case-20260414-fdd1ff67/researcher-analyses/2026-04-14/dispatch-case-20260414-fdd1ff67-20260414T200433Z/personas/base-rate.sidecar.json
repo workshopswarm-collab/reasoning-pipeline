@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "medium",
+  "fragility_points": [
+    "If both clubs have unusually high verified draw rates, the estimate should move up.",
+    "If the market contract uses nonstandard settlement mechanics, the interpretation could change."
+  ],
+  "key_assumptions": [
+    "This fixture should behave like an ordinary balanced top-flight league match rather than an exceptional draw magnet.",
+    "The market price is not driven by a hidden settlement quirk.",
+    "Team-specific draw tendencies are unlikely to justify a 76% draw probability."
+  ],
+  "main_logical_chain": [
+    "Start from the market price of 76% and ask whether ordinary soccer base rates can support it.",
+    "Use league scoring environment and club-strength context to anchor an outside-view prior.",
+    "Conclude that balanced-fixture logic can support only a normal draw range, not an extreme three-in-four draw probability."
+  ],
+  "main_thesis": "The market is pricing the draw far too high relative to an ordinary balanced Saudi Pro League match; an outside-view estimate is closer to 30% than 76%.",
+  "own_probability": 0.3,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "All statistics correct as of 11 April 2026.",
+    "Goals 768 (3.13 per match)",
+    "2024\u201325 Pro League, 4th of 18",
+    "2024\u201325 Pro League, 6th of 18"
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "market_anchor",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-fdd1ff67",
+    "dispatch_id": "dispatch-case-20260414-fdd1ff67-20260414T200433Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "f4dc373f-557f-4c51-937b-be06856cd075",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-fdd1ff67/researcher-analyses/2026-04-14/dispatch-case-20260414-fdd1ff67-20260414T200433Z/personas/base-rate.md",
+    "source_persona_sha256": "62552f7af2a20e1fa0cea0c7ab073b25c61ba0a1186d3e97200fb8aa6c1e5ea1"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Moderate at best: useful contextual sources and direct market pricing, but no strong official stats source for team-specific draw tendency.",
+  "strongest_disconfirmers": [
+    "Balanced matchups do raise draw probability relative to lopsided fixtures.",
+    "Current-season team-specific draw rates were not verified from a higher-quality direct stats source."
+  ],
+  "strongest_supports": [
+    "Market-implied draw probability is an extreme 76% for a standard soccer fixture.",
+    "Accessible league context shows 3.13 goals per match as of 2026-04-11, which is not an obviously ultra-draw-heavy environment.",
+    "Both clubs appear reasonably competitive, supporting a balanced-fixture prior but not an extreme draw prior."
+  ],
+  "timing_relevance": "The match resolves on 2026-04-23, so late team news, lineups, or fixture-status changes could still matter.",
+  "unresolved_ambiguities": [
+    "Exact designated settlement source on the market side was not fully explicit.",
+    "Direct team-specific current-season draw data was not cleanly accessible in this run."
+  ],
+  "what_would_change_view": "Verified unusually high draw rates for both teams, independent odds converging near the same draw price, or a clarified nonstandard settlement rule would move the estimate up."
+}

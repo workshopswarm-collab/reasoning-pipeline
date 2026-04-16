@@ -1,0 +1,750 @@
+{
+  "artifact_type": "decision_context_bundle",
+  "schema_version": "decision-context/v1",
+  "built_at": "2026-04-15T22:05:01.004320+00:00",
+  "builder": "roles/decision-maker/runtime/scripts/build_decision_context.py",
+  "case_key": "case-20260415-75a50190",
+  "dispatch_id": "refresh-case-20260415-75a50190-20260415T220500Z",
+  "question": "Will the price of Bitcoin be above $72,000 on April 21?",
+  "market": {
+    "market_id": "6c5bfff7-39b3-49d4-bb33-c8b7881a4e51",
+    "external_market_id": "0x98836967b3291ac597477867ab3e5d141ec344cac432df45f0aea9539fb5c4f2",
+    "market_slug": "bitcoin-above-72k-on-april-21",
+    "platform": "polymarket",
+    "primary_market_url": "https://polymarket.com/event/bitcoin-above-72k-on-april-21",
+    "market_title": "Will the price of Bitcoin be above $72,000 on April 21?",
+    "market_reference_price": 0.8,
+    "quote_timestamp": "2026-04-15T22:04:27.591652+00:00",
+    "price_source": "market_snapshot_quote"
+  },
+  "upstream": {
+    "decision_handoff_path": "qualitative-db/40-research/cases/case-20260415-75a50190/synthesizer-agent/decision-handoff.md",
+    "syndicated_runtime_path": "qualitative-db/40-research/cases/case-20260415-75a50190/synthesizer-agent/syndicated-finding.runtime.json",
+    "syndicated_finding_path": "qualitative-db/40-research/cases/case-20260415-75a50190/synthesizer-agent/syndicated-finding.md",
+    "synthesis_stage_status_path": "qualitative-db/40-research/cases/case-20260415-75a50190/researcher-analyses/2026-04-15/dispatch-case-20260415-75a50190-20260415T205116Z/synthesis-stage-status.json",
+    "sidecar_synthesis_bundle_path": "qualitative-db/40-research/cases/case-20260415-75a50190/researcher-analyses/2026-04-15/dispatch-case-20260415-75a50190-20260415T205116Z/sidecar-synthesis-bundle.json",
+    "sidecar_synthesis_bundle_artifact_type": "sidecar_synthesis_bundle",
+    "sidecar_bundle_coverage_status": "complete",
+    "sidecar_bundle_sidecar_count": 5,
+    "ready_sidecar_personas": [
+      "base-rate",
+      "catalyst-hunter",
+      "market-implied",
+      "risk-manager",
+      "variant-view"
+    ],
+    "ready_sidecar_count": 5,
+    "pending_sidecar_personas": [],
+    "pending_sidecar_count": 0,
+    "syndicated_probability_low": 0.72,
+    "syndicated_probability_high": 0.78,
+    "syndicated_probability_midpoint": 0.75,
+    "relation_to_market": "crosses_market",
+    "edge_quality": "unclear",
+    "edge_independent_verification_quality": "medium",
+    "compressed_toward_market_due_to_verification": "yes",
+    "contract_ambiguity_level": "minor",
+    "contract_ambiguity_reason": "Rules are explicit, but settlement depends on the exact Binance noon-ET 1-minute close surface rather than a broader benchmark.",
+    "independently_verified_points": [
+      "Binance BTCUSDT spot was independently rechecked around 74848 on 2026-04-15, leaving roughly a 4% cushion above 72000.",
+      "Recent Binance daily closes were mostly above 72000, so the strike sits inside the current trading regime rather than above it.",
+      "The Fed calendar confirms the next scheduled FOMC meeting is April 28-29, after settlement, removing one obvious scheduled macro catalyst from the window.",
+      "Contract mechanics consistently point to the Binance BTC/USDT 12:00 ET one-minute candle final Close with a strict greater-than 72000 threshold."
+    ],
+    "verification_gap_summary": "The main unverified gap is the true probability that a routine 4% downside move or noon-minute microstructure wobble hits before settlement.",
+    "best_countercase_summary": "A normal crypto pullback or bad-timed intraday dip can still push the exact Binance settlement minute to 72000 or lower despite an otherwise healthy BTC tape.",
+    "main_reason_for_disagreement": "Most disagreement is about how much to discount for exact-minute settlement fragility versus the current 4% cushion.",
+    "resolution_mechanics_summary": "Yes resolves only if Binance BTC/USDT’s 12:00 ET April 21 one-minute candle final Close is strictly above 72000.",
+    "disagreement_intensity": "",
+    "freshness_sensitive": "yes",
+    "freshness_driver": "A short six-day window means any new macro or crypto shock and the near-resolution Binance cushion can move the estimate materially.",
+    "decision_blockers": [
+      "No strong independently verified edge versus market after synthesis.",
+      "Short-horizon BTC volatility can erase the current cushion before the exact settlement minute.",
+      "Single-minute Binance-specific settlement creates operational and path dependence near threshold."
+    ],
+    "blockers_require_new_research": "no",
+    "disagreement_type": "market_pricing",
+    "follow_up_needed": "yes",
+    "edge_mid_vs_market_pct_points": -5.0,
+    "light_refresh_brief_path": "qualitative-db/40-research/cases/case-20260415-75a50190/decision-maker/refreshes/refresh-case-20260415-75a50190-20260415T220500Z/light-refresh-brief.json",
+    "light_refresh_mode": "light",
+    "source_dispatch_id": "dispatch-case-20260415-75a50190-20260415T205116Z",
+    "source_decision_context_path": "qualitative-db/40-research/cases/case-20260415-75a50190/decision-maker/refreshes/refresh-case-20260415-75a50190-20260415T220500Z/decision-context-light-refresh.json"
+  },
+  "telegram": {
+    "controller_chat_id": "-1003846500961",
+    "synthesis_topic_id": "3607",
+    "synthesis_topic_title": "case-20260415-75a50190 | synthesis | T205116Z",
+    "synthesis_session_key": "agent:main:telegram:group:-1003846500961:topic:3607"
+  },
+  "portfolio_context": {
+    "status": "disabled",
+    "notes": [
+      "Portfolio-aware gating and execution context are currently out of scope for Decision-Maker."
+    ]
+  },
+  "verification_policy": {
+    "policy_version": "decision-verification/v1",
+    "default_mode": "bounded_internal_audit",
+    "mode_descriptions": {
+      "bounded_internal_audit": "Use synthesis as the starting compression, reread only the most decisive upstream artifacts, and avoid broad re-research by default.",
+      "targeted_escalation": "Use a bounded internal audit plus a small number of targeted checks when a narrow ambiguity or meaningful edge justifies it.",
+      "not_ready_reopen_recommended": "If responsible verification would require a much broader reread or new research pass, prefer a not-ready/non-action packet over pretending bounded verification was enough."
+    },
+    "default_artifact_budget": {
+      "persona_findings_max": 2,
+      "assumption_artifacts_max": 1,
+      "evidence_artifacts_max": 1,
+      "countercase_or_supporting_note_bundles_max": 1
+    },
+    "default_external_budget": {
+      "external_source_surfaces_max": 2,
+      "live_market_or_tracker_checks_max": 1
+    },
+    "escalation_triggers": [
+      "large_apparent_edge_vs_market",
+      "source_of_truth_or_contract_ambiguity",
+      "freshness_sensitive_catalyst",
+      "internal_inconsistency_in_package"
+    ],
+    "priority_order": [
+      "verify_exact_crux",
+      "verify_freshness_or_source_of_truth_mechanics",
+      "verify_strongest_countercase",
+      "only_then_expand_broader_reread"
+    ],
+    "hard_rule": "Decision-Maker is allowed to do targeted additional verification, but should not become a routine second synthesis pass. If adequate verification would require broader reread or new research, prefer a not-ready or non-action packet."
+  },
+  "canonical_runtime": {
+    "build_decision_prompt_script": "roles/decision-maker/planner/scripts/build_decision_prompt.py",
+    "run_decision_maker_script": "roles/decision-maker/runtime/scripts/run_decision_maker.py",
+    "validate_decision_packet_script": "roles/decision-maker/runtime/scripts/validate_decision_packet.py",
+    "render_decision_packet_script": "roles/decision-maker/runtime/scripts/render_decision_packet.py",
+    "bootstrap_decision_telegram_lane_script": "roles/decision-maker/runtime/scripts/bootstrap_decision_telegram_lane.py",
+    "show_decision_stage_status_script": "roles/decision-maker/runtime/scripts/show_decision_stage_status.py"
+  },
+  "canonical_outputs": {
+    "decision_packet_markdown": "qualitative-db/40-research/cases/case-20260415-75a50190/decision-maker/decision-maker-packet.md",
+    "decision_packet_json": "qualitative-db/40-research/cases/case-20260415-75a50190/decision-maker/artifacts/decision-maker-packet.json",
+    "decision_stage_status_json": "qualitative-db/40-research/cases/case-20260415-75a50190/decision-maker/artifacts/decision-stage-status.json"
+  },
+  "recommended_runtime_defaults": {
+    "valid_for_hours": 24,
+    "quote_staleness_seconds": 300,
+    "allow_auto_reversal": false,
+    "rebalance_threshold_fraction": 0.1,
+    "price_source": "market_snapshot_quote",
+    "decision_agent_session_key": "agent:decision-maker:main"
+  },
+  "source_excerpt": {
+    "decision_handoff_frontmatter": {
+      "type": "synthesis_decision_handoff",
+      "case_key": "case-20260415-75a50190",
+      "dispatch_id": "dispatch-case-20260415-75a50190-20260415T205116Z",
+      "question": "Will the price of Bitcoin be above $72,000 on April 21?",
+      "source_syndicated_finding_path": "qualitative-db/40-research/cases/case-20260415-75a50190/researcher-analyses/2026-04-15/dispatch-case-20260415-75a50190-20260415T205116Z/syndicated-finding.md",
+      "market_implied_probability": 0.78,
+      "syndicated_probability_low": 0.72,
+      "syndicated_probability_high": 0.78,
+      "syndicated_probability_midpoint": 0.75,
+      "relation_to_market": "crosses_market",
+      "edge_quality": "unclear",
+      "edge_independent_verification_quality": "medium",
+      "compressed_toward_market_due_to_verification": "yes",
+      "contract_ambiguity_level": "minor",
+      "contract_ambiguity_reason": "Rules are explicit, but settlement depends on the exact Binance noon-ET 1-minute close surface rather than a broader benchmark.",
+      "independently_verified_points": [
+        "Binance BTCUSDT spot was independently rechecked around 74848 on 2026-04-15, leaving roughly a 4% cushion above 72000.",
+        "Recent Binance daily closes were mostly above 72000, so the strike sits inside the current trading regime rather than above it.",
+        "The Fed calendar confirms the next scheduled FOMC meeting is April 28-29, after settlement, removing one obvious scheduled macro catalyst from the window.",
+        "Contract mechanics consistently point to the Binance BTC/USDT 12:00 ET one-minute candle final Close with a strict greater-than 72000 threshold."
+      ],
+      "verification_gap_summary": "The main unverified gap is the true probability that a routine 4% downside move or noon-minute microstructure wobble hits before settlement.",
+      "best_countercase_summary": "A normal crypto pullback or bad-timed intraday dip can still push the exact Binance settlement minute to 72000 or lower despite an otherwise healthy BTC tape.",
+      "main_reason_for_disagreement": "Most disagreement is about how much to discount for exact-minute settlement fragility versus the current 4% cushion.",
+      "resolution_mechanics_summary": "Yes resolves only if Binance BTC/USDT’s 12:00 ET April 21 one-minute candle final Close is strictly above 72000.",
+      "freshness_sensitive": "yes",
+      "freshness_driver": "A short six-day window means any new macro or crypto shock and the near-resolution Binance cushion can move the estimate materially.",
+      "decision_blockers": [
+        "No strong independently verified edge versus market after synthesis.",
+        "Short-horizon BTC volatility can erase the current cushion before the exact settlement minute.",
+        "Single-minute Binance-specific settlement creates operational and path dependence near threshold."
+      ],
+      "blockers_require_new_research": "no",
+      "disagreement_type": "market_pricing",
+      "follow_up_needed": "yes"
+    },
+    "decision_handoff_body": "\n# Decision summary\n\nBTC being above 72,000 on the relevant April 21 Binance noon-ET minute remains more likely than not, but the strongest synthesis view is only modestly below the market rather than strongly bearish versus it: spot was independently rechecked near 74.85k with recent daily closes mostly above 72k, and the key surviving risk is not directional BTC weakness alone but the contract’s single-minute, single-venue settlement fragility.\n\n## Why this may matter now\n\nMarket implied is 0.78; my synthesized range is 0.72-0.78. That makes any edge versus market marginal to unclear rather than actionable. The only plausible mispricing is that the market may slightly underweight exact-minute Binance settlement fragility, but independent verification was not strong enough to support a large below-market stance.\n\n## Shift versus swarm baseline\n\nThe provisional swarm center was about 0.72. I end slightly above that center and with a tighter range because synthesis-stage verification supported the bullish base case more than the most cautious lanes implied: Binance spot was independently rechecked near 74.85k, recent daily closes mostly held above 72k, and the next scheduled FOMC meeting is after settlement. But I did not move all the way to market because the remaining edge against market could not be strongly verified beyond those basics.\n\n## Edge verification status\n\nVerification quality is medium. I independently rechecked three things that matter: current Binance BTCUSDT spot near 74848, recent Binance daily regime mostly above 72000, and the Fed calendar showing no scheduled FOMC meeting before settlement. That supports the consensus Yes lean and weakens any strong claim that market is too high for obvious macro-calendar reasons. What remained weak is the actual forward distribution of short-horizon downside volatility and exact-minute settlement noise; the synthesis did not independently measure those tails well enough to justify a strong below-market edge.\n\n## Compression toward market\n\nYes. The swarm bundle leaned below market, with some lanes around 0.70-0.72. I compressed part of that apparent below-market edge back toward the market because the independent checks mainly confirmed the favorable current setup rather than uncovering a hidden bearish catalyst. The remaining verification gap is about tail volatility and minute-level fragility, so caution remains, but not enough to trust a large below-market gap confidently.\n\n## Timing and catalyst posture\n\nThe next meaningful checkpoint is not a scheduled macro event but the near-resolution Binance cushion into April 20-21 ET. Edge is more likely to decay or compress if BTC keeps holding comfortably above 72k as time passes. Waiting can improve decision quality if it provides a fresher cushion/volatility read, but it can also eliminate any small edge if the market converges appropriately.\n\n## Key blockers\n\nMain blockers are practical rather than contractual: there is no strongly independently verified edge after synthesis, BTC can still move 4% in this window, and settlement depends on one exact Binance minute. No major unresolved contract ambiguity remains.\n\n## Best countercase\n\nBest countercase: the market is basically right or slightly cheap because BTC is already nearly 4% above strike, recent daily regime is supportive, and there is no obvious scheduled macro event before settlement; if that cushion persists into April 20-21, exact-minute risk may be too small to justify a below-market view. Catalyst-hunter represented this best.\n\n## What would change the view\n\nMove the view higher if BTC holds comfortably above 74k-75k into April 20-21 with contained intraday volatility and no new stress catalyst. Move it lower if BTC loses most of the cushion, volatility spikes, or a macro/crypto shock appears before settlement. Near threshold price action on April 21 morning ET would be the clearest falsifier of the current moderate-Yes stance.\n\n## Recommended next action\n\nWait for a near-resolution refresh rather than rerunning broad research now. Recheck Binance BTC/USDT cushion and intraday volatility on April 20-21 ET; if BTC remains comfortably above strike, likely no follow-up beyond decision-maker review, but if the cushion compresses toward 72k, investigate the volatility/timing disagreement more directly.\n\n## Verification impact\n\nYes, synthesis added bounded external verification beyond the persona findings: an independent Binance spot recheck, Binance daily-klines recheck, and Fed calendar recheck. Cross-lane comparison materially reduced confidence in any large below-market edge by showing that the most durable independently checked facts mostly support the market’s broad persistence logic. It also exposed that variant-view was directionally useful but thin on independent evidence, while catalyst-hunter may have been somewhat overconfident from a light scheduled calendar alone.\n",
+    "syndicated_runtime": {
+      "artifact_type": "syndicated_finding_runtime_metadata",
+      "artifact_path": "qualitative-db/40-research/cases/case-20260415-75a50190/synthesizer-agent/syndicated-finding.md",
+      "case_key": "case-20260415-75a50190",
+      "dispatch_id": "dispatch-case-20260415-75a50190-20260415T205116Z",
+      "question": "Will the price of Bitcoin be above $72,000 on April 21?",
+      "generated_by": "orchestrator",
+      "synthesis_method": "dispatch_bundle_v1",
+      "synthesis_status": "rendered",
+      "market_snapshot_time": "2026-04-15T20:51:16.232029+00:00",
+      "source_personas": [],
+      "missing_personas": [],
+      "source_finding_paths": [],
+      "source_supporting_artifacts": [],
+      "source_persona_count": 0,
+      "missing_persona_count": 0,
+      "supporting_artifact_count": 0,
+      "upstream_inputs": [],
+      "downstream_uses": []
+    },
+    "synthesis_stage_status": {
+      "artifact_type": "synthesis_stage_status",
+      "dispatch_id": "dispatch-case-20260415-75a50190-20260415T205116Z",
+      "case_key": "case-20260415-75a50190",
+      "bundle_path": "qualitative-db/40-research/cases/case-20260415-75a50190/researcher-analyses/2026-04-15/dispatch-case-20260415-75a50190-20260415T205116Z/synthesis-bundle.json",
+      "reasoning_sidecar_requests": [
+        {
+          "persona": "base-rate",
+          "artifact_path": "qualitative-db/40-research/cases/case-20260415-75a50190/researcher-analyses/2026-04-15/dispatch-case-20260415-75a50190-20260415T205116Z/personas/base-rate.sidecar.json",
+          "status": "completed",
+          "artifact_state": "current"
+        },
+        {
+          "persona": "catalyst-hunter",
+          "artifact_path": "qualitative-db/40-research/cases/case-20260415-75a50190/researcher-analyses/2026-04-15/dispatch-case-20260415-75a50190-20260415T205116Z/personas/catalyst-hunter.sidecar.json",
+          "status": "completed",
+          "artifact_state": "current"
+        },
+        {
+          "persona": "market-implied",
+          "artifact_path": "qualitative-db/40-research/cases/case-20260415-75a50190/researcher-analyses/2026-04-15/dispatch-case-20260415-75a50190-20260415T205116Z/personas/market-implied.sidecar.json",
+          "status": "completed",
+          "artifact_state": "current"
+        },
+        {
+          "persona": "risk-manager",
+          "artifact_path": "qualitative-db/40-research/cases/case-20260415-75a50190/researcher-analyses/2026-04-15/dispatch-case-20260415-75a50190-20260415T205116Z/personas/risk-manager.sidecar.json",
+          "status": "completed",
+          "artifact_state": "current"
+        },
+        {
+          "persona": "variant-view",
+          "artifact_path": "qualitative-db/40-research/cases/case-20260415-75a50190/researcher-analyses/2026-04-15/dispatch-case-20260415-75a50190-20260415T205116Z/personas/variant-view.sidecar.json",
+          "status": "completed",
+          "artifact_state": "current"
+        }
+      ],
+      "ready_sidecar_personas": [
+        "base-rate",
+        "catalyst-hunter",
+        "market-implied",
+        "risk-manager",
+        "variant-view"
+      ],
+      "pending_sidecar_personas": [],
+      "structured_bundle_path": "qualitative-db/40-research/cases/case-20260415-75a50190/researcher-analyses/2026-04-15/dispatch-case-20260415-75a50190-20260415T205116Z/sidecar-synthesis-bundle.json",
+      "structured_bundle_artifact_type": "sidecar_synthesis_bundle",
+      "synthesis_prompt_path": "qualitative-db/40-research/cases/case-20260415-75a50190/researcher-analyses/2026-04-15/dispatch-case-20260415-75a50190-20260415T205116Z/synthesis-prompt.md",
+      "synthesis_subagent_label": "synthesis-final:dispatch-case-20260415-75a50190-20260415T205116Z",
+      "synthesis_visible_start_marker": "STARTING SYNTHESIS | market=Will the price of Bitcoin be above $72,000 on April 21? | dispatch_id=dispatch-case-20260415-75a50190-20260415T205116Z",
+      "synthesis_visible_finish_marker": "FINISHED SYNTHESIS | market=Will the price of Bitcoin be above $72,000 on April 21? | dispatch_id=dispatch-case-20260415-75a50190-20260415T205116Z",
+      "synthesis_target_chat_id": "-1003846500961",
+      "synthesis_target_topic_id": "3607",
+      "synthesis_target_topic_title": "case-20260415-75a50190 | synthesis | T205116Z",
+      "synthesis_target_session_key": "agent:main:telegram:group:-1003846500961:topic:3607",
+      "status": "synthesis_completed",
+      "stage_events": [
+        {
+          "at": "2026-04-15T20:59:26.826397Z",
+          "stage": "kickoff",
+          "state": "waiting_for_reasoning_sidecars",
+          "message": "Synthesis kickoff prepared current-stage artifacts",
+          "request_status_counts": {
+            "completed": 4,
+            "missing": 1
+          },
+          "ready_sidecar_personas": [
+            "base-rate",
+            "market-implied",
+            "risk-manager",
+            "variant-view"
+          ],
+          "pending_sidecar_personas": [
+            "catalyst-hunter"
+          ],
+          "structured_bundle_artifact_type": ""
+        },
+        {
+          "at": "2026-04-15T20:59:26.992050Z",
+          "stage": "synthesis_promotion",
+          "state": "waiting_for_reasoning_sidecars",
+          "message": "Waiting for all researcher sidecars before final synthesis",
+          "request_status_counts": {
+            "completed": 4,
+            "missing": 1
+          },
+          "waiting_for_personas": [
+            "catalyst-hunter"
+          ]
+        },
+        {
+          "at": "2026-04-15T20:59:27.348240Z",
+          "stage": "synthesis_promotion",
+          "state": "waiting_for_reasoning_sidecars",
+          "message": "Waiting for all researcher sidecars before final synthesis",
+          "request_status_counts": {
+            "completed": 4,
+            "missing": 1
+          },
+          "waiting_for_personas": [
+            "catalyst-hunter"
+          ]
+        },
+        {
+          "at": "2026-04-15T20:59:30.671225Z",
+          "stage": "synthesis_promotion",
+          "state": "waiting_for_reasoning_sidecars",
+          "message": "Waiting for all researcher sidecars before final synthesis",
+          "request_status_counts": {
+            "completed": 4,
+            "missing": 1
+          },
+          "waiting_for_personas": [
+            "catalyst-hunter"
+          ]
+        },
+        {
+          "at": "2026-04-15T20:59:31.021834Z",
+          "stage": "synthesis_promotion",
+          "state": "waiting_for_reasoning_sidecars",
+          "message": "Waiting for all researcher sidecars before final synthesis",
+          "request_status_counts": {
+            "completed": 4,
+            "missing": 1
+          },
+          "waiting_for_personas": [
+            "catalyst-hunter"
+          ]
+        },
+        {
+          "at": "2026-04-15T20:59:43.178026Z",
+          "stage": "synthesis_promotion",
+          "state": "waiting_for_reasoning_sidecars",
+          "message": "Waiting for all researcher sidecars before final synthesis",
+          "request_status_counts": {
+            "completed": 4,
+            "missing": 1
+          },
+          "waiting_for_personas": [
+            "catalyst-hunter"
+          ]
+        },
+        {
+          "at": "2026-04-15T20:59:43.516707Z",
+          "stage": "synthesis_promotion",
+          "state": "waiting_for_reasoning_sidecars",
+          "message": "Waiting for all researcher sidecars before final synthesis",
+          "request_status_counts": {
+            "completed": 4,
+            "missing": 1
+          },
+          "waiting_for_personas": [
+            "catalyst-hunter"
+          ]
+        },
+        {
+          "at": "2026-04-15T20:59:59.734251Z",
+          "stage": "synthesis_promotion",
+          "state": "waiting_for_reasoning_sidecars",
+          "message": "Waiting for all researcher sidecars before final synthesis",
+          "request_status_counts": {
+            "completed": 4,
+            "missing": 1
+          },
+          "waiting_for_personas": [
+            "catalyst-hunter"
+          ]
+        },
+        {
+          "at": "2026-04-15T21:00:00.115011Z",
+          "stage": "synthesis_promotion",
+          "state": "waiting_for_reasoning_sidecars",
+          "message": "Waiting for all researcher sidecars before final synthesis",
+          "request_status_counts": {
+            "completed": 4,
+            "missing": 1
+          },
+          "waiting_for_personas": [
+            "catalyst-hunter"
+          ]
+        },
+        {
+          "at": "2026-04-15T21:00:03.573105Z",
+          "stage": "kickoff",
+          "state": "ready_for_final_synthesis",
+          "message": "Synthesis kickoff prepared current-stage artifacts",
+          "request_status_counts": {
+            "completed": 5
+          },
+          "ready_sidecar_personas": [
+            "base-rate",
+            "catalyst-hunter",
+            "market-implied",
+            "risk-manager",
+            "variant-view"
+          ],
+          "pending_sidecar_personas": [],
+          "structured_bundle_artifact_type": "sidecar_synthesis_bundle"
+        },
+        {
+          "at": "2026-04-15T21:00:03.691155Z",
+          "stage": "synthesis_promotion",
+          "state": "final_synthesis_launching",
+          "message": "Claimed final synthesis launch",
+          "request_status_counts": {
+            "completed": 5
+          },
+          "launch_claim_pid": 14518
+        },
+        {
+          "at": "2026-04-15T21:00:05.815759Z",
+          "stage": "synthesis_lane_bootstrap",
+          "state": "created",
+          "message": "Created dedicated Telegram synthesis lane",
+          "request_status_counts": {
+            "completed": 5
+          },
+          "topic_id": "3607",
+          "topic_title": "case-20260415-75a50190 | synthesis | T205116Z",
+          "session_key": "agent:main:telegram:group:-1003846500961:topic:3607"
+        },
+        {
+          "at": "2026-04-15T21:00:05.827888Z",
+          "stage": "synthesis_promotion",
+          "state": "final_synthesis_launched",
+          "message": "Launched final synthesis executor",
+          "request_status_counts": {
+            "completed": 5
+          },
+          "pid": 14524,
+          "launch_log_path": "qualitative-db/40-research/cases/case-20260415-75a50190/researcher-analyses/2026-04-15/dispatch-case-20260415-75a50190-20260415T205116Z/final-synthesis-launch.log"
+        },
+        {
+          "at": "2026-04-15T21:00:05.935092Z",
+          "stage": "final_synthesis_execution",
+          "state": "running",
+          "message": "Final synthesis executor started",
+          "request_status_counts": {
+            "completed": 5
+          },
+          "prompt_path": "qualitative-db/40-research/cases/case-20260415-75a50190/researcher-analyses/2026-04-15/dispatch-case-20260415-75a50190-20260415T205116Z/synthesis-prompt.md"
+        },
+        {
+          "at": "2026-04-15T21:01:58.278100Z",
+          "stage": "final_synthesis_execution",
+          "state": "synthesis_completed",
+          "message": "Final synthesis completed and artifacts rendered",
+          "request_status_counts": {
+            "completed": 5
+          }
+        }
+      ],
+      "last_stage_event": {
+        "at": "2026-04-15T21:01:58.278100Z",
+        "stage": "final_synthesis_execution",
+        "state": "synthesis_completed",
+        "message": "Final synthesis completed and artifacts rendered",
+        "request_status_counts": {
+          "completed": 5
+        }
+      },
+      "updated_at": "2026-04-15T21:01:58.278208Z",
+      "request_status_counts": {
+        "completed": 5
+      },
+      "synthesis_lane": {
+        "topic_id": "3607",
+        "topic_title": "case-20260415-75a50190 | synthesis | T205116Z",
+        "session_key": "agent:main:telegram:group:-1003846500961:topic:3607"
+      },
+      "synthesis_lane_topic_id": "3607",
+      "synthesis_lane_topic_title": "case-20260415-75a50190 | synthesis | T205116Z",
+      "synthesis_lane_session_key": "agent:main:telegram:group:-1003846500961:topic:3607",
+      "final_synthesis_launch_log_path": "qualitative-db/40-research/cases/case-20260415-75a50190/researcher-analyses/2026-04-15/dispatch-case-20260415-75a50190-20260415T205116Z/final-synthesis-launch.log",
+      "final_synthesis_pid": 14524,
+      "result_json": "qualitative-db/40-research/cases/case-20260415-75a50190/researcher-analyses/2026-04-15/dispatch-case-20260415-75a50190-20260415T205116Z/synthesis-result.json",
+      "raw_response_text_path": "qualitative-db/40-research/cases/case-20260415-75a50190/researcher-analyses/2026-04-15/dispatch-case-20260415-75a50190-20260415T205116Z/synthesis-response.raw.txt",
+      "last_gateway_response_path": "qualitative-db/40-research/cases/case-20260415-75a50190/researcher-analyses/2026-04-15/dispatch-case-20260415-75a50190-20260415T205116Z/synthesis-response.json",
+      "synthesis_attempt_count": 1,
+      "synthesis_parse_failures": [],
+      "synthesis_parse_recovered": false,
+      "final_artifact_path": "qualitative-db/40-research/cases/case-20260415-75a50190/researcher-analyses/2026-04-15/dispatch-case-20260415-75a50190-20260415T205116Z/syndicated-finding.md",
+      "final_sidecar_path": "qualitative-db/40-research/cases/case-20260415-75a50190/researcher-analyses/2026-04-15/dispatch-case-20260415-75a50190-20260415T205116Z/syndicated-finding.runtime.json",
+      "final_decision_handoff_path": "qualitative-db/40-research/cases/case-20260415-75a50190/researcher-analyses/2026-04-15/dispatch-case-20260415-75a50190-20260415T205116Z/decision-handoff.md",
+      "timeline_update": {
+        "appended": true,
+        "case_key": "case-20260415-75a50190",
+        "dispatch_id": "dispatch-case-20260415-75a50190-20260415T205116Z",
+        "artifact_path": "qualitative-db/40-research/cases/case-20260415-75a50190/researcher-analyses/2026-04-15/dispatch-case-20260415-75a50190-20260415T205116Z/syndicated-finding.md",
+        "entry": "- 2026-04-15T21:01:54.385558+00:00 — completed synthesis `dispatch-case-20260415-75a50190-20260415T205116Z` with artifact `qualitative-db/40-research/cases/case-20260415-75a50190/researcher-analyses/2026-04-15/dispatch-case-20260415-75a50190-20260415T205116Z/syndicated-finding.md`."
+      },
+      "terminal_summary": {
+        "at": "2026-04-15T21:01:58.278223Z",
+        "status": "synthesis_completed",
+        "request_status_counts": {
+          "completed": 5
+        },
+        "final_artifact_path": "qualitative-db/40-research/cases/case-20260415-75a50190/researcher-analyses/2026-04-15/dispatch-case-20260415-75a50190-20260415T205116Z/syndicated-finding.md",
+        "final_sidecar_path": "qualitative-db/40-research/cases/case-20260415-75a50190/researcher-analyses/2026-04-15/dispatch-case-20260415-75a50190-20260415T205116Z/syndicated-finding.runtime.json",
+        "final_decision_handoff_path": "qualitative-db/40-research/cases/case-20260415-75a50190/researcher-analyses/2026-04-15/dispatch-case-20260415-75a50190-20260415T205116Z/decision-handoff.md",
+        "synthesis_lane": {
+          "topic_id": "3607",
+          "topic_title": "case-20260415-75a50190 | synthesis | T205116Z",
+          "session_key": "agent:main:telegram:group:-1003846500961:topic:3607"
+        },
+        "synthesis_attempt_count": 1,
+        "synthesis_parse_failure_count": 0,
+        "synthesis_parse_recovered": false,
+        "last_parse_failure": {},
+        "last_stage_event": {
+          "at": "2026-04-15T21:01:58.278100Z",
+          "stage": "final_synthesis_execution",
+          "state": "synthesis_completed",
+          "message": "Final synthesis completed and artifacts rendered",
+          "request_status_counts": {
+            "completed": 5
+          }
+        }
+      }
+    }
+  },
+  "light_refresh": {
+    "artifact_type": "light_refresh_brief",
+    "schema_version": "light-refresh/v1",
+    "built_at": "2026-04-15T22:05:00.843709+00:00",
+    "case_key": "case-20260415-75a50190",
+    "market": {
+      "market_id": "6c5bfff7-39b3-49d4-bb33-c8b7881a4e51",
+      "platform": "polymarket",
+      "external_market_id": "0x98836967b3291ac597477867ab3e5d141ec344cac432df45f0aea9539fb5c4f2",
+      "slug": "bitcoin-above-72k-on-april-21",
+      "title": "Will the price of Bitcoin be above $72,000 on April 21?",
+      "description": "This market will resolve to \"Yes\" if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone (noon) on the date specified in the title has a final \"Close\" price higher than the price specified in the title. Otherwise, this market will resolve to \"No\".\n\nThe resolution source for this market is Binance, specifically the BTC/USDT \"Close\" prices currently available at https://www.binance.com/en/trade/BTC_USDT with \"1m\" and \"Candles\" selected on the top bar.\n\nPlease note that this market is about the price according to Binance BTC/USDT, not according to other exchanges or trading pairs.\n\nPrice precision is determined by the number of decimal places in the source.",
+      "category": "polymarket-discovery",
+      "status": "open",
+      "current_price": 0.8,
+      "last_reasoned_price": 0.75,
+      "closes_at": "2026-04-21T12:00:00-04:00",
+      "resolves_at": "2026-04-21T12:00:00-04:00",
+      "quote_timestamp": "2026-04-15T22:04:27.591652+00:00"
+    },
+    "latest_forecast": {
+      "forecast_id": "dispatch-case-20260415-75a50190-20260415T205116Z",
+      "case_id": "case-20260415-75a50190",
+      "dispatch_id": "dispatch-case-20260415-75a50190-20260415T205116Z",
+      "market_id": "6c5bfff7-39b3-49d4-bb33-c8b7881a4e51",
+      "contract_id": "yes",
+      "question": "Will the price of Bitcoin be above $72,000 on April 21?",
+      "forecast_prob": 0.75,
+      "forecast_direction": "yes",
+      "confidence_label": "medium",
+      "decision_status": "recorded",
+      "rationale_summary": "BTC is more likely than not to finish above $72,000 on the April 21 Binance noon minute, but with fair value centered near 0.75 versus a 0.78 market and meaningful exact-minute six-day downside tail still live, the disciplined output remains watch-only because any edge is too small to authorize.",
+      "decision_packet_path": "qualitative-db/40-research/cases/case-20260415-75a50190/decision-maker/artifacts/decision-maker-packet.json",
+      "decision_ts": "2026-04-15T17:02:00-04:00",
+      "created_at": "2026-04-15T17:02:54.79272-04:00",
+      "resolution_status": null,
+      "resolved_outcome": null,
+      "resolved_value": null,
+      "resolved_ts": null
+    },
+    "snapshot_summary": {
+      "snapshot_count": 12,
+      "min_reference_price": 0.795,
+      "max_reference_price": 0.8,
+      "avg_reference_price": 0.7954166666666667,
+      "oldest_observed_at": "2026-04-15T17:59:21.990562-04:00",
+      "latest_observed_at": "2026-04-15T18:04:27.591652-04:00"
+    },
+    "recent_snapshots": [
+      {
+        "observed_at": "2026-04-15T18:04:27.591652-04:00",
+        "last_price": 0.8,
+        "yes_price": 0.8,
+        "no_price": 0.2,
+        "best_bid": 0.79,
+        "best_ask": 0.81,
+        "volume": 10127.396551,
+        "open_interest": 22820.4886,
+        "reference_price": 0.8
+      },
+      {
+        "observed_at": "2026-04-15T18:03:56.894676-04:00",
+        "last_price": 0.795,
+        "yes_price": 0.795,
+        "no_price": 0.205,
+        "best_bid": 0.79,
+        "best_ask": 0.8,
+        "volume": 10127.396551,
+        "open_interest": 22699.515,
+        "reference_price": 0.795
+      },
+      {
+        "observed_at": "2026-04-15T18:03:26.369285-04:00",
+        "last_price": 0.795,
+        "yes_price": 0.795,
+        "no_price": 0.205,
+        "best_bid": 0.79,
+        "best_ask": 0.8,
+        "volume": 10127.396551,
+        "open_interest": 22699.515,
+        "reference_price": 0.795
+      },
+      {
+        "observed_at": "2026-04-15T18:02:55.831602-04:00",
+        "last_price": 0.795,
+        "yes_price": 0.795,
+        "no_price": 0.205,
+        "best_bid": 0.79,
+        "best_ask": 0.8,
+        "volume": 10127.396551,
+        "open_interest": 22699.515,
+        "reference_price": 0.795
+      },
+      {
+        "observed_at": "2026-04-15T18:02:25.296127-04:00",
+        "last_price": 0.795,
+        "yes_price": 0.795,
+        "no_price": 0.205,
+        "best_bid": 0.79,
+        "best_ask": 0.8,
+        "volume": 10127.396551,
+        "open_interest": 22699.515,
+        "reference_price": 0.795
+      },
+      {
+        "observed_at": "2026-04-15T18:01:54.770832-04:00",
+        "last_price": 0.795,
+        "yes_price": 0.795,
+        "no_price": 0.205,
+        "best_bid": 0.79,
+        "best_ask": 0.8,
+        "volume": 10127.396551,
+        "open_interest": 22699.515,
+        "reference_price": 0.795
+      },
+      {
+        "observed_at": "2026-04-15T18:01:24.237319-04:00",
+        "last_price": 0.795,
+        "yes_price": 0.795,
+        "no_price": 0.205,
+        "best_bid": 0.79,
+        "best_ask": 0.8,
+        "volume": 10127.396551,
+        "open_interest": 22699.515,
+        "reference_price": 0.795
+      },
+      {
+        "observed_at": "2026-04-15T18:00:53.624159-04:00",
+        "last_price": 0.795,
+        "yes_price": 0.795,
+        "no_price": 0.205,
+        "best_bid": 0.79,
+        "best_ask": 0.8,
+        "volume": 10127.396551,
+        "open_interest": 22699.515,
+        "reference_price": 0.795
+      },
+      {
+        "observed_at": "2026-04-15T18:00:23.046508-04:00",
+        "last_price": 0.795,
+        "yes_price": 0.795,
+        "no_price": 0.205,
+        "best_bid": 0.79,
+        "best_ask": 0.8,
+        "volume": 10127.396551,
+        "open_interest": 22699.515,
+        "reference_price": 0.795
+      },
+      {
+        "observed_at": "2026-04-15T18:00:00-04:00",
+        "last_price": 0.795,
+        "yes_price": 0.795,
+        "no_price": 0.205,
+        "best_bid": null,
+        "best_ask": null,
+        "volume": 10127.396551,
+        "open_interest": 22708.8791,
+        "reference_price": 0.795
+      },
+      {
+        "observed_at": "2026-04-15T17:59:52.523405-04:00",
+        "last_price": 0.795,
+        "yes_price": 0.795,
+        "no_price": 0.205,
+        "best_bid": 0.79,
+        "best_ask": 0.8,
+        "volume": 10127.396551,
+        "open_interest": 22699.515,
+        "reference_price": 0.795
+      },
+      {
+        "observed_at": "2026-04-15T17:59:21.990562-04:00",
+        "last_price": 0.795,
+        "yes_price": 0.795,
+        "no_price": 0.205,
+        "best_bid": 0.79,
+        "best_ask": 0.8,
+        "volume": 10127.396551,
+        "open_interest": 22699.515,
+        "reference_price": 0.795
+      }
+    ],
+    "live_market_probe": {
+      "slug": "bitcoin-above-72k-on-april-21",
+      "question": "Will the price of Bitcoin be above $72,000 on April 21?",
+      "closed": false,
+      "archived": false,
+      "acceptingOrders": true,
+      "automaticallyResolved": false,
+      "umaResolutionStatus": "",
+      "endDate": "2026-04-21T16:00:00Z",
+      "updatedAt": "2026-04-15T21:59:19.354001Z",
+      "outcomes": [
+        "Yes",
+        "No"
+      ],
+      "outcomePrices": [
+        "0.795",
+        "0.205"
+      ],
+      "oneDayPriceChange": 0.07,
+      "oneHourPriceChange": null,
+      "volumeNum": 10127.396551000002,
+      "liquidityNum": 22699.515
+    },
+    "refresh_assessment": {
+      "recommended_mode": "light",
+      "reasons": [
+        "material_price_move"
+      ],
+      "price_delta": 0.05,
+      "price_delta_pct_points": 5.0,
+      "hours_since_last_forecast": 1.05,
+      "hours_to_close": 137.92,
+      "forecast_vs_market_gap_pct_points": -5.0
+    },
+    "focused_questions": [
+      "Did the market move invalidate the prior crux, or is this mainly repricing without new information?",
+      "Does the new price imply the previous edge has materially compressed or inverted?",
+      "Has time-to-close changed the appropriate confidence or action threshold?",
+      "Can we update priors responsibly using prior synthesis plus current market state without rerunning the full swarm?"
+    ]
+  },
+  "refresh_bundle": {
+    "refresh_id": "refresh-case-20260415-75a50190-20260415T220500Z",
+    "root": "qualitative-db/40-research/cases/case-20260415-75a50190/decision-maker/refreshes/refresh-case-20260415-75a50190-20260415T220500Z",
+    "light_refresh_brief_json": "qualitative-db/40-research/cases/case-20260415-75a50190/decision-maker/refreshes/refresh-case-20260415-75a50190-20260415T220500Z/light-refresh-brief.json",
+    "light_refresh_brief_markdown": "qualitative-db/40-research/cases/case-20260415-75a50190/decision-maker/refreshes/refresh-case-20260415-75a50190-20260415T220500Z/light-refresh-brief.md",
+    "decision_context_json": "qualitative-db/40-research/cases/case-20260415-75a50190/decision-maker/refreshes/refresh-case-20260415-75a50190-20260415T220500Z/decision-context-light-refresh.json"
+  }
+}

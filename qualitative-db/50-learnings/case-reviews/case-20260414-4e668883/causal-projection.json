@@ -1,0 +1,909 @@
+{
+  "artifact_type": "case_causal_projection",
+  "schema_version": "v2",
+  "case_key": "case-20260414-4e668883",
+  "review_path": "qualitative-db/50-learnings/case-reviews/case-20260414-4e668883/review.md",
+  "signal_packet_path": "qualitative-db/50-learnings/case-reviews/case-20260414-4e668883/signal-packet.json",
+  "learning_packet_path": "qualitative-db/50-learnings/case-reviews/case-20260414-4e668883/learning-packet.json",
+  "active_nodes": [
+    "fair-value-discounting-pressure",
+    "price-near-threshold",
+    "resolution-surface-ambiguity",
+    "settlement-source-specificity",
+    "time-remaining-nontrivial",
+    "touch-probability",
+    "verification-caution"
+  ],
+  "candidate_edges": [
+    "price-near-threshold__increases__touch-probability",
+    "resolution-surface-ambiguity__increases__verification-caution",
+    "settlement-source-specificity__increases__resolution-surface-ambiguity",
+    "time-remaining-nontrivial__increases__touch-probability",
+    "verification-caution__increases__fair-value-discounting-pressure"
+  ],
+  "contested_edges": [
+    "verification-caution__increases__fair-value-discounting-pressure"
+  ],
+  "required_checks": [
+    {
+      "check_key": "verify_primary_resolution_source",
+      "reason": "intervention_active:capture-governing-source-proof-for-touch-markets",
+      "source": "intervention:capture-governing-source-proof-for-touch-markets",
+      "evidence_channels": [
+        "linked_intervention_active"
+      ],
+      "intervention_status": "active",
+      "support_strength": "medium"
+    },
+    {
+      "check_key": "capture_governing_source_proof_when_event_near_complete",
+      "reason": "intervention_active:capture-governing-source-proof-for-touch-markets",
+      "source": "intervention:capture-governing-source-proof-for-touch-markets",
+      "evidence_channels": [
+        "linked_intervention_active"
+      ],
+      "intervention_status": "active",
+      "support_strength": "medium"
+    },
+    {
+      "check_key": "label_unverified_vs_not_occurred_distinctly",
+      "reason": "intervention_active:capture-governing-source-proof-for-touch-markets",
+      "source": "intervention:capture-governing-source-proof-for-touch-markets",
+      "evidence_channels": [
+        "linked_intervention_active"
+      ],
+      "intervention_status": "active",
+      "support_strength": "medium"
+    },
+    {
+      "check_key": "separate_resolution_risk_from_path_probability",
+      "reason": "contested_edge:verification_caution__increases__fair-value-discounting-pressure",
+      "source": "heuristic:contested_edge",
+      "evidence_channels": [
+        "heuristic"
+      ],
+      "support_strength": "weak"
+    },
+    {
+      "check_key": "confirm_any_qualifying_touch_resolves_yes",
+      "reason": "intervention_draft:require-touch-mechanics-check-before-resistance-discount",
+      "source": "intervention:require-touch-mechanics-check-before-resistance-discount",
+      "evidence_channels": [
+        "linked_intervention_draft"
+      ],
+      "intervention_status": "draft",
+      "support_strength": "weak"
+    }
+  ],
+  "projection_metadata": {
+    "projected_by": "roles/evaluator/runtime/scripts/project_case_to_causal_map.py",
+    "projected_at": "2026-04-15T18:58:47.116755+00:00",
+    "projection_version": "v2",
+    "case_context": {
+      "platform": "polymarket",
+      "category": "polymarket-discovery",
+      "domain": [
+        "crypto"
+      ],
+      "subdomain": [
+        "threshold_touch_markets"
+      ],
+      "related_entities": [
+        "ethereum",
+        "binance",
+        "polymarket"
+      ],
+      "related_drivers": [
+        "threshold proximity",
+        "touch-style settlement mechanics",
+        "verification-surface caution"
+      ],
+      "tags": [
+        "learning/case_review",
+        "platform/polymarket",
+        "crypto/ethereum",
+        "threshold-touch",
+        "underconfidence"
+      ],
+      "question_mechanics": [
+        "threshold-touch",
+        "intraperiod-high-low"
+      ],
+      "source_of_truth_class": [
+        "authoritative_with_fallback"
+      ],
+      "categories": [
+        "crypto"
+      ],
+      "error_pattern": "underconfidence_on_nearby_touch_market"
+    },
+    "context_snapshot": {
+      "platforms": [
+        "polymarket"
+      ],
+      "categories": [
+        "polymarket-discovery",
+        "crypto"
+      ],
+      "question_mechanics": [
+        "threshold-touch",
+        "intraperiod-high-low"
+      ],
+      "source_of_truth_class": [
+        "authoritative_with_fallback"
+      ],
+      "domains": [
+        "crypto"
+      ]
+    },
+    "feature_hits": {
+      "threshold_touch_case": [
+        "text:touch/high-style",
+        "signal:touch/high-style",
+        "text:threshold-touch",
+        "text:intraperiod high",
+        "text:1-minute high",
+        "signal:1-minute high",
+        "text:touch-friendly settlement",
+        "text:reach $2,400",
+        "frontmatter:subdomain=threshold_touch_markets",
+        "frontmatter:tag=threshold-touch",
+        "frontmatter:related_driver=touch-style settlement mechanics"
+      ],
+      "near_threshold": [
+        "text:threshold proximity",
+        "signal:threshold proximity",
+        "text:near-touch territory",
+        "signal:near-touch territory",
+        "text:within roughly half a percent",
+        "text:already in near-touch territory",
+        "signal:already in near-touch territory",
+        "text:sub-1% distance",
+        "frontmatter:related_driver=threshold proximity"
+      ],
+      "multi_day_window": [
+        "text:several days left",
+        "text:multiple days remained",
+        "signal:multiple days remained",
+        "text:multiple remaining trading days",
+        "text:multi-day residual window",
+        "text:time remaining in a 24/7 market",
+        "signal:time remaining in a 24/7 market",
+        "text:remaining-time path risk",
+        "text:days remained in a continuously traded market",
+        "signal:days remained in a continuously traded market"
+      ],
+      "source_specific_settlement": [
+        "text:binance 1-minute high",
+        "signal:binance 1-minute high",
+        "text:governing resolution surface",
+        "text:governing source",
+        "signal:governing source",
+        "text:governing surface",
+        "text:settlement wording",
+        "signal:settlement wording",
+        "frontmatter:related_entity=binance",
+        "frontmatter:related_driver=verification-surface caution"
+      ],
+      "resolution_ambiguity": [
+        "text:not yet verified",
+        "signal:not yet verified",
+        "text:exact qualifying binance 1-minute high",
+        "signal:exact qualifying binance 1-minute high",
+        "text:proof acquisition",
+        "signal:proof acquisition",
+        "text:structured proof capture",
+        "text:event may already have occurred but has not been verified",
+        "text:source-of-truth wording incomplete",
+        "signal:source-of-truth wording incomplete",
+        "text:exact qualifying",
+        "signal:exact qualifying"
+      ],
+      "verification_caution": [
+        "text:verification caution",
+        "text:operationally sensible",
+        "signal:operationally sensible",
+        "text:not yet verified on governing source",
+        "signal:not yet verified on governing source",
+        "text:caution was somewhat overstretched",
+        "signal:caution was somewhat overstretched",
+        "text:source-of-truth wording incomplete",
+        "signal:source-of-truth wording incomplete"
+      ],
+      "underconfidence_discount": [
+        "text:underconfidence",
+        "signal:underconfidence",
+        "text:pulled fair value down",
+        "signal:pulled fair value down",
+        "text:below the market",
+        "signal:below the market",
+        "text:too expensive relative to case difficulty",
+        "signal:too expensive relative to case difficulty",
+        "text:overstretched in pricing",
+        "signal:overstretched in pricing",
+        "text:deserve less weight",
+        "text:generic resistance concern mattered less",
+        "signal:generic resistance concern mattered less",
+        "text:mildly underconfident",
+        "frontmatter:error_pattern=underconfidence_on_nearby_touch_market"
+      ]
+    },
+    "node_reasons": {
+      "price-near-threshold": [
+        "text:touch/high-style",
+        "signal:touch/high-style",
+        "text:threshold-touch",
+        "text:intraperiod high",
+        "text:1-minute high",
+        "signal:1-minute high",
+        "text:touch-friendly settlement",
+        "text:reach $2,400",
+        "frontmatter:subdomain=threshold_touch_markets",
+        "frontmatter:tag=threshold-touch",
+        "frontmatter:related_driver=touch-style settlement mechanics",
+        "text:threshold proximity",
+        "signal:threshold proximity",
+        "text:near-touch territory",
+        "signal:near-touch territory",
+        "text:within roughly half a percent",
+        "text:already in near-touch territory",
+        "signal:already in near-touch territory",
+        "text:sub-1% distance",
+        "frontmatter:related_driver=threshold proximity",
+        "edge_evidence:price-near-threshold__increases__touch-probability"
+      ],
+      "time-remaining-nontrivial": [
+        "text:several days left",
+        "text:multiple days remained",
+        "signal:multiple days remained",
+        "text:multiple remaining trading days",
+        "text:multi-day residual window",
+        "text:time remaining in a 24/7 market",
+        "signal:time remaining in a 24/7 market",
+        "text:remaining-time path risk",
+        "text:days remained in a continuously traded market",
+        "signal:days remained in a continuously traded market",
+        "edge_evidence:time-remaining-nontrivial__increases__touch-probability"
+      ],
+      "touch-probability": [
+        "text:touch/high-style",
+        "signal:touch/high-style",
+        "text:threshold-touch",
+        "text:intraperiod high",
+        "text:1-minute high",
+        "signal:1-minute high",
+        "text:touch-friendly settlement",
+        "text:reach $2,400",
+        "frontmatter:subdomain=threshold_touch_markets",
+        "frontmatter:tag=threshold-touch",
+        "frontmatter:related_driver=touch-style settlement mechanics",
+        "text:threshold proximity",
+        "signal:threshold proximity",
+        "text:near-touch territory",
+        "signal:near-touch territory",
+        "text:within roughly half a percent",
+        "text:already in near-touch territory",
+        "signal:already in near-touch territory",
+        "text:sub-1% distance",
+        "frontmatter:related_driver=threshold proximity",
+        "text:several days left",
+        "text:multiple days remained",
+        "signal:multiple days remained",
+        "text:multiple remaining trading days",
+        "text:multi-day residual window",
+        "text:time remaining in a 24/7 market",
+        "signal:time remaining in a 24/7 market",
+        "text:remaining-time path risk",
+        "text:days remained in a continuously traded market",
+        "signal:days remained in a continuously traded market",
+        "edge_evidence:price-near-threshold__increases__touch-probability",
+        "edge_evidence:time-remaining-nontrivial__increases__touch-probability"
+      ],
+      "settlement-source-specificity": [
+        "text:binance 1-minute high",
+        "signal:binance 1-minute high",
+        "text:governing resolution surface",
+        "text:governing source",
+        "signal:governing source",
+        "text:governing surface",
+        "text:settlement wording",
+        "signal:settlement wording",
+        "frontmatter:related_entity=binance",
+        "frontmatter:related_driver=verification-surface caution",
+        "edge_evidence:settlement-source-specificity__increases__resolution-surface-ambiguity"
+      ],
+      "resolution-surface-ambiguity": [
+        "text:not yet verified",
+        "signal:not yet verified",
+        "text:exact qualifying binance 1-minute high",
+        "signal:exact qualifying binance 1-minute high",
+        "text:proof acquisition",
+        "signal:proof acquisition",
+        "text:structured proof capture",
+        "text:event may already have occurred but has not been verified",
+        "text:source-of-truth wording incomplete",
+        "signal:source-of-truth wording incomplete",
+        "text:exact qualifying",
+        "signal:exact qualifying",
+        "text:binance 1-minute high",
+        "signal:binance 1-minute high",
+        "text:governing resolution surface",
+        "text:governing source",
+        "signal:governing source",
+        "text:governing surface",
+        "text:settlement wording",
+        "signal:settlement wording",
+        "frontmatter:related_entity=binance",
+        "frontmatter:related_driver=verification-surface caution",
+        "text:verification caution",
+        "text:operationally sensible",
+        "signal:operationally sensible",
+        "text:not yet verified on governing source",
+        "signal:not yet verified on governing source",
+        "text:caution was somewhat overstretched",
+        "signal:caution was somewhat overstretched",
+        "edge_evidence:resolution-surface-ambiguity__increases__verification-caution",
+        "edge_evidence:settlement-source-specificity__increases__resolution-surface-ambiguity"
+      ],
+      "verification-caution": [
+        "text:verification caution",
+        "text:operationally sensible",
+        "signal:operationally sensible",
+        "text:not yet verified on governing source",
+        "signal:not yet verified on governing source",
+        "text:caution was somewhat overstretched",
+        "signal:caution was somewhat overstretched",
+        "text:source-of-truth wording incomplete",
+        "signal:source-of-truth wording incomplete",
+        "text:not yet verified",
+        "signal:not yet verified",
+        "text:exact qualifying binance 1-minute high",
+        "signal:exact qualifying binance 1-minute high",
+        "text:proof acquisition",
+        "signal:proof acquisition",
+        "text:structured proof capture",
+        "text:event may already have occurred but has not been verified",
+        "text:exact qualifying",
+        "signal:exact qualifying",
+        "edge_evidence:resolution-surface-ambiguity__increases__verification-caution",
+        "edge_evidence:verification-caution__increases__fair-value-discounting-pressure"
+      ],
+      "fair-value-discounting-pressure": [
+        "text:underconfidence",
+        "signal:underconfidence",
+        "text:pulled fair value down",
+        "signal:pulled fair value down",
+        "text:below the market",
+        "signal:below the market",
+        "text:too expensive relative to case difficulty",
+        "signal:too expensive relative to case difficulty",
+        "text:overstretched in pricing",
+        "signal:overstretched in pricing",
+        "text:deserve less weight",
+        "text:generic resistance concern mattered less",
+        "signal:generic resistance concern mattered less",
+        "text:mildly underconfident",
+        "frontmatter:error_pattern=underconfidence_on_nearby_touch_market",
+        "text:verification caution",
+        "text:operationally sensible",
+        "signal:operationally sensible",
+        "text:not yet verified on governing source",
+        "signal:not yet verified on governing source",
+        "text:caution was somewhat overstretched",
+        "signal:caution was somewhat overstretched",
+        "text:source-of-truth wording incomplete",
+        "signal:source-of-truth wording incomplete",
+        "edge_evidence:verification-caution__increases__fair-value-discounting-pressure"
+      ]
+    },
+    "edge_reasons": {
+      "price-near-threshold__increases__touch-probability": [
+        "source_node_active",
+        "target_node_active",
+        "edge_evidence_match",
+        "context:question_mechanics",
+        "context:categories"
+      ],
+      "resolution-surface-ambiguity__increases__verification-caution": [
+        "source_node_active",
+        "target_node_active",
+        "edge_evidence_match",
+        "context:source_of_truth_class"
+      ],
+      "settlement-source-specificity__increases__resolution-surface-ambiguity": [
+        "source_node_active",
+        "target_node_active",
+        "edge_evidence_match",
+        "context:question_mechanics",
+        "context:source_of_truth_class"
+      ],
+      "time-remaining-nontrivial__increases__touch-probability": [
+        "source_node_active",
+        "target_node_active",
+        "edge_evidence_match",
+        "context:question_mechanics",
+        "context:categories"
+      ],
+      "verification-caution__increases__fair-value-discounting-pressure": [
+        "source_node_active",
+        "target_node_active",
+        "edge_evidence_match",
+        "context:question_mechanics"
+      ]
+    },
+    "contested_edge_reasons": {
+      "verification-caution__increases__fair-value-discounting-pressure": [
+        "text:overstretched in pricing",
+        "text:pulled fair value down",
+        "text:too expensive relative to case difficulty",
+        "text:deserve less weight",
+        "text:mildly underconfident",
+        "text:generic resistance concern mattered less"
+      ]
+    },
+    "active_node_details": [
+      {
+        "node_key": "fair-value-discounting-pressure",
+        "node_type": "workflow_condition",
+        "mechanism_family": "workflow_pricing",
+        "reasons": [
+          "text:underconfidence",
+          "signal:underconfidence",
+          "text:pulled fair value down",
+          "signal:pulled fair value down",
+          "text:below the market",
+          "signal:below the market",
+          "text:too expensive relative to case difficulty",
+          "signal:too expensive relative to case difficulty",
+          "text:overstretched in pricing",
+          "signal:overstretched in pricing",
+          "text:deserve less weight",
+          "text:generic resistance concern mattered less",
+          "signal:generic resistance concern mattered less",
+          "text:mildly underconfident",
+          "frontmatter:error_pattern=underconfidence_on_nearby_touch_market",
+          "text:verification caution",
+          "text:operationally sensible",
+          "signal:operationally sensible",
+          "text:not yet verified on governing source",
+          "signal:not yet verified on governing source",
+          "text:caution was somewhat overstretched",
+          "signal:caution was somewhat overstretched",
+          "text:source-of-truth wording incomplete",
+          "signal:source-of-truth wording incomplete",
+          "edge_evidence:verification-caution__increases__fair-value-discounting-pressure"
+        ],
+        "evidence_channels": [
+          "existing_edge_evidence",
+          "frontmatter",
+          "review_text",
+          "signal_packet"
+        ],
+        "has_non_intervention_evidence": true
+      },
+      {
+        "node_key": "price-near-threshold",
+        "node_type": "market_state",
+        "mechanism_family": "threshold_touch",
+        "reasons": [
+          "text:touch/high-style",
+          "signal:touch/high-style",
+          "text:threshold-touch",
+          "text:intraperiod high",
+          "text:1-minute high",
+          "signal:1-minute high",
+          "text:touch-friendly settlement",
+          "text:reach $2,400",
+          "frontmatter:subdomain=threshold_touch_markets",
+          "frontmatter:tag=threshold-touch",
+          "frontmatter:related_driver=touch-style settlement mechanics",
+          "text:threshold proximity",
+          "signal:threshold proximity",
+          "text:near-touch territory",
+          "signal:near-touch territory",
+          "text:within roughly half a percent",
+          "text:already in near-touch territory",
+          "signal:already in near-touch territory",
+          "text:sub-1% distance",
+          "frontmatter:related_driver=threshold proximity",
+          "edge_evidence:price-near-threshold__increases__touch-probability"
+        ],
+        "evidence_channels": [
+          "existing_edge_evidence",
+          "frontmatter",
+          "review_text",
+          "signal_packet"
+        ],
+        "has_non_intervention_evidence": true
+      },
+      {
+        "node_key": "resolution-surface-ambiguity",
+        "node_type": "resolution_condition",
+        "mechanism_family": "source_resolution",
+        "reasons": [
+          "text:not yet verified",
+          "signal:not yet verified",
+          "text:exact qualifying binance 1-minute high",
+          "signal:exact qualifying binance 1-minute high",
+          "text:proof acquisition",
+          "signal:proof acquisition",
+          "text:structured proof capture",
+          "text:event may already have occurred but has not been verified",
+          "text:source-of-truth wording incomplete",
+          "signal:source-of-truth wording incomplete",
+          "text:exact qualifying",
+          "signal:exact qualifying",
+          "text:binance 1-minute high",
+          "signal:binance 1-minute high",
+          "text:governing resolution surface",
+          "text:governing source",
+          "signal:governing source",
+          "text:governing surface",
+          "text:settlement wording",
+          "signal:settlement wording",
+          "frontmatter:related_entity=binance",
+          "frontmatter:related_driver=verification-surface caution",
+          "text:verification caution",
+          "text:operationally sensible",
+          "signal:operationally sensible",
+          "text:not yet verified on governing source",
+          "signal:not yet verified on governing source",
+          "text:caution was somewhat overstretched",
+          "signal:caution was somewhat overstretched",
+          "edge_evidence:resolution-surface-ambiguity__increases__verification-caution",
+          "edge_evidence:settlement-source-specificity__increases__resolution-surface-ambiguity"
+        ],
+        "evidence_channels": [
+          "existing_edge_evidence",
+          "frontmatter",
+          "review_text",
+          "signal_packet"
+        ],
+        "has_non_intervention_evidence": true
+      },
+      {
+        "node_key": "settlement-source-specificity",
+        "node_type": "source_condition",
+        "mechanism_family": "source_resolution",
+        "reasons": [
+          "text:binance 1-minute high",
+          "signal:binance 1-minute high",
+          "text:governing resolution surface",
+          "text:governing source",
+          "signal:governing source",
+          "text:governing surface",
+          "text:settlement wording",
+          "signal:settlement wording",
+          "frontmatter:related_entity=binance",
+          "frontmatter:related_driver=verification-surface caution",
+          "edge_evidence:settlement-source-specificity__increases__resolution-surface-ambiguity"
+        ],
+        "evidence_channels": [
+          "existing_edge_evidence",
+          "frontmatter",
+          "review_text",
+          "signal_packet"
+        ],
+        "has_non_intervention_evidence": true
+      },
+      {
+        "node_key": "time-remaining-nontrivial",
+        "node_type": "market_state",
+        "mechanism_family": "threshold_touch",
+        "reasons": [
+          "text:several days left",
+          "text:multiple days remained",
+          "signal:multiple days remained",
+          "text:multiple remaining trading days",
+          "text:multi-day residual window",
+          "text:time remaining in a 24/7 market",
+          "signal:time remaining in a 24/7 market",
+          "text:remaining-time path risk",
+          "text:days remained in a continuously traded market",
+          "signal:days remained in a continuously traded market",
+          "edge_evidence:time-remaining-nontrivial__increases__touch-probability"
+        ],
+        "evidence_channels": [
+          "existing_edge_evidence",
+          "review_text",
+          "signal_packet"
+        ],
+        "has_non_intervention_evidence": true
+      },
+      {
+        "node_key": "touch-probability",
+        "node_type": "risk_state",
+        "mechanism_family": "threshold_touch",
+        "reasons": [
+          "text:touch/high-style",
+          "signal:touch/high-style",
+          "text:threshold-touch",
+          "text:intraperiod high",
+          "text:1-minute high",
+          "signal:1-minute high",
+          "text:touch-friendly settlement",
+          "text:reach $2,400",
+          "frontmatter:subdomain=threshold_touch_markets",
+          "frontmatter:tag=threshold-touch",
+          "frontmatter:related_driver=touch-style settlement mechanics",
+          "text:threshold proximity",
+          "signal:threshold proximity",
+          "text:near-touch territory",
+          "signal:near-touch territory",
+          "text:within roughly half a percent",
+          "text:already in near-touch territory",
+          "signal:already in near-touch territory",
+          "text:sub-1% distance",
+          "frontmatter:related_driver=threshold proximity",
+          "text:several days left",
+          "text:multiple days remained",
+          "signal:multiple days remained",
+          "text:multiple remaining trading days",
+          "text:multi-day residual window",
+          "text:time remaining in a 24/7 market",
+          "signal:time remaining in a 24/7 market",
+          "text:remaining-time path risk",
+          "text:days remained in a continuously traded market",
+          "signal:days remained in a continuously traded market",
+          "edge_evidence:price-near-threshold__increases__touch-probability",
+          "edge_evidence:time-remaining-nontrivial__increases__touch-probability"
+        ],
+        "evidence_channels": [
+          "existing_edge_evidence",
+          "frontmatter",
+          "review_text",
+          "signal_packet"
+        ],
+        "has_non_intervention_evidence": true
+      },
+      {
+        "node_key": "verification-caution",
+        "node_type": "workflow_condition",
+        "mechanism_family": "workflow_pricing",
+        "reasons": [
+          "text:verification caution",
+          "text:operationally sensible",
+          "signal:operationally sensible",
+          "text:not yet verified on governing source",
+          "signal:not yet verified on governing source",
+          "text:caution was somewhat overstretched",
+          "signal:caution was somewhat overstretched",
+          "text:source-of-truth wording incomplete",
+          "signal:source-of-truth wording incomplete",
+          "text:not yet verified",
+          "signal:not yet verified",
+          "text:exact qualifying binance 1-minute high",
+          "signal:exact qualifying binance 1-minute high",
+          "text:proof acquisition",
+          "signal:proof acquisition",
+          "text:structured proof capture",
+          "text:event may already have occurred but has not been verified",
+          "text:exact qualifying",
+          "signal:exact qualifying",
+          "edge_evidence:resolution-surface-ambiguity__increases__verification-caution",
+          "edge_evidence:verification-caution__increases__fair-value-discounting-pressure"
+        ],
+        "evidence_channels": [
+          "existing_edge_evidence",
+          "review_text",
+          "signal_packet"
+        ],
+        "has_non_intervention_evidence": true
+      }
+    ],
+    "candidate_edge_details": [
+      {
+        "edge_key": "price-near-threshold__increases__touch-probability",
+        "source_node_key": "price-near-threshold",
+        "target_node_key": "touch-probability",
+        "effect_sign": "increases",
+        "mechanism_family": "threshold_touch",
+        "reasons": [
+          "source_node_active",
+          "target_node_active",
+          "edge_evidence_match",
+          "context:question_mechanics",
+          "context:categories"
+        ],
+        "evidence_channels": [
+          "existing_edge_evidence",
+          "frontmatter"
+        ],
+        "intervention_statuses": [
+          "draft"
+        ],
+        "has_non_intervention_evidence": true
+      },
+      {
+        "edge_key": "resolution-surface-ambiguity__increases__verification-caution",
+        "source_node_key": "resolution-surface-ambiguity",
+        "target_node_key": "verification-caution",
+        "effect_sign": "increases",
+        "mechanism_family": "source_resolution",
+        "reasons": [
+          "source_node_active",
+          "target_node_active",
+          "edge_evidence_match",
+          "context:source_of_truth_class"
+        ],
+        "evidence_channels": [
+          "existing_edge_evidence",
+          "frontmatter"
+        ],
+        "intervention_statuses": [
+          "active",
+          "draft"
+        ],
+        "has_non_intervention_evidence": true
+      },
+      {
+        "edge_key": "settlement-source-specificity__increases__resolution-surface-ambiguity",
+        "source_node_key": "settlement-source-specificity",
+        "target_node_key": "resolution-surface-ambiguity",
+        "effect_sign": "increases",
+        "mechanism_family": "source_resolution",
+        "reasons": [
+          "source_node_active",
+          "target_node_active",
+          "edge_evidence_match",
+          "context:question_mechanics",
+          "context:source_of_truth_class"
+        ],
+        "evidence_channels": [
+          "existing_edge_evidence",
+          "frontmatter"
+        ],
+        "intervention_statuses": [
+          "active",
+          "draft"
+        ],
+        "has_non_intervention_evidence": true
+      },
+      {
+        "edge_key": "time-remaining-nontrivial__increases__touch-probability",
+        "source_node_key": "time-remaining-nontrivial",
+        "target_node_key": "touch-probability",
+        "effect_sign": "increases",
+        "mechanism_family": "threshold_touch",
+        "reasons": [
+          "source_node_active",
+          "target_node_active",
+          "edge_evidence_match",
+          "context:question_mechanics",
+          "context:categories"
+        ],
+        "evidence_channels": [
+          "existing_edge_evidence",
+          "frontmatter"
+        ],
+        "intervention_statuses": [
+          "draft"
+        ],
+        "has_non_intervention_evidence": true
+      },
+      {
+        "edge_key": "verification-caution__increases__fair-value-discounting-pressure",
+        "source_node_key": "verification-caution",
+        "target_node_key": "fair-value-discounting-pressure",
+        "effect_sign": "increases",
+        "mechanism_family": "workflow_pricing",
+        "reasons": [
+          "source_node_active",
+          "target_node_active",
+          "edge_evidence_match",
+          "context:question_mechanics"
+        ],
+        "evidence_channels": [
+          "existing_edge_evidence",
+          "frontmatter"
+        ],
+        "intervention_statuses": [
+          "active",
+          "draft"
+        ],
+        "has_non_intervention_evidence": true
+      }
+    ],
+    "contested_edge_details": [
+      {
+        "edge_key": "verification-caution__increases__fair-value-discounting-pressure",
+        "source_node_key": "verification-caution",
+        "target_node_key": "fair-value-discounting-pressure",
+        "effect_sign": "increases",
+        "mechanism_family": "workflow_pricing",
+        "reasons": [
+          "text:overstretched in pricing",
+          "text:pulled fair value down",
+          "text:too expensive relative to case difficulty",
+          "text:deserve less weight",
+          "text:mildly underconfident",
+          "text:generic resistance concern mattered less"
+        ],
+        "evidence_channels": [
+          "review_text"
+        ],
+        "intervention_statuses": [
+          "active",
+          "draft"
+        ],
+        "has_non_intervention_evidence": true
+      }
+    ],
+    "linked_interventions": {
+      "require-touch-mechanics-check-before-resistance-discount": {
+        "path": "qualitative-db/50-learnings/intervention-tracking/draft/intervention-require-touch-mechanics-check-before-resistance-discount.md",
+        "status": "draft",
+        "application_surface": "researcher_prompt"
+      },
+      "capture-governing-source-proof-for-touch-markets": {
+        "path": "qualitative-db/50-learnings/intervention-tracking/active/intervention-capture-governing-source-proof-for-touch-markets.md",
+        "status": "active",
+        "application_surface": "researcher_prompt"
+      },
+      "separate-unverified-from-not-occurred-for-source-sensitive-markets": {
+        "path": "qualitative-db/50-learnings/intervention-tracking/draft/intervention-separate-unverified-from-not-occurred-for-source-sensitive-markets.md",
+        "status": "draft",
+        "application_surface": "researcher_prompt"
+      }
+    },
+    "evidence_channel_summary": {
+      "existing_edge_evidence": 12,
+      "frontmatter": 10,
+      "heuristic": 1,
+      "linked_intervention_active": 3,
+      "linked_intervention_draft": 1,
+      "review_text": 8,
+      "signal_packet": 7
+    },
+    "sections_present": [
+      "Driver and mechanism takeaways",
+      "Error-pattern classification",
+      "How this should be reused later",
+      "Outcome and scoring evidence",
+      "Promotion candidates for stable layers",
+      "Proposed intervention or hold decision",
+      "Source / input / workflow takeaways",
+      "What happened in reality",
+      "What the pipeline believed or did",
+      "What was being evaluated",
+      "What was missing",
+      "Which inputs were high signal",
+      "Which inputs were misleading"
+    ],
+    "signal_count": 34,
+    "graph_snapshot": {
+      "node_count": 9,
+      "edge_count": 6
+    },
+    "projection_path": "qualitative-db/50-learnings/case-reviews/case-20260414-4e668883/causal-projection.json",
+    "projection_significance": {
+      "significant": true,
+      "profile": {
+        "min_active_nodes": 4,
+        "min_candidate_edges": 2,
+        "min_contested_edges": 1,
+        "min_non_intervention_active_nodes": 2,
+        "min_non_intervention_candidate_edges": 1,
+        "min_non_intervention_required_checks": 2
+      },
+      "metrics": {
+        "active_node_count": 7,
+        "candidate_edge_count": 5,
+        "contested_edge_count": 1,
+        "required_check_count": 5,
+        "non_intervention_active_node_count": 7,
+        "non_intervention_candidate_edge_count": 5,
+        "non_intervention_required_check_count": 0,
+        "active_intervention_required_check_count": 3,
+        "draft_intervention_required_check_count": 1,
+        "heuristic_required_check_count": 1
+      },
+      "reasons": [
+        "active_nodes_and_candidate_edges",
+        "contested_edges",
+        "non_intervention_structural_evidence"
+      ],
+      "weak_support_reasons": []
+    }
+  }
+}

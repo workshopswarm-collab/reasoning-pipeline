@@ -1,0 +1,54 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Single-minute settlement sensitivity.",
+    "Binance-specific source dependence.",
+    "Overnight/intraday volatility could erase a modest cushion."
+  ],
+  "key_assumptions": [
+    "BTC keeps enough cushion above 72000 into noon ET on April 16.",
+    "Binance BTC/USDT stays close enough to broader spot references for current context to be informative."
+  ],
+  "main_logical_chain": [
+    "The governing contract uses Binance BTC/USDT noon ET 1-minute close > 72000, not a broad BTC daily level.",
+    "Recent contextual spot pricing showed BTC materially above 72000, so Yes is favored directionally.",
+    "Because the settlement condition is narrow and path-dependent, market confidence should be haircut below 89.5%."
+  ],
+  "main_thesis": "Yes is still more likely than not, but the market is overconfident because this resolves on a single Binance BTC/USDT noon-ET 1-minute close.",
+  "own_probability": 0.82,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "resolve to Yes if the Binance 1 minute candle ... 12:00 in the ET timezone ... has a final Close price higher than"
+  ],
+  "reasoning_mode": [
+    "risk_management",
+    "scenario_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-572502e1",
+    "dispatch_id": "dispatch-case-20260415-572502e1-20260415T124520Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "67f2f978-bd6b-4ec5-b4ca-e62129cfc981",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-572502e1/researcher-analyses/2026-04-15/dispatch-case-20260415-572502e1-20260415T124520Z/personas/risk-manager.md",
+    "source_persona_sha256": "95b662f10f04ff5d0f6b990ed4883601a5bda3da28f47591d85e1d1ef8868911"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Strong contract source, only medium contextual price evidence, so confidence should stay below the market extreme.",
+  "strongest_disconfirmers": [
+    "The contract settles on one exact Binance 1-minute close at noon ET, so short-lived volatility or venue-specific divergence can flip the result."
+  ],
+  "strongest_supports": [
+    "Contextual April 15 pricing was in the mid-74k area, above the 72k threshold.",
+    "Polymarket ladder priced 72k near 90% while 74k was near 57%, implying 72k sits below the central short-term zone."
+  ],
+  "timing_relevance": "Resolution is fixed to April 16 at 12:00 PM ET, making short-horizon price path and exact minute mapping material.",
+  "unresolved_ambiguities": [
+    "No direct Binance source artifact was captured in this run showing the live cushion.",
+    "Exact morning-of-resolution path remains unknown."
+  ],
+  "what_would_change_view": "A direct Binance morning check showing a large stable cushion above 72k would move me toward the market; trading back near 72k would move me further away."
+}

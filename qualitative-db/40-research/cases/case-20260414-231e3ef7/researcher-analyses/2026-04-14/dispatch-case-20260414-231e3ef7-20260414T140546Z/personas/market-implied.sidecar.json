@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "medium",
+  "fragility_points": [
+    "Estimate is sensitive to exact official score margin and tie-break status.",
+    "Contextual standings evidence may be derivative and not fully independent."
+  ],
+  "key_assumptions": [
+    "Sindarov holds a near-decisive late-stage lead rather than a merely narrow one.",
+    "Secondary contextual reporting on his dominant score after 12 rounds is directionally accurate.",
+    "No operational or rules issue removes him from contention before formal resolution."
+  ],
+  "main_logical_chain": [
+    "Start from the extreme market price as an information-rich prior.",
+    "Check contract wording to identify FIDE as the governing source of truth and narrow the resolution logic.",
+    "Verify via official FIDE surface that the event is live in round 13 and Sindarov is central to current coverage.",
+    "Use contextual standings reporting to explain why the market is so confident.",
+    "Discount slightly because exact official standings and tie-break exposure were not directly audited."
+  ],
+  "main_thesis": "Market likely directionally right on Sindarov winning, but 99.05% looks slightly overextended versus directly auditable evidence; own estimate is 94%.",
+  "own_probability": 0.94,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "primary resolution source will be official information from FIDE",
+    "FIDE Candidates 2026 | Round 13 LIVE | Sindarov"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "contract_interpretation",
+    "scenario_analysis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-231e3ef7",
+    "dispatch_id": "dispatch-case-20260414-231e3ef7-20260414T140546Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "165d75b4-3758-49b4-88b2-37f3ca846691",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-231e3ef7/researcher-analyses/2026-04-14/dispatch-case-20260414-231e3ef7-20260414T140546Z/personas/market-implied.md",
+    "source_persona_sha256": "e3532166ad07eb04d83aba1f373d440b1af38079a629e7852f4cb57a229a664b"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Good on contract/source-of-truth and live-event verification, only moderate on exact standings auditability.",
+  "strongest_disconfirmers": [
+    "No clean official FIDE crosstable or exact tie-break math was directly captured in-tool.",
+    "Two rounds remaining still leaves some nontrivial upset paths compared with a 99% price."
+  ],
+  "strongest_supports": [
+    "Polymarket price of 0.9905 implies traders see the tournament as almost decided.",
+    "FIDE official site confirms the event is live at round 13 with Sindarov featured in coverage.",
+    "Contextual reporting says Sindarov had six wins and six draws through 12 games and was favored with two rounds remaining."
+  ],
+  "timing_relevance": "Very high because this is a late-stage live tournament market and calibration can move sharply on each round result.",
+  "unresolved_ambiguities": [
+    "Exact official crosstable after round 12 / during round 13 was not cleanly retrieved.",
+    "Residual upset probability depends on precise tie-break and remaining pairing state."
+  ],
+  "what_would_change_view": "A clean official FIDE crosstable showing either a near-clinch or a much tighter race would move the estimate materially."
+}

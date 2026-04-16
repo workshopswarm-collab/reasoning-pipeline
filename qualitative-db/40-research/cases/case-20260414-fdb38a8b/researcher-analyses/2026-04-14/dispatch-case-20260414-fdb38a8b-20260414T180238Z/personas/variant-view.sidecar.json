@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "If BTC holds comfortably above 74.5k-75k into Friday, the lower-than-market view weakens quickly.",
+    "This thesis depends more on short-horizon volatility than on a bearish structural BTC call."
+  ],
+  "key_assumptions": [
+    "The market is compressing timestamp-specific risk into a broader bullish BTC narrative.",
+    "Recent BTC short-horizon volatility remains relevant over the remaining three-day window.",
+    "No hidden contract wrinkle overrides the explicit Binance/ET/1m close wording."
+  ],
+  "main_logical_chain": [
+    "Market implies about 81.5% Yes and BTC is currently above the strike.",
+    "Contract mechanics are narrower than a generic BTC directional bet because only the Binance BTC/USDT 12:00 ET one-minute close on Apr 17 counts.",
+    "Recent volatility shows a sub-72k print at that exact minute is still plausible over three days.",
+    "Therefore Yes remains favored, but not quite as strongly as the market price suggests."
+  ],
+  "main_thesis": "Yes is more likely than no, but the market is modestly overconfident because the contract resolves on one exact Binance BTC/USDT minute close rather than a generic BTC-above-72k weekly state.",
+  "own_probability": 0.76,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone has a final 'Close' price higher than the price specified.",
+    "I estimate 76% Yes, below the market-implied 81.5%."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation",
+    "variant_hypothesis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-fdb38a8b",
+    "dispatch_id": "dispatch-case-20260414-fdb38a8b-20260414T180238Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "6f616907-8214-472a-8749-b23e4c2198ab",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-fdb38a8b/researcher-analyses/2026-04-14/dispatch-case-20260414-fdb38a8b-20260414T180238Z/personas/variant-view.md",
+    "source_persona_sha256": "c04de2910494622ebd2739aad007f10895a2ce6b234f0e1b23f71332fb4b17e3"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source-of-truth ambiguity is low because the contract wording is explicit; evidence quality is medium-to-high overall because it combines governing rules, direct Binance data, and an independent CoinGecko context check.",
+  "strongest_disconfirmers": [
+    "Recent BTC realized volatility was large enough to swing from about 70.7k on Apr 13 to above 74.5k on Apr 14.",
+    "The contract resolves on one exact minute close on Binance, so path dependence matters more than a broad weekly bullish view."
+  ],
+  "strongest_supports": [
+    "Binance spot during research was about 74.8k, leaving BTC already 3-4% above the threshold.",
+    "The Apr 14 Binance noon-ET one-minute candle closed around 75,356, showing the same daily timestamp is currently well above 72k.",
+    "Current trend and distance from strike still make Yes the base case."
+  ],
+  "timing_relevance": "Very high: the market resolves on Apr 17 at 12:00 ET, equivalent to 16:00 UTC, and the exact one-minute Binance close is the deciding datapoint.",
+  "unresolved_ambiguities": [
+    "How much realized volatility will compress before the resolving minute.",
+    "Whether any late macro or crypto-specific catalyst materially moves BTC before Friday noon ET."
+  ],
+  "what_would_change_view": "I would move toward or above market if BTC stays firmly above 74.5k-75k into late Thursday or Friday morning with reduced downside volatility; I would cut below 76% if BTC starts revisiting low-72k/high-71k levels before resolution."
+}

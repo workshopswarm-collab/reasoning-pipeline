@@ -1,0 +1,63 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Exact-minute settlement creates timing fragility.",
+    "A moderate crypto selloff before 16:00 UTC on April 16 would materially weaken the thesis.",
+    "Confidence is sensitive to exchange-specific behavior on Binance."
+  ],
+  "key_assumptions": [
+    "The current roughly $2.2k cushion above 72,000 remains informative for the next ~27.5 hours.",
+    "Recent Binance trading range is a reasonable proxy for near-term downside risk.",
+    "Binance remains operationally reliable and representative into the settlement minute."
+  ],
+  "main_logical_chain": [
+    "Polymarket resolves this market from the Binance BTC/USDT 1-minute candle close at 12:00 ET on April 16.",
+    "Current Binance spot is about 74.2k, leaving a meaningful cushion above 72k.",
+    "Recent realized downside on Binance stayed above 72k, supporting a Yes lean.",
+    "But because settlement depends on one exact minute, ordinary crypto volatility still leaves a nontrivial No tail.",
+    "Therefore I lean Yes but with slightly less confidence than the market's 89.5% pricing."
+  ],
+  "main_thesis": "Yes remains more likely than No because Binance BTC/USDT is currently well above 72,000, but the market is slightly overconfident because one exact settlement-minute close creates meaningful path risk.",
+  "own_probability": 0.84,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "My estimate is 0.84 (84%).",
+    "The strongest disconfirming consideration is that this is a one-minute timestamp contract, not a broad end-of-day price question.",
+    "Governing source of truth: Binance BTC/USDT with 1-minute candles, as specified by Polymarket's market rules."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "risk_management",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-2cb747e6",
+    "dispatch_id": "dispatch-case-20260415-2cb747e6-20260415T122916Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "85a9dae8-24de-4cae-8adb-7a1612e33454",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-2cb747e6/researcher-analyses/2026-04-15/dispatch-case-20260415-2cb747e6-20260415T122916Z/personas/risk-manager.md",
+    "source_persona_sha256": "4da811a3c604037904e3ab803d847d876091bbac5723b064260b225e4cbb1a4d"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality direct sources for contract mechanics and relevant price series; independence is only medium because the contract explicitly settles on Binance, but source-of-truth ambiguity is low.",
+  "strongest_disconfirmers": [
+    "A roughly 3% downside move by the settlement minute would flip the contract to No.",
+    "This is a one-minute timestamp contract, so transient weakness at the wrong time is enough to lose.",
+    "Binance-specific exchange prints can matter more than broader BTC references because Binance alone governs settlement."
+  ],
+  "strongest_supports": [
+    "Binance spot during the run was around 74,187-74,204 BTCUSDT.",
+    "Recent 24-hour Binance 1-minute range stayed above 72,000, with a low around 73,514.",
+    "Contract source-of-truth ambiguity is low because Polymarket explicitly names Binance BTC/USDT 1m close at 12:00 ET."
+  ],
+  "timing_relevance": "Very high: the decisive observation is the Binance BTC/USDT final 1-minute close at 2026-04-16 12:00 ET / 16:00 UTC.",
+  "unresolved_ambiguities": [
+    "Whether realized volatility stays subdued into settlement.",
+    "Whether any late macro or crypto-specific catalyst produces a sharp drawdown before the resolution minute."
+  ],
+  "what_would_change_view": "I would revise lower if BTC loses the 73k area with momentum or if Binance shows exchange-specific weakness before settlement; I would revise upward if BTC stays comfortably above 73.5k into April 16 morning ET and a final pre-settlement verification still shows a durable cushion."
+}

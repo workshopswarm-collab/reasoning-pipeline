@@ -1,0 +1,61 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A standard soccer draw is enough to defeat the position.",
+    "Hidden lineup or rotation news could move the estimate materially.",
+    "Thin independent verification makes the extreme market confidence less trustworthy."
+  ],
+  "key_assumptions": [
+    "Al Nassr has a real team-strength edge over Al Ettifaq.",
+    "No hidden major lineup or motivation shock is currently invalidating the favorite view.",
+    "Regulation draw risk remains material enough to keep true win probability below the market price."
+  ],
+  "main_logical_chain": [
+    "Start from the market anchor showing Al Nassr as a heavy favorite.",
+    "Apply contract interpretation: only a 90-minute win counts, so draw risk matters materially.",
+    "Stress-test source quality and note that independent contextual verification was thinner and noisier than ideal.",
+    "Keep the directional yes view but trim confidence below the 91.5% market price."
+  ],
+  "main_thesis": "Al Nassr is the likely winner, but the 91.5% market price looks somewhat too confident for a regulation-only soccer match given draw risk and thin independent verification.",
+  "own_probability": 0.86,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "This market refers only to the outcome within the first 90 minutes of regular play plus stoppage time.",
+    "The market-implied probability is 91.5%.",
+    "Own probability estimate: 86%."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "risk_management"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-33c2f26e",
+    "dispatch_id": "dispatch-case-20260415-33c2f26e-20260415T211658Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "efc8a31d-2a7a-43b6-9b4d-7e07b9c7af21",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-33c2f26e/researcher-analyses/2026-04-15/dispatch-case-20260415-33c2f26e-20260415T211658Z/personas/risk-manager.md",
+    "source_persona_sha256": "9186c1c7ef78fe81b1b362cb2c31f82323d8bda05c398315e0e12c74052d0605"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Strong for contract mechanics, weaker for sporting context; evidence independence is low-to-medium and that is the main reason for discounting the extreme price.",
+  "strongest_disconfirmers": [
+    "Any draw resolves No, making ordinary regulation draw risk the main failure mode.",
+    "The extra verification pass did not produce a clean independent sporting source for this exact fixture.",
+    "Contextual source retrieval showed entity-mapping noise, which argues against overconfidence."
+  ],
+  "strongest_supports": [
+    "Market price of 0.915 implies a strong consensus that Al Nassr is the clearly superior side.",
+    "No direct evidence in this run showed a cancellation, status issue, or large negative catalyst for Al Nassr.",
+    "General sports-performance logic supports a strong-favorite baseline even after trimming for uncertainty."
+  ],
+  "timing_relevance": "The match is still days away, so late team news or fixture-context changes could still matter, but not enough from current evidence to overturn the directional yes view.",
+  "unresolved_ambiguities": [
+    "Exact current form and lineup context from clean independent sources were not confirmed in this run.",
+    "The contextual sports-data source had entity-resolution noise for Al Ettifaq."
+  ],
+  "what_would_change_view": "Clean independent confirmation of team strength and no adverse news would move the estimate toward market; verified major absences, strong Al Ettifaq context, or elevated draw-risk factors would move it further below market."
+}

@@ -1,0 +1,58 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A sharp downside move before noon ET could erase the current cushion.",
+    "If candle mapping or settlement handling differs from the assumed Binance convention, confidence should fall."
+  ],
+  "key_assumptions": [
+    "The operative settlement bar is the Binance BTC/USDT 1-minute candle opening at 12:00 ET / 16:00 UTC on April 16.",
+    "No exchange data irregularity or resolver exception changes the standard candle interpretation.",
+    "BTC downside over the remaining window is meaningful but not large enough to make sub-72k the base case."
+  ],
+  "main_logical_chain": [
+    "Start from the market prior of 93.5% Yes.",
+    "Verify the governing contract language and confirm the settlement depends on Binance BTC/USDT's noon ET 1-minute close.",
+    "Check Binance directly: spot is around 74.2k and timestamp mechanics are consistent with the expected settlement bar.",
+    "Conclude that Yes is the right directional base case, then haircut the market modestly for tail risk and exact-minute mechanics."
+  ],
+  "main_thesis": "The market is directionally right to price Yes because BTC is already materially above 72k, but 93.5% looks slightly too high for a one-day crypto threshold market settled on one exact minute close.",
+  "own_probability": 0.89,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone ... has a final 'Close' price higher than the price specified in the title.",
+    "12:00 ET on April 16, 2026 = 16:00:00 UTC."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "contract_interpretation",
+    "scenario_analysis"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260415-48a4484b",
+    "dispatch_id": "dispatch-case-20260415-48a4484b-20260415T180644Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "173d30b9-3384-4ed8-a465-26d27fe522a5",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-48a4484b/researcher-analyses/2026-04-15/dispatch-case-20260415-48a4484b-20260415T180644Z/personas/market-implied.md",
+    "source_persona_sha256": "86bf28bb895a495e7d68c454f52bfeef91b2fbb0743d2199c054bdce77768528"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is strong overall: Polymarket is primary for contract rules and Binance API is primary for underlying market data; independence is medium-high and source-of-truth ambiguity is low-medium.",
+  "strongest_disconfirmers": [
+    "BTC can move more than 3% in less than a day, so the remaining cushion is real but not overwhelming.",
+    "An exact-minute settlement creates small but nonzero mechanics risk relative to a broader daily-close framing."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT was around 74.2k at review time, leaving roughly a 3% cushion above the strike.",
+    "The nearby Polymarket strike ladder was internally coherent, supporting the view that the market price is informed rather than stale.",
+    "Contract wording cleanly specifies Binance BTC/USDT, the noon ET 1-minute candle, and the final Close price."
+  ],
+  "timing_relevance": "This is a narrow, date-sensitive market resolving on April 16 at 12:00 ET; with less than a day left, current spot level matters a lot, but exact-minute path risk still matters.",
+  "unresolved_ambiguities": [
+    "Minor residual ambiguity remains around precise UI-versus-API candle mapping until the live settlement bar is observed.",
+    "No separate volatility-event source was used in this run to quantify overnight downside risk more tightly."
+  ],
+  "what_would_change_view": "I would move lower if BTC trades down near 72.5k or if settlement mechanics look less clean; I would move closer to market if BTC stays well above 73.5k-74k into the resolution window without rule ambiguity."
+}

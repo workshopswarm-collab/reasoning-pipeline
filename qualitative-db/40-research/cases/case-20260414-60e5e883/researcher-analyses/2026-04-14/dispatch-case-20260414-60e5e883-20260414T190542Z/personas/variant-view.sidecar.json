@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "If BTC stays 75k+ into late April 16 / early April 17, the variant discount likely becomes too aggressive.",
+    "This view depends on short-horizon volatility remaining nontrivial over the remaining window."
+  ],
+  "key_assumptions": [
+    "Exact-minute Binance-specific settlement risk is underweighted relative to headline bullish BTC framing.",
+    "A roughly 6% cushion is meaningful but not enough to justify 92.5% confidence with nearly three days left.",
+    "No exchange-specific disruption invalidates practical use of Binance BTCUSDT as the governing source."
+  ],
+  "main_logical_chain": [
+    "The contract settles on Binance BTCUSDT's 12:00 ET one-minute candle close on April 17.",
+    "Current direct Binance pricing is comfortably above 70k, so Yes is the base case.",
+    "But exact-minute, exact-venue settlement is narrower than the headline and adds path risk.",
+    "Therefore the market-implied 92.5% looks somewhat too high even though Yes remains more likely than No."
+  ],
+  "main_thesis": "BTC above 70k on Binance at settlement is still more likely than not, but the market is somewhat overconfident because the contract resolves on one exact Binance BTCUSDT noon-ET minute close rather than a broader spot or daily-close concept.",
+  "own_probability": 0.84,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "resolves to Binance BTC/USDT 1-minute candle close at 12:00 ET on April 17",
+    "market price is 0.925, implying about 92.5% Yes",
+    "my estimate is 84% Yes / 16% No"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation",
+    "variant_hypothesis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-60e5e883",
+    "dispatch_id": "dispatch-case-20260414-60e5e883-20260414T190542Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "08cd90b8-4147-4c6f-9c21-5cf1f4a2974d",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-60e5e883/researcher-analyses/2026-04-14/dispatch-case-20260414-60e5e883-20260414T190542Z/personas/variant-view.md",
+    "source_persona_sha256": "198c913f1977a2af8fd78febe53a5f77209d73bc71a652269bfceb213043931f"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary source quality is high because Binance BTCUSDT is the governing venue/pair; secondary contextual quality is medium-high via CoinGecko for recent volatility/path context; source-of-truth ambiguity is low-to-medium but timing interpretation needs care.",
+  "strongest_disconfirmers": [
+    "A 6% cushion with less than three days left is substantial, so the market's high Yes pricing is not irrational.",
+    "Recent BTC path was trending upward, not downward, which could make 84% too conservative if strength persists."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT was trading around 74.3k on 2026-04-14, already above the 70k strike.",
+    "Recent contextual BTC price history shows the market has mostly traded above 70k over the last week.",
+    "Yes only requires BTC to avoid a roughly 6% downside move into the exact settlement minute."
+  ],
+  "timing_relevance": "High: the market resolves on one exact noon ET Binance 1-minute close on 2026-04-17, so short-horizon path risk matters more than broad directional narrative.",
+  "unresolved_ambiguities": [
+    "The contract wording is specific, but timezone-to-candle mapping must still be handled carefully at resolution time.",
+    "Independent sources help on volatility context but do not fully diversify away common BTC market dependence."
+  ],
+  "what_would_change_view": "I would move closer to the market if BTC remains well above the strike into late April 16 / early April 17 with lower volatility, and more bearish if BTC loses the current cushion or Binance-specific price action weakens materially."
+}

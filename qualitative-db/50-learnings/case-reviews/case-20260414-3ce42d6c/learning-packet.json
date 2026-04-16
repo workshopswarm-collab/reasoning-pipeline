@@ -1,0 +1,1133 @@
+{
+  "artifact_type": "resolved_case_learning_packet",
+  "schema_version": "v2-draft",
+  "packet_status": "draft",
+  "case_key": "case-20260414-3ce42d6c",
+  "case_id": "c11c1f6e-42e9-4d08-8193-5276d691b53e",
+  "market_id": "343b4125-9ce7-4238-81ad-f534fc4c6fae",
+  "contract_id": "yes",
+  "title": "Will the price of Bitcoin be above $70,000 on April 14?",
+  "description": "This market will resolve to \"Yes\" if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone (noon) on the date specified in the title has a final \"Close\" price higher than the price specified in the title. Otherwise, this market will resolve to \"No\".\n\nThe resolution source for this market is Binance, specifically the BTC/USDT \"Close\" prices currently available at https://www.binance.com/en/trade/BTC_USDT with \"1m\" and \"Candles\" selected on the top bar.\n\nPlease note that this market is about the price according to Binance BTC/USDT, not according to other exchanges or trading pairs.\n\nPrice precision is determined by the number of decimal places in the source.",
+  "category": "polymarket-discovery",
+  "platform": "polymarket",
+  "opened_at": "2026-04-14T09:09:16.458803-04:00",
+  "resolved_at": "2026-04-14T15:44:48-04:00",
+  "case_status": "closed",
+  "market_truth": {
+    "platform": "polymarket",
+    "external_market_id": "0xb4edd1ceca7ae170d1ed632677a8671797b3d47374d38ffac7d410cfb9e9f5c7",
+    "slug": "bitcoin-above-70k-on-april-14",
+    "current_price_at_case_note": 0.9995,
+    "current_price_from_db": 0.9995,
+    "last_reasoned_price": 0.992,
+    "closes_at": "2026-04-14T12:00:00-04:00",
+    "resolves_at": "2026-04-14T12:00:00-04:00",
+    "resolution_source": "gamma-api.polymarket.com/markets/slug/bitcoin-above-70k-on-april-14",
+    "resolution_status": "resolved",
+    "resolved_outcome": "yes",
+    "resolved_value": 1.0,
+    "resolved_ts": "2026-04-14T15:44:48-04:00",
+    "price_path_summary": {
+      "current_price": 0.9995,
+      "market_reference_price": 0.9995,
+      "snapshot_count": 48,
+      "min_reference_price": 0.9995,
+      "max_reference_price": 0.9995,
+      "avg_reference_price": 0.9995,
+      "oldest_observed_at": "2026-04-14T15:25:32.877749-04:00",
+      "latest_observed_at": "2026-04-14T15:49:28.963196-04:00",
+      "major_move_windows": []
+    }
+  },
+  "quant_truth": {
+    "db_available": true,
+    "case": {
+      "case_db_id": "c11c1f6e-42e9-4d08-8193-5276d691b53e",
+      "case_key": "case-20260414-3ce42d6c",
+      "case_status": "closed",
+      "opened_at": "2026-04-14T09:09:16.458803-04:00",
+      "closed_at": "2026-04-14T09:17:27.991028-04:00",
+      "market_id": "343b4125-9ce7-4238-81ad-f534fc4c6fae",
+      "platform": "polymarket",
+      "external_market_id": "0xb4edd1ceca7ae170d1ed632677a8671797b3d47374d38ffac7d410cfb9e9f5c7",
+      "slug": "bitcoin-above-70k-on-april-14",
+      "title": "Will the price of Bitcoin be above $70,000 on April 14?",
+      "description": "This market will resolve to \"Yes\" if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone (noon) on the date specified in the title has a final \"Close\" price higher than the price specified in the title. Otherwise, this market will resolve to \"No\".\n\nThe resolution source for this market is Binance, specifically the BTC/USDT \"Close\" prices currently available at https://www.binance.com/en/trade/BTC_USDT with \"1m\" and \"Candles\" selected on the top bar.\n\nPlease note that this market is about the price according to Binance BTC/USDT, not according to other exchanges or trading pairs.\n\nPrice precision is determined by the number of decimal places in the source.",
+      "category": "polymarket-discovery",
+      "market_status": "open",
+      "outcome_type": "binary",
+      "current_price": 0.9995,
+      "last_reasoned_price": 0.992,
+      "closes_at": "2026-04-14T12:00:00-04:00",
+      "resolves_at": "2026-04-14T12:00:00-04:00",
+      "market_updated_at": "2026-04-14T15:49:29.038965-04:00"
+    },
+    "initial_forecast": {
+      "forecast_id": "dispatch-case-20260413-9e664afd-20260413T164930Z",
+      "case_id": "case-20260413-9e664afd",
+      "dispatch_id": "dispatch-case-20260413-9e664afd-20260413T164930Z",
+      "market_id": "343b4125-9ce7-4238-81ad-f534fc4c6fae",
+      "contract_id": "yes",
+      "forecast_platform": "polymarket",
+      "market_slug": "bitcoin-above-70k-on-april-14",
+      "question": "Will the price of Bitcoin be above $70,000 on April 14?",
+      "forecast_prob": 0.87,
+      "forecast_direction": "yes",
+      "confidence_label": "medium",
+      "confidence_score": null,
+      "time_horizon_label": "Final day into the Apr 14 noon ET / 16:00 UTC settlement minute",
+      "verification_mode": "targeted_escalation",
+      "decision_status": "superseded",
+      "rationale_summary": "BTC is still clearly above 70,000, so Yes remains the better directional call, but because the bounded inputs contain inconsistent market pricing and the contract settles on one future Binance minute, the disciplined output is watch-only rather than fresh entry.",
+      "decision_packet_path": "qualitative-db/40-research/cases/case-20260413-9e664afd/decision-maker/artifacts/decision-maker-packet.json",
+      "decision_handoff_path": "qualitative-db/40-research/cases/case-20260413-9e664afd/synthesizer-agent/decision-handoff.md",
+      "syndicated_finding_path": "qualitative-db/40-research/cases/case-20260413-9e664afd/synthesizer-agent/syndicated-finding.md",
+      "supersedes_forecast_id": null,
+      "decision_ts": "2026-04-13T12:57:00-04:00",
+      "created_at": "2026-04-13T12:57:47.951715-04:00",
+      "updated_at": "2026-04-14T11:03:38.069416-04:00",
+      "resolution_status": "resolved",
+      "resolved_outcome": "yes",
+      "resolved_value": 1.0,
+      "resolved_ts": "2026-04-14T15:44:48-04:00",
+      "resolution_source": "gamma-api.polymarket.com/markets/slug/bitcoin-above-70k-on-april-14",
+      "resolution_notes": "{\"uma_resolution_status\":\"resolved\",\"condition_id\":\"0xb4edd1ceca7ae170d1ed632677a8671797b3d47374d38ffac7d410cfb9e9f5c7\",\"closed\":true}",
+      "brier_component": 0.0169
+    },
+    "latest_forecast": {
+      "forecast_id": "dispatch-case-20260414-3ce42d6c-20260414T130958Z",
+      "case_id": "case-20260414-3ce42d6c",
+      "dispatch_id": "dispatch-case-20260414-3ce42d6c-20260414T130958Z",
+      "market_id": "343b4125-9ce7-4238-81ad-f534fc4c6fae",
+      "contract_id": "yes",
+      "forecast_platform": "polymarket",
+      "market_slug": "bitcoin-above-70k-on-april-14",
+      "question": "Will the price of Bitcoin be above $70,000 on April 14?",
+      "forecast_prob": 0.992,
+      "forecast_direction": "yes",
+      "confidence_label": "medium",
+      "confidence_score": null,
+      "time_horizon_label": "Through the exact Binance 12:00 ET / 16:00 UTC settlement candle",
+      "verification_mode": "targeted_escalation",
+      "decision_status": "recorded",
+      "rationale_summary": "Bitcoin being above $70,000 at the April 14 noon ET Binance minute is overwhelmingly likely given the large same-venue pre-noon cushion, but because the market is already at 99.95% and the exact resolving candle was not directly observed, the disciplined posture is watch-only rather than chasing near-certainty.",
+      "decision_packet_path": "qualitative-db/40-research/cases/case-20260414-3ce42d6c/decision-maker/artifacts/decision-maker-packet.json",
+      "decision_handoff_path": "qualitative-db/40-research/cases/case-20260414-3ce42d6c/synthesizer-agent/decision-handoff.md",
+      "syndicated_finding_path": "qualitative-db/40-research/cases/case-20260414-3ce42d6c/synthesizer-agent/syndicated-finding.md",
+      "supersedes_forecast_id": "dispatch-case-20260414-d5888900-20260414T143228Z",
+      "decision_ts": "2026-04-14T11:02:00-04:00",
+      "created_at": "2026-04-14T11:03:38.069416-04:00",
+      "updated_at": "2026-04-14T11:03:38.069416-04:00",
+      "resolution_status": "resolved",
+      "resolved_outcome": "yes",
+      "resolved_value": 1.0,
+      "resolved_ts": "2026-04-14T15:44:48-04:00",
+      "resolution_source": "gamma-api.polymarket.com/markets/slug/bitcoin-above-70k-on-april-14",
+      "resolution_notes": "{\"uma_resolution_status\":\"resolved\",\"condition_id\":\"0xb4edd1ceca7ae170d1ed632677a8671797b3d47374d38ffac7d410cfb9e9f5c7\",\"closed\":true}",
+      "brier_component": 6.4e-05
+    },
+    "forecast_summary": {
+      "forecast_count": 3,
+      "resolved_forecast_count": 3,
+      "first_decision_ts": "2026-04-13T12:57:00-04:00",
+      "latest_decision_ts": "2026-04-14T11:02:00-04:00",
+      "avg_forecast_prob": 0.9513333333333334
+    },
+    "forecast_rows": [
+      {
+        "forecast_id": "dispatch-case-20260413-9e664afd-20260413T164930Z",
+        "case_id": "case-20260413-9e664afd",
+        "dispatch_id": "dispatch-case-20260413-9e664afd-20260413T164930Z",
+        "market_id": "343b4125-9ce7-4238-81ad-f534fc4c6fae",
+        "contract_id": "yes",
+        "forecast_platform": "polymarket",
+        "market_slug": "bitcoin-above-70k-on-april-14",
+        "question": "Will the price of Bitcoin be above $70,000 on April 14?",
+        "forecast_prob": 0.87,
+        "forecast_direction": "yes",
+        "confidence_label": "medium",
+        "confidence_score": null,
+        "time_horizon_label": "Final day into the Apr 14 noon ET / 16:00 UTC settlement minute",
+        "verification_mode": "targeted_escalation",
+        "decision_status": "superseded",
+        "rationale_summary": "BTC is still clearly above 70,000, so Yes remains the better directional call, but because the bounded inputs contain inconsistent market pricing and the contract settles on one future Binance minute, the disciplined output is watch-only rather than fresh entry.",
+        "decision_packet_path": "qualitative-db/40-research/cases/case-20260413-9e664afd/decision-maker/artifacts/decision-maker-packet.json",
+        "decision_handoff_path": "qualitative-db/40-research/cases/case-20260413-9e664afd/synthesizer-agent/decision-handoff.md",
+        "syndicated_finding_path": "qualitative-db/40-research/cases/case-20260413-9e664afd/synthesizer-agent/syndicated-finding.md",
+        "supersedes_forecast_id": null,
+        "decision_ts": "2026-04-13T12:57:00-04:00",
+        "created_at": "2026-04-13T12:57:47.951715-04:00",
+        "updated_at": "2026-04-14T11:03:38.069416-04:00",
+        "resolution_status": "resolved",
+        "resolved_outcome": "yes",
+        "resolved_value": 1.0,
+        "resolved_ts": "2026-04-14T15:44:48-04:00",
+        "resolution_source": "gamma-api.polymarket.com/markets/slug/bitcoin-above-70k-on-april-14",
+        "resolution_notes": "{\"uma_resolution_status\":\"resolved\",\"condition_id\":\"0xb4edd1ceca7ae170d1ed632677a8671797b3d47374d38ffac7d410cfb9e9f5c7\",\"closed\":true}",
+        "brier_component": 0.0169
+      },
+      {
+        "forecast_id": "dispatch-case-20260414-d5888900-20260414T143228Z",
+        "case_id": "case-20260414-d5888900",
+        "dispatch_id": "dispatch-case-20260414-d5888900-20260414T143228Z",
+        "market_id": "343b4125-9ce7-4238-81ad-f534fc4c6fae",
+        "contract_id": "yes",
+        "forecast_platform": "polymarket",
+        "market_slug": "bitcoin-above-70k-on-april-14",
+        "question": "Will the price of Bitcoin be above $70,000 on April 14?",
+        "forecast_prob": 0.992,
+        "forecast_direction": "yes",
+        "confidence_label": "medium",
+        "confidence_score": null,
+        "time_horizon_label": "Through the exact Binance 12:00 ET / 16:00 UTC settlement candle",
+        "verification_mode": "targeted_escalation",
+        "decision_status": "superseded",
+        "rationale_summary": "Bitcoin being above $70,000 at the April 14 noon ET Binance minute is overwhelmingly likely given the very large pre-noon cushion, but because the market is already at 99.95% and the exact resolving candle was not directly observed, the disciplined posture is watch-only rather than chasing near-certainty.",
+        "decision_packet_path": "qualitative-db/40-research/cases/case-20260414-d5888900/decision-maker/artifacts/decision-maker-packet.json",
+        "decision_handoff_path": "qualitative-db/40-research/cases/case-20260414-d5888900/synthesizer-agent/decision-handoff.md",
+        "syndicated_finding_path": "qualitative-db/40-research/cases/case-20260414-d5888900/synthesizer-agent/syndicated-finding.md",
+        "supersedes_forecast_id": "dispatch-case-20260413-9e664afd-20260413T164930Z",
+        "decision_ts": "2026-04-14T10:42:00-04:00",
+        "created_at": "2026-04-14T10:42:50.041129-04:00",
+        "updated_at": "2026-04-14T11:03:38.069416-04:00",
+        "resolution_status": "resolved",
+        "resolved_outcome": "yes",
+        "resolved_value": 1.0,
+        "resolved_ts": "2026-04-14T15:44:48-04:00",
+        "resolution_source": "gamma-api.polymarket.com/markets/slug/bitcoin-above-70k-on-april-14",
+        "resolution_notes": "{\"uma_resolution_status\":\"resolved\",\"condition_id\":\"0xb4edd1ceca7ae170d1ed632677a8671797b3d47374d38ffac7d410cfb9e9f5c7\",\"closed\":true}",
+        "brier_component": 6.4e-05
+      },
+      {
+        "forecast_id": "dispatch-case-20260414-3ce42d6c-20260414T130958Z",
+        "case_id": "case-20260414-3ce42d6c",
+        "dispatch_id": "dispatch-case-20260414-3ce42d6c-20260414T130958Z",
+        "market_id": "343b4125-9ce7-4238-81ad-f534fc4c6fae",
+        "contract_id": "yes",
+        "forecast_platform": "polymarket",
+        "market_slug": "bitcoin-above-70k-on-april-14",
+        "question": "Will the price of Bitcoin be above $70,000 on April 14?",
+        "forecast_prob": 0.992,
+        "forecast_direction": "yes",
+        "confidence_label": "medium",
+        "confidence_score": null,
+        "time_horizon_label": "Through the exact Binance 12:00 ET / 16:00 UTC settlement candle",
+        "verification_mode": "targeted_escalation",
+        "decision_status": "recorded",
+        "rationale_summary": "Bitcoin being above $70,000 at the April 14 noon ET Binance minute is overwhelmingly likely given the large same-venue pre-noon cushion, but because the market is already at 99.95% and the exact resolving candle was not directly observed, the disciplined posture is watch-only rather than chasing near-certainty.",
+        "decision_packet_path": "qualitative-db/40-research/cases/case-20260414-3ce42d6c/decision-maker/artifacts/decision-maker-packet.json",
+        "decision_handoff_path": "qualitative-db/40-research/cases/case-20260414-3ce42d6c/synthesizer-agent/decision-handoff.md",
+        "syndicated_finding_path": "qualitative-db/40-research/cases/case-20260414-3ce42d6c/synthesizer-agent/syndicated-finding.md",
+        "supersedes_forecast_id": "dispatch-case-20260414-d5888900-20260414T143228Z",
+        "decision_ts": "2026-04-14T11:02:00-04:00",
+        "created_at": "2026-04-14T11:03:38.069416-04:00",
+        "updated_at": "2026-04-14T11:03:38.069416-04:00",
+        "resolution_status": "resolved",
+        "resolved_outcome": "yes",
+        "resolved_value": 1.0,
+        "resolved_ts": "2026-04-14T15:44:48-04:00",
+        "resolution_source": "gamma-api.polymarket.com/markets/slug/bitcoin-above-70k-on-april-14",
+        "resolution_notes": "{\"uma_resolution_status\":\"resolved\",\"condition_id\":\"0xb4edd1ceca7ae170d1ed632677a8671797b3d47374d38ffac7d410cfb9e9f5c7\",\"closed\":true}",
+        "brier_component": 6.4e-05
+      }
+    ],
+    "snapshot_summary": {
+      "snapshot_count": 48,
+      "min_reference_price": 0.9995,
+      "max_reference_price": 0.9995,
+      "avg_reference_price": 0.9995,
+      "oldest_observed_at": "2026-04-14T15:25:32.877749-04:00",
+      "latest_observed_at": "2026-04-14T15:49:28.963196-04:00"
+    },
+    "recent_snapshots": [
+      {
+        "observed_at": "2026-04-14T15:49:28.963196-04:00",
+        "last_price": 0.9995,
+        "yes_price": 0.9995,
+        "no_price": 0.0005,
+        "best_bid": 0.999,
+        "best_ask": 1.0,
+        "volume": 621505.880567,
+        "open_interest": 288665.32203,
+        "reference_price": 0.9995
+      },
+      {
+        "observed_at": "2026-04-14T15:48:58.436722-04:00",
+        "last_price": 0.9995,
+        "yes_price": 0.9995,
+        "no_price": 0.0005,
+        "best_bid": 0.999,
+        "best_ask": 1.0,
+        "volume": 621505.880567,
+        "open_interest": 288665.32203,
+        "reference_price": 0.9995
+      },
+      {
+        "observed_at": "2026-04-14T15:48:27.915248-04:00",
+        "last_price": 0.9995,
+        "yes_price": 0.9995,
+        "no_price": 0.0005,
+        "best_bid": 0.999,
+        "best_ask": 1.0,
+        "volume": 621505.880567,
+        "open_interest": 288665.32203,
+        "reference_price": 0.9995
+      },
+      {
+        "observed_at": "2026-04-14T15:47:57.402755-04:00",
+        "last_price": 0.9995,
+        "yes_price": 0.9995,
+        "no_price": 0.0005,
+        "best_bid": 0.999,
+        "best_ask": 1.0,
+        "volume": 621505.880567,
+        "open_interest": 288665.32203,
+        "reference_price": 0.9995
+      },
+      {
+        "observed_at": "2026-04-14T15:47:26.877816-04:00",
+        "last_price": 0.9995,
+        "yes_price": 0.9995,
+        "no_price": 0.0005,
+        "best_bid": 0.999,
+        "best_ask": 1.0,
+        "volume": 621505.880567,
+        "open_interest": 288665.32203,
+        "reference_price": 0.9995
+      },
+      {
+        "observed_at": "2026-04-14T15:46:56.346618-04:00",
+        "last_price": 0.9995,
+        "yes_price": 0.9995,
+        "no_price": 0.0005,
+        "best_bid": 0.999,
+        "best_ask": 1.0,
+        "volume": 621505.880567,
+        "open_interest": 288665.32203,
+        "reference_price": 0.9995
+      },
+      {
+        "observed_at": "2026-04-14T15:46:25.744014-04:00",
+        "last_price": 0.9995,
+        "yes_price": 0.9995,
+        "no_price": 0.0005,
+        "best_bid": 0.999,
+        "best_ask": 1.0,
+        "volume": 621505.880567,
+        "open_interest": 288665.32203,
+        "reference_price": 0.9995
+      },
+      {
+        "observed_at": "2026-04-14T15:45:55.220405-04:00",
+        "last_price": 0.9995,
+        "yes_price": 0.9995,
+        "no_price": 0.0005,
+        "best_bid": 0.999,
+        "best_ask": 1.0,
+        "volume": 621505.880567,
+        "open_interest": 288665.32203,
+        "reference_price": 0.9995
+      },
+      {
+        "observed_at": "2026-04-14T15:45:24.687313-04:00",
+        "last_price": 0.9995,
+        "yes_price": 0.9995,
+        "no_price": 0.0005,
+        "best_bid": 0.999,
+        "best_ask": 1.0,
+        "volume": 621505.880567,
+        "open_interest": 288665.32203,
+        "reference_price": 0.9995
+      },
+      {
+        "observed_at": "2026-04-14T15:44:54.154754-04:00",
+        "last_price": 0.9995,
+        "yes_price": 0.9995,
+        "no_price": 0.0005,
+        "best_bid": 0.999,
+        "best_ask": 1.0,
+        "volume": 621505.880567,
+        "open_interest": 288665.32203,
+        "reference_price": 0.9995
+      },
+      {
+        "observed_at": "2026-04-14T15:44:23.504968-04:00",
+        "last_price": 0.9995,
+        "yes_price": 0.9995,
+        "no_price": 0.0005,
+        "best_bid": 0.999,
+        "best_ask": 1.0,
+        "volume": 621505.880567,
+        "open_interest": 288977.8694,
+        "reference_price": 0.9995
+      },
+      {
+        "observed_at": "2026-04-14T15:43:52.979609-04:00",
+        "last_price": 0.9995,
+        "yes_price": 0.9995,
+        "no_price": 0.0005,
+        "best_bid": 0.999,
+        "best_ask": 1.0,
+        "volume": 621505.880567,
+        "open_interest": 288977.8694,
+        "reference_price": 0.9995
+      },
+      {
+        "observed_at": "2026-04-14T15:43:21.92502-04:00",
+        "last_price": 0.9995,
+        "yes_price": 0.9995,
+        "no_price": 0.0005,
+        "best_bid": 0.999,
+        "best_ask": 1.0,
+        "volume": 621505.880567,
+        "open_interest": 288977.8694,
+        "reference_price": 0.9995
+      },
+      {
+        "observed_at": "2026-04-14T15:42:51.301398-04:00",
+        "last_price": 0.9995,
+        "yes_price": 0.9995,
+        "no_price": 0.0005,
+        "best_bid": 0.999,
+        "best_ask": 1.0,
+        "volume": 621505.880567,
+        "open_interest": 288977.8694,
+        "reference_price": 0.9995
+      },
+      {
+        "observed_at": "2026-04-14T15:42:20.655167-04:00",
+        "last_price": 0.9995,
+        "yes_price": 0.9995,
+        "no_price": 0.0005,
+        "best_bid": 0.999,
+        "best_ask": 1.0,
+        "volume": 621505.880567,
+        "open_interest": 288977.8694,
+        "reference_price": 0.9995
+      },
+      {
+        "observed_at": "2026-04-14T15:41:50.086421-04:00",
+        "last_price": 0.9995,
+        "yes_price": 0.9995,
+        "no_price": 0.0005,
+        "best_bid": 0.999,
+        "best_ask": 1.0,
+        "volume": 621505.880567,
+        "open_interest": 288977.8694,
+        "reference_price": 0.9995
+      },
+      {
+        "observed_at": "2026-04-14T15:41:19.53336-04:00",
+        "last_price": 0.9995,
+        "yes_price": 0.9995,
+        "no_price": 0.0005,
+        "best_bid": 0.999,
+        "best_ask": 1.0,
+        "volume": 621505.880567,
+        "open_interest": 288977.8694,
+        "reference_price": 0.9995
+      },
+      {
+        "observed_at": "2026-04-14T15:40:49.010337-04:00",
+        "last_price": 0.9995,
+        "yes_price": 0.9995,
+        "no_price": 0.0005,
+        "best_bid": 0.999,
+        "best_ask": 1.0,
+        "volume": 621505.880567,
+        "open_interest": 288977.8694,
+        "reference_price": 0.9995
+      },
+      {
+        "observed_at": "2026-04-14T15:40:18.485252-04:00",
+        "last_price": 0.9995,
+        "yes_price": 0.9995,
+        "no_price": 0.0005,
+        "best_bid": 0.999,
+        "best_ask": 1.0,
+        "volume": 621505.880567,
+        "open_interest": 288977.8694,
+        "reference_price": 0.9995
+      },
+      {
+        "observed_at": "2026-04-14T15:39:47.937702-04:00",
+        "last_price": 0.9995,
+        "yes_price": 0.9995,
+        "no_price": 0.0005,
+        "best_bid": 0.999,
+        "best_ask": 1.0,
+        "volume": 621505.880567,
+        "open_interest": 288977.8694,
+        "reference_price": 0.9995
+      },
+      {
+        "observed_at": "2026-04-14T15:39:17.258715-04:00",
+        "last_price": 0.9995,
+        "yes_price": 0.9995,
+        "no_price": 0.0005,
+        "best_bid": 0.999,
+        "best_ask": 1.0,
+        "volume": 621505.880567,
+        "open_interest": 288977.8694,
+        "reference_price": 0.9995
+      },
+      {
+        "observed_at": "2026-04-14T15:38:46.715946-04:00",
+        "last_price": 0.9995,
+        "yes_price": 0.9995,
+        "no_price": 0.0005,
+        "best_bid": 0.999,
+        "best_ask": 1.0,
+        "volume": 621505.880567,
+        "open_interest": 288977.8694,
+        "reference_price": 0.9995
+      },
+      {
+        "observed_at": "2026-04-14T15:38:16.206151-04:00",
+        "last_price": 0.9995,
+        "yes_price": 0.9995,
+        "no_price": 0.0005,
+        "best_bid": 0.999,
+        "best_ask": 1.0,
+        "volume": 621505.880567,
+        "open_interest": 288977.8694,
+        "reference_price": 0.9995
+      },
+      {
+        "observed_at": "2026-04-14T15:37:45.723069-04:00",
+        "last_price": 0.9995,
+        "yes_price": 0.9995,
+        "no_price": 0.0005,
+        "best_bid": 0.999,
+        "best_ask": 1.0,
+        "volume": 621505.880567,
+        "open_interest": 288977.8694,
+        "reference_price": 0.9995
+      },
+      {
+        "observed_at": "2026-04-14T15:37:15.194365-04:00",
+        "last_price": 0.9995,
+        "yes_price": 0.9995,
+        "no_price": 0.0005,
+        "best_bid": 0.999,
+        "best_ask": 1.0,
+        "volume": 621505.880567,
+        "open_interest": 288977.8694,
+        "reference_price": 0.9995
+      },
+      {
+        "observed_at": "2026-04-14T15:36:44.669921-04:00",
+        "last_price": 0.9995,
+        "yes_price": 0.9995,
+        "no_price": 0.0005,
+        "best_bid": 0.999,
+        "best_ask": 1.0,
+        "volume": 621505.880567,
+        "open_interest": 288977.8694,
+        "reference_price": 0.9995
+      },
+      {
+        "observed_at": "2026-04-14T15:36:14.152849-04:00",
+        "last_price": 0.9995,
+        "yes_price": 0.9995,
+        "no_price": 0.0005,
+        "best_bid": 0.999,
+        "best_ask": 1.0,
+        "volume": 621505.880567,
+        "open_interest": 288977.8694,
+        "reference_price": 0.9995
+      },
+      {
+        "observed_at": "2026-04-14T15:35:43.618783-04:00",
+        "last_price": 0.9995,
+        "yes_price": 0.9995,
+        "no_price": 0.0005,
+        "best_bid": 0.999,
+        "best_ask": 1.0,
+        "volume": 621505.880567,
+        "open_interest": 288977.8694,
+        "reference_price": 0.9995
+      },
+      {
+        "observed_at": "2026-04-14T15:35:13.109085-04:00",
+        "last_price": 0.9995,
+        "yes_price": 0.9995,
+        "no_price": 0.0005,
+        "best_bid": 0.999,
+        "best_ask": 1.0,
+        "volume": 621505.880567,
+        "open_interest": 288977.8694,
+        "reference_price": 0.9995
+      },
+      {
+        "observed_at": "2026-04-14T15:34:42.548521-04:00",
+        "last_price": 0.9995,
+        "yes_price": 0.9995,
+        "no_price": 0.0005,
+        "best_bid": 0.999,
+        "best_ask": 1.0,
+        "volume": 621463.250567,
+        "open_interest": 294179.29277,
+        "reference_price": 0.9995
+      },
+      {
+        "observed_at": "2026-04-14T15:34:12.017476-04:00",
+        "last_price": 0.9995,
+        "yes_price": 0.9995,
+        "no_price": 0.0005,
+        "best_bid": 0.999,
+        "best_ask": 1.0,
+        "volume": 621463.250567,
+        "open_interest": 294179.29277,
+        "reference_price": 0.9995
+      },
+      {
+        "observed_at": "2026-04-14T15:33:41.486036-04:00",
+        "last_price": 0.9995,
+        "yes_price": 0.9995,
+        "no_price": 0.0005,
+        "best_bid": 0.999,
+        "best_ask": 1.0,
+        "volume": 621463.250567,
+        "open_interest": 294179.29277,
+        "reference_price": 0.9995
+      },
+      {
+        "observed_at": "2026-04-14T15:33:10.970786-04:00",
+        "last_price": 0.9995,
+        "yes_price": 0.9995,
+        "no_price": 0.0005,
+        "best_bid": 0.999,
+        "best_ask": 1.0,
+        "volume": 621463.250567,
+        "open_interest": 294179.29277,
+        "reference_price": 0.9995
+      },
+      {
+        "observed_at": "2026-04-14T15:32:40.449454-04:00",
+        "last_price": 0.9995,
+        "yes_price": 0.9995,
+        "no_price": 0.0005,
+        "best_bid": 0.999,
+        "best_ask": 1.0,
+        "volume": 621463.250567,
+        "open_interest": 294179.29277,
+        "reference_price": 0.9995
+      },
+      {
+        "observed_at": "2026-04-14T15:32:09.944303-04:00",
+        "last_price": 0.9995,
+        "yes_price": 0.9995,
+        "no_price": 0.0005,
+        "best_bid": 0.999,
+        "best_ask": 1.0,
+        "volume": 621463.250567,
+        "open_interest": 294179.29277,
+        "reference_price": 0.9995
+      },
+      {
+        "observed_at": "2026-04-14T15:31:39.446604-04:00",
+        "last_price": 0.9995,
+        "yes_price": 0.9995,
+        "no_price": 0.0005,
+        "best_bid": 0.999,
+        "best_ask": 1.0,
+        "volume": 621463.250567,
+        "open_interest": 294179.29277,
+        "reference_price": 0.9995
+      },
+      {
+        "observed_at": "2026-04-14T15:31:08.894154-04:00",
+        "last_price": 0.9995,
+        "yes_price": 0.9995,
+        "no_price": 0.0005,
+        "best_bid": 0.999,
+        "best_ask": 1.0,
+        "volume": 621463.250567,
+        "open_interest": 294179.29277,
+        "reference_price": 0.9995
+      },
+      {
+        "observed_at": "2026-04-14T15:30:38.344343-04:00",
+        "last_price": 0.9995,
+        "yes_price": 0.9995,
+        "no_price": 0.0005,
+        "best_bid": 0.999,
+        "best_ask": 1.0,
+        "volume": 621463.250567,
+        "open_interest": 294179.29277,
+        "reference_price": 0.9995
+      },
+      {
+        "observed_at": "2026-04-14T15:30:07.836604-04:00",
+        "last_price": 0.9995,
+        "yes_price": 0.9995,
+        "no_price": 0.0005,
+        "best_bid": 0.999,
+        "best_ask": 1.0,
+        "volume": 621463.250567,
+        "open_interest": 294179.29277,
+        "reference_price": 0.9995
+      },
+      {
+        "observed_at": "2026-04-14T15:29:37.218025-04:00",
+        "last_price": 0.9995,
+        "yes_price": 0.9995,
+        "no_price": 0.0005,
+        "best_bid": 0.999,
+        "best_ask": 1.0,
+        "volume": 621453.230567,
+        "open_interest": 294239.22278,
+        "reference_price": 0.9995
+      },
+      {
+        "observed_at": "2026-04-14T15:29:06.67947-04:00",
+        "last_price": 0.9995,
+        "yes_price": 0.9995,
+        "no_price": 0.0005,
+        "best_bid": 0.999,
+        "best_ask": 1.0,
+        "volume": 621453.230567,
+        "open_interest": 294239.22278,
+        "reference_price": 0.9995
+      },
+      {
+        "observed_at": "2026-04-14T15:28:36.169753-04:00",
+        "last_price": 0.9995,
+        "yes_price": 0.9995,
+        "no_price": 0.0005,
+        "best_bid": 0.999,
+        "best_ask": 1.0,
+        "volume": 621453.230567,
+        "open_interest": 294239.22278,
+        "reference_price": 0.9995
+      },
+      {
+        "observed_at": "2026-04-14T15:28:05.464421-04:00",
+        "last_price": 0.9995,
+        "yes_price": 0.9995,
+        "no_price": 0.0005,
+        "best_bid": 0.999,
+        "best_ask": 1.0,
+        "volume": 621453.230567,
+        "open_interest": 294239.22278,
+        "reference_price": 0.9995
+      },
+      {
+        "observed_at": "2026-04-14T15:27:34.899137-04:00",
+        "last_price": 0.9995,
+        "yes_price": 0.9995,
+        "no_price": 0.0005,
+        "best_bid": 0.999,
+        "best_ask": 1.0,
+        "volume": 621453.230567,
+        "open_interest": 294239.22278,
+        "reference_price": 0.9995
+      },
+      {
+        "observed_at": "2026-04-14T15:27:04.367275-04:00",
+        "last_price": 0.9995,
+        "yes_price": 0.9995,
+        "no_price": 0.0005,
+        "best_bid": 0.999,
+        "best_ask": 1.0,
+        "volume": 621453.230567,
+        "open_interest": 294239.22278,
+        "reference_price": 0.9995
+      },
+      {
+        "observed_at": "2026-04-14T15:26:33.863733-04:00",
+        "last_price": 0.9995,
+        "yes_price": 0.9995,
+        "no_price": 0.0005,
+        "best_bid": 0.999,
+        "best_ask": 1.0,
+        "volume": 621453.230567,
+        "open_interest": 294239.22278,
+        "reference_price": 0.9995
+      },
+      {
+        "observed_at": "2026-04-14T15:26:03.385209-04:00",
+        "last_price": 0.9995,
+        "yes_price": 0.9995,
+        "no_price": 0.0005,
+        "best_bid": 0.999,
+        "best_ask": 1.0,
+        "volume": 621453.230567,
+        "open_interest": 294239.22278,
+        "reference_price": 0.9995
+      },
+      {
+        "observed_at": "2026-04-14T15:25:32.877749-04:00",
+        "last_price": 0.9995,
+        "yes_price": 0.9995,
+        "no_price": 0.0005,
+        "best_bid": 0.999,
+        "best_ask": 1.0,
+        "volume": 621453.230567,
+        "open_interest": 294239.22278,
+        "reference_price": 0.9995
+      }
+    ]
+  },
+  "forecast_summary": {
+    "initial_forecast_prob": 0.87,
+    "latest_forecast_prob": 0.992,
+    "resolved_value": 1.0,
+    "initial_brier_component": 0.0169,
+    "latest_brier_component": 6.4e-05,
+    "decision_count": 3,
+    "resolved_forecast_count": 3,
+    "first_decision_ts": "2026-04-13T12:57:00-04:00",
+    "latest_decision_ts": "2026-04-14T11:02:00-04:00"
+  },
+  "analysis_context": {
+    "dispatch_id": "dispatch-case-20260414-3ce42d6c-20260414T130958Z",
+    "dispatch_dir": "qualitative-db/40-research/cases/case-20260414-3ce42d6c/researcher-analyses/2026-04-14/dispatch-case-20260414-3ce42d6c-20260414T130958Z",
+    "pipeline_status": "pipeline_completed",
+    "current_stage": "decision",
+    "expected_persona_count": "5",
+    "completed_persona_count": "5",
+    "difficulty_class": null,
+    "resolution_risk": null,
+    "evidence_floor": null
+  },
+  "belief_evolution": {
+    "persona_probabilities": [
+      {
+        "persona": "base-rate",
+        "own_probability": 0.985
+      },
+      {
+        "persona": "catalyst-hunter",
+        "own_probability": 0.992
+      },
+      {
+        "persona": "market-implied",
+        "own_probability": 0.992
+      },
+      {
+        "persona": "risk-manager",
+        "own_probability": 0.97
+      },
+      {
+        "persona": "variant-view",
+        "own_probability": 0.97
+      }
+    ],
+    "persona_probability_min": 0.97,
+    "persona_probability_max": 0.992,
+    "initial_forecast_prob": 0.87,
+    "latest_forecast_prob": 0.992,
+    "decision_fair_value_low": 0.989,
+    "decision_fair_value_high": 0.995,
+    "decision_fair_value_mid": 0.992,
+    "market_reference_price": 0.9995,
+    "edge_mid_vs_market_pct_points": -0.8
+  },
+  "research_summary": {
+    "summary_path": "qualitative-db/40-research/cases/case-20260414-3ce42d6c/researcher-analyses/2026-04-14/dispatch-case-20260414-3ce42d6c-20260414T130958Z/summary.md",
+    "dispatch_ids": [
+      "dispatch-case-20260414-3ce42d6c-20260414T130958Z"
+    ],
+    "persona_runs": [
+      {
+        "persona": "base-rate",
+        "research_run_id": "59deb394-7128-406b-8ea8-467e8851fb0c",
+        "finding_path": "qualitative-db/40-research/cases/case-20260414-3ce42d6c/researcher-analyses/2026-04-14/dispatch-case-20260414-3ce42d6c-20260414T130958Z/personas/base-rate.md",
+        "sidecar_path": "qualitative-db/40-research/cases/case-20260414-3ce42d6c/researcher-analyses/2026-04-14/dispatch-case-20260414-3ce42d6c-20260414T130958Z/personas/base-rate.sidecar.json",
+        "own_probability": 0.985,
+        "recommended_weight": "high",
+        "key_assumptions": [
+          "Binance UI settlement candle will align with Binance public market data surfaces.",
+          "No abrupt >6% drawdown occurs before the noon ET close.",
+          "12:00 ET is correctly mapped to 16:00 UTC on the resolution date."
+        ],
+        "strongest_supports": [
+          "Same-day Binance spot checks showed BTC/USDT around 74.5k-74.6k, well above 70k.",
+          "Contract mechanics are narrow and explicit: Binance BTC/USDT 12:00 ET 1-minute close only.",
+          "A >6% drop over the remaining short window is possible but not the default base rate absent a catalyst."
+        ],
+        "strongest_disconfirmers": [
+          "This is an exact-minute, exchange-specific settlement, so minute-level volatility still matters.",
+          "Formal settlement uses the Binance UI candle, while verification relied on public API proxies."
+        ],
+        "timing_relevance": "Resolution depends on the specific 12:00 ET candle, which maps to 16:00 UTC on this daylight-saving date.",
+        "source_quality_view": "Primary-source quality is high for both contract wording and underlying price state; source-of-truth ambiguity is low-to-medium because settlement cites the Binance UI candle while verification used API proxies."
+      },
+      {
+        "persona": "catalyst-hunter",
+        "research_run_id": "d51f6252-858d-471d-aa31-5a5be77b6305",
+        "finding_path": "qualitative-db/40-research/cases/case-20260414-3ce42d6c/researcher-analyses/2026-04-14/dispatch-case-20260414-3ce42d6c-20260414T130958Z/personas/catalyst-hunter.md",
+        "sidecar_path": "qualitative-db/40-research/cases/case-20260414-3ce42d6c/researcher-analyses/2026-04-14/dispatch-case-20260414-3ce42d6c-20260414T130958Z/personas/catalyst-hunter.sidecar.json",
+        "own_probability": 0.992,
+        "recommended_weight": "high",
+        "key_assumptions": [
+          "No extraordinary intraday shock or Binance-specific dislocation drives BTC/USDT below 70k by the 12:00 ET candle close.",
+          "12:00 ET correctly maps to 16:00 UTC for the relevant Binance minute."
+        ],
+        "strongest_supports": [
+          "Polymarket explicitly names Binance BTC/USDT 12:00 ET 1m candle final Close as the source of truth.",
+          "Direct Binance API checks during the run showed BTC/USDT around 74,576.52, leaving a cushion of more than $4,500 above the threshold.",
+          "Recent 1m Binance klines were also in the 74.5k area."
+        ],
+        "strongest_disconfirmers": [
+          "The contract is governed by a single minute close on a single venue, so sudden liquidation, wick risk, outage, or data irregularity remains a tail risk.",
+          "This run did not itself capture the final settled 12:00 ET candle close."
+        ],
+        "timing_relevance": "The decisive timing issue is the noon ET/16:00 UTC Binance 1m close; no positive catalyst is needed for Yes, only a negative shock before that minute could force repricing.",
+        "source_quality_view": "High-quality for a medium rule-sensitive case: one authoritative contract source plus direct Binance venue checks; source-of-truth ambiguity is low and evidence independence is medium."
+      },
+      {
+        "persona": "market-implied",
+        "research_run_id": "cb7302c4-4ea6-41dd-a9b0-7dcf4c25710e",
+        "finding_path": "qualitative-db/40-research/cases/case-20260414-3ce42d6c/researcher-analyses/2026-04-14/dispatch-case-20260414-3ce42d6c-20260414T130958Z/personas/market-implied.md",
+        "sidecar_path": "qualitative-db/40-research/cases/case-20260414-3ce42d6c/researcher-analyses/2026-04-14/dispatch-case-20260414-3ce42d6c-20260414T130958Z/personas/market-implied.sidecar.json",
+        "own_probability": 0.992,
+        "recommended_weight": "high",
+        "key_assumptions": [
+          "Binance BTC/USDT does not suffer a roughly 6%+ drop before the 12:00 ET close.",
+          "The noon ET candle and Binance final close behave normally without venue-specific anomalies.",
+          "Polymarket's ET timing and Binance candle labeling align in the obvious way."
+        ],
+        "strongest_supports": [
+          "Polymarket explicitly defines Binance BTC/USDT 1m 12:00 ET close as the governing source of truth.",
+          "A direct Binance 1m klines check around 09:07 ET showed BTC/USDT around 74.55k-74.58k, well above 70k.",
+          "The nearby Polymarket threshold strip was internally coherent with an underlying spot price in the mid-74k area."
+        ],
+        "strongest_disconfirmers": [
+          "A fast late-morning drawdown of about 6%+ could still push the noon close below 70k.",
+          "A Binance-specific candle, timestamp, or operational anomaly could matter because the contract is venue-specific."
+        ],
+        "timing_relevance": "This is a same-day noon-ET threshold market, so remaining time-to-resolution and distance from strike dominate the analysis.",
+        "source_quality_view": "Source quality is high for a narrow contract: Polymarket clearly states the mechanics and Binance provides the direct venue-specific price context; independence is only medium because both point back to Binance."
+      },
+      {
+        "persona": "risk-manager",
+        "research_run_id": "6f74cb87-6f36-43f1-b397-a014d9dfaad5",
+        "finding_path": "qualitative-db/40-research/cases/case-20260414-3ce42d6c/researcher-analyses/2026-04-14/dispatch-case-20260414-3ce42d6c-20260414T130958Z/personas/risk-manager.md",
+        "sidecar_path": "qualitative-db/40-research/cases/case-20260414-3ce42d6c/researcher-analyses/2026-04-14/dispatch-case-20260414-3ce42d6c-20260414T130958Z/personas/risk-manager.sidecar.json",
+        "own_probability": 0.97,
+        "recommended_weight": "high",
+        "key_assumptions": [
+          "Binance BTCUSDT remains above 70000 into the exact 12:00 ET settlement minute.",
+          "The Binance chart surface named in the rules is consistent with documented kline semantics.",
+          "No exchange-specific anomaly materially affects the relevant close."
+        ],
+        "strongest_supports": [
+          "Live Binance ticker during research was about 74544.7, leaving a substantial cushion above 70000.",
+          "Polymarket rules clearly define Binance BTC/USDT 12:00 ET 1-minute close as the governing source.",
+          "Cross-strike market surface also implied BTC was comfortably above 70000."
+        ],
+        "strongest_disconfirmers": [
+          "The contract resolves on a single one-minute close, so late intraday reversal risk is the main failure mode.",
+          "Rules cite Binance chart UI, leaving small UI-vs-API ambiguity even after API verification."
+        ],
+        "timing_relevance": "Timing is central because resolution depends on the 12:00 ET one-minute close on 2026-04-14, which maps to 16:00 UTC during EDT.",
+        "source_quality_view": "High-quality contract source plus strong near-authoritative verification; independence is medium because key evidence traces back to Binance-related surfaces."
+      },
+      {
+        "persona": "variant-view",
+        "research_run_id": "fc9667cb-b24a-4bc0-a81f-f501bdd86843",
+        "finding_path": "qualitative-db/40-research/cases/case-20260414-3ce42d6c/researcher-analyses/2026-04-14/dispatch-case-20260414-3ce42d6c-20260414T130958Z/personas/variant-view.md",
+        "sidecar_path": "qualitative-db/40-research/cases/case-20260414-3ce42d6c/researcher-analyses/2026-04-14/dispatch-case-20260414-3ce42d6c-20260414T130958Z/personas/variant-view.sidecar.json",
+        "own_probability": 0.97,
+        "recommended_weight": "medium",
+        "key_assumptions": [
+          "Binance public BTCUSDT market data is a fair contextual proxy for the relevant trading state on the assignment date.",
+          "Residual uncertainty is concentrated in the exact noon-ET Binance 1-minute close rather than in broad BTC direction.",
+          "No exchange-specific anomaly altered the exact resolving candle versus the observed above-70000 context."
+        ],
+        "strongest_supports": [
+          "Polymarket rules explicitly define Binance BTC/USDT 1m 12:00 ET close as the governing source.",
+          "Binance public market surface showed BTCUSDT trading at 74544.71 with fetched low 70818.57, both above 70000.",
+          "The price buffer above the strike reduces plain directional failure risk."
+        ],
+        "strongest_disconfirmers": [
+          "The exact 12:00 ET Binance 1-minute historical close was not directly recovered in this runtime environment.",
+          "The contract references a chart display surface, leaving some implementation-level source ambiguity.",
+          "An abrupt move or exchange-specific edge case in the exact settlement minute could still matter."
+        ],
+        "timing_relevance": "The relevant contract timestamp is 2026-04-14 12:00 America/New_York, explicitly verified as 16:00 UTC.",
+        "source_quality_view": "Primary rules source is strong for mechanics; Binance public market surface is strong contextual verification, but the exact historical settlement candle was not directly archived here."
+      }
+    ],
+    "source_note_paths": [
+      "qualitative-db/40-research/cases/case-20260414-3ce42d6c/researcher-source-notes/2026-04-14-base-rate-binance-api-and-contract.md",
+      "qualitative-db/40-research/cases/case-20260414-3ce42d6c/researcher-source-notes/2026-04-14-catalyst-hunter-binance-and-rules.md",
+      "qualitative-db/40-research/cases/case-20260414-3ce42d6c/researcher-source-notes/2026-04-14-market-implied-polymarket-and-binance-resolution-context.md",
+      "qualitative-db/40-research/cases/case-20260414-3ce42d6c/researcher-source-notes/2026-04-14-risk-manager-binance-polymarket-resolution.md",
+      "qualitative-db/40-research/cases/case-20260414-3ce42d6c/researcher-source-notes/2026-04-14-variant-view-binance-market-surface.md",
+      "qualitative-db/40-research/cases/case-20260414-3ce42d6c/researcher-source-notes/2026-04-14-variant-view-polymarket-rules-and-market-state.md"
+    ],
+    "assumption_note_paths": [
+      "qualitative-db/40-research/cases/case-20260414-3ce42d6c/researcher-analyses/2026-04-14/dispatch-case-20260414-3ce42d6c-20260414T130958Z/assumptions/base-rate.md",
+      "qualitative-db/40-research/cases/case-20260414-3ce42d6c/researcher-analyses/2026-04-14/dispatch-case-20260414-3ce42d6c-20260414T130958Z/assumptions/catalyst-hunter.md",
+      "qualitative-db/40-research/cases/case-20260414-3ce42d6c/researcher-analyses/2026-04-14/dispatch-case-20260414-3ce42d6c-20260414T130958Z/assumptions/market-implied.md",
+      "qualitative-db/40-research/cases/case-20260414-3ce42d6c/researcher-analyses/2026-04-14/dispatch-case-20260414-3ce42d6c-20260414T130958Z/assumptions/risk-manager.md",
+      "qualitative-db/40-research/cases/case-20260414-3ce42d6c/researcher-analyses/2026-04-14/dispatch-case-20260414-3ce42d6c-20260414T130958Z/assumptions/variant-view.md"
+    ],
+    "evidence_map_paths": [
+      "qualitative-db/40-research/cases/case-20260414-3ce42d6c/researcher-analyses/2026-04-14/dispatch-case-20260414-3ce42d6c-20260414T130958Z/evidence/market-implied.md",
+      "qualitative-db/40-research/cases/case-20260414-3ce42d6c/researcher-analyses/2026-04-14/dispatch-case-20260414-3ce42d6c-20260414T130958Z/evidence/risk-manager.md"
+    ],
+    "synthesis_path": "qualitative-db/40-research/cases/case-20260414-3ce42d6c/synthesizer-agent/syndicated-finding.runtime.json",
+    "refresh_packet_paths": []
+  },
+  "decision_summary": {
+    "decision_status": "ready",
+    "side": "yes",
+    "trade_authorization": "watch_only",
+    "position_policy": "hold_only",
+    "target_probability": 0.992,
+    "decision_packet_path": "qualitative-db/40-research/cases/case-20260414-3ce42d6c/decision-maker/artifacts/decision-maker-packet.json",
+    "primary_crux": "BTC being above $70,000 at the April 14 noon ET Binance minute is overwhelmingly likely because the same-venue morning price sat far above the strike, but the market's 99.95% price already assumes away almost all of the exact-minute, single-venue settlement tail that still remains until the resolving candle is actually observed.",
+    "thesis_class": "price_not_good_enough"
+  },
+  "synthesis_summary": {
+    "dispatch_id": "dispatch-case-20260414-3ce42d6c-20260414T130958Z",
+    "synthesis_method": "dispatch_bundle_v1",
+    "synthesis_status": "rendered",
+    "market_snapshot_time": "2026-04-14T13:09:58.652625+00:00",
+    "artifact_path": "qualitative-db/40-research/cases/case-20260414-3ce42d6c/synthesizer-agent/syndicated-finding.md"
+  },
+  "causal_attribution": {
+    "observed_facts": [],
+    "inferred_attributions": [],
+    "note": "Evaluator distinguishes observed market/action facts from inferred causal attributions. Attribution population is intentionally left sparse until structured event + market-path reconstruction is implemented."
+  },
+  "event_timeline": {
+    "artifact_type": "case_event_timeline",
+    "schema_version": "v1",
+    "case_key": "case-20260414-3ce42d6c",
+    "event_count": 9,
+    "events": [
+      {
+        "ts": null,
+        "event_type": "research_completion_state",
+        "observed": true,
+        "summary": "research swarm reported 5 completed personas",
+        "source_paths": [
+          "qualitative-db/40-research/cases/case-20260414-3ce42d6c/researcher-swarm-current.md"
+        ],
+        "metadata": {
+          "completed_persona_count": "5",
+          "expected_persona_count": "5",
+          "pipeline_status": "pipeline_completed"
+        }
+      },
+      {
+        "ts": "2026-04-13T12:57:00-04:00",
+        "event_type": "forecast_recorded_initial",
+        "observed": true,
+        "summary": "initial forecast recorded at 0.87",
+        "source_paths": [
+          "qualitative-db/40-research/cases/case-20260413-9e664afd/decision-maker/artifacts/decision-maker-packet.json"
+        ],
+        "metadata": {
+          "forecast_id": "dispatch-case-20260413-9e664afd-20260413T164930Z",
+          "forecast_prob": 0.87,
+          "resolution_status": "resolved"
+        }
+      },
+      {
+        "ts": "2026-04-14T11:02:00-04:00",
+        "event_type": "decision_completed",
+        "observed": true,
+        "summary": "decision packet generated",
+        "source_paths": [
+          "qualitative-db/40-research/cases/case-20260414-3ce42d6c/decision-maker/artifacts/decision-maker-packet.json"
+        ],
+        "metadata": {
+          "trade_authorization": "watch_only",
+          "side": "yes"
+        }
+      },
+      {
+        "ts": "2026-04-14T11:02:00-04:00",
+        "event_type": "forecast_recorded_latest",
+        "observed": true,
+        "summary": "latest forecast recorded at 0.992",
+        "source_paths": [
+          "qualitative-db/40-research/cases/case-20260414-3ce42d6c/decision-maker/artifacts/decision-maker-packet.json"
+        ],
+        "metadata": {
+          "forecast_id": "dispatch-case-20260414-3ce42d6c-20260414T130958Z",
+          "forecast_prob": 0.992,
+          "resolution_status": "resolved",
+          "brier_component": 6.4e-05
+        }
+      },
+      {
+        "ts": "2026-04-14T13:09:58.652625+00:00",
+        "event_type": "research_dispatch_prepared",
+        "observed": true,
+        "summary": "prepared analysis `dispatch-case-20260414-3ce42d6c-20260414T130958Z` with summary `qualitative-db/40-research/cases/case-20260414-3ce42d6c/researcher-analyses/2026-04-14/dispatch-case-20260414-3ce42d6c-20260414T130958Z/summary.md`.",
+        "source_paths": [
+          "qualitative-db/40-research/cases/case-20260414-3ce42d6c/timeline.md"
+        ],
+        "metadata": {}
+      },
+      {
+        "ts": "2026-04-14T13:09:58.652625+00:00",
+        "event_type": "synthesis_completed",
+        "observed": true,
+        "summary": "synthesis runtime artifact written",
+        "source_paths": [
+          "qualitative-db/40-research/cases/case-20260414-3ce42d6c/synthesizer-agent/syndicated-finding.runtime.json"
+        ],
+        "metadata": {
+          "dispatch_id": "dispatch-case-20260414-3ce42d6c-20260414T130958Z",
+          "synthesis_status": "rendered"
+        }
+      },
+      {
+        "ts": "2026-04-14T13:19:23.337947+00:00",
+        "event_type": "synthesis_completed",
+        "observed": true,
+        "summary": "completed synthesis `dispatch-case-20260414-3ce42d6c-20260414T130958Z` with artifact `qualitative-db/40-research/cases/case-20260414-3ce42d6c/researcher-analyses/2026-04-14/dispatch-case-20260414-3ce42d6c-20260414T130958Z/syndicated-finding.md`.",
+        "source_paths": [
+          "qualitative-db/40-research/cases/case-20260414-3ce42d6c/timeline.md"
+        ],
+        "metadata": {}
+      },
+      {
+        "ts": "2026-04-14T15:03:38.118269+00:00",
+        "event_type": "decision_completed",
+        "observed": true,
+        "summary": "completed decision-making `dispatch-case-20260414-3ce42d6c-20260414T130958Z` with packet `qualitative-db/40-research/cases/case-20260414-3ce42d6c/decision-maker/decision-maker-packet.md`.",
+        "source_paths": [
+          "qualitative-db/40-research/cases/case-20260414-3ce42d6c/timeline.md"
+        ],
+        "metadata": {}
+      },
+      {
+        "ts": "2026-04-14T15:44:48-04:00",
+        "event_type": "market_resolved",
+        "observed": true,
+        "summary": "market resolution recorded as yes",
+        "source_paths": [],
+        "metadata": {
+          "resolution_status": "resolved",
+          "resolved_outcome": "yes",
+          "resolved_value": 1.0,
+          "resolution_source": "gamma-api.polymarket.com/markets/slug/bitcoin-above-70k-on-april-14"
+        }
+      }
+    ],
+    "warnings": []
+  },
+  "provenance_paths": {
+    "case_markdown": "qualitative-db/40-research/cases/case-20260414-3ce42d6c/case.md",
+    "swarm_current": "qualitative-db/40-research/cases/case-20260414-3ce42d6c/researcher-swarm-current.md",
+    "timeline_markdown": "qualitative-db/40-research/cases/case-20260414-3ce42d6c/timeline.md",
+    "decision_packet_json": "qualitative-db/40-research/cases/case-20260414-3ce42d6c/decision-maker/artifacts/decision-maker-packet.json",
+    "synthesis_runtime_json": "qualitative-db/40-research/cases/case-20260414-3ce42d6c/synthesizer-agent/syndicated-finding.runtime.json"
+  },
+  "runtime_metadata": {
+    "compiled_by": "roles/evaluator/runtime/scripts/compile_learning_packet.py",
+    "compiler_version": "learning-packet-v2-draft",
+    "db_url_source": "explicit_or_env"
+  },
+  "warnings": []
+}

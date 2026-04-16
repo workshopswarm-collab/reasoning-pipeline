@@ -1,0 +1,58 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Any late downside catalyst could erase the buffer quickly.",
+    "Exchange-specific microstructure or wick risk matters more than in broader daily-close style contracts."
+  ],
+  "key_assumptions": [
+    "Current Binance BTCUSDT spot on April 14 is informative for the April 15 noon ET close.",
+    "No Binance-specific disruption or anomalous wick distorts the resolving 1m candle.",
+    "Short-horizon BTC volatility is meaningful but not large enough to erase a roughly 1.8% buffer more often than not."
+  ],
+  "main_logical_chain": [
+    "Audit the contract and confirm the governing source is Binance BTC/USDT 1m close at 12:00 ET on April 15.",
+    "Check current same-venue Binance BTCUSDT price and recent 1m candles to estimate distance from strike.",
+    "Compare that buffer with ordinary short-horizon BTC volatility and keep the market as the prior.",
+    "Conclude Yes is favored and the market is broadly efficient, but trim slightly below market because exact-minute volatility still matters."
+  ],
+  "main_thesis": "The market is broadly right to favor Yes because Binance BTC/USDT is already trading above 74000 on the governing venue, though the low-80s price is slightly rich given sub-24-hour BTC volatility and exact-candle settlement risk.",
+  "own_probability": 0.78,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "This market will resolve to Yes if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone ... has a final Close price higher than the price specified.",
+    "Binance BTCUSDT ticker verification showed about 75366.61 on 2026-04-14."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-d1f59d32",
+    "dispatch_id": "dispatch-case-20260414-d1f59d32-20260414T144613Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "e3eb6f12-0998-4ce8-ba3b-75d03a6f173d",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-d1f59d32/researcher-analyses/2026-04-14/dispatch-case-20260414-d1f59d32-20260414T144613Z/personas/market-implied.md",
+    "source_persona_sha256": "c4e98426328df0b58d80872e8c9c4a83a05dc29c4576d0090f9f50ae00d9ee7b"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary contract mechanics are clear from Polymarket rules; Binance API provides strong same-venue context; independence is medium because the key contextual evidence still centers on Binance.",
+  "strongest_disconfirmers": [
+    "A roughly 1.8% downside move in BTC within a day is very plausible.",
+    "The contract settles on one exact 1m Binance close, so transient weakness at the wrong minute is enough for No."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT ticker was about 75366.61 during verification, already above the strike by about 1366.61.",
+    "Recent Binance 1m closes clustered around 75.27k-75.38k, suggesting price was not only marginally above 74k.",
+    "Polymarket rules explicitly use Binance BTC/USDT 1m close at 12:00 ET, so same-venue spot context is highly relevant."
+  ],
+  "timing_relevance": "Very high: the market resolves on a single Binance 1-minute close at noon ET on 2026-04-15, so short-term volatility dominates the remaining uncertainty.",
+  "unresolved_ambiguities": [
+    "No direct read of the future resolving candle exists yet; all current price evidence is contextual.",
+    "Rendered Binance UI was not cleanly scrapeable, so same-venue context relied on Binance API rather than the UI itself."
+  ],
+  "what_would_change_view": "A move toward or below 74000 on Binance before the event, evidence of a downside catalyst, or new information about Binance-specific wick/microstructure risk would push the estimate lower."
+}

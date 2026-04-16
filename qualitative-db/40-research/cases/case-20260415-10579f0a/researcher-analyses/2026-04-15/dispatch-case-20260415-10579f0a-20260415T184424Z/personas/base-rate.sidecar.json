@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Single-minute settlement sensitivity.",
+    "Crypto volatility over a short window.",
+    "Potential Binance-specific dislocation or operational issue."
+  ],
+  "key_assumptions": [
+    "BTC stays in roughly its recent short-horizon regime over the next ~45 hours.",
+    "No exceptional shock pushes Binance BTCUSDT below 70000 by the settlement minute.",
+    "Binance pricing remains operationally normal near settlement."
+  ],
+  "main_logical_chain": [
+    "The contract settles on Binance BTCUSDT 1-minute close at 12:00 ET on April 17, above 70000 meaning Yes.",
+    "Current Binance price is materially above 70000 and recent daily closes are also above 70000.",
+    "With only ~45 hours remaining, the base rate favors staying above the strike unless a meaningful selloff occurs.",
+    "Therefore Yes is highly likely, but not certain because of exact-minute settlement risk."
+  ],
+  "main_thesis": "BTC is already materially above 70000 on Binance, so the outside view strongly favors a Yes close above 70000 at the specific noon ET settlement minute, though exact-minute volatility keeps a small residual No risk.",
+  "own_probability": 0.95,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "Governing source of truth: Binance BTC/USDT.",
+    "The decisive field is the candle\u2019s final Close price.",
+    "95% for Yes."
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "contract_interpretation",
+    "market_anchor"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260415-10579f0a",
+    "dispatch_id": "dispatch-case-20260415-10579f0a-20260415T184424Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "cb8e3973-4cb8-463c-b8c7-491a7fd85b64",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-10579f0a/researcher-analyses/2026-04-15/dispatch-case-20260415-10579f0a-20260415T184424Z/personas/base-rate.md",
+    "source_persona_sha256": "f9add3cb2fc0660fbfb0e0d4307956635e84db3d8dfb47d638ee9a7db1e3969f"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality direct sources for both contract mechanics and current price context, with medium-low independence because the narrow case naturally centers on Binance and Polymarket.",
+  "strongest_disconfirmers": [
+    "The contract resolves on one exact Binance 1-minute close at 12:00 ET, so a sharp short-horizon move or wick can still flip the outcome.",
+    "A ~6 percent drawdown over two days is not impossible in crypto."
+  ],
+  "strongest_supports": [
+    "Binance spot checked around 74340, roughly 4340 above the strike.",
+    "Recent Binance daily closes were also above 70000.",
+    "Time to resolution is short, limiting the window for a large downside move."
+  ],
+  "timing_relevance": "Settlement is Friday, April 17, 2026 at 12:00 PM EDT, about 45.25 hours after the assignment timestamp used in the run.",
+  "unresolved_ambiguities": [
+    "No major source-of-truth ambiguity remains; the main uncertainty is path volatility into settlement."
+  ],
+  "what_would_change_view": "I would cut the probability if BTC moved back near 70k-71k before Friday, if a macro/crypto shock hit, or if Binance-specific pricing issues emerged near settlement."
+}

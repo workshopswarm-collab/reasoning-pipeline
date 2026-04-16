@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A fast BTC drawdown toward 68000 would quickly erode the thesis.",
+    "Binance-specific data or operational anomalies could matter because Binance is the explicit source of truth."
+  ],
+  "key_assumptions": [
+    "BTC remains broadly in its recent trading regime through April 20 noon ET.",
+    "No major macro or crypto-specific shock forces an ~8-9% drawdown before settlement.",
+    "Binance remains operationally reliable at the exact resolution minute."
+  ],
+  "main_logical_chain": [
+    "Start from the market-implied probability of about 95.5%.",
+    "Check the governing venue directly: Binance BTC/USDT is around 74044, well above 68000.",
+    "Verify recent realized context including ET-noon timing; recent comparable closes are also well above the strike.",
+    "Apply a modest discount for single-minute settlement risk and crypto downside tails.",
+    "Conclude fair probability is still very high, but closer to 93% than 95.5%."
+  ],
+  "main_thesis": "Market is directionally right: Binance BTC/USDT is comfortably above 68000, but single-minute settlement and crypto downside tails justify a small discount to the market's near-certainty.",
+  "own_probability": 0.93,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "Binance BTC/USDT around 74,044 on April 15",
+    "Yes iff the Binance 12:00 ET one-minute candle close is higher than 68,000",
+    "Own probability estimate: 93%"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260415-c8d6e83e",
+    "dispatch_id": "dispatch-case-20260415-c8d6e83e-20260415T151858Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "8dda9d24-9585-4cf6-a551-10249a8f1813",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-c8d6e83e/researcher-analyses/2026-04-15/dispatch-case-20260415-c8d6e83e-20260415T151858Z/personas/market-implied.md",
+    "source_persona_sha256": "ef39933df8fdc2eaf78d7267c3337779f6c47e0d992dbff1802b036e48f11408"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is good: official Polymarket rules for the contract plus direct Binance pricing/context. Independence is medium and source-of-truth ambiguity is low-medium because the wording is clear but Binance-specific execution still matters.",
+  "strongest_disconfirmers": [
+    "The contract resolves on one exact Binance one-minute close, so a sharp intraday downtick or wick could still flip it.",
+    "BTC can move more than 8% over a few days during risk-off episodes."
+  ],
+  "strongest_supports": [
+    "Binance spot was about 74044 on April 15, leaving roughly a 6000-point cushion above the strike.",
+    "Recent sampled Binance daily closes and ET-noon context were all above 68000.",
+    "Polymarket's 95-96% pricing is consistent with the underlying venue data rather than obviously stale."
+  ],
+  "timing_relevance": "This is a date-sensitive, time-specific contract settling on the Binance BTC/USDT 12:00 ET one-minute close on April 20, so timezone and exact-minute mechanics matter materially.",
+  "unresolved_ambiguities": [
+    "How much short-horizon downside volatility will emerge over the next five days.",
+    "Whether the final noon ET minute could be unusually noisy relative to surrounding trade."
+  ],
+  "what_would_change_view": "A sharp move toward 70k or below, a new macro/crypto shock, or Binance operational irregularities near resolution would lower the estimate materially."
+}

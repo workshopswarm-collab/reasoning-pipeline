@@ -1,0 +1,121 @@
+{
+  "artifact_type": "targeted_verification_pack",
+  "schema_version": "decision-targeted-verification-pack/v1",
+  "case_key": "case-20260414-9f18b170",
+  "dispatch_id": "refresh-case-20260414-9f18b170-20260414T144254Z",
+  "required": true,
+  "verification_mode": "targeted_escalation",
+  "pack_purpose": "Deterministic narrow follow-up pack for targeted escalation. It defines the crux questions and operational budgets, while source choice may remain model-driven within runtime-enforced tool guardrails.",
+  "verification_questions": [
+    "Does the latest available information materially change the decision, given: Live Binance BTC/USDT intrawindow price path and any qualifying 1-minute high before Apr 19 close.?",
+    "How decision-relevant is the remaining contract/source-of-truth ambiguity: Settlement is Binance BTC/USDT 1-minute high specific, so venue-specific execution still matters despite generally clear rules.?",
+    "Are the current blockers still material to final judgment: No direct verified qualifying Binance 1-minute high yet?",
+    "Is the main verification gap still decision-material: No direct synthesis-stage confirmation yet of a qualifying Binance 1-minute high at or above 76000.?"
+  ],
+  "structured_handoff_focus": {
+    "contract_ambiguity_level": "minor",
+    "contract_ambiguity_reason": "Settlement is Binance BTC/USDT 1-minute high specific, so venue-specific execution still matters despite generally clear rules.",
+    "verification_gap_summary": "No direct synthesis-stage confirmation yet of a qualifying Binance 1-minute high at or above 76000.",
+    "best_countercase_summary": "BTC can still stall just below 76000 or reverse before any qualifying Binance print occurs.",
+    "main_reason_for_disagreement": "How much residual venue-specific and timing risk should remain once BTC is already within roughly 0.2%-0.4% of the barrier.",
+    "resolution_mechanics_summary": "Yes resolves on any Binance BTC/USDT 1-minute candle High at or above 76000 during the stated Apr 13-19 ET window.",
+    "freshness_sensitive": "yes",
+    "freshness_driver": "Live Binance BTC/USDT intrawindow price path and any qualifying 1-minute high before Apr 19 close.",
+    "decision_blockers": [
+      "No direct verified qualifying Binance 1-minute high yet",
+      "Short-dated threshold markets remain sensitive to abrupt reversal after near-miss price action"
+    ],
+    "disagreement_type": "timing"
+  },
+  "supporting_persona_summaries": [
+    {
+      "persona": "market-implied",
+      "recommended_weight": "medium",
+      "own_probability": 0.88,
+      "main_thesis": "The market's high Yes price is mostly justified because this is a Binance 1-minute high touch contract and BTC is already trading near 75.7k, leaving only a small move over several remaining days.",
+      "main_logical_chain": [
+        "Start from the market's roughly 89%-91.5% Yes prior.",
+        "Verify the contract is a Binance-specific 1-minute high touch market, not a close-above market.",
+        "Check whether Binance is already trading close enough to the threshold to justify an extreme probability.",
+        "Observe BTC around 75.7k on Binance with days remaining, which supports a high but not certain touch probability."
+      ],
+      "strongest_supports": [
+        "Polymarket rules specify any Binance BTC/USDT 1-minute candle high at or above 76,000 resolves Yes.",
+        "Binance BTCUSDT was already around 75,701 with a 24h high around 75,715 during the run."
+      ],
+      "strongest_disconfirmers": [
+        "Binance had not yet printed 76,000 in the observed data.",
+        "Near-threshold conditions can still fail if momentum fades or volatility compresses."
+      ],
+      "unresolved_ambiguities": [
+        "Exact intraday volatility path from current levels.",
+        "Whether the market has additional order-flow information not visible from public page metadata."
+      ],
+      "what_would_change_view": "A sustained move back below 75k, visibly weaker Binance highs as time decays, or clearer direct Binance kline evidence showing lower touch odds would push the estimate down; repeated highs above 75.9k or an actual 76k print would push it up.",
+      "timing_relevance": "High; this is a short-window threshold touch market where price proximity and remaining days dominate the probability.",
+      "source_quality_view": "Strong on rules clarity and decent on market-state verification: primary contract mechanics came from Polymarket page metadata, while Binance provided the key direct venue check and Coinbase/Kraken offered contextual corroboration.",
+      "persona_finding_path": "qualitative-db/40-research/cases/case-20260414-9f18b170/researcher-analyses/2026-04-14/dispatch-case-20260414-9f18b170-20260414T142057Z/personas/market-implied.md",
+      "assumption_artifact_paths": [
+        "qualitative-db/40-research/cases/case-20260414-9f18b170/researcher-analyses/2026-04-14/dispatch-case-20260414-9f18b170-20260414T142057Z/assumptions/market-implied.md"
+      ],
+      "evidence_artifact_paths": [
+        "qualitative-db/40-research/cases/case-20260414-9f18b170/researcher-analyses/2026-04-14/dispatch-case-20260414-9f18b170-20260414T142057Z/evidence/market-implied.md"
+      ]
+    }
+  ],
+  "selected_assumption_snippets": [
+    {
+      "path": "qualitative-db/40-research/cases/case-20260414-9f18b170/researcher-analyses/2026-04-14/dispatch-case-20260414-9f18b170-20260414T142057Z/assumptions/market-implied.md",
+      "frontmatter": {
+        "type": "assumption_note",
+        "case_key": "case-20260414-9f18b170",
+        "dispatch_id": "dispatch-case-20260414-9f18b170-20260414T142057Z",
+        "research_run_id": "abcd3038-d43e-479d-b74c-2b509a6fb3d6",
+        "analysis_date": "2026-04-14",
+        "persona": "market-implied",
+        "domain": "crypto",
+        "subdomain": "bitcoin",
+        "entity": "bitcoin",
+        "topic": "will-bitcoin-reach-76-000-april-13-19",
+        "question": "Will Bitcoin reach $76,000 April 13-19?",
+        "date_created": "2026-04-14",
+        "agent": "Orchestrator",
+        "status": "active",
+        "certainty": "medium",
+        "importance": "high",
+        "time_horizon": "days",
+        "related_entities": [
+          "bitcoin"
+        ],
+        "related_drivers": [],
+        "proposed_entities": [],
+        "proposed_drivers": [
+          "binance-intraperiod-threshold-touch"
+        ],
+        "upstream_inputs": [],
+        "downstream_uses": [
+          "qualitative-db/40-research/cases/case-20260414-9f18b170/researcher-analyses/2026-04-14/dispatch-case-20260414-9f18b170-20260414T142057Z/personas/market-implied.md"
+        ],
+        "tags": [
+          "assumption",
+          "threshold-market",
+          "binance"
+        ],
+        "driver": ""
+      },
+      "snippet": "# Assumption\nThe market's high-Yes price assumes that once BTC/USDT is already trading around 75.7k on Binance early in the contract window, the probability of at least one 1-minute candle high printing 76,000 before Apr 20 00:00 ET is very high.\n## Why this assumption matters\nThis is the core bridge between current spot conditions and a 91%+ touch probability. If short-horizon volatility is lower than the market assumes, the Yes price could be overstated even with BTC already near the strike.\n## What this assumption supports\n- A view that the market is mostly pricing the contract efficiently.\n- An estimate only modestly below the market rather than a large contrarian discount.\n- The interpretation that remaining time plus close distance to threshold matters more than any single current print.\n## Evidence or logic behind the assumption\n- Binance 24hr API showed BTCUSDT around 75,701 with a 24h high around 75,715.\n- Coinbase and Kraken spot checks were also near 75.7k, supporting a broadly consistent market level.\n- The contract is a touch market using any 1-minute candle high, which is easier to satisfy than a daily close or end-of-week settlement level.\n- There were still multiple trading days left in the specified Apr 13-19 window at the time of review.\n## What would falsify it\n- A sharp BTC reversal materially away from 76k with realized volatility collapsing.\n- Evidence that Binance specifically is lagging other venues and failing to print local highs near the threshold.\n- A verified rules nuance that excludes what appears to be an otherwise qualifying intraminute spike …",
+      "full_char_count": 2199,
+      "snippet_char_count": 1602
+    }
+  ],
+  "selected_evidence_snippets": [],
+  "selected_supporting_note_snippets": [],
+  "pack_budget": {
+    "max_chars": 6000,
+    "actual_chars_before_trim": 10395,
+    "actual_chars_after_trim": 8080,
+    "approx_tokens_before_trim": 2598,
+    "approx_tokens_after_trim": 2020,
+    "trim_applied": true
+  }
+}

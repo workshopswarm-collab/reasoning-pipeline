@@ -1,0 +1,157 @@
+{
+  "schema_version": "decision-packet/v1",
+  "generated_at": "2026-04-14T10:03:00-04:00",
+  "context": {
+    "case_key": "case-20260414-9c18e804",
+    "dispatch_id": "dispatch-case-20260414-9c18e804-20260414T135145Z",
+    "question": "Will Bitcoin reach $76,000 April 13-19?",
+    "market_id": "case-20260414-9c18e804",
+    "market_title": "Will Bitcoin reach $76,000 April 13-19?",
+    "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260414-9c18e804/synthesizer-agent/decision-handoff.md",
+    "source_syndicated_finding_path": "qualitative-db/40-research/cases/case-20260414-9c18e804/synthesizer-agent/syndicated-finding.md",
+    "decision_maker_agent": "decision-maker",
+    "canonical_markdown_path": "decision-maker-packet.md",
+    "canonical_json_path": "artifacts/decision-maker-packet.json",
+    "external_market_id": "0xf51551b39d50396009471492879718c582a9b1e7c8448793544f480991c1c019",
+    "market_slug": "will-bitcoin-reach-76k-april-13-19",
+    "platform": "polymarket",
+    "primary_market_url": "https://polymarket.com/event/will-bitcoin-reach-76k-april-13-19",
+    "source_light_refresh_brief_path": "",
+    "refresh_mode": ""
+  },
+  "decision": {
+    "side": "yes",
+    "trade_authorization": "watch_only",
+    "position_policy": "hold_only",
+    "decision_readiness": "ready",
+    "primary_crux": "BTC reaching $76,000 this week is still more likely than not because the contract is a Binance 1-minute high touch market and BTC is already trading within roughly 1% of the threshold, but the market's 75% price remains somewhat too rich without a verified qualifying $76,000 Binance print yet.",
+    "secondary_cruxes": [
+      "The touch-style mechanics are favorable to Yes, but the threshold still had not been verified as hit on the governing source during the reviewed checks.",
+      "The residual disagreement is mostly about path-failure risk: nearby thresholds can still fail through repeated rejection or momentum stall.",
+      "Minor rule-text capture incompleteness is not enough to block judgment, but it is enough to keep confidence below the market when no qualifying print has been shown."
+    ],
+    "thesis_class": "price_not_good_enough"
+  },
+  "valuation": {
+    "fair_value_low": 0.66,
+    "fair_value_high": 0.72,
+    "fair_value_mid": 0.69,
+    "market_reference_price": 0.75,
+    "edge_mid_vs_market_pct_points": -6.0,
+    "independent_verification_quality": "medium",
+    "compressed_toward_market_applied": true,
+    "compression_reason": "BTC's proximity to the threshold and touch-style mechanics support a real Yes lean, but absent a verified qualifying Binance print and with residual path-failure risk, fair value remains below the market."
+  },
+  "execution_semantics": {
+    "price_axis": "market_implied_true_prob",
+    "price_source": "market_snapshot_quote",
+    "rebalance_threshold_fraction": 0.08,
+    "allow_auto_reversal": false,
+    "valid_until": "2026-04-18T23:59:00-04:00",
+    "quote_staleness_seconds": 7200,
+    "time_horizon": "Apr 13-19 Binance BTC/USDT intrawindow high-touch resolution"
+  },
+  "risk_controls": {
+    "max_position_size_pct_bankroll": 0.0075,
+    "max_additional_exposure_pct_bankroll": 0.0,
+    "max_single_order_pct_bankroll": 0.0,
+    "slippage_tolerance_bps": 60,
+    "liquidity_min_depth": 1200,
+    "correlation_bucket_limit_pct_bankroll": 0.05,
+    "confidence_level": "medium",
+    "portfolio_constraints": [
+      "Do not initiate fresh exposure from this packet because the market is already above bounded fair value.",
+      "Existing aligned exposure may be held, but refresh on any verified Binance print near or above $76,000 or a sharp pullback away from the threshold before adjusting.",
+      "Treat short-dated threshold-touch markets as highly path-dependent even when spot is close to the trigger."
+    ],
+    "liquidity_caution": "medium"
+  },
+  "bands": [
+    {
+      "name": "max_enter",
+      "min_p": 0,
+      "max_p": 0.54,
+      "target_exposure_fraction": 0,
+      "notes": "No autonomous entry from this packet; materially cheaper pricing would require a fresh path check."
+    },
+    {
+      "name": "scaled_enter",
+      "min_p": 0.54,
+      "max_p": 0.64,
+      "target_exposure_fraction": 0,
+      "notes": "No entry authorized because the market is already richer than justified fair value."
+    },
+    {
+      "name": "hold",
+      "min_p": 0.64,
+      "max_p": 0.71,
+      "target_exposure_fraction": 0,
+      "notes": "Hold zone consistent with a moderate-high Yes probability but not enough edge for fresh adds."
+    },
+    {
+      "name": "trim",
+      "min_p": 0.71,
+      "max_p": 0.84,
+      "target_exposure_fraction": 0,
+      "notes": "Trim or avoid increasing as price rises above bounded fair value and unresolved path-failure risk dominates."
+    },
+    {
+      "name": "exit",
+      "min_p": 0.84,
+      "max_p": 1,
+      "target_exposure_fraction": 0,
+      "notes": "Exit/avoid at extreme prices because proximity does not guarantee a touch during the remaining window."
+    }
+  ],
+  "invalidation": {
+    "thesis_breakers": [
+      "A verified Binance BTC/USDT 1-minute high at or above $76,000 immediately resolves the market and supersedes this packet.",
+      "BTC fails repeated tests below the high-75k area and then sells off materially away from the threshold.",
+      "Fresh evidence shows more restrictive settlement mechanics than the assumed Binance 1-minute high touch rule."
+    ],
+    "market_structure_breakers": [
+      "The market reprices sharply on new BTC path information before a fresh packet is produced.",
+      "Short-term volatility or exchange-specific liquidity conditions change enough to invalidate current near-threshold calibration.",
+      "A clearer rules capture reveals a meaningful source-of-truth nuance that changes settlement expectations."
+    ],
+    "time_breakers": [
+      "A single fresh Binance wick to $76,000 can change the forecast immediately.",
+      "As the remaining window shortens, stale path assumptions should be refreshed rather than extrapolated."
+    ],
+    "reversal_conditions": [
+      "Move toward authorized yes only after a fresh packet if BTC continues pressing the threshold while price remains favorable.",
+      "Move materially lower if BTC rejects and pulls away from $76,000.",
+      "Do not auto-reverse from this packet."
+    ]
+  },
+  "epistemic_status": {
+    "key_uncertainties": [
+      "Whether a qualifying Binance $76,000 print has already occurred since the last reviewed checks.",
+      "How much residual path-failure risk survives when BTC is trading within roughly 1% of the trigger.",
+      "Whether the incomplete direct rule-text capture hides any material settlement nuance."
+    ],
+    "reasons_to_pass": [
+      "The market is already pricing a strong Yes case, leaving limited room for error.",
+      "The checked sources still had no verified qualifying $76,000 Binance print at review time.",
+      "Short-dated crypto threshold-touch markets can remain fragile even when the remaining move is small."
+    ],
+    "what_would_change_my_mind": [
+      "A fresh verified Binance print at or above $76,000 would collapse the residual tail and move confidence toward resolution.",
+      "Repeated renewed tests of the high-75k area without reversal would move fair value somewhat higher.",
+      "A sharp move away from the threshold or clearer restrictive rule detail would move fair value lower."
+    ],
+    "decision_quality": "good_not_clean"
+  },
+  "audit": {
+    "market_baseline_respected": true,
+    "action_bias_check_passed": true,
+    "self_preservation_bias_check_passed": true,
+    "one_sentence_rationale": "BTC is still more likely than not to hit $76,000 during Apr 13-19 because a Binance touch-style trigger with spot already within about 1% of the threshold is favorable to Yes, but the market's 75% price remains too aggressive while no verified qualifying Binance print has yet been shown in the reviewed checks, so the disciplined posture is watch-only rather than chasing Yes.",
+    "notes": "This packet preserves the established mild-under stance: the disagreement is about path completion and market overconfidence, not about whether the contract is fundamentally touch-friendly.",
+    "structured_handoff_primary_used": true,
+    "prose_fallback_used": true,
+    "verification_mode_used": "targeted_escalation",
+    "additional_verification_performed": true,
+    "additional_verification_notes": "targeted_pack"
+  }
+}

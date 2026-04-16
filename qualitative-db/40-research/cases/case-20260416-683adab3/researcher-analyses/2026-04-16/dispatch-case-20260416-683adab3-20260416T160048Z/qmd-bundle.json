@@ -1,0 +1,63 @@
+{
+  "qmd_tier": "tier1",
+  "qmd_used": true,
+  "query_profile": {
+    "difficulty_class": "medium",
+    "prior_case_count": 0,
+    "prior_dispatch_count": 0,
+    "rerun_scope": null,
+    "run_kind": "novel",
+    "source_of_truth_class": "authoritative_direct",
+    "suppress_same_case": true,
+    "suppress_same_market": false
+  },
+  "result_paths": [
+    "qualitative-db/20-entities/companies/the-numbers.md",
+    "qualitative-db/20-entities/countries/canada.md",
+    "qualitative-db/30-drivers/performance.md"
+  ],
+  "results": {
+    "driver_notes": [
+      {
+        "artifact_exists": true,
+        "path": "qualitative-db/30-drivers/performance.md",
+        "retrieval_role": "mechanism",
+        "retrieval_score": 3.5,
+        "slug": "performance",
+        "summary": "Performance captures the repeatable on-field or on-court quality that actually drives results beyond raw narrative, reputation, or one-off variance.",
+        "type": "driver",
+        "why_retrieved": "matched market description via driver alias `performance`"
+      }
+    ],
+    "entity_notes": [
+      {
+        "artifact_exists": true,
+        "path": "qualitative-db/20-entities/companies/the-numbers.md",
+        "retrieval_role": "canonical_context",
+        "retrieval_score": 4.5,
+        "slug": "the-numbers",
+        "summary": "The Numbers is a useful box-office data entity because it provides title-level theatrical performance and comparison surfaces used in film-performance research.",
+        "type": "entity",
+        "why_retrieved": "matched market description via entity alias `the-numbers`"
+      },
+      {
+        "artifact_exists": true,
+        "path": "qualitative-db/20-entities/countries/canada.md",
+        "retrieval_role": "canonical_context",
+        "retrieval_score": 3.5,
+        "slug": "canada",
+        "summary": "Canada is a high-yield prediction-market entity because it sits at the intersection of U.S. politics spillover, energy and trade policy, immigration, and alliance coordination.",
+        "type": "entity",
+        "why_retrieved": "matched market description via entity alias `canada`"
+      }
+    ],
+    "similar_cases": []
+  },
+  "retrieval_policy": {
+    "analog_second": true,
+    "artifact_existence_gating": true,
+    "canon_first": true,
+    "similar_case_strategy": "rerun_or_tier2_only"
+  },
+  "status": "ok"
+}

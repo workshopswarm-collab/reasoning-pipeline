@@ -1,0 +1,56 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Single-minute noon ET close requirement.",
+    "Binance-specific venue dependence.",
+    "Short-horizon crypto volatility before settlement."
+  ],
+  "key_assumptions": [
+    "Bitcoin retains enough cushion above 72000 into the Apr 17 noon ET settlement minute.",
+    "Binance BTC/USDT remains representative enough that venue-specific weakness does not flip the result."
+  ],
+  "main_logical_chain": [
+    "Verify governing source and contract mechanics directly on Polymarket.",
+    "Check current Binance BTCUSDT 1-minute context to see whether BTC is marginally or comfortably above 72k.",
+    "Conclude that current cushion supports Yes, but keep a material discount for exact-minute and venue-specific path risk."
+  ],
+  "main_thesis": "BTC is currently comfortably above 72000 on Binance, so Yes is favored, but the market is slightly overconfident because settlement depends on one exact Binance BTC/USDT 12:00 ET 1-minute close on April 17.",
+  "own_probability": 0.82,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "This market will resolve to Yes if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone has a final Close price higher than the price specified.",
+    "Own probability estimate: 82% Yes."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "risk_management",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-0c8ac7fd",
+    "dispatch_id": "dispatch-case-20260415-0c8ac7fd-20260415T190844Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "4f5c0429-380f-4d57-9a0d-33d2e9379c67",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-0c8ac7fd/researcher-analyses/2026-04-15/dispatch-case-20260415-0c8ac7fd-20260415T190844Z/personas/risk-manager.md",
+    "source_persona_sha256": "ff845960e009687427bd33318e8cb2c1e42251be1cce392e95e8ffd54f7eb82c"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality mechanism evidence from Polymarket rules and Binance data, but low-to-medium independence because most evidence ties back to the same settlement surface.",
+  "strongest_disconfirmers": [
+    "This is a precise timestamp close market, so a sharp selloff into the exact noon ET minute can still produce No.",
+    "Current spot evidence is not settlement proof because the decisive candle has not yet occurred."
+  ],
+  "strongest_supports": [
+    "Recent Binance 1-minute closes were around 74.6k-74.7k, leaving a meaningful cushion above 72k.",
+    "Polymarket rules are explicit that settlement uses Binance BTC/USDT 1-minute close at 12:00 ET, reducing contract-interpretation ambiguity."
+  ],
+  "timing_relevance": "Timing is central because the market settles on one exact 12:00 ET Binance 1-minute close on Apr 17, not on current spot or an intraday touch.",
+  "unresolved_ambiguities": [
+    "No major rule ambiguity remains; the main uncertainty is future price path into settlement."
+  ],
+  "what_would_change_view": "A fresh check closer to settlement showing BTC still comfortably above 74k would move me toward market; a selloff back toward or below 72k, especially on Binance, would move me materially lower."
+}

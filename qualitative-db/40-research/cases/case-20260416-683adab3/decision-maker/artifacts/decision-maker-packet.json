@@ -1,0 +1,153 @@
+{
+  "schema_version": "decision-packet/v1",
+  "generated_at": "2026-04-16T12:12:00-04:00",
+  "context": {
+    "case_key": "case-20260416-683adab3",
+    "dispatch_id": "dispatch-case-20260416-683adab3-20260416T160048Z",
+    "question": "Will \\\"Lee Cronin's The Mummy\\\" Opening Weekend Box Office be between 10m and 15m?",
+    "market_id": "83d817d1-4830-46ca-973d-16f821a7a094",
+    "external_market_id": "0xe56c135913906cf5db7c0a1a79abff4148f1f6db2775c5bd7908a5ead1dc1a5d",
+    "market_slug": "will-lee-cronins-the-mummy-opening-weekend-box-office-be-between-10m-and-15m",
+    "platform": "polymarket",
+    "primary_market_url": "https://polymarket.com/event/will-lee-cronins-the-mummy-opening-weekend-box-office-be-between-10m-and-15m",
+    "market_title": "Will \"Lee Cronin's The Mummy\" Opening Weekend Box Office be between 10m and 15m?",
+    "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260416-683adab3/synthesizer-agent/decision-handoff.md",
+    "source_syndicated_finding_path": "qualitative-db/40-research/cases/case-20260416-683adab3/synthesizer-agent/syndicated-finding.md",
+    "source_light_refresh_brief_path": "",
+    "refresh_mode": "",
+    "decision_maker_agent": "decision-maker",
+    "canonical_markdown_path": "decision-maker-packet.md",
+    "canonical_json_path": "artifacts/decision-maker-packet.json"
+  },
+  "decision": {
+    "side": "none",
+    "trade_authorization": "watch_only",
+    "position_policy": "flat",
+    "decision_readiness": "needs_market_update",
+    "thesis_class": "not_decision_ready",
+    "primary_crux": "The apparent pre-release overpricing versus a 70% market price is not actionable because this narrow 10m-15m band is highly sensitive to imminent Thursday-preview and Friday-gross information, while exact 15m resolves against the band.",
+    "secondary_cruxes": [
+      "Independent numeric verification is only medium quality and too thin to justify trading against a strong market prior.",
+      "Accessible tracking appears clustered around roughly 14m-20m / 15m-20m, leaving meaningful mass both inside and just above the band rather than supporting a clean directional position.",
+      "The verification mode itself flags freshness-sensitive catalysts and decision blockers, which is a strong reason to defer rather than force an edge."
+    ]
+  },
+  "valuation": {
+    "fair_value_low": 0.52,
+    "fair_value_high": 0.61,
+    "fair_value_mid": 0.565,
+    "independent_verification_quality": "medium",
+    "compressed_toward_market_applied": false,
+    "compression_reason": "Estimate already respects the market baseline; remaining discount reflects thin direct evidence, hostile 15m boundary mechanics, and imminent data that can quickly reprice the bracket.",
+    "market_reference_price": 0.7,
+    "edge_mid_vs_market_pct_points": -13.5
+  },
+  "execution_semantics": {
+    "price_source": "market_snapshot_quote",
+    "price_axis": "market_implied_true_prob",
+    "rebalance_threshold_fraction": 0.1,
+    "allow_auto_reversal": false,
+    "quote_staleness_seconds": 300,
+    "valid_until": "2026-04-17T16:12:33.537570+00:00"
+  },
+  "risk_controls": {
+    "max_position_size_pct_bankroll": 0.02,
+    "max_additional_exposure_pct_bankroll": 0.01,
+    "max_single_order_pct_bankroll": 0.005,
+    "slippage_tolerance_bps": 100,
+    "liquidity_min_depth": 0,
+    "correlation_bucket_limit_pct_bankroll": 0.05,
+    "confidence_level": "medium",
+    "portfolio_constraints": [],
+    "liquidity_caution": "medium"
+  },
+  "bands": [
+    {
+      "name": "max_enter",
+      "min_p": 0.0,
+      "max_p": 0.2,
+      "target_exposure_fraction": 0.0,
+      "notes": "default fallback band"
+    },
+    {
+      "name": "scaled_enter",
+      "min_p": 0.2,
+      "max_p": 0.4,
+      "target_exposure_fraction": 0.0,
+      "notes": "default fallback band"
+    },
+    {
+      "name": "hold",
+      "min_p": 0.4,
+      "max_p": 0.6,
+      "target_exposure_fraction": 0.0,
+      "notes": "default fallback band"
+    },
+    {
+      "name": "trim",
+      "min_p": 0.6,
+      "max_p": 0.8,
+      "target_exposure_fraction": 0.0,
+      "notes": "default fallback band"
+    },
+    {
+      "name": "exit",
+      "min_p": 0.8,
+      "max_p": 1.0,
+      "target_exposure_fraction": 0.0,
+      "notes": "default fallback band"
+    }
+  ],
+  "invalidation": {
+    "thesis_breakers": [
+      "Credible Thursday preview or Friday gross data implying a likely 3-day finish solidly inside 10m-15m.",
+      "A reliable direct tracking update centered comfortably below 15m with enough precision to outweigh current ambiguity.",
+      "Evidence of materially softer-than-expected demand or launch footprint that shifts mass away from 15m+ outcomes."
+    ],
+    "time_breakers": [
+      "Reassess immediately after Thursday preview numbers are reported.",
+      "Reassess immediately after Friday daily gross estimates are available.",
+      "This packet should not guide a live directional stance once meaningful opening-weekend gross data has printed."
+    ],
+    "market_structure_breakers": [
+      "A sharp market move based on fresh box-office prints makes the stale pre-release quote unusable for this judgment.",
+      "Poor liquidity or wide spread eliminates any practical exploitability of the modest pre-release discrepancy."
+    ],
+    "reversal_conditions": [
+      "Consider a directional yes only if fresh data materially concentrates the distribution inside 10m-15m and away from the exact-15m upper boundary."
+    ]
+  },
+  "epistemic_status": {
+    "key_uncertainties": [
+      "True audience demand before first public gross signals.",
+      "Whether the market embeds private or trade-tracking information not present in the bounded bundle.",
+      "How much probability mass sits just above 15m, which is especially important because exact 15m resolves upward."
+    ],
+    "what_would_change_my_mind": [
+      "Observed previews or opening-day numbers mapping to a 3-day total comfortably within 10m-15m.",
+      "A high-quality direct tracking note with a central expectation below 15m.",
+      "A downward market repricing without corresponding negative demand data would weaken the current pass posture."
+    ],
+    "reasons_to_pass": [
+      "Freshness-sensitive catalyst is imminent.",
+      "Narrow bracket with asymmetric upper-boundary risk.",
+      "Apparent edge is not strongly enough independently verified to justify action."
+    ],
+    "decision_quality": "not_ready"
+  },
+  "audit": {
+    "one_sentence_rationale": "Although my pre-release fair value is modestly below the 70% market price, the combination of thin direct verification, imminent opening-gross catalysts, and hostile exact-15m boundary mechanics makes the responsible decision to stay flat and wait for fresher market-relevant data.",
+    "notes": [
+      "Upstream synthesis pointing below market is directionally plausible but not verified cleanly enough for authorization.",
+      "This is a defer-and-reopen case, not a conviction trade."
+    ],
+    "market_baseline_respected": true,
+    "action_bias_check_passed": true,
+    "self_preservation_bias_check_passed": true,
+    "structured_handoff_primary_used": true,
+    "prose_fallback_used": false,
+    "verification_mode_used": "not_ready_reopen_recommended",
+    "additional_verification_performed": false,
+    "additional_verification_notes": ""
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Short-horizon crypto volatility can easily erase a ~1.7% cushion.",
+    "Settlement depends on one exact minute rather than broader average trading above 2300.",
+    "Minor UI-versus-API interpretation ambiguity exists even though the core contract wording is clear."
+  ],
+  "key_assumptions": [
+    "Current Binance ETHUSDT is a fair anchor for the next-day noon ET close probability.",
+    "No major overnight macro or crypto-specific shock hits before resolution.",
+    "Binance-specific pricing remains representative enough that venue distortions do not dominate the outcome."
+  ],
+  "main_logical_chain": [
+    "Read the market price as a serious prior: 74.5% Yes.",
+    "Verify the contract mechanics and source of truth: Binance ETH/USDT 1-minute close at 12:00 ET on Apr 17.",
+    "Check current Binance ETHUSDT context and compare spot cushion above 2300 against recent realized volatility.",
+    "Conclude the market is mostly efficient but slightly rich because the cushion above 2300 is modest relative to recent downside range."
+  ],
+  "main_thesis": "The market's 74.5% Yes price is broadly reasonable because Binance ETH/USDT is already above 2300, but I mark it slightly lower at 70% because recent realized volatility shows sub-2300 prints remain plausible before the exact noon ET settlement minute.",
+  "own_probability": 0.7,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for ETH/USDT 12:00 in the ET timezone (noon) ... has a final 'Close' price higher than ... 2300.",
+    "Current market-implied probability: 74.5% Yes.",
+    "70% Yes."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-243d5bed",
+    "dispatch_id": "dispatch-case-20260416-243d5bed-20260416T161511Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "f4579bc0-56f4-4c7d-8fbb-ed3edfabc646",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-243d5bed/researcher-analyses/2026-04-16/dispatch-case-20260416-243d5bed-20260416T161511Z/personas/market-implied.md",
+    "source_persona_sha256": "3f46aab1b5f828bb99443ed9c3fc4ab900cfeaf2944b061f32daa9f74dd22c3b"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Good for a medium-difficulty short-dated case: direct Polymarket rules plus Binance API docs and live Binance endpoints; independence is medium because the key contextual sources are all Binance-linked.",
+  "strongest_disconfirmers": [
+    "Binance 24h low near 2285.1 shows a No outcome is well within recent realized volatility.",
+    "A single exact 1-minute close determines settlement, so a brief noon ET dip is enough for No."
+  ],
+  "strongest_supports": [
+    "Binance ETHUSDT was around 2338.7 to 2338.9, already above the 2300 strike.",
+    "Less than one day remains until resolution, so spot already being above the line supports a materially above-50% Yes probability.",
+    "Polymarket's source-of-truth and material conditions are mechanically straightforward."
+  ],
+  "timing_relevance": "High: this is a <24h market tied to one exact 12:00 ET 1-minute candle on 2026-04-17.",
+  "unresolved_ambiguities": [
+    "Whether Polymarket resolvers operationally inspect the Binance UI versus an API-backed candle view, though they should normally align.",
+    "Whether venue-specific price behavior on Binance diverges materially from broader ETH spot into the resolution window."
+  ],
+  "what_would_change_view": "I would lower materially if ETH loses 2300 and stays below it into late morning ET or if overnight risk-off news hits; I would raise if ETH holds above roughly 2330-2340 into the morning with lower realized volatility."
+}

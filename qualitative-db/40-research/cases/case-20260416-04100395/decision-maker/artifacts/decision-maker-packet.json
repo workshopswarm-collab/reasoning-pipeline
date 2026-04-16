@@ -1,0 +1,151 @@
+{
+  "schema_version": "decision-packet/v1",
+  "generated_at": "2026-04-16T15:57:00Z",
+  "context": {
+    "case_key": "case-20260416-04100395",
+    "dispatch_id": "dispatch-case-20260416-04100395-20260416T154804Z",
+    "question": "Will the price of Ethereum be above $2,300 on April 17?",
+    "market_id": "b7a0f9a1-95a0-48be-a965-a36923e72e1b",
+    "external_market_id": "0xcd0c4035e9811bdcaa8c86056d93c4c953513b912103dc12439ac23034bd3f70",
+    "market_slug": "ethereum-above-2300-on-april-17",
+    "platform": "polymarket",
+    "primary_market_url": "https://polymarket.com/event/ethereum-above-2300-on-april-17",
+    "market_title": "Will the price of Ethereum be above $2,300 on April 17?",
+    "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260416-04100395/synthesizer-agent/decision-handoff.md",
+    "source_syndicated_finding_path": "qualitative-db/40-research/cases/case-20260416-04100395/synthesizer-agent/syndicated-finding.md",
+    "source_light_refresh_brief_path": "",
+    "refresh_mode": "",
+    "decision_maker_agent": "decision-maker",
+    "canonical_markdown_path": "decision-maker-packet.md",
+    "canonical_json_path": "artifacts/decision-maker-packet.json"
+  },
+  "decision": {
+    "side": "no",
+    "trade_authorization": "watch_only",
+    "position_policy": "flat",
+    "decision_readiness": "ready",
+    "primary_crux": "ETH is currently above the strike, but with only a ~1.7% cushion and exact-minute Binance noon settlement, my bounded independent check does not justify enough confidence in a sub-market Yes probability to overcome the market's 72.5% baseline.",
+    "secondary_cruxes": [
+      "Resolution is strict: the Binance ETH/USDT 12:00 ET one-minute candle close must be >2300; 2300.00 resolves No.",
+      "Fresh verification confirmed spot near 2339.97, which supports Yes, but not strongly enough to dismiss ordinary overnight crypto volatility.",
+      "Independent fresh catalyst checking did not uncover a strong new bullish driver; remaining disagreement is mainly about whether settlement fragility is underpriced."
+    ],
+    "thesis_class": "edge_too_small"
+  },
+  "valuation": {
+    "fair_value_low": 0.64,
+    "fair_value_high": 0.7,
+    "fair_value_mid": 0.67,
+    "independent_verification_quality": "medium",
+    "compressed_toward_market_applied": true,
+    "compression_reason": "Fresh bounded verification confirmed ETH remains above 2300 and did not reveal a material new negative catalyst, but did not close the key gap around overnight downside-tail risk for an exact-minute settlement market.",
+    "market_reference_price": 0.725,
+    "edge_mid_vs_market_pct_points": -5.5
+  },
+  "execution_semantics": {
+    "price_axis": "market_implied_true_prob",
+    "price_source": "market_snapshot_quote",
+    "rebalance_threshold_fraction": 0.1,
+    "allow_auto_reversal": false,
+    "quote_staleness_seconds": 300,
+    "valid_until": "2026-04-17T15:57:41.122224+00:00"
+  },
+  "risk_controls": {
+    "max_position_size_pct_bankroll": 0.02,
+    "max_additional_exposure_pct_bankroll": 0.01,
+    "max_single_order_pct_bankroll": 0.005,
+    "slippage_tolerance_bps": 100,
+    "liquidity_min_depth": 0,
+    "correlation_bucket_limit_pct_bankroll": 0.05,
+    "confidence_level": "medium",
+    "portfolio_constraints": [],
+    "liquidity_caution": "medium"
+  },
+  "bands": [
+    {
+      "name": "max_enter",
+      "min_p": 0.0,
+      "max_p": 0.2,
+      "target_exposure_fraction": 0.0,
+      "notes": "default fallback band"
+    },
+    {
+      "name": "scaled_enter",
+      "min_p": 0.2,
+      "max_p": 0.4,
+      "target_exposure_fraction": 0.15,
+      "notes": "default fallback band"
+    },
+    {
+      "name": "hold",
+      "min_p": 0.4,
+      "max_p": 0.6,
+      "target_exposure_fraction": 0.35,
+      "notes": "default fallback band"
+    },
+    {
+      "name": "trim",
+      "min_p": 0.6,
+      "max_p": 0.8,
+      "target_exposure_fraction": 0.65,
+      "notes": "default fallback band"
+    },
+    {
+      "name": "exit",
+      "min_p": 0.8,
+      "max_p": 1.0,
+      "target_exposure_fraction": 1.0,
+      "notes": "default fallback band"
+    }
+  ],
+  "invalidation": {
+    "thesis_breakers": [
+      "Sustained trade materially above current levels into late morning on April 17, reducing the practical chance of a noon-ET dip below 2300.",
+      "A verified broad crypto risk-on move or ETH-specific positive catalyst that expands the cushion well beyond ordinary intraday volatility."
+    ],
+    "time_breakers": [
+      "Meaningful price move or regime change before the April 17 noon ET resolution minute.",
+      "Any market snapshot used for execution becoming stale relative to fast crypto price action near settlement."
+    ],
+    "market_structure_breakers": [
+      "Binance-specific outage, anomalous print, or resolution-source dislocation."
+    ],
+    "reversal_conditions": [
+      "If the market reprices materially below my fair-value range while spot/flow context is unchanged, a No trade could become actionable.",
+      "If ETH loses 2300 decisively ahead of settlement and the market still prices Yes aggressively, conviction for No would increase."
+    ]
+  },
+  "epistemic_status": {
+    "key_uncertainties": [
+      "Overnight and morning crypto volatility can easily dominate any current spot-above-strike inference.",
+      "The exact settlement minute adds path dependence that is hard to estimate precisely from bounded evidence.",
+      "The market may already be correctly pricing latent macro/BTC-led downside risk."
+    ],
+    "what_would_change_my_mind": [
+      "A much larger verified price cushion over 2300 persisting into the final pre-resolution window.",
+      "Credible evidence that realized volatility has compressed enough that a >2300 noon close is materially more robust than the current market implies.",
+      "A sharp drop back toward or below 2300 before settlement would push me further bearish on Yes probability."
+    ],
+    "reasons_to_pass": [
+      "My fair value remains below market, but the gap is modest and independent verification quality is only medium.",
+      "This is a freshness-sensitive, exact-timestamp crypto contract where edge can vanish quickly."
+    ],
+    "decision_quality": "good_not_clean"
+  },
+  "audit": {
+    "one_sentence_rationale": "I lean below the market on Yes probability because a thin cushion over 2300 plus exact-minute Binance settlement makes 72.5% look somewhat rich, but the edge is too small and fragile to authorize a trade.",
+    "notes": [
+      "Bounded fresh check confirmed Binance ETHUSDT spot around 2339.97.",
+      "Fresh news scan did not surface a decisive ETH-specific catalyst strong enough to override the existing compressed-bearish view.",
+      "Best action is no new position despite a slight No lean, because expected edge is marginal relative to path-dependent settlement risk."
+    ],
+    "market_baseline_respected": true,
+    "action_bias_check_passed": true,
+    "self_preservation_bias_check_passed": true,
+    "structured_handoff_primary_used": true,
+    "prose_fallback_used": true,
+    "verification_mode_used": "targeted_escalation",
+    "additional_verification_performed": true,
+    "additional_verification_notes": "targeted_pack; tools:q=3,f=4,fam=4; web_search, web_fetch"
+  }
+}

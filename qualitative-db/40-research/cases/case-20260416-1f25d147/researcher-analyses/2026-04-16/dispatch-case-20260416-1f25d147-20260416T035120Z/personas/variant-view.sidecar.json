@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "This variant view weakens quickly if SOL trades materially higher before settlement.",
+    "The thesis depends more on contract-path sensitivity than on a broad negative Solana fundamental call."
+  ],
+  "key_assumptions": [
+    "Current SOL cushion above 80 is real but not large enough to justify near-certainty several days before settlement.",
+    "Single-minute-close mechanics make path risk more important than a generic spot-above-strike reading.",
+    "No hidden catalyst strongly justifies the market's extreme confidence."
+  ],
+  "main_logical_chain": [
+    "The contract settles on Binance SOL/USDT's exact 12:00 PM ET 1-minute close on April 19, not a broad directional Solana thesis.",
+    "Current Binance spot around 85.25 makes Yes more likely than not.",
+    "But a several-day horizon plus a single exact minute-close leaves meaningful downside tail risk in a high-beta crypto asset.",
+    "Therefore the market is likely right on direction but somewhat overconfident on magnitude, so 84% is more defensible than 92%."
+  ],
+  "main_thesis": "The market is directionally right that SOL is more likely than not to finish above 80, but 92% looks somewhat too confident for a several-day contract that resolves on one exact Binance 1-minute close.",
+  "own_probability": 0.84,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for SOL/USDT 12:00 in the ET timezone (noon) ... has a final 'Close' price higher than the price specified in the title.",
+    "ticker/price returned SOLUSDT around 85.25 on 2026-04-16."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation",
+    "variant_hypothesis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-1f25d147",
+    "dispatch_id": "dispatch-case-20260416-1f25d147-20260416T035120Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "62e5d452-59a3-4839-b7a0-7bdd7eaf474a",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-1f25d147/researcher-analyses/2026-04-16/dispatch-case-20260416-1f25d147-20260416T035120Z/personas/variant-view.md",
+    "source_persona_sha256": "ea5a2ee8b67fce24410d95a66cc69344d0954783eee80723df8dfdf8327d4f30"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is solid for contract mechanics and current price context because the governing surface and Binance data were checked directly; independence is only medium because the evidence cluster is concentrated around the settlement source rather than multiple external sources.",
+  "strongest_disconfirmers": [
+    "SOL is already above 80 by a decent margin and this run found no direct evidence of a looming downside catalyst.",
+    "If broad crypto conditions stay stable, the market's 92% may be fair."
+  ],
+  "strongest_supports": [
+    "Binance spot SOLUSDT was about 85.25 at research time, giving a real cushion above 80.",
+    "Polymarket rules explicitly reference Binance SOL/USDT 1-minute close mechanics and the noon ET settlement minute.",
+    "Additional Binance verification confirmed active trading, recent 1-minute kline availability, and the correct ET-to-UTC timestamp mapping."
+  ],
+  "timing_relevance": "The relevant timestamp is 2026-04-19 12:00 PM ET, which maps to 2026-04-19 16:00:00 UTC because New York is on EDT.",
+  "unresolved_ambiguities": [
+    "Official settlement references the Binance website candle interface rather than the API directly, though the underlying price should align.",
+    "No independent volatility study was completed in this run beyond direct price/mechanics checks."
+  ],
+  "what_would_change_view": "I would move closer to the market if SOL extends gains and holds comfortably above 80 into settlement, or if stronger evidence appears for a supportive catalyst or suppressed volatility; I would move lower if SOL loses the current cushion or broader crypto risk sentiment deteriorates."
+}

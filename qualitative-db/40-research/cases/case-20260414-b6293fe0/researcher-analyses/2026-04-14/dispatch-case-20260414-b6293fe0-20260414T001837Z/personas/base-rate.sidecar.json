@@ -1,0 +1,54 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "medium",
+  "fragility_points": [
+    "A narrow venue-specific settlement source could differ from broad spot references.",
+    "The Polymarket page fetch did not expose the detailed rules clearly."
+  ],
+  "key_assumptions": [
+    "The contract uses an ordinary interpretation of 'reach $74,000' during Apr 13-19.",
+    "Broad BTC spot pricing is a good proxy for the contract's governing source."
+  ],
+  "main_logical_chain": [
+    "Market implies 89% for a weekly BTC threshold hit.",
+    "Independent contextual checks show BTC already in the mid-$74k area early in the window.",
+    "For a weekly threshold market, once spot is already at the target neighborhood, the base rate for eventual hit is high.",
+    "Residual risk is mostly about narrow settlement-source mechanics, not price direction."
+  ],
+  "main_thesis": "BTC was already trading around or above the $74k threshold on major reference venues at the start of the week, so a simple Apr 13-19 threshold-hit contract is very likely to resolve Yes unless narrow settlement mechanics intervene.",
+  "own_probability": 0.94,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "CoinGecko 2026-04-14 historical snapshot: about $74.5k",
+    "Coinbase spot during research: about $74.37k"
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "market_anchor",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-b6293fe0",
+    "dispatch_id": "dispatch-case-20260414-b6293fe0-20260414T001837Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "d975156e-3ded-4091-8aa3-a76be3a46de2",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-b6293fe0/researcher-analyses/2026-04-14/dispatch-case-20260414-b6293fe0-20260414T001837Z/personas/base-rate.md",
+    "source_persona_sha256": "ef6bf6ce4830b94e49e4b2f909f106160531930c3142c4cb5c119bd8ae0d97db"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Good contextual price evidence from CoinGecko plus Coinbase verification, but only partial visibility into the true settlement rules.",
+  "strongest_disconfirmers": [
+    "The exact Polymarket rule text was not cleanly visible, leaving source-of-truth ambiguity."
+  ],
+  "strongest_supports": [
+    "CoinGecko historical snapshot for 2026-04-14 showed BTC around $74.5k.",
+    "Coinbase spot check during research showed BTC around $74.37k."
+  ],
+  "timing_relevance": "Timing matters because the contract runs Apr 13-19, but BTC appeared to be at or above the threshold already by Apr 14.",
+  "unresolved_ambiguities": [
+    "Exact governing source and print definition for the contract were not fully visible in-run."
+  ],
+  "what_would_change_view": "Clear rule text or authoritative settlement-source evidence showing the relevant weekly high never reached $74k would reduce the estimate materially."
+}

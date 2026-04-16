@@ -105,5 +105,5 @@ State how this evidence-map should be used next:
 - orchestrator synthesis input
 - decision-maker review
 - follow-up investigation
-- retrospective evaluation
+- learning evaluation
 - source collection gap

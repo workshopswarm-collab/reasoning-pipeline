@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Single-minute settlement sensitivity.",
+    "Weekend volatility and crypto beta.",
+    "Small residual ambiguity between Binance UI settlement surface and API contextual verification."
+  ],
+  "key_assumptions": [
+    "No fresh XRP-specific negative catalyst emerges before settlement.",
+    "Broader crypto tape does not sell off enough to push XRP below 1.30 into the settlement minute.",
+    "Binance settlement surface behaves in line with normal kline close logic."
+  ],
+  "main_logical_chain": [
+    "Verify the exact settlement mechanics from Polymarket and Binance kline documentation.",
+    "Check live Binance XRPUSDT level and distance from the 1.30 strike.",
+    "Assess whether any near-term catalyst is likely to drag XRP below 1.30 by the settlement minute.",
+    "Conclude that absent a fresh downside shock, Yes remains more likely than the 95% market baseline implies."
+  ],
+  "main_thesis": "XRP is already materially above $1.30 on Binance, so Yes is highly likely unless a fresh downside catalyst hits before the April 19 noon ET settlement minute.",
+  "own_probability": 0.97,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "final 'Close' price higher than the price specified",
+    "Klines are uniquely identified by their open time"
+  ],
+  "reasoning_mode": [
+    "catalyst_analysis",
+    "contract_interpretation",
+    "market_anchor"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260416-b80742d2",
+    "dispatch_id": "dispatch-case-20260416-b80742d2-20260416T014833Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "1a18041e-e4eb-4d99-aa56-dc7216c348ed",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-b80742d2/researcher-analyses/2026-04-16/dispatch-case-20260416-b80742d2-20260416T014833Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "c55c12ed36b5d10f48fb8ce35b80e1baf917e1cacf351a60b6f2d80c85fe368f"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality for mechanics and current price state, with medium independence because the core evidence is concentrated in the Polymarket/Binance stack.",
+  "strongest_disconfirmers": [
+    "The market resolves on one narrow minute, so a sharp downside move into noon ET could still flip the outcome.",
+    "A crypto-wide or XRP-specific adverse headline before April 19 could compress the current cushion quickly."
+  ],
+  "strongest_supports": [
+    "Live Binance XRPUSDT was about 1.4013 during the run, roughly 7.8% above the strike.",
+    "Observed Binance 24h low during the run remained above 1.30.",
+    "Contract rules are specific to the Binance XRP/USDT 12:00 ET one-minute close, reducing broader interpretive ambiguity."
+  ],
+  "timing_relevance": "Timing is central because the contract resolves on one Binance one-minute close at 12:00 ET on April 19 rather than on a daily close or broad price range.",
+  "unresolved_ambiguities": [
+    "Whether any UI-specific display or rounding behavior could matter at the margin.",
+    "Whether a late-breaking XRP-specific headline emerges before Sunday noon ET."
+  ],
+  "what_would_change_view": "I would lower the estimate if XRP trades back near 1.33-1.34, if a major negative crypto or XRP-specific catalyst appears, or if settlement-surface interpretation looks less clean than assumed."
+}

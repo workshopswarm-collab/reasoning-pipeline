@@ -1,0 +1,58 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A modest pullback below 74k before settlement would flip the outcome.",
+    "The estimate depends heavily on short-horizon regime stability."
+  ],
+  "key_assumptions": [
+    "BTC remains in the current mid-74k trading regime into the April 17 noon ET settlement window.",
+    "No major macro or crypto-specific shock materially changes price regime before settlement.",
+    "Binance remains operational and representative near settlement."
+  ],
+  "main_logical_chain": [
+    "The contract settles on a specific Binance BTC/USDT 1-minute close at 12:00 ET on April 17 and requires the close to be strictly above 74,000.",
+    "BTC is currently above 74,000 on Binance and has recently closed above that level multiple times, so the relevant prior is modestly favorable to Yes.",
+    "Because the strike sits only slightly below current spot and BTC day-scale volatility is meaningful, the correct estimate is only moderately above 50%, not extreme."
+  ],
+  "main_thesis": "BTC is already trading above 74k and has recently closed above that level several times, so the outside-view leans Yes, but only moderately because routine one-day BTC volatility can still push the noon snapshot below 74k.",
+  "own_probability": 0.63,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "lean Yes at 63%",
+    "the candle's final Close must be strictly higher than 74,000",
+    "the strongest disconfirming consideration is simple: the cushion above threshold is small"
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "market_anchor",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-f29db686",
+    "dispatch_id": "dispatch-case-20260416-f29db686-20260416T004058Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "f3df4fb0-1303-4d8f-8f7b-07c8dd6ed0e7",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-f29db686/researcher-analyses/2026-04-16/dispatch-case-20260416-f29db686-20260416T004058Z/personas/base-rate.md",
+    "source_persona_sha256": "013d12a7da32bc510ed56f9fc1feee318fa3d4783923385cb59692dc3e6454a9"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Rule clarity is high because Polymarket specifies Binance BTC/USDT 1m close at noon ET; settlement-adjacent Binance data is strong, while CoinGecko and Kraken serve as secondary contextual cross-checks with medium overall evidence independence.",
+  "strongest_disconfirmers": [
+    "The cushion above threshold is only about 1%, and BTC often moves that much over a day or less.",
+    "A narrow timestamp-based contract is vulnerable to ordinary short-horizon volatility even in a supportive regime."
+  ],
+  "strongest_supports": [
+    "Binance spot was around 74.8k during analysis, already above the 74k threshold.",
+    "Recent Binance daily closes on Apr 13-15 were repeatedly above 74k.",
+    "CoinGecko and Kraken broadly matched the same general price level, reducing venue-dislocation concerns."
+  ],
+  "timing_relevance": "This is a date-sensitive noon-ET snapshot market, so short-run volatility and exact timestamp mapping matter more than broad long-horizon Bitcoin fundamentals.",
+  "unresolved_ambiguities": [
+    "No major rule ambiguity remains, but the exact noon ET candle should still be checked directly at settlement time.",
+    "Unknown overnight macro or crypto-specific news could still move the price materially."
+  ],
+  "what_would_change_view": "Sustained hourly Binance closes below 74k before settlement or a material negative catalyst would move the view toward No; a wider cushion above 74k into the morning of Apr 17 would raise confidence in Yes."
+}

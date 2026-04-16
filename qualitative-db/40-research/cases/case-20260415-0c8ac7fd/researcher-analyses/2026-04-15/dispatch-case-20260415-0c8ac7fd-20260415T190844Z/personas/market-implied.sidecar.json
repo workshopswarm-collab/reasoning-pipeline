@@ -1,0 +1,58 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A sharp downside move before Apr 17 noon ET could erase the cushion.",
+    "Small residual ambiguity remains between the named Binance UI surface and the API verification surface used here."
+  ],
+  "key_assumptions": [
+    "The current roughly 3.7% cushion above 72000 is materially informative for the Apr 17 noon ET close.",
+    "No major selloff or source-surface mismatch occurs before the resolving minute.",
+    "Binance API checks are a valid near-governing verification pass for current state."
+  ],
+  "main_logical_chain": [
+    "Start from the market-implied 0.87 Yes price as an information-rich prior.",
+    "Verify the governing source and contract mechanics directly: Binance BTCUSDT 1-minute close at 12:00 ET on Apr 17.",
+    "Check Binance current price and recent 1-minute candles; both show BTC materially above 72000.",
+    "Conclude that Yes is high probability, but keep a modest discount because only the exact resolving close matters."
+  ],
+  "main_thesis": "The market's 0.87 Yes price is broadly justified because Binance BTC/USDT is already trading materially above 72000, though exact-minute close mechanics justify a modest discount from near-certainty.",
+  "own_probability": 0.84,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone (noon) ... has a final 'Close' price higher than ... 72,000.",
+    "Binance ticker check during this run: 74646.66000000"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "contract_interpretation",
+    "scenario_analysis"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260415-0c8ac7fd",
+    "dispatch_id": "dispatch-case-20260415-0c8ac7fd-20260415T190844Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "203d3f16-4f99-4c4c-8c8c-8a55fc1f3750",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-0c8ac7fd/researcher-analyses/2026-04-15/dispatch-case-20260415-0c8ac7fd-20260415T190844Z/personas/market-implied.md",
+    "source_persona_sha256": "f63850ae22bb095424b01a0f43c5df528ae6c7736721f90a46dd60cc52125186"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is reasonably strong because the main evidence comes from the contract's named source family plus direct contract rules, though independence is only medium and there is slight UI-vs-API ambiguity.",
+  "strongest_disconfirmers": [
+    "This is a specific-minute close market, not a touch market, so a selloff into the exact noon ET minute could still produce No.",
+    "BTC can move several percent over two days, so the current cushion is meaningful but not invulnerable."
+  ],
+  "strongest_supports": [
+    "Direct Binance ticker check showed BTCUSDT at 74646.66 during the run.",
+    "Recent Binance 1-minute closes were clustered around the mid-74.6k area.",
+    "The strike is already below current spot, so no further upside is required."
+  ],
+  "timing_relevance": "The event is still future as of Apr 15, so the key issue is whether BTC remains above 72000 at the exact Apr 17 12:00 ET Binance 1-minute close.",
+  "unresolved_ambiguities": [
+    "Exact final UI-state proof cannot be captured yet because the resolving candle is still in the future.",
+    "No independent contextual volatility estimate was quantified in this run."
+  ],
+  "what_would_change_view": "I would mark down Yes materially if Binance BTCUSDT trades near or below 72000 before the deadline or if clearer source-surface interpretation reveals a meaningful timing/mechanics nuance."
+}

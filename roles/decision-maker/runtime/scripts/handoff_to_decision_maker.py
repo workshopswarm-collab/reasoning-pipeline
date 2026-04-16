@@ -20,6 +20,7 @@ from common import (  # noqa: E402
     case_decision_packet_markdown_path,
     case_decision_stage_status_path,
     coerce_string,
+    default_decision_agent_session_key,
     load_json,
     read_json_if_exists,
     relative_to_workspace,
@@ -28,7 +29,7 @@ from common import (  # noqa: E402
 )
 
 BUILD_CONTEXT = SCRIPT_DIR / "build_decision_context.py"
-DEFAULT_TARGET_SESSION = "agent:decision-maker:main"
+DEFAULT_TARGET_SESSION = ""
 
 
 class HandoffError(RuntimeError):
@@ -174,6 +175,8 @@ def main() -> None:
     context = load_json(context_path)
     case_key = coerce_string(context.get("case_key"))
     dispatch_id = coerce_string(context.get("dispatch_id"))
+    recommended_defaults = context.get("recommended_runtime_defaults") or {}
+    target_session = coerce_string(args.target_session) or coerce_string(recommended_defaults.get("decision_agent_session_key")) or default_decision_agent_session_key(case_key)
     prompt_path = Path(args.prompt_out) if args.prompt_out else default_prompt_path(case_key, dispatch_id or case_key)
     if not prompt_path.is_absolute():
         prompt_path = WORKSPACE_ROOT / prompt_path
@@ -186,7 +189,7 @@ def main() -> None:
     send_result: dict[str, Any] | None = None
     status_value = "handoff_prepared"
     if args.send:
-        send_result = send_handoff(args.target_session, message, args.timeout_seconds)
+        send_result = send_handoff(target_session, message, args.timeout_seconds)
         status_value = "handoff_sent"
 
     status_path = case_decision_stage_status_path(case_key)
@@ -199,7 +202,7 @@ def main() -> None:
         "dispatch_id": dispatch_id,
         "status": status_value,
         "actor": "orchestrator",
-        "target_session": args.target_session,
+        "target_session": target_session,
         "decision_context_path": relative_to_workspace(context_path),
         "handoff_prompt_path": relative_to_workspace(prompt_path),
         "message_sha256": message_sha256,
@@ -217,7 +220,7 @@ def main() -> None:
         "decision_context_path": relative_to_workspace(context_path),
         "handoff_prompt_path": relative_to_workspace(prompt_path),
         "decision_stage_status_path": relative_to_workspace(status_path),
-        "target_session": args.target_session,
+        "target_session": target_session,
         "sent": bool(args.send),
         "send_result": send_result or {},
     }

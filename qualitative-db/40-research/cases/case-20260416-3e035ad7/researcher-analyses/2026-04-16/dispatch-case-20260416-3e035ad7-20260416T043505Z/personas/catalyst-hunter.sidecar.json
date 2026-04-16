@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Single-minute settlement sensitivity.",
+    "Crypto tail volatility over the remaining ~31 hours.",
+    "Mild ambiguity between formal Binance UI settlement surface and API verification proxy."
+  ],
+  "key_assumptions": [
+    "No scheduled event before noon ET on April 17 matters more than the final-hours BTC price path into the settlement minute.",
+    "Binance current spot is the best prior for the governing settlement source.",
+    "No Binance-specific anomaly distorts the relevant one-minute close."
+  ],
+  "main_logical_chain": [
+    "Polymarket rules make the Binance BTC/USDT 12:00 ET one-minute close on April 17 the governing source of truth.",
+    "Current verified Binance spot is materially above 70,000, so the base state strongly favors Yes.",
+    "Because no stronger near-term catalyst was identified, the final-hours path into settlement is the dominant repricing mechanism.",
+    "Residual risk is concentrated in a sharp late selloff or exchange-specific one-minute distortion, keeping my estimate slightly below market."
+  ],
+  "main_thesis": "The main catalyst is the settlement minute itself; with BTC/USDT recently around 74,975 on Binance, Yes remains highly likely, but the residual No path is a late selloff or exchange-specific one-minute dislocation into the exact noon ET candle.",
+  "own_probability": 0.975,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "The highest-information catalyst for this market is not a scheduled macro release or narrative headline; it is the settlement timestamp itself.",
+    "The strongest disconfirming consideration is that BTC does not need a regime change to break this trade; it only needs a sufficiently sharp downside move into one specific minute."
+  ],
+  "reasoning_mode": [
+    "catalyst_analysis",
+    "market_anchor",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260416-3e035ad7",
+    "dispatch_id": "dispatch-case-20260416-3e035ad7-20260416T043505Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "71bdcdd0-4402-4eac-8bd4-680b6221b8c5",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-3e035ad7/researcher-analyses/2026-04-16/dispatch-case-20260416-3e035ad7-20260416T043505Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "487137314be609208665046f8b8d8e252c16373e8bd36354fb109cfd1e15938e"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality direct rule and exchange data were used; independence is medium because both surfaces anchor to Binance, and source-of-truth ambiguity is low-medium due to UI-versus-API settlement surface distinction.",
+  "strongest_disconfirmers": [
+    "A 6-7% drawdown over a day is plausible in crypto.",
+    "The contract depends on one exact one-minute close on one exchange, which makes timestamp fragility the main No path."
+  ],
+  "strongest_supports": [
+    "Verified Binance BTCUSDT level was about 7.1% above the 70,000 threshold roughly 31 hours before settlement.",
+    "The contract resolves on the same venue and pair used in the direct verification, limiting cross-exchange basis risk.",
+    "No stronger discrete catalyst was identified in scoped materials than the settlement countdown itself."
+  ],
+  "timing_relevance": "Timing is central: most information value arrives late, and the highest-impact catalyst is whether BTC preserves its cushion into the exact 12:00 ET settlement minute.",
+  "unresolved_ambiguities": [
+    "Whether any unobserved scheduled macro catalyst before noon ET on April 17 could still dominate the final-hours path.",
+    "Exact Binance UI candle-labeling convention versus API timestamp interpretation, though this did not appear large enough to change direction."
+  ],
+  "what_would_change_view": "A rapid selloff toward the low 72k or 71k area, emergence of a concrete downside catalyst before noon ET, or evidence of Binance-specific instability near settlement would reduce confidence materially."
+}

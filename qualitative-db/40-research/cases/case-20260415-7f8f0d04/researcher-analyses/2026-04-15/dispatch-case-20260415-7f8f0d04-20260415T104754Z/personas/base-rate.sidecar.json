@@ -1,0 +1,61 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Exact current model-name verification is imperfect.",
+    "A small leaderboard update could change the winner.",
+    "UI/state-control dependence introduces resolution fragility."
+  ],
+  "key_assumptions": [
+    "The current leading Anthropic entry is claude-opus-4-6-thinking or close enough in rank that it remains the short-horizon favorite.",
+    "No major rival release or leaderboard reshuffle occurs before the April 17 noon ET check.",
+    "Style-control-on ordering does not materially differ from the fetched ordering in a way that reverses Anthropic's lead."
+  ],
+  "main_logical_chain": [
+    "Contract resolves on the Chatbot Arena Text Arena Overall leaderboard with style control on at April 17, 2026 12:00 PM ET.",
+    "Current primary evidence indicates Anthropic is at or near the top of that leaderboard.",
+    "Outside-view persistence over a two-day horizon makes the current leader a strong favorite.",
+    "But exact-model ambiguity, tight score spacing, and tiebreak mechanics reduce confidence below the market's 87.4%."
+  ],
+  "main_thesis": "Claude-opus-4-6-thinking is a justified favorite but the market overstates certainty because exact-model verification is imperfect, top scores are tight, and tie mechanics are unfavorable.",
+  "own_probability": 0.76,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "Bottom line: I estimate 76% for YES.",
+    "Governing source of truth: the Chatbot Arena LLM Leaderboard at https://lmarena.ai/leaderboard/text under Text Arena | Overall with style control on."
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "contract_interpretation",
+    "risk_management"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-7f8f0d04",
+    "dispatch_id": "dispatch-case-20260415-7f8f0d04-20260415T104754Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "5a037c6c-1fb7-40fb-9968-b73728e7b211",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-7f8f0d04/researcher-analyses/2026-04-15/dispatch-case-20260415-7f8f0d04-20260415T104754Z/personas/base-rate.md",
+    "source_persona_sha256": "80c827adbd87d3a58f728ffb3aaf6c2478120f2aaa77752622f8cef9011a8fcd"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Good for direction but imperfect for exact-contract identity: contract text is authoritative, leaderboard fetch is primary and timely, independence is medium, and exact-name verification remained incomplete.",
+  "strongest_disconfirmers": [
+    "The extracted leaderboard did not cleanly preserve the exact model string, and the contract resolves on exact model identity.",
+    "The top-score gap is modest, so first place can flip.",
+    "Claude-opus-4-6-thinking loses an exact tie to claude-opus-4-6 on alphabetical ordering."
+  ],
+  "strongest_supports": [
+    "Primary leaderboard fetch showed Anthropic occupying the top two extracted rows with scores 1502 and 1496.",
+    "Short-horizon base rate favors current leaderboard leaders absent a fresh catalyst.",
+    "Market pricing implies the named model is already believed to be the current relevant leader."
+  ],
+  "timing_relevance": "High: this is a date-sensitive leaderboard check with only about two days to the governing observation time.",
+  "unresolved_ambiguities": [
+    "Whether the current #1 extracted Anthropic row is specifically claude-opus-4-6-thinking.",
+    "Whether style-control-on ordering differs from the extracted visible ordering.",
+    "How fallback resolution would work if the leaderboard became permanently unavailable."
+  ],
+  "what_would_change_view": "A clean direct read showing another model currently first, or showing that claude-opus-4-6-thinking is not the present leader, would push the estimate down materially; a clean confirmation that it is specifically first under style control on would push it somewhat higher."
+}

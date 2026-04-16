@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A sharp crypto drawdown before settlement could erase the current spot cushion quickly.",
+    "A one-minute exchange-specific settlement rule adds operational and timing fragility.",
+    "Recent-regime base rates are less supportive than longer-lookback bull-market averages."
+  ],
+  "key_assumptions": [
+    "BTC stays in roughly its recent short-horizon volatility regime through April 17 noon ET.",
+    "No fresh macro or crypto shock forces a >3.45% downside move from the checked price into settlement.",
+    "Binance remains a clean operational settlement source without anomalous exchange-specific print issues."
+  ],
+  "main_logical_chain": [
+    "Verify the exact contract: Binance BTC/USDT, 12:00 ET on April 17, final 1-minute close must be strictly above 72,000.",
+    "Check current Binance spot relative to the threshold and recent price history.",
+    "Compare the size of the required downside move with recent realized short-horizon volatility.",
+    "Downweight the market somewhat because recent 30-60 day base rates above 72,000 remain weaker than the current 83% implies."
+  ],
+  "main_thesis": "BTC is currently above 72k on the named settlement exchange, so Yes is favored, but recent 30-60 day base rates and one-minute settlement path dependence make the market's 83% look somewhat rich.",
+  "own_probability": 0.74,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone (noon) ... has a final 'Close' price higher than the price specified.",
+    "My estimate is 74% that Binance BTC/USDT closes above 72,000 on the 12:00 ET April 17 1-minute candle."
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "market_anchor",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-76e5614f",
+    "dispatch_id": "dispatch-case-20260414-76e5614f-20260414T182607Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "1a8b2872-c720-425a-a90c-12814eac4adf",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-76e5614f/researcher-analyses/2026-04-14/dispatch-case-20260414-76e5614f-20260414T182607Z/personas/base-rate.md",
+    "source_persona_sha256": "6c3dc43be96dae5f1b385df82453dcbf3158b7309336abe6183c3159cd30696d"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source-of-truth ambiguity is low because the contract explicitly names Binance BTC/USDT and the final 1-minute close. Evidence independence is only low-to-medium because most price evidence appropriately comes from Binance.",
+  "strongest_disconfirmers": [
+    "Only 6 of the last 30 daily closes and 8 of the last 60 daily closes were above 72,000.",
+    "BTC traded below the threshold as recently as April 12.",
+    "The market resolves on one exact Binance minute, so timing/path dependence matters."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT was about 74,573 at check time, roughly 3.45% above the 72,000 threshold.",
+    "BTC posted several recent daily closes above 72,000 after re-clearing that level.",
+    "Recent hourly realized moves were usually much smaller than the drop needed to finish below 72,000 from the checked price."
+  ],
+  "timing_relevance": "High: this is a date-sensitive, one-minute settlement market at noon ET on April 17, so current spot cushion matters but can still be overturned by a short-horizon selloff.",
+  "unresolved_ambiguities": [
+    "Whether the next two days will resemble the recent calm hourly regime or a higher-volatility shock regime.",
+    "How much weight synthesis should place on current spot cushion versus recent 30-60 day threshold frequency."
+  ],
+  "what_would_change_view": "I would move lower if BTC loses the 73k-72k area before settlement or if volatility rises sharply; I would move somewhat higher if BTC stays comfortably above 74k into April 16-17 and adds another clean close above 72k."
+}

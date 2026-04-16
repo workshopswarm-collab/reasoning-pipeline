@@ -29,6 +29,7 @@ from common import (  # noqa: E402
     case_decision_packet_markdown_path,
     case_decision_stage_status_path,
     coerce_string,
+    default_decision_agent_session_key,
     load_json,
     normalize_probability,
     percent_points_from_prob_delta,
@@ -59,7 +60,7 @@ OPENCLAW_SESSIONS_SEND = (
     / "internal"
     / "openclaw_sessions_send.mjs"
 )
-DEFAULT_DECISION_AGENT_SESSION_KEY = "agent:decision-maker:main"
+DEFAULT_DECISION_AGENT_SESSION_KEY = ""
 
 
 class DecisionMakerError(RuntimeError):
@@ -1009,6 +1010,8 @@ def main() -> None:
     case_key = coerce_string(context.get("case_key"))
     dispatch_id = coerce_string(context.get("dispatch_id"))
     question = coerce_string(context.get("question"))
+    recommended_defaults = context.get("recommended_runtime_defaults") or {}
+    args.session_key = coerce_string(args.session_key) or coerce_string(recommended_defaults.get("decision_agent_session_key")) or default_decision_agent_session_key(case_key)
     market = context.get("market") or {}
     outputs = context.get("canonical_outputs") or {}
     upstream = context.get("upstream") or {}

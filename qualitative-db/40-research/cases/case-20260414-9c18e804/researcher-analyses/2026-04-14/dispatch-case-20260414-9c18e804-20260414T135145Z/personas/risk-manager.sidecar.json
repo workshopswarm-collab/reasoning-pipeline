@@ -1,0 +1,63 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "No confirmed governing-source 76k print in checked evidence.",
+    "Settlement-source ambiguity persists.",
+    "Path dependency is high because the threshold was close but not reached."
+  ],
+  "key_assumptions": [
+    "Major liquid spot venues are directionally informative proxies for the settlement source.",
+    "Cross-venue dispersion near 76k will not be large enough to change the answer materially.",
+    "The remaining week offers enough volatility for a roughly 0.8% upside excursion."
+  ],
+  "main_logical_chain": [
+    "Market implies 75% for a 76k touch during Apr 13-19.",
+    "Direct and cross-checked price evidence places BTC already near 76k, so a touch is plausible.",
+    "But threshold-touch markets resolve on realized prints, not proximity.",
+    "Incomplete direct verification of settlement-source mechanics adds confidence risk.",
+    "Therefore the directional lean remains Yes, but at lower confidence than the market price implies."
+  ],
+  "main_thesis": "Bitcoin is more likely than not to touch $76,000 during Apr 13-19, but the market is somewhat overconfident because checked evidence showed proximity rather than a confirmed governing-source threshold print.",
+  "own_probability": 0.62,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "market-implied 75% vs own 62%",
+    "governing source of truth is Polymarket's contract rules",
+    "strongest disconfirming consideration: BTC had not yet actually printed 76,000"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "risk_management",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-9c18e804",
+    "dispatch_id": "dispatch-case-20260414-9c18e804-20260414T135145Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "283687c8-f7b4-4ad3-b5c1-16bfeefe0ee1",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-9c18e804/researcher-analyses/2026-04-14/dispatch-case-20260414-9c18e804-20260414T135145Z/personas/risk-manager.md",
+    "source_persona_sha256": "fd2fb236275c7380e89679f7f77dcae20f58c94a832d8cb59e15224cd51a26ad"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Adequate for a low-difficulty case: one direct major-exchange source plus one independent aggregator cross-check, but only medium confidence on exact settlement mechanics.",
+  "strongest_disconfirmers": [
+    "Checked evidence did not yet show an actual 76,000 print.",
+    "Polymarket rule/source-of-truth details were not fully legible in accessible fetched text.",
+    "A sub-1% reversal from checked levels would be enough to miss."
+  ],
+  "strongest_supports": [
+    "Binance direct data showed highs of 74,900 on Apr 13 UTC and about 75,430 on Apr 14 UTC, leaving only a small gap to 76k.",
+    "CoinGecko independently corroborated BTC trading around $75.4k, supporting near-threshold conditions.",
+    "Several days remained in the contract window after the checked data."
+  ],
+  "timing_relevance": "High; this is a date-specific threshold-touch market where remaining week volatility and intraperiod path matter more than end-of-week close.",
+  "unresolved_ambiguities": [
+    "Exact Polymarket source-of-truth wording and source list were not fully captured in accessible fetch text.",
+    "Whether BTC printed 76k on any relevant venue after the fetched timestamp."
+  ],
+  "what_would_change_view": "A confirmed 76k print on the governing source or clearer Polymarket rule text would move me upward; narrower settlement mechanics or a sharp rejection from the 75k area would move me downward."
+}

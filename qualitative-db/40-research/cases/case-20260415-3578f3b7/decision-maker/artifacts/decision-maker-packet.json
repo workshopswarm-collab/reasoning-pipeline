@@ -1,0 +1,155 @@
+{
+  "schema_version": "decision-packet/v1",
+  "generated_at": "2026-04-15T18:51:00-04:00",
+  "context": {
+    "case_key": "case-20260415-3578f3b7",
+    "dispatch_id": "dispatch-case-20260415-3578f3b7-20260415T224321Z",
+    "question": "Will Arvell Reese be the second pick in the 2026 NFL draft?",
+    "market_id": "9ed75ff4-5a35-414d-81ea-2ac04b30eeda",
+    "external_market_id": "0xe1e8774bbe9028296cd9bf51eb78755f44893b940a952d26c9c78febc8452a7f",
+    "market_slug": "will-arvell-reese-be-the-second-pick-in-the-2026-nfl-draft",
+    "platform": "polymarket",
+    "primary_market_url": "https://polymarket.com/event/will-arvell-reese-be-the-second-pick-in-the-2026-nfl-draft",
+    "market_title": "Will Arvell Reese be the second pick in the 2026 NFL draft?",
+    "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260415-3578f3b7/synthesizer-agent/decision-handoff.md",
+    "source_syndicated_finding_path": "qualitative-db/40-research/cases/case-20260415-3578f3b7/synthesizer-agent/syndicated-finding.md",
+    "source_light_refresh_brief_path": "",
+    "refresh_mode": "",
+    "decision_maker_agent": "decision-maker",
+    "canonical_markdown_path": "decision-maker-packet.md",
+    "canonical_json_path": "artifacts/decision-maker-packet.json"
+  },
+  "decision": {
+    "side": "yes",
+    "trade_authorization": "forbidden",
+    "position_policy": "flat",
+    "decision_readiness": "needs_more_research",
+    "primary_crux": "Arvell Reese appears to be a legitimate favorite for No. 2 overall, but the market at 0.735 implies a cleaner separation from Bailey and other alternatives than the bounded public evidence supports, and exact-slot outcomes remain highly fragile to team-intent reporting and trade dynamics that were not independently pinned down.",
+    "secondary_cruxes": [
+      "This is not a directional impossibility; it is an evidence-quality and late-information problem.",
+      "The apparent below-market edge depends heavily on the absence of strong Jets-specific sourcing rather than on a discovered affirmative anti-Reese fact.",
+      "The package itself flags blockers_require_new_research as yes, which is decisive when the market may be pricing private or late-cycle team-intent information."
+    ],
+    "thesis_class": "not_decision_ready"
+  },
+  "valuation": {
+    "fair_value_low": 0.6,
+    "fair_value_high": 0.64,
+    "fair_value_mid": 0.62,
+    "independent_verification_quality": "medium",
+    "compressed_toward_market_applied": false,
+    "compression_reason": "Official draft-order context and mixed public mocks support Reese as a real contender, but no strong independent Jets-specific reporting was found to justify a mid-70s exact-slot price.",
+    "market_reference_price": 0.735,
+    "edge_mid_vs_market_pct_points": -11.5
+  },
+  "execution_semantics": {
+    "price_source": "market_snapshot_quote",
+    "price_axis": "market_implied_true_prob",
+    "rebalance_threshold_fraction": 0.1,
+    "allow_auto_reversal": false,
+    "quote_staleness_seconds": 300,
+    "valid_until": "2026-04-16T22:51:38.179727+00:00"
+  },
+  "risk_controls": {
+    "confidence_level": "medium",
+    "portfolio_constraints": [
+      "Do not add exposure at the current price.",
+      "Require fresh Jets-specific reporting and trade-clarity checks before reconsidering action.",
+      "Treat exact-slot draft markets as highly sensitive to late information and correlated media noise."
+    ],
+    "liquidity_caution": "low",
+    "max_position_size_pct_bankroll": 0.02,
+    "max_additional_exposure_pct_bankroll": 0.01,
+    "max_single_order_pct_bankroll": 0.005,
+    "slippage_tolerance_bps": 100,
+    "liquidity_min_depth": 0,
+    "correlation_bucket_limit_pct_bankroll": 0.05
+  },
+  "bands": [
+    {
+      "name": "max_enter",
+      "min_p": 0.0,
+      "max_p": 0.48,
+      "target_exposure_fraction": 0.0,
+      "notes": "Would require a much cheaper price plus materially better team-intent evidence."
+    },
+    {
+      "name": "scaled_enter",
+      "min_p": 0.48,
+      "max_p": 0.6,
+      "target_exposure_fraction": 0.0,
+      "notes": "Potential value zone only if independent reporting converges on Reese and trade risk stays low."
+    },
+    {
+      "name": "hold",
+      "min_p": 0.6,
+      "max_p": 0.64,
+      "target_exposure_fraction": 0.0,
+      "notes": "Bounded fair-value zone from current reasoning, but current packet remains non-actionable due late-information gaps."
+    },
+    {
+      "name": "trim",
+      "min_p": 0.64,
+      "max_p": 0.78,
+      "target_exposure_fraction": 0.0,
+      "notes": "Above fair value for an exact-slot draft market with unresolved team-intent and trade fragility."
+    },
+    {
+      "name": "exit",
+      "min_p": 0.78,
+      "max_p": 1.0,
+      "target_exposure_fraction": 0.0,
+      "notes": "Avoid entirely at rich prices unless late reporting becomes unusually decisive and independently confirmed."
+    }
+  ],
+  "invalidation": {
+    "thesis_breakers": [
+      "Independent final-week Jets-specific reporting converges clearly on Reese at No. 2.",
+      "Credible reporting indicates the Jets are unlikely to trade the pick and prefer Reese over Bailey and other alternatives.",
+      "Multiple strong late sources materially contradict the current mixed-public-evidence picture."
+    ],
+    "time_breakers": [
+      "A fresh final-week team-intent and trade-status check should supersede this packet before any action.",
+      "The official second overall pick fully resolves and obsoletes this judgment."
+    ],
+    "market_structure_breakers": [
+      "A pick trade becomes likely or official, materially changing player-slot probabilities.",
+      "Market reprices sharply after new team-intent reporting, changing the value comparison."
+    ],
+    "reversal_conditions": [
+      "Upgrade from forbidden only if fresh Jets-specific reporting materially improves conviction or the market cheapens enough to create a clear edge.",
+      "Downgrade directional confidence if Bailey or trade reporting strengthens materially.",
+      "Do not auto-reverse from this packet."
+    ]
+  },
+  "epistemic_status": {
+    "key_uncertainties": [
+      "The Jets' true preference ordering between Reese, Bailey, and other plausible No. 2 options.",
+      "Whether the current market embeds private or fresher team-intent information not visible in public mocks.",
+      "The probability of a No. 2 pick trade altering the exact-slot outcome."
+    ],
+    "what_would_change_my_mind": [
+      "Multiple independent final-week reports specifically tying the Jets to Reese at No. 2 would move me meaningfully toward market.",
+      "Strong Bailey-specific or trade-up reporting would move me lower.",
+      "A materially cheaper market price with unchanged mixed evidence would create a cleaner edge."
+    ],
+    "reasons_to_pass": [
+      "The current market price is well above bounded fair value.",
+      "No strong independent Jets-specific reporting distinguishing Reese from Bailey was obtained.",
+      "Exact-slot draft markets are highly vulnerable to late reporting and trade shocks, and the package explicitly says more research is required."
+    ],
+    "decision_quality": "not_ready"
+  },
+  "audit": {
+    "one_sentence_rationale": "Reese may be the favorite for No. 2 overall, but with fair value closer to 0.62 than the 0.735 market and no strong Jets-specific confirmation separating him from Bailey or trade risk, the correct packet is forbidden and needs_more_research rather than a trade on an exact-slot draft market.",
+    "notes": "This case separates directional plausibility from execution readiness: plausible Yes thesis, insufficiently verified basis for trading at a rich price.",
+    "market_baseline_respected": true,
+    "action_bias_check_passed": true,
+    "self_preservation_bias_check_passed": true,
+    "structured_handoff_primary_used": true,
+    "prose_fallback_used": false,
+    "verification_mode_used": "not_ready_reopen_recommended",
+    "additional_verification_performed": false,
+    "additional_verification_notes": ""
+  }
+}

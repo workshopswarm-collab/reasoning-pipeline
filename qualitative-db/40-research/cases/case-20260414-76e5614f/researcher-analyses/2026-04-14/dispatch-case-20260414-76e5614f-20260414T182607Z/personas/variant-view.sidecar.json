@@ -1,0 +1,61 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "BTC could retest 72k before Friday noon.",
+    "A macro or crypto-specific risk-off shock could matter disproportionately near the decision minute.",
+    "Minute-candle/timezone interpretation always deserves timestamp discipline."
+  ],
+  "key_assumptions": [
+    "Current Binance spot and recent daily regime are informative for the April 17 noon ET close.",
+    "No major adverse macro or crypto-specific shock hits before the settlement minute.",
+    "Polymarket's rule text cleanly captures the intended Binance candle interpretation."
+  ],
+  "main_logical_chain": [
+    "The governing contract resolves on Binance BTC/USDT 1-minute close at 12:00 ET on April 17.",
+    "Current same-venue spot is comfortably above 72k, so Yes is favored.",
+    "But recent realized volatility and the narrow timestamped-close mechanic preserve meaningful downside tail risk.",
+    "Therefore Yes remains more likely than the market's No case, but slightly less likely than the market price implies."
+  ],
+  "main_thesis": "BTC is more likely than not to settle above 72k on Binance at noon ET April 17, but the market is slightly overconfident because the contract depends on one exact venue-specific minute close rather than broad BTC bullishness.",
+  "own_probability": 0.79,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "Yes only if the Binance BTC/USDT 1-minute candle at 12:00 ET closes strictly above 72,000.",
+    "My estimate is 79% Yes versus roughly 83% market-implied."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation",
+    "variant_hypothesis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-76e5614f",
+    "dispatch_id": "dispatch-case-20260414-76e5614f-20260414T182607Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "e665738a-3362-498d-801a-aaaf5e1ba05a",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-76e5614f/researcher-analyses/2026-04-14/dispatch-case-20260414-76e5614f-20260414T182607Z/personas/variant-view.md",
+    "source_persona_sha256": "a035ad7cb0e7f1ee61b8d224089c759568f68c2d58339cd7a02bfd33c4605449"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-value primary sources were Polymarket rule text and Binance market data; contextual secondary material was low weight. Evidence independence is medium and source-of-truth ambiguity is low to medium.",
+  "strongest_disconfirmers": [
+    "The contract resolves on one exact noon ET one-minute close, not broad spot direction.",
+    "Recent daily lows below 72k show the strike can still be crossed intraperiod.",
+    "A 3-4% cushion is meaningful but not overwhelming in crypto over three days."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT spot was around 74,603, about 3.6% above strike.",
+    "Recent Binance daily closes were generally around or above the threshold.",
+    "Same-venue data reduces cross-exchange basis mismatch."
+  ],
+  "timing_relevance": "Timing is first-order because resolution depends on one exact Binance one-minute close at noon ET on April 17, not on a broader daily or cross-venue price level.",
+  "unresolved_ambiguities": [
+    "Exact intraday volatility path into Friday noon ET remains unknown.",
+    "Minor operational ambiguity remains around display/timestamp mechanics, though likely low impact."
+  ],
+  "what_would_change_view": "I would move up if BTC remains comfortably above mid-74k with calmer intraday volatility into April 17, and down if BTC quickly retests 72k or if risk-off conditions increase noon-minute downside tail risk."
+}

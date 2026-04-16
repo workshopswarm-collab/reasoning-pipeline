@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "BTC can still move several percent before April 20.",
+    "The contract references the Binance interface candle specifically, while verification here used the public API as proxy."
+  ],
+  "key_assumptions": [
+    "The current ~6.6% cushion above 70000 on Binance remains meaningful through April 20 noon ET.",
+    "No major selloff or Binance-specific anomaly occurs before the resolution minute."
+  ],
+  "main_logical_chain": [
+    "Market implies 93% Yes for BTC above 70000 on April 20.",
+    "Polymarket rules show the governing source is Binance BTCUSDT 1-minute close at 12:00 ET on April 20.",
+    "Live Binance data shows BTC already around 74621 with recent minute closes also well above 70000.",
+    "That large current cushion makes a high Yes probability reasonable.",
+    "Because the event is a future specific-minute close rather than a touch market, a modest discount below market remains warranted.",
+    "Final estimate: 90% Yes, roughly agreeing with the market."
+  ],
+  "main_thesis": "BTC is already materially above 70000 on Binance, so the market's 93% Yes price is mostly justified, though a future close-only contract deserves a small discount versus spot-based intuition.",
+  "own_probability": 0.9,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone has a final 'Close' price higher than the price specified.",
+    "BTCUSDT price check returned 74621.00000000."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "contract_interpretation",
+    "technical_reference"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260415-0735f476",
+    "dispatch_id": "dispatch-case-20260415-0735f476-20260415T201136Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "9ee1999a-f097-4354-b2b9-6b4c0ca257df",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-0735f476/researcher-analyses/2026-04-15/dispatch-case-20260415-0735f476-20260415T201136Z/personas/market-implied.md",
+    "source_persona_sha256": "22e23c0d6b0bfdf69e825fd453a820fe4a75b33927210c81d419daa953eab73e"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is solid: Polymarket rules for mechanism plus Binance public price data for current governing-venue state; independence is medium and source-of-truth ambiguity is low-medium.",
+  "strongest_disconfirmers": [
+    "The contract resolves on one specific future minute close several days away, so a sharp selloff could still invalidate the current cushion.",
+    "The market is close-based, not touch-based, so current price does not settle the contract."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT was around 74621 when checked, comfortably above 70000.",
+    "Recent Binance 1-minute closes sampled were all well above 70000.",
+    "Polymarket rules specify a simple Binance BTCUSDT noon ET minute-close-above threshold."
+  ],
+  "timing_relevance": "Highly time-sensitive because resolution depends on the 12:00 ET 1-minute close on April 20, not the current price.",
+  "unresolved_ambiguities": [
+    "Whether Binance interface display and API outputs would differ in any edge case at settlement.",
+    "What macro or crypto-specific volatility might emerge before the resolution minute."
+  ],
+  "what_would_change_view": "A move back toward the low-70k area on Binance, a major market shock, or new evidence of resolution-surface ambiguity would lower confidence materially."
+}

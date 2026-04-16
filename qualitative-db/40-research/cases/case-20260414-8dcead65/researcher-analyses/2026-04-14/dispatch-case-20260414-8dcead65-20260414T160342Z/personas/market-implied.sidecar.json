@@ -1,0 +1,53 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Sharp crypto or macro shock before settlement.",
+    "Minor residual ambiguity around exact final settlement candle mapping until resolution time."
+  ],
+  "key_assumptions": [
+    "BTC avoids a roughly >7% drop before the noon ET April 15 Binance close.",
+    "Binance remains a clean source-of-truth surface for the decisive 1m candle."
+  ],
+  "main_logical_chain": [
+    "Polymarket rules say settlement uses Binance BTC/USDT 12:00 ET April 15 1m close.",
+    "Binance direct data currently show BTC around 75.4k.",
+    "Therefore Yes is strongly favored unless a sizable selloff or settlement-surface issue occurs before the deadline."
+  ],
+  "main_thesis": "Market is broadly right that Yes is highly likely because Binance BTC/USDT is around 75.4k, but 97.9% looks slightly aggressive for a one-minute future-candle contract.",
+  "own_probability": 0.95,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone has a final 'Close' price higher than the price specified.",
+    "Binance BTCUSDT spot check: 75483.31000000"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "contract_interpretation",
+    "risk_management"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260414-8dcead65",
+    "dispatch_id": "dispatch-case-20260414-8dcead65-20260414T160342Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "5809a36b-52dd-45ea-934b-2f132e830c79",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-8dcead65/researcher-analyses/2026-04-14/dispatch-case-20260414-8dcead65-20260414T160342Z/personas/market-implied.md",
+    "source_persona_sha256": "c027a3434ed55d1b938fc5cfe13b206ad01a3bd7b34a38345f12598b88667a1c"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality direct underlying source plus explicit contract rules; independence is medium and source-of-truth ambiguity is low to medium.",
+  "strongest_disconfirmers": [
+    "Contract resolves on one exact future Binance 1m close, so timing-path and operational tail risk remain."
+  ],
+  "strongest_supports": [
+    "Direct Binance spot and recent 1m closes are around 75.4k, well above 70k.",
+    "Less than a day remains, so the threshold cushion is large relative to ordinary drift."
+  ],
+  "timing_relevance": "The contract is highly timing-sensitive because only the Binance 12:00 ET April 15 1m close matters.",
+  "unresolved_ambiguities": [
+    "No major ambiguity beyond exact implementation of the ET-designated candle at final settlement."
+  ],
+  "what_would_change_view": "A fast drop toward 71k-72k, a major shock event, or Binance settlement ambiguity would lower the estimate; stable price action into final hours would raise it toward market."
+}

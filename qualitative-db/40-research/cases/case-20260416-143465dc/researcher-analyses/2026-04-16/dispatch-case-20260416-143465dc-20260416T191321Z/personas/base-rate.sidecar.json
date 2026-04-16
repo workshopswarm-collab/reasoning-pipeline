@@ -1,0 +1,56 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A sharp SOL reversal into the low 80s would cut the wick probability materially.",
+    "If repeated retests fail below 89-90 with shrinking range, the current estimate is too high."
+  ],
+  "key_assumptions": [
+    "A near-threshold SOL market can still print a brief 1-minute wick above 90 without sustaining a breakout.",
+    "Short-horizon SOL volatility remains high enough over the remaining days to allow a 1-2% upside extension."
+  ],
+  "main_logical_chain": [
+    "Interpret the contract narrowly: only Binance SOL/USDT 1-minute highs count.",
+    "Check the governed Binance series directly and confirm that no touch has happened yet, with max observed high 89.15.",
+    "Apply outside-view logic: a volatile crypto asset already within about 1-2% of a round-number barrier with several days left has a meaningful touch chance.",
+    "Discount the market somewhat because near-threshold touch markets are often overread as nearly inevitable before the final marginal move actually occurs."
+  ],
+  "main_thesis": "SOL is close enough to $90 that a brief Binance wick before April 19 is slightly more likely than not, but the market still overprices that path because no qualifying touch has happened yet.",
+  "own_probability": 0.68,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "This market will immediately resolve to \"Yes\" if any Binance 1-minute candle for SOL/USDT ... has a final \"High\" price equal to or greater than the price specified in the title.",
+    "Max observed Binance 1-minute high in the checked live window: 89.15."
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "contract_interpretation",
+    "market_anchor"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-143465dc",
+    "dispatch_id": "dispatch-case-20260416-143465dc-20260416T191321Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "6d25cb26-798a-4d9e-8725-d5c2a662051b",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-143465dc/researcher-analyses/2026-04-16/dispatch-case-20260416-143465dc-20260416T191321Z/personas/base-rate.md",
+    "source_persona_sha256": "b0d820a90d62e080cea7def8b9d698cfb0b57b3ab2922217759366aa052cda9e"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Good for this contract: one primary governing rules source plus one direct governing exchange-data verification source; ambiguity is low once the rules are read carefully.",
+  "strongest_disconfirmers": [
+    "No qualifying Binance touch had occurred yet in the checked April 13-16 window.",
+    "The last 14 daily Binance candles had zero highs at or above 90, suggesting the threshold is not trivially easy in the current local regime."
+  ],
+  "strongest_supports": [
+    "The contract resolves on any Binance SOL/USDT 1-minute High >= 90, so only a brief wick is needed.",
+    "Direct Binance checks showed SOL trading around 88.96 with a live-window max high of 89.15, putting the threshold within about 1-2%."
+  ],
+  "timing_relevance": "High; this is a date-bounded touch market and the estimate depends heavily on the few remaining days after the research check.",
+  "unresolved_ambiguities": [
+    "How much realized volatility remains from April 17-19.",
+    "Whether current 89-ish trading is staging for breakout or just another rejection zone."
+  ],
+  "what_would_change_view": "I would move up if a fresh verification pass shows a touch or stronger sustained trading above 89; I would move down if SOL reverses materially or keeps failing below 89-90 with narrowing range."
+}

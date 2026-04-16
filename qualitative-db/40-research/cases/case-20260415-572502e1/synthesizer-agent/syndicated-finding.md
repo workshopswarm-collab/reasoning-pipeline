@@ -1,0 +1,149 @@
+---
+type: syndicated_finding
+case_key: case-20260415-572502e1
+dispatch_id: dispatch-case-20260415-572502e1-20260415T124520Z
+question: "Will the price of Bitcoin be above $72,000 on April 16?"
+coverage_status: complete
+market_implied_probability: 0.895
+syndicated_probability_low: 0.84
+syndicated_probability_high: 0.88
+syndicated_probability_midpoint: 0.86
+edge_vs_market_pct_points: -3.5
+relation_to_market: below_market
+edge_quality: moderate
+edge_independent_verification_quality: medium
+compressed_toward_market_due_to_verification: no
+contract_ambiguity_level: minor
+contract_ambiguity_reason: "Binance chart/UI candle is the formal source rather than an explicitly named API endpoint"
+independently_verified_points: ["Polymarket rules explicitly use the Binance BTC/USDT 12:00 ET 1-minute candle final Close above 72000", "12:00 ET on Apr 16 maps to 16:00 UTC under EDT", "Fresh Binance spot remained near 74312 during synthesis-stage verification", "Fresh Binance 24h low was about 73514, still above 72000", "Adjacent strike pricing remained internally coherent with 72k near 90% and 74k much lower"]
+verification_gap_summary: "No direct pre-resolution observation of the actual settling minute and no strong independent volatility model for the remaining window."
+best_countercase_summary: "A normal crypto risk-off move or Binance-specific wick into the exact noon ET minute could still push the final close below 72k."
+main_reason_for_disagreement: "Remaining disagreement is mainly about how much to haircut exact-minute path risk versus current cushion."
+resolution_mechanics_summary: "Resolve Yes only if Binance BTC/USDT 1-minute candle at Apr 16 12:00 ET closes strictly above 72000."
+freshness_sensitive: yes
+freshness_driver: "The decisive Binance 12:00 ET Apr 16 minute close and any overnight/morning volatility before it."
+decision_blockers: ["Single-minute Binance settlement creates real path dependence", "No direct observation yet of the resolving candle", "Fresh downside shock before noon ET could erase the cushion quickly"]
+blockers_require_new_research: no
+disagreement_type: timing
+disagreement_intensity: medium
+synthesis_confidence_quality: medium
+staleness_risk: high
+next_checkpoint: "Final Binance BTC/USDT check in the 11:55 ET-12:01 ET Apr 16 window."
+follow_up_needed: yes
+---
+
+# Claim
+
+Bitcoin is still more likely than not to resolve above $72,000 on April 16, but the best post-synthesis view is slightly below the market because the contract settles on one exact Binance BTC/USDT noon-ET 1-minute close and a roughly 3% cushion is meaningful but not enough to justify near-lock confidence.
+
+## Alpha summary
+
+Market implies 89.5% Yes; my post-synthesis range is 84%-88% Yes. Directionally this is still a Yes market, but the edge versus market is marginal-to-modest on the bearish side rather than a strong contrarian call. The likely mispricing is overconfidence in a narrow one-minute Binance settlement despite only a roughly 3% cushion above the strike.
+
+## Input coverage
+
+All five personas were available and usable: base-rate, catalyst-hunter, market-implied, risk-manager, and variant-view. I checked the raw findings against the sidecars and the sidecars looked broadly faithful rather than distorted. Supporting assumption/evidence artifacts were only needed indirectly because the raw findings already preserved provenance well. Coverage is complete because no persona was missing and the core contract/source questions were addressed across lanes.
+
+## Market-implied baseline
+
+The market-implied baseline is 0.895 Yes. Strike ladder context looked coherent rather than obviously stale or broken: 70k near 98%, 72k near 90%, 74k near high-50s, 76k near high-teens. That makes the market a serious prior, not something to fade casually.
+
+## Syndicated probability estimate
+
+My final post-synthesis estimate is 0.84 to 0.88 Yes. This keeps Yes as the clear base case because spot remained around 74.3k and the last 24h Binance low was still above 73.5k, but it preserves a real haircut for exact-minute settlement risk and ordinary BTC volatility over the remaining window.
+
+## Difference from swarm-implied center
+
+The provisional swarm center was around 0.83. I am slightly above that center, mainly because fresh synthesis-stage verification supported the bullish baseline: Binance spot remained around 74.3k and the fresh 24h low still sat above 72k. I did not move all the way to market because the swarm's caution about exact-minute path risk remained valid.
+
+## Agreement or disagreement with market
+
+I moderately disagree with the market. The market is directionally right that Yes is favored, but I think 89.5% still prices the contract a bit too close to routine persistence and not enough like a one-minute crypto threshold event. The disagreement is not about broad BTC direction; it is about confidence calibration under narrow settlement mechanics.
+
+## Independent verification of edge
+
+Independent verification quality is medium. I independently rechecked the Polymarket rule text, confirmed the Binance-specific settlement mechanism and ET-to-UTC mapping, and fetched fresh Binance spot plus 24h range data. Those checks support the main Yes thesis and also support the persona claim that the market structure is coherent. What remains unverified is the only thing that really matters operationally: the actual resolving minute has not happened, and no independent quantitative volatility model was built for the remaining hours. That is enough for medium verification, not high.
+
+## Compression toward market due to verification
+
+No. The final range did not compress toward market because verification was insufficient; if anything, fresh verification supported moving slightly above the swarm center. I still stayed below market because the remaining unverified risk is precisely the path/timing risk the bearish personas highlighted.
+
+## Timing and catalyst posture
+
+The key catalyst is simply the passage of time into the Apr 16 noon ET resolving minute. Unless a sharp downside catalyst appears overnight or during the US morning, the contract should drift toward certainty. Waiting can improve decision quality if a final pre-resolution Binance check is feasible, but absent that, the edge will naturally decay as time passes without a selloff.
+
+## Decision blockers
+
+There is no major contract blocker. The real blockers are practical: one-minute settlement fragility, inability to observe the future resolving candle yet, and the fact that a normal crypto selloff could still erase the cushion before noon ET. These are caution flags rather than reasons the market is untradeable.
+
+## Implication for the question
+
+The best current answer is still Yes. BTC is above the line by a meaningful margin and recent Binance trading context supports persistence, but the contract should be thought of as a narrow timing event rather than a broad daily BTC call.
+
+## Consensus across personas
+
+All personas agreed the contract resolves on the Binance BTC/USDT 12:00 ET 1-minute candle close and that strict greater-than 72,000 is required. All agreed current/checked spot was materially above 72k, leaving a meaningful cushion. All agreed Yes is the base case. Most also agreed the main surviving risk is a fast selloff or Binance-specific minute-close fragility rather than deep contract ambiguity.
+
+## Key disagreements across personas
+
+The main disagreement was timing/weighting-based: how much should a roughly 3% cushion with less than a day left overcome exact-minute crypto volatility? Catalyst-hunter leaned most bullish at 0.92, effectively treating absence of a downside shock as the dominant path. Base-rate, risk-manager, and variant-view clustered around 0.82-0.83 because they gave more weight to minute-close fragility. Market-implied sat in between at 0.86, closer to my final synthesis. There was only minor contract/source disagreement; most tension was confidence calibration.
+
+## Best countercase
+
+The best countercase, represented most clearly by risk-manager and variant-view, is that traders are over-anchoring on current spot and underweighting the fact that one sharp move or wick into the exact Binance noon ET minute can flip resolution. This countercase does not make No the base case, but it does make sub-market confidence plausible.
+
+## Encapsulated assumptions
+
+Shared assumptions: Binance remains the governing and functioning settlement venue; 12:00 ET corresponds to 16:00 UTC; current Binance spot is a useful proxy for near-term state. Contested assumptions: whether a ~3% cushion with under a day left deserves high-80s or low-90s confidence. Fragile assumptions: no abrupt macro or crypto liquidation event hits before noon ET, and Binance-specific trading remains orderly into settlement.
+
+## Encapsulated evidence map
+
+Strongest supporting evidence: explicit Polymarket rule text naming Binance BTC/USDT 1-minute close at noon ET; fresh Binance spot around 74312; fresh Binance 24h low around 73514; coherent neighboring strike ladder. Strongest contradictory evidence: BTC can move more than 3% inside a day; the market settles on one exact minute rather than a daily or averaged condition; the actual decisive candle is still in the future. Authoritative source-of-truth evidence is strong on mechanics but cannot yet answer the final state.
+
+## Evidence weighting
+
+I weighted direct contract wording and fresh Binance data most heavily. I also gave meaningful weight to the neighboring strike ladder because it checks market coherence. I downweighted generic macro commentary and weak cross-exchange context because this contract is dominated by Binance-specific and timing-specific mechanics. I effectively ignored broader BTC narrative arguments unless they linked directly to next-day volatility risk.
+
+## Counterpoints / strongest disconfirming evidence
+
+The strongest disconfirming evidence is not a specific bearish headline but the distributional fact that BTC can easily travel more than the remaining cushion within 24 hours, combined with a narrow exact-minute settlement rule. A single liquidation wave, macro shock, or venue-specific wick near noon ET is enough to turn an otherwise healthy-looking tape into a No resolution.
+
+## Resolution or source-of-truth interpretation
+
+Source-of-truth interpretation is straightforward enough for downstream use: Polymarket resolves this off the Binance BTC/USDT chart's 1-minute candle at 12:00 ET on Apr 16, using the final Close price, and Yes requires a close strictly greater than 72,000. The only minor ambiguity is operational: the rule names the Binance chart/UI surface rather than a specific API endpoint, but the intended object is still clear.
+
+## Why this could create or destroy alpha
+
+This can create alpha only if the market is slightly too comfortable with a high-probability Yes framing and underprices narrow settlement fragility. It destroys alpha if one overreacts to that fragility and fades an otherwise well-supported bullish base case. In other words, the only plausible edge here is a modest bearish confidence adjustment, not a heroic No call.
+
+## What would falsify this interpretation / change the view
+
+A material pre-resolution move higher, especially sustained trade in the 75.5k-76k+ area into the final hours, would move me closer to market or above it because the cushion would become large relative to normal next-day noise. A sharp drop toward 73k or lower before the US morning would move me materially lower. Any evidence of Binance-specific pricing irregularity around the settlement window would also cut confidence.
+
+## Highest-value next research
+
+The single highest-value next check is a direct Binance BTC/USDT verification immediately before and through the 12:00 ET settlement minute on Apr 16.
+
+## Source-quality assessment
+
+Primary governing sources were strong: explicit Polymarket contract wording and direct Binance market data. The most useful secondary source class was market-structure context from adjacent strike pricing. Evidence independence was medium: roles were distinct, but many inputs ultimately reflect the same BTC state. Source-of-truth ambiguity was low-to-minor. The synthesis was not badly bottlenecked by thin sourcing, though risk-manager relied on weaker contextual price evidence than the stronger Binance-based lanes.
+
+## Verification impact
+
+Yes, extra synthesis-stage verification was used. It materially improved confidence in the bullish baseline by confirming fresh Binance spot and 24h range after the swarm run, while also confirming that the contract mechanics are as narrow as the cautious lanes claimed. Cross-lane comparison exposed one mild weakness: catalyst-hunter looked somewhat aggressive at 0.92 relative to the same fragility acknowledged elsewhere, while risk-manager had weaker direct Binance provenance than the stronger lanes.
+
+## Persona contribution map
+
+base-rate — useful outside-view calibration that a one-day crypto threshold contract should not be treated as near-certain just because spot is ~3% above strike. catalyst-hunter — strongest articulation of the bullish default path and the idea that absence of a downside catalyst is the main condition for Yes. market-implied — best bridge between ladder coherence, market prior, and a modest haircut for exact-minute risk; closest to final synthesis. risk-manager — best articulation of operational/path-risk fragility and why confidence should be discounted on a narrow settlement contract. variant-view — preserved the strongest minority framing that market overconfidence, not directional error, is the real possible edge.
+
+## Reusable lesson signals
+
+Possible durable lesson: short-dated crypto threshold markets need explicit separation between direction and settlement fragility. Possible underbuilt driver: intraday or exact-window volatility may deserve more explicit treatment in future swarm templates. Possible source-quality lesson: verifying timezone mapping and named settlement venue is mandatory when probabilities get extreme. Reusability confidence: medium.
+
+## Orchestrator review suggestions
+
+review later for durable lesson: yes; review later for driver candidate: yes; review later for canon or linkage issue: no; review later for swarm-method issue: yes. Reason: this case repeatedly surfaced exact-window volatility as the only meaningful disagreement driver, which suggests a reusable calibration pattern and maybe a more explicit swarm method for narrow timestamp contracts.
+
+## Recommended follow-up
+
+Request decision-maker review with the current synthesis if an immediate call is needed; otherwise wait for the final Binance check closer to resolution. No lane rerun is necessary unless price compresses materially toward 72k before the morning-of-settlement window.

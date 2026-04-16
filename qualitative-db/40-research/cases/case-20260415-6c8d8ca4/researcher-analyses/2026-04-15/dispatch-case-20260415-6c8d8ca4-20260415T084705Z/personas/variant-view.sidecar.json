@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A roughly 2.8% price cushion is not large for a two-day crypto window.",
+    "Settlement depends on one venue and one minute rather than broader spot or daily close.",
+    "A late volatility spike could flip the result without changing the larger BTC narrative."
+  ],
+  "key_assumptions": [
+    "The current roughly 2.8% cushion above 72000 survives normal volatility into April 17 noon ET.",
+    "No major negative macro or crypto-specific shock hits before resolution.",
+    "Binance does not materially underperform broader BTC spot into the decision minute."
+  ],
+  "main_logical_chain": [
+    "Read the Polymarket contract and confirm the governing source of truth is the Binance BTC/USDT 12:00 ET one-minute candle close on April 17.",
+    "Check direct Binance spot and recent candles to measure distance from the 72000 threshold and recent holding behavior.",
+    "Cross-check the broader BTC spot regime with an independent contextual source.",
+    "Conclude Yes is favored but haircut confidence because the contract is narrower than a generic BTC-above-threshold story."
+  ],
+  "main_thesis": "Yes remains more likely than No, but the market is somewhat overconfident because the contract resolves on a single Binance BTC/USDT one-minute close and the live cushion above 72000 is only modest.",
+  "own_probability": 0.74,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone",
+    "Binance ticker price around 74037.08"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation",
+    "variant_hypothesis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-6c8d8ca4",
+    "dispatch_id": "dispatch-case-20260415-6c8d8ca4-20260415T084705Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "7bec1499-b63a-4787-a59d-fe6a51b33f47",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-6c8d8ca4/researcher-analyses/2026-04-15/dispatch-case-20260415-6c8d8ca4-20260415T084705Z/personas/variant-view.md",
+    "source_persona_sha256": "dbb41db9361db733ce96c4b2ab79fbe7d8a343a89dc5240e9a8ac639f2892290"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary quality is strong because Binance is the underlying venue and the contract wording is explicit; independence is moderate because the contextual cross-check is still market-data-adjacent.",
+  "strongest_disconfirmers": [
+    "Current and recent price action already support the market's bullish baseline.",
+    "If BTC simply stays in the recent regime, the narrow contract mechanics will not matter much."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT traded around 74037 at research time, already above the threshold.",
+    "Recent Binance daily closes were mostly above 72000.",
+    "CoinGecko independently showed BTC in a similar low-to-mid 74k regime."
+  ],
+  "timing_relevance": "High: this is a date-sensitive, timezone-sensitive, one-minute settlement market resolving at 2026-04-17 12:00 ET.",
+  "unresolved_ambiguities": [
+    "No direct catalyst was identified for a downside move; the variant thesis is mainly about contract fragility and confidence calibration.",
+    "Exchange-specific divergence risk is possible but not evidenced strongly yet."
+  ],
+  "what_would_change_view": "I would move up if BTC sustains well above 75k into April 17; I would move down if BTC trades back near 72k-73k, downside volatility rises, or Binance weakens versus broader spot."
+}

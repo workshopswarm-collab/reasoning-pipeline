@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "If BTC builds a larger cushion above 74k into April 17, the bearish variant weakens quickly.",
+    "Most evidence comes from Binance-aligned surfaces, limiting source independence."
+  ],
+  "key_assumptions": [
+    "Current BTC spot modestly above 74k does not eliminate the risk of a sub-74k noon ET minute close on April 17.",
+    "Binance API candle mechanics are a strong verification proxy for the chart-based settlement surface named in the contract.",
+    "The market may be anchoring more to current spot than to single-minute path dependence."
+  ],
+  "main_logical_chain": [
+    "Polymarket rules define a narrow contract: Binance BTC/USDT, 12:00 ET, 1-minute candle, final close strictly above 74,000.",
+    "Current Binance BTCUSDT is above 74k, so Yes is still the base case.",
+    "But the threshold is close enough and the resolution window is narrow enough that minute-specific path dependence remains material.",
+    "Therefore Yes should still be favored, but at a somewhat lower probability than market pricing implies."
+  ],
+  "main_thesis": "The market is a bit too confident on Yes because this resolves on a single Binance BTC/USDT noon-ET 1-minute close, so minute-specific path dependence is underweighted relative to simple spot-above-threshold thinking.",
+  "own_probability": 0.64,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "This market will resolve to \"Yes\" if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone (noon) ... has a final \"Close\" price higher than ... 74,000.",
+    "Klines are uniquely identified by their open time."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "contract_interpretation",
+    "variant_hypothesis",
+    "technical_reference"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-e4a8d83c",
+    "dispatch_id": "dispatch-case-20260415-e4a8d83c-20260415T230345Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "81e0d313-5950-4dbf-89b3-b8c600d2a6f8",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-e4a8d83c/researcher-analyses/2026-04-15/dispatch-case-20260415-e4a8d83c-20260415T230345Z/personas/variant-view.md",
+    "source_persona_sha256": "6c1b588afba48b22eb3f9e262661edff51b4b9e1321653f1c75b9850f1b4ecae"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is good for this case because the contract page and Binance exchange documentation directly govern mechanics, though evidence independence is low to medium.",
+  "strongest_disconfirmers": [
+    "Spot is already above threshold, so simple persistence may make the market's 71.5% fair.",
+    "There is no direct evidence of an impending Binance-specific anomaly or settlement problem."
+  ],
+  "strongest_supports": [
+    "Live Binance BTCUSDT spot during the run was around 74.8k, above the threshold.",
+    "Binance 24h weighted average was also above 74k.",
+    "The contract explicitly settles on one exchange-specific 1-minute close at 12:00 ET, not on a broader daily level."
+  ],
+  "timing_relevance": "The event resolves at 2026-04-17 12:00 ET, which is 16:00 UTC; the exact minute and timezone mapping are central to the thesis.",
+  "unresolved_ambiguities": [
+    "Minor residual ambiguity remains because the contract cites the Binance chart UI while verification also used Binance API surfaces.",
+    "The exact noon ET candle obviously cannot be observed yet."
+  ],
+  "what_would_change_view": "A sustained move comfortably above 75k into April 16-17 or evidence of lower intraday volatility would push the estimate closer to or above market."
+}

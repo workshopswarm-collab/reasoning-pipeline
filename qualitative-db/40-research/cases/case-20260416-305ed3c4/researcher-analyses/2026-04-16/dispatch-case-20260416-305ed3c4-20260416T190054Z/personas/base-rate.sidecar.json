@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A sudden overnight crypto selloff could erase the cushion.",
+    "The formal source of truth is the Binance chart/web surface rather than the API endpoint used for contextual checks."
+  ],
+  "key_assumptions": [
+    "ETH avoids a roughly 6% downside move into the noon ET resolution minute.",
+    "Binance's settlement surface remains operational and consistent enough for the final candle to reflect the market normally.",
+    "No major exchange-specific anomaly distorts the relevant 1-minute close."
+  ],
+  "main_logical_chain": [
+    "Polymarket resolves this contract from the Binance ETH/USDT 12:00 ET 1-minute candle close on April 17.",
+    "Current Binance ETHUSDT is materially above 2200 with less than a day left.",
+    "Therefore the base case is Yes unless a sharp selloff or exchange-specific anomaly occurs before the narrow resolution window."
+  ],
+  "main_thesis": "ETH is likely to resolve above 2200 because current Binance ETH/USDT is materially above the threshold and less than a day remains, leaving failure mainly to a sharp downside move or exchange-specific anomaly.",
+  "own_probability": 0.96,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "Binance ETH/USDT 1-minute candle for 12:00 in the ET timezone",
+    "final Close price higher than 2200",
+    "current Binance ETHUSDT around 2343-2344 during run"
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "contract_interpretation",
+    "market_anchor"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260416-305ed3c4",
+    "dispatch_id": "dispatch-case-20260416-305ed3c4-20260416T190054Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "70993f7c-d48e-4ede-83aa-fc22b3160c95",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-305ed3c4/researcher-analyses/2026-04-16/dispatch-case-20260416-305ed3c4-20260416T190054Z/personas/base-rate.md",
+    "source_persona_sha256": "f1d86198e70f756e5d0361ab3c549cfe002166e18294015746e4d081d81bd155"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is good: Polymarket rules are authoritative for contract mechanics and Binance docs/live endpoints directly verify the relevant market data mechanics, though independence is only medium because both rely on Binance as the underlying reference.",
+  "strongest_disconfirmers": [
+    "Crypto can still move 6% or more in under 24 hours.",
+    "The market resolves on a single one-minute close, so timing risk is real.",
+    "Exchange-specific charting or settlement anomalies remain a small residual risk."
+  ],
+  "strongest_supports": [
+    "Current Binance ETHUSDT during the run was around 2343-2344, about $144 above the threshold.",
+    "Binance 24-hour low during the run was 2285.10, still above 2200.",
+    "Polymarket rules explicitly tie resolution to a specific Binance ETH/USDT 1-minute close at 12:00 ET."
+  ],
+  "timing_relevance": "Timing is central because the contract resolves on the 12:00 ET one-minute close on 2026-04-17; noon ET corresponds to 16:00 UTC under EDT.",
+  "unresolved_ambiguities": [
+    "Whether any UI/API display discrepancy could matter at settlement, though source-of-truth ambiguity appears low to medium.",
+    "No fresh near-resolution check was possible yet because the market had not reached the final morning window."
+  ],
+  "what_would_change_view": "A move of ETH down toward or below 2200 before resolution, a major volatility shock, or evidence of exchange-specific settlement-surface problems would reduce confidence materially."
+}

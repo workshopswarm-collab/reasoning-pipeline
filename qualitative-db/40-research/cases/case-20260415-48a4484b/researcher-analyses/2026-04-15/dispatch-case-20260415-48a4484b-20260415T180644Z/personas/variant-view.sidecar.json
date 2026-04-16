@@ -1,0 +1,57 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Single-minute settlement makes path dependence unusually important.",
+    "A late volatility spike or risk-off headline could quickly compress the current buffer."
+  ],
+  "key_assumptions": [
+    "A roughly 2.2k buffer above 72k one day before resolution is meaningful but not decisive.",
+    "Exact-minute resolution risk is underweighted by the market relative to headline spot level."
+  ],
+  "main_logical_chain": [
+    "Market implies about 94% for above 72k.",
+    "Direct Binance data shows BTC comfortably above the threshold pre-resolution.",
+    "But the contract resolves on one exact minute close, not a daily or average level.",
+    "That keeps meaningful residual downside risk alive, so probability should be lower than market while still Yes-leaning."
+  ],
+  "main_thesis": "Yes is still more likely than not, but the market is somewhat overconfident because this resolves on a single Binance noon-ET one-minute close rather than a broad daily level.",
+  "own_probability": 0.86,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone... has a final 'Close' price higher than... 72,000.",
+    "BTCUSDT ticker check: 74268.25"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "contract_interpretation",
+    "variant_hypothesis",
+    "technical_reference"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-48a4484b",
+    "dispatch_id": "dispatch-case-20260415-48a4484b-20260415T180644Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "3149b758-1b3d-4cc3-9950-e43a484166f5",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-48a4484b/researcher-analyses/2026-04-15/dispatch-case-20260415-48a4484b-20260415T180644Z/personas/variant-view.md",
+    "source_persona_sha256": "04b33e060db93e3abd427aa9cdb69f7941ad0e83a37df91d3986eefa722e3aa8"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Good for a medium-difficulty short-horizon case: Polymarket rules define the contract and Binance primary exchange data anchors the underlying, though evidence independence is only medium because the two sources serve different roles.",
+  "strongest_disconfirmers": [
+    "BTC can move more than 2k in a day, and one sharp move into the exact noon-ET minute would be enough to fail the contract.",
+    "Timezone/minute-candle interpretation deserves care because settlement is narrow and Binance is not ET-native."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT spot checked around 74,268.25, materially above 72,000.",
+    "Recent one-minute Binance closes were clustered above 74k in the verification window."
+  ],
+  "timing_relevance": "Resolution is at the Binance BTC/USDT 12:00 ET one-minute candle on 2026-04-16, so remaining intraday volatility over roughly the next day is highly relevant.",
+  "unresolved_ambiguities": [
+    "Exact settlement-time UI/timezone mapping on Binance if a dispute arises.",
+    "Whether pre-resolution realized volatility remains subdued through noon ET on April 16."
+  ],
+  "what_would_change_view": "I would move up if later checks still showed BTC comfortably above 74k with subdued volatility, and move down if BTC lost 73k, volatility expanded, or the exact contract timing interpretation became less clean."
+}

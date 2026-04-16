@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Single-minute settlement path risk.",
+    "Incomplete coverage of all possible unscheduled macro, regulatory, or exchange shocks."
+  ],
+  "key_assumptions": [
+    "No major new scheduled downside catalyst emerges before Apr. 20 noon ET.",
+    "BTC's current >70k regime is not broken by an unscheduled crypto risk-off shock.",
+    "Binance settlement mechanics remain consistent with documented 1-minute kline behavior."
+  ],
+  "main_logical_chain": [
+    "Polymarket rules make Binance BTC/USDT 12:00 ET 1-minute close the governing metric.",
+    "Binance live data shows BTC already comfortably above 70k with recent realized range also above the strike.",
+    "No CPI release remains before settlement, reducing one obvious scheduled repricing catalyst.",
+    "Because settlement is exact-minute and crypto is volatile, the right view is still high-probability Yes but below the market's 85.5% optimism."
+  ],
+  "main_thesis": "BTC is more likely than not to remain above $70,000 on the relevant Binance noon ET minute on April 20, but the exact-minute settlement rule makes the case slightly less safe than the market price implies.",
+  "own_probability": 0.8,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "final 12:00 ET one-minute candle close above 70,000",
+    "roughly agree but lean modestly below the market",
+    "the exact-minute structure is the main reason I am below the market"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "catalyst_analysis",
+    "contract_interpretation",
+    "scenario_analysis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-3ae5a275",
+    "dispatch_id": "dispatch-case-20260414-3ae5a275-20260414T202946Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "f49d769a-4acd-4f42-8e72-972d9bfbdf54",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-3ae5a275/researcher-analyses/2026-04-14/dispatch-case-20260414-3ae5a275-20260414T202946Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "b58313662040e18b134f886c4910fec0e545094f26153e74b2f12c8193030759"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is medium-high overall: Polymarket clearly states the rule, Binance is the named venue and provides direct mechanics/current price context, and BLS gives independent timing context; ambiguity is low to medium because front-end chart wording still warranted explicit kline/timestamp verification.",
+  "strongest_disconfirmers": [
+    "BTC can fall more than 5% over six days, and a single noon ET minute close below 70k would settle No.",
+    "The contract depends on one exact minute rather than a broader daily close or average."
+  ],
+  "strongest_supports": [
+    "Binance live BTCUSDT traded around 74.2k, leaving a cushion of roughly 4k+ above the strike.",
+    "Recent 24h Binance range stayed above 70k.",
+    "The obvious scheduled macro catalyst of CPI is already past and the next CPI release is after settlement."
+  ],
+  "timing_relevance": "This case is mainly about whether a downside catalyst appears before the exact noon ET settlement minute, not about whether BTC is broadly bullish over a longer horizon.",
+  "unresolved_ambiguities": [
+    "Whether any still-unidentified catalyst before Apr. 20 could trigger a sharp downside repricing.",
+    "How much noon ET intraday timing noise should be discounted relative to the current multi-thousand-dollar cushion."
+  ],
+  "what_would_change_view": "A move back toward 70k, discovery of a significant scheduled catalyst before Apr. 20, or a major macro/regulatory/exchange shock would lower the estimate materially; stable trading above roughly 72k into Apr. 18-19 would raise confidence."
+}

@@ -1,12 +1,12 @@
 ---
 type: proposed_driver_candidate_index
 generated_by: proposed_driver_candidate_aggregator
-generated_at: 2026-04-13T18:32:07Z
-candidate_count: 36
-normalized_family_count: 4
-provisional_family_count: 3
-db_occurrence_count: 82
-markdown_fallback_occurrence_count: 4
+generated_at: 2026-04-16T19:20:52Z
+candidate_count: 252
+normalized_family_count: 6
+provisional_family_count: 100
+db_occurrence_count: 715
+markdown_fallback_occurrence_count: 15
 status: active
 ---
 
@@ -15,79 +15,495 @@ status: active
 This index is generated primarily from `public.proposed_driver_occurrences` and supplemented by markdown-only fallback occurrences that have not yet been backfilled into the structured store.
 
 ## Ranked normalized mechanism families
-- `resolution mechanics` (`resolution-mechanics`) (occurrences: 37, cases: 9, personas: 5, raw_candidates: 13, canon: novel)
-  - `deadline-execution-risk` -> `candidate-notes/generated-driver-candidate-deadline-execution-risk.md`
-  - `public-access-qualification-risk` -> `candidate-notes/generated-driver-candidate-public-access-qualification-risk.md`
-  - `intraday-volatility-shock` -> `candidate-notes/generated-driver-candidate-intraday-volatility-shock.md`
-  - `deadline-specific path-risk` -> `candidate-notes/generated-driver-candidate-deadline-specific-path-risk.md`
-  - `contract-settlement-risk` -> `candidate-notes/generated-driver-candidate-contract-settlement-risk.md`
-  - `monthly-temperature-threshold-resolution-risk` -> `candidate-notes/generated-driver-candidate-monthly-temperature-threshold-resolution-risk.md`
-  - `monthly-global-temperature-anomaly-persistence` -> `candidate-notes/generated-driver-candidate-monthly-global-temperature-anomaly-persistence.md`
-  - `contract-settlement-ambiguity` -> `candidate-notes/generated-driver-candidate-contract-settlement-ambiguity.md`
-- `publication timing` (`publication-timing`) (occurrences: 19, cases: 6, personas: 4, raw_candidates: 10, canon: novel)
-  - `product-launch-timing` -> `candidate-notes/generated-driver-candidate-product-launch-timing.md`
-  - `official-disclosure-timing` -> `candidate-notes/generated-driver-candidate-official-disclosure-timing.md`
-  - `netflix-top10-update-timing` -> `candidate-notes/generated-driver-candidate-netflix-top10-update-timing.md`
-  - `streaming-chart-update-timing` -> `candidate-notes/generated-driver-candidate-streaming-chart-update-timing.md`
+- `resolution mechanics` (`resolution-mechanics`) (occurrences: 367, cases: 80, personas: 5, raw_candidates: 111, canon: novel)
+  - `crypto-short-horizon-momentum-threshold-touch` -> `candidate-notes/generated-driver-candidate-crypto-short-horizon-momentum-threshold-touch.md`
+  - `threshold-touch-market-microstructure` -> `candidate-notes/generated-driver-candidate-threshold-touch-market-microstructure.md`
+  - `intraday-volatility` -> `candidate-notes/generated-driver-candidate-intraday-volatility.md`
+  - `scheduled-macro-catalyst-gap` -> `candidate-notes/generated-driver-candidate-scheduled-macro-catalyst-gap.md`
+  - `threshold-proximity` -> `candidate-notes/generated-driver-candidate-threshold-proximity.md`
+  - `threshold-close mechanics` -> `candidate-notes/generated-driver-candidate-threshold-close-mechanics.md`
+  - `verification-surface-ambiguity` -> `candidate-notes/generated-driver-candidate-verification-surface-ambiguity.md`
+  - `settlement-source-specificity` -> `candidate-notes/generated-driver-candidate-settlement-source-specificity.md`
+- `publication timing` (`publication-timing`) (occurrences: 64, cases: 22, personas: 5, raw_candidates: 18, canon: novel)
+  - `resolution-timing-risk` -> `candidate-notes/generated-driver-candidate-resolution-timing-risk.md`
+  - `threshold-close timing risk` -> `candidate-notes/generated-driver-candidate-threshold-close-timing-risk.md`
+  - `timing-risk` -> `candidate-notes/generated-driver-candidate-timing-risk.md`
   - `macro-event-timing` -> `candidate-notes/generated-driver-candidate-macro-event-timing.md`
-  - `corporate-bitcoin-purchase-announcement-timing` -> `candidate-notes/generated-driver-candidate-corporate-bitcoin-purchase-announcement-timing.md`
-  - `company-bitcoin-purchase-announcement-timing` -> `candidate-notes/generated-driver-candidate-company-bitcoin-purchase-announcement-timing.md`
-  - `streaming-chart-publication-timing` -> `candidate-notes/generated-driver-candidate-streaming-chart-publication-timing.md`
-- `release-window demand` (`release-window-demand`) (occurrences: 16, cases: 4, personas: 5, raw_candidates: 7, canon: novel)
-  - `official-release-communication` -> `candidate-notes/generated-driver-candidate-official-release-communication.md`
-  - `release-timing-window` -> `candidate-notes/generated-driver-candidate-release-timing-window.md`
-  - `reporting-window-timing-risk` -> `candidate-notes/generated-driver-candidate-reporting-window-timing-risk.md`
-  - `pre-release-market-overconfidence` -> `candidate-notes/generated-driver-candidate-pre-release-market-overconfidence.md`
+  - `intraday-timing-risk` -> `candidate-notes/generated-driver-candidate-intraday-timing-risk.md`
+  - `leaderboard-refresh-timing` -> `candidate-notes/generated-driver-candidate-leaderboard-refresh-timing.md`
+  - `leaderboard-refresh-risk` -> `candidate-notes/generated-driver-candidate-leaderboard-refresh-risk.md`
+  - `legislative-timing-risk` -> `candidate-notes/generated-driver-candidate-legislative-timing-risk.md`
+- `release-window demand` (`release-window-demand`) (occurrences: 47, cases: 14, personas: 5, raw_candidates: 17, canon: novel)
+  - `pre-release-tracking` -> `candidate-notes/generated-driver-candidate-pre-release-tracking.md`
+  - `horror-opening-demand` -> `candidate-notes/generated-driver-candidate-horror-opening-demand.md`
+  - `pre-release-tracking-uncertainty` -> `candidate-notes/generated-driver-candidate-pre-release-tracking-uncertainty.md`
   - `intraday-volatility-window` -> `candidate-notes/generated-driver-candidate-intraday-volatility-window.md`
-  - `release-window-demand` -> `candidate-notes/generated-driver-candidate-release-window-demand.md`
-  - `release-week-viewership-concentration` -> `candidate-notes/generated-driver-candidate-release-week-viewership-concentration.md`
-- `resolution mapping` (`resolution-mapping`) (occurrences: 7, cases: 2, personas: 3, raw_candidates: 3, canon: novel)
+  - `noon-fixing-window-risk` -> `candidate-notes/generated-driver-candidate-noon-fixing-window-risk.md`
+  - `time-window-specific-close-risk` -> `candidate-notes/generated-driver-candidate-time-window-specific-close-risk.md`
+  - `resolution-window-fragility` -> `candidate-notes/generated-driver-candidate-resolution-window-fragility.md`
+  - `reporting-window-risk` -> `candidate-notes/generated-driver-candidate-reporting-window-risk.md`
+- `resolution mapping` (`resolution-mapping`) (occurrences: 10, cases: 3, personas: 3, raw_candidates: 4, canon: novel)
+  - `station-mapping-risk` -> `candidate-notes/generated-driver-candidate-station-mapping-risk.md`
   - `title-mapping-risk` -> `candidate-notes/generated-driver-candidate-title-mapping-risk.md`
   - `title-mapping-ambiguity` -> `candidate-notes/generated-driver-candidate-title-mapping-ambiguity.md`
   - `chart-label-resolution-mapping` -> `candidate-notes/generated-driver-candidate-chart-label-resolution-mapping.md`
+- `team-strength-gap` (`team-strength-gap`) (occurrences: 7, cases: 3, personas: 2, raw_candidates: 1, canon: novel)
+  - `team-strength-gap` -> `candidate-notes/generated-driver-candidate-team-strength-gap.md`
+- `home-field-advantage` (`home-field-advantage`) (occurrences: 6, cases: 3, personas: 2, raw_candidates: 1, canon: novel)
+  - `home-field-advantage` -> `candidate-notes/generated-driver-candidate-home-field-advantage.md`
 
 ## Provisional unresolved family buckets
+- `lineup-availability-shock` (`lineup-availability-shock`) (occurrences: 4, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `lineup-availability-shock` -> `candidate-notes/generated-driver-candidate-lineup-availability-shock.md`
+- `alliance-cohesion` (`alliance-cohesion`) (occurrences: 3, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `alliance-cohesion` -> `candidate-notes/generated-driver-candidate-alliance-cohesion.md`
+- `anti-incumbency` (`anti-incumbency`) (occurrences: 3, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `anti-incumbency` -> `candidate-notes/generated-driver-candidate-anti-incumbency.md`
+- `bicameral-coordination-risk` (`bicameral-coordination-risk`) (occurrences: 3, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `bicameral-coordination-risk` -> `candidate-notes/generated-driver-candidate-bicameral-coordination-risk.md`
+- `binance-intraday-wick-risk` (`binance-intraday-wick-risk`) (occurrences: 3, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `binance-intraday-wick-risk` -> `candidate-notes/generated-driver-candidate-binance-intraday-wick-risk.md`
+- `binance-market-data-integrity` (`binance-market-data-integrity`) (occurrences: 3, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `binance-market-data-integrity` -> `candidate-notes/generated-driver-candidate-binance-market-data-integrity.md`
+- `binance-microstructure-touch-risk` (`binance-microstructure-touch-risk`) (occurrences: 3, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `binance-microstructure-touch-risk` -> `candidate-notes/generated-driver-candidate-binance-microstructure-touch-risk.md`
+- `box-office-range-fragility` (`box-office-range-fragility`) (occurrences: 3, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `box-office-range-fragility` -> `candidate-notes/generated-driver-candidate-box-office-range-fragility.md`
+- `box-office-tracking` (`box-office-tracking`) (occurrences: 3, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `box-office-tracking` -> `candidate-notes/generated-driver-candidate-box-office-tracking.md`
+- `ceasefire-negotiation-friction` (`ceasefire-negotiation-friction`) (occurrences: 3, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `ceasefire-negotiation-friction` -> `candidate-notes/generated-driver-candidate-ceasefire-negotiation-friction.md`
+- `ceasefire-negotiation-momentum` (`ceasefire-negotiation-momentum`) (occurrences: 3, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `ceasefire-negotiation-momentum` -> `candidate-notes/generated-driver-candidate-ceasefire-negotiation-momentum.md`
+- `club-strength-gap` (`club-strength-gap`) (occurrences: 3, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `club-strength-gap` -> `candidate-notes/generated-driver-candidate-club-strength-gap.md`
+- `coalition-formation-fragility` (`coalition-formation-fragility`) (occurrences: 3, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `coalition-formation-fragility` -> `candidate-notes/generated-driver-candidate-coalition-formation-fragility.md`
+- `coalition-fragmentation` (`coalition-fragmentation`) (occurrences: 3, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `coalition-fragmentation` -> `candidate-notes/generated-driver-candidate-coalition-fragmentation.md`
+- `congressional-process` (`congressional-process`) (occurrences: 3, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `congressional-process` -> `candidate-notes/generated-driver-candidate-congressional-process.md`
+- `deadline-diplomacy` (`deadline-diplomacy`) (occurrences: 3, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `deadline-diplomacy` -> `candidate-notes/generated-driver-candidate-deadline-diplomacy.md`
+- `distribution-scale` (`distribution-scale`) (occurrences: 3, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `distribution-scale` -> `candidate-notes/generated-driver-candidate-distribution-scale.md`
+- `football-match-outcome-pricing` (`football-match-outcome-pricing`) (occurrences: 3, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `football-match-outcome-pricing` -> `candidate-notes/generated-driver-candidate-football-match-outcome-pricing.md`
+- `home-field strength in domestic league matches` (`home-field-strength-in-domestic-league-matches`) (occurrences: 3, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `home-field strength in domestic league matches` -> `candidate-notes/generated-driver-candidate-home-field-strength-in-domestic-league-matches.md`
+- `intraday-crypto-volatility-around-thresholds` (`intraday-crypto-volatility-around-thresholds`) (occurrences: 3, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `intraday-crypto-volatility-around-thresholds` -> `candidate-notes/generated-driver-candidate-intraday-crypto-volatility-around-thresholds.md`
+- `late-availability-shock` (`late-availability-shock`) (occurrences: 3, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `late-availability-shock` -> `candidate-notes/generated-driver-candidate-late-availability-shock.md`
+- `late-team-news-volatility` (`late-team-news-volatility`) (occurrences: 3, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `late-team-news-volatility` -> `candidate-notes/generated-driver-candidate-late-team-news-volatility.md`
+- `lineup-confirmation` (`lineup-confirmation`) (occurrences: 3, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `lineup-confirmation` -> `candidate-notes/generated-driver-candidate-lineup-confirmation.md`
+- `lineup-rotation` (`lineup-rotation`) (occurrences: 3, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `lineup-rotation` -> `candidate-notes/generated-driver-candidate-lineup-rotation.md`
+- `lineup-rotation-risk` (`lineup-rotation-risk`) (occurrences: 3, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `lineup-rotation-risk` -> `candidate-notes/generated-driver-candidate-lineup-rotation-risk.md`
+- `matchday-lineup-news` (`matchday-lineup-news`) (occurrences: 3, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `matchday-lineup-news` -> `candidate-notes/generated-driver-candidate-matchday-lineup-news.md`
+- `matchday-team-news` (`matchday-team-news`) (occurrences: 3, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `matchday-team-news` -> `candidate-notes/generated-driver-candidate-matchday-team-news.md`
+- `mediator-credibility` (`mediator-credibility`) (occurrences: 3, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `mediator-credibility` -> `candidate-notes/generated-driver-candidate-mediator-credibility.md`
+- `motivation-priority-risk` (`motivation-priority-risk`) (occurrences: 3, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `motivation-priority-risk` -> `candidate-notes/generated-driver-candidate-motivation-priority-risk.md`
+- `motivation-schedule-congestion` (`motivation-schedule-congestion`) (occurrences: 3, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `motivation-schedule-congestion` -> `candidate-notes/generated-driver-candidate-motivation-schedule-congestion.md`
 - `official-company-announcement-cadence` (`official-company-announcement-cadence`) (occurrences: 3, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
   - `official-company-announcement-cadence` -> `candidate-notes/generated-driver-candidate-official-company-announcement-cadence.md`
+- `official-statistics-credibility` (`official-statistics-credibility`) (occurrences: 3, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `official-statistics-credibility` -> `candidate-notes/generated-driver-candidate-official-statistics-credibility.md`
+- `opening-weekend-box-office` (`opening-weekend-box-office`) (occurrences: 3, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `opening-weekend-box-office` -> `candidate-notes/generated-driver-candidate-opening-weekend-box-office.md`
+- `seat-conversion-variance` (`seat-conversion-variance`) (occurrences: 3, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `seat-conversion-variance` -> `candidate-notes/generated-driver-candidate-seat-conversion-variance.md`
+- `short-horizon-aerial-strike-tempo` (`short-horizon-aerial-strike-tempo`) (occurrences: 3, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `short-horizon-aerial-strike-tempo` -> `candidate-notes/generated-driver-candidate-short-horizon-aerial-strike-tempo.md`
+- `short-horizon-crypto-path-risk` (`short-horizon-crypto-path-risk`) (occurrences: 3, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `short-horizon-crypto-path-risk` -> `candidate-notes/generated-driver-candidate-short-horizon-crypto-path-risk.md`
+- `short-horizon-crypto-price-path-risk` (`short-horizon-crypto-price-path-risk`) (occurrences: 3, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `short-horizon-crypto-price-path-risk` -> `candidate-notes/generated-driver-candidate-short-horizon-crypto-price-path-risk.md`
+- `short-horizon-crypto-touch-probability` (`short-horizon-crypto-touch-probability`) (occurrences: 3, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `short-horizon-crypto-touch-probability` -> `candidate-notes/generated-driver-candidate-short-horizon-crypto-touch-probability.md`
+- `short-horizon-price-thresholds` (`short-horizon-price-thresholds`) (occurrences: 3, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `short-horizon-price-thresholds` -> `candidate-notes/generated-driver-candidate-short-horizon-price-thresholds.md`
+- `soccer-match-draw-rate` (`soccer-match-draw-rate`) (occurrences: 3, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `soccer-match-draw-rate` -> `candidate-notes/generated-driver-candidate-soccer-match-draw-rate.md`
+- `theater-count-scale` (`theater-count-scale`) (occurrences: 3, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `theater-count-scale` -> `candidate-notes/generated-driver-candidate-theater-count-scale.md`
+- `airport-vs-city forecast divergence` (`airport-vs-city-forecast-divergence`) (occurrences: 2, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `airport-vs-city forecast divergence` -> `candidate-notes/generated-driver-candidate-airport-vs-city-forecast-divergence.md`
+- `alliance-fragmentation` (`alliance-fragmentation`) (occurrences: 2, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `alliance-fragmentation` -> `candidate-notes/generated-driver-candidate-alliance-fragmentation.md`
+- `alliances` (`alliances`) (occurrences: 2, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `alliances` -> `candidate-notes/generated-driver-candidate-alliances.md`
+- `barrier-touch-vs-close` (`barrier-touch-vs-close`) (occurrences: 2, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `barrier-touch-vs-close` -> `candidate-notes/generated-driver-candidate-barrier-touch-vs-close.md`
+- `bitcoin-spot-price-momentum` (`bitcoin-spot-price-momentum`) (occurrences: 2, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `bitcoin-spot-price-momentum` -> `candidate-notes/generated-driver-candidate-bitcoin-spot-price-momentum.md`
+- `campaign-momentum` (`campaign-momentum`) (occurrences: 2, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `campaign-momentum` -> `candidate-notes/generated-driver-candidate-campaign-momentum.md`
+- `ceasefire-implementation-gap-risk` (`ceasefire-implementation-gap-risk`) (occurrences: 2, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `ceasefire-implementation-gap-risk` -> `candidate-notes/generated-driver-candidate-ceasefire-implementation-gap-risk.md`
+- `crypto-momentum-reflexivity` (`crypto-momentum-reflexivity`) (occurrences: 2, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `crypto-momentum-reflexivity` -> `candidate-notes/generated-driver-candidate-crypto-momentum-reflexivity.md`
+- `draw-rate-in-soccer-match-winner-markets` (`draw-rate-in-soccer-match-winner-markets`) (occurrences: 2, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `draw-rate-in-soccer-match-winner-markets` -> `candidate-notes/generated-driver-candidate-draw-rate-in-soccer-match-winner-markets.md`
+- `draw-risk-home-favorite-conversion` (`draw-risk-home-favorite-conversion`) (occurrences: 2, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `draw-risk-home-favorite-conversion` -> `candidate-notes/generated-driver-candidate-draw-risk-home-favorite-conversion.md`
+- `favorite-price calibration in soccer 1X2 markets` (`favorite-price-calibration-in-soccer-1x2-markets`) (occurrences: 2, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `favorite-price calibration in soccer 1X2 markets` -> `candidate-notes/generated-driver-candidate-favorite-price-calibration-in-soccer-1x2-markets.md`
+- `fixture congestion` (`fixture-congestion`) (occurrences: 2, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `fixture congestion` -> `candidate-notes/generated-driver-candidate-fixture-congestion.md`
+- `fixture-congestion-and-rotation-risk` (`fixture-congestion-and-rotation-risk`) (occurrences: 2, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `fixture-congestion-and-rotation-risk` -> `candidate-notes/generated-driver-candidate-fixture-congestion-and-rotation-risk.md`
+- `fixture-congestion-prioritization` (`fixture-congestion-prioritization`) (occurrences: 2, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `fixture-congestion-prioritization` -> `candidate-notes/generated-driver-candidate-fixture-congestion-prioritization.md`
+- `home-favorite-strength-gap` (`home-favorite-strength-gap`) (occurrences: 2, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `home-favorite-strength-gap` -> `candidate-notes/generated-driver-candidate-home-favorite-strength-gap.md`
+- `home-field-strength` (`home-field-strength`) (occurrences: 2, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `home-field-strength` -> `candidate-notes/generated-driver-candidate-home-field-strength.md`
+- `home-win-overconfidence` (`home-win-overconfidence`) (occurrences: 2, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `home-win-overconfidence` -> `candidate-notes/generated-driver-candidate-home-win-overconfidence.md`
+- `injury-driven-match-volatility` (`injury-driven-match-volatility`) (occurrences: 2, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `injury-driven-match-volatility` -> `candidate-notes/generated-driver-candidate-injury-driven-match-volatility.md`
+- `late lineup/injury confirmation` (`late-lineup-injury-confirmation`) (occurrences: 2, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `late lineup/injury confirmation` -> `candidate-notes/generated-driver-candidate-late-lineup-injury-confirmation.md`
+- `late-season-games-remaining-variance` (`late-season-games-remaining-variance`) (occurrences: 2, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `late-season-games-remaining-variance` -> `candidate-notes/generated-driver-candidate-late-season-games-remaining-variance.md`
+- `lineup-and-availability-uncertainty` (`lineup-and-availability-uncertainty`) (occurrences: 2, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `lineup-and-availability-uncertainty` -> `candidate-notes/generated-driver-candidate-lineup-and-availability-uncertainty.md`
+- `market-consensus-soccer-pricing` (`market-consensus-soccer-pricing`) (occurrences: 2, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `market-consensus-soccer-pricing` -> `candidate-notes/generated-driver-candidate-market-consensus-soccer-pricing.md`
+- `market-contract-surface-integrity` (`market-contract-surface-integrity`) (occurrences: 2, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `market-contract-surface-integrity` -> `candidate-notes/generated-driver-candidate-market-contract-surface-integrity.md`
+- `market-following-bookmaker-consensus` (`market-following-bookmaker-consensus`) (occurrences: 2, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `market-following-bookmaker-consensus` -> `candidate-notes/generated-driver-candidate-market-following-bookmaker-consensus.md`
+- `match-specific-lineup-availability` (`match-specific-lineup-availability`) (occurrences: 2, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `match-specific-lineup-availability` -> `candidate-notes/generated-driver-candidate-match-specific-lineup-availability.md`
 - `netflix-top10-chart-momentum` (`netflix-top10-chart-momentum`) (occurrences: 2, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
   - `netflix-top10-chart-momentum` -> `candidate-notes/generated-driver-candidate-netflix-top10-chart-momentum.md`
 - `official-announcement-surface-coverage` (`official-announcement-surface-coverage`) (occurrences: 2, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
   - `official-announcement-surface-coverage` -> `candidate-notes/generated-driver-candidate-official-announcement-surface-coverage.md`
+- `official-stat-finalization` (`official-stat-finalization`) (occurrences: 2, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `official-stat-finalization` -> `candidate-notes/generated-driver-candidate-official-stat-finalization.md`
+- `opposition-fragmentation` (`opposition-fragmentation`) (occurrences: 2, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `opposition-fragmentation` -> `candidate-notes/generated-driver-candidate-opposition-fragmentation.md`
+- `pre-match-team-strength-gap` (`pre-match-team-strength-gap`) (occurrences: 2, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `pre-match-team-strength-gap` -> `candidate-notes/generated-driver-candidate-pre-match-team-strength-gap.md`
+- `pre-match-team-strength-parity` (`pre-match-team-strength-parity`) (occurrences: 2, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `pre-match-team-strength-parity` -> `candidate-notes/generated-driver-candidate-pre-match-team-strength-parity.md`
+- `regulation-win-vs-avoid-defeat-gap` (`regulation-win-vs-avoid-defeat-gap`) (occurrences: 2, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `regulation-win-vs-avoid-defeat-gap` -> `candidate-notes/generated-driver-candidate-regulation-win-vs-avoid-defeat-gap.md`
+- `schedule-congestion` (`schedule-congestion`) (occurrences: 2, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `schedule-congestion` -> `candidate-notes/generated-driver-candidate-schedule-congestion.md`
+- `short-horizon-crypto-breakout-failure` (`short-horizon-crypto-breakout-failure`) (occurrences: 2, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `short-horizon-crypto-breakout-failure` -> `candidate-notes/generated-driver-candidate-short-horizon-crypto-breakout-failure.md`
+- `short-horizon-crypto-momentum-and-resistance` (`short-horizon-crypto-momentum-and-resistance`) (occurrences: 2, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `short-horizon-crypto-momentum-and-resistance` -> `candidate-notes/generated-driver-candidate-short-horizon-crypto-momentum-and-resistance.md`
+- `short-horizon-price-momentum` (`short-horizon-price-momentum`) (occurrences: 2, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `short-horizon-price-momentum` -> `candidate-notes/generated-driver-candidate-short-horizon-price-momentum.md`
+- `soccer-draw-base-rate` (`soccer-draw-base-rate`) (occurrences: 2, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `soccer-draw-base-rate` -> `candidate-notes/generated-driver-candidate-soccer-draw-base-rate.md`
+- `soccer-draw-risk` (`soccer-draw-risk`) (occurrences: 2, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `soccer-draw-risk` -> `candidate-notes/generated-driver-candidate-soccer-draw-risk.md`
+- `soccer-matchup-balance` (`soccer-matchup-balance`) (occurrences: 2, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `soccer-matchup-balance` -> `candidate-notes/generated-driver-candidate-soccer-matchup-balance.md`
+- `source-of-truth-ambiguity` (`source-of-truth-ambiguity`) (occurrences: 2, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `source-of-truth-ambiguity` -> `candidate-notes/generated-driver-candidate-source-of-truth-ambiguity.md`
+- `source-of-truth-location-basis` (`source-of-truth-location-basis`) (occurrences: 2, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `source-of-truth-location-basis` -> `candidate-notes/generated-driver-candidate-source-of-truth-location-basis.md`
+- `station-location-basis-risk` (`station-location-basis-risk`) (occurrences: 2, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `station-location-basis-risk` -> `candidate-notes/generated-driver-candidate-station-location-basis-risk.md`
+- `station microclimate vs city forecast divergence` (`station-microclimate-vs-city-forecast-divergence`) (occurrences: 2, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `station microclimate vs city forecast divergence` -> `candidate-notes/generated-driver-candidate-station-microclimate-vs-city-forecast-divergence.md`
+- `volatility` (`volatility`) (occurrences: 2, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `volatility` -> `candidate-notes/generated-driver-candidate-volatility.md`
+- `vote-splitting` (`vote-splitting`) (occurrences: 2, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `vote-splitting` -> `candidate-notes/generated-driver-candidate-vote-splitting.md`
+- `vote-splitting-by-new-entrant` (`vote-splitting-by-new-entrant`) (occurrences: 2, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `vote-splitting-by-new-entrant` -> `candidate-notes/generated-driver-candidate-vote-splitting-by-new-entrant.md`
+- `anti-incumbent-vote-splitting` (`anti-incumbent-vote-splitting`) (occurrences: 1, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `anti-incumbent-vote-splitting` -> `candidate-notes/generated-driver-candidate-anti-incumbent-vote-splitting.md`
+- `binance-1m-touch-market-microstructure` (`binance-1m-touch-market-microstructure`) (occurrences: 1, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `binance-1m-touch-market-microstructure` -> `candidate-notes/generated-driver-candidate-binance-1m-touch-market-microstructure.md`
+- `bookmaker/market favorite strength` (`bookmaker-market-favorite-strength`) (occurrences: 1, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `bookmaker/market favorite strength` -> `candidate-notes/generated-driver-candidate-bookmaker-market-favorite-strength.md`
+- `coalition-brand-decay` (`coalition-brand-decay`) (occurrences: 1, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `coalition-brand-decay` -> `candidate-notes/generated-driver-candidate-coalition-brand-decay.md`
+- `contract-surface-integrity` (`contract-surface-integrity`) (occurrences: 1, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `contract-surface-integrity` -> `candidate-notes/generated-driver-candidate-contract-surface-integrity.md`
+- `crypto-beta-breakout-follow-through` (`crypto-beta-breakout-follow-through`) (occurrences: 1, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `crypto-beta-breakout-follow-through` -> `candidate-notes/generated-driver-candidate-crypto-beta-breakout-follow-through.md`
+- `draw-risk-in-soccer` (`draw-risk-in-soccer`) (occurrences: 1, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `draw-risk-in-soccer` -> `candidate-notes/generated-driver-candidate-draw-risk-in-soccer.md`
+- `home-field-advantage-in-league-football` (`home-field-advantage-in-league-football`) (occurrences: 1, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `home-field-advantage-in-league-football` -> `candidate-notes/generated-driver-candidate-home-field-advantage-in-league-football.md`
+- `home-pitch edge` (`home-pitch-edge`) (occurrences: 1, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `home-pitch edge` -> `candidate-notes/generated-driver-candidate-home-pitch-edge.md`
+- `rank-order-volatility` (`rank-order-volatility`) (occurrences: 1, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `rank-order-volatility` -> `candidate-notes/generated-driver-candidate-rank-order-volatility.md`
+- `reporting-consensus-dependency` (`reporting-consensus-dependency`) (occurrences: 1, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `reporting-consensus-dependency` -> `candidate-notes/generated-driver-candidate-reporting-consensus-dependency.md`
+- `soccer-draw-rate` (`soccer-draw-rate`) (occurrences: 1, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `soccer-draw-rate` -> `candidate-notes/generated-driver-candidate-soccer-draw-rate.md`
+- `surveillance-reform-coalition-risk` (`surveillance-reform-coalition-risk`) (occurrences: 1, cases: 1, personas: 1, raw_candidates: 1, canon: novel)
+  - `surveillance-reform-coalition-risk` -> `candidate-notes/generated-driver-candidate-surveillance-reform-coalition-risk.md`
 
 ## Ranked raw candidates
+- `threshold-proximity` -> `candidate-notes/generated-driver-candidate-threshold-proximity.md` (family: `resolution-mechanics`, occurrences: 32, cases: 10, personas: 3, canon: novel)
+- `intraday-volatility` -> `candidate-notes/generated-driver-candidate-intraday-volatility.md` (family: `resolution-mechanics`, occurrences: 27, cases: 10, personas: 3, canon: novel)
+- `short-horizon-crypto-volatility` -> `candidate-notes/generated-driver-candidate-short-horizon-crypto-volatility.md` (family: `resolution-mechanics`, occurrences: 19, cases: 8, personas: 4, canon: novel)
+- `macro-event-timing` -> `candidate-notes/generated-driver-candidate-macro-event-timing.md` (family: `publication-timing`, occurrences: 15, cases: 6, personas: 1, canon: novel)
+- `threshold-close mechanics` -> `candidate-notes/generated-driver-candidate-threshold-close-mechanics.md` (family: `resolution-mechanics`, occurrences: 9, cases: 4, personas: 2, canon: novel)
+- `intraday-volatility-window` -> `candidate-notes/generated-driver-candidate-intraday-volatility-window.md` (family: `release-window-demand`, occurrences: 7, cases: 3, personas: 1, canon: novel)
+- `macro-event-risk` -> `candidate-notes/generated-driver-candidate-macro-event-risk.md` (family: `resolution-mechanics`, occurrences: 7, cases: 3, personas: 1, canon: novel)
+- `team-strength-gap` -> `candidate-notes/generated-driver-candidate-team-strength-gap.md` (family: `team-strength-gap`, occurrences: 7, cases: 3, personas: 2, canon: novel)
+- `threshold-close timing risk` -> `candidate-notes/generated-driver-candidate-threshold-close-timing-risk.md` (family: `publication-timing`, occurrences: 7, cases: 3, personas: 2, canon: novel)
+- `home-field-advantage` -> `candidate-notes/generated-driver-candidate-home-field-advantage.md` (family: `home-field-advantage`, occurrences: 6, cases: 3, personas: 2, canon: novel)
+- `short-horizon-threshold-volatility` -> `candidate-notes/generated-driver-candidate-short-horizon-threshold-volatility.md` (family: `resolution-mechanics`, occurrences: 6, cases: 2, personas: 2, canon: novel)
+- `timing-risk` -> `candidate-notes/generated-driver-candidate-timing-risk.md` (family: `publication-timing`, occurrences: 6, cases: 2, personas: 1, canon: novel)
+- `contract-interpretation-risk` -> `candidate-notes/generated-driver-candidate-contract-interpretation-risk.md` (family: `resolution-mechanics`, occurrences: 5, cases: 1, personas: 2, canon: novel)
+- `crypto-price-threshold-resolution` -> `candidate-notes/generated-driver-candidate-crypto-price-threshold-resolution.md` (family: `resolution-mechanics`, occurrences: 5, cases: 2, personas: 2, canon: novel)
+- `intraday-timing-risk` -> `candidate-notes/generated-driver-candidate-intraday-timing-risk.md` (family: `publication-timing`, occurrences: 5, cases: 2, personas: 1, canon: novel)
+- `scheduled-macro-catalyst-gap` -> `candidate-notes/generated-driver-candidate-scheduled-macro-catalyst-gap.md` (family: `resolution-mechanics`, occurrences: 5, cases: 2, personas: 1, canon: novel)
+- `binance-intraperiod-threshold-touch` -> `candidate-notes/generated-driver-candidate-binance-intraperiod-threshold-touch.md` (family: `resolution-mechanics`, occurrences: 4, cases: 1, personas: 1, canon: novel)
+- `leaderboard-refresh-timing` -> `candidate-notes/generated-driver-candidate-leaderboard-refresh-timing.md` (family: `publication-timing`, occurrences: 4, cases: 1, personas: 1, canon: novel)
+- `lineup-availability-shock` -> `candidate-notes/generated-driver-candidate-lineup-availability-shock.md` (family: `lineup-availability-shock`, occurrences: 4, cases: 1, personas: 1, canon: novel)
+- `macro-risk-sentiment` -> `candidate-notes/generated-driver-candidate-macro-risk-sentiment.md` (family: `resolution-mechanics`, occurrences: 4, cases: 1, personas: 1, canon: novel)
 - `public-access-qualification-risk` -> `candidate-notes/generated-driver-candidate-public-access-qualification-risk.md` (family: `resolution-mechanics`, occurrences: 4, cases: 1, personas: 1, canon: novel)
+- `short-horizon-crypto-threshold-touch` -> `candidate-notes/generated-driver-candidate-short-horizon-crypto-threshold-touch.md` (family: `resolution-mechanics`, occurrences: 4, cases: 2, personas: 1, canon: novel)
+- `short-window-threshold-touch-dynamics` -> `candidate-notes/generated-driver-candidate-short-window-threshold-touch-dynamics.md` (family: `release-window-demand`, occurrences: 4, cases: 1, personas: 1, canon: novel)
+- `threshold-distance` -> `candidate-notes/generated-driver-candidate-threshold-distance.md` (family: `resolution-mechanics`, occurrences: 4, cases: 2, personas: 2, canon: novel)
+- `alliance-cohesion` -> `candidate-notes/generated-driver-candidate-alliance-cohesion.md` (family: `alliance-cohesion`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `anti-incumbency` -> `candidate-notes/generated-driver-candidate-anti-incumbency.md` (family: `anti-incumbency`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `award-resolution-mechanics` -> `candidate-notes/generated-driver-candidate-award-resolution-mechanics.md` (family: `resolution-mechanics`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `bicameral-coordination-risk` -> `candidate-notes/generated-driver-candidate-bicameral-coordination-risk.md` (family: `bicameral-coordination-risk`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `binance-intraday-wick-risk` -> `candidate-notes/generated-driver-candidate-binance-intraday-wick-risk.md` (family: `binance-intraday-wick-risk`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `binance-market-data-integrity` -> `candidate-notes/generated-driver-candidate-binance-market-data-integrity.md` (family: `binance-market-data-integrity`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `binance-microstructure-touch-risk` -> `candidate-notes/generated-driver-candidate-binance-microstructure-touch-risk.md` (family: `binance-microstructure-touch-risk`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `binance-venue-specific-price-threshold-resolution` -> `candidate-notes/generated-driver-candidate-binance-venue-specific-price-threshold-resolution.md` (family: `resolution-mechanics`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `binance-venue-specific-resolution-dependence` -> `candidate-notes/generated-driver-candidate-binance-venue-specific-resolution-dependence.md` (family: `resolution-mechanics`, occurrences: 3, cases: 1, personas: 1, canon: novel)
 - `bls-rounding-threshold-risk` -> `candidate-notes/generated-driver-candidate-bls-rounding-threshold-risk.md` (family: `resolution-mechanics`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `box-office-range-fragility` -> `candidate-notes/generated-driver-candidate-box-office-range-fragility.md` (family: `box-office-range-fragility`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `box-office-tracking` -> `candidate-notes/generated-driver-candidate-box-office-tracking.md` (family: `box-office-tracking`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `ceasefire-negotiation-friction` -> `candidate-notes/generated-driver-candidate-ceasefire-negotiation-friction.md` (family: `ceasefire-negotiation-friction`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `ceasefire-negotiation-momentum` -> `candidate-notes/generated-driver-candidate-ceasefire-negotiation-momentum.md` (family: `ceasefire-negotiation-momentum`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `ceasefire-negotiation-timing` -> `candidate-notes/generated-driver-candidate-ceasefire-negotiation-timing.md` (family: `publication-timing`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `ceasefire-wording-risk` -> `candidate-notes/generated-driver-candidate-ceasefire-wording-risk.md` (family: `resolution-mechanics`, occurrences: 3, cases: 1, personas: 1, canon: novel)
 - `chart-label-resolution-mapping` -> `candidate-notes/generated-driver-candidate-chart-label-resolution-mapping.md` (family: `resolution-mapping`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `china-official-data-smoothing` -> `candidate-notes/generated-driver-candidate-china-official-data-smoothing.md` (family: `resolution-mechanics`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `club-strength-gap` -> `candidate-notes/generated-driver-candidate-club-strength-gap.md` (family: `club-strength-gap`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `coalition-formation-fragility` -> `candidate-notes/generated-driver-candidate-coalition-formation-fragility.md` (family: `coalition-formation-fragility`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `coalition-fragmentation` -> `candidate-notes/generated-driver-candidate-coalition-fragmentation.md` (family: `coalition-fragmentation`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `coalition-transfer` -> `candidate-notes/generated-driver-candidate-coalition-transfer.md` (family: `resolution-mechanics`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `congressional-process` -> `candidate-notes/generated-driver-candidate-congressional-process.md` (family: `congressional-process`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `consensus-reporting-dependency` -> `candidate-notes/generated-driver-candidate-consensus-reporting-dependency.md` (family: `resolution-mechanics`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `contract-resolution-source-ambiguity` -> `candidate-notes/generated-driver-candidate-contract-resolution-source-ambiguity.md` (family: `resolution-mechanics`, occurrences: 3, cases: 1, personas: 1, canon: novel)
 - `contract-settlement-ambiguity` -> `candidate-notes/generated-driver-candidate-contract-settlement-ambiguity.md` (family: `resolution-mechanics`, occurrences: 3, cases: 1, personas: 1, canon: novel)
 - `contract-settlement-risk` -> `candidate-notes/generated-driver-candidate-contract-settlement-risk.md` (family: `resolution-mechanics`, occurrences: 3, cases: 1, personas: 1, canon: novel)
-- `crypto-price-threshold-resolution` -> `candidate-notes/generated-driver-candidate-crypto-price-threshold-resolution.md` (family: `resolution-mechanics`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `contract source-of-truth ambiguity for exchange-threshold markets` -> `candidate-notes/generated-driver-candidate-contract-source-of-truth-ambiguity-for-exchange-threshold-markets.md` (family: `resolution-mechanics`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `crypto-short-horizon-momentum-threshold-touch` -> `candidate-notes/generated-driver-candidate-crypto-short-horizon-momentum-threshold-touch.md` (family: `resolution-mechanics`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `crypto-weekend-volatility` -> `candidate-notes/generated-driver-candidate-crypto-weekend-volatility.md` (family: `resolution-mechanics`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `date-window-resolution-risk` -> `candidate-notes/generated-driver-candidate-date-window-resolution-risk.md` (family: `release-window-demand`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `deadline-diplomacy` -> `candidate-notes/generated-driver-candidate-deadline-diplomacy.md` (family: `deadline-diplomacy`, occurrences: 3, cases: 1, personas: 1, canon: novel)
 - `deadline-specific path-risk` -> `candidate-notes/generated-driver-candidate-deadline-specific-path-risk.md` (family: `resolution-mechanics`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `distribution-scale` -> `candidate-notes/generated-driver-candidate-distribution-scale.md` (family: `distribution-scale`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `draft-order-path-risk` -> `candidate-notes/generated-driver-candidate-draft-order-path-risk.md` (family: `resolution-mechanics`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `draft-order-stability` -> `candidate-notes/generated-driver-candidate-draft-order-stability.md` (family: `resolution-mechanics`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `earnings-expectations` -> `candidate-notes/generated-driver-candidate-earnings-expectations.md` (family: `resolution-mechanics`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `electoral-certification-risk` -> `candidate-notes/generated-driver-candidate-electoral-certification-risk.md` (family: `resolution-mechanics`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `football-match-outcome-pricing` -> `candidate-notes/generated-driver-candidate-football-match-outcome-pricing.md` (family: `football-match-outcome-pricing`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `home-field strength in domestic league matches` -> `candidate-notes/generated-driver-candidate-home-field-strength-in-domestic-league-matches.md` (family: `home-field-strength-in-domestic-league-matches`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `horror-opening-demand` -> `candidate-notes/generated-driver-candidate-horror-opening-demand.md` (family: `release-window-demand`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `intraday-crypto-volatility-around-thresholds` -> `candidate-notes/generated-driver-candidate-intraday-crypto-volatility-around-thresholds.md` (family: `intraday-crypto-volatility-around-thresholds`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `intraday-macro-catalyst-risk` -> `candidate-notes/generated-driver-candidate-intraday-macro-catalyst-risk.md` (family: `resolution-mechanics`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `intraday-threshold-sensitivity` -> `candidate-notes/generated-driver-candidate-intraday-threshold-sensitivity.md` (family: `resolution-mechanics`, occurrences: 3, cases: 1, personas: 1, canon: novel)
 - `intraday-volatility-shock` -> `candidate-notes/generated-driver-candidate-intraday-volatility-shock.md` (family: `resolution-mechanics`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `late-availability-shock` -> `candidate-notes/generated-driver-candidate-late-availability-shock.md` (family: `late-availability-shock`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `late-round-conversion-risk` -> `candidate-notes/generated-driver-candidate-late-round-conversion-risk.md` (family: `resolution-mechanics`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `late-team-news-volatility` -> `candidate-notes/generated-driver-candidate-late-team-news-volatility.md` (family: `late-team-news-volatility`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `legislative-timing-risk` -> `candidate-notes/generated-driver-candidate-legislative-timing-risk.md` (family: `publication-timing`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `lineup-confirmation` -> `candidate-notes/generated-driver-candidate-lineup-confirmation.md` (family: `lineup-confirmation`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `lineup-rotation` -> `candidate-notes/generated-driver-candidate-lineup-rotation.md` (family: `lineup-rotation`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `lineup-rotation-risk` -> `candidate-notes/generated-driver-candidate-lineup-rotation-risk.md` (family: `lineup-rotation-risk`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `live-standings-state` -> `candidate-notes/generated-driver-candidate-live-standings-state.md` (family: `resolution-mechanics`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `macro-event-gap` -> `candidate-notes/generated-driver-candidate-macro-event-gap.md` (family: `resolution-mechanics`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `macro-risk-event` -> `candidate-notes/generated-driver-candidate-macro-risk-event.md` (family: `resolution-mechanics`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `matchday-lineup-news` -> `candidate-notes/generated-driver-candidate-matchday-lineup-news.md` (family: `matchday-lineup-news`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `matchday-team-news` -> `candidate-notes/generated-driver-candidate-matchday-team-news.md` (family: `matchday-team-news`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `mediator-credibility` -> `candidate-notes/generated-driver-candidate-mediator-credibility.md` (family: `mediator-credibility`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `monetary-policy-path-dependence` -> `candidate-notes/generated-driver-candidate-monetary-policy-path-dependence.md` (family: `resolution-mechanics`, occurrences: 3, cases: 1, personas: 1, canon: novel)
 - `monthly-global-temperature-anomaly-persistence` -> `candidate-notes/generated-driver-candidate-monthly-global-temperature-anomaly-persistence.md` (family: `resolution-mechanics`, occurrences: 3, cases: 1, personas: 1, canon: novel)
 - `monthly-temperature-threshold-resolution-risk` -> `candidate-notes/generated-driver-candidate-monthly-temperature-threshold-resolution-risk.md` (family: `resolution-mechanics`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `motivation-priority-risk` -> `candidate-notes/generated-driver-candidate-motivation-priority-risk.md` (family: `motivation-priority-risk`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `motivation-schedule-congestion` -> `candidate-notes/generated-driver-candidate-motivation-schedule-congestion.md` (family: `motivation-schedule-congestion`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `negotiation-breakdown-risk` -> `candidate-notes/generated-driver-candidate-negotiation-breakdown-risk.md` (family: `resolution-mechanics`, occurrences: 3, cases: 1, personas: 1, canon: novel)
 - `official-company-announcement-cadence` -> `candidate-notes/generated-driver-candidate-official-company-announcement-cadence.md` (family: `official-company-announcement-cadence`, occurrences: 3, cases: 1, personas: 1, canon: novel)
 - `official-disclosure-timing` -> `candidate-notes/generated-driver-candidate-official-disclosure-timing.md` (family: `publication-timing`, occurrences: 3, cases: 1, personas: 1, canon: novel)
 - `official-release-communication` -> `candidate-notes/generated-driver-candidate-official-release-communication.md` (family: `release-window-demand`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `official-statistics-credibility` -> `candidate-notes/generated-driver-candidate-official-statistics-credibility.md` (family: `official-statistics-credibility`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `opening-weekend-box-office` -> `candidate-notes/generated-driver-candidate-opening-weekend-box-office.md` (family: `opening-weekend-box-office`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `playoff-path-risk` -> `candidate-notes/generated-driver-candidate-playoff-path-risk.md` (family: `resolution-mechanics`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `points-leader-to-trophy-award linkage` -> `candidate-notes/generated-driver-candidate-points-leader-to-trophy-award-linkage.md` (family: `resolution-mechanics`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `positional-value` -> `candidate-notes/generated-driver-candidate-positional-value.md` (family: `resolution-mechanics`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `pre-release-tracking` -> `candidate-notes/generated-driver-candidate-pre-release-tracking.md` (family: `release-window-demand`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `pre-release-tracking-uncertainty` -> `candidate-notes/generated-driver-candidate-pre-release-tracking-uncertainty.md` (family: `release-window-demand`, occurrences: 3, cases: 1, personas: 1, canon: novel)
 - `release-window-demand` -> `candidate-notes/generated-driver-candidate-release-window-demand.md` (family: `release-window-demand`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `reporting-window-risk` -> `candidate-notes/generated-driver-candidate-reporting-window-risk.md` (family: `release-window-demand`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `resolution-mechanics` -> `candidate-notes/generated-driver-candidate-resolution-mechanics.md` (family: `resolution-mechanics`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `resolution-surface-ambiguity` -> `candidate-notes/generated-driver-candidate-resolution-surface-ambiguity.md` (family: `resolution-mechanics`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `resolution-timestamp-misalignment` -> `candidate-notes/generated-driver-candidate-resolution-timestamp-misalignment.md` (family: `resolution-mechanics`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `runoff-dynamics` -> `candidate-notes/generated-driver-candidate-runoff-dynamics.md` (family: `resolution-mechanics`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `runoff-fragility` -> `candidate-notes/generated-driver-candidate-runoff-fragility.md` (family: `resolution-mechanics`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `seat-conversion-variance` -> `candidate-notes/generated-driver-candidate-seat-conversion-variance.md` (family: `seat-conversion-variance`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `short-horizon-aerial-strike-tempo` -> `candidate-notes/generated-driver-candidate-short-horizon-aerial-strike-tempo.md` (family: `short-horizon-aerial-strike-tempo`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `short-horizon-crypto-path-risk` -> `candidate-notes/generated-driver-candidate-short-horizon-crypto-path-risk.md` (family: `short-horizon-crypto-path-risk`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `short-horizon-crypto-price-path-risk` -> `candidate-notes/generated-driver-candidate-short-horizon-crypto-price-path-risk.md` (family: `short-horizon-crypto-price-path-risk`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `short-horizon-crypto-touch-probability` -> `candidate-notes/generated-driver-candidate-short-horizon-crypto-touch-probability.md` (family: `short-horizon-crypto-touch-probability`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `short-horizon-price-path-risk` -> `candidate-notes/generated-driver-candidate-short-horizon-price-path-risk.md` (family: `resolution-mechanics`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `short-horizon-price-thresholds` -> `candidate-notes/generated-driver-candidate-short-horizon-price-thresholds.md` (family: `short-horizon-price-thresholds`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `soccer-match-draw-rate` -> `candidate-notes/generated-driver-candidate-soccer-match-draw-rate.md` (family: `soccer-match-draw-rate`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `station-mapping-risk` -> `candidate-notes/generated-driver-candidate-station-mapping-risk.md` (family: `resolution-mapping`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `target-selection-risk` -> `candidate-notes/generated-driver-candidate-target-selection-risk.md` (family: `resolution-mechanics`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `team-fit` -> `candidate-notes/generated-driver-candidate-team-fit.md` (family: `resolution-mechanics`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `team-need-vs-best-player` -> `candidate-notes/generated-driver-candidate-team-need-vs-best-player.md` (family: `resolution-mechanics`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `theater-count-scale` -> `candidate-notes/generated-driver-candidate-theater-count-scale.md` (family: `theater-count-scale`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `threshold-daily-close` -> `candidate-notes/generated-driver-candidate-threshold-daily-close.md` (family: `resolution-mechanics`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `threshold persistence risk` -> `candidate-notes/generated-driver-candidate-threshold-persistence-risk.md` (family: `resolution-mechanics`, occurrences: 3, cases: 1, personas: 1, canon: novel)
 - `threshold-resolution-risk` -> `candidate-notes/generated-driver-candidate-threshold-resolution-risk.md` (family: `resolution-mechanics`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `threshold-touch-market-microstructure` -> `candidate-notes/generated-driver-candidate-threshold-touch-market-microstructure.md` (family: `resolution-mechanics`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `threshold-touch-resolution-method` -> `candidate-notes/generated-driver-candidate-threshold-touch-resolution-method.md` (family: `resolution-mechanics`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `timestamp-close-fragility` -> `candidate-notes/generated-driver-candidate-timestamp-close-fragility.md` (family: `resolution-mechanics`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `timestamp-resolution-risk` -> `candidate-notes/generated-driver-candidate-timestamp-resolution-risk.md` (family: `resolution-mechanics`, occurrences: 3, cases: 1, personas: 1, canon: novel)
 - `title-mapping-risk` -> `candidate-notes/generated-driver-candidate-title-mapping-risk.md` (family: `resolution-mapping`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `trade-risk` -> `candidate-notes/generated-driver-candidate-trade-risk.md` (family: `resolution-mechanics`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `weekend-crypto-volatility` -> `candidate-notes/generated-driver-candidate-weekend-crypto-volatility.md` (family: `resolution-mechanics`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `weekend-macro-catalysts` -> `candidate-notes/generated-driver-candidate-weekend-macro-catalysts.md` (family: `resolution-mechanics`, occurrences: 3, cases: 1, personas: 1, canon: novel)
+- `airport-vs-city forecast divergence` -> `candidate-notes/generated-driver-candidate-airport-vs-city-forecast-divergence.md` (family: `airport-vs-city-forecast-divergence`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `alliance-fragmentation` -> `candidate-notes/generated-driver-candidate-alliance-fragmentation.md` (family: `alliance-fragmentation`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `alliances` -> `candidate-notes/generated-driver-candidate-alliances.md` (family: `alliances`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `barrier-touch-vs-close` -> `candidate-notes/generated-driver-candidate-barrier-touch-vs-close.md` (family: `barrier-touch-vs-close`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `benchmark-methodology-volatility` -> `candidate-notes/generated-driver-candidate-benchmark-methodology-volatility.md` (family: `resolution-mechanics`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `binance-threshold-touch-resolution` -> `candidate-notes/generated-driver-candidate-binance-threshold-touch-resolution.md` (family: `resolution-mechanics`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `bitcoin intraworkweek realized volatility / threshold-touch dynamics` -> `candidate-notes/generated-driver-candidate-bitcoin-intraworkweek-realized-volatility-threshold-touch-dynamics.md` (family: `resolution-mechanics`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `bitcoin-spot-price-momentum` -> `candidate-notes/generated-driver-candidate-bitcoin-spot-price-momentum.md` (family: `bitcoin-spot-price-momentum`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `campaign-momentum` -> `candidate-notes/generated-driver-candidate-campaign-momentum.md` (family: `campaign-momentum`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `ceasefire-implementation-gap-risk` -> `candidate-notes/generated-driver-candidate-ceasefire-implementation-gap-risk.md` (family: `ceasefire-implementation-gap-risk`, occurrences: 2, cases: 1, personas: 1, canon: novel)
 - `chart-refresh-timing` -> `candidate-notes/generated-driver-candidate-chart-refresh-timing.md` (family: `publication-timing`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `china-official-growth-targeting` -> `candidate-notes/generated-driver-candidate-china-official-growth-targeting.md` (family: `resolution-mechanics`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `close-specific settlement mechanics` -> `candidate-notes/generated-driver-candidate-close-specific-settlement-mechanics.md` (family: `resolution-mechanics`, occurrences: 2, cases: 1, personas: 1, canon: novel)
 - `corporate-bitcoin-purchase-announcement-timing` -> `candidate-notes/generated-driver-candidate-corporate-bitcoin-purchase-announcement-timing.md` (family: `publication-timing`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `crypto-macro-event-risk` -> `candidate-notes/generated-driver-candidate-crypto-macro-event-risk.md` (family: `resolution-mechanics`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `crypto-momentum-reflexivity` -> `candidate-notes/generated-driver-candidate-crypto-momentum-reflexivity.md` (family: `crypto-momentum-reflexivity`, occurrences: 2, cases: 1, personas: 1, canon: novel)
 - `deadline-execution-risk` -> `candidate-notes/generated-driver-candidate-deadline-execution-risk.md` (family: `resolution-mechanics`, occurrences: 2, cases: 1, personas: 1, canon: novel)
-- `intraday-volatility` -> `candidate-notes/generated-driver-candidate-intraday-volatility.md` (family: `resolution-mechanics`, occurrences: 2, cases: 1, personas: 1, canon: novel)
-- `intraday-volatility-window` -> `candidate-notes/generated-driver-candidate-intraday-volatility-window.md` (family: `release-window-demand`, occurrences: 2, cases: 1, personas: 1, canon: novel)
-- `macro-event-timing` -> `candidate-notes/generated-driver-candidate-macro-event-timing.md` (family: `publication-timing`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `draw-rate-in-soccer-match-winner-markets` -> `candidate-notes/generated-driver-candidate-draw-rate-in-soccer-match-winner-markets.md` (family: `draw-rate-in-soccer-match-winner-markets`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `draw-risk-home-favorite-conversion` -> `candidate-notes/generated-driver-candidate-draw-risk-home-favorite-conversion.md` (family: `draw-risk-home-favorite-conversion`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `exact-resolution-minute-risk` -> `candidate-notes/generated-driver-candidate-exact-resolution-minute-risk.md` (family: `resolution-mechanics`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `exchange-specific-price-dislocation` -> `candidate-notes/generated-driver-candidate-exchange-specific-price-dislocation.md` (family: `resolution-mechanics`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `exchange-specific settlement microstructure` -> `candidate-notes/generated-driver-candidate-exchange-specific-settlement-microstructure.md` (family: `resolution-mechanics`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `favorite-price calibration in soccer 1X2 markets` -> `candidate-notes/generated-driver-candidate-favorite-price-calibration-in-soccer-1x2-markets.md` (family: `favorite-price-calibration-in-soccer-1x2-markets`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `fixture congestion` -> `candidate-notes/generated-driver-candidate-fixture-congestion.md` (family: `fixture-congestion`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `fixture-congestion-and-rotation-risk` -> `candidate-notes/generated-driver-candidate-fixture-congestion-and-rotation-risk.md` (family: `fixture-congestion-and-rotation-risk`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `fixture-congestion-prioritization` -> `candidate-notes/generated-driver-candidate-fixture-congestion-prioritization.md` (family: `fixture-congestion-prioritization`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `home-favorite-strength-gap` -> `candidate-notes/generated-driver-candidate-home-favorite-strength-gap.md` (family: `home-favorite-strength-gap`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `home-field-strength` -> `candidate-notes/generated-driver-candidate-home-field-strength.md` (family: `home-field-strength`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `home-win-overconfidence` -> `candidate-notes/generated-driver-candidate-home-win-overconfidence.md` (family: `home-win-overconfidence`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `injury-driven-match-volatility` -> `candidate-notes/generated-driver-candidate-injury-driven-match-volatility.md` (family: `injury-driven-match-volatility`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `intraday-timestamp-risk` -> `candidate-notes/generated-driver-candidate-intraday-timestamp-risk.md` (family: `resolution-mechanics`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `intraperiod-threshold-touch-dynamics` -> `candidate-notes/generated-driver-candidate-intraperiod-threshold-touch-dynamics.md` (family: `resolution-mechanics`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `late lineup/injury confirmation` -> `candidate-notes/generated-driver-candidate-late-lineup-injury-confirmation.md` (family: `late-lineup-injury-confirmation`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `late-season-games-remaining-variance` -> `candidate-notes/generated-driver-candidate-late-season-games-remaining-variance.md` (family: `late-season-games-remaining-variance`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `leaderboard-refresh-risk` -> `candidate-notes/generated-driver-candidate-leaderboard-refresh-risk.md` (family: `publication-timing`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `lineup-and-availability-uncertainty` -> `candidate-notes/generated-driver-candidate-lineup-and-availability-uncertainty.md` (family: `lineup-and-availability-uncertainty`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `macro-calendar-gap` -> `candidate-notes/generated-driver-candidate-macro-calendar-gap.md` (family: `resolution-mechanics`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `macro-calendar-risk` -> `candidate-notes/generated-driver-candidate-macro-calendar-risk.md` (family: `resolution-mechanics`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `market-consensus-soccer-pricing` -> `candidate-notes/generated-driver-candidate-market-consensus-soccer-pricing.md` (family: `market-consensus-soccer-pricing`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `market-contract-surface-integrity` -> `candidate-notes/generated-driver-candidate-market-contract-surface-integrity.md` (family: `market-contract-surface-integrity`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `market-following-bookmaker-consensus` -> `candidate-notes/generated-driver-candidate-market-following-bookmaker-consensus.md` (family: `market-following-bookmaker-consensus`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `market-microstructure-volatility` -> `candidate-notes/generated-driver-candidate-market-microstructure-volatility.md` (family: `resolution-mechanics`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `match-specific-lineup-availability` -> `candidate-notes/generated-driver-candidate-match-specific-lineup-availability.md` (family: `match-specific-lineup-availability`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `microclimate / airport-vs-city forecast divergence` -> `candidate-notes/generated-driver-candidate-microclimate-airport-vs-city-forecast-divergence.md` (family: `resolution-mechanics`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `monetary-policy-reaction-function` -> `candidate-notes/generated-driver-candidate-monetary-policy-reaction-function.md` (family: `resolution-mechanics`, occurrences: 2, cases: 1, personas: 1, canon: novel)
 - `netflix-top10-chart-momentum` -> `candidate-notes/generated-driver-candidate-netflix-top10-chart-momentum.md` (family: `netflix-top10-chart-momentum`, occurrences: 2, cases: 1, personas: 1, canon: novel)
 - `netflix-top10-update-timing` -> `candidate-notes/generated-driver-candidate-netflix-top10-update-timing.md` (family: `publication-timing`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `noon-fixing-window-risk` -> `candidate-notes/generated-driver-candidate-noon-fixing-window-risk.md` (family: `release-window-demand`, occurrences: 2, cases: 1, personas: 1, canon: novel)
 - `nowcast-dispersion` -> `candidate-notes/generated-driver-candidate-nowcast-dispersion.md` (family: `resolution-mechanics`, occurrences: 2, cases: 1, personas: 1, canon: novel)
 - `official-announcement-surface-coverage` -> `candidate-notes/generated-driver-candidate-official-announcement-surface-coverage.md` (family: `official-announcement-surface-coverage`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `official-settlement-benchmark-specification` -> `candidate-notes/generated-driver-candidate-official-settlement-benchmark-specification.md` (family: `resolution-mechanics`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `official-stat-finalization` -> `candidate-notes/generated-driver-candidate-official-stat-finalization.md` (family: `official-stat-finalization`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `opposition-fragmentation` -> `candidate-notes/generated-driver-candidate-opposition-fragmentation.md` (family: `opposition-fragmentation`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `playoff-cutoff-schedule-friction` -> `candidate-notes/generated-driver-candidate-playoff-cutoff-schedule-friction.md` (family: `resolution-mechanics`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `pre-draft-mock-consensus` -> `candidate-notes/generated-driver-candidate-pre-draft-mock-consensus.md` (family: `resolution-mechanics`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `pre-match-team-strength-gap` -> `candidate-notes/generated-driver-candidate-pre-match-team-strength-gap.md` (family: `pre-match-team-strength-gap`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `pre-match-team-strength-parity` -> `candidate-notes/generated-driver-candidate-pre-match-team-strength-parity.md` (family: `pre-match-team-strength-parity`, occurrences: 2, cases: 1, personas: 1, canon: novel)
 - `pre-release-market-overconfidence` -> `candidate-notes/generated-driver-candidate-pre-release-market-overconfidence.md` (family: `release-window-demand`, occurrences: 2, cases: 1, personas: 1, canon: novel)
 - `product-launch-timing` -> `candidate-notes/generated-driver-candidate-product-launch-timing.md` (family: `publication-timing`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `regulation-win-vs-avoid-defeat-gap` -> `candidate-notes/generated-driver-candidate-regulation-win-vs-avoid-defeat-gap.md` (family: `regulation-win-vs-avoid-defeat-gap`, occurrences: 2, cases: 1, personas: 1, canon: novel)
 - `release-timing-window` -> `candidate-notes/generated-driver-candidate-release-timing-window.md` (family: `release-window-demand`, occurrences: 2, cases: 1, personas: 1, canon: novel)
 - `release-week-viewership-concentration` -> `candidate-notes/generated-driver-candidate-release-week-viewership-concentration.md` (family: `release-window-demand`, occurrences: 2, cases: 1, personas: 1, canon: novel)
 - `reporting-window-timing-risk` -> `candidate-notes/generated-driver-candidate-reporting-window-timing-risk.md` (family: `release-window-demand`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `resolution-timing-risk` -> `candidate-notes/generated-driver-candidate-resolution-timing-risk.md` (family: `publication-timing`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `schedule-congestion` -> `candidate-notes/generated-driver-candidate-schedule-congestion.md` (family: `schedule-congestion`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `short-dated-threshold-volatility` -> `candidate-notes/generated-driver-candidate-short-dated-threshold-volatility.md` (family: `resolution-mechanics`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `short-horizon-crypto-breakout-failure` -> `candidate-notes/generated-driver-candidate-short-horizon-crypto-breakout-failure.md` (family: `short-horizon-crypto-breakout-failure`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `short-horizon-crypto-momentum-and-resistance` -> `candidate-notes/generated-driver-candidate-short-horizon-crypto-momentum-and-resistance.md` (family: `short-horizon-crypto-momentum-and-resistance`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `short-horizon-crypto-threshold-touch-probability` -> `candidate-notes/generated-driver-candidate-short-horizon-crypto-threshold-touch-probability.md` (family: `resolution-mechanics`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `short-horizon crypto volatility / liquidation cascade risk` -> `candidate-notes/generated-driver-candidate-short-horizon-crypto-volatility-liquidation-cascade-risk.md` (family: `resolution-mechanics`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `short-horizon-price-momentum` -> `candidate-notes/generated-driver-candidate-short-horizon-price-momentum.md` (family: `short-horizon-price-momentum`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `short-window-risk-sentiment` -> `candidate-notes/generated-driver-candidate-short-window-risk-sentiment.md` (family: `release-window-demand`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `soccer-draw-base-rate` -> `candidate-notes/generated-driver-candidate-soccer-draw-base-rate.md` (family: `soccer-draw-base-rate`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `soccer-draw-risk` -> `candidate-notes/generated-driver-candidate-soccer-draw-risk.md` (family: `soccer-draw-risk`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `soccer-matchup-balance` -> `candidate-notes/generated-driver-candidate-soccer-matchup-balance.md` (family: `soccer-matchup-balance`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `source-of-truth-ambiguity` -> `candidate-notes/generated-driver-candidate-source-of-truth-ambiguity.md` (family: `source-of-truth-ambiguity`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `source-of-truth-location-basis` -> `candidate-notes/generated-driver-candidate-source-of-truth-location-basis.md` (family: `source-of-truth-location-basis`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `source-of-truth-resolution-risk` -> `candidate-notes/generated-driver-candidate-source-of-truth-resolution-risk.md` (family: `resolution-mechanics`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `station-location-basis-risk` -> `candidate-notes/generated-driver-candidate-station-location-basis-risk.md` (family: `station-location-basis-risk`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `station microclimate vs city forecast divergence` -> `candidate-notes/generated-driver-candidate-station-microclimate-vs-city-forecast-divergence.md` (family: `station-microclimate-vs-city-forecast-divergence`, occurrences: 2, cases: 1, personas: 1, canon: novel)
 - `streaming-chart-publication-timing` -> `candidate-notes/generated-driver-candidate-streaming-chart-publication-timing.md` (family: `publication-timing`, occurrences: 2, cases: 1, personas: 1, canon: novel)
 - `streaming-chart-update-timing` -> `candidate-notes/generated-driver-candidate-streaming-chart-update-timing.md` (family: `publication-timing`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `threshold-touch-dynamics` -> `candidate-notes/generated-driver-candidate-threshold-touch-dynamics.md` (family: `resolution-mechanics`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `threshold-touch-path-risk` -> `candidate-notes/generated-driver-candidate-threshold-touch-path-risk.md` (family: `resolution-mechanics`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `threshold-touch-probability` -> `candidate-notes/generated-driver-candidate-threshold-touch-probability.md` (family: `resolution-mechanics`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `time-window-specific-close-risk` -> `candidate-notes/generated-driver-candidate-time-window-specific-close-risk.md` (family: `release-window-demand`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `volatility` -> `candidate-notes/generated-driver-candidate-volatility.md` (family: `volatility`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `vote-splitting` -> `candidate-notes/generated-driver-candidate-vote-splitting.md` (family: `vote-splitting`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `vote-splitting-by-new-entrant` -> `candidate-notes/generated-driver-candidate-vote-splitting-by-new-entrant.md` (family: `vote-splitting-by-new-entrant`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `weekly-high-contract-resolution-source` -> `candidate-notes/generated-driver-candidate-weekly-high-contract-resolution-source.md` (family: `resolution-mechanics`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `weekly-price-resolution-methodology` -> `candidate-notes/generated-driver-candidate-weekly-price-resolution-methodology.md` (family: `resolution-mechanics`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `weekly-threshold-touch-dynamics` -> `candidate-notes/generated-driver-candidate-weekly-threshold-touch-dynamics.md` (family: `resolution-mechanics`, occurrences: 2, cases: 1, personas: 1, canon: novel)
+- `anti-incumbent-vote-splitting` -> `candidate-notes/generated-driver-candidate-anti-incumbent-vote-splitting.md` (family: `anti-incumbent-vote-splitting`, occurrences: 1, cases: 1, personas: 1, canon: novel)
+- `binance-1m-touch-market-microstructure` -> `candidate-notes/generated-driver-candidate-binance-1m-touch-market-microstructure.md` (family: `binance-1m-touch-market-microstructure`, occurrences: 1, cases: 1, personas: 1, canon: novel)
+- `bookmaker/market favorite strength` -> `candidate-notes/generated-driver-candidate-bookmaker-market-favorite-strength.md` (family: `bookmaker-market-favorite-strength`, occurrences: 1, cases: 1, personas: 1, canon: novel)
+- `coalition-brand-decay` -> `candidate-notes/generated-driver-candidate-coalition-brand-decay.md` (family: `coalition-brand-decay`, occurrences: 1, cases: 1, personas: 1, canon: novel)
 - `company-bitcoin-purchase-announcement-timing` -> `candidate-notes/generated-driver-candidate-company-bitcoin-purchase-announcement-timing.md` (family: `publication-timing`, occurrences: 1, cases: 1, personas: 1, canon: novel)
+- `contract-surface-integrity` -> `candidate-notes/generated-driver-candidate-contract-surface-integrity.md` (family: `contract-surface-integrity`, occurrences: 1, cases: 1, personas: 1, canon: novel)
+- `crypto-beta-breakout-follow-through` -> `candidate-notes/generated-driver-candidate-crypto-beta-breakout-follow-through.md` (family: `crypto-beta-breakout-follow-through`, occurrences: 1, cases: 1, personas: 1, canon: novel)
+- `draft-night-trade-risk` -> `candidate-notes/generated-driver-candidate-draft-night-trade-risk.md` (family: `resolution-mechanics`, occurrences: 1, cases: 1, personas: 1, canon: novel)
+- `draw-risk-in-soccer` -> `candidate-notes/generated-driver-candidate-draw-risk-in-soccer.md` (family: `draw-risk-in-soccer`, occurrences: 1, cases: 1, personas: 1, canon: novel)
+- `etf-flow-sentiment` -> `candidate-notes/generated-driver-candidate-etf-flow-sentiment.md` (family: `resolution-mechanics`, occurrences: 1, cases: 1, personas: 1, canon: novel)
+- `exchange-specific-settlement-source` -> `candidate-notes/generated-driver-candidate-exchange-specific-settlement-source.md` (family: `resolution-mechanics`, occurrences: 1, cases: 1, personas: 1, canon: novel)
+- `home-field-advantage-in-league-football` -> `candidate-notes/generated-driver-candidate-home-field-advantage-in-league-football.md` (family: `home-field-advantage-in-league-football`, occurrences: 1, cases: 1, personas: 1, canon: novel)
+- `home-pitch edge` -> `candidate-notes/generated-driver-candidate-home-pitch-edge.md` (family: `home-pitch-edge`, occurrences: 1, cases: 1, personas: 1, canon: novel)
+- `leader-collpase-risk` -> `candidate-notes/generated-driver-candidate-leader-collpase-risk.md` (family: `resolution-mechanics`, occurrences: 1, cases: 1, personas: 1, canon: novel)
+- `operational-risk` -> `candidate-notes/generated-driver-candidate-operational-risk.md` (family: `resolution-mechanics`, occurrences: 1, cases: 1, personas: 1, canon: novel)
 - `publication-timing-risk` -> `candidate-notes/generated-driver-candidate-publication-timing-risk.md` (family: `publication-timing`, occurrences: 1, cases: 1, personas: 1, canon: novel)
+- `rank-order-volatility` -> `candidate-notes/generated-driver-candidate-rank-order-volatility.md` (family: `rank-order-volatility`, occurrences: 1, cases: 1, personas: 1, canon: novel)
+- `reliability` -> `candidate-notes/generated-driver-candidate-reliability.md` (family: `resolution-mechanics`, occurrences: 1, cases: 1, personas: 1, canon: novel)
+- `reporting-consensus-dependency` -> `candidate-notes/generated-driver-candidate-reporting-consensus-dependency.md` (family: `reporting-consensus-dependency`, occurrences: 1, cases: 1, personas: 1, canon: novel)
+- `resolution-window-fragility` -> `candidate-notes/generated-driver-candidate-resolution-window-fragility.md` (family: `release-window-demand`, occurrences: 1, cases: 1, personas: 1, canon: novel)
+- `score-compression-risk` -> `candidate-notes/generated-driver-candidate-score-compression-risk.md` (family: `resolution-mechanics`, occurrences: 1, cases: 1, personas: 1, canon: novel)
+- `settlement-source-specific-price-benchmark` -> `candidate-notes/generated-driver-candidate-settlement-source-specific-price-benchmark.md` (family: `resolution-mechanics`, occurrences: 1, cases: 1, personas: 1, canon: novel)
+- `settlement-source-specificity` -> `candidate-notes/generated-driver-candidate-settlement-source-specificity.md` (family: `resolution-mechanics`, occurrences: 1, cases: 1, personas: 1, canon: novel)
+- `soccer-draw-rate` -> `candidate-notes/generated-driver-candidate-soccer-draw-rate.md` (family: `soccer-draw-rate`, occurrences: 1, cases: 1, personas: 1, canon: novel)
+- `surveillance-reform-coalition-risk` -> `candidate-notes/generated-driver-candidate-surveillance-reform-coalition-risk.md` (family: `surveillance-reform-coalition-risk`, occurrences: 1, cases: 1, personas: 1, canon: novel)
+- `team-specific-fit-risk` -> `candidate-notes/generated-driver-candidate-team-specific-fit-risk.md` (family: `resolution-mechanics`, occurrences: 1, cases: 1, personas: 1, canon: novel)
+- `threshold-centered daily max weather distribution` -> `candidate-notes/generated-driver-candidate-threshold-centered-daily-max-weather-distribution.md` (family: `resolution-mechanics`, occurrences: 1, cases: 1, personas: 1, canon: novel)
+- `timestamp-specific-resolution-risk` -> `candidate-notes/generated-driver-candidate-timestamp-specific-resolution-risk.md` (family: `resolution-mechanics`, occurrences: 1, cases: 1, personas: 1, canon: novel)
 - `title-mapping-ambiguity` -> `candidate-notes/generated-driver-candidate-title-mapping-ambiguity.md` (family: `resolution-mapping`, occurrences: 1, cases: 1, personas: 1, canon: novel)
+- `verification-surface-ambiguity` -> `candidate-notes/generated-driver-candidate-verification-surface-ambiguity.md` (family: `resolution-mechanics`, occurrences: 1, cases: 1, personas: 1, canon: novel)
+- `weekly-threshold-hit-rate` -> `candidate-notes/generated-driver-candidate-weekly-threshold-hit-rate.md` (family: `resolution-mechanics`, occurrences: 1, cases: 1, personas: 1, canon: novel)

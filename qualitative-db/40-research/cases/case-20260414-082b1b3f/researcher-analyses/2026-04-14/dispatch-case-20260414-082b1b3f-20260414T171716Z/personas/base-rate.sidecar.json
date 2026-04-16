@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "One-minute settlement mechanics create path dependence and timing fragility.",
+    "Evidence is concentrated in Binance-derived data, limiting independence.",
+    "A broad crypto risk-off move before Apr 17 would quickly weaken the thesis."
+  ],
+  "key_assumptions": [
+    "SOL does not suffer a roughly 6%+ drawdown into the Apr 17 12:00 ET Binance settlement minute.",
+    "Recent Binance daily closes above 80 are a useful but imperfect proxy for the narrower one-minute settlement event.",
+    "No Binance-specific pricing anomaly materially distorts the settlement candle."
+  ],
+  "main_logical_chain": [
+    "Market implies 88.5% Yes from current price 0.885.",
+    "Direct Binance price checks show SOL around 85.25, giving a current buffer above the 80 strike.",
+    "Recent and medium-window Binance daily closes above 80 are about 96.7%, supporting a strong outside-view prior.",
+    "Because settlement is one exact noon-ET minute on Binance, I discount that prior for short-horizon volatility and contract narrowness.",
+    "That yields an own estimate of 84% Yes, roughly agreeing with but slightly below the market."
+  ],
+  "main_thesis": "SOL is already trading above $80 on Binance and recent Binance history shows it spending most days above that level, so Yes is likely, though the exact noon-ET one-minute settlement leaves meaningful residual downside risk.",
+  "own_probability": 0.84,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for SOL/USDT 12:00 in the ET timezone (noon) ... has a final 'Close' price higher than the price specified in the title.",
+    "current SOLUSDT direct Binance spot check: 85.25000000"
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "contract_interpretation",
+    "market_anchor"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-082b1b3f",
+    "dispatch_id": "dispatch-case-20260414-082b1b3f-20260414T171716Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "7cbc8246-8262-476a-a7ee-cd3fa1d2a7b9",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-082b1b3f/researcher-analyses/2026-04-14/dispatch-case-20260414-082b1b3f-20260414T171716Z/personas/base-rate.md",
+    "source_persona_sha256": "bb1ad015cd8bf14e5a1a23c6123d486bb956f3afae0f6d92668eba025cf5ea36"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality source-of-truth interpretation from explicit contract rules and direct Binance data, but evidence independence is only medium-low because the decisive data all come from Binance-related surfaces.",
+  "strongest_disconfirmers": [
+    "The contract settles on one exact future minute, so daily-close base rates may overstate the actual one-minute settlement probability.",
+    "Crypto can move several percent in a few days, so a short sharp selloff could still push SOL to 80 or lower at the relevant minute."
+  ],
+  "strongest_supports": [
+    "Direct Binance spot check on 2026-04-14 was about 85.25, already above the 80 threshold.",
+    "Pulled Binance daily data showed 29/30 and 174/180 closes above 80, both about 96.7%.",
+    "Polymarket contract rules clearly identify Binance SOL/USDT 12:00 ET 1-minute close as the governing resolution surface."
+  ],
+  "timing_relevance": "High: the market resolves at 12:00 PM ET on 2026-04-17 using the Binance SOL/USDT 1-minute candle close for that exact minute.",
+  "unresolved_ambiguities": [
+    "Whether intraday noon-ET behavior differs materially from the daily-close base-rate proxy.",
+    "Whether any late Solana-specific catalyst emerges before settlement."
+  ],
+  "what_would_change_view": "I would cut the probability materially if Binance SOL/USDT trades down into the low-80s or below 80 before settlement, if a broad crypto selloff accelerates, or if late direct checks show elevated intraday downside risk around the noon ET settlement window."
+}

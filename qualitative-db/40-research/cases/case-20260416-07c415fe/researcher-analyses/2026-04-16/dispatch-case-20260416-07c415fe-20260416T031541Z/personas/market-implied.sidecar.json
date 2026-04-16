@@ -1,0 +1,57 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Short-horizon crypto volatility could erase the current cushion quickly.",
+    "The contract is unusually narrow because only the exact Binance noon ET minute matters."
+  ],
+  "key_assumptions": [
+    "Current Binance SOL/USDT trading regime in the mid-80s persists into the April 19 noon ET settlement window.",
+    "No Binance-specific anomaly meaningfully distorts the noon ET one-minute close."
+  ],
+  "main_logical_chain": [
+    "Start from the roughly 90-92% market-implied Yes prior.",
+    "Check the governing settlement mechanics: Binance SOL/USDT, 12:00 ET, one-minute candle close, strictly above 80.",
+    "Verify Binance spot and recent Binance price path to see whether 80 is below the current trading regime.",
+    "Apply a modest volatility haircut because short-horizon crypto downside risk and minute-specific settlement remain material."
+  ],
+  "main_thesis": "The market's high-Yes pricing is mostly justified by Binance SOL/USDT trading in the mid-80s and recent persistence above 80, though the contract's minute-specific crypto settlement still warrants a modest haircut versus market.",
+  "own_probability": 0.88,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "Binance SOL/USDT around 85.26 at check time",
+    "12:00 ET one-minute candle close must be strictly higher than 80"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "contract_interpretation",
+    "scenario_analysis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-07c415fe",
+    "dispatch_id": "dispatch-case-20260416-07c415fe-20260416T031541Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "8e7ee674-e41f-4159-999d-00129c2c1fc8",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-07c415fe/researcher-analyses/2026-04-16/dispatch-case-20260416-07c415fe-20260416T031541Z/personas/market-implied.md",
+    "source_persona_sha256": "da198a63f660a0f4df40332667ec77affa0389a373fdd58ab3943080d6a334a8"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is solid: Binance is the named source of truth, Polymarket rules are explicit, and CoinGecko served as a useful extra verification cross-check; evidence independence is medium and source-of-truth ambiguity is low.",
+  "strongest_disconfirmers": [
+    "SOL can fall more than 6% in three days, and the contract resolves on one exchange at one minute.",
+    "A Binance-specific dislocation or brief noon ET wick could still flip the outcome."
+  ],
+  "strongest_supports": [
+    "Binance SOL/USDT was about 85.26 at check time, comfortably above 80.",
+    "Recent Binance daily closes had mostly remained above 80 for nearly two weeks.",
+    "The contract only needs one specific minute close above 80, not a sustained hold."
+  ],
+  "timing_relevance": "This is a date-sensitive contract resolving at 12:00 PM ET on 2026-04-19, so short-run regime persistence matters more than long-run valuation.",
+  "unresolved_ambiguities": [
+    "Exact Polymarket displayed probability moved between the assignment snapshot and fetched page, likely due to live movement/spread noise.",
+    "The final answer still depends on price action over the next ~72 hours."
+  ],
+  "what_would_change_view": "I would turn more bearish if SOL lost 80 and failed to recover before settlement, if broader crypto sentiment broke sharply lower, or if Binance-specific price behavior looked abnormal; I would move closer to market if SOL stayed comfortably above 83-84 into April 18-19."
+}

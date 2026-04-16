@@ -1,0 +1,57 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A broad risk-off move or crypto-specific headline could erase the cushion quickly.",
+    "Binance-specific outage, dislocation, or abnormal settlement-minute behavior could decide the market."
+  ],
+  "key_assumptions": [
+    "No near-term shock drives Binance BTCUSDT below 72k into the exact noon ET settlement minute.",
+    "Binance remains a representative and operationally normal settlement venue through resolution."
+  ],
+  "main_logical_chain": [
+    "Polymarket rules make Binance BTCUSDT 12:00 ET one-minute close on April 17 the sole source of truth.",
+    "Current Binance price is materially above 72k, so Yes starts with a meaningful cushion.",
+    "The remaining risk is mainly a short-horizon negative catalyst or settlement-minute venue issue.",
+    "Without such a catalyst, Yes should be modestly more likely than the 84% market price."
+  ],
+  "main_thesis": "BTC is already trading materially above 72k on the governing Binance venue, and absent a specific negative catalyst before the April 17 noon ET settlement minute, Yes is slightly more likely than the market implies.",
+  "own_probability": 0.88,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone ... has a final 'Close' price higher than the price specified.",
+    "Binance API spot during run: 74042.63"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "catalyst_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-30541231",
+    "dispatch_id": "dispatch-case-20260415-30541231-20260415T133406Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "1a0c1ad7-cd71-408b-8eb5-3e6837fdca1a",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-30541231/researcher-analyses/2026-04-15/dispatch-case-20260415-30541231-20260415T133406Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "7b3bb4427a2d10a8f0d74a3492a0af5775cc7abbbbb1c9f25934ecd8729bc9d5"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High direct relevance from Binance venue data and Polymarket rule text, but low-to-medium evidence independence because the core sources are tightly linked to the same contract framework.",
+  "strongest_disconfirmers": [
+    "BTC can move several percent quickly even without a pre-announced catalyst.",
+    "A single venue-specific one-minute close makes the contract fragile to precise timing and operational issues."
+  ],
+  "strongest_supports": [
+    "Binance spot during the run was about 74042.63, leaving about a 2042.63 cushion above the strike.",
+    "The contract resolves on one exact minute, so absent a shock the existing cushion favors Yes.",
+    "No dominant scheduled negative catalyst was identified in the remaining window."
+  ],
+  "timing_relevance": "This is primarily a timing contract: the key question is whether any negative catalyst arrives before the single noon ET settlement minute on April 17.",
+  "unresolved_ambiguities": [
+    "No strong independent event-calendar source in this run ruled out all remaining catalysts.",
+    "The exact mapping between Binance UI candle labeling and ET noon relies on the contract text rather than direct UI inspection."
+  ],
+  "what_would_change_view": "A move toward or below 73k on Binance, a clear macro risk-off catalyst, or Binance operational concerns near settlement would make me materially less bullish."
+}

@@ -1,0 +1,61 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A sharp risk-off move before April 18 could erase the entire cushion quickly.",
+    "A Binance-specific wick or dislocation at the exact noon ET minute could matter disproportionately.",
+    "This view relies heavily on current distance-to-strike remaining informative over a short but nontrivial horizon."
+  ],
+  "key_assumptions": [
+    "BTC does not suffer a roughly 5.5% downside move into the April 18 noon ET settlement window.",
+    "Binance-specific price formation remains broadly representative and free of settlement-relevant dislocation.",
+    "Current distance to strike explains most of the market price more than hidden bullish catalysts do."
+  ],
+  "main_logical_chain": [
+    "Polymarket implies roughly 89-90% that BTC will finish above 70k on the specified April 18 Binance noon ET close.",
+    "Direct Binance data shows BTCUSDT currently around 74.1k, so the contract only fails if BTC loses roughly 5.5% into the exact settlement window.",
+    "Recent Binance realized downside and a CoinGecko cross-check both support that the current spot zone is genuinely above the strike by a useful margin.",
+    "Because crypto can still move sharply over four days and the contract is one-minute specific, the market looks mostly efficient but slightly overconfident.",
+    "That supports a Yes lean with an estimate modestly below market at 0.86."
+  ],
+  "main_thesis": "The market's ~90% Yes price is broadly justified because Binance BTC/USDT is currently around 74.1k, but the exact one-minute noon ET settlement window leaves enough four-day downside and venue-specific fragility that a slightly lower estimate is more defensible.",
+  "own_probability": 0.86,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone",
+    "final 'Close' price higher than the price specified",
+    "BTCUSDT around 74.1k at research time"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-8a0619b6",
+    "dispatch_id": "dispatch-case-20260414-8a0619b6-20260414T194140Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "3134cc8d-5ce6-426f-bc39-ac8045afe8c0",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-8a0619b6/researcher-analyses/2026-04-14/dispatch-case-20260414-8a0619b6-20260414T194140Z/personas/market-implied.md",
+    "source_persona_sha256": "8dadc045c28f90493174658e928092318f676458b29e00ba0e20ae9671f12431"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source-of-truth ambiguity is low because the rules are explicit; direct evidence quality is high from Binance, while independence is only medium because CoinGecko is a contextual cross-check and Polymarket price is consensus rather than independent proof.",
+  "strongest_disconfirmers": [
+    "BTC can move more than 5% in four days, so the current cushion is meaningful but not overwhelming.",
+    "The contract settles on one exact Binance one-minute close, increasing timing and venue-specific fragility."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT, the exact settlement venue and pair, was around 74.1k at research time.",
+    "Binance 24-hour low remained above 72.9k, still safely above the 70k strike.",
+    "CoinGecko independently cross-checked BTC near 74.2k, supporting the broad spot level."
+  ],
+  "timing_relevance": "The contract resolves on the Binance BTC/USDT 12:00 ET one-minute candle close on April 18, 2026, so exact date, timezone, venue, pair, and final close field all materially matter.",
+  "unresolved_ambiguities": [
+    "No high-quality independent news catalyst source was obtained in this run due search/fetch flakiness, so event-risk assessment remains mostly structural rather than catalyst-specific.",
+    "The exact distribution of four-day BTC downside risk is not directly estimated from historical realized volatility in this memo."
+  ],
+  "what_would_change_view": "I would move lower if BTC compressed toward 71k-72k, if a clear downside catalyst emerged before settlement, or if Binance-specific instability appeared; I would move closer to the market if BTC held above 73k into April 17-18 without stress."
+}

@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A normal-sized downside move over the next day could still push BTC below 72,000 at the exact reference minute.",
+    "UI-versus-API interpretation on Binance is likely aligned but not perfectly explicit in the rules."
+  ],
+  "key_assumptions": [
+    "Current Binance price context remains informative for the next-day noon ET settlement minute.",
+    "Short-horizon BTC volatility stays within a roughly recent regime rather than expanding sharply lower.",
+    "No major negative catalyst arrives before settlement."
+  ],
+  "main_logical_chain": [
+    "Read the contract to confirm the governing source of truth is the Binance BTC/USDT 12:00 ET one-minute candle close on April 16.",
+    "Check current and recent Binance BTC/USDT prices to estimate distance from strike on the correct venue.",
+    "Compare that distance with recent realized volatility and single-minute timing risk.",
+    "Conclude Yes is favored but less than the market's near-90% implied probability."
+  ],
+  "main_thesis": "Yes is more likely than No because Binance BTC/USDT is already above 72,000, but the market is somewhat overpricing certainty for a one-minute noon ET settlement with meaningful residual downside volatility.",
+  "own_probability": 0.78,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "The close must be strictly higher than 72,000.",
+    "BTC/USDT was around 74,196.60 when checked on Binance."
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "market_anchor",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-2cb747e6",
+    "dispatch_id": "dispatch-case-20260415-2cb747e6-20260415T122916Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "7e669a3c-67a1-4abc-99d1-3fcecb033780",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-2cb747e6/researcher-analyses/2026-04-15/dispatch-case-20260415-2cb747e6-20260415T122916Z/personas/base-rate.md",
+    "source_persona_sha256": "e111b0f536a5e328ad55dde6d3c3dc6fcaa21805f3db1c16c254605106fc9649"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is good: Polymarket is authoritative for rules, Binance is direct for venue-matched price context, but independence is only medium because price checks all come from the settlement venue.",
+  "strongest_disconfirmers": [
+    "Recent Binance daily ranges have often been large enough to erase the current cushion by the exact settlement minute.",
+    "April 12 closed below 72,000, showing the level can be lost under ordinary volatility.",
+    "The contract resolves on one exact minute and requires a strict greater-than test."
+  ],
+  "strongest_supports": [
+    "Binance BTC/USDT was around 74.2k on April 15, leaving a roughly 2.2k buffer above the threshold.",
+    "Recent daily closes were above 72,000 on most of the last several days.",
+    "Being already in-the-money on the correct venue usually favors Yes over a one-day horizon."
+  ],
+  "timing_relevance": "Timing is critical because the contract resolves on the 12:00 PM ET one-minute close on April 16, not on a daily close or broad trading range.",
+  "unresolved_ambiguities": [
+    "No direct settlement-minute data exists yet because the relevant April 16 noon ET candle is still in the future.",
+    "Small operational ambiguity remains because Polymarket references the Binance trading interface rather than a formal API endpoint."
+  ],
+  "what_would_change_view": "I would move up if later venue-matched checks still showed a comfortable cushion above 72,000 with calmer volatility; I would move down if BTC drifted back toward 73,000 or below or if event risk increased before noon ET."
+}

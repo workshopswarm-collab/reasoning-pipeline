@@ -1,0 +1,30 @@
+{
+  "artifact_type": "learning_intervention",
+  "schema_version": "v1",
+  "intervention_key": "require-touch-mechanics-check-before-resistance-discount",
+  "application_surface": "researcher_prompt",
+  "change_kind": "weighting_rule",
+  "target_selector": {
+    "question_mechanics": ["threshold-touch", "intraperiod-high-low"],
+    "categories": ["crypto"],
+    "platforms": ["polymarket"]
+  },
+  "change_payload": {
+    "required_checks": [
+      "confirm_any_qualifying_touch_resolves_yes",
+      "evaluate_distance_to_threshold",
+      "evaluate_time_remaining_and_path_volatility",
+      "justify_any_resistance_discount_explicitly"
+    ],
+    "checklist_mode": "append"
+  },
+  "hypothesis": "In threshold-touch / intraperiod high-low markets, forcing an explicit touch-mechanics check before leaning on narrative resistance should reduce underweighting of markets where any qualifying touch resolves Yes.",
+  "metric_definition": {
+    "primary_metric": "latest_forecast_brier",
+    "secondary_metrics": ["underconfidence_rate", "market_disagreement_calibration"],
+    "evaluation_note": "Compare touch-market treatment vs control cohorts once application logging exists in live dispatches."
+  },
+  "evidence_paths": [
+    "qualitative-db/50-learnings/case-reviews/case-20260414-4e668883/review.md"
+  ]
+}

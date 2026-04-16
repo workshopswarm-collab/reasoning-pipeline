@@ -1,0 +1,62 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Single-minute resolution on a volatile asset.",
+    "Single-venue dependence on Binance BTC/USDT.",
+    "Current cushion can disappear quickly in crypto on a multi-day horizon."
+  ],
+  "key_assumptions": [
+    "Current ~75k BTCUSDT pricing is a durable enough cushion above 72k through the target minute.",
+    "No macro or crypto-specific shock drives BTC below the threshold into the April 21 noon ET window.",
+    "Binance venue behavior remains stable and representative at the resolution minute."
+  ],
+  "main_logical_chain": [
+    "Polymarket rules make Binance BTC/USDT 12:00 ET on 2026-04-21 the governing observation.",
+    "Current Binance BTCUSDT is materially above 72000, so the baseline lean is Yes.",
+    "Because only one minute close matters, timing and venue-specific path risk deserve a confidence discount.",
+    "Netting cushion versus fragility gives a modestly lower estimate than the 80% market price."
+  ],
+  "main_thesis": "Lean Yes, but the 80% market price likely overstates confidence because this resolves off one exact Binance BTC/USDT 1-minute close at noon ET on April 21.",
+  "own_probability": 0.72,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone (noon) ... has a final 'Close' price higher than the price specified in the title.",
+    "Current Binance BTCUSDT spot check returned 75079.30000000."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "risk_management",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-7253c25f",
+    "dispatch_id": "dispatch-case-20260415-7253c25f-20260415T220737Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "6baf41ff-d46f-416e-9e15-2f3a5d698638",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-7253c25f/researcher-analyses/2026-04-15/dispatch-case-20260415-7253c25f-20260415T220737Z/personas/risk-manager.md",
+    "source_persona_sha256": "0c72f177849b2e9554dbe5f97e3e0df0a31ad0d77daf8233fbb0877ceae69ff0"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary contract mechanics are strong and source-of-truth ambiguity is low to medium, but evidence independence is only medium because the main contextual source is also Binance-related.",
+  "strongest_disconfirmers": [
+    "Settlement depends on one exact 1-minute close, so transient downside volatility can flip the outcome.",
+    "A close at exactly 72000 or below resolves No because the rule is strictly higher than 72000.",
+    "Directional evidence beyond current spot is limited, so market confidence may outrun evidence depth."
+  ],
+  "strongest_supports": [
+    "Live Binance BTCUSDT spot check was about 75079, roughly 4.3% above the threshold.",
+    "The event is only about six days away, limiting the horizon for a large adverse move.",
+    "Contract mechanics and governing source are explicit about venue, pair, time, and strict threshold."
+  ],
+  "timing_relevance": "High: the market resolves off the Binance BTC/USDT 1-minute candle at 12:00 ET on 2026-04-21, which is 16:00 UTC.",
+  "unresolved_ambiguities": [
+    "How much realized volatility BTC will exhibit between now and the target minute.",
+    "Whether any Binance-specific dislocation appears near settlement.",
+    "Whether the market is overconfident relative to the thin directional evidence set."
+  ],
+  "what_would_change_view": "A drop below roughly 73k without recovery, a sharp risk-off shock, or Binance-specific instability would push the estimate lower; holding comfortably above 72k into the final 24 hours would move it closer to the market."
+}

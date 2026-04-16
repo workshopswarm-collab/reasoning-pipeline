@@ -1,0 +1,62 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Short-horizon realized volatility could erase the current cushion.",
+    "This is a single-minute threshold market rather than a broader average-price question.",
+    "Binance-specific operational issues would matter more than in a multi-source contract."
+  ],
+  "key_assumptions": [
+    "Current mid-80s SOL spot provides a durable enough cushion above 80.",
+    "No major crypto-wide downside shock arrives before the noon ET settlement minute.",
+    "Binance settlement mechanics remain operationally normal and representative."
+  ],
+  "main_logical_chain": [
+    "Start from the 90% market prior and ask what must be true for it to make sense.",
+    "Verify the governing source and contract mechanics: Binance SOL/USDT 1-minute candle at 12:00 ET on April 19 must close strictly above 80.",
+    "Check direct Binance pricing and recent daily context; current spot near 84.87 supports a Yes base case.",
+    "Perform an additional contextual verification pass via CoinGecko; it corroborates broad spot levels but does not remove exact-minute path risk.",
+    "Conclude that Yes is still more likely than No, but the market is somewhat too confident because one-minute settlement-path risk remains meaningful."
+  ],
+  "main_thesis": "The market is directionally right that Yes is more likely than No, but 90% looks somewhat overconfident for a one-minute Binance settlement contract with several days of crypto volatility still remaining.",
+  "own_probability": 0.84,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "The market is directionally right that Yes is more likely than No, but the current 90% price looks somewhat overconfident.",
+    "The governing source of truth is Binance SOL/USDT 1-minute candles.",
+    "My estimate is 84% Yes."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-5ecb60de",
+    "dispatch_id": "dispatch-case-20260415-5ecb60de-20260416T000100Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "2187d606-ae31-4a03-bd1c-a22b46c78fd9",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-5ecb60de/researcher-analyses/2026-04-16/dispatch-case-20260415-5ecb60de-20260416T000100Z/personas/market-implied.md",
+    "source_persona_sha256": "25ea150d84017d54396450b53ec5a4f0b5b93791552c9fb830ed6ba8ba706293"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High confidence in contract interpretation because Polymarket explicitly names Binance SOL/USDT 1m candles as the source of truth; medium evidence independence because CoinGecko corroborates price context but the core evidence still comes from the same underlying crypto market.",
+  "strongest_disconfirmers": [
+    "The contract resolves on one exact 1-minute close at 12:00 ET on April 19, so a brief downside move at the wrong minute is enough for No.",
+    "A roughly 5-6% cushion is not huge for a high-beta crypto asset over ~3.7 days.",
+    "Recent Binance daily data included older intraday lows below 80, showing sub-80 trading remains plausible."
+  ],
+  "strongest_supports": [
+    "Binance SOLUSDT spot was around 84.87, materially above the 80 threshold.",
+    "Recent Binance daily closes in the reviewed sample were all above 80.",
+    "CoinGecko independently showed Solana near 84.93, corroborating broad spot context."
+  ],
+  "timing_relevance": "Settlement is at 2026-04-19 12:00 ET, which is 2026-04-19 16:00 UTC, about 3 days 16 hours after the assignment timestamp; timing matters because only one exact minute close counts.",
+  "unresolved_ambiguities": [
+    "How much weekend/short-horizon volatility the market is already embedding.",
+    "Whether the current 90% price reflects superior crowd information or mild overextension."
+  ],
+  "what_would_change_view": "I would move higher if SOL stays comfortably above 85 into the final day with calm intraday action, and lower if SOL drifts toward 81-82, broader crypto turns risk-off, or Binance-specific fragility appears."
+}

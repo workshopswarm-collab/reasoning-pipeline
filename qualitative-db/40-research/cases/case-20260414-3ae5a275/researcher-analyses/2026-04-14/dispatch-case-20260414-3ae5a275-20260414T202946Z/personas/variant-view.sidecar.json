@@ -1,0 +1,61 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "The estimate is sensitive to short-term BTC volatility between now and April 20.",
+    "A sustained move higher into the final day would weaken the variant thesis quickly.",
+    "The view depends on narrow-contract timing risk mattering more than the market currently prices."
+  ],
+  "key_assumptions": [
+    "The market may be somewhat overgeneralizing from current BTC spot level to a narrower timestamp-specific contract.",
+    "Recent BTC volatility remains high enough that a six-day path to one noon-minute close still leaves meaningful downside risk.",
+    "Binance venue-specific pricing is the right anchor because Binance is the named source of truth."
+  ],
+  "main_logical_chain": [
+    "The market implies about 85.5% Yes.",
+    "The contract settles on a single Binance BTC/USDT 12:00 ET one-minute close, not a daily close or intraday touch.",
+    "Current Binance spot and recent momentum support a Yes baseline.",
+    "But six days of crypto path risk plus a narrow timestamp-specific settlement window leave more residual failure risk than the market price suggests.",
+    "Therefore the fair probability is still Yes-leaning but below market, at about 79%."
+  ],
+  "main_thesis": "BTC is currently above 70k and the contract still leans Yes, but the market likely overprices broad bullish spot intuition relative to the narrower risk of a single Binance BTC/USDT 12:00 ET one-minute close six days ahead.",
+  "own_probability": 0.79,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone (noon) ... has a final 'Close' price higher than the price specified.",
+    "Binance BTCUSDT spot fetched near 74269.23."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation",
+    "variant_hypothesis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-3ae5a275",
+    "dispatch_id": "dispatch-case-20260414-3ae5a275-20260414T202946Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "2a6cd6d6-48d7-4924-83ff-786d4e0e2ebd",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-3ae5a275/researcher-analyses/2026-04-14/dispatch-case-20260414-3ae5a275-20260414T202946Z/personas/variant-view.md",
+    "source_persona_sha256": "aab59ed0bde1c84ae2beede241739cd153fb38af61ea03c3f37c65a53d7a6fb5"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary source quality is good because Polymarket defines the contract and Binance is the named settlement venue; CoinGecko is only contextual. Evidence independence is medium and source-of-truth ambiguity is low to medium.",
+  "strongest_disconfirmers": [
+    "Current spot is already materially above 70k, so the market may be right that the remaining risk is small.",
+    "If BTC sustains 75.5k-76k into April 20, the narrow timestamp risk matters much less."
+  ],
+  "strongest_supports": [
+    "Binance BTC/USDT spot was around 74.3k at verification time, leaving a cushion above 70k.",
+    "Recent momentum context was positive, with BTC up over the last 7 to 14 days.",
+    "Recent Binance daily closes mostly remained above 70k."
+  ],
+  "timing_relevance": "High: the contract resolves on the Binance BTC/USDT 12:00 ET one-minute candle close on April 20, 2026, so timing/path risk is central rather than incidental.",
+  "unresolved_ambiguities": [
+    "Whether market participants are already fully accounting for the one-minute noon settlement nuance.",
+    "How much Binance noon-minute prints differ in practice from broader same-day price-level probabilities."
+  ],
+  "what_would_change_view": "I would move toward or above the market if BTC sustains a larger cushion above 70k into April 20 with lower intraday volatility; I would move lower if BTC quickly revisits low-70k levels or volatility rises."
+}

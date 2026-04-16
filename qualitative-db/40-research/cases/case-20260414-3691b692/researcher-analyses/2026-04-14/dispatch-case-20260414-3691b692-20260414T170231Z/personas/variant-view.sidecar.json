@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Exact-minute-close dependence creates path risk.",
+    "Binance-specific prints matter more than broader BTC averages.",
+    "Short-horizon macro or crypto shocks could quickly erase a 3-4% cushion."
+  ],
+  "key_assumptions": [
+    "Binance API data is representative of the same BTC/USDT market used by the Binance chart named in the contract.",
+    "Residual risk is dominated by short-horizon volatility into the exact resolution minute rather than hidden contract ambiguity.",
+    "No Binance-specific outage or anomalous print distorts the relevant April 16 noon ET candle."
+  ],
+  "main_logical_chain": [
+    "Check the contract mechanics and named source of truth.",
+    "Verify current Binance BTC/USDT pricing directly on the named exchange data surface.",
+    "Compare current price cushion versus the 72000 threshold and note that the market only needs one exact future minute close.",
+    "Discount the market slightly for exact-minute volatility and exchange-specific path risk rather than broad directional bearishness."
+  ],
+  "main_thesis": "YES is still the base case because Binance BTC/USDT is already well above 72000, but the market is slightly overconfident because settlement depends on one exact noon ET one-minute close rather than a broad or daily price measure.",
+  "own_probability": 0.86,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone (noon) ... has a final 'Close' price higher than the price specified.",
+    "BTCUSDT price: 74734.66000000"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "contract_interpretation",
+    "variant_hypothesis",
+    "scenario_analysis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-3691b692",
+    "dispatch_id": "dispatch-case-20260414-3691b692-20260414T170231Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "6ec56071-fe9d-426c-a029-a387dceae0de",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-3691b692/researcher-analyses/2026-04-14/dispatch-case-20260414-3691b692-20260414T170231Z/personas/variant-view.md",
+    "source_persona_sha256": "938569c1cfefc7db52d5b8cdbc595ff5a455d1ca2360464f907e26995edb20d4"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary source quality is high because the rules name Binance BTC/USDT directly; secondary contextual confirmation was adequate but not deeply independent.",
+  "strongest_disconfirmers": [
+    "The contract resolves on one exact minute close two days ahead, so a sharp drawdown or Binance-specific dislocation could still flip the outcome.",
+    "Crypto can move several thousand dollars in short windows, shrinking the current cushion faster than a static spot view implies."
+  ],
+  "strongest_supports": [
+    "Direct Binance ticker check showed BTCUSDT around 74734.66 on April 14, materially above the 72000 strike.",
+    "Recent Binance daily and intraday candles show sustained trading above 72000.",
+    "Polymarket rules clearly define Binance BTC/USDT, 1-minute candle, 12:00 ET, and final Close as the governing mechanics."
+  ],
+  "timing_relevance": "High: the market resolves at April 16 12:00 ET on a single Binance one-minute close, so short-window timing mechanics are central.",
+  "unresolved_ambiguities": [
+    "No major source-of-truth ambiguity remained after verification, but future market structure stress could still matter.",
+    "The exact April 16 noon ET candle obviously cannot be verified yet; only current state and mechanics can be checked now."
+  ],
+  "what_would_change_view": "I would move higher if BTC remains firmly above the mid-74k area into April 15/16 with stable Binance trading; I would move lower if BTC retests 72k, volatility regime worsens, or Binance-specific mechanics look less clean."
+}

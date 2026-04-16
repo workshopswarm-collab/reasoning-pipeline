@@ -67,20 +67,112 @@ def latest_dispatch_dir(root: Path, *, case_key: str) -> Path | None:
     return candidates[-1]
 
 
-def build_summary_markdown(case_key: str, dispatch_dir: Path, qmd_bundle: dict[str, Any], summary_text: str) -> str:
+def frontmatter_scalar(value: Any) -> str:
+    if value is None or value == '':
+        return 'null'
+    if isinstance(value, bool):
+        return 'true' if value else 'false'
+    if isinstance(value, (int, float)):
+        return json.dumps(value)
+    return json.dumps(str(value))
+
+
+def append_frontmatter_fields(lines: list[str], fields: list[tuple[str, Any]]) -> None:
+    for key, value in fields:
+        if isinstance(value, list):
+            normalized = [item for item in value if item not in (None, '')]
+            lines.append(f"{key}: {json.dumps(normalized)}")
+        else:
+            lines.append(f"{key}: {frontmatter_scalar(value)}")
+
+
+def strip_frontmatter(text: str) -> str:
+    if not text.startswith('---\n'):
+        return text
+    marker = '\n---\n'
+    end = text.find(marker, 4)
+    if end == -1:
+        return text
+    return text[end + len(marker):].lstrip('\n')
+
+
+def lmd_frontmatter_fields(*, lmd_bundle_path: Path, lmd_bundle: dict[str, Any]) -> list[tuple[str, Any]]:
+    results = lmd_bundle.get('results') if isinstance(lmd_bundle.get('results'), dict) else {}
+    required_check_keys: list[str] = []
+    for item in (results.get('required_checks') or []):
+        if isinstance(item, dict):
+            key = str(item.get('check_key') or '').strip()
+        else:
+            key = str(item).strip()
+        if key and key not in required_check_keys:
+            required_check_keys.append(key)
+    intervention_keys: list[str] = []
+    for item in (results.get('active_interventions') or []):
+        if not isinstance(item, dict):
+            continue
+        key = str(item.get('intervention_key') or '').strip()
+        if key and key not in intervention_keys:
+            intervention_keys.append(key)
+    trial_overlay = lmd_bundle.get('trial_overlay') if isinstance(lmd_bundle.get('trial_overlay'), dict) else {}
+    trial_candidate_ids: list[str] = []
+    trial_injected_count = 0
+    for item in (trial_overlay.get('selected_candidates') or []):
+        if not isinstance(item, dict):
+            continue
+        pid = str(item.get('proposal_id') or '').strip()
+        if pid and pid not in trial_candidate_ids:
+            trial_candidate_ids.append(pid)
+        if item.get('injected'):
+            trial_injected_count += 1
+    return [
+        ('lmd_bundle_present', lmd_bundle_path.exists()),
+        ('lmd_bundle_path', str(lmd_bundle_path.relative_to(REPO_ROOT)) if lmd_bundle_path.exists() else None),
+        ('lmd_bundle_status', lmd_bundle.get('status')),
+        ('lmd_used', bool(lmd_bundle.get('lmd_used', False))),
+        ('lmd_usage_mode', lmd_bundle.get('usage_mode')),
+        ('lmd_assignment_arm', lmd_bundle.get('assignment_arm')),
+        ('lmd_tier', lmd_bundle.get('lmd_tier')),
+        ('lmd_result_paths', lmd_bundle.get('result_paths') or []),
+        ('lmd_required_check_keys', required_check_keys),
+        ('learning_intervention_keys', intervention_keys),
+        ('trial_overlay_enabled', bool(trial_overlay.get('enabled', False))),
+        ('trial_overlay_used', bool(trial_overlay.get('used', False))),
+        ('trial_overlay_mode', trial_overlay.get('overlay_mode')),
+        ('trial_overlay_preview_only', bool(trial_overlay.get('preview_only', True))),
+        ('trial_overlay_selected_count', int(trial_overlay.get('selected_count') or 0)),
+        ('trial_overlay_injected_count', trial_injected_count),
+        ('trial_overlay_candidate_ids', trial_candidate_ids),
+    ]
+
+
+def build_summary_markdown(case_key: str, dispatch_dir: Path, qmd_bundle: dict[str, Any], lmd_bundle_path: Path, lmd_bundle: dict[str, Any], summary_text: str) -> str:
     rel_dispatch = dispatch_dir.relative_to(REPO_ROOT)
     metadata = qmd_bundle.get('metadata') if isinstance(qmd_bundle.get('metadata'), dict) else {}
+    dispatch_id = metadata.get('dispatch_id') or dispatch_dir.name
+    generated_at = metadata.get('generated_at')
     lines = [
+        '---',
+        'type: researcher_swarm_summary',
+        f'case_key: {case_key}',
+        f'dispatch_dir: {json.dumps(str(rel_dispatch))}',
+        f'dispatch_id: {frontmatter_scalar(dispatch_id)}',
+        f'generated_at: {frontmatter_scalar(generated_at)}',
+        'generated_by: materialize_case_swarm_artifacts',
+    ]
+    append_frontmatter_fields(lines, lmd_frontmatter_fields(lmd_bundle_path=lmd_bundle_path, lmd_bundle=lmd_bundle))
+    lines.extend([
+        '---',
+        '',
         '# Researcher swarm summary',
         '',
         f'- case_key: `{case_key}`',
         f'- dispatch_dir: `{rel_dispatch}`',
-    ]
+    ])
     for key in ['dispatch_id', 'generated_at', 'market_id', 'market_title']:
         value = metadata.get(key)
         if value:
             lines.append(f'- {key}: `{value}`')
-    lines.extend(['', summary_text.strip(), ''])
+    lines.extend(['', strip_frontmatter(summary_text).strip(), ''])
     return '\n'.join(lines)
 
 
@@ -114,20 +206,36 @@ def collect_persona_outputs(dispatch_dir: Path, swarm_stage_status: dict[str, An
     return outputs
 
 
-def build_current_markdown(case_key: str, dispatch_dir: Path, qmd_bundle: dict[str, Any], pipeline_status: dict[str, Any], summary_text: str, swarm_stage_status: dict[str, Any]) -> str:
+def build_current_markdown(case_key: str, dispatch_dir: Path, qmd_bundle: dict[str, Any], lmd_bundle_path: Path, lmd_bundle: dict[str, Any], pipeline_status: dict[str, Any], summary_text: str, swarm_stage_status: dict[str, Any]) -> str:
     rel_dispatch = dispatch_dir.relative_to(REPO_ROOT)
     metadata = qmd_bundle.get('metadata') if isinstance(qmd_bundle.get('metadata'), dict) else {}
+    dispatch_id = metadata.get('dispatch_id') or dispatch_dir.name
+    generated_at = metadata.get('generated_at')
     persona_outputs = collect_persona_outputs(dispatch_dir, swarm_stage_status)
     expected_personas = [str(item).strip() for item in (swarm_stage_status.get('expected_personas') or []) if str(item).strip()]
     completed_personas = [str(item).strip() for item in (swarm_stage_status.get('completed_personas') or []) if str(item).strip()]
     lines = [
+        '---',
+        'type: researcher_swarm_current',
+        f'case_key: {case_key}',
+        f'dispatch_dir: {json.dumps(str(rel_dispatch))}',
+        f'dispatch_id: {frontmatter_scalar(dispatch_id)}',
+        f'generated_at: {frontmatter_scalar(generated_at)}',
+        f'pipeline_status: {frontmatter_scalar(pipeline_status.get("status", ""))}',
+        f'current_stage: {frontmatter_scalar(pipeline_status.get("current_stage", ""))}',
+        'generated_by: materialize_case_swarm_artifacts',
+    ]
+    append_frontmatter_fields(lines, lmd_frontmatter_fields(lmd_bundle_path=lmd_bundle_path, lmd_bundle=lmd_bundle))
+    lines.extend([
+        '---',
+        '',
         '# Researcher swarm current',
         '',
         f'- case_key: `{case_key}`',
         f'- dispatch_dir: `{rel_dispatch}`',
         f'- pipeline_status: `{pipeline_status.get("status", "")}`',
         f'- current_stage: `{pipeline_status.get("current_stage", "")}`',
-    ]
+    ])
     if metadata.get('generated_at'):
         lines.append(f'- generated_at: `{metadata.get("generated_at")}`')
     if expected_personas:
@@ -148,7 +256,7 @@ def build_current_markdown(case_key: str, dispatch_dir: Path, qmd_bundle: dict[s
         lines.extend(['', '## Missing expected personas', ''])
         for persona in missing:
             lines.append(f'- `{persona}`')
-    lines.extend(['', '## Summary excerpt', '', summary_text.strip(), ''])
+    lines.extend(['', '## Summary excerpt', '', strip_frontmatter(summary_text).strip(), ''])
     return '\n'.join(lines)
 
 
@@ -191,6 +299,8 @@ def main() -> int:
 
     summary_text = summary_path.read_text(errors='ignore')
     qmd_bundle = read_json(qmd_bundle_path)
+    lmd_bundle_path = dispatch_dir / 'lmd-bundle.json'
+    lmd_bundle = read_json(lmd_bundle_path) if lmd_bundle_path.exists() else {}
     pipeline_status_path = root / 'pipeline-status.json'
     pipeline_status = read_json(pipeline_status_path) if pipeline_status_path.exists() else {}
     swarm_stage_status_path = dispatch_dir / 'swarm-stage-status.json'
@@ -198,8 +308,8 @@ def main() -> int:
 
     case_summary_path = root / 'researcher-swarm-summary.md'
     case_current_path = root / 'researcher-swarm-current.md'
-    case_summary_path.write_text(build_summary_markdown(args.case_key, dispatch_dir, qmd_bundle, summary_text))
-    case_current_path.write_text(build_current_markdown(args.case_key, dispatch_dir, qmd_bundle, pipeline_status, summary_text, swarm_stage_status))
+    case_summary_path.write_text(build_summary_markdown(args.case_key, dispatch_dir, qmd_bundle, lmd_bundle_path, lmd_bundle, summary_text))
+    case_current_path.write_text(build_current_markdown(args.case_key, dispatch_dir, qmd_bundle, lmd_bundle_path, lmd_bundle, pipeline_status, summary_text, swarm_stage_status))
 
     synth_paths = {}
     for rel in [

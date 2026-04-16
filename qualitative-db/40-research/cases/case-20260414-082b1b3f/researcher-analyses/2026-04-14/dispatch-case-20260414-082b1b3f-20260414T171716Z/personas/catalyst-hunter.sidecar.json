@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A BTC-led or exchange-specific risk-off move could quickly erase the 6% cushion.",
+    "UI-versus-API settlement surface mismatch risk is low but not zero."
+  ],
+  "key_assumptions": [
+    "No specific downside catalyst emerges before Apr 17 noon ET that is stronger than ordinary crypto volatility.",
+    "Binance API prices are representative of the eventual settlement surface.",
+    "SOL does not drift back toward the low-80s before the settlement minute."
+  ],
+  "main_logical_chain": [
+    "The contract resolves on Binance SOL/USDT 12:00 ET one-minute close on Apr 17, so exact timing and venue matter.",
+    "Current Binance spot is comfortably above 80, making Yes the base case.",
+    "But recent sub-80 history shows only a moderate drawdown is needed to flip the result.",
+    "Because no dominant scheduled catalyst was identified, ordinary crypto volatility is the main repricing path.",
+    "That supports a high but not extreme Yes probability below the market's 88.5%."
+  ],
+  "main_thesis": "Yes is still the base case because SOL trades materially above 80, but the market is slightly too confident because single-minute settlement risk and recent sub-80 history keep ordinary volatility relevant.",
+  "own_probability": 0.83,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "The governing source of truth is Binance SOL/USDT, specifically the final Close price of the 1-minute candle for 12:00 PM ET on 2026-04-17.",
+    "My estimate is 83% Yes."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "catalyst_analysis",
+    "contract_interpretation",
+    "scenario_analysis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-082b1b3f",
+    "dispatch_id": "dispatch-case-20260414-082b1b3f-20260414T171716Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "0d8c8713-f67b-4fe7-a3e1-9d1e0689468d",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-082b1b3f/researcher-analyses/2026-04-14/dispatch-case-20260414-082b1b3f-20260414T171716Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "2f71c55dbe25a9916efdf2551248de630f112769c191753515b4e168a703bddf"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality direct evidence from the named resolution venue and explicit contract wording, with medium independence because most material evidence is Binance-centered.",
+  "strongest_disconfirmers": [
+    "Binance data showed sub-80 prints earlier in April, so a downside move below the threshold is plausible.",
+    "The contract settles on one exact minute, increasing path dependence relative to a daily close."
+  ],
+  "strongest_supports": [
+    "Binance SOL/USDT was around 85.31 during the run, roughly 6.2% above the strike.",
+    "Recent 1-minute prices were stable near 85.2-85.3 with no immediate threshold stress.",
+    "No dominant scheduled Solana-specific catalyst was verified before settlement."
+  ],
+  "timing_relevance": "The key catalyst is the shrinking time-to-settlement itself; if SOL remains above roughly 84 into Apr 16-17, Yes should stay favored, but any move toward 82-83 should force repricing because the contract settles on a single noon ET minute.",
+  "unresolved_ambiguities": [
+    "No independent verification of the exact Binance front-end chart output for the settlement minute was performed.",
+    "No concrete scheduled catalyst was found, so residual risk is mostly unscheduled volatility."
+  ],
+  "what_would_change_view": "A verified downside catalyst before settlement, a drop back near 82 or below, or evidence of meaningful Binance UI/API mismatch would lower the Yes estimate."
+}

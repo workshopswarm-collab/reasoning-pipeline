@@ -1,0 +1,69 @@
+{
+  "artifact_type": "decision_verification_mode",
+  "schema_version": "decision-verification-mode/v1",
+  "case_key": "case-20260415-1e5e80f9",
+  "dispatch_id": "refresh-case-20260415-1e5e80f9-20260415T082031Z",
+  "mode": "targeted_escalation",
+  "triggers": [
+    "large_apparent_edge_vs_market",
+    "freshness_sensitive_catalyst",
+    "decision_blockers_present",
+    "internal_inconsistency_in_package"
+  ],
+  "reasons": [
+    "High-confidence sufficiency gate did not pass, so extra bounded context is required before final judgment.",
+    "edge_independent_verification_quality is not high",
+    "freshness-sensitive case requires extra verification",
+    "decision blockers are present",
+    "disagreement intensity is not low",
+    "persona probability span is above the high-confidence threshold",
+    "edge magnitude is above the high-confidence no-extra-verification threshold",
+    "Deterministic search/fetch budget set to queries=5, fetches=4, min_families=3 based on uncertainty score 6."
+  ],
+  "signals": {
+    "edge_mid_vs_market_pct_points_abs": 5.0,
+    "verification_quality": "medium",
+    "probability_span": 0.14,
+    "contract_ambiguity_detected": false,
+    "contract_ambiguity_level": "minor",
+    "contract_ambiguity_reason": "Binance UI candle named in rules was verified mainly via API plus page text, not the exact future settlement-screen print",
+    "contract_ambiguity_source": "synthesis_frontmatter",
+    "freshness_sensitive": true,
+    "freshness_driver": "Current Binance distance-to-strike can change materially before the April 16 noon ET settlement minute.",
+    "freshness_source": "synthesis_frontmatter",
+    "decision_blocker_count": 3,
+    "blockers_require_new_research": false,
+    "disagreement_type": "interpretation",
+    "disagreement_intensity": "medium",
+    "internal_inconsistency": true,
+    "sidecar_count": 5,
+    "high_confidence_no_extra_verification_passed": false,
+    "high_confidence_gate_reasons": [
+      "edge_independent_verification_quality is not high",
+      "freshness-sensitive case requires extra verification",
+      "decision blockers are present",
+      "disagreement intensity is not low",
+      "persona probability span is above the high-confidence threshold",
+      "edge magnitude is above the high-confidence no-extra-verification threshold"
+    ],
+    "targeted_search_uncertainty_score": 6,
+    "targeted_search_budget_reasons": [
+      "freshness-sensitive case",
+      "decision blockers present",
+      "internal inconsistency / wide persona spread",
+      "medium independent verification quality",
+      "meaningful apparent edge vs market"
+    ]
+  },
+  "budgets": {
+    "persona_sidecars_max": 3,
+    "assumption_snippets_max": 1,
+    "evidence_snippets_max": 1,
+    "supporting_note_snippets_max": 1,
+    "search_queries_allowed": 5,
+    "source_fetches_allowed": 4,
+    "minimum_distinct_source_families": 3,
+    "preferred_distinct_source_families": 4,
+    "max_selected_bundle_chars": 18000
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A sharp risk-off move before April 20 could erase the current spot cushion",
+    "Exchange-specific minute-close mechanics create more fragility than broader spot references"
+  ],
+  "key_assumptions": [
+    "BTC remains in roughly the recent trading regime through April 20 noon ET",
+    "No large downside move pushes the Binance fixing minute close below 70,000"
+  ],
+  "main_logical_chain": [
+    "Verify exact contract mechanics and timing on Polymarket rules",
+    "Check Binance BTCUSDT current level and recent regime on the named source family",
+    "Because current spot is materially above 70k, Yes should be high probability",
+    "Discount below market because a narrow one-minute fixing is less robust than a broad daily-close intuition"
+  ],
+  "main_thesis": "BTC trading materially above 70k on Binance makes Yes more likely than not, but the exact one-minute noon ET fixing makes 86% slightly too high; estimate 79%.",
+  "own_probability": 0.79,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "I estimate 79% for Yes versus the market-implied 86%.",
+    "The governing source of truth is explicitly the Binance BTC/USDT 1-minute candle with timestamp 12:00 ET (noon) on April 20, 2026."
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "market_anchor",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-b4a49d1b",
+    "dispatch_id": "dispatch-case-20260415-b4a49d1b-20260415T000939Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "e3ba5299-2bad-48c6-8179-eb3e4878d179",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-b4a49d1b/researcher-analyses/2026-04-15/dispatch-case-20260415-b4a49d1b-20260415T000939Z/personas/base-rate.md",
+    "source_persona_sha256": "8e08477791eb9d308a445fc58e24ad4ae8c551b1e232788adf7492a0364c853a"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Low source-of-truth ambiguity, medium evidence independence, strong primary relevance because Binance is the named settlement source.",
+  "strongest_disconfirmers": [
+    "Crypto can easily move more than 6% over five days",
+    "Settlement depends on one exact Binance 1-minute close, so minute-level path risk matters"
+  ],
+  "strongest_supports": [
+    "Binance spot was about 74.6k when checked, roughly 6.5% above threshold",
+    "Recent Binance daily data shows BTC has spent substantial recent time above 70k",
+    "Contract asks for threshold maintenance from an already-above-threshold starting point, not a fresh breakout"
+  ],
+  "timing_relevance": "High: market resolves on the Binance BTC/USDT 12:00 ET 1-minute candle close on April 20, 2026.",
+  "unresolved_ambiguities": [
+    "No major wording ambiguity remains; uncertainty is mostly price-path uncertainty"
+  ],
+  "what_would_change_view": "Sustained trading back below 70k or a sharp broad crypto selloff would lower the estimate materially; stable trading above 73k-75k into the final 24-48h would raise it modestly."
+}

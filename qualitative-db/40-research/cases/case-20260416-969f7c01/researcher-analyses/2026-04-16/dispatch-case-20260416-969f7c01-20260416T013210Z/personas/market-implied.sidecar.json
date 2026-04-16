@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A sharp overnight ETH selloff would close the cushion quickly.",
+    "Residual UI-versus-API settlement representation ambiguity.",
+    "One exact noon ET minute determines resolution."
+  ],
+  "key_assumptions": [
+    "Current Binance spot is a valid anchor for tomorrow noon probability.",
+    "Normal overnight volatility is more likely than a >6% downside shock.",
+    "Binance API and UI should reflect the same underlying ETH/USDT market for settlement purposes."
+  ],
+  "main_logical_chain": [
+    "Start from the market prior of 94.5% Yes.",
+    "Check the governing source of truth and exact settlement mechanics on Polymarket rules.",
+    "Verify current Binance ETH/USDT level and short-horizon context directly on Binance data.",
+    "Conclude that Yes is the base case, but trim confidence modestly for tail-risk and venue-specific settlement mechanics."
+  ],
+  "main_thesis": "The market is broadly right that Yes is the base case because Binance ETH/USDT is comfortably above 2200, but 94.5% looks slightly too high for a venue-specific one-minute crypto close that is still nearly a day away.",
+  "own_probability": 0.9,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "current_price = 0.945",
+    "final Close price strictly higher than 2200",
+    "Binance ETHUSDT around 2352.5-2352.6"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260416-969f7c01",
+    "dispatch_id": "dispatch-case-20260416-969f7c01-20260416T013210Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "27948bd5-60af-48f1-a914-06657c345a9c",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-969f7c01/researcher-analyses/2026-04-16/dispatch-case-20260416-969f7c01-20260416T013210Z/personas/market-implied.md",
+    "source_persona_sha256": "399edf98c62bdfef9889283b657acb64a4de2dfbeb80f0ea0de00a54d49edff7"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality direct venue data plus clear contract rules, with only medium independence because most important evidence points back to the same underlying Binance market.",
+  "strongest_disconfirmers": [
+    "Crypto can still move more than 6% in less than a day.",
+    "Settlement is venue-specific and minute-specific, so a Binance-only wick or operational anomaly could matter."
+  ],
+  "strongest_supports": [
+    "Direct Binance ETHUSDT checks were around 2352.5-2352.6, well above 2200.",
+    "Binance 24h low in the check was 2308.5, still above the threshold.",
+    "Polymarket strike ladder around 2200/2300/2400 looked internally coherent."
+  ],
+  "timing_relevance": "Very high: the market resolves on the Apr 17 12:00 ET Binance 1-minute candle close, and the remaining window is short enough that current spot matters but long enough for crypto tail-risk to remain live.",
+  "unresolved_ambiguities": [
+    "Whether Binance website chart presentation and public API would ever diverge in a way that matters for settlement.",
+    "How much tail-risk should be charged over the remaining sub-24h window."
+  ],
+  "what_would_change_view": "I would cut the estimate if Binance ETH/USDT moved materially closer to 2200, if Binance underperformed other spot references, or if an exchange-specific operational/data issue appeared near settlement."
+}

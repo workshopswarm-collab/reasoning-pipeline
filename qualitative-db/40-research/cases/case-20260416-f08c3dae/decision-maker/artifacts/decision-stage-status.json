@@ -1,0 +1,247 @@
+{
+  "actor": "orchestrator",
+  "agent_tool_use_allowed": false,
+  "artifact_type": "decision_stage_status",
+  "case_key": "case-20260416-f08c3dae",
+  "decision_context_path": "roles/decision-maker/runtime/artifacts/case-20260416-f08c3dae/decision-context-dispatch-case-20260416-f08c3dae-20260416T041907Z.json",
+  "decision_lane": {
+    "topic_id": "4344",
+    "topic_title": "case-20260416-f08c3dae | decision | T041907Z",
+    "session_key": "agent:main:telegram:group:-1003846500961:topic:4344"
+  },
+  "decision_launch_claim": {
+    "claimed_at": "2026-04-16T04:28:56.952071Z",
+    "decision_context_path": "roles/decision-maker/runtime/artifacts/case-20260416-f08c3dae/decision-context-dispatch-case-20260416-f08c3dae-20260416T041907Z.json",
+    "launch_log_path": "scripts/.runtime-state/decision-maker-launches/case-20260416-f08c3dae-20260416T042856Z.log",
+    "launcher": "pipeline_automation_actions.launch_decision_maker",
+    "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260416-f08c3dae/decision-prompt-dispatch-case-20260416-f08c3dae-20260416T041907Z.md",
+    "runner_pid": 75587
+  },
+  "decision_prompt_path": "roles/decision-maker/runtime/artifacts/case-20260416-f08c3dae/decision-prompt-dispatch-case-20260416-f08c3dae-20260416T041907Z.md",
+  "decision_readiness": "",
+  "decision_target_chat_id": "-1003846500961",
+  "decision_target_session_key": "agent:main:telegram:group:-1003846500961:topic:4344",
+  "decision_visible_finish_marker": "DECISION-MAKING COMPLETED, DECISION PACKAGE CREATED | market=Will CD Tolima win on 2026-04-18? | dispatch_id=dispatch-case-20260416-f08c3dae-20260416T041907Z | packet_path=qualitative-db/40-research/cases/case-20260416-f08c3dae/decision-maker/decision-maker-packet.md",
+  "decision_visible_receipt_marker": "SYNTHESIS RECEIVED | market=Will CD Tolima win on 2026-04-18? | dispatch_id=dispatch-case-20260416-f08c3dae-20260416T041907Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260416-f08c3dae/decision-context-dispatch-case-20260416-f08c3dae-20260416T041907Z.json",
+  "decision_visible_start_marker": "DECISION-MAKING ANALYSIS UNDERWAY | market=Will CD Tolima win on 2026-04-18? | dispatch_id=dispatch-case-20260416-f08c3dae-20260416T041907Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260416-f08c3dae/decision-context-dispatch-case-20260416-f08c3dae-20260416T041907Z.json",
+  "dispatch_id": "dispatch-case-20260416-f08c3dae-20260416T041907Z",
+  "last_stage_event": {
+    "at": "2026-04-16T04:29:59.102080Z",
+    "stage": "decision_execution",
+    "state": "decision_failed",
+    "message": "Decision-Maker executor crashed",
+    "error": "command failed (1): /opt/homebrew/opt/python@3.14/bin/python3.14 /Users/agent2/.openclaw/orchestrator/roles/decision-maker/runtime/scripts/render_decision_packet.py --packet-json /Users/agent2/.openclaw/orchestrator/qualitative-db/40-research/cases/case-20260416-f08c3dae/decision-maker/artifacts/decision-maker-packet.json --pretty\nSTDOUT:\n\nSTDERR:\nTraceback (most recent call last):\n  File \"/Users/agent2/.openclaw/orchestrator/roles/decision-maker/runtime/scripts/render_decision_packet.py\", line 252, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/agent2/.openclaw/orchestrator/roles/decision-maker/runtime/scripts/render_decision_packet.py\", line 236, in main\n    out_path.write_text(dump_frontmatter(ordered_frontmatter(packet), build_body(packet)))\n                                                                      ~~~~~~~~~~^^^^^^^^\n  File \"/Users/agent2/.openclaw/orchestrator/roles/decision-maker/runtime/scripts/render_decision_packet.py\", line 212, in build_body\n    return \"\\n\".join(lines).rstrip() + \"\\n\"\n           ~~~~~~~~~^^^^^^^\nTypeError: sequence item 23: expected str instance, list found\n"
+  },
+  "packet_json_path": "qualitative-db/40-research/cases/case-20260416-f08c3dae/decision-maker/artifacts/decision-maker-packet.json",
+  "packet_markdown_path": "qualitative-db/40-research/cases/case-20260416-f08c3dae/decision-maker/decision-maker-packet.md",
+  "position_policy": "",
+  "question": "Will CD Tolima win on 2026-04-18?",
+  "recommended_side": "",
+  "schema_version": "decision-stage-status/v1",
+  "selected_input_bundle_estimated_tokens": 2542,
+  "selected_input_bundle_mode": "not_ready_reopen_recommended",
+  "selected_input_bundle_path": "roles/decision-maker/runtime/artifacts/case-20260416-f08c3dae/selected-inputs-dispatch-case-20260416-f08c3dae-20260416T041907Z.json",
+  "stage_events": [
+    {
+      "at": "2026-04-16T04:28:56.428552Z",
+      "message": "Decision-Maker stage initialized from synthesis handoff",
+      "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260416-f08c3dae/synthesizer-agent/decision-handoff.md",
+      "stage": "kickoff",
+      "state": "decision_ready_for_receipt"
+    },
+    {
+      "agent_tool_use_allowed": false,
+      "approx_tokens_after_trim": 2542,
+      "at": "2026-04-16T04:28:56.916398Z",
+      "message": "Built deterministic Decision-Maker selected-input bundle",
+      "selected_input_bundle_path": "roles/decision-maker/runtime/artifacts/case-20260416-f08c3dae/selected-inputs-dispatch-case-20260416-f08c3dae-20260416T041907Z.json",
+      "stage": "decision_input_selection",
+      "state": "built",
+      "verification_mode": "not_ready_reopen_recommended",
+      "verification_mode_path": "roles/decision-maker/runtime/artifacts/case-20260416-f08c3dae/verification-mode-dispatch-case-20260416-f08c3dae-20260416T041907Z.json"
+    },
+    {
+      "at": "2026-04-16T04:28:56.916640Z",
+      "message": "Built Decision-Maker prompt from compact selected-input bundle",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260416-f08c3dae/decision-prompt-dispatch-case-20260416-f08c3dae-20260416T041907Z.md",
+      "stage": "decision_prompt",
+      "state": "built"
+    },
+    {
+      "at": "2026-04-16T04:28:56.918244Z",
+      "message": "Decision-Maker inputs prepared; awaiting launch claim",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260416-f08c3dae/decision-prompt-dispatch-case-20260416-f08c3dae-20260416T041907Z.md",
+      "stage": "decision_prepare",
+      "state": "handoff_prepared"
+    },
+    {
+      "at": "2026-04-16T04:28:56.952071Z",
+      "decision_context_path": "roles/decision-maker/runtime/artifacts/case-20260416-f08c3dae/decision-context-dispatch-case-20260416-f08c3dae-20260416T041907Z.json",
+      "launch_log_path": "scripts/.runtime-state/decision-maker-launches/case-20260416-f08c3dae-20260416T042856Z.log",
+      "message": "Decision-Maker launch claimed by automation controller",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260416-f08c3dae/decision-prompt-dispatch-case-20260416-f08c3dae-20260416T041907Z.md",
+      "runner_pid": 75587,
+      "stage": "decision_receipt",
+      "state": "handoff_sent"
+    },
+    {
+      "at": "2026-04-16T04:28:57.131846Z",
+      "stage": "kickoff",
+      "state": "reentered",
+      "message": "Decision-Maker executor resumed from existing prepared/running state",
+      "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260416-f08c3dae/synthesizer-agent/decision-handoff.md"
+    },
+    {
+      "at": "2026-04-16T04:28:57.624832Z",
+      "stage": "decision_input_selection",
+      "state": "built",
+      "message": "Built deterministic Decision-Maker selected-input bundle",
+      "verification_mode_path": "roles/decision-maker/runtime/artifacts/case-20260416-f08c3dae/verification-mode-dispatch-case-20260416-f08c3dae-20260416T041907Z.json",
+      "selected_input_bundle_path": "roles/decision-maker/runtime/artifacts/case-20260416-f08c3dae/selected-inputs-dispatch-case-20260416-f08c3dae-20260416T041907Z.json",
+      "verification_mode": "not_ready_reopen_recommended",
+      "approx_tokens_after_trim": 2542,
+      "agent_tool_use_allowed": false
+    },
+    {
+      "at": "2026-04-16T04:28:57.625088Z",
+      "stage": "decision_prompt",
+      "state": "built",
+      "message": "Built Decision-Maker prompt from compact selected-input bundle",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260416-f08c3dae/decision-prompt-dispatch-case-20260416-f08c3dae-20260416T041907Z.md"
+    },
+    {
+      "at": "2026-04-16T04:29:02.881705Z",
+      "stage": "decision_lane_bootstrap",
+      "state": "created",
+      "message": "Created dedicated Telegram decision lane",
+      "topic_id": "4344",
+      "topic_title": "case-20260416-f08c3dae | decision | T041907Z",
+      "session_key": "agent:main:telegram:group:-1003846500961:topic:4344"
+    },
+    {
+      "at": "2026-04-16T04:29:18.897791Z",
+      "stage": "decision_receipt",
+      "state": "visible_marker_sent",
+      "message": "SYNTHESIS RECEIVED | market=Will CD Tolima win on 2026-04-18? | dispatch_id=dispatch-case-20260416-f08c3dae-20260416T041907Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260416-f08c3dae/decision-context-dispatch-case-20260416-f08c3dae-20260416T041907Z.json"
+    },
+    {
+      "at": "2026-04-16T04:29:18.898803Z",
+      "stage": "decision_receipt",
+      "state": "accepted",
+      "message": "Decision-Maker handoff accepted",
+      "session_key": "agent:decision-maker:case:case-20260416-f08c3dae",
+      "handoff_status": "started",
+      "gateway_response_path": "roles/decision-maker/runtime/artifacts/case-20260416-f08c3dae/decision-gateway-response-dispatch-case-20260416-f08c3dae-20260416T041907Z.json"
+    },
+    {
+      "at": "2026-04-16T04:29:18.898959Z",
+      "stage": "decision_execution",
+      "state": "decision_analysis_running",
+      "message": "Decision-Maker agent invocation accepted and analysis started",
+      "session_key": "agent:decision-maker:case:case-20260416-f08c3dae",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260416-f08c3dae/decision-prompt-dispatch-case-20260416-f08c3dae-20260416T041907Z.md",
+      "handoff_status": "started"
+    },
+    {
+      "at": "2026-04-16T04:29:27.563289Z",
+      "stage": "decision_execution",
+      "state": "visible_marker_sent",
+      "message": "DECISION-MAKING ANALYSIS UNDERWAY | market=Will CD Tolima win on 2026-04-18? | dispatch_id=dispatch-case-20260416-f08c3dae-20260416T041907Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260416-f08c3dae/decision-context-dispatch-case-20260416-f08c3dae-20260416T041907Z.json"
+    },
+    {
+      "at": "2026-04-16T04:29:32.324142Z",
+      "stage": "decision_validation",
+      "state": "decision_validation_failed_retrying",
+      "message": "Decision packet failed validation; retrying once",
+      "attempt": 1,
+      "errors": [
+        "schema_version must equal decision-packet/v1",
+        "valuation.compressed_toward_market_applied must be boolean"
+      ],
+      "warnings": [],
+      "raw_response_text_path": "roles/decision-maker/runtime/artifacts/case-20260416-f08c3dae/decision-response-dispatch-case-20260416-f08c3dae-20260416T041907Z.raw.txt",
+      "gateway_response_path": "roles/decision-maker/runtime/artifacts/case-20260416-f08c3dae/decision-gateway-response-dispatch-case-20260416-f08c3dae-20260416T041907Z.json",
+      "parse_failure_artifact_path": "roles/decision-maker/runtime/artifacts/case-20260416-f08c3dae/decision-parse-failure-dispatch-case-20260416-f08c3dae-20260416T041907Z.json"
+    },
+    {
+      "at": "2026-04-16T04:29:32.325359Z",
+      "stage": "decision_execution",
+      "state": "decision_retry_requested",
+      "message": "Decision-Maker output invalid; requested one strict JSON retry",
+      "attempt": 2,
+      "retry_error": "schema_version must equal decision-packet/v1; valuation.compressed_toward_market_applied must be boolean",
+      "validation_errors": [
+        "schema_version must equal decision-packet/v1",
+        "valuation.compressed_toward_market_applied must be boolean"
+      ]
+    },
+    {
+      "at": "2026-04-16T04:29:32.325390Z",
+      "stage": "decision_execution",
+      "state": "decision_analysis_running",
+      "message": "Decision-Maker retry requested after invalid packet output",
+      "attempt": 2,
+      "retry_error": "schema_version must equal decision-packet/v1; valuation.compressed_toward_market_applied must be boolean",
+      "validation_errors": [
+        "schema_version must equal decision-packet/v1",
+        "valuation.compressed_toward_market_applied must be boolean"
+      ]
+    },
+    {
+      "at": "2026-04-16T04:29:38.810117Z",
+      "stage": "decision_execution",
+      "state": "decision_retry_accepted",
+      "message": "Decision-Maker retry accepted",
+      "attempt": 2,
+      "session_key": "agent:decision-maker:case:case-20260416-f08c3dae",
+      "gateway_response_path": "roles/decision-maker/runtime/artifacts/case-20260416-f08c3dae/decision-gateway-response-dispatch-case-20260416-f08c3dae-20260416T041907Z-attempt-2.json"
+    },
+    {
+      "at": "2026-04-16T04:29:59.102080Z",
+      "stage": "decision_execution",
+      "state": "decision_failed",
+      "message": "Decision-Maker executor crashed",
+      "error": "command failed (1): /opt/homebrew/opt/python@3.14/bin/python3.14 /Users/agent2/.openclaw/orchestrator/roles/decision-maker/runtime/scripts/render_decision_packet.py --packet-json /Users/agent2/.openclaw/orchestrator/qualitative-db/40-research/cases/case-20260416-f08c3dae/decision-maker/artifacts/decision-maker-packet.json --pretty\nSTDOUT:\n\nSTDERR:\nTraceback (most recent call last):\n  File \"/Users/agent2/.openclaw/orchestrator/roles/decision-maker/runtime/scripts/render_decision_packet.py\", line 252, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/agent2/.openclaw/orchestrator/roles/decision-maker/runtime/scripts/render_decision_packet.py\", line 236, in main\n    out_path.write_text(dump_frontmatter(ordered_frontmatter(packet), build_body(packet)))\n                                                                      ~~~~~~~~~~^^^^^^^^\n  File \"/Users/agent2/.openclaw/orchestrator/roles/decision-maker/runtime/scripts/render_decision_packet.py\", line 212, in build_body\n    return \"\\n\".join(lines).rstrip() + \"\\n\"\n           ~~~~~~~~~^^^^^^^\nTypeError: sequence item 23: expected str instance, list found\n"
+    }
+  ],
+  "status": "decision_failed",
+  "targeted_verification_pack_path": "",
+  "targeted_verification_pack_required": false,
+  "trade_authorization": "",
+  "updated_at": "2026-04-16T04:29:59.102166Z",
+  "verification_mode_path": "roles/decision-maker/runtime/artifacts/case-20260416-f08c3dae/verification-mode-dispatch-case-20260416-f08c3dae-20260416T041907Z.json",
+  "warnings": [],
+  "previous_status": "handoff_sent",
+  "raw_gateway_response_path": "roles/decision-maker/runtime/artifacts/case-20260416-f08c3dae/decision-gateway-response-dispatch-case-20260416-f08c3dae-20260416T041907Z-attempt-2.json",
+  "raw_response_text_path": "roles/decision-maker/runtime/artifacts/case-20260416-f08c3dae/decision-response-dispatch-case-20260416-f08c3dae-20260416T041907Z-attempt-2.raw.txt",
+  "decision_parse_failure_artifact_path": "roles/decision-maker/runtime/artifacts/case-20260416-f08c3dae/decision-parse-failure-dispatch-case-20260416-f08c3dae-20260416T041907Z-attempt-2.json",
+  "decision_parse_attempt_count": 2,
+  "decision_recovered_after_retry": false,
+  "decision_lane_topic_id": "4344",
+  "decision_lane_topic_title": "case-20260416-f08c3dae | decision | T041907Z",
+  "decision_lane_session_key": "agent:main:telegram:group:-1003846500961:topic:4344",
+  "decision_target_topic_id": "4344",
+  "decision_target_topic_title": "case-20260416-f08c3dae | decision | T041907Z",
+  "decision_receipt_marker_sent_at": "2026-04-16T04:29:18.897730+00:00",
+  "decision_analysis_marker_sent_at": "2026-04-16T04:29:27.563227+00:00",
+  "terminal_summary": {
+    "at": "2026-04-16T04:29:59.102185Z",
+    "status": "decision_failed",
+    "decision_lane": {
+      "topic_id": "4344",
+      "topic_title": "case-20260416-f08c3dae | decision | T041907Z",
+      "session_key": "agent:main:telegram:group:-1003846500961:topic:4344"
+    },
+    "packet_json_path": "qualitative-db/40-research/cases/case-20260416-f08c3dae/decision-maker/artifacts/decision-maker-packet.json",
+    "packet_markdown_path": "qualitative-db/40-research/cases/case-20260416-f08c3dae/decision-maker/decision-maker-packet.md",
+    "trade_authorization": "",
+    "decision_readiness": "",
+    "last_stage_event": {
+      "at": "2026-04-16T04:29:59.102080Z",
+      "stage": "decision_execution",
+      "state": "decision_failed",
+      "message": "Decision-Maker executor crashed",
+      "error": "command failed (1): /opt/homebrew/opt/python@3.14/bin/python3.14 /Users/agent2/.openclaw/orchestrator/roles/decision-maker/runtime/scripts/render_decision_packet.py --packet-json /Users/agent2/.openclaw/orchestrator/qualitative-db/40-research/cases/case-20260416-f08c3dae/decision-maker/artifacts/decision-maker-packet.json --pretty\nSTDOUT:\n\nSTDERR:\nTraceback (most recent call last):\n  File \"/Users/agent2/.openclaw/orchestrator/roles/decision-maker/runtime/scripts/render_decision_packet.py\", line 252, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/agent2/.openclaw/orchestrator/roles/decision-maker/runtime/scripts/render_decision_packet.py\", line 236, in main\n    out_path.write_text(dump_frontmatter(ordered_frontmatter(packet), build_body(packet)))\n                                                                      ~~~~~~~~~~^^^^^^^^\n  File \"/Users/agent2/.openclaw/orchestrator/roles/decision-maker/runtime/scripts/render_decision_packet.py\", line 212, in build_body\n    return \"\\n\".join(lines).rstrip() + \"\\n\"\n           ~~~~~~~~~^^^^^^^\nTypeError: sequence item 23: expected str instance, list found\n"
+    }
+  }
+}

@@ -1,0 +1,108 @@
+{
+  "artifact_type": "case_causal_suggestions",
+  "schema_version": "v1",
+  "case_key": "case-20260414-9f18b170",
+  "suggestion_source": "phase3_case_extractor",
+  "projection_significance": {
+    "significant": false,
+    "profile": {
+      "min_active_nodes": 4,
+      "min_candidate_edges": 2,
+      "min_contested_edges": 1,
+      "min_non_intervention_active_nodes": 2,
+      "min_non_intervention_candidate_edges": 1,
+      "min_non_intervention_required_checks": 2
+    },
+    "metrics": {
+      "active_node_count": 1,
+      "candidate_edge_count": 1,
+      "contested_edge_count": 0,
+      "required_check_count": 5,
+      "non_intervention_active_node_count": 1,
+      "non_intervention_candidate_edge_count": 1,
+      "non_intervention_required_check_count": 0,
+      "active_intervention_required_check_count": 3,
+      "draft_intervention_required_check_count": 2,
+      "heuristic_required_check_count": 0
+    },
+    "reasons": [],
+    "weak_support_reasons": []
+  },
+  "context_snapshot": {
+    "platforms": [
+      "polymarket"
+    ],
+    "categories": [
+      "polymarket-discovery"
+    ],
+    "question_mechanics": [
+      "threshold-touch",
+      "intraperiod-high-low"
+    ],
+    "source_of_truth_class": [
+      "authoritative_with_fallback"
+    ],
+    "domains": []
+  },
+  "suggestions": [
+    {
+      "suggestion_id": "case-20260414-9f18b170:primary-resolution-source-identification:base-rate-binance-is-the",
+      "candidate_type": "node",
+      "candidate_label": "Primary resolution source identification",
+      "proposal_key_hint": "primary-resolution-source-identification",
+      "mechanism_family": "source_resolution",
+      "node_type": "workflow_condition",
+      "source_node_key": "",
+      "target_node_key": "",
+      "effect_sign": "",
+      "proposal_source": "case_extractor",
+      "evidence_excerpt": "base-rate: Binance is the governing source and sampled prices were already near $75.7k.",
+      "evidence_channels": [
+        "signal_packet"
+      ],
+      "source_sections": [
+        "Which inputs were high signal"
+      ],
+      "context_snapshot": {
+        "platforms": [
+          "polymarket"
+        ],
+        "categories": [
+          "polymarket-discovery"
+        ],
+        "question_mechanics": [
+          "threshold-touch",
+          "intraperiod-high-low"
+        ],
+        "source_of_truth_class": [
+          "authoritative_with_fallback"
+        ],
+        "domains": []
+      },
+      "genericity_penalty": 0.16,
+      "template_id": "primary-resolution-source-identification",
+      "threshold_profile": {
+        "proposed_min_cases": 2,
+        "draft_min_cases": 3,
+        "draft_min_support_cases": 2,
+        "max_genericity_for_proposed": 0.35,
+        "max_genericity_for_draft": 0.25
+      }
+    }
+  ],
+  "generated_at": "2026-04-15T18:59:00.840605+00:00",
+  "generated_by": "roles/evaluator/runtime/scripts/extract_case_causal_suggestions.py",
+  "source_paths": {
+    "review_path": "qualitative-db/50-learnings/case-reviews/case-20260414-9f18b170/review.md",
+    "signal_packet_path": "qualitative-db/50-learnings/case-reviews/case-20260414-9f18b170/signal-packet.json",
+    "learning_packet_path": "qualitative-db/50-learnings/case-reviews/case-20260414-9f18b170/learning-packet.json",
+    "causal_projection_path": "qualitative-db/50-learnings/case-reviews/case-20260414-9f18b170/causal-projection.json",
+    "canonical_output_path": "qualitative-db/50-learnings/case-reviews/case-20260414-9f18b170/causal-suggestions-canonical.json"
+  },
+  "counts": {
+    "suggestion_count": 1,
+    "suggestion_count_by_type": {
+      "node": 1
+    }
+  }
+}

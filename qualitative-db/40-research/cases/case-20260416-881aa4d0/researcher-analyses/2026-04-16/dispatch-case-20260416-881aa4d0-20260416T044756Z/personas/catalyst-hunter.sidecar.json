@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Single-minute settlement fragility.",
+    "Exchange-specific source-of-truth concentration on Binance.",
+    "Residual tail risk from sudden crypto downside volatility."
+  ],
+  "key_assumptions": [
+    "No major negative macro or crypto-specific surprise hits before settlement.",
+    "No Binance-specific operational problem distorts the settlement minute.",
+    "Ordinary intraday volatility is insufficient to erase the current cushion above 70k."
+  ],
+  "main_logical_chain": [
+    "Contract resolves on one exact Binance BTC/USDT 1m close at 12:00 ET on April 17.",
+    "Current authoritative Binance price context is roughly 74.9k, leaving a several-thousand-dollar cushion above 70k.",
+    "Therefore the relevant catalyst is not upside, but whether a credible near-term downside shock can force sub-70k exactly into the settlement minute.",
+    "Absent such a shock or venue anomaly, Yes remains the likely outcome."
+  ],
+  "main_thesis": "BTC/USDT on Binance is already trading comfortably above 70k, so the only realistic path to a No resolution is a fresh downside shock or Binance-specific anomaly into the exact noon ET settlement minute.",
+  "own_probability": 0.96,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "higher than 70,000",
+    "12:00 ET = 16:00 UTC",
+    "Binance BTC/USDT 1-minute candle final close"
+  ],
+  "reasoning_mode": [
+    "catalyst_analysis",
+    "contract_interpretation",
+    "risk_management"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260416-881aa4d0",
+    "dispatch_id": "dispatch-case-20260416-881aa4d0-20260416T044756Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "20aff16a-6441-438e-8e89-8027760a92af",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-881aa4d0/researcher-analyses/2026-04-16/dispatch-case-20260416-881aa4d0-20260416T044756Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "4419c33b61f714402f6680832a656f8bc0fa140c2fa8562ac9a55d0ee7b88393"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality direct sources for mechanics and spot context, but medium independence because the case is concentrated on one exchange and one market operator.",
+  "strongest_disconfirmers": [
+    "Minute-specific settlement means a fast liquidation cascade could still flip the market.",
+    "Binance-specific wick, outage, or data anomaly could matter even if broader BTC pricing stays healthier elsewhere."
+  ],
+  "strongest_supports": [
+    "Direct Binance pricing was around 74.9k, materially above 70k.",
+    "Binance 24h low checked was still above 70k.",
+    "Polymarket rules clearly point to one Binance BTC/USDT 1m close at noon ET as the source of truth."
+  ],
+  "timing_relevance": "This is effectively a next-day stability question: time favors Yes unless a negative catalyst emerges before the noon ET settlement minute.",
+  "unresolved_ambiguities": [
+    "Rare edge-case ambiguity remains around exact interface/final-candle handling on the settlement surface.",
+    "No independent scheduled catalyst was found that obviously threatens the threshold, but unscheduled shocks remain possible."
+  ],
+  "what_would_change_view": "A verified BTC/USDT drop toward 70k, a liquidation cascade, or Binance-specific instability before settlement would lower confidence in Yes."
+}

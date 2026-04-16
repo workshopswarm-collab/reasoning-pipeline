@@ -1,0 +1,55 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Late risk-off move in crypto before the resolution minute.",
+    "Binance-specific weakness versus other venues into noon ET.",
+    "Any unnoticed issue in exact candle/time mapping on the governing surface."
+  ],
+  "key_assumptions": [
+    "ETH does not suffer a sustained roughly 4% downside move before the April 17 noon ET resolution minute.",
+    "Binance pricing remains broadly aligned with other major ETH spot venues."
+  ],
+  "main_logical_chain": [
+    "The contract resolves on one exact Binance ETH/USDT 1-minute close at noon ET on April 17.",
+    "ETH is currently trading materially above 2200 on Binance and nearby independent venues.",
+    "That makes Yes the outside-view base case, but not near-certainty because short-horizon crypto volatility can still erase a 4% buffer."
+  ],
+  "main_thesis": "ETH is currently well above 2200, so Yes is favored, but the market is somewhat too confident for a one-day timed close-above contract.",
+  "own_probability": 0.82,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "This market will resolve to \"Yes\" if the Binance 1 minute candle for ETH/USDT 12:00 in the ET timezone (noon) ... has a final \"Close\" price higher than the price specified in the title.",
+    "My estimate is 82% Yes."
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "market_anchor",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-605a067d",
+    "dispatch_id": "dispatch-case-20260416-605a067d-20260416T142910Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "0bea9a8d-3bf2-4b6a-9261-3cc4d510709b",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-605a067d/researcher-analyses/2026-04-16/dispatch-case-20260416-605a067d-20260416T142910Z/personas/base-rate.md",
+    "source_persona_sha256": "3823f41660c11de0b6827d32362a00515082e51b87fe3bbac5991c4d1f64f4fe"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary source quality is high because Polymarket explicitly names Binance ETH/USDT 1-minute close rules, and Binance direct market data was cross-checked against Coinbase and Kraken; independence is medium.",
+  "strongest_disconfirmers": [
+    "A roughly 4% move in a day is still plausible for ETH, and one exact-minute close below 2200 would resolve No."
+  ],
+  "strongest_supports": [
+    "Binance ETHUSDT was around 2295 at research time, about 95 dollars above the threshold.",
+    "Coinbase and Kraken spot prices were also around 2295, supporting that the buffer was not venue-specific.",
+    "The contract wording is mechanically clear once the governing source is identified: Binance ETH/USDT 1-minute candle close at 12:00 ET."
+  ],
+  "timing_relevance": "High: the market resolves at 2026-04-17 12:00 ET on one exact 1-minute Binance close, so current price is only a near-term setup signal.",
+  "unresolved_ambiguities": [
+    "Exact Binance chart/UI minute mapping remains the only meaningful mechanical sensitivity, though the rules are otherwise explicit."
+  ],
+  "what_would_change_view": "I would cut the estimate if ETH trades down toward 2230 or below across venues, if Binance weakens versus peers, or if the noon ET candle interpretation looks less clean than assumed."
+}

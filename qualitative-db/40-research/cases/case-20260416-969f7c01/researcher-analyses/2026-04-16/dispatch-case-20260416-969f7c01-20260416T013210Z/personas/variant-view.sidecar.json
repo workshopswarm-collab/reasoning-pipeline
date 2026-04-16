@@ -1,0 +1,61 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Fast downside move before noon ET could erase the cushion.",
+    "Exchange-specific pricing or operational issues on Binance could matter because Binance is the governing source.",
+    "The estimate is sensitive to near-term volatility regime changes."
+  ],
+  "key_assumptions": [
+    "Residual risk is mainly exact-minute volatility rather than a broad ETH repricing below 2200.",
+    "Binance remains operationally reliable and representative at settlement.",
+    "No major macro or crypto-specific shock hits before the resolution minute."
+  ],
+  "main_logical_chain": [
+    "Market implies about 95% Yes for ETH above 2200 on April 17.",
+    "Direct Binance spot is materially above the strike with less than a day remaining.",
+    "That makes Yes the clear base case.",
+    "But the contract's narrow exact-minute Binance-close condition leaves more residual risk than a generic spot snapshot suggests.",
+    "Therefore the best variant view is a modest confidence discount rather than a directional reversal."
+  ],
+  "main_thesis": "ETH is likely to settle above 2200 on Binance at noon ET April 17, but the market's ~95% confidence looks slightly too high for a one-minute next-day crypto close.",
+  "own_probability": 0.9,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for ETH/USDT 12:00 in the ET timezone has a final 'Close' price higher than the price specified.",
+    "Direct Binance spot check during the run returned ETHUSDT at 2352.52."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation",
+    "variant_hypothesis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-969f7c01",
+    "dispatch_id": "dispatch-case-20260416-969f7c01-20260416T013210Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "679c50d3-8adf-489f-92c0-cac9156ba686",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-969f7c01/researcher-analyses/2026-04-16/dispatch-case-20260416-969f7c01-20260416T013210Z/personas/variant-view.md",
+    "source_persona_sha256": "a7a935c15a53551154c2e28d09057baf11ac616a6f3e7d71c93e856ac1d5c1eb"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Low ambiguity on settlement mechanics, medium-quality forecasting evidence led by a direct Binance spot check plus contextual cross-checks.",
+  "strongest_disconfirmers": [
+    "The contract resolves on one exact future one-minute close, so current spot is not dispositive.",
+    "Crypto can move several percent inside one day, leaving some real failure risk even from a comfortable current cushion."
+  ],
+  "strongest_supports": [
+    "Direct Binance ETHUSDT spot check during the run was 2352.52, about 6.9% above the strike.",
+    "Secondary contextual price checks also placed ETH in the low 2300s, supporting the primary read.",
+    "The contract only requires a strict final close above 2200 on one specified minute."
+  ],
+  "timing_relevance": "This is a date-sensitive, timezone-sensitive market resolving on the Binance ETH/USDT 12:00 ET one-minute candle on 2026-04-17.",
+  "unresolved_ambiguities": [
+    "The future 12:00 ET April 17 final close is not yet observable.",
+    "No closer-to-settlement volatility read was available in this run."
+  ],
+  "what_would_change_view": "A closer-to-settlement Binance check still well above 2200 would push the estimate up; a retrace toward 2200, Binance-specific dislocation, or a macro/crypto shock would push it down."
+}

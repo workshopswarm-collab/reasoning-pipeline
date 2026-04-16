@@ -1,0 +1,366 @@
+{
+  "policy_version": "phase11-learned-policy-v1",
+  "loaded_from_file": false,
+  "source_path": "/Users/agent2/.openclaw/orchestrator/qualitative-db/60-causal-map/generated/phase11-retrieval-policy.json",
+  "weights": {
+    "candidate_bonus": {
+      "learned_weight_bonus": 0.712,
+      "shrunken_uplift_bonus": 0.525,
+      "genericity_penalty": 0.262,
+      "status_penalty": 0.18
+    },
+    "live_graph": {
+      "node": {
+        "learned_weight_bonus": 1.13,
+        "negative_weight_penalty": 1.504,
+        "uplift_bonus": 0.825,
+        "negative_uplift_penalty": 0.862,
+        "support_bonus": 0.614,
+        "helpful_bonus": 0.338,
+        "contestation_penalty": 0.852,
+        "decay_penalty": 0.525,
+        "family_crowding_penalty": 0.9,
+        "trust_tier_bonus": {
+          "active_reviewed": 0.522,
+          "trial_experimental": 0.12,
+          "review_only": -0.202
+        },
+        "status_penalty": {
+          "hold_or_draft": 0.28,
+          "retired_or_archived": 0.45
+        }
+      },
+      "edge": {
+        "learned_weight_bonus": 1.29,
+        "negative_weight_penalty": 1.417,
+        "uplift_bonus": 0.825,
+        "negative_uplift_penalty": 0.862,
+        "support_bonus": 0.735,
+        "helpful_bonus": 0.338,
+        "contestation_penalty": 0.6,
+        "decay_penalty": 0.525,
+        "family_crowding_penalty": 0.9,
+        "trust_tier_bonus": {
+          "active_reviewed": 0.464,
+          "trial_experimental": 0.12,
+          "review_only": -0.208
+        },
+        "status_penalty": {
+          "hold_or_draft": 0.28,
+          "retired_or_archived": 0.45
+        }
+      }
+    },
+    "intervention": {
+      "required_check_bonus": 0.383,
+      "mechanic_live_bonus": 0.468,
+      "source_live_bonus": 0.637,
+      "workflow_live_bonus": 0.51
+    },
+    "aggregate_note": {
+      "shared_contested_workflow_edge": 0.722,
+      "threshold_workflow_family": 0.468,
+      "workflow_live_bonus": 0.68,
+      "shared_source_family": 0.765,
+      "source_live_bonus": 0.722
+    },
+    "overlay": {
+      "shadow_trial_score": 0.788,
+      "trial_shrunken_utility": 0.712,
+      "trial_helpful": 0.413,
+      "shadow_helpful": 0.338,
+      "non_intervention_support": 0.413,
+      "distinct_cases": 0.24,
+      "genericity_penalty": 0.845,
+      "harmful_shadow_penalty": 0.413,
+      "trial_harmful_rate_penalty": 0.488,
+      "family_crowding_penalty": 0.9,
+      "merge_penalty": 0.562
+    }
+  },
+  "learning_metadata": {
+    "sample_counts": {
+      "candidate_rows": 0,
+      "node_rows": 9,
+      "edge_rows": 6,
+      "proposal_rows": 15
+    },
+    "signals": {
+      "candidate_bonus": {
+        "learned_weight_bonus": {
+          "count": 0,
+          "correlation": 0.0,
+          "aligned_signal": 0.0,
+          "shrinkage": 0.0,
+          "effective_signal": 0.0
+        },
+        "shrunken_uplift_bonus": {
+          "count": 0,
+          "correlation": 0.0,
+          "aligned_signal": 0.0,
+          "shrinkage": 0.0,
+          "effective_signal": 0.0
+        },
+        "genericity_penalty": {
+          "count": 0,
+          "correlation": 0.0,
+          "aligned_signal": 0.0,
+          "shrinkage": 0.0,
+          "effective_signal": 0.0
+        }
+      },
+      "live_graph": {
+        "node": {
+          "learned_weight_bonus": {
+            "count": 9,
+            "correlation": 0.416463,
+            "aligned_signal": 0.416463,
+            "shrinkage": 0.529412,
+            "effective_signal": 0.220481
+          },
+          "negative_weight_penalty": {
+            "count": 9,
+            "correlation": -0.983188,
+            "aligned_signal": 0.983188,
+            "shrinkage": 0.529412,
+            "effective_signal": 0.520511
+          },
+          "uplift_bonus": {
+            "count": 9,
+            "correlation": 0.0,
+            "aligned_signal": 0.0,
+            "shrinkage": 0.529412,
+            "effective_signal": 0.0
+          },
+          "negative_uplift_penalty": {
+            "count": 9,
+            "correlation": 0.0,
+            "aligned_signal": 0.0,
+            "shrinkage": 0.529412,
+            "effective_signal": 0.0
+          },
+          "support_bonus": {
+            "count": 9,
+            "correlation": 0.343745,
+            "aligned_signal": 0.343745,
+            "shrinkage": 0.529412,
+            "effective_signal": 0.181983
+          },
+          "helpful_bonus": {
+            "count": 9,
+            "correlation": 0.0,
+            "aligned_signal": 0.0,
+            "shrinkage": 0.529412,
+            "effective_signal": 0.0
+          },
+          "contestation_penalty": {
+            "count": 9,
+            "correlation": -0.848697,
+            "aligned_signal": 0.848697,
+            "shrinkage": 0.529412,
+            "effective_signal": 0.44931
+          },
+          "decay_penalty": {
+            "count": 9,
+            "correlation": 0.0,
+            "aligned_signal": 0.0,
+            "shrinkage": 0.529412,
+            "effective_signal": 0.0
+          }
+        },
+        "edge": {
+          "learned_weight_bonus": {
+            "count": 6,
+            "correlation": 0.93867,
+            "aligned_signal": 0.93867,
+            "shrinkage": 0.428571,
+            "effective_signal": 0.402287
+          },
+          "negative_weight_penalty": {
+            "count": 6,
+            "correlation": -1.0,
+            "aligned_signal": 1.0,
+            "shrinkage": 0.428571,
+            "effective_signal": 0.428571
+          },
+          "uplift_bonus": {
+            "count": 6,
+            "correlation": 0.0,
+            "aligned_signal": 0.0,
+            "shrinkage": 0.428571,
+            "effective_signal": 0.0
+          },
+          "negative_uplift_penalty": {
+            "count": 6,
+            "correlation": 0.0,
+            "aligned_signal": 0.0,
+            "shrinkage": 0.428571,
+            "effective_signal": 0.0
+          },
+          "support_bonus": {
+            "count": 6,
+            "correlation": 1.0,
+            "aligned_signal": 1.0,
+            "shrinkage": 0.428571,
+            "effective_signal": 0.428571
+          },
+          "helpful_bonus": {
+            "count": 6,
+            "correlation": 0.0,
+            "aligned_signal": 0.0,
+            "shrinkage": 0.428571,
+            "effective_signal": 0.0
+          },
+          "contestation_penalty": {
+            "count": 6,
+            "correlation": 0.0,
+            "aligned_signal": 0.0,
+            "shrinkage": 0.428571,
+            "effective_signal": 0.0
+          },
+          "decay_penalty": {
+            "count": 6,
+            "correlation": 0.0,
+            "aligned_signal": 0.0,
+            "shrinkage": 0.428571,
+            "effective_signal": 0.0
+          }
+        },
+        "trust_tier_learning": {
+          "node": {
+            "active_reviewed": {
+              "stage": "active",
+              "count": 5,
+              "mean_target": 1.0,
+              "overall_mean": 0.466667,
+              "shrinkage": 0.384615
+            },
+            "trial_experimental": {
+              "stage": "trial",
+              "count": 0,
+              "mean_target": 0.0,
+              "overall_mean": 0.0
+            },
+            "review_only": {
+              "stage": "draft",
+              "count": 2,
+              "mean_target": 0.15,
+              "overall_mean": 0.466667,
+              "shrinkage": 0.2
+            }
+          },
+          "edge": {
+            "active_reviewed": {
+              "stage": "active",
+              "count": 3,
+              "mean_target": 1.0,
+              "overall_mean": 0.858333,
+              "shrinkage": 0.272727
+            },
+            "trial_experimental": {
+              "stage": "trial",
+              "count": 0,
+              "mean_target": 0.0,
+              "overall_mean": 0.0
+            },
+            "review_only": {
+              "stage": "draft",
+              "count": 1,
+              "mean_target": 0.15,
+              "overall_mean": 0.858333,
+              "shrinkage": 0.111111
+            }
+          }
+        }
+      },
+      "overlay": {
+        "shadow_trial_score": {
+          "count": 15,
+          "correlation": 0.0,
+          "aligned_signal": 0.0,
+          "shrinkage": 0.652174,
+          "effective_signal": 0.0
+        },
+        "trial_shrunken_utility": {
+          "count": 15,
+          "correlation": 0.0,
+          "aligned_signal": 0.0,
+          "shrinkage": 0.652174,
+          "effective_signal": 0.0
+        },
+        "trial_helpful": {
+          "count": 15,
+          "correlation": 0.0,
+          "aligned_signal": 0.0,
+          "shrinkage": 0.652174,
+          "effective_signal": 0.0
+        },
+        "shadow_helpful": {
+          "count": 15,
+          "correlation": 0.0,
+          "aligned_signal": 0.0,
+          "shrinkage": 0.652174,
+          "effective_signal": 0.0
+        },
+        "non_intervention_support": {
+          "count": 15,
+          "correlation": 0.0,
+          "aligned_signal": 0.0,
+          "shrinkage": 0.652174,
+          "effective_signal": 0.0
+        },
+        "distinct_cases": {
+          "count": 15,
+          "correlation": 0.0,
+          "aligned_signal": 0.0,
+          "shrinkage": 0.652174,
+          "effective_signal": 0.0
+        },
+        "genericity_penalty": {
+          "count": 15,
+          "correlation": -1.0,
+          "aligned_signal": 1.0,
+          "shrinkage": 0.652174,
+          "effective_signal": 0.652174
+        },
+        "harmful_shadow_penalty": {
+          "count": 15,
+          "correlation": 0.0,
+          "aligned_signal": 0.0,
+          "shrinkage": 0.652174,
+          "effective_signal": 0.0
+        },
+        "trial_harmful_rate_penalty": {
+          "count": 15,
+          "correlation": 0.0,
+          "aligned_signal": 0.0,
+          "shrinkage": 0.652174,
+          "effective_signal": 0.0
+        },
+        "merge_penalty": {
+          "count": 15,
+          "correlation": 0.274062,
+          "aligned_signal": 0.0,
+          "shrinkage": 0.652174,
+          "effective_signal": 0.0
+        }
+      },
+      "structural_surfaces": {
+        "intervention": {
+          "count": 0,
+          "correlation": 0.0,
+          "aligned_signal": 0.0,
+          "shrinkage": 0.0,
+          "effective_signal": 0.0
+        },
+        "aggregate_note": {
+          "count": 0,
+          "correlation": 0.0,
+          "aligned_signal": 0.0,
+          "shrinkage": 0.0,
+          "effective_signal": 0.0
+        }
+      }
+    }
+  }
+}

@@ -155,6 +155,10 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--thinking", default=DEFAULT_THINKING, help="Thinking level for spawned researcher sessions")
     parser.add_argument("--run-timeout-seconds", type=int, default=0, help="Researcher runtime timeout")
     parser.add_argument("--allow-closed-case-rerun", action="store_true", help="Permit dispatch preparation against a closed historical case")
+    parser.add_argument("--allow-active-case-rerun", action="store_true", help="Allow a same-case rerun even when active running research runs exist; requires --rerun-override-reason")
+    parser.add_argument("--rerun-override-reason", default="", help="Required operator reason when bypassing active-case rerun guard")
+    parser.add_argument("--rerun-override-note", default="", help="Optional operator note for the rerun override record")
+    parser.add_argument("--repair-artifact-integrity", action="store_true", help="Allow dispatch to repair missing canonical case artifacts detected during preflight")
     parser.add_argument("--dry-run", action="store_true", help="Compute the dispatch/rerun plan without writing DB state or creating attempt rows")
     parser.add_argument("--db-url", default=os.getenv("PREDQUANT_ORCHESTRATOR_URL", ""), help="Postgres connection URL")
     parser.add_argument("--psql", default=os.getenv("PSQL_BIN", DEFAULT_PSQL), help="Path to psql binary")
@@ -268,6 +272,56 @@ def timeline_file_path(case_key: str) -> str:
     return str(case_root(case_key) / "timeline.md")
 
 
+def inspect_case_artifact_integrity(case_ctx: dict, *, prior_dispatch_count: int) -> dict:
+    case_dir = case_root(case_ctx["case_key"])
+    researcher_analyses_dir = case_dir / "researcher-analyses"
+    expected_paths = {
+        "case_root": case_dir,
+        "case_md": case_dir / "case.md",
+        "researcher_swarm_current_md": case_dir / "researcher-swarm-current.md",
+        "timeline_md": case_dir / "timeline.md",
+        "researcher_analyses_dir": researcher_analyses_dir,
+    }
+    surfaces_expected = bool(prior_dispatch_count > 0 or case_dir.exists())
+    missing: list[str] = []
+    if surfaces_expected:
+        if not expected_paths["case_md"].exists():
+            missing.append("missing_case_md")
+        if not expected_paths["researcher_swarm_current_md"].exists():
+            missing.append("missing_researcher_swarm_current_md")
+        if not expected_paths["timeline_md"].exists():
+            missing.append("missing_timeline_md")
+        if prior_dispatch_count > 0 and not researcher_analyses_dir.exists():
+            missing.append("missing_researcher_analyses_dir")
+    return {
+        "case_root": str(case_dir),
+        "prior_dispatch_count": int(prior_dispatch_count),
+        "surfaces_expected": surfaces_expected,
+        "case_root_exists": case_dir.exists(),
+        "expected_paths": {key: str(path) for key, path in expected_paths.items()},
+        "existing_paths": {key: path.exists() for key, path in expected_paths.items()},
+        "missing_surfaces": missing,
+        "requires_repair": bool(missing),
+        "blocking_without_repair": bool(missing),
+        "status": "ok" if not missing else "repair_required",
+    }
+
+
+
+def build_rerun_override(args: argparse.Namespace) -> dict:
+    override_reason = str(args.rerun_override_reason or "").strip()
+    override_note = str(args.rerun_override_note or "").strip()
+    if args.allow_active_case_rerun and not override_reason:
+        raise ValueError("--allow-active-case-rerun requires --rerun-override-reason")
+    return {
+        "allow_active_case_rerun": bool(args.allow_active_case_rerun),
+        "applied": False,
+        "reason": override_reason,
+        "note": override_note,
+    }
+
+
+
 def render_case_md(case_ctx: dict) -> str:
     lines = [
         "---",
@@ -310,38 +364,143 @@ def render_case_md(case_ctx: dict) -> str:
     return "\n".join(lines).rstrip() + "\n"
 
 
-def render_current_md(case_ctx: dict, *, created_at: str, dispatch_id: str, summary_note_path: str, persona_paths: dict[str, str], difficulty_profile: dict) -> str:
+def frontmatter_scalar(value) -> str:
+    if value is None or value == '':
+        return 'null'
+    if isinstance(value, bool):
+        return 'true' if value else 'false'
+    if isinstance(value, (int, float)):
+        return json.dumps(value)
+    return json.dumps(str(value))
+
+
+def append_frontmatter_fields(lines: list[str], fields: list[tuple[str, object]]) -> None:
+    for key, value in fields:
+        if isinstance(value, list):
+            normalized = [item for item in value if item not in (None, '')]
+            lines.append(f"{key}: {json.dumps(normalized)}")
+        else:
+            lines.append(f"{key}: {frontmatter_scalar(value)}")
+
+
+def lmd_frontmatter_fields(*, lmd_bundle_path: str, lmd_bundle: dict | None) -> list[tuple[str, object]]:
+    bundle = lmd_bundle or {}
+    results = bundle.get('results') or {}
+    required_check_keys: list[str] = []
+    for item in (results.get('required_checks') or []):
+        if isinstance(item, dict):
+            key = str(item.get('check_key') or '').strip()
+        else:
+            key = str(item).strip()
+        if key and key not in required_check_keys:
+            required_check_keys.append(key)
+    intervention_keys: list[str] = []
+    for item in (results.get('active_interventions') or []):
+        if not isinstance(item, dict):
+            continue
+        key = str(item.get('intervention_key') or '').strip()
+        if key and key not in intervention_keys:
+            intervention_keys.append(key)
+    trial_overlay = bundle.get('trial_overlay') if isinstance(bundle.get('trial_overlay'), dict) else {}
+    trial_candidate_ids: list[str] = []
+    trial_injected_count = 0
+    for item in (trial_overlay.get('selected_candidates') or []):
+        if not isinstance(item, dict):
+            continue
+        pid = str(item.get('proposal_id') or '').strip()
+        if pid and pid not in trial_candidate_ids:
+            trial_candidate_ids.append(pid)
+        if item.get('injected'):
+            trial_injected_count += 1
+    audit_path = None
+    if lmd_bundle_path:
+        audit_path = str(Path(lmd_bundle_path).with_name('lmd-causal-audit.json'))
+    return [
+        ('lmd_bundle_present', bool(lmd_bundle_path or bundle)),
+        ('lmd_bundle_path', lmd_bundle_path or None),
+        ('lmd_causal_audit_path', audit_path),
+        ('lmd_bundle_status', bundle.get('status')),
+        ('lmd_used', bool(bundle.get('lmd_used', False))),
+        ('lmd_usage_mode', bundle.get('usage_mode')),
+        ('lmd_assignment_arm', bundle.get('assignment_arm')),
+        ('lmd_tier', bundle.get('lmd_tier')),
+        ('lmd_result_paths', bundle.get('result_paths') or []),
+        ('lmd_required_check_keys', required_check_keys),
+        ('learning_intervention_keys', intervention_keys),
+        ('trial_overlay_enabled', bool(trial_overlay.get('enabled', False))),
+        ('trial_overlay_used', bool(trial_overlay.get('used', False))),
+        ('trial_overlay_mode', trial_overlay.get('overlay_mode')),
+        ('trial_overlay_preview_only', bool(trial_overlay.get('preview_only', True))),
+        ('trial_overlay_selected_count', int(trial_overlay.get('selected_count') or 0)),
+        ('trial_overlay_injected_count', trial_injected_count),
+        ('trial_overlay_candidate_ids', trial_candidate_ids),
+    ]
+
+
+
+def build_dispatch_gate_status(*, preflight: dict, rerun_context: dict, rerun_override: dict, artifact_integrity: dict, lmd_assignment: dict, lmd_bundle: dict | None) -> dict:
+    bundle = lmd_bundle or {}
+    trial_overlay = bundle.get('trial_overlay') if isinstance(bundle.get('trial_overlay'), dict) else {}
+    return {
+        'artifact_integrity_ok': not bool(artifact_integrity.get('requires_repair')),
+        'artifact_repair_required': bool(artifact_integrity.get('requires_repair')),
+        'running_conflicts_present': int(preflight.get('running_conflict_count') or 0) > 0,
+        'rerun_override_applied': bool(rerun_override.get('applied')),
+        'rerun_scope': rerun_context.get('rerun_scope'),
+        'run_kind': rerun_context.get('run_kind'),
+        'lmd_assignment_arm': lmd_assignment.get('arm'),
+        'lmd_assignment_status': lmd_assignment.get('status'),
+        'lmd_bundle_status': bundle.get('status'),
+        'lmd_used': bool(bundle.get('lmd_used', False)),
+        'trial_overlay_enabled': bool(trial_overlay.get('enabled', False)),
+        'trial_overlay_used': bool(trial_overlay.get('used', False)),
+        'trial_overlay_mode': trial_overlay.get('overlay_mode'),
+        'trial_overlay_selected_count': int(trial_overlay.get('selected_count') or 0),
+        'trial_overlay_injected_count': len([
+            item
+            for item in (trial_overlay.get('selected_candidates') or [])
+            if isinstance(item, dict) and item.get('injected')
+        ]),
+        'preflight_ready': not bool(preflight.get('running_conflict_count') or 0) or bool(rerun_override.get('applied')),
+    }
+
+
+
+def render_current_md(case_ctx: dict, *, created_at: str, dispatch_id: str, summary_note_path: str, persona_paths: dict[str, str], difficulty_profile: dict, lmd_bundle_path: str, lmd_bundle: dict | None) -> str:
     lines = [
-        "---",
-        "type: researcher_swarm_current",
+        '---',
+        'type: researcher_swarm_current',
         f"case_key: {case_ctx.get('case_key')}",
         f"dispatch_id: {dispatch_id}",
         f"analysis_date: {analysis_date(created_at)}",
         f"updated_at: {created_at}",
-        "generated_by: orchestrator",
-        "---",
-        "",
+        'generated_by: orchestrator',
+    ]
+    append_frontmatter_fields(lines, lmd_frontmatter_fields(lmd_bundle_path=lmd_bundle_path, lmd_bundle=lmd_bundle))
+    lines.extend([
+        '---',
+        '',
         f"# Researcher swarm current — {case_ctx.get('case_key')}",
-        "",
+        '',
         f"- latest_dispatch_id: `{dispatch_id}`",
         f"- latest_analysis_date: `{analysis_date(created_at)}`",
         f"- latest_summary: `{summary_note_path}`",
         f"- current_price: `{case_ctx.get('current_price')}`",
         f"- difficulty_class: `{difficulty_profile.get('difficulty_class')}`",
         f"- resolution_risk: `{difficulty_profile.get('resolution_risk')}`",
-        "",
-        "## Latest persona findings",
-    ]
+        '',
+        '## Latest persona findings',
+    ])
     for persona, path in persona_paths.items():
         lines.append(f"- `{persona}` -> `{path}`")
     lines.extend([
-        "",
-        "## Notes",
-        "- This file is a generated latest-view surface for the researcher swarm state for this case.",
-        "- Canonical per-analysis history lives under `researcher-analyses/<YYYY-MM-DD>/<dispatch-id>/...`.",
-        "",
+        '',
+        '## Notes',
+        '- This file is a generated latest-view surface for the researcher swarm state for this case.',
+        '- Canonical per-analysis history lives under `researcher-analyses/<YYYY-MM-DD>/<dispatch-id>/...`.',
+        '',
     ])
-    return "\n".join(lines).rstrip() + "\n"
+    return '\n'.join(lines).rstrip() + '\n'
 
 
 def update_timeline_md(path: Path, *, created_at: str, dispatch_id: str, case_key: str, summary_note_path: str, dry_run: bool) -> None:
@@ -359,49 +518,52 @@ def update_timeline_md(path: Path, *, created_at: str, dispatch_id: str, case_ke
     path.write_text(header + entry)
 
 
-def render_summary_md(case_ctx: dict, *, created_at: str, dispatch_id: str, persona_paths: dict[str, str], assumption_paths: dict[str, str], evidence_paths: dict[str, str], difficulty_profile: dict) -> str:
+def render_summary_md(case_ctx: dict, *, created_at: str, dispatch_id: str, persona_paths: dict[str, str], assumption_paths: dict[str, str], evidence_paths: dict[str, str], difficulty_profile: dict, lmd_bundle_path: str, lmd_bundle: dict | None) -> str:
     lines = [
-        "---",
-        "type: research_analysis_summary",
+        '---',
+        'type: research_analysis_summary',
         f"case_key: {case_ctx.get('case_key')}",
         f"dispatch_id: {dispatch_id}",
         f"analysis_date: {analysis_date(created_at)}",
         f"generated_at: {created_at}",
-        "generated_by: orchestrator",
-        "---",
-        "",
+        'generated_by: orchestrator',
+    ]
+    append_frontmatter_fields(lines, lmd_frontmatter_fields(lmd_bundle_path=lmd_bundle_path, lmd_bundle=lmd_bundle))
+    lines.extend([
+        '---',
+        '',
         f"# Analysis summary — {dispatch_id}",
-        "",
-        "## Analysis context",
+        '',
+        '## Analysis context',
         f"- case_key: `{case_ctx.get('case_key')}`",
         f"- title: {case_ctx.get('title')}",
         f"- current_price_at_dispatch: `{case_ctx.get('current_price')}`",
         f"- difficulty_class: `{difficulty_profile.get('difficulty_class')}`",
         f"- resolution_risk: `{difficulty_profile.get('resolution_risk')}`",
         f"- evidence_floor: `{difficulty_profile.get('evidence_floor')}`",
-        "",
-        "## Persona findings",
-    ]
+        '',
+        '## Persona findings',
+    ])
     for persona, path in persona_paths.items():
         lines.append(f"- `{persona}` -> `{path}`")
     lines.extend([
-        "",
-        "## Supporting artifacts",
+        '',
+        '## Supporting artifacts',
     ])
     for persona, path in assumption_paths.items():
         lines.append(f"- assumption `{persona}` -> `{path}`")
     for persona, path in evidence_paths.items():
         lines.append(f"- evidence `{persona}` -> `{path}`")
     lines.extend([
-        "",
-        "## Notes",
-        "- This summary is generated at dispatch-preparation time and can later be enriched by Orchestrator-side consolidation or review workflows.",
-        "",
+        '',
+        '## Notes',
+        '- This summary is generated at dispatch-preparation time and can later be enriched by Orchestrator-side consolidation or review workflows.',
+        '',
     ])
-    return "\n".join(lines).rstrip() + "\n"
+    return '\n'.join(lines).rstrip() + '\n'
 
 
-def write_case_analysis_scaffolds(case_ctx: dict, *, created_at: str, dispatch_id: str, persona_paths: dict[str, str], assumption_paths: dict[str, str], evidence_paths: dict[str, str], difficulty_profile: dict, dry_run: bool) -> dict:
+def write_case_analysis_scaffolds(case_ctx: dict, *, created_at: str, dispatch_id: str, persona_paths: dict[str, str], assumption_paths: dict[str, str], evidence_paths: dict[str, str], difficulty_profile: dict, lmd_bundle_path: str, lmd_bundle: dict | None, dry_run: bool) -> dict:
     case_dir = case_root(case_ctx['case_key'])
     analysis_dir = analysis_root(case_ctx['case_key'], created_at, dispatch_id)
     summary_note_path = summary_path(case_ctx['case_key'], created_at, dispatch_id)
@@ -413,6 +575,7 @@ def write_case_analysis_scaffolds(case_ctx: dict, *, created_at: str, dispatch_i
         'timeline_md': timeline_file_path(case_ctx['case_key']),
         'summary_md': summary_note_path,
         'qmd_bundle_json': str(analysis_dir / 'qmd-bundle.json'),
+        'lmd_bundle_json': str(analysis_dir / 'lmd-bundle.json'),
     }
     if dry_run:
         scaffolds['status'] = 'dry_run'
@@ -438,6 +601,8 @@ def write_case_analysis_scaffolds(case_ctx: dict, *, created_at: str, dispatch_i
             summary_note_path=summary_note_path,
             persona_paths=persona_paths,
             difficulty_profile=difficulty_profile,
+            lmd_bundle_path=lmd_bundle_path,
+            lmd_bundle=lmd_bundle,
         )
     )
     update_timeline_md(case_dir / 'timeline.md', created_at=created_at, dispatch_id=dispatch_id, case_key=case_ctx['case_key'], summary_note_path=summary_note_path, dry_run=dry_run)
@@ -450,6 +615,8 @@ def write_case_analysis_scaffolds(case_ctx: dict, *, created_at: str, dispatch_i
             assumption_paths=assumption_paths,
             evidence_paths=evidence_paths,
             difficulty_profile=difficulty_profile,
+            lmd_bundle_path=lmd_bundle_path,
+            lmd_bundle=lmd_bundle,
         )
     )
 
@@ -611,6 +778,142 @@ def write_qmd_bundle(path_str: str, bundle: dict, *, dry_run: bool) -> dict:
     return {"status": "written", "path": str(path.relative_to(WORKSPACE_ROOT))}
 
 
+def generate_lmd_bundle(*, args: argparse.Namespace, case_ctx: dict, difficulty_profile: dict, rerun_context: dict, lmd_assignment: dict, out_path: str) -> dict:
+    script = BASE_DIR / "generate_lmd_bundle.py"
+    fallback_bundle = {
+        "status": "not_run",
+        "lmd_used": False,
+        "lmd_tier": None,
+        "query_profile": {
+            "run_kind": rerun_context.get("run_kind"),
+            "difficulty_class": difficulty_profile.get("difficulty_class"),
+            "resolution_risk": difficulty_profile.get("resolution_risk"),
+            "source_of_truth_class": difficulty_profile.get("source_of_truth_class"),
+            "focus_hints": difficulty_profile.get("focus_hints") or [],
+            "suppress_same_case": True,
+        },
+        "retrieval_policy": {},
+        "causal_context": {
+            "active_nodes": [],
+            "matched_edges": [],
+            "contested_edges": [],
+            "required_checks": [],
+        },
+        "results": {
+            "case_reviews": [],
+            "active_interventions": [],
+            "aggregate_notes": [],
+            "required_checks": [],
+        },
+        "result_paths": [],
+    }
+    fallback = {
+        "ok": True,
+        "bundle_path": out_path,
+        "bundle_write": {"status": "skipped"},
+        "bundle": fallback_bundle,
+    }
+    if not script.exists():
+        fallback_bundle["status"] = "generator_missing"
+        return fallback
+    script_args = [
+        "--pretty",
+        "--case-key", case_ctx["case_key"],
+        "--market-id", case_ctx["market_id"],
+        "--title", case_ctx["title"],
+        "--description", case_ctx.get("description") or "",
+        "--category", case_ctx.get("category") or "",
+        "--platform", case_ctx.get("platform") or "",
+        "--current-price", str(case_ctx.get("current_price") or ""),
+        "--closes-at", str(case_ctx.get("closes_at") or ""),
+        "--resolves-at", str(case_ctx.get("resolves_at") or ""),
+        "--run-kind", rerun_context.get("run_kind") or "novel",
+        "--rerun-scope", rerun_context.get("rerun_scope") or "",
+        "--prior-dispatch-count", str(rerun_context.get("prior_dispatch_count") or 0),
+        "--prior-case-count", str(rerun_context.get("prior_case_count") or 0),
+        "--difficulty-class", difficulty_profile.get("difficulty_class") or "",
+        "--resolution-risk", difficulty_profile.get("resolution_risk") or "",
+        "--source-of-truth-class", difficulty_profile.get("source_of_truth_class") or "",
+        "--focus-hints-json", json.dumps(difficulty_profile.get("focus_hints") or []),
+        "--extra-verification-required", json.dumps(bool(difficulty_profile.get("extra_verification_required"))),
+        "--experiment-arm", lmd_assignment.get("arm") or "",
+        "--generator-version", lmd_assignment.get("generator_version") or "lmd-generator-v1",
+        "--policy-version", lmd_assignment.get("policy_version") or "lmd-policy-v1",
+        "--db-url", args.db_url,
+        "--psql", args.psql,
+        "--out", out_path,
+    ]
+    if args.dry_run:
+        script_args.append("--dry-run")
+    try:
+        result = python_json(script, script_args)
+    except Exception as exc:  # noqa: BLE001
+        fallback_bundle["status"] = "generator_error"
+        fallback_bundle["generator_error"] = str(exc)
+        return fallback
+    if not isinstance(result, dict):
+        fallback_bundle["status"] = "generator_invalid"
+        return fallback
+    result.setdefault("bundle_path", out_path)
+    return result
+
+
+def assign_lmd_experiment(*, args: argparse.Namespace, case_ctx: dict, difficulty_profile: dict, rerun_context: dict) -> dict:
+    script = WORKSPACE_ROOT / "roles" / "evaluator" / "runtime" / "scripts" / "assign_lmd_experiment_arm.py"
+    fallback = {
+        "status": "not_run",
+        "case_key": case_ctx["case_key"],
+        "experiment_id": "researcher-lmd-v1",
+        "arm": "control",
+        "generator_version": "lmd-generator-v0",
+        "policy_version": "lmd-policy-v0",
+        "assignment_unit": "case_key",
+        "assignment_fraction": None,
+        "treatment_ratio": 0.5,
+        "persisted": False,
+    }
+    if not script.exists():
+        fallback["status"] = "assigner_missing"
+        return fallback
+    notes = {
+        "run_kind": rerun_context.get("run_kind"),
+        "rerun_scope": rerun_context.get("rerun_scope"),
+        "difficulty_class": difficulty_profile.get("difficulty_class"),
+        "source_of_truth_class": difficulty_profile.get("source_of_truth_class"),
+        "focus_hints": difficulty_profile.get("focus_hints") or [],
+    }
+    script_args = [
+        "--pretty",
+        "--case-key", case_ctx["case_key"],
+        "--notes-json", json.dumps(notes),
+        "--db-url", args.db_url,
+        "--psql", args.psql,
+    ]
+    if args.dry_run:
+        script_args.append("--dry-run")
+    try:
+        assignment = python_json(
+            script,
+            script_args,
+        )
+    except Exception as exc:  # noqa: BLE001
+        fallback["status"] = "assigner_error"
+        fallback["error"] = str(exc)
+        return fallback
+    if not isinstance(assignment, dict):
+        fallback["status"] = "assigner_invalid"
+        return fallback
+    assignment.setdefault("status", "ok")
+    assignment.setdefault("case_key", case_ctx["case_key"])
+    assignment.setdefault("experiment_id", fallback["experiment_id"])
+    assignment.setdefault("arm", fallback["arm"])
+    assignment.setdefault("generator_version", fallback["generator_version"])
+    assignment.setdefault("policy_version", fallback["policy_version"])
+    assignment.setdefault("assignment_unit", fallback["assignment_unit"])
+    assignment.setdefault("persisted", False)
+    return assignment
+
+
 def load_telegram_runtime_config() -> dict:
     if not TELEGRAM_RUNTIME_CONFIG_PATH.exists():
         raise FileNotFoundError(f"telegram runtime config not found: {TELEGRAM_RUNTIME_CONFIG_PATH}")
@@ -721,6 +1024,7 @@ def main() -> int:
 
         case_run_state = run_sql(args.psql, args.db_url, {"case_id": case_ctx["case_id"]}, CASE_RUN_STATE_SQL)
         existing_runs = case_run_state.get("runs") or []
+        rerun_override = build_rerun_override(args)
         running_conflicts = active_running_conflicts(existing_runs)
         if running_conflicts:
             conflict_dispatches = sorted({
@@ -728,9 +1032,17 @@ def main() -> int:
                 for row in running_conflicts
                 if (row.get("notes") or {}).get("dispatch_id")
             })
-            raise ValueError(
-                "case already has running research runs; rerun blocked until the active swarm is reconciled"
-                + (f" (dispatches: {', '.join(conflict_dispatches)})" if conflict_dispatches else "")
+            if not rerun_override.get("allow_active_case_rerun"):
+                raise ValueError(
+                    "case already has running research runs; rerun blocked until the active swarm is reconciled"
+                    + (f" (dispatches: {', '.join(conflict_dispatches)})" if conflict_dispatches else "")
+                )
+            rerun_override.update(
+                {
+                    "applied": True,
+                    "conflict_dispatches": conflict_dispatches,
+                    "conflict_count": len(running_conflicts),
+                }
             )
 
         superseded_runs = {}
@@ -759,8 +1071,25 @@ def main() -> int:
             existing_runs=existing_runs,
             active_dispatch_id=case_run_state.get("active_dispatch_id"),
         )
+        artifact_integrity = inspect_case_artifact_integrity(case_ctx, prior_dispatch_count=int(rerun_context.get("prior_dispatch_count") or 0))
+        if artifact_integrity.get("requires_repair") and not args.repair_artifact_integrity:
+            missing = ", ".join(artifact_integrity.get("missing_surfaces") or [])
+            raise ValueError(
+                "case artifact integrity preflight failed; rerun blocked until canonical case artifacts are repaired"
+                + (f" (missing: {missing})" if missing else "")
+                + " -- rerun with --repair-artifact-integrity to allow scaffold repair"
+            )
+        if artifact_integrity.get("requires_repair") and args.repair_artifact_integrity:
+            artifact_integrity["repair_authorized"] = True
+            artifact_integrity["status"] = "repair_authorized"
 
         lane_fingerprint = build_lane_fingerprint(case_ctx)
+        lmd_assignment = assign_lmd_experiment(
+            args=args,
+            case_ctx=case_ctx,
+            difficulty_profile=difficulty_profile,
+            rerun_context=rerun_context,
+        )
 
         difficulty_notes_payload = {
             "case_id": case_ctx["case_id"],
@@ -776,6 +1105,19 @@ def main() -> int:
                     "focus_hints": difficulty_profile.get("focus_hints") or [],
                 },
                 "rerun_context": rerun_context,
+                "rerun_override": rerun_override,
+                "artifact_integrity": artifact_integrity,
+                "lmd_experiment": {
+                    "experiment_id": lmd_assignment.get("experiment_id"),
+                    "arm": lmd_assignment.get("arm"),
+                    "generator_version": lmd_assignment.get("generator_version"),
+                    "policy_version": lmd_assignment.get("policy_version"),
+                    "assignment_unit": lmd_assignment.get("assignment_unit"),
+                    "assignment_fraction": lmd_assignment.get("assignment_fraction"),
+                    "treatment_ratio": lmd_assignment.get("treatment_ratio"),
+                    "persisted": lmd_assignment.get("persisted", False),
+                    "assignment_status": lmd_assignment.get("status"),
+                },
                 "difficulty_meta": {
                     "classifier_source": difficulty_profile.get("classifier_source"),
                     "classifier_model": difficulty_profile.get("classifier_model"),
@@ -848,6 +1190,7 @@ def main() -> int:
             for persona in args.personas
         }
         qmd_bundle_path = str(analysis_root(case_ctx["case_key"], created_at, dispatch_id) / "qmd-bundle.json")
+        lmd_bundle_path = str(analysis_root(case_ctx["case_key"], created_at, dispatch_id) / "lmd-bundle.json")
         qmd_bundle = generate_qmd_bundle(
             args=args,
             case_ctx=case_ctx,
@@ -855,6 +1198,28 @@ def main() -> int:
             rerun_context=rerun_context,
         )
         qmd_bundle_write = write_qmd_bundle(qmd_bundle_path, qmd_bundle, dry_run=args.dry_run)
+        lmd_result = generate_lmd_bundle(
+            args=args,
+            case_ctx=case_ctx,
+            difficulty_profile=difficulty_profile,
+            rerun_context=rerun_context,
+            lmd_assignment=lmd_assignment,
+            out_path=lmd_bundle_path,
+        )
+        lmd_bundle = lmd_result.get("bundle") or {}
+        preflight_summary = {
+            "running_conflict_count": len(running_conflicts),
+            "stale_queued_count": len(stale_queued),
+            "would_set_active_dispatch_id": dispatch_id,
+        }
+        gate_status = build_dispatch_gate_status(
+            preflight=preflight_summary,
+            rerun_context=rerun_context,
+            rerun_override=rerun_override,
+            artifact_integrity=artifact_integrity,
+            lmd_assignment=lmd_assignment,
+            lmd_bundle=lmd_bundle,
+        )
         scaffold_result = write_case_analysis_scaffolds(
             case_ctx,
             created_at=created_at,
@@ -863,6 +1228,8 @@ def main() -> int:
             assumption_paths=assumption_paths,
             evidence_paths=evidence_paths,
             difficulty_profile=difficulty_profile,
+            lmd_bundle_path=lmd_bundle_path,
+            lmd_bundle=lmd_bundle,
             dry_run=args.dry_run,
         )
 
@@ -932,6 +1299,8 @@ def main() -> int:
                 "difficulty_profile": difficulty_profile,
                 "qmd_bundle": qmd_bundle,
                 "qmd_bundle_path": qmd_bundle_path,
+                "lmd_bundle": lmd_bundle,
+                "lmd_bundle_path": lmd_bundle_path,
             }
             prompt_result = python_json(build_prompt_script, ["--pretty"], prompt_payload)
             prompt_text = prompt_result["prompt"]
@@ -998,11 +1367,45 @@ def main() -> int:
                 "rerun_scope": rerun_context["rerun_scope"],
                 "prior_dispatch_count": rerun_context["prior_dispatch_count"],
                 "prior_case_count": rerun_context["prior_case_count"],
+                "rerun_override": rerun_override,
+                "artifact_integrity": artifact_integrity,
+                "gate_status": gate_status,
                 "qmd_used": qmd_bundle.get("qmd_used", False),
                 "qmd_tier": qmd_bundle.get("qmd_tier"),
                 "qmd_bundle_path": qmd_bundle_path,
                 "qmd_result_paths": qmd_bundle.get("result_paths") or [],
                 "qmd_query_profile": qmd_bundle.get("query_profile") or {},
+                "lmd_experiment_id": lmd_assignment.get("experiment_id"),
+                "lmd_experiment_arm": lmd_assignment.get("arm"),
+                "lmd_generator_version": lmd_assignment.get("generator_version"),
+                "lmd_policy_version": lmd_assignment.get("policy_version"),
+                "lmd_assignment_unit": lmd_assignment.get("assignment_unit"),
+                "lmd_assignment_fraction": lmd_assignment.get("assignment_fraction"),
+                "lmd_assignment_status": lmd_assignment.get("status"),
+                "lmd_bundle_status": lmd_bundle.get("status"),
+                "lmd_used": lmd_bundle.get("lmd_used", False),
+                "lmd_tier": lmd_bundle.get("lmd_tier"),
+                "lmd_bundle_path": lmd_bundle_path,
+                "lmd_causal_audit_path": str(Path(lmd_bundle_path).with_name('lmd-causal-audit.json')) if lmd_bundle_path else None,
+                "lmd_result_paths": lmd_bundle.get("result_paths") or [],
+                "lmd_query_profile": lmd_bundle.get("query_profile") or {},
+                "lmd_required_checks": lmd_bundle.get("results", {}).get("required_checks") or [],
+                "lmd_negative_checks": lmd_bundle.get("results", {}).get("negative_checks") or [],
+                "lmd_exposure_logged": False,
+                "trial_overlay_enabled": bool((lmd_bundle.get("trial_overlay") or {}).get("enabled", False)),
+                "trial_overlay_used": bool((lmd_bundle.get("trial_overlay") or {}).get("used", False)),
+                "trial_overlay_mode": (lmd_bundle.get("trial_overlay") or {}).get("overlay_mode"),
+                "trial_overlay_preview_only": bool((lmd_bundle.get("trial_overlay") or {}).get("preview_only", True)),
+                "trial_overlay_selected_count": int((lmd_bundle.get("trial_overlay") or {}).get("selected_count") or 0),
+                "trial_overlay_injected_count": len([item for item in (((lmd_bundle.get("trial_overlay") or {}).get("selected_candidates") or [])) if isinstance(item, dict) and item.get("injected")]),
+                "trial_overlay_candidate_ids": [item.get("proposal_id") for item in (((lmd_bundle.get("trial_overlay") or {}).get("selected_candidates") or [])) if isinstance(item, dict) and item.get("proposal_id")],
+                "trial_overlay_logged": False,
+                "learning_interventions_used": bool(lmd_bundle.get("lmd_used") and ((lmd_bundle.get("results") or {}).get("active_interventions") or [])),
+                "learning_intervention_bundle_path": lmd_bundle_path if lmd_bundle.get("lmd_used") else None,
+                "learning_intervention_keys": [item.get("intervention_key") for item in (((lmd_bundle.get("results") or {}).get("active_interventions") or [])) if item.get("intervention_key")],
+                "learning_intervention_paths": [item.get("path") for item in (((lmd_bundle.get("results") or {}).get("active_interventions") or [])) if item.get("path")],
+                "learning_intervention_required_checks": lmd_bundle.get("results", {}).get("required_checks") or [],
+                "learning_intervention_application_surface": "researcher_prompt",
                 "reasoning_sidecar_path": reasoning_sidecar_path,
             }
             if lane_seed.get("delivery_target_topic_id"):
@@ -1079,7 +1482,11 @@ def main() -> int:
             "difficulty_persistence": case_notes_result,
             "scaffolds": scaffold_result,
             "qmd": {"bundle_path": qmd_bundle_path, "bundle_write": qmd_bundle_write, "bundle": qmd_bundle},
+            "lmd": {"bundle_path": lmd_bundle_path, "assignment": lmd_assignment, "bundle_write": lmd_result.get("bundle_write"), "bundle": lmd_bundle},
             "superseded_stale_runs": superseded_runs,
+            "rerun_override": rerun_override,
+            "artifact_integrity": artifact_integrity,
+            "gate_status": gate_status,
             "planner": {
                 "script": "roles/orchestrator/researchers-swarm-subagents/planner/scripts/dispatch_case_research.py",
                 "version": None,
@@ -1120,17 +1527,20 @@ def main() -> int:
             "dispatch_stage": "dry_run_preview" if args.dry_run else "awaiting_topic_reuse_or_creation",
             "agent_runtime_dispatch_required": not args.dry_run,
             "preflight": {
-                "running_conflict_count": len(running_conflicts),
-                "stale_queued_count": len(stale_queued),
-                "would_set_active_dispatch_id": dispatch_id,
+                **preflight_summary,
+                "rerun_override_applied": bool(rerun_override.get("applied")),
+                "rerun_override_reason": rerun_override.get("reason"),
+                "artifact_integrity_status": artifact_integrity.get("status"),
+                "artifact_integrity_missing_surfaces": artifact_integrity.get("missing_surfaces") or [],
                 "would_reuse_lane_count": sum(1 for run in runs if run.get("lane_reused")),
                 "would_create_attempt_count": len(runs),
             },
             "agent_runtime_steps": [
                 "validate manifest before launch",
                 "for each run, check idempotency against current research_runs status and prior telegram topic metadata",
-                "if the case already has active running attempts, block the rerun until the active swarm is reconciled",
+                "if the case already has active running attempts, block the rerun until the active swarm is reconciled unless an explicit rerun override reason authorizes the bypass",
                 "if the case has stale queued attempts, supersede them before creating new attempt rows",
+                "before reruns, validate canonical case artifact integrity and require explicit repair authorization when expected case surfaces are missing",
                 "before reusing a prior lane, require an exact lane fingerprint match on case_id, market_id, platform, external_market_id, and outcome_type",
                 "legacy lanes without a stored fingerprint must not be reused; create fresh topics for those personas instead",
                 "reuse the existing controller/persona Telegram topics when prior lane metadata exists and the fingerprint matches; otherwise create the missing topics",

@@ -1,0 +1,61 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A weekend or overnight risk-off shock could erase the existing cushion quickly.",
+    "This contract can fail on a narrow timestamp even if BTC trades above $70k for much of the surrounding period.",
+    "Exchange-specific anomalies on Binance would matter more here than in a broader BTC price market."
+  ],
+  "key_assumptions": [
+    "No unscheduled negative catalyst forces BTC below $70k before noon ET on April 20.",
+    "Binance trading conditions remain normal enough that the noon close reflects broad spot conditions rather than venue-specific disruption.",
+    "The absence of major scheduled macro catalysts inside the window matters more than bearish sentiment context."
+  ],
+  "main_logical_chain": [
+    "Verify the contract settles on Binance BTC/USDT using the April 20 12:00 ET one-minute close above $70,000.",
+    "Check Binance spot and recent daily candles to see whether BTC already has meaningful cushion over the threshold.",
+    "Check whether major scheduled macro catalysts sit inside the April 15-20 window and could plausibly force repricing.",
+    "Conclude that Yes is still the base case, but with lower confidence than the market because timestamp-specific settlement mechanics keep volatility risk material."
+  ],
+  "main_thesis": "BTC is already trading materially above $70k on the same exchange used for settlement, and the remaining scheduled catalyst window looks light, so Yes is more likely than not; however, the noon-ET one-minute Binance close makes the contract narrower and more fragile than the market price implies.",
+  "own_probability": 0.8,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone",
+    "current_price: 0.875",
+    "price: 74192.71000000",
+    "April 28-29"
+  ],
+  "reasoning_mode": [
+    "catalyst_analysis",
+    "scenario_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-84fdc62d",
+    "dispatch_id": "dispatch-case-20260415-84fdc62d-20260415T125809Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "e5d88500-22c1-41d7-9001-5f63ddf7a26b",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-84fdc62d/researcher-analyses/2026-04-15/dispatch-case-20260415-84fdc62d-20260415T125809Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "9995a7977d9a5b29f09a5af1e678a3d2a640e38b607215528a105ea9daa33a0e"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is medium-high overall: rules and price context came from the actual contract and named settlement venue, while macro calendar checks came from primary schedule sources; sentiment was only a secondary cross-check.",
+  "strongest_disconfirmers": [
+    "The contract resolves on a single Binance BTC/USDT 12:00 ET one-minute close, so ordinary volatility or a noon-time wick can still settle No.",
+    "Crypto sentiment read as Extreme Fear, implying fragile downside tails if a bad headline hits."
+  ],
+  "strongest_supports": [
+    "Binance BTC/USDT was around $74.2k on April 15, leaving roughly $4.2k of cushion versus the threshold.",
+    "Recent Binance daily closes were mostly above $70k, so the market does not need a fresh breakout to settle Yes.",
+    "March CPI already released on April 10 and the next FOMC meeting is April 28-29, leaving a relatively light scheduled catalyst window before resolution."
+  ],
+  "timing_relevance": "The key catalyst point is that major routine macro events are mostly outside the remaining window, so repricing risk comes more from unscheduled shocks than from the scheduled calendar.",
+  "unresolved_ambiguities": [
+    "Unscheduled macro, regulatory, geopolitical, or crypto-specific headlines remain the dominant tail risk.",
+    "The exact size of noon-candle wick risk is not directly measurable from the limited verification set used here."
+  ],
+  "what_would_change_view": "I would cut the estimate if BTC lost the low-$72k/$71k area, if a major negative catalyst emerged before April 20, or if Binance showed trading anomalies; I would move closer to market if BTC held comfortably above ~$72k into the weekend with no new stress."
+}

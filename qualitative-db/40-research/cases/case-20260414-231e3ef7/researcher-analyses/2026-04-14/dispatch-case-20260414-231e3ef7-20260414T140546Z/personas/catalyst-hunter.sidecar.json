@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "The exact official tie/playoff wording was context-checked but not fully extracted from the FIDE PDF regulations.",
+    "The probability would move sharply on the official result of round 13."
+  ],
+  "key_assumptions": [
+    "Official FIDE round-12 standings are the governing current-state source.",
+    "Round 13 versus Giri is the only major remaining reopening catalyst.",
+    "Tie-for-first or playoff mechanics remain possible enough to keep the estimate below the market."
+  ],
+  "main_logical_chain": [
+    "Use FIDE official round-12 standings as the source of truth for current tournament state.",
+    "Note that Sindarov leads by two points with two rounds remaining, making him overwhelmingly favored.",
+    "Identify round 13 versus Giri as the only truly material remaining catalyst.",
+    "Discount the estimate slightly versus market because a loss there or a playoff path can still prevent immediate clean resolution."
+  ],
+  "main_thesis": "Sindarov is overwhelmingly likely to win the 2026 Candidates, but the market still slightly overstates certainty because the direct round-13 game against Giri and a possible tie/playoff path remain live.",
+  "own_probability": 0.97,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "With two rounds remaining",
+    "must-win situation with the white pieces against tournament leader Javokhir Sindarov",
+    "I was aiming for forcing draw lines"
+  ],
+  "reasoning_mode": [
+    "catalyst_analysis",
+    "scenario_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-231e3ef7",
+    "dispatch_id": "dispatch-case-20260414-231e3ef7-20260414T140546Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "0cb42b0f-9383-4221-ac7a-b749d8f985fb",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-231e3ef7/researcher-analyses/2026-04-14/dispatch-case-20260414-231e3ef7-20260414T140546Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "a33bcc9857aeb1f23829ac58f9afe391aabcde4563d34c5e3b99a668b61a5c33"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High on current-state evidence because FIDE is both official organizer and named resolution source; moderate on structural cross-check because the independent contextual verification was Wikipedia rather than directly parsed official regulations text.",
+  "strongest_disconfirmers": [
+    "Giri is still second and gets the direct head-to-head chance in round 13.",
+    "A tie-for-first / playoff path could still matter, so classical lead is not identical to settled market resolution."
+  ],
+  "strongest_supports": [
+    "FIDE standings after round 12 show Sindarov on 9/12, two points clear with two rounds left.",
+    "Official round 9-12 reporting shows challengers repeatedly failing to cut materially into the lead.",
+    "Remaining schedule concentrates risk into one obvious node rather than broad field uncertainty."
+  ],
+  "timing_relevance": "This is almost entirely a next-catalyst case now: round 13 versus Giri is the main live event that can still move the market materially before final resolution.",
+  "unresolved_ambiguities": [
+    "Exact first-place playoff mechanics from the official 2026 regulations were not directly parsed from PDF text in this run.",
+    "The market allows credible-consensus fallback if official FIDE confirmation lags."
+  ],
+  "what_would_change_view": "An official round-13 loss by Sindarov would cut the estimate sharply; an official round-13 draw or win, or explicit FIDE clinch language, would push the estimate toward certainty."
+}

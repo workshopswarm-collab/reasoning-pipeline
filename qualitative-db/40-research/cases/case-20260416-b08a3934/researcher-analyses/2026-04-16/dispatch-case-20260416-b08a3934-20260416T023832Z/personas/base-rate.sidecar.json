@@ -1,0 +1,58 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A sharp overnight or morning selloff could erase the spot cushion.",
+    "Venue-specific operational or display issues on Binance near settlement would matter disproportionately."
+  ],
+  "key_assumptions": [
+    "BTC remains in a normal short-horizon volatility regime through settlement.",
+    "Binance BTCUSDT market functioning and candle publication remain ordinary.",
+    "No major downside catalyst hits before noon ET on Apr 17."
+  ],
+  "main_logical_chain": [
+    "The contract resolves on a specific Binance BTCUSDT 1-minute candle close at 12:00 ET on Apr 17.",
+    "Current Binance spot is already materially above 72000.",
+    "For a sub-24-hour horizon, the base-rate expectation is persistence above threshold unless a downside shock occurs.",
+    "Because recent BTC volatility can still produce a multi-percent drop quickly, probability should stay high but below near-certainty."
+  ],
+  "main_thesis": "BTC is already materially above 72000 on Binance, so the outside-view base case is persistence above the threshold through the Apr 17 noon ET settlement minute, though normal crypto volatility keeps No live.",
+  "own_probability": 0.88,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "Binance ticker price endpoint showing BTCUSDT at 75072.79000000",
+    "Material conditions that must all hold for a Yes resolution"
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "contract_interpretation",
+    "risk_management"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-b08a3934",
+    "dispatch_id": "dispatch-case-20260416-b08a3934-20260416T023832Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "4dfaf218-ef92-44f0-b482-e54f5c2348ee",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-b08a3934/researcher-analyses/2026-04-16/dispatch-case-20260416-b08a3934-20260416T023832Z/personas/base-rate.md",
+    "source_persona_sha256": "e11865686c611a1aa12213aed093a47d53b903b3b69470725a85e05b188ca6c1"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality direct settlement-source verification from Binance plus a weaker but useful independent contextual pass from CoinGecko; source-of-truth ambiguity is low.",
+  "strongest_disconfirmers": [
+    "BTC can move 4%+ in less than a day, so a drop below 72000 before the settlement minute is plausible.",
+    "Polymarket references the Binance chart surface specifically, creating a small but nonzero operational interpretation risk."
+  ],
+  "strongest_supports": [
+    "Direct Binance spot check showed BTCUSDT at 75072.79, roughly 4.3% above the threshold.",
+    "Settlement mechanics are specific and checkable: Binance BTC/USDT 12:00 ET 1-minute candle final close.",
+    "Independent 30-day context suggests 72000 is below current spot, so Yes does not require a fresh breakout."
+  ],
+  "timing_relevance": "This is a short-horizon threshold market; with less than a day until settlement, current spot margin over 72000 is the dominant base-rate input.",
+  "unresolved_ambiguities": [
+    "Exact final 12:00 ET candle close is not yet knowable.",
+    "The chart-surface-vs-API distinction is probably immaterial but not fully provable ex ante."
+  ],
+  "what_would_change_view": "A material selloff toward the low-72000s, evidence of a near-term market-moving catalyst, or Binance operational anomalies would lower the estimate."
+}

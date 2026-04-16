@@ -1,0 +1,61 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Single-timestamp noon ET resolution increases path risk.",
+    "Only a modest drawdown is needed to move from Yes to No.",
+    "Potential Binance-specific display or candle irregularity matters more than in broader price markets."
+  ],
+  "key_assumptions": [
+    "SOL remains in the recent low-to-mid 80s trading regime through April 19 noon ET.",
+    "No broad crypto risk-off move or Binance-specific dislocation pushes the relevant 1-minute close to 80 or below.",
+    "The Binance web-chart resolution surface behaves consistently with Binance exchange candle data."
+  ],
+  "main_logical_chain": [
+    "Polymarket rules specify that settlement depends on the Binance SOL/USDT 12:00 ET one-minute candle close on April 19 being strictly above 80.",
+    "Direct Binance price context shows SOL currently around 84.92 and recent daily lows mostly above 80.",
+    "That supports a Yes lean, but the remaining price cushion is small enough that ordinary crypto volatility can still break the thesis.",
+    "Therefore Yes is still more likely than No, but confidence should be below the market-implied 90%."
+  ],
+  "main_thesis": "SOL is more likely than not to close above 80 on the relevant Binance noon ET minute, but the 90% market price looks somewhat overconfident because the threshold cushion is modest relative to crypto weekend and single-minute timing risk.",
+  "own_probability": 0.82,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "This market will resolve to Yes if the Binance 1 minute candle for SOL/USDT 12:00 in the ET timezone has a final Close price higher than 80.",
+    "My working estimate is 82%, below the market-implied 90%, because this is a narrow single-minute Binance close market and the current cushion above 80 is only about 5 dollars."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "risk_management",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-5ecb60de",
+    "dispatch_id": "dispatch-case-20260415-5ecb60de-20260416T000100Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "d25de3d1-4961-4365-b083-096ab0446405",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-5ecb60de/researcher-analyses/2026-04-16/dispatch-case-20260415-5ecb60de-20260416T000100Z/personas/risk-manager.md",
+    "source_persona_sha256": "c27e0cc81a295fa5c5fd0f22e9a8c371be344d930eb457fd6e1cfec1ac39c64d"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary mechanics and direct price context are high quality because Binance is the named source of truth, but evidence independence is limited by source concentration.",
+  "strongest_disconfirmers": [
+    "A roughly 6% downside move from current spot would be enough to flip the market, which is not implausible in crypto over several days.",
+    "This is a single-minute threshold market, so a brief selloff at the wrong time can resolve No even if surrounding prices are stronger.",
+    "Evidence quality is high but concentrated in one source family because Binance is both the named source of truth and the direct price source."
+  ],
+  "strongest_supports": [
+    "Current Binance spot was about 84.92, leaving roughly 4.92 above the 80 threshold.",
+    "Recent Binance daily lows were still mostly above 80, including about 81.27 on April 12 and 83.30 on April 14.",
+    "Contract mechanics are clear: Binance SOL/USDT, 1-minute candle, final Close, 12:00 ET."
+  ],
+  "timing_relevance": "Resolution is at a single noon ET minute on Sunday, April 19, 2026; during DST that corresponds to 16:00 UTC, which makes timing and weekend path risk central to the estimate.",
+  "unresolved_ambiguities": [
+    "The rules reference the Binance website candle display, while verification also used Binance API docs and endpoints.",
+    "Short-horizon crypto market direction into the weekend remains inherently uncertain."
+  ],
+  "what_would_change_view": "I would move toward the market if a closer-to-expiry check still showed SOL comfortably above 80 with stable intraday lows; I would move lower if SOL trades back toward 82 or 81, broader crypto turns sharply risk-off, or Binance-specific irregularities appear."
+}

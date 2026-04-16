@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Single-minute settlement sensitivity.",
+    "Potential downside volatility over a six-day horizon.",
+    "Minor operational ambiguity from website-candle resolution wording rather than explicit API language."
+  ],
+  "key_assumptions": [
+    "BTC remains in the current 70k-plus trading regime through the April 20 noon ET settlement minute.",
+    "Binance continues to function normally as the governing BTC/USDT price source.",
+    "No major macro or crypto shock forces a regime break below 70k before settlement."
+  ],
+  "main_logical_chain": [
+    "The governing contract asks only whether Binance BTC/USDT closes above 70k on the 12:00 ET one-minute candle on April 20.",
+    "Current Binance price and recent regime put BTC comfortably above the threshold with a short time horizon remaining.",
+    "But the narrow one-minute settlement condition makes the event less robust than the market price suggests.",
+    "Therefore Yes is favored, but less strongly than the market's 84.5% baseline."
+  ],
+  "main_thesis": "Yes is more likely than not because BTC is currently well above 70k on Binance and the horizon is short, but the market overstates confidence because settlement depends on a single 12:00 ET one-minute close.",
+  "own_probability": 0.76,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "Yes requires the final Close of the Binance BTC/USDT 1m candle at 12:00 ET on April 20 to be higher than 70,000.",
+    "Market-implied probability: 84.5%; own estimate: 76%."
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "contract_interpretation",
+    "market_anchor"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-e15c72fe",
+    "dispatch_id": "dispatch-case-20260414-e15c72fe-20260414T193100Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "05bb85d5-d68a-479d-9b1a-0373f334887b",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-e15c72fe/researcher-analyses/2026-04-14/dispatch-case-20260414-e15c72fe-20260414T193100Z/personas/base-rate.md",
+    "source_persona_sha256": "249a3b22c72a16e9d51f1f5c75b8acd475768a15d28dcbeee209be321f0b60a7"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Good direct evidence for a medium-difficulty price market: Polymarket rules define settlement and Binance is the named source, but evidence independence is only medium because both core sources are tightly linked to the same contract/venue.",
+  "strongest_disconfirmers": [
+    "The contract resolves on one exact future minute, not on a daily close or average price.",
+    "Only 15 of the last 30 Binance daily closes sampled were above 70k, which is materially below the market-implied 84.5%.",
+    "BTC volatility is large enough that a several-thousand-dollar move over six days is structurally plausible."
+  ],
+  "strongest_supports": [
+    "Binance BTC/USDT spot was about 74.25k during research, leaving roughly a 4.25k cushion above the threshold.",
+    "Six of the most recent seven Binance daily closes sampled were above 70k.",
+    "Only six days remain until settlement, limiting the time for a full regime reversal."
+  ],
+  "timing_relevance": "High: the contract depends on the April 20, 2026 12:00 ET one-minute Binance BTC/USDT close, operationally equivalent to about 16:00 UTC under EDT.",
+  "unresolved_ambiguities": [
+    "Whether Binance website presentation could matter in edge cases differently from API retrieval.",
+    "How stable the 70k regime remains through US-hours trading into settlement."
+  ],
+  "what_would_change_view": "I would cut the estimate if BTC loses the 70k regime before settlement or if contract-specific timing/source interpretation risk proves larger than assumed; I would raise it if BTC keeps holding several thousand dollars above 70k into the weekend with lower downside volatility."
+}

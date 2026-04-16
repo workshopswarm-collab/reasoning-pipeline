@@ -1,0 +1,61 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Single-minute-close path dependence.",
+    "Venue-specific settlement dependence on Binance BTC/USDT.",
+    "Ordinary BTC volatility can exceed the current price buffer."
+  ],
+  "key_assumptions": [
+    "Current Binance BTC/USDT cushion above 72000 remains informative through April 21.",
+    "No multi-percent downside move erases the buffer by the exact noon ET minute.",
+    "Binance settlement data remain operationally clean and unambiguous."
+  ],
+  "main_logical_chain": [
+    "Polymarket rules define the governing source as the Binance BTC/USDT 1-minute candle close at 12:00 ET on April 21.",
+    "Current Binance pricing is above 72000 and recent venue-matched history supports a Yes lean.",
+    "But a one-minute-close contract several days out deserves a meaningful uncertainty discount.",
+    "That leaves a moderate Yes estimate below, but near, the 70.5% market baseline."
+  ],
+  "main_thesis": "BTC is more likely than not to finish above 72000 on Binance at the April 21 noon ET minute close, but the market is slightly overconfident because the contract depends on one exact venue-specific 1-minute close.",
+  "own_probability": 0.66,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone",
+    "final Close price higher than the price specified"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "risk_management",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-8bef05aa",
+    "dispatch_id": "dispatch-case-20260416-8bef05aa-20260416T144205Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "a8df6a32-3081-4b9c-a9e2-23f9c06c0571",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-8bef05aa/researcher-analyses/2026-04-16/dispatch-case-20260416-8bef05aa-20260416T144205Z/personas/risk-manager.md",
+    "source_persona_sha256": "b9842b2603218968232e6ad6e47b15478bd9048ffe7d7dc130b57daacd601542"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary source quality is high for contract mechanics and Binance API is high for venue-matched context; independence is medium and source-of-truth ambiguity is low for the mechanism.",
+  "strongest_disconfirmers": [
+    "The contract settles on one exact 12:00 ET 1-minute close, not any touch or daily close.",
+    "Recent 4h and daily ranges are large enough to erase the current cushion within ordinary volatility.",
+    "There are still several days for a reversal before the qualifying minute occurs."
+  ],
+  "strongest_supports": [
+    "Binance BTC/USDT spot was about 73997 on April 16, already roughly 2.8% above the threshold.",
+    "Recent Binance daily candles show BTC has repeatedly traded above or around the target zone.",
+    "The governing source is Binance BTC/USDT, so venue-matched evidence is directly relevant."
+  ],
+  "timing_relevance": "Timing is central because the event has not yet occurred and the contract resolves on one exact noon ET minute close on April 21, 2026.",
+  "unresolved_ambiguities": [
+    "How stable BTC will be near the exact noon ET window on April 21.",
+    "Whether realized volatility compresses or expands into resolution."
+  ],
+  "what_would_change_view": "I would move up if BTC holds a larger cushion above 74k into April 20-21, and move down if Binance BTC/USDT loses 72k or trends toward low-72k/high-71k closes before settlement."
+}

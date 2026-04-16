@@ -1,0 +1,61 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "The cushion above 72k is only a few percent in a volatile asset.",
+    "Precise-minute settlement makes path timing more fragile than a broader close or average.",
+    "The thesis depends more on no shock arriving than on a positive catalyst appearing."
+  ],
+  "key_assumptions": [
+    "No fresh macro or crypto-specific shock drives BTC below 72k into the settlement minute.",
+    "Binance remains a usable and representative settlement surface without exchange-specific distortion.",
+    "Recent range context remains informative over the next six days."
+  ],
+  "main_logical_chain": [
+    "The contract resolves on Binance BTC/USDT at the April 21 12:00 ET one-minute close, so venue, pair, timezone, and minute precision matter.",
+    "Current Binance spot sits materially above 72k, giving a cushion into the event window.",
+    "The remaining window appears light on obvious already-known scheduled macro catalysts after CPI already passed.",
+    "Therefore Yes is favored unless a new downside catalyst emerges and lands close enough to settlement to matter."
+  ],
+  "main_thesis": "BTC is more likely than not to finish above 72,000 on the Binance noon ET one-minute close on April 21 because current spot has a meaningful cushion and no obvious top-tier scheduled catalyst remains in the window, though a sharp downside shock could still flip the precise-minute outcome.",
+  "own_probability": 0.84,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "Binance BTC/USDT 1-minute candle for BTC/USDT 12:00 in the ET timezone",
+    "current Binance spot was about 74,991.82 during review",
+    "market-implied probability from current_price 0.805 is 80.5%"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "catalyst_analysis",
+    "contract_interpretation",
+    "scenario_analysis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-1a345042",
+    "dispatch_id": "dispatch-case-20260415-1a345042-20260415T223206Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "8e7f5442-fea1-4013-ada2-3c98d75e6c22",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-1a345042/researcher-analyses/2026-04-15/dispatch-case-20260415-1a345042-20260415T223206Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "0f3d2cbc125dcb7042c72908c0fb8d3f49162d17e28cacbbbec658b03842823a"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is reasonably strong for a medium-difficulty case: Polymarket rules and Binance provide direct contract and venue evidence, BLS provides an authoritative calendar check, and CoinGecko offers only contextual range confirmation.",
+  "strongest_disconfirmers": [
+    "Bitcoin can move 4% or more quickly, and the contract resolves on one precise minute rather than a daily close.",
+    "A late risk-off shock, ETF-flow reversal, or liquidation cascade could still break the threshold near settlement."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT spot was about 74,991.82 during review, above the threshold.",
+    "Recent 7-day price context showed BTC often trading above 72k.",
+    "The obvious scheduled CPI catalyst had already passed on April 10 per BLS."
+  ],
+  "timing_relevance": "Timing is central because the market settles on one exact Binance minute at noon ET on April 21, so the key question is whether a downside catalyst appears before that window rather than whether BTC is broadly healthy over the week.",
+  "unresolved_ambiguities": [
+    "Whether any unobserved macro or policy headline in the window could dominate price action.",
+    "Whether Binance-specific operational noise could affect the settlement candle."
+  ],
+  "what_would_change_view": "I would turn less bullish if BTC drops toward 73k before April 21, if a major macro/policy shock appears, if ETF-flow or liquidation stress turns clearly negative, or if Binance-specific operational issues arise."
+}

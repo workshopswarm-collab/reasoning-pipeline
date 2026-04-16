@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Late selloff into the noon-ET settlement window.",
+    "Small practical ambiguity between Binance API and the exact UI/chart settlement surface.",
+    "High short-horizon crypto volatility compressing the cushion faster than expected."
+  ],
+  "key_assumptions": [
+    "The current roughly $2.6k cushion above $72k is meaningful relative to ordinary short-horizon BTC volatility.",
+    "Binance API and the settlement-facing Binance candle surface are practically aligned.",
+    "No major macro or crypto-specific shock arrives before the noon-ET settlement candle."
+  ],
+  "main_logical_chain": [
+    "Start from the market's 90.5% prior and ask whether current venue-specific evidence supports it.",
+    "Check Polymarket rules to confirm the exact settlement mechanism is Binance BTC/USDT 12:00 ET 1-minute close.",
+    "Check Binance direct price and recent 1-minute klines to measure current distance from the 72k threshold.",
+    "Conclude that Yes is still the most likely outcome, but trim below market because one-minute timing and crypto volatility preserve meaningful tail risk."
+  ],
+  "main_thesis": "The market's ~90.5% Yes price is broadly reasonable because BTC/USDT is comfortably above $72k, but I shade lower because a one-minute noon-ET Binance settlement still leaves path and timing risk.",
+  "own_probability": 0.87,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "The current market-implied probability is about 90.5% Yes",
+    "My own estimate is 87% Yes",
+    "The strongest disconfirming consideration is that this is a narrow timing contract"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260415-f07c9e26",
+    "dispatch_id": "dispatch-case-20260415-f07c9e26-20260415T013036Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "4d859e28-92cb-4d7a-9e82-adea7e5deccf",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-f07c9e26/researcher-analyses/2026-04-15/dispatch-case-20260415-f07c9e26-20260415T013036Z/personas/market-implied.md",
+    "source_persona_sha256": "d3c6ef926e13d393a356c5414f4ffd087e79c9612bba22cb9e814792197428f6"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality for mechanics and current venue state, but only medium-low independence because the key sources are tightly coupled to the same venue and market structure.",
+  "strongest_disconfirmers": [
+    "A roughly 3.5% downside move before the exact settlement minute could still flip the result.",
+    "The contract resolves on a single one-minute close on one venue, so timing/path risk matters disproportionately."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT spot was about 74663.59 during research, materially above the threshold.",
+    "Recent Binance 1-minute closes were clustered around the mid-74k area, not near 72k.",
+    "The broader Polymarket ladder also priced 74k as more likely than not, supporting a distribution centered above 72k."
+  ],
+  "timing_relevance": "High: the contract resolves on the Binance BTC/USDT 12:00 ET one-minute close on April 16, so exact timing mechanics are material.",
+  "unresolved_ambiguities": [
+    "Whether any UI/API display nuance could matter at the exact settlement moment.",
+    "How much event risk could emerge before April 16 noon ET."
+  ],
+  "what_would_change_view": "A drop toward the low-72k to 73k area before settlement, evidence of elevated event risk, or proof that the settlement-facing Binance surface differs materially from the API-aligned interpretation would lower confidence."
+}

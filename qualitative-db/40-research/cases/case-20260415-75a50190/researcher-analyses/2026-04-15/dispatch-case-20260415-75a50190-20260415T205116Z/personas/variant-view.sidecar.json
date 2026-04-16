@@ -1,0 +1,57 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "medium",
+  "fragility_points": [
+    "A strong BTC cushion above 72k near expiry would weaken the variant view.",
+    "Evidence independence is limited because core contract interpretation and line pricing come from the same Polymarket surface.",
+    "The thesis is about contract mechanics more than a differentiated macro BTC signal."
+  ],
+  "key_assumptions": [
+    "The market is underweighting exact-minute settlement fragility relative to the broader BTC directional story.",
+    "No current evidence supports a much larger deviation than modest disagreement.",
+    "Binance remains a usable and unambiguous settlement surface for the relevant minute bucket."
+  ],
+  "main_logical_chain": [
+    "Identify the contract as a narrow Binance BTC/USDT single-minute close question rather than a generic BTC price view.",
+    "Note that strict threshold, exact timestamp, and single-exchange settlement create extra failure modes for Yes.",
+    "Conclude that Yes remains favored but should trade modestly below the market's 78-81% pricing."
+  ],
+  "main_thesis": "The market is modestly overconfident on Yes because this contract settles on one exact Binance BTC/USDT 1-minute close at noon ET, so single-minute and exchange-specific risk deserve a discount versus a generic BTC-above-72k narrative.",
+  "own_probability": 0.72,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "This market will resolve to Yes if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone has a final Close price higher than the price specified.",
+    "The resolution source for this market is Binance, specifically the BTC/USDT Close prices."
+  ],
+  "reasoning_mode": [
+    "contract_interpretation",
+    "variant_hypothesis",
+    "scenario_analysis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-75a50190",
+    "dispatch_id": "dispatch-case-20260415-75a50190-20260415T205116Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "44701633-3211-4e79-b56f-506369a0b275",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-75a50190/researcher-analyses/2026-04-15/dispatch-case-20260415-75a50190-20260415T205116Z/personas/variant-view.md",
+    "source_persona_sha256": "6d9dbad486f8b7428fe3faa1b0ab1201fad2161dbd171965d27fc28a001fa25f"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality authoritative contract source for mechanics, but only low-to-medium evidence independence for pricing interpretation because the key contextual source is the same market page.",
+  "strongest_disconfirmers": [
+    "If BTC is comfortably above 72k with a large cushion into April 21, exact-minute risk becomes small and market pricing near 78-81% could be fair."
+  ],
+  "strongest_supports": [
+    "Rules are narrow: Binance-only, BTC/USDT-only, one 1-minute candle, noon ET, final close, strict-greater-than 72,000.",
+    "A small adverse move into the exact minute can flip the result even if the broader BTC trend remains constructive.",
+    "Timing sanity check confirmed noon ET on 2026-04-21 corresponds to 16:00 UTC."
+  ],
+  "timing_relevance": "Resolution depends on the Binance BTC/USDT 1-minute candle labeled 12:00 ET on 2026-04-21, which is 16:00 UTC.",
+  "unresolved_ambiguities": [
+    "How much additional variance the exact Binance noon-ET minute adds versus broader BTC spot over this horizon.",
+    "Whether late-stage BTC cushion into resolution will dominate microstructure risk."
+  ],
+  "what_would_change_view": "I would move closer to or above market if BTC holds a durable cushion above 72k into April 20-21 and Binance-specific minute risk appears negligible."
+}

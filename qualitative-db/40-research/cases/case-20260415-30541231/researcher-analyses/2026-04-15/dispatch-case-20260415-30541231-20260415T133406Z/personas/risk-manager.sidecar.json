@@ -1,0 +1,62 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A move back toward 72k before settlement would make the contract highly sensitive to minute-level noise.",
+    "Settlement depends on one exchange and one minute candle rather than broader BTC consensus pricing.",
+    "The market may be slightly overconfident because it is anchoring on current spot instead of settlement mechanics."
+  ],
+  "key_assumptions": [
+    "BTC retains enough cushion above 72k into the settlement minute.",
+    "No exchange-specific anomaly distorts the Binance settlement print.",
+    "Current spot advantage matters more than ordinary short-term volatility over the remaining ~50 hours."
+  ],
+  "main_logical_chain": [
+    "Polymarket rules make Binance BTC/USDT 12:00 ET one-minute close the governing source of truth.",
+    "Current Binance spot is meaningfully above 72k, so Yes is the directional base case.",
+    "But recent Binance trading already dipped below 72k and the exact-minute mechanic makes that downside risk more important.",
+    "Therefore the estimate stays Yes-leaning but below the market's confidence level."
+  ],
+  "main_thesis": "BTC is currently above 72k and Yes is still the base case, but the exact Binance 12:00 ET one-minute close creates enough timing fragility that confidence should sit below the market's 84% baseline.",
+  "own_probability": 0.78,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone (noon) ... has a final 'Close' price higher than ... 72,000.",
+    "Binance ticker checked in-run: BTCUSDT 74124.31",
+    "Binance 48h hourly low checked in-run: 71375.24"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "risk_management",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-30541231",
+    "dispatch_id": "dispatch-case-20260415-30541231-20260415T133406Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "7d32f94d-31a2-4e20-9f99-40e07483da55",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-30541231/researcher-analyses/2026-04-15/dispatch-case-20260415-30541231-20260415T133406Z/personas/risk-manager.md",
+    "source_persona_sha256": "954acfc6ceaf2707329939d333e4a923e2400313c04632d15e2dab0a33c0eb00"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Low source-of-truth ambiguity and strong direct evidence for current state, but evidence independence is only medium because both contract mechanics and settlement state revolve around Binance.",
+  "strongest_disconfirmers": [
+    "Binance recent 48h low was 71,375.24, proving sub-72k outcomes remain plausible in the current regime.",
+    "The contract resolves on a single exact-minute close, so path and timing risk are material.",
+    "Roughly 50 hours remained, enough time for ordinary crypto volatility to erase the cushion."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT was about 74.1k when checked, roughly 2.1k above the threshold.",
+    "Recent 48h range included sustained trading well above 72k, with a high above 76k.",
+    "Only one exact minute close needs to stay above 72k, not the whole day."
+  ],
+  "timing_relevance": "Very high: the contract resolves on the exact Binance BTC/USDT 12:00 ET one-minute close on 2026-04-17, with about 50.4 hours remaining when checked.",
+  "unresolved_ambiguities": [
+    "No one can verify the future resolving candle yet; only current cushion and recent regime can be checked.",
+    "Near-term catalyst risk before noon ET April 17 remains unresolved."
+  ],
+  "what_would_change_view": "I would move up if BTC holds comfortably above 73.5k-74k into the final 24 hours with lower volatility, and move down sharply if BTC revisits the 72k area or Binance shows settlement-window dislocation."
+}

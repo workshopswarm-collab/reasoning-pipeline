@@ -1,0 +1,58 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Point-in-time settlement can differ from broader daily price context.",
+    "Exchange-specific operational or microstructure events matter more than usual here."
+  ],
+  "key_assumptions": [
+    "BTC/USDT on Binance does not fall more than roughly 7% into the noon ET close.",
+    "No Binance-specific wick, outage, or anomalous print determines the resolving minute.",
+    "The posted 12:00 ET rule maps cleanly to the expected 16:00 UTC candle."
+  ],
+  "main_logical_chain": [
+    "Start from the market's 99.95% Yes prior because this is a same-day, exchange-specific threshold contract.",
+    "Verify the governing source of truth and timing from Polymarket rules.",
+    "Check Binance itself for current BTCUSDT price context and same-day candles.",
+    "Conclude the market is broadly efficient, with residual risk concentrated in exact-minute crash or venue-specific print tails."
+  ],
+  "main_thesis": "The market's near-certainty on Yes is mostly justified because Binance BTC/USDT was trading far above 70,000 shortly before resolution, leaving mainly crash-tail or venue-specific point-in-time risk.",
+  "own_probability": 0.993,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone has a final 'Close' price higher than the price specified.",
+    "ticker/price response showed BTCUSDT at 75635.02000000 during the run."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "contract_interpretation",
+    "risk_management"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260414-d5888900",
+    "dispatch_id": "dispatch-case-20260414-d5888900-20260414T143228Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "50382375-b500-45da-b4ab-19c8d27d0820",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-d5888900/researcher-analyses/2026-04-14/dispatch-case-20260414-d5888900-20260414T143228Z/personas/market-implied.md",
+    "source_persona_sha256": "7518d13b8520d6532df5d96efce61793ecc87af9cf6a49f4b764feb0a4e2d680"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary mechanics source is strong and clear; exchange-context verification is strong but not fully independent; settlement ambiguity is low-to-medium until the exact resolving candle is observed.",
+  "strongest_disconfirmers": [
+    "The contract settles on one exact minute close, so a sharp intraday selloff or Binance-specific anomaly could still flip the result.",
+    "The exact resolving 16:00 UTC candle was not yet directly observable during the run."
+  ],
+  "strongest_supports": [
+    "Polymarket rules clearly define Binance BTC/USDT 12:00 ET 1-minute close as the source of truth.",
+    "Binance spot ticker during the run showed BTCUSDT around 75,635, well above 70,000.",
+    "Recent Binance same-day klines were also comfortably above the threshold."
+  ],
+  "timing_relevance": "Highly timing-sensitive: resolution depends on the exact Binance 12:00 ET one-minute close on 2026-04-14.",
+  "unresolved_ambiguities": [
+    "Exact final noon ET candle close was not yet available before the event minute completed.",
+    "Minor timestamp/interface ambiguity remains until the resolved candle is directly seen."
+  ],
+  "what_would_change_view": "A fast drop toward 70,000 before noon ET, evidence of a Binance-specific print anomaly, or proof that the timestamp/source mapping differs from the posted rules would lower confidence materially."
+}

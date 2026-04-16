@@ -1,0 +1,57 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Consumer forecast pages may share overlapping model inputs.",
+    "A late airport-specific forecast update could move the estimate materially."
+  ],
+  "key_assumptions": [
+    "RKSI can run cooler than Seoul proper, so city forecasts should be discounted.",
+    "City-level warmth still carries enough signal that 18\u00b0C remains slightly more likely than not."
+  ],
+  "main_logical_chain": [
+    "Identify the governing source and exact settlement station as RKSI via contract/Wunderground.",
+    "Compare city-level warm forecasts with airport-area cooler forecast.",
+    "Discount market confidence because station/location basis risk is real.",
+    "Land on modest Yes rather than market-level confidence."
+  ],
+  "main_thesis": "Yes is modestly favored, but the market likely overstates confidence because settlement is at cooler Incheon Intl Airport Station rather than central Seoul.",
+  "own_probability": 0.58,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "The market can not resolve to \"Yes\" until all data for this date has been finalized.",
+    "Summary No data recorded"
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "contract_interpretation",
+    "market_anchor"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-bacb47cd",
+    "dispatch_id": "dispatch-case-20260416-bacb47cd-20260416T101708Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "0c338125-dc6d-434f-85e5-b84e0ad3c09d",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-bacb47cd/researcher-analyses/2026-04-16/dispatch-case-20260416-bacb47cd-20260416T101708Z/personas/base-rate.md",
+    "source_persona_sha256": "53eac1263d9049891b44e92a466592ca644e90bedc5e8879021a832c0eceaa75"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High confidence in the governing source of truth, moderate confidence in contextual forecasts, and medium-low evidence independence overall.",
+  "strongest_disconfirmers": [
+    "Settlement uses Incheon Intl Airport Station, not downtown Seoul.",
+    "Weather.com airport-area page showed Apr 17 around 60\u00b0F (~16\u00b0C), below threshold."
+  ],
+  "strongest_supports": [
+    "Timeanddate Seoul forecast showed Apr 17 high 22\u00b0C.",
+    "Weather.com Seoul 10-day forecast showed Apr 17 high around 20\u00b0C.",
+    "An 18\u00b0C daily high is structurally plausible for mid-April in this region."
+  ],
+  "timing_relevance": "Date-sensitive one-day weather market; at research time Apr 17 had not finalized on the governing Wunderground page, so outcome was unverified rather than false.",
+  "unresolved_ambiguities": [
+    "How much cooler RKSI will be than Seoul proper on this specific day.",
+    "Whether late marine/cloud effects suppress the airport high below threshold."
+  ],
+  "what_would_change_view": "A direct RKSI-specific forecast or early Apr 17 observations clearly above 18\u00b0C would move me toward the market; repeated airport-specific sub-17\u00b0C forecasts would move me toward No."
+}

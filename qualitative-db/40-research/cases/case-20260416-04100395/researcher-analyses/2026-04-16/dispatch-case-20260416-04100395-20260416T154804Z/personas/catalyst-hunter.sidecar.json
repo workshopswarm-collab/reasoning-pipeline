@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Short horizon means path dependence matters more than long-term ETH fundamentals.",
+    "Exchange-specific or market-structure issues on Binance could matter because Binance is the governing source."
+  ],
+  "key_assumptions": [
+    "No major ETH-specific bearish catalyst emerges before 2026-04-17 noon ET.",
+    "No Binance-specific outage or anomalous print distorts the governing 1m close.",
+    "Broad crypto beta stays stable enough to avoid a roughly 1.7% downside move into settlement."
+  ],
+  "main_logical_chain": [
+    "The contract resolves off the exact Binance ETH/USDT 1-minute close at 12:00 ET on 2026-04-17.",
+    "Current Binance spot and recent 1m candles are already above 2300.",
+    "No clearly dominant scheduled ETH-specific catalyst appears likely before resolution.",
+    "Therefore ordinary continuation from an above-strike spot level is slightly more likely than a downside break at the exact settlement minute."
+  ],
+  "main_thesis": "ETH is already trading comfortably above 2300 on Binance and no clear scheduled ETH-specific catalyst appears likely to force the exact noon ET 1-minute close below the strike.",
+  "own_probability": 0.78,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "ETHUSDT = 2339.97",
+    "980 of 1000 closes above 2300",
+    "governing source of truth is explicitly Binance ETH/USDT"
+  ],
+  "reasoning_mode": [
+    "catalyst_analysis",
+    "market_anchor",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-04100395",
+    "dispatch_id": "dispatch-case-20260416-04100395-20260416T154804Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "d8616c31-e206-4ed6-bf6d-d81b48338b8c",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-04100395/researcher-analyses/2026-04-16/dispatch-case-20260416-04100395-20260416T154804Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "6dcc0a197224bfbe7f6efbb0f7e0ab640d943445a58d05db8358485164ca986c"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality direct settlement-relevant pricing from Binance plus medium-quality contextual market checks; source-of-truth ambiguity is low but contextual source diversity was only moderate.",
+  "strongest_disconfirmers": [
+    "This is a narrow timestamp-based crypto market, so a single overnight macro or BTC-led selloff could flip the exact noon candle below 2300.",
+    "The margin over strike is only about 1.7%, which is not large for a sub-24-hour crypto horizon."
+  ],
+  "strongest_supports": [
+    "Binance ticker showed ETHUSDT around 2339.97 at research time, about 40 points above strike.",
+    "Recent Binance minute data showed most observed closes above 2300, including 980 of 1000 closes in the larger verification sample.",
+    "Contextual checks did not reveal an obvious imminent ETH-specific negative catalyst."
+  ],
+  "timing_relevance": "The case is almost entirely about sub-24-hour path-to-settlement timing; the key catalyst is the absence or presence of a late bearish shock before the exact noon ET candle.",
+  "unresolved_ambiguities": [
+    "Whether any late-breaking macro or crypto headline appears before noon ET tomorrow.",
+    "Whether observed recent minute-level strength persists through the exact settlement minute."
+  ],
+  "what_would_change_view": "A decisive loss of 2300 on Binance, a broad crypto risk-off move, a Binance outage/anomalous print, or a material ETH-specific negative headline before settlement would reduce the Yes view."
+}

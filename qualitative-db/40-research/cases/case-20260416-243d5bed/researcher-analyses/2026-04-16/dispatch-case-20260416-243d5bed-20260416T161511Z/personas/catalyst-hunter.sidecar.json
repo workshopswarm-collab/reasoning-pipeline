@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A broad crypto risk-off move before noon ET could erase the cushion quickly.",
+    "Late compression toward 2300 would make the final minute close much closer to a coin flip.",
+    "Binance-specific minute noise matters more than broader exchange averages."
+  ],
+  "key_assumptions": [
+    "No major overnight macro or crypto-specific shock pushes ETH back below the 2300 area before noon ET.",
+    "Binance remains a reliable resolution venue at the relevant minute.",
+    "The lack of a clear scheduled bearish catalyst matters more than soft narrative volatility."
+  ],
+  "main_logical_chain": [
+    "Polymarket rules make the governing condition a Binance ETH/USDT 12:00 ET one-minute close above 2300 on Apr 17.",
+    "Direct Binance checks show ETH currently trading comfortably above 2300 on the named venue.",
+    "Recent minute-level distribution is favorable, but not airtight, because intraday drawdowns below 2300 still occur.",
+    "Without a high-information bearish catalyst before resolution, Yes remains the base case, but only moderately above market because settlement-minute fragility matters."
+  ],
+  "main_thesis": "ETH above 2300 on Binance at noon ET Apr 17 remains the base case, but the contract is fragile to a single settlement minute rather than broad daily trend.",
+  "own_probability": 0.76,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "The Close must be strictly greater than 2300.",
+    "Binance ticker check returned 2340.24.",
+    "single-minute settlement fragility"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "catalyst_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-243d5bed",
+    "dispatch_id": "dispatch-case-20260416-243d5bed-20260416T161511Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "8d63d8ce-5d8e-400a-9f03-481a5badddd1",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-243d5bed/researcher-analyses/2026-04-16/dispatch-case-20260416-243d5bed-20260416T161511Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "651db2261dcbd46dc5efd5132a48e88555e639ce73380bbb42ea8fe1c8502515"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High for contract mechanics and direct venue data, medium overall because the thesis still depends mainly on one venue and one future minute, with CoinGecko used as contextual verification.",
+  "strongest_disconfirmers": [
+    "The market settles on one exact Binance 1-minute close, so path risk is materially higher than a simple level check.",
+    "Recent sampled Binance data still included a minimum 1-minute close of 2288.02, showing sub-2300 prints remain possible."
+  ],
+  "strongest_supports": [
+    "Binance ETHUSDT was around 2340.24 when checked, leaving about a 40-point cushion over the strike.",
+    "About 98% of the latest 1000 sampled Binance 1-minute closes were above 2300.",
+    "No concrete near-term bearish catalyst was identified before resolution."
+  ],
+  "timing_relevance": "This is primarily a timing-and-settlement-minute market: the key repricing path depends on whether ETH preserves enough cushion above 2300 into late morning ET on Apr 17.",
+  "unresolved_ambiguities": [
+    "No identified scheduled catalyst does not rule out unscheduled macro or crypto headlines.",
+    "The exact noon ET candle has not occurred yet, so the decisive observation remains pending."
+  ],
+  "what_would_change_view": "I would cut the Yes view materially if ETH starts spending sustained time back below roughly 2310-2320 on Binance, if a fresh macro/crypto shock hits, or if late-morning ET trading compresses close to 2300."
+}

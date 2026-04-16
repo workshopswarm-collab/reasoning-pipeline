@@ -1,0 +1,55 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "One-minute settlement mechanics amplify transient downside and venue-specific noise risk.",
+    "Weekend/liquidity shocks could erase the cushion quickly in crypto."
+  ],
+  "key_assumptions": [
+    "No major macro or crypto-specific shock knocks BTC down more than ~4% before settlement.",
+    "Binance remains operationally normal and the reference minute is not distorted by venue-specific problems."
+  ],
+  "main_logical_chain": [
+    "Settlement is a specific Binance BTC/USDT one-minute close at noon ET on April 20.",
+    "Current Binance spot is ~75.1k, already materially above the 72k threshold.",
+    "With only four days left and no obvious scheduled macro catalyst in the window, the base case is that BTC remains above the threshold.",
+    "Because settlement is path-sensitive to one minute, residual downside shock risk still prevents near-certainty."
+  ],
+  "main_thesis": "BTC is already trading comfortably above 72k and, absent a near-term shock, is likely to stay above that threshold at the April 20 noon ET Binance settlement minute.",
+  "own_probability": 0.87,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "Polymarket rules: resolves to the Binance BTC/USDT 1 minute candle 12:00 ET close.",
+    "Binance API spot during run: 75117.76000000"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "catalyst_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-ca40bc37",
+    "dispatch_id": "dispatch-case-20260416-ca40bc37-20260416T053546Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "9747ecc1-9fef-49af-b7ee-a649477fd4f7",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-ca40bc37/researcher-analyses/2026-04-16/dispatch-case-20260416-ca40bc37-20260416T053546Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "7eac18f2259c26db808baaa1aee460ccc015911ab5c94b964d2bb56c002b396c"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality direct contract and pricing sources, plus a weaker but useful independent macro-calendar context check; overall source quality is good enough for a medium-difficulty case.",
+  "strongest_disconfirmers": [
+    "The contract settles on one exact 1-minute Binance close, so a brief liquidation or exchange-specific disturbance could still produce a no outcome."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT spot was 75117.76 during the run, leaving ~3118 points of cushion over 72k.",
+    "Recent Binance daily closes show BTC has already been holding above 72k across multiple sessions.",
+    "No obvious scheduled top-tier Fed catalyst was identified inside the short pre-resolution window."
+  ],
+  "timing_relevance": "This is mainly a four-day catalyst/timing problem: the question is whether any near-term shock can erase a ~4.3% cushion by the exact settlement minute.",
+  "unresolved_ambiguities": [
+    "The Fed calendar extract did not surface a fully explicit event list in-tool, so catalyst absence is checked only to moderate confidence rather than exhaustively proved."
+  ],
+  "what_would_change_view": "A fast move back toward or below 74k, discovery of a high-impact scheduled event before noon ET on April 20, or a Binance-specific operational issue would make me less bullish."
+}

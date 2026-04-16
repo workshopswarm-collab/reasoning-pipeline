@@ -1,0 +1,61 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A fast move from ~75k toward low-73k/high-72k would shrink the cushion quickly.",
+    "Noon-ET-specific Binance print risk matters more than broader intraday averages.",
+    "This view is sensitive to short-horizon realized volatility because time to expiry is short."
+  ],
+  "key_assumptions": [
+    "BTC can absorb normal four-day volatility without losing roughly a 4% cushion versus 72k.",
+    "No major risk-off or crypto-specific downside catalyst hits before the resolving minute.",
+    "Binance remains operationally normal and the noon ET 1-minute close is not distorted by venue-specific anomalies."
+  ],
+  "main_logical_chain": [
+    "Market implies about 83.5% Yes and live page was roughly 84-85% Yes.",
+    "Direct Binance checks show BTCUSDT near 75k, so the strike is already in the money by about 3k.",
+    "Independent CoinGecko context supports that this is a real broad price regime, not a thin venue anomaly.",
+    "Because the contract resolves on one exact Binance minute close, point-in-time path risk keeps fair odds below market.",
+    "Result: Yes remains favored, but closer to 78% than 83.5%."
+  ],
+  "main_thesis": "The market is broadly right that BTC above 72k on April 20 is favored because Binance BTCUSDT is already near 75k, but the current price looks slightly rich because settlement depends on a single noon ET Binance 1-minute close.",
+  "own_probability": 0.78,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone",
+    "final Close price higher than the price specified"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-e0b8c17c",
+    "dispatch_id": "dispatch-case-20260416-e0b8c17c-20260416T050131Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "81dd6ab7-fb33-48c6-8a24-0bc5ea9be41b",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-e0b8c17c/researcher-analyses/2026-04-16/dispatch-case-20260416-e0b8c17c-20260416T050131Z/personas/market-implied.md",
+    "source_persona_sha256": "dc0dce21a58f40d28fd2951a7163ebc33afa9a0fe956c0503ebf4a8946abbf71"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Good for a medium-difficulty case: direct contract-rule check on Polymarket, direct venue-specific Binance price verification, and one independent contextual CoinGecko cross-check. Source-of-truth ambiguity is low.",
+  "strongest_disconfirmers": [
+    "Settlement uses a single Binance 1-minute close at 12:00 PM ET rather than a daily close or average.",
+    "The condition is strictly greater than 72,000, so an exact 72,000 print still resolves No.",
+    "Short-horizon BTC volatility can still erase a 3k cushion or create a badly timed noon-minute dip."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT was about 75,000 during the run, already materially above the strike.",
+    "CoinGecko context independently showed BTC in the mid-74k to low-75k range.",
+    "Only four days remain, so the market mainly needs the current cushion to persist."
+  ],
+  "timing_relevance": "High: only about four days remain, so current distance to strike is very relevant, but the exact noon ET resolving minute also magnifies path risk.",
+  "unresolved_ambiguities": [
+    "How much extra risk the single-minute settlement adds versus broader directional BTC strength.",
+    "Whether Binance-specific microstructure could matter materially at the resolving minute."
+  ],
+  "what_would_change_view": "I would move lower if BTCUSDT loses its cushion and trades down toward 72k before April 20 or if Binance-specific settlement-minute risk looks larger; I would move higher if BTC remains comfortably above current levels with muted volatility into resolution."
+}

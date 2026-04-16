@@ -1,0 +1,57 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "medium",
+  "fragility_points": [
+    "If the true contract is not a draw market, the memo requires relabeling and re-estimation.",
+    "The estimate is partly based on base-rate skepticism rather than fixture-specific odds triangulation."
+  ],
+  "key_assumptions": [
+    "The assignment title reflects the intended proposition despite the fetched contract text mismatch.",
+    "A standard football draw should not be near 76% without extraordinary corroboration."
+  ],
+  "main_logical_chain": [
+    "Start from market price 0.76 as the assigned baseline for draw.",
+    "Check the governing contract surface and find that fetched Polymarket text describes Qadisiyah-win YES rather than draw YES.",
+    "Treat the mismatch as the most material issue and downweight the raw market price.",
+    "Adopt a materially lower draw estimate with reduced confidence because independent odds triangulation was incomplete."
+  ],
+  "main_thesis": "The strongest credible variant view is that a 76% draw price is likely overconfident and may reflect contract-surface ambiguity rather than a trustworthy consensus on draw.",
+  "own_probability": 0.36,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "If Al Qadisiyah Saudi Club wins, this market will resolve to \"Yes\". Otherwise, this market will resolve to \"No\".",
+    "This market refers only to the outcome within the first 90 minutes of regular play plus stoppage time."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "contract_interpretation",
+    "variant_hypothesis",
+    "other"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-fdd1ff67",
+    "dispatch_id": "dispatch-case-20260414-fdd1ff67-20260414T200433Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "ca8bc1f5-e9c1-4900-a07d-ad70e7fb19df",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-fdd1ff67/researcher-analyses/2026-04-14/dispatch-case-20260414-fdd1ff67-20260414T200433Z/personas/variant-view.md",
+    "source_persona_sha256": "03755eeffe003eac4eebaf0be8a3e13a2a418160101ccbf21428575deca2cdae"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "One direct authoritative market/resolution source plus one contextual league/team source; settlement mechanics are fairly clear, but proposition-definition ambiguity remains high.",
+  "strongest_disconfirmers": [
+    "Assignment metadata consistently frames the market as a draw market.",
+    "No clean independent sportsbook or exchange odds page was obtained for the exact fixture during this run."
+  ],
+  "strongest_supports": [
+    "Fetched Polymarket text says YES if Al Qadisiyah wins, not if the match ends in a draw.",
+    "The market is a standard 90-minute football outcome contract, making an extreme draw price look suspicious absent strong external confirmation."
+  ],
+  "timing_relevance": "Medium: the match is still days away, but the key issue is current contract-definition integrity rather than late-breaking team news.",
+  "unresolved_ambiguities": [
+    "Whether the intended proposition is draw or Qadisiyah win.",
+    "Whether the fetched market page was mislabeled, cross-routed, or otherwise not the exact contract body."
+  ],
+  "what_would_change_view": "A second clean Polymarket/API contract retrieval or independent odds screen consistent with a true 70%+ draw probability would materially change the view."
+}

@@ -1,0 +1,54 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Lack of captured exact qualifying minute/timestamp in the artifact set.",
+    "Residual dependence on Polymarket API metadata accurately reflecting settlement mechanics."
+  ],
+  "key_assumptions": [
+    "Polymarket's API-visible rule text matches the actual resolving contract.",
+    "Binance's reported 24-hour high above 2400 corresponds to a qualifying minute within the Apr 13-19 ET window."
+  ],
+  "main_logical_chain": [
+    "Start from a high outside-view prior because a weekly ETH threshold modestly above spot is often reachable.",
+    "Check the exact contract wording because this is a rule-sensitive threshold market.",
+    "Find that the governing source of truth is Binance ETH/USDT 1-minute candle High during the stated ET window.",
+    "Verify same-venue Binance data shows a high above 2400, pushing the view from strong Yes to near-certain Yes."
+  ],
+  "main_thesis": "This is effectively a Yes/already-met Binance threshold case rather than a narrative ETH call, because the governing venue-specific rule appears satisfied.",
+  "own_probability": 0.995,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "resolve to 'Yes' if any Binance 1-minute candle for ETH/USDT ... has a final 'High' price equal to or greater than ... $2,400",
+    "highPrice: 2415.50"
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "contract_interpretation",
+    "technical_reference"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260414-4ed80a0a",
+    "dispatch_id": "dispatch-case-20260414-4ed80a0a-20260414T174040Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "23445208-5ef6-4cd8-978c-62c7f846d319",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-4ed80a0a/researcher-analyses/2026-04-14/dispatch-case-20260414-4ed80a0a-20260414T174040Z/personas/base-rate.md",
+    "source_persona_sha256": "5113e3a3e0da78c228a7709ccc2e096c420cc677dbff7bafff497a6018e8610b"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality primary rules/state source plus high-quality same-venue verification; independence medium and source-of-truth ambiguity low after API check.",
+  "strongest_disconfirmers": [
+    "The extra verification used Binance's 24-hour summary ticker rather than the exact 1-minute candle table named in the rules."
+  ],
+  "strongest_supports": [
+    "Polymarket metadata explicitly defines the source of truth as Binance ETH/USDT 1-minute candle High and showed the market resolved Yes.",
+    "Binance public ticker reported ETHUSDT highPrice 2415.50, above the 2400 threshold."
+  ],
+  "timing_relevance": "High: this is a narrow weekly window and the resolution depends on whether the threshold was hit during Apr 13-19 ET.",
+  "unresolved_ambiguities": [
+    "Exact first qualifying Binance minute candle was not independently archived in this run."
+  ],
+  "what_would_change_view": "A Binance minute-candle audit showing no >=2400 High in-window, or a Polymarket correction/reversal, would materially change the view."
+}

@@ -1,0 +1,62 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "The thesis relies on momentum persistence more than on a hard event calendar.",
+    "Venue-specific settlement means other-exchange spikes do not matter.",
+    "If ETH loses the 2360s and fades back toward the low 2200s, the Yes case weakens materially."
+  ],
+  "key_assumptions": [
+    "Recent upside momentum persists long enough to produce at least one Binance ETH/USDT 1-minute high at or above 2400.",
+    "No sharp risk-off reversal interrupts the remaining Apr 13-19 window.",
+    "Touch dynamics matter more than a sustained close because the contract resolves on a 1-minute high."
+  ],
+  "main_logical_chain": [
+    "The contract settles on any Binance ETH/USDT 1-minute high at or above 2400 during Apr 13-19 ET.",
+    "ETH was already trading in the mid-2350s and had printed a Binance 24h high near 2364.",
+    "Only a small additional move is needed, and recent realized volatility shows that move is feasible within the window.",
+    "Because the catalyst is mostly momentum continuation rather than a discrete scheduled event, the probability is above 50% but below the market's 76%."
+  ],
+  "main_thesis": "ETH is close enough to $2,400 that continued momentum could trigger a Binance 1-minute high above the threshold this week, but the market's 76% price looks somewhat rich absent a clear must-happen catalyst.",
+  "own_probability": 0.64,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "resolves Yes if any Binance 1-minute candle ... has a final High price equal to or greater than the price specified",
+    "Binance 24h highPrice: 2363.94",
+    "CoinGecko 7d change about +9.6%"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "catalyst_analysis",
+    "scenario_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260413-639ecb3f",
+    "dispatch_id": "dispatch-case-20260413-639ecb3f-20260413T225424Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "cc70cbca-a861-4069-afe5-073e01b70f4b",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260413-639ecb3f/researcher-analyses/2026-04-13/dispatch-case-20260413-639ecb3f-20260413T225424Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "db978e362b6d7c0c8d8b1982ad2774d496ad586d33975c4db75dfbbdb128b5ad"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Low source-of-truth ambiguity because Polymarket explicitly names Binance ETH/USDT 1-minute highs; contextual independence is medium because CoinGecko is an independent aggregator but all evidence points to the same spot regime.",
+  "strongest_disconfirmers": [
+    "There is no clearly identified must-happen catalyst in the Apr 13-19 window that independently forces the final move to 2400.",
+    "A near-miss in the 2380s-2390s would still resolve No.",
+    "Momentum-driven crypto rallies can reverse quickly after squeeze-like bursts."
+  ],
+  "strongest_supports": [
+    "Polymarket rules make this a Binance 1-minute high threshold-touch contract, which is easier than requiring a close above 2400.",
+    "Binance 24h high already reached 2363.94 while spot was around 2354-2356, leaving only about 1.5%-2.0% upside needed.",
+    "CoinGecko showed roughly +9.6% over 7 days and roughly +7.1% over 24 hours, so the remaining gap is well within recent realized volatility."
+  ],
+  "timing_relevance": "High: this is a short-dated threshold-touch market where brief continuation through the high-2300s could resolve the contract quickly.",
+  "unresolved_ambiguities": [
+    "Whether the current rally is durable follow-through or a short-lived squeeze.",
+    "Whether any unsurfaced macro or crypto-specific event inside the window could materially change timing odds."
+  ],
+  "what_would_change_view": "A clean extension through the high-2300s would push the estimate up; failure to retest 2360s followed by reversal toward the low 2200s would push it clearly down."
+}

@@ -1,0 +1,155 @@
+{
+  "schema_version": "decision-packet/v1",
+  "generated_at": "2026-04-14T16:51:00-04:00",
+  "context": {
+    "case_key": "case-20260414-4c35c81d",
+    "dispatch_id": "dispatch-case-20260414-4c35c81d-20260414T204205Z",
+    "question": "Will Al Qadisiyah Saudi Club win on 2026-04-23?",
+    "market_id": "bfdb337e-2542-4e6d-905c-a36b8a776ffb",
+    "external_market_id": "0xa7ab3287ef5d0d78754479fff50e028c0e97c9d42de0b37334038f1dbcd2d9b0",
+    "market_slug": "spl-qad-sha-2026-04-23-qad",
+    "platform": "polymarket",
+    "primary_market_url": "https://polymarket.com/event/spl-qad-sha-2026-04-23-qad",
+    "market_title": "Will Al Qadisiyah Saudi Club win on 2026-04-23?",
+    "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260414-4c35c81d/synthesizer-agent/decision-handoff.md",
+    "source_syndicated_finding_path": "qualitative-db/40-research/cases/case-20260414-4c35c81d/synthesizer-agent/syndicated-finding.md",
+    "source_light_refresh_brief_path": "",
+    "refresh_mode": "",
+    "decision_maker_agent": "decision-maker",
+    "canonical_markdown_path": "decision-maker-packet.md",
+    "canonical_json_path": "artifacts/decision-maker-packet.json"
+  },
+  "decision": {
+    "side": "no",
+    "trade_authorization": "forbidden",
+    "position_policy": "flat",
+    "decision_readiness": "needs_more_research",
+    "primary_crux": "If the governing fixture is the independently verified Al Qadsiah vs Al Shabab match that already finished 2-2 on 2026-04-14, then this should resolve No because a draw is not a win; but because the assignment date conflicts with that evidence and explicit official settlement-source confirmation is still missing, the disciplined output is no-side directionally but forbidden for execution.",
+    "secondary_cruxes": [
+      "The dominant issue is contract identity, not ordinary football forecasting.",
+      "The apparent edge is huge, but it is only exploitable if the market truly points to the already-played fixture rather than a different future match.",
+      "This is a 90-minute win-only contract, so any confirmed 2-2 result would be dispositive for No."
+    ],
+    "thesis_class": "not_decision_ready"
+  },
+  "valuation": {
+    "fair_value_low": 0.03,
+    "fair_value_high": 0.12,
+    "fair_value_mid": 0.075,
+    "independent_verification_quality": "high",
+    "compressed_toward_market_applied": false,
+    "compression_reason": "If the verified 2026-04-14 2-2 match is the governing fixture, No should be near-certain; the only reason fair value is not driven even lower is residual uncertainty about whether the contract instead references a different future fixture.",
+    "market_reference_price": 0.83,
+    "edge_mid_vs_market_pct_points": -75.5
+  },
+  "execution_semantics": {
+    "price_source": "market_snapshot_quote",
+    "price_axis": "market_implied_true_prob",
+    "rebalance_threshold_fraction": 0.1,
+    "allow_auto_reversal": false,
+    "quote_staleness_seconds": 300,
+    "valid_until": "2026-04-15T20:52:19.026648+00:00"
+  },
+  "risk_controls": {
+    "confidence_level": "low",
+    "portfolio_constraints": [
+      "Do not enter from this packet; reopen only after explicit official settlement-source confirmation ties the contract to the correct fixture.",
+      "Require resolution of the date and fixture-identity conflict before treating the apparent edge as tradable.",
+      "Treat matchup/date mismatches as hard blockers even when one side appears overwhelmingly favored by the evidence."
+    ],
+    "liquidity_caution": "high",
+    "max_position_size_pct_bankroll": 0.02,
+    "max_additional_exposure_pct_bankroll": 0.01,
+    "max_single_order_pct_bankroll": 0.005,
+    "slippage_tolerance_bps": 100,
+    "liquidity_min_depth": 0,
+    "correlation_bucket_limit_pct_bankroll": 0.05
+  },
+  "bands": [
+    {
+      "name": "max_enter",
+      "min_p": 0,
+      "max_p": 0.02,
+      "target_exposure_fraction": 0,
+      "notes": "No entry authorized from this packet because the case is not decision-ready despite the strong directional no view if the verified 2-2 result governs."
+    },
+    {
+      "name": "scaled_enter",
+      "min_p": 0.02,
+      "max_p": 0.08,
+      "target_exposure_fraction": 0,
+      "notes": "Even much lower prices would still require clean fixture-identity confirmation before action."
+    },
+    {
+      "name": "hold",
+      "min_p": 0.08,
+      "max_p": 0.15,
+      "target_exposure_fraction": 0,
+      "notes": "Bounded fair value zone under the already-played-match interpretation, but not actionable while contract identity remains unresolved."
+    },
+    {
+      "name": "trim",
+      "min_p": 0.15,
+      "max_p": 0.4,
+      "target_exposure_fraction": 0,
+      "notes": "Avoid increasing while settlement-source ambiguity remains unresolved."
+    },
+    {
+      "name": "exit",
+      "min_p": 0.4,
+      "max_p": 1,
+      "target_exposure_fraction": 0,
+      "notes": "Flat or avoid at elevated prices because the market may be tied to a mismapped or stale fixture record."
+    }
+  ],
+  "invalidation": {
+    "thesis_breakers": [
+      "An official league or market settlement source shows the governing fixture is actually on 2026-04-23 and unplayed.",
+      "A clarified contract source ties the market to a different Al Qadsiyah fixture than the verified 2026-04-14 draw.",
+      "The independently verified 2-2 result is shown to be unrelated to the market's intended matchup."
+    ],
+    "time_breakers": [
+      "Any explicit settlement clarification should supersede this packet immediately.",
+      "If no clean fixture-identity confirmation is obtained, this packet should not be used for trading."
+    ],
+    "market_structure_breakers": [
+      "The market metadata or slug is corrected in a way that changes the referenced fixture.",
+      "A stale or inconsistent assignment date is resolved and contradicts the already-played-fixture interpretation."
+    ],
+    "reversal_conditions": [
+      "Move from forbidden to watch-only or authorized only after official confirmation of the exact governing fixture and settlement source.",
+      "Move sharply upward if the contract is confirmed to reference a future unplayed match.",
+      "Do not auto-reverse from this packet."
+    ]
+  },
+  "epistemic_status": {
+    "key_uncertainties": [
+      "Whether the contract truly references the verified 2026-04-14 2-2 match or a different future fixture.",
+      "Which official source the market operator will actually use for settlement.",
+      "Whether the 2026-04-23 date in the assignment is stale metadata or the intended contract identity."
+    ],
+    "what_would_change_my_mind": [
+      "Explicit official settlement documentation tying the market to the already-played 2-2 match would collapse residual uncertainty and strengthen No further.",
+      "Official confirmation that the intended fixture is instead on 2026-04-23 and unplayed would move the estimate sharply upward.",
+      "A corrected market metadata record resolving the fixture-date mismatch would materially improve readiness."
+    ],
+    "reasons_to_pass": [
+      "The apparent edge is huge but entirely hostage to contract-identity resolution.",
+      "Fixture/date mismatch is a hard blocker even when one interpretation looks overwhelming.",
+      "This is a source-of-truth problem, not a standard pre-match pricing problem."
+    ],
+    "decision_quality": "not_ready"
+  },
+  "audit": {
+    "one_sentence_rationale": "The visible evidence strongly suggests this market should resolve No because the referenced Al Qadsiyah vs Al Shabab match already ended 2-2, but since the assignment date conflicts with that evidence and explicit official settlement-source confirmation is still missing, the disciplined output is forbidden and needs-more-research rather than trading the apparent edge.",
+    "notes": "This is a high-conviction direction with low execution readiness due to contract identity ambiguity; source mismatch dominates valuation.",
+    "market_baseline_respected": true,
+    "action_bias_check_passed": true,
+    "self_preservation_bias_check_passed": true,
+    "structured_handoff_primary_used": true,
+    "prose_fallback_used": false,
+    "verification_mode_used": "not_ready_reopen_recommended",
+    "additional_verification_performed": false,
+    "additional_verification_notes": ""
+  }
+}

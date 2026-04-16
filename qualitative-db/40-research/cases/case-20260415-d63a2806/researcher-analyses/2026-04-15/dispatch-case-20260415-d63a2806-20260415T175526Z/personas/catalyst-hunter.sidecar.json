@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A downside shock near the governing minute would matter disproportionately.",
+    "ET timing or field-interpretation mistakes would break the analysis.",
+    "Evidence independence is limited because Binance dominates the relevant source set."
+  ],
+  "key_assumptions": [
+    "No scheduled catalyst before Apr 17 noon ET is more important than ordinary BTC volatility.",
+    "Binance remains the operative governing venue without unusual pricing dislocation.",
+    "Recent realized range is a reasonable guide to downside risk into the governing minute."
+  ],
+  "main_logical_chain": [
+    "The contract settles on the Binance BTC/USDT 12:00 ET 1-minute final close on Apr 17.",
+    "Current Binance price is materially above 72k, so Yes starts with a cushion.",
+    "But the threshold remains inside recent realized range and the exact minute matters.",
+    "Therefore Yes is favored, though somewhat less strongly than the market implies."
+  ],
+  "main_thesis": "BTC is currently above 72k on Binance with a meaningful cushion, so Yes is still favored, but this exact-minute close market is less secure than a touch market and can still fail on a badly timed drawdown.",
+  "own_probability": 0.79,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "All material conditions must hold simultaneously for Yes: correct venue, correct candle, final Close, and strictly above 72000.",
+    "Governing-source proof status: not yet available because the governing candle has not occurred."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "catalyst_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-d63a2806",
+    "dispatch_id": "dispatch-case-20260415-d63a2806-20260415T175526Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "2a3154b5-ce5e-4890-821c-43508ba2e6c5",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-d63a2806/researcher-analyses/2026-04-15/dispatch-case-20260415-d63a2806-20260415T175526Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "d0c2353fcf42cf44a2f39ce1a9204769a8ed36ac3d7bd3224678d49f278074ba"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary source quality is high because Binance/Polymarket rules directly govern, but evidence independence is only low-to-medium and precise settlement-time proof still depends on the exact governing candle.",
+  "strongest_disconfirmers": [
+    "This is a single-minute close market, not a touch market, so a late drawdown can still defeat Yes.",
+    "Recent 7d Binance range included prices as low as about 70466, showing sub-72k is well within recent realized range."
+  ],
+  "strongest_supports": [
+    "Binance BTC/USDT was about 74107 at research time, roughly 2.9% above the threshold.",
+    "Recent 24h Binance low near 73514 remained above 72k.",
+    "No dominant scheduled downside catalyst was identified during the run."
+  ],
+  "timing_relevance": "The decisive catalyst is the exact Apr 17 noon ET Binance close; absent a fresh shock, the main repricing path is whether BTC keeps enough cushion above 72k into that minute.",
+  "unresolved_ambiguities": [
+    "No independently verified major near-term catalyst was identified because news search was partially impaired by bot-detection.",
+    "Binance chart UI remains the formal governing proof surface at settlement time rather than the API pull used for context."
+  ],
+  "what_would_change_view": "I would turn more bearish if BTC loses the 72k-73k area before Apr 17 morning ET or if a clear downside catalyst emerges; more bullish if BTC rebuilds and holds a larger cushion into the final hours."
+}

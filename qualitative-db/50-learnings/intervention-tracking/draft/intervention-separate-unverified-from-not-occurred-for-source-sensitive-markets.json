@@ -1,0 +1,27 @@
+{
+  "artifact_type": "learning_intervention",
+  "schema_version": "v1",
+  "intervention_key": "separate-unverified-from-not-occurred-for-source-sensitive-markets",
+  "application_surface": "researcher_prompt",
+  "change_kind": "prompt_guardrail",
+  "target_selector": {
+    "source_of_truth_classes": ["authoritative_direct", "authoritative_with_fallback", "multi_source_ambiguous"],
+    "resolution_risk": ["medium", "high"]
+  },
+  "change_payload": {
+    "required_labels": [
+      "event_state",
+      "verification_state"
+    ],
+    "prompt_guardrail": "When source-sensitive settlement matters, distinguish whether uncertainty is about the event itself or about verification on the governing source."
+  },
+  "hypothesis": "For source-sensitive markets, explicitly separating event-state from verification-state should reduce cases where incomplete proof is priced as if the event itself is unlikely.",
+  "metric_definition": {
+    "primary_metric": "latest_forecast_brier",
+    "secondary_metrics": ["underconfidence_rate", "resolution_audit_pass_rate"],
+    "evaluation_note": "Compare source-sensitive treatment vs control cohorts once bundle assignment and exposure logging are active."
+  },
+  "evidence_paths": [
+    "qualitative-db/50-learnings/case-reviews/case-20260414-4e668883/review.md"
+  ]
+}

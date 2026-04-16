@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Sharp crypto drawdown before April 17 noon ET.",
+    "Temporary noon-minute dip below 72k despite surrounding strength.",
+    "Binance-specific execution or display anomaly near settlement."
+  ],
+  "key_assumptions": [
+    "Current Binance spot around 74.15k is a fair short-horizon anchor into April 17 noon ET.",
+    "A roughly 3% cushion above 72k is enough to survive ordinary 1-2 day volatility.",
+    "No Binance-specific operational anomaly distorts the settlement minute."
+  ],
+  "main_logical_chain": [
+    "Polymarket prices the 72k line near 84% Yes.",
+    "Binance is the governing source of truth and current BTCUSDT spot is materially above 72k.",
+    "That makes a high Yes probability reasonable if ordinary short-horizon volatility dominates.",
+    "But exact-minute settlement mechanics create extra timing risk that argues for a modest discount versus market."
+  ],
+  "main_thesis": "Market pricing near 84% Yes is broadly justified by Binance BTC/USDT trading materially above 72k, but the exact noon ET one-minute close creates enough timing risk to prefer 79% rather than fully matching market.",
+  "own_probability": 0.79,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone",
+    "final 'Close' price higher than the price specified"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-30541231",
+    "dispatch_id": "dispatch-case-20260415-30541231-20260415T133406Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "85adb98f-13b6-4e9f-9919-0a1ce740aea6",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-30541231/researcher-analyses/2026-04-15/dispatch-case-20260415-30541231-20260415T133406Z/personas/market-implied.md",
+    "source_persona_sha256": "ff8fe8893f2bb55951984673555f1f1f6bdb73cbb7b883f248c54412526d018e"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Good for this case: one direct authoritative market source plus direct contract rules check; independence is medium but source-of-truth ambiguity is low.",
+  "strongest_disconfirmers": [
+    "The contract resolves on one exact Binance one-minute close at 12:00 ET, so a brief downtick can make No correct.",
+    "Recent realized intraday range is wide enough that a move through 72k is plausible over two days."
+  ],
+  "strongest_supports": [
+    "Direct Binance BTCUSDT spot was around 74.15k-74.17k when checked, about 2.9% above the threshold.",
+    "Recent 24h Binance range of 73.5k to 76.0k sat mostly above 72k.",
+    "The market is likely efficiently pricing that the strike is already below current source-of-truth spot."
+  ],
+  "timing_relevance": "High: this contract depends on the April 17 12:00 ET Binance one-minute close, not a broader daily level.",
+  "unresolved_ambiguities": [
+    "Whether the exact Binance front-end candle display could differ operationally from API retrieval in an edge case.",
+    "How much weight to assign to exact-minute timing risk versus current spot cushion."
+  ],
+  "what_would_change_view": "A drop back toward low-72k before resolution, a macro/crypto shock, or Binance-specific issues would push the estimate lower; continued stable trading above 74k into the deadline would move it closer to market."
+}

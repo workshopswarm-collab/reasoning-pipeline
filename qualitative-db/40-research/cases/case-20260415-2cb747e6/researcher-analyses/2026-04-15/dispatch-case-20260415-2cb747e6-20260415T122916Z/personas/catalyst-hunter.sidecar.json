@@ -1,0 +1,58 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "BTC can move >3% in less than a day.",
+    "The contract resolves on one exact minute close rather than a broader daily average or range."
+  ],
+  "key_assumptions": [
+    "Current Binance-above-72k pricing is a meaningful guide for the next ~24 hours rather than a fragile transient print.",
+    "No new catalyst strong enough to drive a >3% downside move hits before noon ET on April 16.",
+    "Binance remains the operative and reliable settlement source at resolution time."
+  ],
+  "main_logical_chain": [
+    "Polymarket rules make Binance BTC/USDT 12:00 ET one-minute close on April 16 the governing source of truth.",
+    "Current Binance market state is comfortably above 72000, with sampled intraday and 24h data also above the strike.",
+    "A second venue cross-check broadly matches Binance, reducing venue-specific anomaly concern.",
+    "Therefore Yes is favored unless a fresh downside catalyst appears before the exact resolution minute."
+  ],
+  "main_thesis": "Binance BTC/USDT is already trading around 74.2k with less than 24 hours left, so absent a fresh downside catalyst the noon ET April 16 close is more likely than not to remain above 72k.",
+  "own_probability": 0.92,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "Binance ticker check showed BTC/USDT around 74,231.",
+    "Binance 24h stats showed a low of 73,514, still above the 72k strike.",
+    "The governing source of truth is Binance BTC/USDT 1m candle close at 12:00 ET on 2026-04-16."
+  ],
+  "reasoning_mode": [
+    "catalyst_analysis",
+    "market_anchor",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-2cb747e6",
+    "dispatch_id": "dispatch-case-20260415-2cb747e6-20260415T122916Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "b567111c-67d8-4862-b829-5cd86c4a686c",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-2cb747e6/researcher-analyses/2026-04-15/dispatch-case-20260415-2cb747e6-20260415T122916Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "9ba80af0ae89c7352f492575ed0e755fa7ccd2765477a7798dab93a913c6060d"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality primary contract and settlement-source evidence, plus one meaningful independent exchange cross-check; source-of-truth ambiguity is low.",
+  "strongest_disconfirmers": [
+    "This is a narrow future timestamp contract, so a single overnight or morning selloff could still push the exact noon ET minute close below 72000."
+  ],
+  "strongest_supports": [
+    "Binance ticker check showed BTC/USDT around 74231 during the run.",
+    "Checked Binance 24h low was 73514, still above the 72000 strike.",
+    "Coinbase spot API also showed BTC around 74255, supporting that the above-strike state is not Binance-only."
+  ],
+  "timing_relevance": "Timing dominates this case: the relevant question is whether BTC/USDT stays above 72k through the exact Binance noon ET minute close on April 16, not whether it is above the strike generally today.",
+  "unresolved_ambiguities": [
+    "No specific scheduled downside catalyst was identified, but unscheduled macro or crypto risk-off shocks remain possible.",
+    "A closer pre-noon ET check on April 16 would materially reduce remaining timing uncertainty."
+  ],
+  "what_would_change_view": "I would lower the estimate if Binance BTC/USDT lost the recent 24h floor, traded persistently near/below 72k before resolution, or a fresh catalyst emerged that plausibly drives a fast >3% selloff."
+}

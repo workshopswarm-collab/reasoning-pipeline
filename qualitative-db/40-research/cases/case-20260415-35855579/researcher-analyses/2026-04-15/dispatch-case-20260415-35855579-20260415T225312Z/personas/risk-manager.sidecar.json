@@ -1,0 +1,61 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Single-minute settlement sensitivity.",
+    "Single-venue source-of-truth dependency.",
+    "Short-horizon BTC volatility and liquidation risk."
+  ],
+  "key_assumptions": [
+    "BTCUSDT stays above 72,000 through the exact noon-ET settlement candle.",
+    "Binance remains a stable and internally consistent resolution surface.",
+    "No abrupt macro or crypto shock triggers a >4% downside move before settlement."
+  ],
+  "main_logical_chain": [
+    "Verify contract mechanics: resolution is Binance BTC/USDT 12:00 ET 1-minute close > 72,000.",
+    "Check direct Binance state: BTCUSDT is currently around 75,088, comfortably above threshold.",
+    "Translate cushion into risk terms: No requires a nontrivial but plausible short-horizon downside move or venue-specific anomaly.",
+    "Therefore Yes is highly likely, but less certain than the market's 97.65% price implies."
+  ],
+  "main_thesis": "Yes is the clear base case because Binance BTCUSDT is materially above 72,000 with less than a day left, but the market overstates certainty because one exact settlement minute and venue-specific mechanics still leave meaningful tail risk.",
+  "own_probability": 0.94,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "Close must be strictly greater than 72,000.",
+    "Binance BTCUSDT spot was about 75,088.01 at the verification check."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "risk_management",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-35855579",
+    "dispatch_id": "dispatch-case-20260415-35855579-20260415T225312Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "00597cb1-05d8-4d65-b5c1-96dfc39f78ef",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-35855579/researcher-analyses/2026-04-15/dispatch-case-20260415-35855579-20260415T225312Z/personas/risk-manager.md",
+    "source_persona_sha256": "395393b4767486375c4aca8ce865fec9ec9d7f9e6a83ff2b80cfcfb338027e39"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary evidence quality is good because mechanics were checked on the market rules page and current state was checked directly on Binance, but source independence is only medium and venue-specific operational risk remains.",
+  "strongest_disconfirmers": [
+    "The market settles on one exact minute close, so a sharp downside move into that print can still flip the result.",
+    "A roughly 4.3% drop in less than a day is unlikely but plausible for BTC.",
+    "Binance-specific data or display issues are low-probability but contract-relevant."
+  ],
+  "strongest_supports": [
+    "Direct Binance spot check showed BTCUSDT around 75,088, about 4.3% above threshold.",
+    "Contract only requires the Binance BTC/USDT 12:00 ET 1m close to be strictly above 72,000.",
+    "Recent Binance 1m kline data looked operationally normal around the verification window."
+  ],
+  "timing_relevance": "The contract resolves at 12:00 ET on April 16, so less than a day remains; that makes current cushion important but does not eliminate exact-minute path risk.",
+  "unresolved_ambiguities": [
+    "No explicit fallback resolution logic was identified beyond Binance being the named source.",
+    "The exact pre-settlement volatility regime remains uncertain."
+  ],
+  "what_would_change_view": "I would move closer to market confidence with another calm Binance check near settlement; I would cut the estimate if BTCUSDT falls into the 72k-73k zone or if Binance shows any relevant data inconsistency."
+}

@@ -1,0 +1,58 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A sharp selloff that compresses the current spot-to-strike buffer.",
+    "Venue-specific Binance pricing or operational irregularity near settlement."
+  ],
+  "key_assumptions": [
+    "BTC's roughly 4.6k cushion over 70k remains mostly intact into April 20 noon ET.",
+    "Binance BTC/USDT remains a normal and reliable settlement surface.",
+    "No major macro or crypto-specific shock forces a sharp repricing lower before settlement."
+  ],
+  "main_logical_chain": [
+    "Start from the 88% market prior rather than assuming a misprice.",
+    "Verify the governing settlement mechanics on Polymarket and Binance kline conventions.",
+    "Check live Binance BTCUSDT price and recent 1-minute closes relative to the 70k threshold.",
+    "Conclude that Yes is still the most likely outcome, but exact-minute settlement keeps confidence below the market's extreme pricing."
+  ],
+  "main_thesis": "The market's Yes lean is broadly right because BTC is comfortably above 70k, but 88% looks slightly rich given exact-minute Binance settlement risk.",
+  "own_probability": 0.83,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone ... has a final 'Close' price higher than the price specified in the title.",
+    "Current Binance BTCUSDT checks were around 74.6k during the run."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-c0464347",
+    "dispatch_id": "dispatch-case-20260415-c0464347-20260415T011958Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "7d5d69d4-0793-4adc-8ee3-4a8c0cd51f9d",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-c0464347/researcher-analyses/2026-04-15/dispatch-case-20260415-c0464347-20260415T011958Z/personas/market-implied.md",
+    "source_persona_sha256": "28ce95cf1b61343b76f186044771bc85d5f62df056f979e8b41949bd1652ca34"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality direct exchange and contract sources, but independence is only medium because much of the direct evidence comes from Binance itself.",
+  "strongest_disconfirmers": [
+    "The contract resolves on one exact 12:00 ET Binance 1-minute close, so a brief dip below 70k is enough for No.",
+    "BTC can plausibly move more than 6% over five days."
+  ],
+  "strongest_supports": [
+    "Live Binance BTCUSDT checks during the run were around 74.6k.",
+    "Recent Binance 1-minute klines also closed around 74.6k-74.7k.",
+    "Binance 24h low was still about 73.8k, leaving a material buffer over 70k."
+  ],
+  "timing_relevance": "Highly timing-sensitive because resolution depends on the April 20, 2026 12:00 ET 1-minute Binance close.",
+  "unresolved_ambiguities": [
+    "How much five-day BTC volatility should be mapped into an exact-minute settlement contract.",
+    "Whether traders are slightly underpricing single-minute tail risk."
+  ],
+  "what_would_change_view": "A move down into the low-70k area, a volatility shock, or evidence of Binance-specific settlement quirks would push the estimate lower."
+}

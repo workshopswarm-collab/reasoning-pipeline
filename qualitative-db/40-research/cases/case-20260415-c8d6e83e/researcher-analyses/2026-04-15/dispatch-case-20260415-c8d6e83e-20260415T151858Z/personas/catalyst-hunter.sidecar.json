@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A fast macro or crypto risk-off shock could erase the cushion.",
+    "One-minute settlement mechanics create path sensitivity if BTC approaches 70k late.",
+    "Binance-specific operational or pricing issues could matter near settlement."
+  ],
+  "key_assumptions": [
+    "No major downside shock arrives before April 20 noon ET.",
+    "BTC retains enough of its current cushion above 68k to avoid a path-sensitive final minute.",
+    "Binance remains a clean source of truth into resolution."
+  ],
+  "main_logical_chain": [
+    "Polymarket rules make the exact Binance BTC/USDT 12:00 ET one-minute close on April 20 the governing source of truth.",
+    "Current Binance spot is materially above 68k, so Yes is the default outcome absent a sharp downside move.",
+    "Because settlement is one narrow minute, any downside catalyst that compresses the buffer can cause disproportionate repricing.",
+    "That supports a high Yes probability, but below the market's near-certainty."
+  ],
+  "main_thesis": "Yes is still likely because BTC is materially above 68k with only about five days left, but the market overstates certainty because a single downside catalyst could compress the cushion before the exact Binance noon ET settlement minute.",
+  "own_probability": 0.9,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "90% Yes.",
+    "The dominant catalyst is not a known bullish event that needs to happen. It is the absence of a sharp downside catalyst over the next five days.",
+    "Governing source of truth: Binance BTC/USDT, specifically the 12:00 ET one-minute candle on April 20, 2026, using the candle's final Close."
+  ],
+  "reasoning_mode": [
+    "catalyst_analysis",
+    "market_anchor",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260415-c8d6e83e",
+    "dispatch_id": "dispatch-case-20260415-c8d6e83e-20260415T151858Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "93d298c4-b48c-4193-b515-95c1bdfc3c42",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-c8d6e83e/researcher-analyses/2026-04-15/dispatch-case-20260415-c8d6e83e-20260415T151858Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "e1f1f01fc4ecf4c9eaf9e7c3fecff41cb2d454b6cef069c16e1df7d855c6cfc5"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is medium-high: Polymarket is authoritative for contract wording, Binance is authoritative for venue context, and CoinGecko provided a modest independent spot cross-check; source-of-truth ambiguity is low to medium because the contract is narrow and exact-minute specific.",
+  "strongest_disconfirmers": [
+    "There may be no meaningful downside catalyst before resolution, making the market's 95.5% confidence reasonable.",
+    "The contract only needs BTC not to fall about 8% from the checked level by the settlement minute."
+  ],
+  "strongest_supports": [
+    "Binance spot was around 74.1k, roughly 6k above the threshold.",
+    "Only about five days remained to settlement.",
+    "No concrete scheduled negative catalyst was identified in the run."
+  ],
+  "timing_relevance": "Timing is central because the contract resolves on a single Binance one-minute candle at noon ET on April 20, so late-window downside catalysts matter much more than medium-term BTC narratives.",
+  "unresolved_ambiguities": [
+    "No high-confidence scheduled catalyst was found; the main risk is unscheduled shock timing.",
+    "Exact-minute handling is explicit in rules but still operationally narrow."
+  ],
+  "what_would_change_view": "I would move toward the market if BTC stays above roughly 72k-73k into the final 24-48 hours with low volatility, and I would move materially lower if BTC breaks toward 70k or Binance-specific issues emerge."
+}

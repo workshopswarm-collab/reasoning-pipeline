@@ -1,0 +1,61 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Exact-minute resolution creates path dependence.",
+    "BTC can move several percent in a short period, compressing the current cushion.",
+    "Small residual source-of-truth ambiguity remains because the rules name the Binance UI candle."
+  ],
+  "key_assumptions": [
+    "BTC remains broadly above 72k into April 20 rather than only temporarily above it today.",
+    "No sharp selloff hits the exact relevant noon ET settlement minute.",
+    "Binance UI minute-candle behavior aligns with the documented kline interpretation."
+  ],
+  "main_logical_chain": [
+    "The market resolves on the Binance BTCUSDT 12:00 ET one-minute close on April 20, so contract interpretation and timing are central.",
+    "BTC is currently trading materially above 72,000 on the designated exchange, which makes Yes the base case.",
+    "But the contract is narrow and path-dependent, so a confidence discount is warranted versus a broad directional BTC view.",
+    "That leads to a Yes estimate below the market's 84.5% implied probability."
+  ],
+  "main_thesis": "BTC is more likely than not to finish above 72,000 on the relevant April 20 Binance noon ET minute close, but the market is somewhat overconfident because exact-minute path risk is underpriced.",
+  "own_probability": 0.78,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "This market will resolve to Yes if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone has a final Close price higher than the price specified.",
+    "Klines are uniquely identified by their open time."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "risk_management",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-ca40bc37",
+    "dispatch_id": "dispatch-case-20260416-ca40bc37-20260416T053546Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "1fc1ee5f-f4b7-4c12-b6f3-ed33622bfa41",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-ca40bc37/researcher-analyses/2026-04-16/dispatch-case-20260416-ca40bc37-20260416T053546Z/personas/risk-manager.md",
+    "source_persona_sha256": "57e0e088da3bf2779c31cb96a0d9bc334872e60926d331ef85e95d4215ce488c"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is medium-high overall: Binance is strong primary context for minute-candle mechanics and live price, while Polymarket is necessary for contract wording; independence is medium and source-of-truth ambiguity is low-medium.",
+  "strongest_disconfirmers": [
+    "The contract can fail on one bad minute because only the exact 12:00 ET Binance 1-minute close matters.",
+    "Binance's 24-hour low around 73.5k shows the current cushion is meaningful but not huge relative to normal BTC volatility.",
+    "Rules cite the Binance UI candle display rather than the API directly, leaving minor operational ambiguity."
+  ],
+  "strongest_supports": [
+    "Live Binance BTCUSDT was around 75.1k at capture time, roughly 3k above the threshold.",
+    "Only several days remain to resolution, which favors the side already above strike absent a major shock.",
+    "Nearby Polymarket strike prices form a coherent probability ladder around the threshold."
+  ],
+  "timing_relevance": "Very high: the contract is decided by the single Binance BTCUSDT 12:00 ET one-minute candle close on 2026-04-20, which maps to 16:00 UTC.",
+  "unresolved_ambiguities": [
+    "Whether realized volatility stays low enough that the noon-minute close remains comfortably above the threshold.",
+    "Whether any Binance UI-versus-API minute-candle edge case appears near settlement."
+  ],
+  "what_would_change_view": "A move back toward or below 72k before April 20, higher realized volatility around the threshold, or evidence that Binance minute-candle display behavior differs from the assumed interpretation would push me away from Yes; sustained trading above roughly 74.5k-75k into April 19-20 would move me closer to the market."
+}

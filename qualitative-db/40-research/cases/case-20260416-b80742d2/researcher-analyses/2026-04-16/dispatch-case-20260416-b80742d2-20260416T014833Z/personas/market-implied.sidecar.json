@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Single-minute settlement sensitivity.",
+    "Exchange-specific operational or display ambiguity near the resolution window.",
+    "Broad crypto risk-off move before April 19 noon ET."
+  ],
+  "key_assumptions": [
+    "Current Binance spot near 1.40 is a real cushion rather than a fleeting spike.",
+    "Binance remains the operative source surface for the noon ET resolution candle.",
+    "No sharp crypto-wide selloff pushes XRP/USDT below 1.30 by the target minute."
+  ],
+  "main_logical_chain": [
+    "The contract resolves on a specific Binance XRP/USDT 1-minute close at noon ET on April 19.",
+    "Binance spot and recent 24h range currently sit materially above the 1.30 threshold.",
+    "Therefore Yes is the base case, though the market's 95% price slightly underweights single-minute timing risk."
+  ],
+  "main_thesis": "The market's 95% Yes price is directionally justified because Binance XRP/USDT is already around 1.40, but single-minute timing risk makes 95% slightly rich versus my 89% estimate.",
+  "own_probability": 0.89,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "Polymarket: resolves Yes if the Binance XRP/USDT 12:00 ET 1-minute candle final Close is higher than 1.30.",
+    "Binance live ticker: XRPUSDT 1.40180000.",
+    "Binance 24h low during verification: 1.35030000."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260416-b80742d2",
+    "dispatch_id": "dispatch-case-20260416-b80742d2-20260416T014833Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "6cf3d3c3-f41f-4348-9c4a-115c2f98edb5",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-b80742d2/researcher-analyses/2026-04-16/dispatch-case-20260416-b80742d2-20260416T014833Z/personas/market-implied.md",
+    "source_persona_sha256": "c485756ec4ef812aa53b16b1519bd4179357599d3dd9dd3678b9e6513925d0ee"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality direct sources for rules and settlement mechanics; evidence independence is medium because Binance is both the governing source and the live price source.",
+  "strongest_disconfirmers": [
+    "This is a single-minute crypto threshold market, so short-horizon volatility can still defeat an otherwise comfortable spot cushion.",
+    "A roughly 7% drawdown from current spot into the specific resolution minute is not base case but is plausible in crypto."
+  ],
+  "strongest_supports": [
+    "Binance live ticker printed XRPUSDT around 1.4018 during research.",
+    "Binance 24h low in the verification pass was about 1.3503, still above the 1.30 threshold.",
+    "Polymarket rules explicitly tie settlement to the Binance XRP/USDT 12:00 ET 1m candle close."
+  ],
+  "timing_relevance": "Very high: the contract depends on one specific noon ET minute on 2026-04-19, so current spot only matters insofar as it provides cushion into that timestamp.",
+  "unresolved_ambiguities": [
+    "Some residual UI-versus-API implementation detail ambiguity remains even after checking Binance timezone-aware kline docs.",
+    "Path volatility over the next few days remains the main unresolved mechanism risk."
+  ],
+  "what_would_change_view": "A material erosion of the current cushion, especially a break below the mid-1.30s before April 19, or evidence of Binance reference-candle ambiguity or operational issues near settlement."
+}

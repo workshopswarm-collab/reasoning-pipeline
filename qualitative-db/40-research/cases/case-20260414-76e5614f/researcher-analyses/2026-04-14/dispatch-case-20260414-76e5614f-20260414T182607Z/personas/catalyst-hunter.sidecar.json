@@ -1,0 +1,56 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A routine 3-4% risk-off move could flip the outcome.",
+    "Single-minute settlement makes path and timing more important than broader weekly direction."
+  ],
+  "key_assumptions": [
+    "No major macro or crypto-specific downside catalyst forces a sustained >3.5% drawdown before Friday noon ET.",
+    "Recent Binance price regime is informative enough for the short horizon despite minute-specific settlement."
+  ],
+  "main_logical_chain": [
+    "The contract resolves on a very specific Binance BTC/USDT 1-minute noon ET close, so timing and venue alignment matter.",
+    "Current Binance spot is meaningfully above 72,000, which supports a Yes lean.",
+    "But the cushion is not wide relative to recent BTC volatility, so the market's 83-84% looks too high.",
+    "Net result: lean Yes, but at a discounted probability versus market."
+  ],
+  "main_thesis": "BTC is more likely than not to settle above $72,000 on Binance at noon ET April 17, but the market overstates that edge because the current cushion is only a few percent and settlement is minute-specific.",
+  "own_probability": 0.72,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "Resolve Yes if the Binance 1 minute candle for BTC/USDT 12:00 ET... has a final Close price higher than 72,000.",
+    "Binance ticker fetched during research: BTCUSDT 74533.45"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "catalyst_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-76e5614f",
+    "dispatch_id": "dispatch-case-20260414-76e5614f-20260414T182607Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "7b1e3824-0875-4846-8ffd-6c18b307912b",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-76e5614f/researcher-analyses/2026-04-14/dispatch-case-20260414-76e5614f-20260414T182607Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "e68179eea51a10e06f1a741a0d9690d6246bf1b618989cbdcfa4a582f2e597f5"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Low source-of-truth ambiguity and good venue alignment, but only medium-low evidence independence because the core evidence set is contract rules plus Binance market data.",
+  "strongest_disconfirmers": [
+    "Recent Binance realized volatility is large enough that an ordinary downswing could still push the noon ET print below 72,000.",
+    "At least one recent daily close in the fetched set was below the threshold."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT spot during research was about 74,533, roughly 3.5% above the threshold.",
+    "Several recent Binance daily closes were already above 72,000."
+  ],
+  "timing_relevance": "Very high: the market settles on one Binance one-minute candle at 12:00 ET on April 17, so catalyst sequencing and pre-noon price path are central.",
+  "unresolved_ambiguities": [
+    "No strong independent macro catalyst calendar source was captured in the final evidence set.",
+    "Intraday conditions on April 17 matter more than daily closes."
+  ],
+  "what_would_change_view": "A sustained break below 73k into late Thursday/Friday, or a materially negative macro/crypto catalyst before settlement, would cut the Yes probability materially."
+}

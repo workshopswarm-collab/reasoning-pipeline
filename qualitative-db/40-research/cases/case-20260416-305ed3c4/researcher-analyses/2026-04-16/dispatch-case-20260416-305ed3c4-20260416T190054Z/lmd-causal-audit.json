@@ -1,0 +1,392 @@
+{
+  "schema_version": "v1",
+  "generated_at": "2026-04-16T19:03:20.365194+00:00",
+  "case_key": "case-20260416-305ed3c4",
+  "dispatch_id": "dispatch-case-20260416-305ed3c4-20260416T190054Z",
+  "research_run_id": "6623071e-5bcd-4364-8607-47e94578db40",
+  "bundle_path": "qualitative-db/40-research/cases/case-20260416-305ed3c4/researcher-analyses/2026-04-16/dispatch-case-20260416-305ed3c4-20260416T190054Z/lmd-bundle.json",
+  "audit_path": "qualitative-db/40-research/cases/case-20260416-305ed3c4/researcher-analyses/2026-04-16/dispatch-case-20260416-305ed3c4-20260416T190054Z/lmd-causal-audit.json",
+  "bundle_status": "control_preview",
+  "assignment_arm": "control",
+  "lmd_used": false,
+  "usage_mode": "prepared_not_injected",
+  "lmd_tier": "tier1",
+  "control_preview": true,
+  "counterfactual_treatment_preview": true,
+  "query_profile": {
+    "run_kind": "novel",
+    "rerun_scope": "",
+    "difficulty_class": "medium",
+    "resolution_risk": "medium",
+    "source_of_truth_class": "authoritative_direct",
+    "platform": "polymarket",
+    "category": "polymarket-discovery",
+    "focus_hints": [
+      "date_timing_check",
+      "multi_condition_check",
+      "extra_verification"
+    ],
+    "question_mechanics": [],
+    "suppress_same_case": true
+  },
+  "case_mix": {
+    "question_mechanics": [],
+    "source_of_truth_class": "authoritative-direct",
+    "platform": "polymarket",
+    "category": "polymarket-discovery",
+    "focus_hints": [
+      "date-timing-check",
+      "extra-verification",
+      "multi-condition-check"
+    ],
+    "tags": [
+      "difficulty:medium",
+      "resolution_risk:medium"
+    ]
+  },
+  "support_gate": {
+    "min_case_reviews": 1,
+    "min_structural_support": 1,
+    "min_required_checks": 2,
+    "structural_support_count": 2,
+    "meets_support_gate": true
+  },
+  "coverage": {
+    "classification": "strong",
+    "counts": {
+      "case_review_count": 1,
+      "active_intervention_count": 1,
+      "aggregate_note_count": 1,
+      "required_check_count": 4,
+      "negative_check_count": 4,
+      "active_node_count": 3,
+      "matched_edge_count": 1,
+      "contested_edge_count": 0
+    },
+    "gap_flags": [],
+    "has_meaningful_payload": true,
+    "has_live_context": true
+  },
+  "provenance": {
+    "generator_version": "lmd-generator-v0",
+    "policy_version": "lmd-policy-v0",
+    "phase11_policy_version": "phase11-learned-policy-v1",
+    "phase11_policy_loaded_from_file": true,
+    "phase11_policy_source": "/Users/agent2/.openclaw/orchestrator/qualitative-db/60-causal-map/generated/phase11-retrieval-policy.json",
+    "bundle_input_hash": "194d64aea50d4c31f1fa8a9d823f72bf430fc42e8892b764c5fea2cd0b729f18",
+    "family_policy_hash": "9ac5fd5682ff5e801b965a7cbda447fc423632bd270417bf1e2bfd656727ade2",
+    "phase11_policy_hash": "9b6abc3e70aa308742290e116c8d49554917e36b08d5afb400a24d5e528b35d6",
+    "live_graph_snapshot_hash": "526b14f317d30b432e9e4d4b90ff2b29b7c1abc830d02b89a1d5ffdb65826085",
+    "result_paths_hash": "83405662f312ca440285fa937f503bf45e07483f9f03cabddd20b9ae8ea8823a"
+  },
+  "retrieval": {
+    "case_reviews": [
+      {
+        "case_key": "case-20260414-4e668883",
+        "review_path": "qualitative-db/50-learnings/case-reviews/case-20260414-4e668883/review.md",
+        "retrieval_score": 15.967,
+        "matched_active_nodes": [],
+        "matched_candidate_edges": [],
+        "why": null
+      }
+    ],
+    "active_interventions": [
+      {
+        "intervention_key": "capture-governing-source-proof-for-touch-markets",
+        "path": "qualitative-db/50-learnings/intervention-tracking/active/intervention-capture-governing-source-proof-for-touch-markets.md",
+        "retrieval_score": 5.084,
+        "required_checks": [
+          "identify_primary_governing_source",
+          "capture_governing_source_proof_when_event_near_complete",
+          "label_unverified_vs_not_occurred_distinctly"
+        ],
+        "matched_question_mechanics": [],
+        "matched_source_of_truth_class": [],
+        "why": null
+      }
+    ],
+    "aggregate_notes": [
+      {
+        "path": "qualitative-db/50-learnings/source-performance/generated-index.md",
+        "retrieval_score": 1.848,
+        "candidate_kind": null,
+        "why": null
+      }
+    ],
+    "required_checks": [
+      {
+        "check_key": "verify_primary_resolution_source",
+        "reason": "mechanism_risk:source_specific_settlement",
+        "source": "heuristic:source_specific_settlement"
+      },
+      {
+        "check_key": "capture_governing_source_proof_when_event_near_complete",
+        "reason": "mechanism_risk:resolution_surface_ambiguity",
+        "source": "heuristic:resolution_surface_ambiguity"
+      },
+      {
+        "check_key": "identify_primary_governing_source",
+        "reason": "active intervention + mechanism overlap",
+        "source": "intervention:capture-governing-source-proof-for-touch-markets"
+      },
+      {
+        "check_key": "label_unverified_vs_not_occurred_distinctly",
+        "reason": "active intervention + mechanism overlap",
+        "source": "intervention:capture-governing-source-proof-for-touch-markets"
+      }
+    ],
+    "negative_checks": [
+      {
+        "check_key": "verify_primary_resolution_source",
+        "avoid": "Do not rely on a secondary or assumed source when the contract depends on a specific governing resolution source.",
+        "reason": "mechanism_risk:source_specific_settlement",
+        "source": "heuristic:source_specific_settlement"
+      },
+      {
+        "check_key": "capture_governing_source_proof_when_event_near_complete",
+        "avoid": "Do not let near-complete market appearance substitute for captured governing-source proof.",
+        "reason": "mechanism_risk:resolution_surface_ambiguity",
+        "source": "heuristic:resolution_surface_ambiguity"
+      },
+      {
+        "check_key": "identify_primary_governing_source",
+        "avoid": "Do not skip required verification for identify primary governing source.",
+        "reason": "active intervention + mechanism overlap",
+        "source": "intervention:capture-governing-source-proof-for-touch-markets"
+      },
+      {
+        "check_key": "label_unverified_vs_not_occurred_distinctly",
+        "avoid": "Do not treat \u201cunverified\u201d as equivalent to \u201cdid not occur.\u201d",
+        "reason": "active intervention + mechanism overlap",
+        "source": "intervention:capture-governing-source-proof-for-touch-markets"
+      }
+    ],
+    "result_paths": [
+      "qualitative-db/50-learnings/case-reviews/case-20260414-4e668883/review.md",
+      "qualitative-db/50-learnings/intervention-tracking/active/intervention-capture-governing-source-proof-for-touch-markets.md",
+      "qualitative-db/50-learnings/source-performance/generated-index.md"
+    ]
+  },
+  "shadow_evaluation": {
+    "enabled": true,
+    "proposal_count_considered": 15,
+    "match_count": 5,
+    "would_inject_count": 5,
+    "top_matches": [
+      {
+        "proposal_id": "node:primary-resolution-source-identification",
+        "proposal_key": "primary-resolution-source-identification",
+        "candidate_type": "node",
+        "mechanism_family": "source_resolution",
+        "retrieval_score": 1.79,
+        "would_inject": true,
+        "matched_active_nodes": [
+          "resolution-surface-ambiguity",
+          "settlement-source-specificity"
+        ],
+        "matched_required_checks": []
+      },
+      {
+        "proposal_id": "node:governing-source-proof-capture",
+        "proposal_key": "governing-source-proof-capture",
+        "candidate_type": "node",
+        "mechanism_family": "source_resolution",
+        "retrieval_score": 1.7625,
+        "would_inject": true,
+        "matched_active_nodes": [
+          "resolution-surface-ambiguity",
+          "settlement-source-specificity"
+        ],
+        "matched_required_checks": []
+      },
+      {
+        "proposal_id": "node:verification-state-separation",
+        "proposal_key": "verification-state-separation",
+        "candidate_type": "node",
+        "mechanism_family": "source_resolution",
+        "retrieval_score": 1.165,
+        "would_inject": true,
+        "matched_active_nodes": [
+          "resolution-surface-ambiguity"
+        ],
+        "matched_required_checks": []
+      },
+      {
+        "proposal_id": "edge:resolution-surface-ambiguity__increases__governing-source-proof-capture",
+        "proposal_key": "resolution-surface-ambiguity__increases__governing-source-proof-capture",
+        "candidate_type": "edge",
+        "mechanism_family": "source_resolution",
+        "retrieval_score": 1.15,
+        "would_inject": true,
+        "matched_active_nodes": [
+          "resolution-surface-ambiguity"
+        ],
+        "matched_required_checks": []
+      },
+      {
+        "proposal_id": "edge:settlement-source-specificity__increases__primary-resolution-source-identification",
+        "proposal_key": "settlement-source-specificity__increases__primary-resolution-source-identification",
+        "candidate_type": "edge",
+        "mechanism_family": "source_resolution",
+        "retrieval_score": 1.13,
+        "would_inject": true,
+        "matched_active_nodes": [
+          "settlement-source-specificity"
+        ],
+        "matched_required_checks": []
+      }
+    ]
+  },
+  "trial_overlay": {
+    "enabled": true,
+    "used": false,
+    "preview_only": true,
+    "overlay_mode": "preview_only",
+    "candidate_count_considered": 1,
+    "candidate_count_positive_score": 1,
+    "selected_count": 1,
+    "injected_count": 0,
+    "selection_blocker_counts": {},
+    "selected_candidates": [
+      {
+        "proposal_id": "node:verification-state-separation",
+        "proposal_key": "verification-state-separation",
+        "candidate_type": "node",
+        "mechanism_family": "source_resolution",
+        "eligibility_mode": null,
+        "overlay_score": 2.33,
+        "shadow_trial_score": 0.0,
+        "preview_only": true,
+        "injected": false,
+        "matched_active_nodes": [
+          "resolution-surface-ambiguity"
+        ],
+        "matched_candidate_edges": [],
+        "matched_required_checks": [
+          "label_unverified_vs_not_occurred_distinctly"
+        ],
+        "selection_blockers": [],
+        "merge_recommended": false,
+        "merge_candidate_key": null
+      }
+    ],
+    "skipped_candidates_preview": [],
+    "experimental_candidate_ids": [
+      "node:verification-state-separation"
+    ]
+  },
+  "logging": {
+    "shadow": {
+      "ran": true,
+      "inserted": 5,
+      "updated": 0,
+      "logged_rows": 5,
+      "warning_count": 0,
+      "warnings": []
+    },
+    "trial": {
+      "ran": true,
+      "inserted": 1,
+      "updated": 0,
+      "logged_rows": 1,
+      "warning_count": 0,
+      "warnings": []
+    },
+    "lmd": {
+      "ran": false,
+      "inserted": 0,
+      "updated": 0,
+      "logged_rows": 0,
+      "warning_count": 0,
+      "warnings": []
+    }
+  },
+  "runtime": {
+    "runtime_surface": "telegram-forum-topic",
+    "persona": "catalyst-hunter",
+    "dispatch_gate_status": {},
+    "post_treatment_trigger": {
+      "ok": true,
+      "case_key": "case-20260416-305ed3c4",
+      "dispatch_id": "dispatch-case-20260416-305ed3c4-20260416T190054Z",
+      "trigger_source": "launch_dispatch_with_stateful_posts",
+      "state": {
+        "db_available": true,
+        "missing_tables": [],
+        "lmd_exposure_rows": 0,
+        "trial_exposure_rows": 1,
+        "resolved_reviews": 0,
+        "latest_lmd_exposure_at": null,
+        "latest_trial_exposure_at": "2026-04-16 15:02:07.322652-04",
+        "latest_review_update_at": null,
+        "latest_relevant_signal_at": "2026-04-16T19:02:07.322652+00:00",
+        "report_state": {
+          "report_path": "/Users/agent2/.openclaw/orchestrator/qualitative-db/60-causal-map/generated/post-treatment-feedback-cycle.json",
+          "report_exists": true,
+          "report_parse_error": false,
+          "report_generated_at": "2026-04-16T18:49:34.944210+00:00",
+          "case_present": false,
+          "dispatch_present": false
+        },
+        "report_fresh": false,
+        "force_refresh": true,
+        "should_run": true,
+        "skip_reason": null
+      },
+      "status": "triggered",
+      "cycle": {
+        "ok": true,
+        "returncode": 0,
+        "payload": {
+          "ok": true,
+          "summary": {
+            "generated_at": "2026-04-16T19:02:27.213144+00:00",
+            "experiment_id": "researcher-lmd-v1",
+            "cycle_count": 0,
+            "resolved_cycle_count": 0,
+            "ready_for_outcome_learning_count": 0,
+            "ready_for_trial_outcome_learning_count": 0,
+            "lmd_logging_complete_count": 0,
+            "trial_logging_complete_count": 0,
+            "cases_with_warnings_count": 0,
+            "repair_attempt_count": 0,
+            "repair_error_count": 0,
+            "refresh_step_count": 11,
+            "refresh_error_count": 0,
+            "retuning_ready": false,
+            "proposal_retuning_ready": false,
+            "latest_lmd_exposure_at": null,
+            "latest_trial_exposure_at": null,
+            "latest_review_update_at": null,
+            "latest_relevant_signal_at": null,
+            "latest_relevant_signal_age_seconds": null,
+            "live_graph_cycle_ok": true,
+            "live_graph_pre_repair_violation_count": 0,
+            "live_graph_violation_count": 0,
+            "live_graph_repair_count": 0,
+            "live_graph_recommended_count": 0,
+            "live_graph_blocked_count": 3
+          },
+          "json_out": "qualitative-db/60-causal-map/generated/post-treatment-feedback-cycle.json",
+          "md_out": "qualitative-db/60-causal-map/generated/post-treatment-feedback-cycle.md",
+          "audited_cases": []
+        },
+        "stderr": null,
+        "command": [
+          "/opt/homebrew/opt/python@3.14/bin/python3.14",
+          "/Users/agent2/.openclaw/orchestrator/roles/evaluator/runtime/scripts/run_post_treatment_causal_feedback_cycle.py",
+          "--case-key",
+          "case-20260416-305ed3c4",
+          "--psql",
+          "/opt/homebrew/opt/postgresql@16/bin/psql",
+          "--dispatch-id",
+          "dispatch-case-20260416-305ed3c4-20260416T190054Z",
+          "--db-url",
+          "postgresql://pq_orchestrator:KsDjg-lbfWx914dQmTUHMJkCcTceoc2r@localhost:5432/predquant",
+          "--repair-missing-logs"
+        ]
+      }
+    }
+  },
+  "audit_hash": "5b4c1e90c4f359f70d5ef41049e523843ad27142f163aeeca4aaec401fb3edd5"
+}

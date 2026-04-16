@@ -1,0 +1,57 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A sharp BTC selloff into the deadline could erase the cushion.",
+    "Mild ambiguity remains between Binance UI-referenced settlement wording and API-based verification."
+  ],
+  "key_assumptions": [
+    "Binance API kline/timezone behavior is a good proxy for the settlement object referenced by Polymarket.",
+    "BTC does not suffer a >6% selloff into the Apr. 17 noon ET minute close.",
+    "No exchange-specific anomaly changes the practical interpretation of the decisive candle."
+  ],
+  "main_logical_chain": [
+    "Polymarket implies about 97.2% Yes and defines a narrow settlement object: Binance BTC/USDT 12:00 ET 1-minute close.",
+    "Binance docs confirm kline/timezone mechanics and live Binance prices place BTC well above 70k.",
+    "That makes Yes the dominant base case, but narrow settlement mechanics justify a small confidence discount versus market pricing."
+  ],
+  "main_thesis": "Yes is still the clear base case, but the market is slightly overconfident because the contract settles on one exact Binance BTC/USDT 1-minute noon-ET close rather than a generic BTC price level.",
+  "own_probability": 0.93,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "Binance BTC/USDT 12:00 ET 1-minute candle final close",
+    "market may be slightly overconfident because this contract settles on one exact Binance BTC/USDT 1-minute close"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "contract_interpretation",
+    "variant_hypothesis",
+    "technical_reference"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-31d67ba1",
+    "dispatch_id": "dispatch-case-20260415-31d67ba1-20260415T185542Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "16f03740-1cb3-466d-8f1a-b802d616d84c",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-31d67ba1/researcher-analyses/2026-04-15/dispatch-case-20260415-31d67ba1-20260415T185542Z/personas/variant-view.md",
+    "source_persona_sha256": "1e7f5951347481d35d7e80dac21858e23eb901ae8af8ef338ea765c6b43d3ae4"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality primary exchange documentation and live exchange data support the mechanics and current price context; independence is medium because Polymarket cites Binance for settlement.",
+  "strongest_disconfirmers": [
+    "The market settles on one exact Binance 1-minute close, so exchange-specific timing or microstructure risk matters more than usual.",
+    "Crypto can still reprice sharply over two days, and a ~6% move would be enough to threaten Yes."
+  ],
+  "strongest_supports": [
+    "Live Binance BTCUSDT was around $74.3k-$74.4k, leaving roughly a $4.3k cushion above the threshold.",
+    "Binance 24h low at capture was still above $73.5k, materially above 70k.",
+    "The contract only needs one specified noon ET minute close above 70k."
+  ],
+  "timing_relevance": "The market resolves on the Apr. 17, 2026 12:00 ET candle, which maps to 16:00 UTC; exact minute-level timing is central to the thesis.",
+  "unresolved_ambiguities": [
+    "Whether Binance UI display conventions could differ in any material way from the API interpretation used for verification."
+  ],
+  "what_would_change_view": "I would move closer to the market if BTC stays comfortably above current levels into Apr. 17 with no settlement ambiguity, and materially lower if BTC sells off toward 70k or exchange-specific interpretation risk increases."
+}

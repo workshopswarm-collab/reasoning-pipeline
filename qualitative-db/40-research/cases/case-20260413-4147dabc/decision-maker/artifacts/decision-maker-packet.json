@@ -1,0 +1,157 @@
+{
+  "schema_version": "decision-packet/v1",
+  "generated_at": "2026-04-13T14:44:00-04:00",
+  "context": {
+    "case_key": "case-20260413-4147dabc",
+    "dispatch_id": "dispatch-case-20260413-4147dabc-20260413T183547Z",
+    "question": "Will the first eaglet hatch on April 11, 2026?",
+    "market_id": "case-20260413-4147dabc",
+    "market_title": "Will the first eaglet hatch on April 11, 2026?",
+    "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260413-4147dabc/synthesizer-agent/decision-handoff.md",
+    "source_syndicated_finding_path": "qualitative-db/40-research/cases/case-20260413-4147dabc/synthesizer-agent/syndicated-finding.md",
+    "decision_maker_agent": "decision-maker",
+    "canonical_markdown_path": "decision-maker-packet.md",
+    "canonical_json_path": "artifacts/decision-maker-packet.json",
+    "external_market_id": "0x48837fd3ea2d6a77f3ee0cdb5d844172224cef9b4554e081ab326a7feabd742c",
+    "market_slug": "will-the-first-eaglet-hatch-on-april-11-2026-441-195",
+    "platform": "polymarket",
+    "primary_market_url": "https://polymarket.com/event/will-the-first-eaglet-hatch-on-april-11-2026-441-195",
+    "source_light_refresh_brief_path": "",
+    "refresh_mode": ""
+  },
+  "decision": {
+    "side": "none",
+    "trade_authorization": "forbidden",
+    "position_policy": "flat",
+    "decision_readiness": "needs_more_research",
+    "primary_crux": "The bounded inputs contain a severe market-state inconsistency: the event page reportedly renders 'Outcome proposed: No' and 'Final outcome: No,' yet the supplied 0.9445 snapshot is unresolved in side/state semantics, so I cannot cleanly map the market price to the contract outcome without a direct audit of the decisive evidence and market state.",
+    "secondary_cruxes": [
+      "The provisional synthesized probability is very low for Apr 11, but that conclusion still rests on source-adjacent chronology rather than a frame-level audit of the first full-emergence moment.",
+      "Because this is a realized date-specific stream-resolution question, stale/resolved market-state artifacts can invert the meaning of price fields and make a naive edge calculation worthless.",
+      "The runtime marks the case as not_ready_reopen_recommended and says blockers require new research, which is exactly right for a post-event timestamp dispute with unresolved market-state semantics."
+    ],
+    "thesis_class": "not_decision_ready"
+  },
+  "valuation": {
+    "fair_value_low": 0.03,
+    "fair_value_high": 0.18,
+    "fair_value_mid": 0.105,
+    "market_reference_price": 0.9445,
+    "independent_verification_quality": "medium",
+    "compressed_toward_market_applied": false,
+    "compression_reason": "No extra compression helps because the blocking issue is unresolved market-state semantics plus missing frame-level timestamp evidence, not overprecision in the provisional probability estimate.",
+    "edge_mid_vs_market_pct_points": -84.0
+  },
+  "execution_semantics": {
+    "price_axis": "market_implied_true_prob",
+    "price_source": "market_snapshot_quote",
+    "rebalance_threshold_fraction": 0.1,
+    "allow_auto_reversal": false,
+    "valid_until": "2026-04-14T12:00:00-04:00",
+    "quote_staleness_seconds": 3600,
+    "time_horizon": "Post-event resolution-audit window"
+  },
+  "risk_controls": {
+    "max_position_size_pct_bankroll": 0.0,
+    "max_additional_exposure_pct_bankroll": 0.0,
+    "max_single_order_pct_bankroll": 0.0,
+    "slippage_tolerance_bps": 100,
+    "liquidity_min_depth": 1000,
+    "correlation_bucket_limit_pct_bankroll": 0.05,
+    "confidence_level": "low",
+    "portfolio_constraints": [
+      "Do not trade from this packet because the market-state meaning of the supplied 0.9445 snapshot is unresolved.",
+      "Require a direct audit of the first full-emergence timestamp and the market-side/state semantics before authorizing any exposure.",
+      "Keep target exposure at zero until source-of-truth evidence and market-state interpretation are reconciled."
+    ],
+    "liquidity_caution": "high"
+  },
+  "bands": [
+    {
+      "name": "max_enter",
+      "min_p": 0,
+      "max_p": 0.2,
+      "target_exposure_fraction": 0,
+      "notes": "Zero-exposure band because this packet is not decision-ready."
+    },
+    {
+      "name": "scaled_enter",
+      "min_p": 0.2,
+      "max_p": 0.4,
+      "target_exposure_fraction": 0,
+      "notes": "Zero-exposure band because realized-event timestamp evidence and market-state semantics are unresolved."
+    },
+    {
+      "name": "hold",
+      "min_p": 0.4,
+      "max_p": 0.6,
+      "target_exposure_fraction": 0,
+      "notes": "Zero-exposure band; no autonomous hold/add decision is justified while the decisive emergence timestamp is unaudited."
+    },
+    {
+      "name": "trim",
+      "min_p": 0.6,
+      "max_p": 0.8,
+      "target_exposure_fraction": 0,
+      "notes": "Zero-exposure band because the apparent edge could be entirely an artifact of stale or side-inverted market data."
+    },
+    {
+      "name": "exit",
+      "min_p": 0.8,
+      "max_p": 1,
+      "target_exposure_fraction": 0,
+      "notes": "Zero-exposure band; remain flat until the market snapshot semantics and decisive clip timing are clarified."
+    }
+  ],
+  "invalidation": {
+    "thesis_breakers": [
+      "A direct Apr 11 ET timestamped clip or operator statement shows the first fully emerged eaglet did in fact hatch on Apr 11.",
+      "Market-state clarification shows the 0.9445 snapshot referred to the opposite side or a stale/resolved state and the event page interpretation was correct.",
+      "A frame-level audit establishes a non-Apr-11 first full emergence conclusively."
+    ],
+    "market_structure_breakers": [
+      "Resolver or platform guidance clarifies how price fields behave after proposal/final outcome states in this market type.",
+      "A clarified source-of-truth interpretation changes what counts as first full emergence or how outages are handled.",
+      "The market snapshot is confirmed to belong to a stale, mirrored, or otherwise non-tradable state."
+    ],
+    "time_breakers": [
+      "This packet should not be used after valid_until without direct timestamp and market-state clarification.",
+      "Because this is already a realized-event dispute, stale interpretations should be replaced immediately once decisive evidence is recovered."
+    ],
+    "reversal_conditions": [
+      "No reversal logic applies because this packet authorizes no position.",
+      "A new packet is required after frame-level timestamp audit and market-state clarification.",
+      "Do not auto-reverse from flat based on this packet."
+    ]
+  },
+  "epistemic_status": {
+    "key_uncertainties": [
+      "Whether the supplied 0.9445 field referred to YES, NO, or a stale/resolved market representation.",
+      "The exact frame/timestamp of the first visibly fully emerged eaglet was not independently audited in the bounded run.",
+      "Whether source-adjacent operator materials fully capture the decisive chronology or merely imply it."
+    ],
+    "reasons_to_pass": [
+      "You cannot responsibly trade a realized event when the market-state semantics and decisive timestamp are both unresolved.",
+      "The package itself reports a post-event page state suggesting No while the numeric snapshot appears to imply the opposite, which is exactly the kind of inconsistency that should stop execution.",
+      "This is a timestamp-resolution problem, not a forecasting problem; accuracy requires direct evidence rather than probabilistic extrapolation."
+    ],
+    "what_would_change_my_mind": [
+      "A direct frame-level clip or timestamp audit of the first full emergence would make the case decision-ready.",
+      "A clarified mapping of the 0.9445 snapshot to side/state would resolve whether there is any real market disagreement left.",
+      "Operator or resolver confirmation explicitly stating the date of first full emergence would materially reduce uncertainty."
+    ],
+    "decision_quality": "not_ready"
+  },
+  "audit": {
+    "market_baseline_respected": false,
+    "action_bias_check_passed": true,
+    "self_preservation_bias_check_passed": true,
+    "one_sentence_rationale": "Because the bounded inputs do not let me reconcile the market's reported proposed/final No state with the supplied 0.9445 snapshot and also lack a direct audit of the decisive hatch timestamp, the disciplined output is to stay flat and demand evidence rather than pretend there is a tradable edge.",
+    "notes": "I preserve the bounded provisional estimate around 0.105 only as a non-execution-ready read on the likely date, not as a tradable judgment; the real blocker is unresolved market-state semantics plus missing frame-level source verification.",
+    "structured_handoff_primary_used": true,
+    "prose_fallback_used": false,
+    "verification_mode_used": "not_ready_reopen_recommended",
+    "additional_verification_performed": false,
+    "additional_verification_notes": ""
+  }
+}

@@ -2,7 +2,7 @@
 type: system_quickstart
 domain: system
 status: active
-last_updated: 2026-03-26
+last_updated: 2026-04-14
 owner: orchestrator
 tags: [system/quickstart, onboarding, fresh-instance]
 ---
@@ -32,7 +32,7 @@ Read these next only if needed:
 - `20-entities/` = stable canonical entity notes
 - `30-drivers/` = stable reusable causal mechanisms
 - `40-research/` = working research, evidence, and investigations
-- `50-retrospectives/` = after-the-fact lessons and evaluation
+- `50-learnings/` = after-the-fact lessons and evaluation
 
 Runtime note:
 - live researcher-swarm execution currently happens in Telegram forum topics (controller + persona topics per case)
@@ -109,7 +109,7 @@ Preserve conflict early, resolve it late.
 Default workflow:
 1. preserve disagreement in `40-research/`
 2. let the decision-maker adjudicate it
-3. record lessons in `50-retrospectives/`
+3. record lessons in `50-learnings/`
 4. promote only durable lessons into stable layers
 
 ## Default actions by task
@@ -138,7 +138,7 @@ You may make linkage-only updates without treating them as full canonical rewrit
 - working in `20-entities/` -> read `qualitative-db/20-entities/README.md`
 - working in `30-drivers/` -> read `qualitative-db/30-drivers/README.md`
 - working in `40-research/` -> read `qualitative-db/40-research/README.md`
-- working in `50-retrospectives/` -> read `qualitative-db/50-retrospectives/README.md`
+- working in `50-learnings/` -> read `qualitative-db/50-learnings/README.md`
 
 ## If uncertain
 

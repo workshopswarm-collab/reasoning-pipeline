@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "If the lead is cut sharply after round 13, the estimate should fall fast.",
+    "If the scoreboard snapshot used here is stale or incorrect, the thesis weakens materially.",
+    "A tie for first would reopen the case through tie-break variance."
+  ],
+  "key_assumptions": [
+    "The checked 9/12 after-round-12 standings snapshot is materially accurate.",
+    "Standard Candidates rules and first-place tie-break procedures will govern the final result.",
+    "No extraordinary withdrawal, annulment, or reporting error intervenes before official FIDE confirmation."
+  ],
+  "main_logical_chain": [
+    "Start from the outside-view prior that any one player in an 8-player Candidates field is far from certain.",
+    "Update heavily because the current tournament-state snapshot shows Sindarov with a two-point lead and only two rounds remaining.",
+    "Apply a residual haircut because the contract resolves off the official FIDE winner, not an interim lead, and official-source capture was imperfect."
+  ],
+  "main_thesis": "Sindarov is an overwhelming but not literal-certainty favorite because a two-point lead with two rounds left usually converts, yet the tournament is not officially over and FIDE is the governing source of truth.",
+  "own_probability": 0.96,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "Polymarket current price is 0.9905, implying about 99.05%.",
+    "96%.",
+    "The governing source of truth is official information from FIDE."
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-231e3ef7",
+    "dispatch_id": "dispatch-case-20260414-231e3ef7-20260414T140546Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "b7fa5998-ce51-4013-9a26-2ae9ff96eaf5",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-231e3ef7/researcher-analyses/2026-04-14/dispatch-case-20260414-231e3ef7-20260414T140546Z/personas/base-rate.md",
+    "source_persona_sha256": "f40b8d26656f1eb0b2347c7639365efbe4356babc3d4103bcb223275c2119e5d"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Settlement mechanics are clear from contract language, but current-score evidence was mainly secondary/contextual rather than two clean independent primary captures.",
+  "strongest_disconfirmers": [
+    "The tournament is not over yet: two rounds and possible tie-breaks remain.",
+    "Official FIDE information is the governing source, and a clean official standings page was not directly captured in this run.",
+    "Secondary scoreboard sources can be stale or wrong in edge cases."
+  ],
+  "strongest_supports": [
+    "Sindarov was listed on 9/12 after 12 rounds with nearest chaser on 7/12 and only two rounds left.",
+    "A two-point lead that late in an 8-player Candidates is structurally massive and usually converts.",
+    "Even if caught, an additional adverse tie-break path may still be needed for him to lose."
+  ],
+  "timing_relevance": "High: the case is late-stage with only two rounds left, so small new official updates can move the remaining residual risk quickly.",
+  "unresolved_ambiguities": [
+    "Exact official FIDE standings/winner page not cleanly fetched during this run.",
+    "Live tournament developments after the checked round-12 snapshot remain unresolved."
+  ],
+  "what_would_change_view": "An official FIDE update showing the lead narrowed, erased, or officially confirmed would most change the estimate."
+}

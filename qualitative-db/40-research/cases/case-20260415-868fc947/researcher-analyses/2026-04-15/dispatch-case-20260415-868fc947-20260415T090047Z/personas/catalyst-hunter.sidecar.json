@@ -1,0 +1,61 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Single-minute-candle path sensitivity.",
+    "Short-horizon crypto volatility can erase a 2-3% cushion quickly.",
+    "Exchange-specific operational behavior matters because Binance is the settlement source."
+  ],
+  "key_assumptions": [
+    "No major macro or crypto-specific negative catalyst pushes BTC down more than roughly 2.7% before the resolution minute.",
+    "Binance does not experience a material exchange-specific wick or data anomaly near settlement.",
+    "Current realized volatility is informative enough to treat a drop below 72k as a tail risk rather than the base case."
+  ],
+  "main_logical_chain": [
+    "The contract resolves from a single Binance BTC/USDT 1-minute close at Apr. 16 12:00 ET.",
+    "Binance spot is already around 74k, so the threshold sits materially below current price on the governing venue.",
+    "Recent Binance intraday and daily ranges show volatility but still leave 72k as a cushioned level rather than a knife-edge threshold.",
+    "Therefore the main failure mode is a fresh short-horizon downside catalyst or exchange-specific anomaly before the fixed timestamp.",
+    "Without such a catalyst, Yes is modestly more likely than the market's 87.5% baseline implies."
+  ],
+  "main_thesis": "Binance BTC/USDT is already trading around 74k, so absent a fresh downside shock or exchange-specific anomaly, the Apr. 16 noon ET 1-minute close is more likely than not to remain above 72k.",
+  "own_probability": 0.9,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "This market will resolve to \"Yes\" if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone ... has a final \"Close\" price higher than the price specified.",
+    "BTCUSDT ticker during run: 74028.60"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "catalyst_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-868fc947",
+    "dispatch_id": "dispatch-case-20260415-868fc947-20260415T090047Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "e7839924-ad9b-46e0-b356-f4086522097b",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-868fc947/researcher-analyses/2026-04-15/dispatch-case-20260415-868fc947-20260415T090047Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "dfe8836c4008b877af138cb5c1e2c31aa9bd1795bfc6ae14273cffa83e50cb01"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is good because the analysis uses the governing contract page plus primary Binance exchange data, though evidence independence is only medium and there is mild UI-versus-API ambiguity.",
+  "strongest_disconfirmers": [
+    "BTC can move 2-3% in less than a day, and this contract resolves on a single one-minute candle.",
+    "A macro risk-off move or crypto-specific negative headline during US hours could still push Binance below 72k.",
+    "The contract references the Binance UI candle view, leaving mild implementation ambiguity versus API-based prechecks."
+  ],
+  "strongest_supports": [
+    "Binance spot traded around 74028.60 during the run, leaving a cushion of roughly 2028 points above the strike.",
+    "Recent 1m, 1h, and 1d Binance data kept BTC above 72k through recent volatility.",
+    "Polymarket's adjacent strike ladder showed 72k priced far safer than 74k or 76k, consistent with a real cushion."
+  ],
+  "timing_relevance": "This market is primarily about whether a bearish catalyst arrives before the fixed Apr. 16 noon ET observation minute, not about Bitcoin's medium-term direction.",
+  "unresolved_ambiguities": [
+    "No strong independent secondary source was found that materially changed the base view.",
+    "Mild residual ambiguity remains between Binance UI wording in the contract and API-based monitoring."
+  ],
+  "what_would_change_view": "A decisive loss of 73k on Binance, a clear macro or crypto-specific negative shock before noon ET, or evidence of Binance settlement-data mismatch would move me lower."
+}

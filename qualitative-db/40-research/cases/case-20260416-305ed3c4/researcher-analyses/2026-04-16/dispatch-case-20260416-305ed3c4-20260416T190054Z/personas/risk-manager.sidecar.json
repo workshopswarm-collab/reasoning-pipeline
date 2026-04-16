@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Single-minute settlement creates path dependence.",
+    "Residual overnight and morning volatility before settlement.",
+    "Venue-specific dependence on Binance ETH/USDT."
+  ],
+  "key_assumptions": [
+    "ETH/USDT stays above 2200 through the exact April 17 12:00 ET Binance 1m close.",
+    "Binance spot remains orderly and settlement-representative into the resolution minute.",
+    "No overnight or late-morning shock erases the current ~6.5% cushion."
+  ],
+  "main_logical_chain": [
+    "Polymarket resolves from the Binance ETH/USDT 12:00 ET April 17 1m candle final close.",
+    "Current Binance ETH/USDT is around 2344, well above 2200.",
+    "Recent verified Binance trading, including the 24h low, stayed above 2200.",
+    "Therefore Yes is the clear directional lean, but confidence should remain below market because of single-candle timing risk."
+  ],
+  "main_thesis": "ETH is likely to resolve Yes because Binance ETH/USDT is materially above 2200, but the remaining risk is narrow timestamp-specific downside into the April 17 12:00 ET settlement candle.",
+  "own_probability": 0.95,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "Governing source of truth: Binance ETH/USDT, specifically the 1-minute candle for 12:00 ET on April 17, 2026, using the candle\u2019s final Close price.",
+    "My estimate is 95% Yes."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "risk_management",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260416-305ed3c4",
+    "dispatch_id": "dispatch-case-20260416-305ed3c4-20260416T190054Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "8adf7e65-044c-4c3f-b33c-1a3dccf75a17",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-305ed3c4/researcher-analyses/2026-04-16/dispatch-case-20260416-305ed3c4-20260416T190054Z/personas/risk-manager.md",
+    "source_persona_sha256": "0acacb7f67a396724958906f45ad85491fa747fd069610b300b2756eae54bfed"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality direct evidence from the named settlement venue, plus contextual verification from Polymarket rules and Binance API docs; independence is medium because the key evidence necessarily centers on Binance.",
+  "strongest_disconfirmers": [
+    "The contract settles on one specific 12:00 ET Binance 1m close, so sharp downside path risk can still flip the outcome.",
+    "A Binance-specific pricing anomaly or outage could matter because the contract is venue-specific."
+  ],
+  "strongest_supports": [
+    "Binance spot/API showed ETH/USDT around 2343-2345 on April 16 afternoon ET.",
+    "Verified Binance 24h low of 2285.10 remained above the 2200 threshold.",
+    "Polymarket rules are explicit about Binance ETH/USDT, 12:00 ET, and final 1m candle close."
+  ],
+  "timing_relevance": "This is a <24h, date-specific contract settled on one exact 12:00 ET minute candle, so timing risk matters more than broad directional ETH sentiment.",
+  "unresolved_ambiguities": [
+    "Minor practical ambiguity remains between website chart presentation and API-based reconstruction of the exact ET noon candle.",
+    "The exact settlement-minute market state is unknowable at research time."
+  ],
+  "what_would_change_view": "I would cut confidence materially if Binance ETH/USDT broke sharply toward 2200 into the April 17 U.S. morning or if Binance showed exchange-specific outage or anomalous pricing near settlement."
+}

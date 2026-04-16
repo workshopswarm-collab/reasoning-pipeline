@@ -1,0 +1,121 @@
+{
+  "artifact_type": "targeted_verification_pack",
+  "schema_version": "decision-targeted-verification-pack/v1",
+  "case_key": "case-20260415-1e5e80f9",
+  "dispatch_id": "refresh-case-20260415-1e5e80f9-20260415T082031Z",
+  "required": true,
+  "verification_mode": "targeted_escalation",
+  "pack_purpose": "Deterministic narrow follow-up pack for targeted escalation. It defines the crux questions and operational budgets, while source choice may remain model-driven within runtime-enforced tool guardrails.",
+  "verification_questions": [
+    "Does the latest available information materially change the decision, given: Current Binance distance-to-strike can change materially before the April 16 noon ET settlement minute.?",
+    "How decision-relevant is the remaining contract/source-of-truth ambiguity: Binance UI candle named in rules was verified mainly via API plus page text, not the exact future settlement-screen print?",
+    "Are the current blockers still material to final judgment: No major contract blocker?",
+    "Is the main verification gap still decision-material: No exact-horizon volatility model or near-settlement Binance chart-surface confirmation was added beyond spot and recent kline checks.?"
+  ],
+  "structured_handoff_focus": {
+    "contract_ambiguity_level": "minor",
+    "contract_ambiguity_reason": "Binance UI candle named in rules was verified mainly via API plus page text, not the exact future settlement-screen print",
+    "verification_gap_summary": "No exact-horizon volatility model or near-settlement Binance chart-surface confirmation was added beyond spot and recent kline checks.",
+    "best_countercase_summary": "If BTC simply stays flat or drifts modestly up from current Binance levels, the noon close clears 72,000 easily and market confidence is justified.",
+    "main_reason_for_disagreement": "Different weighting of ordinary one-day BTC volatility versus current above-strike cushion in a single-minute settlement contract.",
+    "resolution_mechanics_summary": "Yes resolves only if Binance BTC/USDT's April 16 12:00 ET 1-minute candle final close is strictly above 72,000.",
+    "freshness_sensitive": "yes",
+    "freshness_driver": "Current Binance distance-to-strike can change materially before the April 16 noon ET settlement minute.",
+    "decision_blockers": [
+      "No major contract blocker",
+      "Residual uncertainty about whether a roughly 2.4% cushion is enough against ordinary one-day BTC volatility",
+      "No near-settlement refresh yet on the exact Binance chart-surface print"
+    ],
+    "disagreement_type": "interpretation"
+  },
+  "supporting_persona_summaries": [
+    {
+      "persona": "market-implied",
+      "recommended_weight": "high",
+      "own_probability": 0.79,
+      "main_thesis": "The market's 82.5% Yes price is broadly efficient because BTC is already materially above 72k on Binance, but I trim slightly lower to 79% because a one-day 2.3% downside move into the exact settlement minute is still plausible.",
+      "main_logical_chain": [
+        "Check governing rules: Binance BTCUSDT 12:00 ET 1-minute candle close on April 16 decides settlement.",
+        "Check current Binance price context: BTC was around 73.7k, already above the 72k strike.",
+        "Infer that the market mainly prices persistence above the line, not the need for further upside.",
+        "Discount slightly for ordinary one-day BTC volatility and single-minute settlement fragility."
+      ],
+      "strongest_supports": [
+        "Direct Binance spot during the run was about 73703, leaving roughly a 1703-point cushion above the strike.",
+        "Recent Binance 1-minute closes were clustered in the high-73k area."
+      ],
+      "strongest_disconfirmers": [
+        "BTC can move more than 2.3% in under a day, which is enough to flip the contract.",
+        "Settlement depends on one exact Binance minute-close print rather than a broader average."
+      ],
+      "unresolved_ambiguities": [
+        "I did not pull a dedicated options-implied or realized-volatility distribution for the exact horizon.",
+        "The exact cushion by settlement may change materially before rerun."
+      ],
+      "what_would_change_view": "A move back toward or below 72k on Binance before settlement, evidence of elevated near-term downside volatility, or Binance-specific operational issues would make me materially less bullish.",
+      "timing_relevance": "Very high: this is a next-day, single-minute, ET-noon settlement market, so date/time mechanics are central rather than incidental.",
+      "source_quality_view": "High-quality primary rule/source-of-truth verification via Polymarket rules plus direct Binance data, with a modest contextual cross-check; source-of-truth ambiguity is low.",
+      "persona_finding_path": "qualitative-db/40-research/cases/case-20260415-1e5e80f9/researcher-analyses/2026-04-15/dispatch-case-20260415-1e5e80f9-20260415T080017Z/personas/market-implied.md",
+      "assumption_artifact_paths": [
+        "qualitative-db/40-research/cases/case-20260415-1e5e80f9/researcher-analyses/2026-04-15/dispatch-case-20260415-1e5e80f9-20260415T080017Z/assumptions/market-implied.md"
+      ],
+      "evidence_artifact_paths": []
+    }
+  ],
+  "selected_assumption_snippets": [
+    {
+      "path": "qualitative-db/40-research/cases/case-20260415-1e5e80f9/researcher-analyses/2026-04-15/dispatch-case-20260415-1e5e80f9-20260415T080017Z/assumptions/variant-view.md",
+      "frontmatter": {
+        "type": "assumption_note",
+        "case_key": "case-20260415-1e5e80f9",
+        "dispatch_id": "dispatch-case-20260415-1e5e80f9-20260415T080017Z",
+        "research_run_id": "8617883c-59bc-435e-9f2c-b6573ccbe6da",
+        "analysis_date": "2026-04-15",
+        "persona": "variant-view",
+        "domain": "crypto",
+        "subdomain": "bitcoin",
+        "entity": "bitcoin",
+        "topic": "bitcoin-above-72k-on-april-16",
+        "question": "Will the price of Bitcoin be above $72,000 on April 16?",
+        "driver": "operational-risk",
+        "date_created": "2026-04-15",
+        "agent": "variant-view",
+        "status": "active",
+        "certainty": "medium",
+        "importance": "high",
+        "time_horizon": "<48h",
+        "related_entities": [
+          "bitcoin"
+        ],
+        "related_drivers": [
+          "operational-risk"
+        ],
+        "proposed_entities": [],
+        "proposed_drivers": [],
+        "upstream_inputs": [],
+        "downstream_uses": [
+          "variant-view.md",
+          "variant-view.sidecar.json"
+        ],
+        "tags": [
+          "assumption",
+          "settlement-window",
+          "threshold-distance"
+        ]
+      },
+      "snippet": "# Assumption\nThe market is slightly overpricing Yes because traders are anchoring to current BTC strength more than to the narrow risk that a single Binance noon ET minute-close can slip below 72,000 within the next day.\n## Why this assumption matters\nIf this assumption is right, the correct probability should be somewhat below the market-implied 82.5% even though Yes remains favored.\n## What this assumption supports\n- A modestly contrarian estimate below the market price.\n- Emphasis on path risk and minute-close sensitivity rather than broader bullish trend narratives.\n## Evidence or logic behind the assumption\n- Binance spot check during the run showed BTC around 73,711.71, only about 2.3% above the threshold.\n- Crypto can move more than 2-3% within a day without any major structural regime shift.\n- The contract resolves on one specific exchange and one exact minute-close, which increases sensitivity to short-term noise.\n## What would falsify it\n- BTC materially extends upward, creating a much wider cushion above 72,000 by the hours before settlement.\n- Market-specific evidence shows Binance noon-minute closes are far more stable than generic intraday intuition suggests in this regime.\n## Early warning signs\n- Sustained trading above roughly 74.5k-75k into the settlement window.\n- Strength across risk assets or crypto flows that reduces near-term downside odds.\n- Evidence that the market had already priced this narrow-window risk more carefully than the surface 82.5% suggests.\n## What changes if this assumption fails\nThe estimate should move closer to or above market, and …",
+      "full_char_count": 2071,
+      "snippet_char_count": 1602
+    }
+  ],
+  "selected_evidence_snippets": [],
+  "selected_supporting_note_snippets": [],
+  "pack_budget": {
+    "max_chars": 6000,
+    "actual_chars_before_trim": 10509,
+    "actual_chars_after_trim": 7965,
+    "approx_tokens_before_trim": 2627,
+    "approx_tokens_after_trim": 1991,
+    "trim_applied": true
+  }
+}

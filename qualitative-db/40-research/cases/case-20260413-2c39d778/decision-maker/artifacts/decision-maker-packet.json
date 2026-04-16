@@ -1,0 +1,157 @@
+{
+  "schema_version": "decision-packet/v1",
+  "generated_at": "2026-04-13T18:13:00-04:00",
+  "context": {
+    "case_key": "case-20260413-2c39d778",
+    "dispatch_id": "dispatch-case-20260413-2c39d778-20260413T215003Z",
+    "question": "Will Vitality win IEM Rio 2026?",
+    "market_id": "case-20260413-2c39d778",
+    "market_title": "Will Vitality win IEM Rio 2026?",
+    "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260413-2c39d778/synthesizer-agent/decision-handoff.md",
+    "source_syndicated_finding_path": "qualitative-db/40-research/cases/case-20260413-2c39d778/synthesizer-agent/syndicated-finding.md",
+    "decision_maker_agent": "decision-maker",
+    "canonical_markdown_path": "decision-maker-packet.md",
+    "canonical_json_path": "artifacts/decision-maker-packet.json",
+    "external_market_id": "0xfefaf1876e4dc906d74c7c5f9241ec60edfe501a3bda4048b8722c52468e9fae",
+    "market_slug": "will-vitality-win-iem-rio-2026",
+    "platform": "polymarket",
+    "primary_market_url": "https://polymarket.com/event/will-vitality-win-iem-rio-2026",
+    "source_light_refresh_brief_path": "",
+    "refresh_mode": ""
+  },
+  "decision": {
+    "side": "yes",
+    "trade_authorization": "watch_only",
+    "position_policy": "hold_only",
+    "decision_readiness": "needs_more_research",
+    "primary_crux": "Vitality is the deserved outright favorite, but the current 70.5% price is somewhat richer than the bounded public evidence justifies because the remaining bracket path and the true size of Vitality's form edge over the field were not cleanly independently verified.",
+    "secondary_cruxes": [
+      "This is still a 16-team S-tier CS2 event with meaningful tournament-path variance, so extreme confidence requires stronger proof than is present here.",
+      "The April 14 Vitality-vs-G2 match is a live catalyst that can materially change the outright before a clean reassessment is possible.",
+      "The decisive gap is not whether Vitality is good, but whether they are so far ahead of the field, and on such a favorable path, that 70%+ is fair."
+    ],
+    "thesis_class": "not_decision_ready"
+  },
+  "valuation": {
+    "fair_value_low": 0.58,
+    "fair_value_high": 0.68,
+    "fair_value_mid": 0.63,
+    "market_reference_price": 0.705,
+    "edge_mid_vs_market_pct_points": -7.5,
+    "independent_verification_quality": "medium",
+    "compressed_toward_market_applied": true,
+    "compression_reason": "The market is information-rich and Vitality is clearly a real favorite, but unresolved uncertainty around bracket state and the extremity of their true strength edge prevents endorsing the full market price."
+  },
+  "execution_semantics": {
+    "price_axis": "market_implied_true_prob",
+    "price_source": "market_snapshot_quote",
+    "rebalance_threshold_fraction": 0.1,
+    "allow_auto_reversal": false,
+    "valid_until": "2026-04-14T23:59:00-04:00",
+    "quote_staleness_seconds": 7200,
+    "time_horizon": "Through the Vitality-vs-G2 catalyst and subsequent bracket progression"
+  },
+  "risk_controls": {
+    "max_position_size_pct_bankroll": 0.0075,
+    "max_additional_exposure_pct_bankroll": 0.0,
+    "max_single_order_pct_bankroll": 0.0,
+    "slippage_tolerance_bps": 80,
+    "liquidity_min_depth": 800,
+    "correlation_bucket_limit_pct_bankroll": 0.03,
+    "confidence_level": "low",
+    "portfolio_constraints": [
+      "Do not initiate new exposure from this packet because bracket-state and true-strength verification are incomplete.",
+      "Reassess after the Vitality-vs-G2 match or after cleaner bracket/odds evidence becomes available.",
+      "Treat tournament outrights with elite-opponent density as variance-heavy even when one team is the favorite."
+    ],
+    "liquidity_caution": "medium"
+  },
+  "bands": [
+    {
+      "name": "max_enter",
+      "min_p": 0,
+      "max_p": 0.25,
+      "target_exposure_fraction": 0,
+      "notes": "No entry authorized because the case is not decision-ready despite a yes lean."
+    },
+    {
+      "name": "scaled_enter",
+      "min_p": 0.25,
+      "max_p": 0.5,
+      "target_exposure_fraction": 0,
+      "notes": "No entry authorized until bracket path and current-form edge are better verified."
+    },
+    {
+      "name": "hold",
+      "min_p": 0.5,
+      "max_p": 0.66,
+      "target_exposure_fraction": 0,
+      "notes": "Hold/watch zone; Vitality is favored but not cleanly enough for new adds."
+    },
+    {
+      "name": "trim",
+      "min_p": 0.66,
+      "max_p": 0.8,
+      "target_exposure_fraction": 0,
+      "notes": "Avoid adding above roughly fair value given unresolved bracket and form-edge uncertainty."
+    },
+    {
+      "name": "exit",
+      "min_p": 0.8,
+      "max_p": 1,
+      "target_exposure_fraction": 0,
+      "notes": "Exit/avoid at very high prices because public evidence does not support near-certainty in this field."
+    }
+  ],
+  "invalidation": {
+    "thesis_breakers": [
+      "Strong independent odds, rankings, or bracket evidence show Vitality's edge over the field is materially larger than currently estimated.",
+      "Vitality lose the G2 match or encounter a materially harder path than currently assumed.",
+      "Another elite team shows stronger current form or an easier route than currently reflected in the bounded package."
+    ],
+    "market_structure_breakers": [
+      "The market is incorporating superior live bracket or form information unavailable in the bounded package.",
+      "Displayed price is being distorted by thin liquidity or event-specific momentum chasing.",
+      "Official ESL bracket or reporting updates materially change the effective outright state."
+    ],
+    "time_breakers": [
+      "The April 14 Vitality-vs-G2 match can reprice the outright immediately.",
+      "Subsequent bracket progression or playoff qualification should replace this packet rather than merely update it."
+    ],
+    "reversal_conditions": [
+      "Move toward authorized yes only after cleaner independent evidence confirms both the bracket path and a truly extreme Vitality form edge.",
+      "Move toward no if verified evidence shows a materially harder path or stronger rival form.",
+      "Do not auto-reverse from this packet."
+    ]
+  },
+  "epistemic_status": {
+    "key_uncertainties": [
+      "How large Vitality's current true strength edge is versus the rest of the field.",
+      "Exact remaining bracket difficulty after the next catalyst match.",
+      "How much the market already reflects superior live information not captured in the bounded package."
+    ],
+    "reasons_to_pass": [
+      "The package explicitly says stronger verification would be preferable before high-conviction action.",
+      "The next match is an immediate re-pricing catalyst, so current edges can decay quickly.",
+      "The market is only moderately above bounded fair value, leaving insufficient cushion versus the unresolved information gap."
+    ],
+    "what_would_change_my_mind": [
+      "Independent bookmaker or exchange prices near or above the current market would move me closer to market.",
+      "Cleaner bracket evidence showing a materially easier Vitality path would raise fair value.",
+      "Verified stronger rival form, a harder path, or a loss to G2 would move fair value materially lower."
+    ],
+    "decision_quality": "not_ready"
+  },
+  "audit": {
+    "market_baseline_respected": true,
+    "action_bias_check_passed": true,
+    "self_preservation_bias_check_passed": true,
+    "one_sentence_rationale": "Vitality is a real favorite, but because the 70.5% price is ahead of the bounded public evidence and the unresolved bracket/form questions can move the outright materially, the disciplined output is watch-only and needs-more-research rather than an authorized trade.",
+    "notes": "This packet intentionally distinguishes directional belief from execution readiness: the bounded package supports Vitality as favorite, but not at an auditably strong enough level to justify fresh action before the next key match.",
+    "structured_handoff_primary_used": true,
+    "prose_fallback_used": false,
+    "verification_mode_used": "not_ready_reopen_recommended",
+    "additional_verification_performed": false,
+    "additional_verification_notes": ""
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "One-minute timestamp sensitivity on a single exchange.",
+    "Current cushion above strike is small relative to normal BTC daily volatility.",
+    "Venue-specific settlement means cross-exchange agreement only partially reduces risk."
+  ],
+  "key_assumptions": [
+    "The current roughly 1.3k-1.6k cushion above 74,000 survives until the April 15 noon ET settlement minute.",
+    "Binance BTC/USDT does not show a settlement-relevant dislocation versus broader spot markets."
+  ],
+  "main_logical_chain": [
+    "The contract settles on Binance BTC/USDT 1-minute close at 12:00 ET on April 15, strictly above 74,000.",
+    "Current Binance spot and recent 1-minute closes are above 74,000, so Yes is favored from current state.",
+    "But the remaining cushion is modest relative to normal BTC volatility and the contract is timestamp-specific.",
+    "Therefore Yes remains the base case, but with lower confidence than the 81.5% market price implies."
+  ],
+  "main_thesis": "Yes is still more likely than No because BTC is currently above 74,000, but the market is somewhat overconfident because settlement depends on one exact Binance BTC/USDT 1-minute close at noon ET.",
+  "own_probability": 0.74,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "This market will resolve to \"Yes\" if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone (noon) ... has a final \"Close\" price higher than the price specified.",
+    "Binance ticker snapshot showed BTCUSDT at 75,572.83."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "risk_management",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-d1f59d32",
+    "dispatch_id": "dispatch-case-20260414-d1f59d32-20260414T144613Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "d55ea712-2b8c-44c2-b67a-e67122805341",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-d1f59d32/researcher-analyses/2026-04-14/dispatch-case-20260414-d1f59d32-20260414T144613Z/personas/risk-manager.md",
+    "source_persona_sha256": "6abb04d0af1dbab5b2949746f39322554fee7bfa601a2bb6c6f490e6b7587cb4"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Good enough for a medium-difficulty date-sensitive run: authoritative rules plus direct Binance data, with Coinbase as contextual cross-check; source-of-truth ambiguity is low to medium.",
+  "strongest_disconfirmers": [
+    "A roughly 2% downside move by tomorrow noon ET is ordinary for BTC and would be enough to flip the outcome.",
+    "The contract resolves on one exact Binance minute, so path and timing risk are underpriced if confidence gets too high."
+  ],
+  "strongest_supports": [
+    "Binance spot was captured around 75,572.83, already above the threshold.",
+    "Recent sampled Binance 1-minute closes were all above 75.2k.",
+    "Coinbase cross-check near 75,304 suggested no obvious Binance-only premium at capture time."
+  ],
+  "timing_relevance": "High: the contract resolves tomorrow at one exact noon ET minute on Binance, so path risk matters more than generic spot direction.",
+  "unresolved_ambiguities": [
+    "Exact operational mapping of ET noon to the displayed Binance candle remains an execution detail to respect.",
+    "Short-horizon macro or crypto-specific news flow before settlement is unknowable and could dominate."
+  ],
+  "what_would_change_view": "I would move toward the market if BTC holds comfortably above 75k into late morning ET with no Binance-specific weakness; I would move away if BTC drifts back toward 74k or Binance underperforms near settlement."
+}

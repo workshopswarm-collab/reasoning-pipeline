@@ -1,0 +1,56 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A sharp crypto or macro risk-off move before Apr. 15 noon ET would hurt the Yes case.",
+    "Any confusion or operational issue around the exact Binance candle mapping could matter in a narrow contract."
+  ],
+  "key_assumptions": [
+    "Current market pricing mainly reflects a volatility-adjusted spot anchor rather than a hidden bearish catalyst.",
+    "Traders are reading the ET-based Binance 1-minute close rule correctly."
+  ],
+  "main_logical_chain": [
+    "Start from the market prior of 72.5% Yes.",
+    "Check Binance directly and confirm current spot is above 72k with recent 1-minute closes also above strike.",
+    "Check adjacent strike pricing and see a coherent implied distribution rather than an obvious stale misprice.",
+    "Keep probability close to market because narrow timing and BTC volatility preserve a meaningful No path."
+  ],
+  "main_thesis": "The 72k Yes line at 72.5% looks broadly efficient because Binance spot is already above strike and the main remaining risk is short-horizon downside volatility into one exact noon ET minute.",
+  "own_probability": 0.74,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "Binance BTC/USDT 12:00 ET 1-minute candle final Close must be higher than 72,000.",
+    "Current price baseline: market-implied 72.5%, own estimate 74%."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260413-395c5631",
+    "dispatch_id": "dispatch-case-20260413-395c5631-20260413T221534Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "44f1bc5c-cd57-4695-94ab-55f6fd3c42c5",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260413-395c5631/researcher-analyses/2026-04-13/dispatch-case-20260413-395c5631-20260413T221534Z/personas/market-implied.md",
+    "source_persona_sha256": "daa2be2bc823278d1b20f137335a24f71479e31530616ee8b9aef83fae391bd6"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is medium-high overall: Binance is the governing primary source, Polymarket supplies the market prior, and contextual independence is moderate rather than high.",
+  "strongest_disconfirmers": [
+    "The contract resolves on one exact 1-minute Binance close, so a temporary downside move can still flip the result.",
+    "Same-day contextual pricing near 71.2k earlier on Apr. 13 shows the required downside move is plausible."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT traded around 73.8k during the run, already above the 72k strike.",
+    "Adjacent Polymarket strikes were coherently spaced, suggesting the 72k line is not obviously stale."
+  ],
+  "timing_relevance": "This is highly timing-sensitive because the market settles on the Binance BTC/USDT 1-minute close at exactly 12:00 ET on 2026-04-15.",
+  "unresolved_ambiguities": [
+    "Exact pre-resolution volatility over the next ~42 hours remains unknown.",
+    "The ET-to-Binance candle mapping is clear enough to analyze but still worth explicit confirmation near settlement."
+  ],
+  "what_would_change_view": "I would turn more cautious if Binance loses 72k and fails to recover, if downside volatility rises sharply, or if the exact resolution mechanics become less clean than they currently appear."
+}

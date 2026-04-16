@@ -1,0 +1,157 @@
+{
+  "schema_version": "decision-packet/v1",
+  "generated_at": "2026-04-13T19:14:00-04:00",
+  "context": {
+    "case_key": "case-20260413-639ecb3f",
+    "dispatch_id": "refresh-case-20260413-639ecb3f-20260413T231420Z",
+    "question": "Will Ethereum reach $2,400 April 13-19?",
+    "market_id": "case-20260413-639ecb3f",
+    "market_title": "Will Ethereum reach $2,400 April 13-19?",
+    "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260413-639ecb3f/synthesizer-agent/decision-handoff.md",
+    "source_syndicated_finding_path": "qualitative-db/40-research/cases/case-20260413-639ecb3f/synthesizer-agent/syndicated-finding.md",
+    "decision_maker_agent": "decision-maker",
+    "canonical_markdown_path": "decision-maker-packet.md",
+    "canonical_json_path": "artifacts/decision-maker-packet.json",
+    "external_market_id": "0x9a91f5fa90b334c224cb4e638248acc8907b44fa8ed56361b24573cd20491763",
+    "market_slug": "will-ethereum-reach-2400-april-13-19",
+    "platform": "polymarket",
+    "primary_market_url": "https://polymarket.com/event/will-ethereum-reach-2400-april-13-19",
+    "source_light_refresh_brief_path": "qualitative-db/40-research/cases/case-20260413-639ecb3f/decision-maker/refreshes/refresh-case-20260413-639ecb3f-20260413T231420Z/light-refresh-brief.json",
+    "refresh_mode": "light"
+  },
+  "decision": {
+    "side": "yes",
+    "trade_authorization": "watch_only",
+    "position_policy": "hold_only",
+    "decision_readiness": "ready",
+    "primary_crux": "This looks like a price-only repricing rather than a factual regime change: ETH still seems more likely than not to touch $2,400 during Apr 13-19, but the move from 0.76 to 0.79 now places the market clearly above the bounded evidence-supported range.",
+    "secondary_cruxes": [
+      "The prior crux is unchanged: proximity and touch-friendly mechanics help Yes, but a visible round-number threshold can still fail without a fresh forcing catalyst.",
+      "The lightweight refresh brief shows a material price move without any new independently verified rule or price-path evidence that would justify a higher fair value.",
+      "With several days left to close, there is still ample time for both a momentum extension and a crypto-wide reversal, so paying up after an 8-point repricing is unattractive."
+    ],
+    "thesis_class": "price_not_good_enough"
+  },
+  "valuation": {
+    "fair_value_low": 0.68,
+    "fair_value_high": 0.74,
+    "fair_value_mid": 0.71,
+    "market_reference_price": 0.79,
+    "edge_mid_vs_market_pct_points": -8.0,
+    "independent_verification_quality": "medium",
+    "compressed_toward_market_applied": true,
+    "compression_reason": "The prior synthesis already incorporated touch mechanics and proximity, and no new first-hand rule-text or live-path evidence was added in this refresh to justify following the market higher."
+  },
+  "execution_semantics": {
+    "price_axis": "market_implied_true_prob",
+    "price_source": "market_snapshot_quote",
+    "rebalance_threshold_fraction": 0.08,
+    "allow_auto_reversal": false,
+    "valid_until": "2026-04-16T23:59:00-04:00",
+    "quote_staleness_seconds": 7200,
+    "time_horizon": "Apr 13-19 monitoring window through venue-specific threshold resolution"
+  },
+  "risk_controls": {
+    "max_position_size_pct_bankroll": 0.0075,
+    "max_additional_exposure_pct_bankroll": 0.0,
+    "max_single_order_pct_bankroll": 0.0,
+    "slippage_tolerance_bps": 60,
+    "liquidity_min_depth": 1000,
+    "correlation_bucket_limit_pct_bankroll": 0.05,
+    "confidence_level": "medium",
+    "portfolio_constraints": [
+      "Do not initiate fresh exposure from this packet because the market has repriced above bounded fair value.",
+      "Existing aligned exposure may be held, but refresh venue-specific rules and live ETH path before any adjustment.",
+      "Treat short-dated crypto threshold markets as highly path-dependent even when spot is close to the level."
+    ],
+    "liquidity_caution": "medium"
+  },
+  "bands": [
+    {
+      "name": "max_enter",
+      "min_p": 0,
+      "max_p": 0.55,
+      "target_exposure_fraction": 0,
+      "notes": "No autonomous entry from this packet; much cheaper pricing would require a refreshed rules and path check."
+    },
+    {
+      "name": "scaled_enter",
+      "min_p": 0.55,
+      "max_p": 0.67,
+      "target_exposure_fraction": 0,
+      "notes": "No entry authorized because the current packet is hold/watch only and the market is already richer than justified fair value."
+    },
+    {
+      "name": "hold",
+      "min_p": 0.67,
+      "max_p": 0.73,
+      "target_exposure_fraction": 0,
+      "notes": "Hold zone consistent with a moderate-high Yes probability but not enough edge for fresh adds."
+    },
+    {
+      "name": "trim",
+      "min_p": 0.73,
+      "max_p": 0.85,
+      "target_exposure_fraction": 0,
+      "notes": "Trim or avoid increasing as price rises above bounded fair value and failed-breakout risk dominates."
+    },
+    {
+      "name": "exit",
+      "min_p": 0.85,
+      "max_p": 1,
+      "target_exposure_fraction": 0,
+      "notes": "Exit/avoid at extreme prices because proximity does not guarantee the threshold prints on the governing venue."
+    }
+  ],
+  "invalidation": {
+    "thesis_breakers": [
+      "ETH fails to retest the mid-2360s and instead reverses toward the low-2300s or below.",
+      "Fresh restrictive rule text shows the contract is harder than a simple Binance 1-minute high touch interpretation.",
+      "A sharp crypto-wide risk-off move materially reduces the chance of printing 2400 during the window."
+    ],
+    "market_structure_breakers": [
+      "The market reprices materially again on new crypto momentum or reversal information before a fresh packet is produced.",
+      "Venue-specific settlement mechanics differ from the assumed Binance threshold-high interpretation.",
+      "Short-term volatility regime changes make recent proximity-based calibration unreliable."
+    ],
+    "time_breakers": [
+      "A single momentum extension or reversal over the next 24-48 hours can move probability materially.",
+      "As the window shortens, stale path assumptions should be replaced rather than extrapolated."
+    ],
+    "reversal_conditions": [
+      "Move toward authorization only after a fresh packet if ETH continues extending and rule mechanics are cleanly confirmed while price remains favorable.",
+      "Move materially lower if ETH loses momentum, sells off away from 2400, or if rules prove more restrictive than assumed.",
+      "Do not auto-reverse from this packet."
+    ]
+  },
+  "epistemic_status": {
+    "key_uncertainties": [
+      "Exact first-hand authoritative rules text for the settlement feed and threshold mechanics.",
+      "Whether current ETH momentum is durable enough to produce the final 1-2% move.",
+      "How likely a short-horizon crypto-wide reversal is over the remaining window."
+    ],
+    "reasons_to_pass": [
+      "The apparent edge versus market has inverted more clearly after the repricing from 0.76 to 0.79.",
+      "Independent verification of the exact authoritative settlement wording was not perfect in the synthesis pass.",
+      "Short-dated crypto threshold markets can fail on the final increment even when spot is nearby."
+    ],
+    "what_would_change_my_mind": [
+      "Clean direct rules text confirming the Binance 1-minute high interpretation would modestly improve confidence.",
+      "A clean extension through the high-2300s would move fair value somewhat higher, though likely not enough to justify 0.79 without more support.",
+      "A sharp selloff away from 2400 or evidence of more restrictive settlement mechanics would move fair value lower."
+    ],
+    "decision_quality": "good_not_clean"
+  },
+  "audit": {
+    "market_baseline_respected": true,
+    "action_bias_check_passed": true,
+    "self_preservation_bias_check_passed": true,
+    "one_sentence_rationale": "ETH reaching $2,400 during Apr 13-19 still looks more likely than not, but because the move to 0.79 is not matched by new independently verified evidence and the original proximity-versus-failed-breakout crux remains intact, the disciplined update is watch-only rather than chasing the repricing.",
+    "notes": "This refresh remains bounded and lightweight; no new first-hand rule-text or live-path evidence was added, so the update is about market repricing rather than a changed underlying thesis.",
+    "structured_handoff_primary_used": true,
+    "prose_fallback_used": true,
+    "verification_mode_used": "targeted_escalation",
+    "additional_verification_performed": true,
+    "additional_verification_notes": "targeted_pack"
+  }
+}

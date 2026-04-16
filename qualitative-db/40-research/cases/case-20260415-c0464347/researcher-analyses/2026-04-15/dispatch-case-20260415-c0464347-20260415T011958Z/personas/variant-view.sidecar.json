@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "The view depends on short-horizon volatility calibration rather than a hard catalyst.",
+    "Settlement uses a single named minute, so path dependence matters more than in average-price contracts."
+  ],
+  "key_assumptions": [
+    "Current BTC price buffer above 70k is meaningful but not large enough to erase five-day downside-tail risk.",
+    "Single-minute noon ET settlement increases path sensitivity relative to a broader daily close.",
+    "Binance API price checks are a close enough proxy to assess current context even though the UI candle is the literal settlement surface."
+  ],
+  "main_logical_chain": [
+    "The contract resolves on Binance BTC/USDT 1m close at 12:00 ET on April 20 and requires a strict close above 70,000.",
+    "Current Binance price context places BTC well above 70k, making Yes the base case.",
+    "But the strike is only about 6-7% below spot and recent realized volatility is still large enough that a five-day downside move is not remote.",
+    "Therefore the market is directionally right but slightly too certain, implying a fair probability closer to 80% than 88%."
+  ],
+  "main_thesis": "Yes is still more likely than No, but the 88% market price looks somewhat overconfident for a five-day single-minute Binance settlement; a better estimate is 80%.",
+  "own_probability": 0.8,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone",
+    "I estimate 80% that BTC/USDT closes above 70,000"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation",
+    "variant_hypothesis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-c0464347",
+    "dispatch_id": "dispatch-case-20260415-c0464347-20260415T011958Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "ca01b1ad-147e-42d5-af51-53599bb471bb",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-c0464347/researcher-analyses/2026-04-15/dispatch-case-20260415-c0464347-20260415T011958Z/personas/variant-view.md",
+    "source_persona_sha256": "3a1b34a990055fce67dd8fad25885426041523f3de531c58a39077ec61f09ecb"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is good on core mechanics because Binance is the named source of truth, but independence is limited since both settlement logic and price context cluster around the same exchange family.",
+  "strongest_disconfirmers": [
+    "BTC is already comfortably above the strike and does not need to rally further for Yes to resolve.",
+    "If recent realized range broadly persists, Yes likely still wins."
+  ],
+  "strongest_supports": [
+    "BTCUSDT was around 74.6k-74.7k during the research pass, leaving the strike in the money.",
+    "Recent Binance daily closes were mostly above 70k.",
+    "Polymarket rules clearly name Binance BTC/USDT 1m close at 12:00 ET as the governing source of truth."
+  ],
+  "timing_relevance": "Timing is central because the market settles on the Binance BTC/USDT 12:00 ET one-minute candle on April 20, not on a broader daily level.",
+  "unresolved_ambiguities": [
+    "The contract references the Binance trading UI candle specifically; API checks are highly relevant but not literally the same display surface.",
+    "No direct evidence in this run on calibration of similar threshold markets near high-80s pricing."
+  ],
+  "what_would_change_view": "I would move closer to market pricing if BTC stays firmly above 74k-75k with lower realized volatility into the weekend; I would move lower if BTC weakens toward the low-70s or downside catalysts emerge."
+}

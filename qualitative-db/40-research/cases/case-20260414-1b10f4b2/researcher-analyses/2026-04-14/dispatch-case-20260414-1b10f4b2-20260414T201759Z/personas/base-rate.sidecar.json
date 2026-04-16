@@ -1,0 +1,57 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A move back into the 69k-70k area would materially weaken the Yes case.",
+    "Any Binance-specific market-data or execution anomaly around the target minute could matter because the contract is venue-specific and minute-specific."
+  ],
+  "key_assumptions": [
+    "BTC does not suffer a sufficiently large downside move before noon ET on April 20 to push the Binance 1-minute close below 68000.",
+    "Binance trading and market data remain orderly enough that the settlement minute is representative."
+  ],
+  "main_logical_chain": [
+    "Market implies 93.5% Yes from a current price of 0.935.",
+    "Current Binance spot around 74.3k puts BTC materially above the 68k threshold with six days left, so Yes is favored on the outside view.",
+    "But crypto volatility and single-minute settlement mechanics make 93.5% look somewhat rich.",
+    "Therefore the best base-rate estimate is high-Yes but below market confidence, around 87%."
+  ],
+  "main_thesis": "BTC is likely to finish above 68000 on the specified Binance noon ET minute, but the market is somewhat too confident given crypto's ability to move more than 8% in six days.",
+  "own_probability": 0.87,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone has a final 'Close' price higher than the price specified.",
+    "87% Yes."
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "contract_interpretation",
+    "market_anchor"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-1b10f4b2",
+    "dispatch_id": "dispatch-case-20260414-1b10f4b2-20260414T201759Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "087c8091-1218-46b8-a5ac-cd410d59154e",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-1b10f4b2/researcher-analyses/2026-04-14/dispatch-case-20260414-1b10f4b2-20260414T201759Z/personas/base-rate.md",
+    "source_persona_sha256": "b8309bef47f6cff1a8edd7642bad6232b6cf4b629eb9c3664ed7e2ad1b0330f9"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary source quality is high because the contract rules and designated exchange data were checked directly; evidence independence is medium because Binance is both the context venue and source of truth.",
+  "strongest_disconfirmers": [
+    "BTC has recently traded below 68000, and an 8%-9% drawdown in six days is plausible in crypto.",
+    "The contract resolves on one future 1-minute close rather than a daily or weekly average, increasing path dependence."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT was about 74306.58 at check time, roughly 6306 above the threshold.",
+    "Recent Binance trading has spent substantial time above 68000, so Yes mostly requires avoiding a sizable downside move rather than achieving a new breakout.",
+    "Polymarket rules explicitly settle on Binance BTC/USDT 1-minute close data, aligning current venue context with the governing source of truth."
+  ],
+  "timing_relevance": "The contract resolves on the Binance BTC/USDT 1-minute candle for 2026-04-20 12:00 ET, which is 2026-04-20 16:00 UTC.",
+  "unresolved_ambiguities": [
+    "Minor UI-vs-API presentation ambiguity remains because the rules reference the Binance chart UI, though the underlying candle data should match.",
+    "The exact future noon ET candle is not yet observable."
+  ],
+  "what_would_change_view": "A decisive selloff toward or below 68k before April 20, or evidence of Binance-specific settlement fragility, would reduce the estimate materially."
+}

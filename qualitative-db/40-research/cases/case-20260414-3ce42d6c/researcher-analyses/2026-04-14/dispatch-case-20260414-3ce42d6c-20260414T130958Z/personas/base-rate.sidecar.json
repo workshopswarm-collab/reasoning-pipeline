@@ -1,0 +1,57 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A fast late-morning selloff could still put the exact close below 70000.",
+    "A Binance outage or UI/API mismatch could matter in a narrow settlement market."
+  ],
+  "key_assumptions": [
+    "Binance UI settlement candle will align with Binance public market data surfaces.",
+    "No abrupt >6% drawdown occurs before the noon ET close.",
+    "12:00 ET is correctly mapped to 16:00 UTC on the resolution date."
+  ],
+  "main_logical_chain": [
+    "Polymarket resolves from the Binance BTC/USDT 12:00 ET 1-minute close above 70000.",
+    "Observed same-day Binance prices were roughly 74.5k, leaving a cushion of more than 6%.",
+    "Base-rate reasoning says such a drop before the specific minute is non-default without a catalyst.",
+    "Therefore Yes is very likely, but not literally certain because of intraday tail risk and settlement-surface risk."
+  ],
+  "main_thesis": "BTC/USDT on Binance is trading comfortably above 70000 close to resolution, so Yes is highly likely unless there is a sharp pre-noon ET selloff or settlement-surface anomaly.",
+  "own_probability": 0.985,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone ... has a final 'Close' price higher than the price specified"
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "contract_interpretation",
+    "technical_reference"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260414-3ce42d6c",
+    "dispatch_id": "dispatch-case-20260414-3ce42d6c-20260414T130958Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "59deb394-7128-406b-8ea8-467e8851fb0c",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-3ce42d6c/researcher-analyses/2026-04-14/dispatch-case-20260414-3ce42d6c-20260414T130958Z/personas/base-rate.md",
+    "source_persona_sha256": "ff01cbc953ca66fe16a8b900d913e75244134bebb4cc861b7f899dcd70614721"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary-source quality is high for both contract wording and underlying price state; source-of-truth ambiguity is low-to-medium because settlement cites the Binance UI candle while verification used API proxies.",
+  "strongest_disconfirmers": [
+    "This is an exact-minute, exchange-specific settlement, so minute-level volatility still matters.",
+    "Formal settlement uses the Binance UI candle, while verification relied on public API proxies."
+  ],
+  "strongest_supports": [
+    "Same-day Binance spot checks showed BTC/USDT around 74.5k-74.6k, well above 70k.",
+    "Contract mechanics are narrow and explicit: Binance BTC/USDT 12:00 ET 1-minute close only.",
+    "A >6% drop over the remaining short window is possible but not the default base rate absent a catalyst."
+  ],
+  "timing_relevance": "Resolution depends on the specific 12:00 ET candle, which maps to 16:00 UTC on this daylight-saving date.",
+  "unresolved_ambiguities": [
+    "Exact final 16:00 UTC candle was not yet available at research time.",
+    "UI-versus-API alignment was inferred rather than directly observed on the final candle."
+  ],
+  "what_would_change_view": "A rapid drop toward 70000 before noon ET, or evidence that the Binance settlement candle can diverge materially from the checked API surfaces, would lower the estimate."
+}

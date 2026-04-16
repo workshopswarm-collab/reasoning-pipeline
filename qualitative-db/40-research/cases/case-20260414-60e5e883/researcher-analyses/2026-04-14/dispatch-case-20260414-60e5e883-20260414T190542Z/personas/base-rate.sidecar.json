@@ -1,0 +1,57 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Short-horizon BTC volatility can erase a 6% to 8% buffer faster than slower-moving assets.",
+    "Exchange-specific settlement makes operational or microstructure anomalies more relevant than usual."
+  ],
+  "key_assumptions": [
+    "BTC/USDT does not suffer a roughly 6% to 8% drop before April 17 noon ET.",
+    "Binance BTC/USDT remains the operative settlement source without material anomaly.",
+    "Recent realized stability above 70000 is somewhat informative over the next ~3 days."
+  ],
+  "main_logical_chain": [
+    "The contract settles on Binance BTC/USDT 12:00 ET one-minute close, not a generic Bitcoin price.",
+    "BTC/USDT is currently well above 70000 and recent daily, hourly, and noon-ET prints have stayed above it.",
+    "Therefore the outside-view path to No requires a relatively sharp drawdown before Friday noon.",
+    "That downside path is plausible but still less likely than Yes, though not as remote as the market implies."
+  ],
+  "main_thesis": "BTC/USDT is already materially above 70000, so the base-rate question is whether a sharp short-horizon drawdown pushes the specific Binance noon-ET 1-minute close below threshold; that remains a minority path.",
+  "own_probability": 0.88,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "12:00 ET corresponds to 16:00 UTC on these dates because April 17 falls during U.S. daylight saving time.",
+    "The decisive condition is the final close of the Binance BTC/USDT 1-minute candle starting at 12:00 ET, and it must be strictly greater than 70,000."
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-60e5e883",
+    "dispatch_id": "dispatch-case-20260414-60e5e883-20260414T190542Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "4ff5d9a6-400a-477b-8954-8b62b95adae9",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-60e5e883/researcher-analyses/2026-04-14/dispatch-case-20260414-60e5e883-20260414T190542Z/personas/base-rate.md",
+    "source_persona_sha256": "92eca536bf4c11272e959b02b90ba1173a65a3e74477d0825b6eb07a43934645"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary rules source and direct Binance data are both strong and recent, but evidence independence is only medium because the contract and context both hinge on the same exchange ecosystem.",
+  "strongest_disconfirmers": [
+    "Bitcoin can move 6%+ in a few days, and the contract depends on one exact one-minute close.",
+    "A macro, crypto-specific, or Binance-specific dislocation could still produce a sub-70000 noon print."
+  ],
+  "strongest_supports": [
+    "Current Binance BTC/USDT spot is roughly 6% to 8% above the threshold.",
+    "Zero hourly closes below 70000 in the sampled last 96 hours.",
+    "Recent noon-ET one-minute closes on Apr 12-14 were all above 70000."
+  ],
+  "timing_relevance": "Resolution is date-sensitive and noon ET on April 17 maps to 16:00 UTC during DST; exact timestamp mechanics matter.",
+  "unresolved_ambiguities": [
+    "No full independent volatility model was built for the remaining ~2.9-day window.",
+    "Public Polymarket page is a rendered rules snapshot rather than a structured rules API export."
+  ],
+  "what_would_change_view": "I would become more bullish if BTC/USDT holds mid-74k+ into late April 16 without stress, and much less bullish if hourly closes start approaching low-71k, a macro/crypto shock hits, or Binance-specific issues emerge."
+}

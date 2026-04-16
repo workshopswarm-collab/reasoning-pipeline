@@ -1,0 +1,63 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Exact-minute resolution risk.",
+    "Current spot is only modestly above threshold.",
+    "Potential resistance / sell pressure near 75k."
+  ],
+  "key_assumptions": [
+    "Current ~3.8% cushion above 72000 survives normal BTC volatility through April 18 noon ET.",
+    "Resistance near 75000 does not trigger a sharper retracement into the resolution window.",
+    "Venue-specific Binance microstructure does not produce an idiosyncratic sub-72000 close at the key minute."
+  ],
+  "main_logical_chain": [
+    "The governing venue is Binance BTC/USDT and the relevant datapoint is the April 18 12:00 ET one-minute close.",
+    "Current Binance price is above 72000, so Yes is directionally favored.",
+    "But the contract is narrow and path-sensitive, and the current cushion is not large relative to normal BTC volatility.",
+    "Therefore Yes remains more likely than No, but less likely than the market's 87.5% implies."
+  ],
+  "main_thesis": "BTC is more likely than not to finish above 72000 on the governing Binance noon ET one-minute close, but the market is too confident because the price cushion is modest relative to normal two-day volatility and exact-minute path risk.",
+  "own_probability": 0.78,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "Binance BTC/USDT 1 minute candle for 12:00 in the ET timezone",
+    "the fair probability is around 78%, not the market-implied 87.5%",
+    "fragile favorite, not a near-lock"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "risk_management",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-653ab0f8",
+    "dispatch_id": "dispatch-case-20260416-653ab0f8-20260416T090226Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "833da159-9a4b-47a0-8c22-7471e72fd1fd",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-653ab0f8/researcher-analyses/2026-04-16/dispatch-case-20260416-653ab0f8-20260416T090226Z/personas/risk-manager.md",
+    "source_persona_sha256": "7bd989271ff81448a2152cf6554ac9ae0127b425b85834c9356681ad41e0ac10"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High on contract mechanics and venue-specific spot context because Polymarket rules plus Binance API are direct; medium overall because the independent contextual source was weaker than a full market-structure dataset.",
+  "strongest_disconfirmers": [
+    "The contract resolves on one exact one-minute close, so a brief dip at the wrong minute is enough for No.",
+    "A ~3.8% cushion is within ordinary BTC two-day volatility.",
+    "Independent contextual reporting suggests BTC is stalling near 75k with seller positioning and downside hedging still present."
+  ],
+  "strongest_supports": [
+    "Direct Binance BTCUSDT spot and 1m kline checks showed price around 74.7k, already above the governing threshold.",
+    "Binance 24h low at check time was still above 73.5k, indicating some live cushion above 72k.",
+    "Contract mechanics are clear: one exact venue/pair/minute determines settlement, which current Binance data maps to directly."
+  ],
+  "timing_relevance": "High: this is a date-specific, noon-ET, one-minute-candle contract, so path and timestamp precision matter almost as much as direction.",
+  "unresolved_ambiguities": [
+    "Short-horizon macro and crypto sentiment over the next ~48 hours.",
+    "Whether resistance near 75k turns into a routine stall or a sharper retracement.",
+    "How close Binance trades to 72k as the resolution minute approaches."
+  ],
+  "what_would_change_view": "A sustained move well above 75k-76k would move the estimate toward the market; a loss of the mid-74k area or sharper Binance volatility toward 72k would move it further below market."
+}

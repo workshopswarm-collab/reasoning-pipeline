@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "ETH could remain stable above 2300, in which case the discount versus market is too cautious.",
+    "The evidence base is strong for mechanism and current state but not broad on independent contextual catalysts."
+  ],
+  "key_assumptions": [
+    "Current Binance ETH/USDT levels above 2200 remain informative but do not guarantee the April 17 noon ET close.",
+    "A 4-5% downside move before the governing minute remains plausible enough to justify a discount versus the market.",
+    "Binance API state is a reliable pre-resolution read on the governing venue."
+  ],
+  "main_logical_chain": [
+    "The contract settles on a specific Binance ETH/USDT 12:00 ET one-minute close on April 17.",
+    "Current Binance pricing around 2297 shows ETH has a meaningful cushion above 2200, so Yes is favored.",
+    "Because settlement is a future single-minute close rather than current spot or any intraday touch, overnight downside still matters.",
+    "That timing risk is enough to keep the estimate below the market while preserving a clear Yes lean."
+  ],
+  "main_thesis": "ETH is already comfortably above 2200 on Binance, so Yes is favored, but the market may be modestly overconfident because settlement depends on one specific Binance 12:00 ET one-minute close on April 17 rather than current spot.",
+  "own_probability": 0.84,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "Binance ETH/USDT 12:00 ET 1-minute candle final close higher than 2200",
+    "ETHUSDT price 2297.57"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "contract_interpretation",
+    "variant_hypothesis",
+    "technical_reference"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-605a067d",
+    "dispatch_id": "dispatch-case-20260416-605a067d-20260416T142910Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "c6ed34d1-4a34-4db6-a398-47e7b8116f25",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-605a067d/researcher-analyses/2026-04-16/dispatch-case-20260416-605a067d-20260416T142910Z/personas/variant-view.md",
+    "source_persona_sha256": "56191ab4d503dd1a597540bec544e13442c4bf55db6d830f3be0c5b764b08e44"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Good source quality for a narrow market: direct Binance exchange data plus direct Polymarket contract rules; source-of-truth ambiguity is modest because the governing venue is clear but final proof still depends on the exact settlement minute.",
+  "strongest_disconfirmers": [
+    "The event has not yet occurred, and a single future minute close tomorrow decides settlement.",
+    "A roughly 4-5% drawdown before noon ET on April 17 would flip the contract to No.",
+    "The disagreement is modest and mostly timing-based rather than driven by an independent bearish catalyst."
+  ],
+  "strongest_supports": [
+    "Binance ETHUSDT traded around 2297.6-2297.9 during the run, roughly 4.4% above the threshold.",
+    "Recent 48-hour Binance hourly context showed lows still above 2200 and highs up to 2385.61.",
+    "Polymarket rules clearly identify Binance ETH/USDT 12:00 ET 1-minute close as the governing source."
+  ],
+  "timing_relevance": "Very high because settlement depends on the April 17 12:00 PM ET Binance one-minute close, and the event had not yet occurred during research.",
+  "unresolved_ambiguities": [
+    "How much weight the remaining overnight volatility deserves versus the current cushion above 2200.",
+    "Whether the live market closer to settlement will materially reprice on continued stability."
+  ],
+  "what_would_change_view": "I would move up toward or above the market if ETH held comfortably above 2300 into late April 16 / early April 17 with low volatility, and down materially if ETH lost the 2250-2200 area before settlement or Binance reliability became questionable."
+}

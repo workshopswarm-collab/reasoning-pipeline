@@ -1,0 +1,58 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A >4% downside move before resolution would likely flip the outcome.",
+    "Narrow timestamp mechanics increase path dependence."
+  ],
+  "key_assumptions": [
+    "Recent above-72k Binance trading is informative for the next four days.",
+    "No major downside shock arrives before April 20 noon ET.",
+    "The noon ET minute close is not unusually likely to diverge from the broader spot regime."
+  ],
+  "main_logical_chain": [
+    "Check the exact Polymarket rules and named settlement source.",
+    "Observe BTC is currently above the threshold on Binance and has recently traded above it repeatedly.",
+    "Apply an outside-view volatility haircut because a single-minute settle four days away is materially fragile.",
+    "Conclude Yes is favored, but less strongly than the 83.5% market-implied probability suggests."
+  ],
+  "main_thesis": "BTC is already above 72k on the named exchange and recent Binance trading supports a Yes lean, but the market overstates certainty because settlement depends on one specific noon ET minute close four days away.",
+  "own_probability": 0.76,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "This market will resolve to \"Yes\" if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone (noon)... has a final \"Close\" price higher than... 72,000.",
+    "Binance spot check returned BTCUSDT 75,000.00000000."
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "market_anchor",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-e0b8c17c",
+    "dispatch_id": "dispatch-case-20260416-e0b8c17c-20260416T050131Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "73723f3e-35c7-4229-b118-ca2b9c04b3b5",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-e0b8c17c/researcher-analyses/2026-04-16/dispatch-case-20260416-e0b8c17c-20260416T050131Z/personas/base-rate.md",
+    "source_persona_sha256": "7281a264e4adf2de5b5790681edbc8b9abd461115e228532526b749daff72602"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source-of-truth ambiguity is low because Polymarket explicitly names Binance BTC/USDT 1m close at 12:00 ET; evidence independence is medium because the decisive evidence is appropriately concentrated on Binance.",
+  "strongest_disconfirmers": [
+    "The contract resolves on a single 12:00 ET one-minute close rather than a daily close or average price.",
+    "BTC can easily move more than the current cushion over a four-day window."
+  ],
+  "strongest_supports": [
+    "Binance spot check showed BTCUSDT at 75,000, about 4.2% above the threshold.",
+    "Recent Binance daily data included multiple closes above 72k.",
+    "Only four days remain, so regime persistence matters more than long-range thesis changes."
+  ],
+  "timing_relevance": "This is a short-dated threshold market resolving at April 20, 2026 12:00 ET, so persistence vs near-term volatility dominates.",
+  "unresolved_ambiguities": [
+    "No direct historical noon-ET minute analysis was performed.",
+    "Short-horizon macro or crypto-specific shocks remain unpredictable."
+  ],
+  "what_would_change_view": "A sustained drop below 72k on Binance, a new downside shock, or evidence that the noon ET minute is unusually unfavorable would reduce the Yes estimate."
+}

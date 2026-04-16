@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Single-minute timestamp dependence.",
+    "Single-exchange source-of-truth dependence.",
+    "Unable to directly verify the exact Binance UI candle because of WAF challenge; API used as proxy."
+  ],
+  "key_assumptions": [
+    "BTC remains above 68000 through the April 19 noon ET settlement minute.",
+    "Binance BTCUSDT 1-minute close remains operationally reliable at settlement.",
+    "No sharp macro or crypto-specific drawdown breaches the ~6k buffer before resolution."
+  ],
+  "main_logical_chain": [
+    "Polymarket rules make Binance BTCUSDT 12:00 ET 1-minute close the governing datapoint.",
+    "Current Binance price is roughly 74.1k, creating a >6k buffer above the 68k threshold.",
+    "Cross-exchange spot references broadly confirm BTC is trading in the low 74k range.",
+    "Residual risk is mainly path-dependent volatility and Binance-specific settlement fragility, so confidence should be high but not near-certain."
+  ],
+  "main_thesis": "BTC is comfortably above 68000 and likely resolves Yes, but the market slightly underprices single-minute timestamp risk and Binance-specific settlement tails.",
+  "own_probability": 0.92,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "Yes if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone has a final Close price higher than 68,000.",
+    "Assigned market price 0.9575 implies 95.75% baseline; own estimate 92%."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "risk_management",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-c44f46c0",
+    "dispatch_id": "dispatch-case-20260414-c44f46c0-20260414T185449Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "d646b061-96a7-4dec-baf0-6d8bde9e7f1e",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-c44f46c0/researcher-analyses/2026-04-14/dispatch-case-20260414-c44f46c0-20260414T185449Z/personas/risk-manager.md",
+    "source_persona_sha256": "80efed3e1885a5815ad645d6b70028da41f2381df51f06fdeaa5f16ceb12b169"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary source quality is high on rules and direct exchange data, but exact UI-level confirmation was blocked; contextual secondary confirmation was good and consistent.",
+  "strongest_disconfirmers": [
+    "The contract resolves on a single Binance 1-minute close at exactly 12:00 ET, so a temporary downdraft could flip the outcome.",
+    "Single-exchange settlement means venue-specific anomalies could matter even if other exchanges stay above 68k."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT traded around 74.1k during the run, over 6k above threshold.",
+    "CoinGecko and Coinbase also showed BTC around 74.1k, supporting broad spot alignment.",
+    "Only about five days remain until resolution."
+  ],
+  "timing_relevance": "Settlement is specifically April 19, 2026 at 12:00 ET, which converts to 16:00 UTC; the exact minute matters.",
+  "unresolved_ambiguities": [
+    "Whether the cited Binance UI and API could diverge operationally near settlement.",
+    "How much tail-risk discount is appropriate for a five-day BTC threshold contract priced above 95%."
+  ],
+  "what_would_change_view": "A sharp selloff toward the high-60k/low-70k range, Binance-specific divergence, or new evidence of settlement interpretation fragility would push the estimate down; stable trade above ~72k into the final 24-48 hours would move it closer to market."
+}

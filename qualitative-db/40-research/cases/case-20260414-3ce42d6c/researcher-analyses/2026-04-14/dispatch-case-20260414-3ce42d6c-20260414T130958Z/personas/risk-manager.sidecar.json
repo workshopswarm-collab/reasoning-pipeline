@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Exact-minute settlement rather than broad daily pricing.",
+    "Single-venue dependence on Binance BTC/USDT.",
+    "Residual operational ambiguity because the UI chart is the named source of truth."
+  ],
+  "key_assumptions": [
+    "Binance BTCUSDT remains above 70000 into the exact 12:00 ET settlement minute.",
+    "The Binance chart surface named in the rules is consistent with documented kline semantics.",
+    "No exchange-specific anomaly materially affects the relevant close."
+  ],
+  "main_logical_chain": [
+    "Verify the exact contract mechanics, venue, pair, threshold, and timezone.",
+    "Check direct Binance evidence for current BTCUSDT level relative to 70000.",
+    "Stress-test whether remaining path and operational risks justify discounting near-certainty pricing.",
+    "Conclude Yes remains highly likely but not as certain as 99.95%."
+  ],
+  "main_thesis": "Yes is very likely because Binance BTCUSDT was materially above 70000 during research, but the market is slightly too confident for a one-minute single-venue settlement contract.",
+  "own_probability": 0.97,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone has a final 'Close' price higher than the price specified in the title.",
+    "My own estimate is 97% for Yes."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "risk_management",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260414-3ce42d6c",
+    "dispatch_id": "dispatch-case-20260414-3ce42d6c-20260414T130958Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "6f74cb87-6f36-43f1-b397-a014d9dfaad5",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-3ce42d6c/researcher-analyses/2026-04-14/dispatch-case-20260414-3ce42d6c-20260414T130958Z/personas/risk-manager.md",
+    "source_persona_sha256": "579c00cdfbda2ef883a96cf1621f8175fa140b08a2fc176710f39929d1143999"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality contract source plus strong near-authoritative verification; independence is medium because key evidence traces back to Binance-related surfaces.",
+  "strongest_disconfirmers": [
+    "The contract resolves on a single one-minute close, so late intraday reversal risk is the main failure mode.",
+    "Rules cite Binance chart UI, leaving small UI-vs-API ambiguity even after API verification."
+  ],
+  "strongest_supports": [
+    "Live Binance ticker during research was about 74544.7, leaving a substantial cushion above 70000.",
+    "Polymarket rules clearly define Binance BTC/USDT 12:00 ET 1-minute close as the governing source.",
+    "Cross-strike market surface also implied BTC was comfortably above 70000."
+  ],
+  "timing_relevance": "Timing is central because resolution depends on the 12:00 ET one-minute close on 2026-04-14, which maps to 16:00 UTC during EDT.",
+  "unresolved_ambiguities": [
+    "Small residual ambiguity between Binance UI chart sourcing and API-based verification.",
+    "Final settlement-minute path remains unknown before noon ET."
+  ],
+  "what_would_change_view": "A sharp move toward or below 70000 before noon ET, or evidence that the relevant candle/timezone interpretation differs from the working assumption."
+}

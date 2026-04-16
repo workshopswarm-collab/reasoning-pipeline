@@ -1,0 +1,156 @@
+{
+  "schema_version": "decision-packet/v1",
+  "generated_at": "2026-04-15T06:57:00-04:00",
+  "context": {
+    "case_key": "case-20260415-7f8f0d04",
+    "dispatch_id": "dispatch-case-20260415-7f8f0d04-20260415T104754Z",
+    "question": "Will claude-opus-4-6-thinking be the top AI model on April 17, 2026 (Style Control On)?",
+    "market_id": "56b579c7-66de-4474-b54c-22f58498e2a1",
+    "external_market_id": "0x015f7ae2151752539bed6d27cab33b108456a3b0c5c7b99c7419a023d0998cbc",
+    "market_slug": "will-claude-opus-4-6-thinking-be-the-top-ai-model-on-april-17-2026-style-control-on",
+    "platform": "polymarket",
+    "primary_market_url": "https://polymarket.com/event/will-claude-opus-4-6-thinking-be-the-top-ai-model-on-april-17-2026-style-control-on",
+    "market_title": "Will claude-opus-4-6-thinking be the top AI model on April 17, 2026 (Style Control On)?",
+    "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260415-7f8f0d04/synthesizer-agent/decision-handoff.md",
+    "source_syndicated_finding_path": "qualitative-db/40-research/cases/case-20260415-7f8f0d04/synthesizer-agent/syndicated-finding.md",
+    "source_light_refresh_brief_path": "",
+    "refresh_mode": "",
+    "decision_maker_agent": "decision-maker",
+    "canonical_markdown_path": "decision-maker-packet.md",
+    "canonical_json_path": "artifacts/decision-maker-packet.json"
+  },
+  "decision": {
+    "side": "yes",
+    "trade_authorization": "forbidden",
+    "position_policy": "flat",
+    "decision_readiness": "needs_more_research",
+    "primary_crux": "claude-opus-4-6-thinking appears to be the current favorite because it is presently on top of the governing style-control-on leaderboard, but the market's 0.874 confidence is too high for a future snapshot with a narrow lead, tie-break fragility, and incomplete exact-string verification of the top row.",
+    "secondary_cruxes": [
+      "The contract resolves on a future leaderboard check, not the current snapshot, so rank stickiness matters more than current family-level leadership alone.",
+      "The lead over the nearest Anthropic sibling appears small enough that a normal update could flip the top row or create a tie.",
+      "The tie-break is explicitly unfavorable to the thinking variant against alphabetically earlier siblings, which makes near-tie scenarios economically important."
+    ],
+    "thesis_class": "not_decision_ready"
+  },
+  "valuation": {
+    "fair_value_low": 0.72,
+    "fair_value_high": 0.8,
+    "fair_value_mid": 0.76,
+    "independent_verification_quality": "medium",
+    "compressed_toward_market_applied": false,
+    "compression_reason": "Current leaderboard leadership supports a real Yes lean, but unresolved exact-string verification, future-snapshot fragility, and narrow-rank uncertainty keep fair value materially below market.",
+    "market_reference_price": 0.874,
+    "edge_mid_vs_market_pct_points": -11.4
+  },
+  "execution_semantics": {
+    "price_source": "market_snapshot_quote",
+    "price_axis": "market_implied_true_prob",
+    "rebalance_threshold_fraction": 0.1,
+    "allow_auto_reversal": false,
+    "quote_staleness_seconds": 300,
+    "valid_until": "2026-04-16T10:58:22.786595+00:00"
+  },
+  "risk_controls": {
+    "confidence_level": "low",
+    "portfolio_constraints": [
+      "Do not enter from this packet; reopen only after a fresher exact top-row verification close to resolution.",
+      "Treat future-snapshot leaderboard markets as highly sensitive to small live-rank changes and tie-break mechanics.",
+      "Require clean confirmation of the exact top-row model string, not just Anthropic family leadership, before treating any edge as executable."
+    ],
+    "liquidity_caution": "high",
+    "max_position_size_pct_bankroll": 0.02,
+    "max_additional_exposure_pct_bankroll": 0.01,
+    "max_single_order_pct_bankroll": 0.005,
+    "slippage_tolerance_bps": 100,
+    "liquidity_min_depth": 0,
+    "correlation_bucket_limit_pct_bankroll": 0.05
+  },
+  "bands": [
+    {
+      "name": "max_enter",
+      "min_p": 0.0,
+      "max_p": 0.6,
+      "target_exposure_fraction": 0.0,
+      "notes": "No entry authorized from this packet because the case is not execution-ready."
+    },
+    {
+      "name": "scaled_enter",
+      "min_p": 0.6,
+      "max_p": 0.72,
+      "target_exposure_fraction": 0.0,
+      "notes": "Even much cheaper pricing would still require exact-string and near-resolution snapshot confirmation."
+    },
+    {
+      "name": "hold",
+      "min_p": 0.72,
+      "max_p": 0.8,
+      "target_exposure_fraction": 0.0,
+      "notes": "Bounded fair-value zone under current evidence, but not actionable under present leaderboard fragility."
+    },
+    {
+      "name": "trim",
+      "min_p": 0.8,
+      "max_p": 0.9,
+      "target_exposure_fraction": 0.0,
+      "notes": "Above fair value while the lead remains narrow and future-snapshot risk dominates."
+    },
+    {
+      "name": "exit",
+      "min_p": 0.9,
+      "max_p": 1.0,
+      "target_exposure_fraction": 0.0,
+      "notes": "Avoid or exit at extreme prices because narrow-rank and tie-break risk remain live."
+    }
+  ],
+  "invalidation": {
+    "thesis_breakers": [
+      "A later pre-resolution snapshot shows a different model in first place or a virtual tie where alphabetical ordering matters against the target.",
+      "Clean verification shows the current top row is not the exact full string claude-opus-4-6-thinking.",
+      "A leaderboard update materially narrows or reverses the current lead before the April 17 noon ET check."
+    ],
+    "time_breakers": [
+      "A fresh near-resolution snapshot should supersede this packet before any action.",
+      "The actual April 17, 2026 12:00 PM ET governing leaderboard check fully resolves and obsoletes this judgment."
+    ],
+    "market_structure_breakers": [
+      "The governing leaderboard presentation, fallback source behavior, or tie-break interpretation changes materially.",
+      "Leaderboard update cadence or source availability changes in a way that affects expected resolver behavior."
+    ],
+    "reversal_conditions": [
+      "Move from forbidden to watch-only or authorized only after exact-string top-row verification is clean and the lead remains durable near resolution.",
+      "Move materially higher if later snapshots still show the target clearly first with a wider lead.",
+      "Move materially lower if a sibling Anthropic model closes the gap or overtakes before resolution.",
+      "Do not auto-reverse from this packet."
+    ]
+  },
+  "epistemic_status": {
+    "key_uncertainties": [
+      "Whether the current top row is cleanly and stably the exact string claude-opus-4-6-thinking rather than only an Anthropic-family leader.",
+      "How sticky top Arena style-control-on ranks are over the remaining pre-resolution window.",
+      "How likely a tie or near-tie is, given the narrow current margin and the explicit alphabetical tie-break."
+    ],
+    "what_would_change_my_mind": [
+      "A later pre-resolution snapshot still showing claude-opus-4-6-thinking clearly first would raise confidence and readiness.",
+      "A rival taking first, a materially compressed lead, or a tie-like configuration would lower the estimate further.",
+      "A clean exact-string verification of the live top row and its margin near resolution would materially improve execution readiness."
+    ],
+    "reasons_to_pass": [
+      "The current market price is materially above bounded fair value.",
+      "This is a future dynamic leaderboard snapshot, not a locked result, so small update risk matters a lot.",
+      "The most important missing information is exact-string and near-resolution rank stability, not broad family leadership."
+    ],
+    "decision_quality": "not_ready"
+  },
+  "audit": {
+    "one_sentence_rationale": "claude-opus-4-6-thinking is still the directional favorite because it appears currently first on the governing leaderboard, but with only a narrow lead, future-snapshot/tie-break fragility, and incomplete exact-string verification, the disciplined output is forbidden and needs-more-research rather than paying 0.874 for Yes.",
+    "notes": "This is a classic case where directional leadership does not yet translate into executable confidence because the contract is about one future snapshot with narrow leaderboard margins.",
+    "market_baseline_respected": true,
+    "action_bias_check_passed": true,
+    "self_preservation_bias_check_passed": true,
+    "structured_handoff_primary_used": true,
+    "prose_fallback_used": false,
+    "verification_mode_used": "not_ready_reopen_recommended",
+    "additional_verification_performed": false,
+    "additional_verification_notes": ""
+  }
+}

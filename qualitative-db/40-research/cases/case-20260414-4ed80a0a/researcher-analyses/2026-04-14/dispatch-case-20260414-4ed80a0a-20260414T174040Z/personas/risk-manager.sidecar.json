@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Dependence on exchange-specific data integrity.",
+    "Need for exact contract-window timezone handling.",
+    "Could be disrupted by an unusual resolution dispute."
+  ],
+  "key_assumptions": [
+    "Binance API minute data matches the operative Binance chart data referenced by Polymarket.",
+    "The ET qualifying window was mapped correctly in verification.",
+    "No settlement exception invalidates the observed >2400 print."
+  ],
+  "main_logical_chain": [
+    "Identify the governing source of truth from Polymarket rules.",
+    "Verify whether Binance ETH/USDT printed any qualifying 1-minute high in the contract window.",
+    "Observed 2415.5 high implies the trigger already appears satisfied.",
+    "Residual uncertainty is operational settlement risk, not further ETH upside risk."
+  ],
+  "main_thesis": "The Binance ETH/USDT 1-minute high appears to have already exceeded $2,400 within the qualifying window, leaving mostly settlement-path risk rather than price-path risk.",
+  "own_probability": 0.99,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "any Binance 1-minute candle ... High price equal to or greater than the price specified",
+    "maximum observed 1-minute candle high ... 2415.5"
+  ],
+  "reasoning_mode": [
+    "risk_management",
+    "contract_interpretation",
+    "technical_reference"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260414-4ed80a0a",
+    "dispatch_id": "dispatch-case-20260414-4ed80a0a-20260414T174040Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "c66d2b88-d6ed-44c7-ad54-6594d87a8cb8",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-4ed80a0a/researcher-analyses/2026-04-14/dispatch-case-20260414-4ed80a0a-20260414T174040Z/personas/risk-manager.md",
+    "source_persona_sha256": "c886844fff6729acaeb2c5396dbe2053ee9f19546e6c4d9b3d3b089549b21379"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High quality overall: Polymarket provides the contract wording and Binance provides direct venue data, with low remaining source-of-truth ambiguity after verification.",
+  "strongest_disconfirmers": [
+    "Residual risk that Binance API output differs from the exact chart/UI Polymarket expects.",
+    "Small possibility of timezone/window interpretation error or settlement dispute."
+  ],
+  "strongest_supports": [
+    "Polymarket rules say any Binance ETH/USDT 1-minute candle high >= 2400 in the Apr 13-19 ET window resolves Yes.",
+    "Binance verification found a 1-minute high of 2415.5 on 2026-04-14 10:32 ET.",
+    "The exceedance is $15.5 above threshold, reducing edge-case rounding risk."
+  ],
+  "timing_relevance": "High; this is a date-specific threshold market, but the timing risk collapsed once a qualifying high appears to have already printed on Apr 14.",
+  "unresolved_ambiguities": [
+    "Whether the Binance chart UI would show any discrepancy versus API data.",
+    "Why assignment metadata still showed 0.916 while later page data showed 1.0."
+  ],
+  "what_would_change_view": "A documented mismatch between Binance UI and API, an ET window error, or an official Polymarket dispute/exception would reduce confidence materially; archived confirmation from Binance or Polymarket would push confidence to effectively 100%."
+}

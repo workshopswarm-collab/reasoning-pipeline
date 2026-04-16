@@ -1,0 +1,78 @@
+{
+  "artifact_type": "targeted_verification_pack",
+  "schema_version": "decision-targeted-verification-pack/v1",
+  "case_key": "case-20260415-90641eba",
+  "dispatch_id": "refresh-case-20260415-90641eba-20260415T181651Z",
+  "required": true,
+  "verification_mode": "targeted_escalation",
+  "pack_purpose": "Deterministic narrow follow-up pack for targeted escalation. It defines the crux questions and operational budgets, while source choice may remain model-driven within runtime-enforced tool guardrails.",
+  "verification_questions": [
+    "Does the latest available information materially change the decision, given: BTC spot regime and cushion versus 70000 can change materially before the Apr 20 noon ET settlement minute?",
+    "How decision-relevant is the remaining contract/source-of-truth ambiguity: minor operational sensitivity around exact ET-to-Binance 1m candle selection and final close display?",
+    "Are the current blockers still material to final judgment: No direct way to verify the qualifying settlement candle yet because it is in the future?",
+    "Is the main verification gap still decision-material: The decisive Apr 20 noon ET Binance candle does not yet exist, so remaining path volatility cannot be independently verified away today.?"
+  ],
+  "structured_handoff_focus": {
+    "contract_ambiguity_level": "minor",
+    "contract_ambiguity_reason": "minor operational sensitivity around exact ET-to-Binance 1m candle selection and final close display",
+    "verification_gap_summary": "The decisive Apr 20 noon ET Binance candle does not yet exist, so remaining path volatility cannot be independently verified away today.",
+    "best_countercase_summary": "A roughly 5-6% pullback over five days is not unusual for BTC, so the market’s 0.87 may still be fair despite exact-minute-close risk.",
+    "main_reason_for_disagreement": "weighting of residual five-day exact-minute close volatility versus the current ~$4k cushion above 70000",
+    "resolution_mechanics_summary": "Resolve Yes only if the Binance BTC/USDT candle corresponding to Apr 20 12:00 ET has a final Close strictly above 70000.",
+    "freshness_sensitive": "yes",
+    "freshness_driver": "BTC spot regime and cushion versus 70000 can change materially before the Apr 20 noon ET settlement minute",
+    "decision_blockers": [
+      "No direct way to verify the qualifying settlement candle yet because it is in the future",
+      "Residual short-horizon BTC volatility could still erase the current buffer",
+      "Minor operational care is still required around exact ET/noon candle mapping on Binance"
+    ],
+    "disagreement_type": "market_pricing"
+  },
+  "supporting_persona_summaries": [
+    {
+      "persona": "market-implied",
+      "recommended_weight": "medium",
+      "own_probability": 0.82,
+      "main_thesis": "The market is directionally right that BTC is likely to finish above 70000 on Apr 20, but the 0.87 price looks mildly rich relative to remaining five-day volatility into one exact Binance minute close.",
+      "main_logical_chain": [
+        "Start from the market's 0.87 price as an information-rich prior.",
+        "Verify the governing source and confirm BTC is currently around 74000 on Binance.",
+        "Check one independent contextual source and confirm the broader market also sees BTC around 74000.",
+        "Apply a modest discount because the contract settles on one future minute close several days away."
+      ],
+      "strongest_supports": [
+        "Binance BTCUSDT traded around 73994.6 during the run, well above 70000.",
+        "CoinGecko independently showed BTC around 74006 with the sampled 1-day range above 70000."
+      ],
+      "strongest_disconfirmers": [
+        "Settlement depends on one future Binance 12:00 ET minute close, not today's spot.",
+        "BTC can move more than 5% over five days, so a sub-70000 close remains plausible."
+      ],
+      "unresolved_ambiguities": [
+        "How stable the current 74000 regime remains through Apr 20 noon ET.",
+        "Whether any near-term catalyst or shock emerges before settlement."
+      ],
+      "what_would_change_view": "A sustained Binance move back toward or below 70000, or new evidence of exchange-specific/resolution-surface issues, would push the estimate lower.",
+      "timing_relevance": "High: the market resolves at an exact future minute on 2026-04-20 12:00 ET, so remaining path volatility matters.",
+      "source_quality_view": "High-quality direct governing-source check plus one medium-high-quality contextual verification; source-of-truth ambiguity is fairly low but not zero.",
+      "persona_finding_path": "qualitative-db/40-research/cases/case-20260415-90641eba/researcher-analyses/2026-04-15/dispatch-case-20260415-90641eba-20260415T174326Z/personas/market-implied.md",
+      "assumption_artifact_paths": [
+        "qualitative-db/40-research/cases/case-20260415-90641eba/researcher-analyses/2026-04-15/dispatch-case-20260415-90641eba-20260415T174326Z/assumptions/market-implied.md"
+      ],
+      "evidence_artifact_paths": [
+        "qualitative-db/40-research/cases/case-20260415-90641eba/researcher-analyses/2026-04-15/dispatch-case-20260415-90641eba-20260415T174326Z/evidence/market-implied.md"
+      ]
+    }
+  ],
+  "selected_assumption_snippets": [],
+  "selected_evidence_snippets": [],
+  "selected_supporting_note_snippets": [],
+  "pack_budget": {
+    "max_chars": 6000,
+    "actual_chars_before_trim": 7800,
+    "actual_chars_after_trim": 5208,
+    "approx_tokens_before_trim": 1950,
+    "approx_tokens_after_trim": 1302,
+    "trim_applied": true
+  }
+}

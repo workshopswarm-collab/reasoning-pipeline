@@ -1,0 +1,74 @@
+{
+  "qmd_tier": "tier1",
+  "qmd_used": true,
+  "query_profile": {
+    "difficulty_class": "medium",
+    "prior_case_count": 0,
+    "prior_dispatch_count": 0,
+    "rerun_scope": null,
+    "run_kind": "novel",
+    "source_of_truth_class": "authoritative_direct",
+    "suppress_same_case": true,
+    "suppress_same_market": false
+  },
+  "result_paths": [
+    "qualitative-db/20-entities/protocols/ethereum.md",
+    "qualitative-db/20-entities/companies/binance-us.md",
+    "qualitative-db/30-drivers/reliability.md",
+    "qualitative-db/30-drivers/operational-risk.md"
+  ],
+  "results": {
+    "driver_notes": [
+      {
+        "artifact_exists": true,
+        "path": "qualitative-db/30-drivers/reliability.md",
+        "retrieval_role": "mechanism",
+        "retrieval_score": 4.0,
+        "slug": "reliability",
+        "summary": "Reliability captures whether performance, infrastructure, or execution holds up consistently under normal and stressful conditions.",
+        "type": "driver",
+        "why_retrieved": "source-of-truth / resolution mechanics suggest this canonical driver may be relevant"
+      },
+      {
+        "artifact_exists": true,
+        "path": "qualitative-db/30-drivers/operational-risk.md",
+        "retrieval_role": "mechanism",
+        "retrieval_score": 3.5,
+        "slug": "operational-risk",
+        "summary": "Operational-risk captures whether execution failures, outages, controls problems, logistical breakdowns, or internal process weaknesses can materially disrupt outcomes.",
+        "type": "driver",
+        "why_retrieved": "source-of-truth / resolution mechanics suggest this canonical driver may be relevant"
+      }
+    ],
+    "entity_notes": [
+      {
+        "artifact_exists": true,
+        "path": "qualitative-db/20-entities/protocols/ethereum.md",
+        "retrieval_role": "canonical_context",
+        "retrieval_score": 6.0,
+        "slug": "ethereum",
+        "summary": "Ethereum is the main programmable crypto settlement layer and the core reference point for smart-contract ecosystem analysis.",
+        "type": "entity",
+        "why_retrieved": "matched market title via entity alias `ethereum`"
+      },
+      {
+        "artifact_exists": true,
+        "path": "qualitative-db/20-entities/companies/binance-us.md",
+        "retrieval_role": "canonical_context",
+        "retrieval_score": 4.5,
+        "slug": "binance-us",
+        "summary": "Binance US is a high-yield crypto entity because U.S. market access, enforcement pressure, and exchange-fragmentation questions make it a useful readthrough on domestic crypto market structure.",
+        "type": "entity",
+        "why_retrieved": "matched market description via entity alias `binance-s`"
+      }
+    ],
+    "similar_cases": []
+  },
+  "retrieval_policy": {
+    "analog_second": true,
+    "artifact_existence_gating": true,
+    "canon_first": true,
+    "similar_case_strategy": "rerun_or_tier2_only"
+  },
+  "status": "ok"
+}

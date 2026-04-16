@@ -1,0 +1,276 @@
+{
+  "actor": "decision-maker",
+  "agent_tool_use_allowed": true,
+  "artifact_type": "decision_stage_status",
+  "case_key": "case-20260416-989964fe",
+  "decision_context_path": "roles/decision-maker/runtime/artifacts/case-20260416-989964fe/decision-context-dispatch-case-20260416-989964fe-20260416T020418Z.json",
+  "decision_lane": {
+    "topic_id": "4075",
+    "topic_title": "case-20260416-989964fe | decision | T020418Z",
+    "session_key": "agent:main:telegram:group:-1003846500961:topic:4075"
+  },
+  "decision_launch_claim": {
+    "claimed_at": "2026-04-16T02:13:28.629331Z",
+    "decision_context_path": "roles/decision-maker/runtime/artifacts/case-20260416-989964fe/decision-context-dispatch-case-20260416-989964fe-20260416T020418Z.json",
+    "launch_log_path": "scripts/.runtime-state/decision-maker-launches/case-20260416-989964fe-20260416T021328Z.log",
+    "launcher": "pipeline_automation_actions.launch_decision_maker",
+    "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260416-989964fe/decision-prompt-dispatch-case-20260416-989964fe-20260416T020418Z.md",
+    "runner_pid": 54045
+  },
+  "decision_prompt_path": "roles/decision-maker/runtime/artifacts/case-20260416-989964fe/decision-prompt-dispatch-case-20260416-989964fe-20260416T020418Z.md",
+  "decision_readiness": "ready",
+  "decision_target_chat_id": "-1003846500961",
+  "decision_target_session_key": "agent:main:telegram:group:-1003846500961:topic:4075",
+  "decision_visible_finish_marker": "DECISION-MAKING COMPLETED, DECISION PACKAGE CREATED | market=Will the price of Ethereum be above $2,200 on April 17? | dispatch_id=dispatch-case-20260416-989964fe-20260416T020418Z | packet_path=qualitative-db/40-research/cases/case-20260416-989964fe/decision-maker/decision-maker-packet.md",
+  "decision_visible_receipt_marker": "SYNTHESIS RECEIVED | market=Will the price of Ethereum be above $2,200 on April 17? | dispatch_id=dispatch-case-20260416-989964fe-20260416T020418Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260416-989964fe/decision-context-dispatch-case-20260416-989964fe-20260416T020418Z.json",
+  "decision_visible_start_marker": "DECISION-MAKING ANALYSIS UNDERWAY | market=Will the price of Ethereum be above $2,200 on April 17? | dispatch_id=dispatch-case-20260416-989964fe-20260416T020418Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260416-989964fe/decision-context-dispatch-case-20260416-989964fe-20260416T020418Z.json",
+  "dispatch_id": "dispatch-case-20260416-989964fe-20260416T020418Z",
+  "last_stage_event": {
+    "at": "2026-04-16T02:14:12.783265Z",
+    "stage": "decision_execution",
+    "state": "visible_marker_sent",
+    "message": "DECISION-MAKING COMPLETED, DECISION PACKAGE CREATED | market=Will the price of Ethereum be above $2,200 on April 17? | dispatch_id=dispatch-case-20260416-989964fe-20260416T020418Z | packet_path=qualitative-db/40-research/cases/case-20260416-989964fe/decision-maker/decision-maker-packet.md"
+  },
+  "packet_json_path": "qualitative-db/40-research/cases/case-20260416-989964fe/decision-maker/artifacts/decision-maker-packet.json",
+  "packet_markdown_path": "qualitative-db/40-research/cases/case-20260416-989964fe/decision-maker/decision-maker-packet.md",
+  "position_policy": "hold_only",
+  "question": "Will the price of Ethereum be above $2,200 on April 17?",
+  "recommended_side": "yes",
+  "schema_version": "decision-stage-status/v1",
+  "selected_input_bundle_estimated_tokens": 3837,
+  "selected_input_bundle_mode": "targeted_escalation",
+  "selected_input_bundle_path": "roles/decision-maker/runtime/artifacts/case-20260416-989964fe/selected-inputs-dispatch-case-20260416-989964fe-20260416T020418Z.json",
+  "stage_events": [
+    {
+      "at": "2026-04-16T02:13:27.946093Z",
+      "message": "Decision-Maker stage initialized from synthesis handoff",
+      "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260416-989964fe/synthesizer-agent/decision-handoff.md",
+      "stage": "kickoff",
+      "state": "decision_ready_for_receipt"
+    },
+    {
+      "agent_tool_use_allowed": true,
+      "approx_tokens_after_trim": 3837,
+      "at": "2026-04-16T02:13:28.596034Z",
+      "message": "Built deterministic Decision-Maker selected-input bundle",
+      "selected_input_bundle_path": "roles/decision-maker/runtime/artifacts/case-20260416-989964fe/selected-inputs-dispatch-case-20260416-989964fe-20260416T020418Z.json",
+      "stage": "decision_input_selection",
+      "state": "built",
+      "verification_mode": "targeted_escalation",
+      "verification_mode_path": "roles/decision-maker/runtime/artifacts/case-20260416-989964fe/verification-mode-dispatch-case-20260416-989964fe-20260416T020418Z.json"
+    },
+    {
+      "approx_tokens_after_trim": 1359,
+      "at": "2026-04-16T02:13:28.596277Z",
+      "message": "Built deterministic targeted verification pack",
+      "stage": "decision_targeted_verification",
+      "state": "built",
+      "targeted_verification_pack_path": "roles/decision-maker/runtime/artifacts/case-20260416-989964fe/targeted-verification-pack-dispatch-case-20260416-989964fe-20260416T020418Z.json"
+    },
+    {
+      "at": "2026-04-16T02:13:28.596455Z",
+      "message": "Built Decision-Maker prompt from compact selected-input bundle",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260416-989964fe/decision-prompt-dispatch-case-20260416-989964fe-20260416T020418Z.md",
+      "stage": "decision_prompt",
+      "state": "built"
+    },
+    {
+      "at": "2026-04-16T02:13:28.598236Z",
+      "message": "Decision-Maker inputs prepared; awaiting launch claim",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260416-989964fe/decision-prompt-dispatch-case-20260416-989964fe-20260416T020418Z.md",
+      "stage": "decision_prepare",
+      "state": "handoff_prepared"
+    },
+    {
+      "at": "2026-04-16T02:13:28.629331Z",
+      "decision_context_path": "roles/decision-maker/runtime/artifacts/case-20260416-989964fe/decision-context-dispatch-case-20260416-989964fe-20260416T020418Z.json",
+      "launch_log_path": "scripts/.runtime-state/decision-maker-launches/case-20260416-989964fe-20260416T021328Z.log",
+      "message": "Decision-Maker launch claimed by automation controller",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260416-989964fe/decision-prompt-dispatch-case-20260416-989964fe-20260416T020418Z.md",
+      "runner_pid": 54045,
+      "stage": "decision_receipt",
+      "state": "handoff_sent"
+    },
+    {
+      "at": "2026-04-16T02:13:28.756642Z",
+      "stage": "kickoff",
+      "state": "reentered",
+      "message": "Decision-Maker executor resumed from existing prepared/running state",
+      "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260416-989964fe/synthesizer-agent/decision-handoff.md"
+    },
+    {
+      "at": "2026-04-16T02:13:29.354935Z",
+      "stage": "decision_input_selection",
+      "state": "built",
+      "message": "Built deterministic Decision-Maker selected-input bundle",
+      "verification_mode_path": "roles/decision-maker/runtime/artifacts/case-20260416-989964fe/verification-mode-dispatch-case-20260416-989964fe-20260416T020418Z.json",
+      "selected_input_bundle_path": "roles/decision-maker/runtime/artifacts/case-20260416-989964fe/selected-inputs-dispatch-case-20260416-989964fe-20260416T020418Z.json",
+      "verification_mode": "targeted_escalation",
+      "approx_tokens_after_trim": 3837,
+      "agent_tool_use_allowed": true
+    },
+    {
+      "at": "2026-04-16T02:13:29.355174Z",
+      "stage": "decision_targeted_verification",
+      "state": "built",
+      "message": "Built deterministic targeted verification pack",
+      "targeted_verification_pack_path": "roles/decision-maker/runtime/artifacts/case-20260416-989964fe/targeted-verification-pack-dispatch-case-20260416-989964fe-20260416T020418Z.json",
+      "approx_tokens_after_trim": 1359
+    },
+    {
+      "at": "2026-04-16T02:13:29.355346Z",
+      "stage": "decision_prompt",
+      "state": "built",
+      "message": "Built Decision-Maker prompt from compact selected-input bundle",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260416-989964fe/decision-prompt-dispatch-case-20260416-989964fe-20260416T020418Z.md"
+    },
+    {
+      "at": "2026-04-16T02:13:34.675853Z",
+      "stage": "decision_lane_bootstrap",
+      "state": "created",
+      "message": "Created dedicated Telegram decision lane",
+      "topic_id": "4075",
+      "topic_title": "case-20260416-989964fe | decision | T020418Z",
+      "session_key": "agent:main:telegram:group:-1003846500961:topic:4075"
+    },
+    {
+      "at": "2026-04-16T02:13:50.041207Z",
+      "stage": "decision_receipt",
+      "state": "visible_marker_sent",
+      "message": "SYNTHESIS RECEIVED | market=Will the price of Ethereum be above $2,200 on April 17? | dispatch_id=dispatch-case-20260416-989964fe-20260416T020418Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260416-989964fe/decision-context-dispatch-case-20260416-989964fe-20260416T020418Z.json"
+    },
+    {
+      "at": "2026-04-16T02:13:50.042870Z",
+      "stage": "decision_receipt",
+      "state": "accepted",
+      "message": "Decision-Maker handoff accepted",
+      "session_key": "agent:decision-maker:main",
+      "handoff_status": "started",
+      "gateway_response_path": "roles/decision-maker/runtime/artifacts/case-20260416-989964fe/decision-gateway-response-dispatch-case-20260416-989964fe-20260416T020418Z.json"
+    },
+    {
+      "at": "2026-04-16T02:13:50.043075Z",
+      "stage": "decision_execution",
+      "state": "decision_analysis_running",
+      "message": "Decision-Maker agent invocation accepted and analysis started",
+      "session_key": "agent:decision-maker:main",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260416-989964fe/decision-prompt-dispatch-case-20260416-989964fe-20260416T020418Z.md",
+      "handoff_status": "started"
+    },
+    {
+      "at": "2026-04-16T02:13:58.624862Z",
+      "stage": "decision_execution",
+      "state": "visible_marker_sent",
+      "message": "DECISION-MAKING ANALYSIS UNDERWAY | market=Will the price of Ethereum be above $2,200 on April 17? | dispatch_id=dispatch-case-20260416-989964fe-20260416T020418Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260416-989964fe/decision-context-dispatch-case-20260416-989964fe-20260416T020418Z.json"
+    },
+    {
+      "at": "2026-04-16T02:14:04.273967Z",
+      "stage": "decision_execution",
+      "state": "decision_completed",
+      "message": "Decision-Maker completed and packet rendered",
+      "warnings": [],
+      "forecast_decision_persist_error": "",
+      "decision_parse_attempt_count": 1,
+      "decision_recovered_after_retry": false
+    },
+    {
+      "at": "2026-04-16T02:14:12.783265Z",
+      "stage": "decision_execution",
+      "state": "visible_marker_sent",
+      "message": "DECISION-MAKING COMPLETED, DECISION PACKAGE CREATED | market=Will the price of Ethereum be above $2,200 on April 17? | dispatch_id=dispatch-case-20260416-989964fe-20260416T020418Z | packet_path=qualitative-db/40-research/cases/case-20260416-989964fe/decision-maker/decision-maker-packet.md"
+    }
+  ],
+  "status": "decision_completed",
+  "targeted_verification_pack_path": "roles/decision-maker/runtime/artifacts/case-20260416-989964fe/targeted-verification-pack-dispatch-case-20260416-989964fe-20260416T020418Z.json",
+  "targeted_verification_pack_required": true,
+  "trade_authorization": "watch_only",
+  "updated_at": "2026-04-16T02:14:12.783311Z",
+  "verification_mode_path": "roles/decision-maker/runtime/artifacts/case-20260416-989964fe/verification-mode-dispatch-case-20260416-989964fe-20260416T020418Z.json",
+  "warnings": [],
+  "previous_status": "handoff_sent",
+  "raw_gateway_response_path": "roles/decision-maker/runtime/artifacts/case-20260416-989964fe/decision-gateway-response-dispatch-case-20260416-989964fe-20260416T020418Z.json",
+  "raw_response_text_path": "roles/decision-maker/runtime/artifacts/case-20260416-989964fe/decision-response-dispatch-case-20260416-989964fe-20260416T020418Z.raw.txt",
+  "decision_parse_failure_artifact_path": "roles/decision-maker/runtime/artifacts/case-20260416-989964fe/decision-parse-failure-dispatch-case-20260416-989964fe-20260416T020418Z.json",
+  "decision_parse_attempt_count": 1,
+  "decision_recovered_after_retry": false,
+  "decision_lane_topic_id": "4075",
+  "decision_lane_topic_title": "case-20260416-989964fe | decision | T020418Z",
+  "decision_lane_session_key": "agent:main:telegram:group:-1003846500961:topic:4075",
+  "decision_target_topic_id": "4075",
+  "decision_target_topic_title": "case-20260416-989964fe | decision | T020418Z",
+  "decision_receipt_marker_sent_at": "2026-04-16T02:13:50.041162+00:00",
+  "decision_analysis_marker_sent_at": "2026-04-16T02:13:58.624814+00:00",
+  "timeline_update": {
+    "appended": true,
+    "case_key": "case-20260416-989964fe",
+    "dispatch_id": "dispatch-case-20260416-989964fe-20260416T020418Z",
+    "packet_path": "qualitative-db/40-research/cases/case-20260416-989964fe/decision-maker/decision-maker-packet.md",
+    "entry": "- 2026-04-16T02:14:04.272815+00:00 — completed decision-making `dispatch-case-20260416-989964fe-20260416T020418Z` with packet `qualitative-db/40-research/cases/case-20260416-989964fe/decision-maker/decision-maker-packet.md`."
+  },
+  "forecast_decision_persist": {
+    "ok": true,
+    "packet_json": "qualitative-db/40-research/cases/case-20260416-989964fe/decision-maker/artifacts/decision-maker-packet.json",
+    "persisted": {
+      "forecast_id": "dispatch-case-20260416-989964fe-20260416T020418Z",
+      "market_id": "30172bb7-9f35-4ca6-93a4-adb8544ba07a",
+      "contract_id": "yes",
+      "forecast_prob": 0.925,
+      "decision_status": "recorded",
+      "decision_packet_path": "qualitative-db/40-research/cases/case-20260416-989964fe/decision-maker/artifacts/decision-maker-packet.json",
+      "supersedes_forecast_id": "refresh-case-20260416-969f7c01-20260416T020025Z",
+      "superseded_forecast_ids": [
+        "dispatch-case-20260416-969f7c01-20260416T013210Z",
+        "refresh-case-20260416-969f7c01-20260416T020025Z"
+      ],
+      "market_state": {
+        "market_id": "30172bb7-9f35-4ca6-93a4-adb8544ba07a",
+        "current_price": 0.955,
+        "last_reasoned_price": 0.925,
+        "pipeline_status": "executed"
+      }
+    },
+    "record": {
+      "forecast_id": "dispatch-case-20260416-989964fe-20260416T020418Z",
+      "decision_ts": "2026-04-15T22:13:00-04:00",
+      "case_id": "case-20260416-989964fe",
+      "dispatch_id": "dispatch-case-20260416-989964fe-20260416T020418Z",
+      "market_id": "30172bb7-9f35-4ca6-93a4-adb8544ba07a",
+      "contract_id": "yes",
+      "platform": "polymarket",
+      "market_slug": "ethereum-above-2200-on-april-17",
+      "question": "Will the price of Ethereum be above $2,200 on April 17?",
+      "forecast_prob": "0.925",
+      "forecast_direction": "yes",
+      "confidence_label": "medium",
+      "confidence_score": "",
+      "time_horizon_label": "",
+      "verification_mode": "targeted_escalation",
+      "decision_status": "recorded",
+      "rationale_summary": "ETH above $2,200 on the April 17 Binance noon minute remains the strong base case, but with fair value around 0.925 and the market at 0.955, the disciplined output stays watch-only because near-certainty pricing still overstates confidence in a single-minute crypto settlement.",
+      "decision_packet_path": "qualitative-db/40-research/cases/case-20260416-989964fe/decision-maker/artifacts/decision-maker-packet.json",
+      "decision_handoff_path": "qualitative-db/40-research/cases/case-20260416-989964fe/synthesizer-agent/decision-handoff.md",
+      "syndicated_finding_path": "qualitative-db/40-research/cases/case-20260416-989964fe/synthesizer-agent/syndicated-finding.md"
+    },
+    "warnings": []
+  },
+  "terminal_summary": {
+    "at": "2026-04-16T02:14:12.783332Z",
+    "status": "decision_completed",
+    "decision_lane": {
+      "topic_id": "4075",
+      "topic_title": "case-20260416-989964fe | decision | T020418Z",
+      "session_key": "agent:main:telegram:group:-1003846500961:topic:4075"
+    },
+    "packet_json_path": "qualitative-db/40-research/cases/case-20260416-989964fe/decision-maker/artifacts/decision-maker-packet.json",
+    "packet_markdown_path": "qualitative-db/40-research/cases/case-20260416-989964fe/decision-maker/decision-maker-packet.md",
+    "trade_authorization": "watch_only",
+    "decision_readiness": "ready",
+    "last_stage_event": {
+      "at": "2026-04-16T02:14:12.783265Z",
+      "stage": "decision_execution",
+      "state": "visible_marker_sent",
+      "message": "DECISION-MAKING COMPLETED, DECISION PACKAGE CREATED | market=Will the price of Ethereum be above $2,200 on April 17? | dispatch_id=dispatch-case-20260416-989964fe-20260416T020418Z | packet_path=qualitative-db/40-research/cases/case-20260416-989964fe/decision-maker/decision-maker-packet.md"
+    }
+  },
+  "decision_completion_marker_sent_at": "2026-04-16T02:14:12.783225+00:00"
+}

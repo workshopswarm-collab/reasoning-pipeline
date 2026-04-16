@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A US-morning risk-off move on Apr 17 could quickly erase the small buffer above 74k.",
+    "Low cushion makes the estimate sensitive to ordinary crypto volatility.",
+    "Exact noon ET candle mapping must remain correct at settlement."
+  ],
+  "key_assumptions": [
+    "Absent a fresh negative catalyst, BTC can hold roughly the 74k area through noon ET on April 17.",
+    "No Binance-specific operational anomaly alters the practical resolution path.",
+    "Near-term downside catalysts matter more than upside breakout catalysts because the strike is already nearby."
+  ],
+  "main_logical_chain": [
+    "Interpret the contract as a strict Binance BTC/USDT 12:00 ET one-minute close above 74,000.",
+    "Check direct Binance spot and recent kline context to see whether BTC is already above the threshold and how stable that level has been.",
+    "Conclude that Yes is favored but only modestly because the strike is close and normal volatility can still push the resolving minute below 74k."
+  ],
+  "main_thesis": "BTC is slightly more likely than not to finish above 74k at the specific Binance noon ET minute because spot is already above the strike, but the edge is thin because ordinary volatility can still push the print below the line.",
+  "own_probability": 0.6,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone has a final 'Close' price higher than the price specified.",
+    "Binance spot was about 74,541.59 during research, already above the 74k strike."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "catalyst_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-cd7fa6c7",
+    "dispatch_id": "dispatch-case-20260416-cd7fa6c7-20260416T010113Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "271ef887-c3d0-4672-97f7-1ea3e3810c0e",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-cd7fa6c7/researcher-analyses/2026-04-16/dispatch-case-20260416-cd7fa6c7-20260416T010113Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "7516542b12d4d32e35746e944c005c3f8e037ed1ce2911c87251eb3c9c7b49c2"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is adequate: Polymarket rules clearly define the governing source, and direct Binance API data provides the most relevant pre-resolution context; evidence independence is only medium because the decisive price source is necessarily Binance-centric.",
+  "strongest_disconfirmers": [
+    "The cushion over 74k is small relative to recent 24-hour BTC volatility.",
+    "The recent Binance 24-hour range crossed both sides of 74k, so an ordinary swing could flip the result.",
+    "This is a single-minute noon ET print rather than a broader daily-close condition."
+  ],
+  "strongest_supports": [
+    "Binance spot was around 74.5k during research, already above the strike.",
+    "Recent Binance daily closes on Apr 13-15 were all above 74k.",
+    "The contract only requires staying above a nearby threshold, not a large additional move."
+  ],
+  "timing_relevance": "Timing is central because the market resolves on one specific noon ET Binance minute; the main catalyst question is whether BTC can hold the nearby 74k level into that timestamp.",
+  "unresolved_ambiguities": [
+    "No major ambiguity in the rule language, but later settlement still depends on using the final noon ET Binance close correctly.",
+    "No strong independent catalyst calendar was identified that would dominate the next 35 hours."
+  ],
+  "what_would_change_view": "A decisive drop back below 74k before the resolution window, especially into the low 73k area, would make me more negative; a sustained move materially above 75k into Apr 17 morning would make me more positive."
+}

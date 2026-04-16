@@ -1,0 +1,57 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "medium",
+  "fragility_points": [
+    "Station-proxy coordinate mismatch could weaken the thesis.",
+    "A small midday warm-up is enough to clear the threshold if MET Norway is closer to reality."
+  ],
+  "key_assumptions": [
+    "Airport-specific conditions matter more than downtown Seoul framing.",
+    "Open-Meteo's cooler airport daily-max signal deserves slightly more weight than MET Norway's warmer hourly path."
+  ],
+  "main_logical_chain": [
+    "Market title encourages Seoul-city intuition.",
+    "Contract actually resolves on Incheon airport station history.",
+    "Airport-specific guidance is materially cooler than city framing in one key forecast source.",
+    "A second provider still leaves a plausible Yes path, so probability should be below market but not extreme."
+  ],
+  "main_thesis": "The market likely overweights generic Seoul warmth and underweights the cooler, station-specific Incheon airport resolution surface.",
+  "own_probability": 0.38,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "resolution source ... Wunderground ... Incheon Intl Airport Station",
+    "Open-Meteo airport daily max 13.1\u00b0C",
+    "MET Norway hourly path reaches 18.9\u00b0C"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation",
+    "variant_hypothesis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-bacb47cd",
+    "dispatch_id": "dispatch-case-20260416-bacb47cd-20260416T101708Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "b6946fa3-6d35-4298-b268-0379edeab30e",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-bacb47cd/researcher-analyses/2026-04-16/dispatch-case-20260416-bacb47cd-20260416T101708Z/personas/variant-view.md",
+    "source_persona_sha256": "88f813ee9fbe5029325b5b7f8d72c337e9b379934de589f5e25a9aee0e026d6a"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Low ambiguity on settlement source, medium contextual forecast quality, medium independence across supporting sources.",
+  "strongest_disconfirmers": [
+    "MET Norway hourly forecast reaches 18.9\u00b0C at airport-like coordinates around local noon."
+  ],
+  "strongest_supports": [
+    "Contract resolves on Weather Underground RKSI, not city-center Seoul.",
+    "Open-Meteo airport-like coordinates show only 13.1\u00b0C daily max for Apr 17."
+  ],
+  "timing_relevance": "Date and timezone matter because settlement is Apr 17 local station date on Wunderground RKSI, while market timestamps are shown in ET.",
+  "unresolved_ambiguities": [
+    "How tightly the queried airport coordinates match the exact Weather Underground RKSI station environment.",
+    "Which forecast provider is better calibrated for this microclimate on this date."
+  ],
+  "what_would_change_view": "A warmer airport-specific forecast cluster or closer-to-event station evidence near/above 18\u00b0C would move me toward the market."
+}

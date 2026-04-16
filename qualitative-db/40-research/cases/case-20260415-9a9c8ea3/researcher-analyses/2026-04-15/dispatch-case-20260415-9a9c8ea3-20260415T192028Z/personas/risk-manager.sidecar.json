@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A ~2% downside move before noon ET could threaten the threshold.",
+    "Timestamp interpretation or UI/API mismatch could matter at settlement.",
+    "Exchange-specific print anomalies are low probability but relevant in a one-minute contract."
+  ],
+  "key_assumptions": [
+    "Binance API-observed prices are a valid operational proxy for the Binance UI candle Polymarket will use.",
+    "No abrupt selloff or exchange-specific anomaly pushes BTCUSDT below 72000 at the exact settlement minute.",
+    "The relevant 12:00 ET candle maps cleanly to the expected Binance timestamp convention."
+  ],
+  "main_logical_chain": [
+    "Read Polymarket rules to verify exact venue, pair, threshold, and timing conditions.",
+    "Check direct Binance BTCUSDT spot, 24h range, and 1m klines to confirm current cushion above 72k and validate mechanics.",
+    "Conclude that Yes is the base case, but discount confidence because exact-minute and source-surface fragility remain nonzero."
+  ],
+  "main_thesis": "Yes is favored because Binance BTCUSDT is currently well above 72000, but the market is slightly too confident because exact-minute and source-mechanics risk still matter.",
+  "own_probability": 0.91,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone",
+    "current BTCUSDT spot around 74.6k",
+    "market-implied baseline 95.5% vs own estimate 91%"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "risk_management",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-9a9c8ea3",
+    "dispatch_id": "dispatch-case-20260415-9a9c8ea3-20260415T192028Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "f021c5f4-4640-4535-8dfe-5e51a97f9de0",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-9a9c8ea3/researcher-analyses/2026-04-15/dispatch-case-20260415-9a9c8ea3-20260415T192028Z/personas/risk-manager.md",
+    "source_persona_sha256": "25118991f29e7d9deab34729d80f81a0200d41c0ab3d5800318736eb098de43a"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality primary rules source plus high-quality first-party Binance verification; independence is medium and source-of-truth ambiguity is low-to-medium due to UI/API mapping risk.",
+  "strongest_disconfirmers": [
+    "The contract resolves on one exact minute, so a modest intraday selloff could still flip the result.",
+    "Settlement references the Binance UI candle surface specifically, while verification used API data as a proxy."
+  ],
+  "strongest_supports": [
+    "Polymarket rules explicitly define Binance BTC/USDT 1-minute close at 12:00 ET as the governing source.",
+    "Binance direct data showed BTCUSDT around 74.6k, roughly 2.6k above the threshold.",
+    "Sampled Binance 24h low was still above 72k."
+  ],
+  "timing_relevance": "This is a date-sensitive, exact-minute contract settling on the Binance BTC/USDT 12:00 ET one-minute close on April 16, so path risk into one narrow window matters more than broad trend conviction.",
+  "unresolved_ambiguities": [
+    "Whether the operative Binance UI candle labeling is perfectly aligned with the assumed ET-noon mapping.",
+    "Whether any UI/API surface discrepancy could matter near threshold."
+  ],
+  "what_would_change_view": "I would move toward the market if BTC stays comfortably above roughly 73.5k into settlement and the Binance UI timing convention is confirmed; I would move away if BTC compresses toward 72k or if source-mechanics ambiguity increases."
+}

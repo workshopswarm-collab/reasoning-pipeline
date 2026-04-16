@@ -1,0 +1,62 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Exact-minute settlement structure makes wrong-time or wrong-candle interpretation costly.",
+    "Named source of truth is Binance UI candle view, while verification also used API data.",
+    "Extreme market probability can hide small but real operational edge-case risk."
+  ],
+  "key_assumptions": [
+    "Noon ET correctly maps to the 16:00 UTC Binance minute.",
+    "Binance UI and API are materially aligned for the governing candle.",
+    "BTC will not collapse enough into the exact settlement minute to close at or below 70000."
+  ],
+  "main_logical_chain": [
+    "Interpret the contract strictly: Binance BTC/USDT, 1-minute candle, 12:00 ET, final close, above 70000.",
+    "Verify the timing path: 12:00 ET on 2026-04-14 maps to 16:00 UTC.",
+    "Check Binance minute-candle context shortly before noon and observe BTC trading near 75.9k.",
+    "Conclude that broad directional failure is unlikely, leaving narrow settlement mechanics as the main residual risk.",
+    "Apply a small confidence haircut versus the market's 99.95% implied probability."
+  ],
+  "main_thesis": "Yes is overwhelmingly likely, but residual risk is concentrated in narrow settlement mechanics and last-minute path risk rather than broad directional BTC weakness.",
+  "own_probability": 0.992,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "This market will resolve to \"Yes\" if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone has a final \"Close\" price higher than the price specified.",
+    "2026-04-14 12:00 ET = 2026-04-14 16:00 UTC = 1776182400000 ms"
+  ],
+  "reasoning_mode": [
+    "risk_management",
+    "contract_interpretation",
+    "technical_reference",
+    "market_anchor"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260414-d5888900",
+    "dispatch_id": "dispatch-case-20260414-d5888900-20260414T143228Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "755da9a4-08bf-44a6-a26f-904d4e8c6bee",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-d5888900/researcher-analyses/2026-04-14/dispatch-case-20260414-d5888900-20260414T143228Z/personas/risk-manager.md",
+    "source_persona_sha256": "a5da5f20aa8b4d30ca9bae6618316cb88ed275b4b544fe0d048416ae333658d5"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Good fit-for-purpose source quality: Polymarket rules are authoritative for settlement logic, Binance klines are strong contextual price evidence, but evidence independence is only medium because both sources sit near the same resolution ecosystem.",
+  "strongest_disconfirmers": [
+    "The final noon ET candle was not directly observed during the run.",
+    "A single-minute, single-exchange, single-pair contract retains nonzero timing and operational risk.",
+    "UI/API mismatch, exchange anomaly, or a sharp intraday selloff into noon could still break the thesis."
+  ],
+  "strongest_supports": [
+    "Polymarket rules explicitly define the governing source as the Binance BTC/USDT 1-minute close at 12:00 ET.",
+    "Binance BTCUSDT minute candles sampled shortly before noon ET were around 75.9k, leaving a large cushion above 70k.",
+    "The market-implied probability from current_price 0.9995 is near certainty and directionally consistent with the observed cushion."
+  ],
+  "timing_relevance": "This is a date-sensitive, exact-minute contract; noon ET must be mapped correctly to the governing Binance candle and the final answer can swing on one settlement minute.",
+  "unresolved_ambiguities": [
+    "Whether any Binance UI/API discrepancy or late correction could affect the governing candle.",
+    "The exact final 12:00 ET close was not yet observable during the run."
+  ],
+  "what_would_change_view": "Direct observation of the final 12:00 ET Binance candle at or below 70000, or evidence of a timing/source-surface mismatch, would move the view sharply away from Yes; direct observation above 70000 on the named governing surface would move it toward market near-certainty."
+}

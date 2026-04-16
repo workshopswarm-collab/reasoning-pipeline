@@ -1,0 +1,62 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A sustained move above ~76-77k would weaken the variant thesis.",
+    "The case against market pricing depends on short-horizon volatility remaining relevant.",
+    "Most contextual evidence comes from Binance itself, limiting source independence."
+  ],
+  "key_assumptions": [
+    "Traders are slightly underweighting four-day BTC downside volatility relative to the ~4.3% cushion above 72k.",
+    "A single Binance 1-minute noon ET close is more fragile than a broader daily reference price.",
+    "No major bullish catalyst arrives that materially widens the cushion before April 20."
+  ],
+  "main_logical_chain": [
+    "The contract settles on a single Binance BTC/USDT 1-minute close at noon ET on April 20, not on today's price.",
+    "BTC is currently above 72k, so Yes is the base case.",
+    "But the cushion above threshold is only modest in crypto terms over a four-day horizon.",
+    "Because the settlement is time- and venue-specific, path risk and a badly timed print remain meaningful.",
+    "Therefore Yes is more likely than No, but somewhat less likely than the market's 84.5% price implies."
+  ],
+  "main_thesis": "Yes is still favored, but the market is modestly overconfident because a four-day path ending on one Binance noon-ET minute close carries more downside and timing risk than the current spot cushion suggests.",
+  "own_probability": 0.78,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone ... has a final 'Close' price higher than ... 72,000.",
+    "Klines are uniquely identified by their open time.",
+    "Close price"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation",
+    "variant_hypothesis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-ca40bc37",
+    "dispatch_id": "dispatch-case-20260416-ca40bc37-20260416T053546Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "29a52c2d-a680-4444-8bd2-669f5d99f47e",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-ca40bc37/researcher-analyses/2026-04-16/dispatch-case-20260416-ca40bc37-20260416T053546Z/personas/variant-view.md",
+    "source_persona_sha256": "51d493839a2e785f5e4b37b5a9bcba7c5295d4220828f7a7a535970f3f0e73a5"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High quality for mechanics, medium independence overall: Polymarket and Binance docs make settlement clear, while live Binance endpoints provide strong contextual pricing but from the same exchange ecosystem.",
+  "strongest_disconfirmers": [
+    "BTC is already above 72k and recent Binance spot behavior has stayed above the threshold even on intraday weakness.",
+    "If BTC keeps holding mid-70s through the next 1-2 days, the market may be right to stay near current pricing."
+  ],
+  "strongest_supports": [
+    "Binance spot was around 75.1k at capture, above the 72k threshold.",
+    "Recent Binance daily closes and the recent 24h low were still above 72k.",
+    "Contract source-of-truth ambiguity is low because Polymarket explicitly names Binance BTC/USDT 1-minute close at noon ET."
+  ],
+  "timing_relevance": "Highly timing-sensitive: the governing event is the Binance BTC/USDT 1-minute candle close at 12:00 PM America/New_York on 2026-04-20, which is 2026-04-20T16:00:00Z.",
+  "unresolved_ambiguities": [
+    "How much short-dated realized volatility will compress before April 20 noon ET.",
+    "Whether any macro or liquidation catalyst emerges that can produce a >4% drawdown before settlement."
+  ],
+  "what_would_change_view": "I would move closer to or above market if BTC holds materially above 72k, especially above ~76k, with repeated intraday lows comfortably clear of the threshold; I would move more bearish if BTC revisits low-73k or below ahead of settlement."
+}

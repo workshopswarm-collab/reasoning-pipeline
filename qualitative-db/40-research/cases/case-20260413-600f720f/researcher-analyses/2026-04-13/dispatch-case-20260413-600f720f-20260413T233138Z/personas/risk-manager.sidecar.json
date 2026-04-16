@@ -1,0 +1,61 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "The thesis is fragile to simple path failure: close-but-no-touch still resolves No.",
+    "Confidence depends on short-horizon BTC volatility remaining healthy through the week.",
+    "Evidence depth is intentionally light because the case is low difficulty, so confidence should not be overstated."
+  ],
+  "key_assumptions": [
+    "A roughly 1.6% move from observed spot to the threshold is achievable within the week.",
+    "The touch-based Binance 1-minute-high contract is materially easier to satisfy than a close-based threshold.",
+    "Lack of stronger momentum evidence justifies trimming confidence rather than flipping the view."
+  ],
+  "main_logical_chain": [
+    "Read the exact Polymarket contract terms to identify the governing source of truth and what counts for resolution.",
+    "Check contemporaneous BTC price context on Binance and Coinbase to measure distance to the threshold.",
+    "Conclude that a touch is likely because the threshold is close and time remains, but discount the market slightly because the evidence does not show strong momentum."
+  ],
+  "main_thesis": "BTC is more likely than not to hit $76k on Binance during Apr 13-19, but market confidence around 74-75% looks slightly rich relative to the evidence.",
+  "own_probability": 0.68,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "any Binance 1-minute candle for BTC/USDT",
+    "final High price equal to or greater than the price specified in the title",
+    "Yes around 0.74 with a 0.73/0.75 bid-ask"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "risk_management",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260413-600f720f",
+    "dispatch_id": "dispatch-case-20260413-600f720f-20260413T233138Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "515387fd-76f8-4191-a227-9e7d882e6bb4",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260413-600f720f/researcher-analyses/2026-04-13/dispatch-case-20260413-600f720f-20260413T233138Z/personas/risk-manager.md",
+    "source_persona_sha256": "0d360b9376512340853da8430f57d16a772a9e7b90c41e710f20f904bfbaad6d"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Good for a low-difficulty case: exact contract metadata plus relevant exchange price context; source-of-truth ambiguity is low but evidence independence is only medium.",
+  "strongest_disconfirmers": [
+    "BTC had not yet reached the threshold at observation, so the market is still pricing a future path event.",
+    "Current evidence supports plausibility more than inevitability.",
+    "A stall below $76k or a risk-off move could still leave the contract unresolved."
+  ],
+  "strongest_supports": [
+    "Contract resolves Yes on any Binance 1-minute BTC/USDT high at or above $76,000.",
+    "Observed Binance and Coinbase spot snapshots were both near $74.8k, only about 1.6% below the threshold.",
+    "Nearly a full week remained in the contract window."
+  ],
+  "timing_relevance": "High: this is a date-bounded weekly touch market where path and timing matter more than long-run fundamentals.",
+  "unresolved_ambiguities": [
+    "Near-term BTC momentum and realized volatility after the snapshot were not deeply verified.",
+    "No explicit catalyst analysis was performed beyond current proximity to the threshold."
+  ],
+  "what_would_change_view": "I would move up if Binance price action pushed into the high-75k area or momentum evidence strengthened; I would move down if BTC lost the mid-74k area or repeatedly failed below $75k."
+}

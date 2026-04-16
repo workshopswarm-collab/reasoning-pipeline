@@ -1,0 +1,50 @@
+---
+type: research_analysis_summary
+case_key: case-20260415-7f8f0d04
+dispatch_id: dispatch-case-20260415-7f8f0d04-20260415T104754Z
+analysis_date: 2026-04-15
+generated_at: 2026-04-15T10:47:54.586902+00:00
+generated_by: orchestrator
+lmd_bundle_present: true
+lmd_bundle_path: "qualitative-db/40-research/cases/case-20260415-7f8f0d04/researcher-analyses/2026-04-15/dispatch-case-20260415-7f8f0d04-20260415T104754Z/lmd-bundle.json"
+lmd_bundle_status: "control_preview"
+lmd_used: false
+lmd_usage_mode: "prepared_not_injected"
+lmd_assignment_arm: "control"
+lmd_tier: "tier1"
+lmd_result_paths: ["qualitative-db/50-learnings/case-reviews/case-20260414-4e668883/review.md", "qualitative-db/50-learnings/intervention-tracking/active/intervention-capture-governing-source-proof-for-touch-markets.md"]
+lmd_required_check_keys: ["identify_primary_governing_source", "capture_governing_source_proof_when_event_near_complete", "label_unverified_vs_not_occurred_distinctly"]
+learning_intervention_keys: ["capture-governing-source-proof-for-touch-markets"]
+---
+
+# Analysis summary — dispatch-case-20260415-7f8f0d04-20260415T104754Z
+
+## Analysis context
+- case_key: `case-20260415-7f8f0d04`
+- title: Will claude-opus-4-6-thinking be the top AI model on April 17, 2026 (Style Control On)?
+- current_price_at_dispatch: `0.874`
+- difficulty_class: `medium`
+- resolution_risk: `medium`
+- evidence_floor: `2_meaningful`
+
+## Persona findings
+- `base-rate` -> `qualitative-db/40-research/cases/case-20260415-7f8f0d04/researcher-analyses/2026-04-15/dispatch-case-20260415-7f8f0d04-20260415T104754Z/personas/base-rate.md`
+- `market-implied` -> `qualitative-db/40-research/cases/case-20260415-7f8f0d04/researcher-analyses/2026-04-15/dispatch-case-20260415-7f8f0d04-20260415T104754Z/personas/market-implied.md`
+- `variant-view` -> `qualitative-db/40-research/cases/case-20260415-7f8f0d04/researcher-analyses/2026-04-15/dispatch-case-20260415-7f8f0d04-20260415T104754Z/personas/variant-view.md`
+- `risk-manager` -> `qualitative-db/40-research/cases/case-20260415-7f8f0d04/researcher-analyses/2026-04-15/dispatch-case-20260415-7f8f0d04-20260415T104754Z/personas/risk-manager.md`
+- `catalyst-hunter` -> `qualitative-db/40-research/cases/case-20260415-7f8f0d04/researcher-analyses/2026-04-15/dispatch-case-20260415-7f8f0d04-20260415T104754Z/personas/catalyst-hunter.md`
+
+## Supporting artifacts
+- assumption `base-rate` -> `qualitative-db/40-research/cases/case-20260415-7f8f0d04/researcher-analyses/2026-04-15/dispatch-case-20260415-7f8f0d04-20260415T104754Z/assumptions/base-rate.md`
+- assumption `market-implied` -> `qualitative-db/40-research/cases/case-20260415-7f8f0d04/researcher-analyses/2026-04-15/dispatch-case-20260415-7f8f0d04-20260415T104754Z/assumptions/market-implied.md`
+- assumption `variant-view` -> `qualitative-db/40-research/cases/case-20260415-7f8f0d04/researcher-analyses/2026-04-15/dispatch-case-20260415-7f8f0d04-20260415T104754Z/assumptions/variant-view.md`
+- assumption `risk-manager` -> `qualitative-db/40-research/cases/case-20260415-7f8f0d04/researcher-analyses/2026-04-15/dispatch-case-20260415-7f8f0d04-20260415T104754Z/assumptions/risk-manager.md`
+- assumption `catalyst-hunter` -> `qualitative-db/40-research/cases/case-20260415-7f8f0d04/researcher-analyses/2026-04-15/dispatch-case-20260415-7f8f0d04-20260415T104754Z/assumptions/catalyst-hunter.md`
+- evidence `base-rate` -> `qualitative-db/40-research/cases/case-20260415-7f8f0d04/researcher-analyses/2026-04-15/dispatch-case-20260415-7f8f0d04-20260415T104754Z/evidence/base-rate.md`
+- evidence `market-implied` -> `qualitative-db/40-research/cases/case-20260415-7f8f0d04/researcher-analyses/2026-04-15/dispatch-case-20260415-7f8f0d04-20260415T104754Z/evidence/market-implied.md`
+- evidence `variant-view` -> `qualitative-db/40-research/cases/case-20260415-7f8f0d04/researcher-analyses/2026-04-15/dispatch-case-20260415-7f8f0d04-20260415T104754Z/evidence/variant-view.md`
+- evidence `risk-manager` -> `qualitative-db/40-research/cases/case-20260415-7f8f0d04/researcher-analyses/2026-04-15/dispatch-case-20260415-7f8f0d04-20260415T104754Z/evidence/risk-manager.md`
+- evidence `catalyst-hunter` -> `qualitative-db/40-research/cases/case-20260415-7f8f0d04/researcher-analyses/2026-04-15/dispatch-case-20260415-7f8f0d04-20260415T104754Z/evidence/catalyst-hunter.md`
+
+## Notes
+- This summary is generated at dispatch-preparation time and can later be enriched by Orchestrator-side consolidation or review workflows.

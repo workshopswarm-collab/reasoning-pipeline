@@ -1,0 +1,56 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A short sharp move around the exact resolution minute can flip the outcome",
+    "A fresh macro or crypto catalyst could invalidate the recent-regime base rate"
+  ],
+  "key_assumptions": [
+    "Recent Binance trading regime remains the best short-horizon anchor absent a new catalyst",
+    "No Binance-specific disruption materially affects the settlement price"
+  ],
+  "main_logical_chain": [
+    "The contract resolves from Binance BTC/USDT 12:00 ET April 17 1-minute close above 74,000",
+    "Current spot is above the strike, so Yes has a modest structural edge",
+    "But recent Binance history shows frequent crossings around this region, limiting confidence",
+    "Therefore the outside-view estimate is a mild Yes lean below the market snapshot"
+  ],
+  "main_thesis": "Bitcoin being modestly above $74,000 supports a Yes lean, but the exact-minute Binance close and recent volatility make the edge only moderate.",
+  "own_probability": 0.58,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone",
+    "Current Binance spot was about 74,853.01"
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "contract_interpretation",
+    "market_anchor"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-cd803ba3",
+    "dispatch_id": "dispatch-case-20260415-cd803ba3-20260415T203927Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "16593736-e3eb-4b4f-89a6-08afcd9874df",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-cd803ba3/researcher-analyses/2026-04-15/dispatch-case-20260415-cd803ba3-20260415T203927Z/personas/base-rate.md",
+    "source_persona_sha256": "829f2ff950fbf4d80c51dd701c886d5e5de18b01916a8225b37243179d12a9f9"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality for contract mechanics and direct venue pricing; medium independence because forecasting evidence ultimately leans on Binance price behavior.",
+  "strongest_disconfirmers": [
+    "Recent realized volatility shows BTC can move back below 74,000 within the remaining window",
+    "Resolution depends on one exact Binance 1-minute close at 12:00 ET, not a broader average"
+  ],
+  "strongest_supports": [
+    "Current Binance BTCUSDT spot was about 74,853, above the 74,000 strike",
+    "Recent daily closes included multiple sessions above 74,000"
+  ],
+  "timing_relevance": "High: this is a date-sensitive contract settled by the Binance 12:00 ET April 17 one-minute close.",
+  "unresolved_ambiguities": [
+    "Assignment snapshot market price was 0.70 while fetched live display was closer to 0.63",
+    "Daily candles are contextual because the exact resolving minute is still in the future"
+  ],
+  "what_would_change_view": "A larger sustained cushion above 74,000 before April 17 noon ET would raise the estimate; a move back below 74,000 or volatility expansion would lower it."
+}

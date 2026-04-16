@@ -1,0 +1,58 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Short-dated crypto volatility can erase a 2.7% cushion quickly.",
+    "Outcome sensitivity is concentrated in one exact settlement minute on one venue/pair."
+  ],
+  "key_assumptions": [
+    "BTC remains in roughly the current 74k regime through Apr 21 noon ET.",
+    "Binance BTCUSDT does not materially diverge from broad BTC spot near settlement.",
+    "No macro or crypto-specific shock causes a roughly 2.7% downside move into settlement."
+  ],
+  "main_logical_chain": [
+    "Polymarket implies about 70.5% Yes and explicitly defines a Binance BTCUSDT noon-ET close-above rule.",
+    "BTC is already around 74k on Binance and independent spot references, so the market mainly needs persistence rather than a new rally.",
+    "Because a moderate downside move into one minute can still fail the contract, Yes should be above 50% but well below certainty.",
+    "That yields a fair value modestly above market at about 74%."
+  ],
+  "main_thesis": "The market's ~70.5% Yes price for BTC above 72,000 on Apr 21 looks broadly efficient and slightly conservative because BTC is already around 74k, making this mainly a persistence-into-a-specific-noon-close question rather than a fresh breakout question.",
+  "own_probability": 0.74,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone (noon)",
+    "final Close price higher than the price specified"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-8bef05aa",
+    "dispatch_id": "dispatch-case-20260416-8bef05aa-20260416T144205Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "15db17d9-7d20-4e4d-b5f9-d33d43d31462",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-8bef05aa/researcher-analyses/2026-04-16/dispatch-case-20260416-8bef05aa-20260416T144205Z/personas/market-implied.md",
+    "source_persona_sha256": "91e3ae6fde753343ff9cdd726742b7ce87d8891bf309a165334dcbd26801e7d7"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Good for a medium-difficulty case: direct contract/rules check plus direct Binance venue check, with Coinbase and CoinGecko as contextual independence.",
+  "strongest_disconfirmers": [
+    "The contract settles on one specific 12:00 ET 1-minute close, not on general price level or an anytime touch.",
+    "A 2.5%-3% BTC swing over several days is common enough that the current cushion is meaningful but not decisive."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT spot was about 73977 at capture, already comfortably above 72000.",
+    "CoinGecko and Coinbase checks were in the same 73.9k-74.0k area.",
+    "Polymarket's nearby strike ladder looked internally coherent: 70k ~88%, 72k ~71%, 74k ~48%."
+  ],
+  "timing_relevance": "High: this is a date- and timezone-specific noon ET close contract on Apr 21, 2026.",
+  "unresolved_ambiguities": [
+    "No major source-of-truth ambiguity remains, but the eventual outcome is path-sensitive to short-horizon volatility.",
+    "Market microstructure depth and trader concentration on Polymarket are not visible from the public page."
+  ],
+  "what_would_change_view": "I would cut the estimate if BTC loses 73k, if a macro/risk-off shock emerges before Apr 21, or if Binance-specific pricing weakens versus broader BTC spot near settlement."
+}

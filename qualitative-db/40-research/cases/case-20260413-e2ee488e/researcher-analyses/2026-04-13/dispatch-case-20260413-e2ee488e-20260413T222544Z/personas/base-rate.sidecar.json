@@ -1,0 +1,54 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Single-minute close on one venue creates path sensitivity.",
+    "Extreme market pricing can understate residual volatility risk."
+  ],
+  "key_assumptions": [
+    "Polymarket resolves off the ordinary Binance BTC/USDT 12:00 PM ET one-minute close on Apr 15.",
+    "BTC does not suffer a >~6% downside move into the settlement minute."
+  ],
+  "main_logical_chain": [
+    "Verify exact settlement mechanics and timing on Polymarket and Binance.",
+    "Measure current distance between Binance spot and the 70k threshold.",
+    "Treat the event as a short-horizon drawdown-avoidance problem rather than an upside-call problem.",
+    "Reserve material tail probability for crypto volatility and minute-specific settlement noise."
+  ],
+  "main_thesis": "BTC is already materially above 70k with under two days left, so the base-rate favors a Yes resolution despite nontrivial short-horizon volatility and single-minute settlement risk.",
+  "own_probability": 0.91,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone has a final 'Close' price higher than the price specified in the title.",
+    "Binance spot during this run was about 74,227.55."
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "contract_interpretation",
+    "market_anchor"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260413-e2ee488e",
+    "dispatch_id": "dispatch-case-20260413-e2ee488e-20260413T222544Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "acac250b-229a-4bc5-bd09-8fc5926e4b62",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260413-e2ee488e/researcher-analyses/2026-04-13/dispatch-case-20260413-e2ee488e-20260413T222544Z/personas/base-rate.md",
+    "source_persona_sha256": "98252c876d8506bcbdba1cd16db00c8bd1acb1916716bb0ade1e69b3420c52f5"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is strong because Binance is the governing data surface and Polymarket clearly states the contract mechanics; independence is medium but source-of-truth ambiguity is low.",
+  "strongest_disconfirmers": [
+    "BTC can move more than 6% in under two days, and the contract settles on a single one-minute close."
+  ],
+  "strongest_supports": [
+    "Binance spot during the run was about 74.23k, roughly 6% above the threshold.",
+    "Recent Binance daily/hourly history showed BTC trading mostly above 70k rather than right on the line."
+  ],
+  "timing_relevance": "The market resolves at 12:00 PM America/New_York on 2026-04-15, about 41.5 hours after this run's Binance verification.",
+  "unresolved_ambiguities": [
+    "Minor residual operational ambiguity remains only if Binance or Polymarket handling changes near settlement."
+  ],
+  "what_would_change_view": "A sharp drawdown toward 70k, Binance-specific instability, or a clarified contract interpretation changing the relevant candle would reduce the estimate."
+}

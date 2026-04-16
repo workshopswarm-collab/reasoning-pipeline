@@ -1,0 +1,62 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Short-dated BTC can still move sharply over four days.",
+    "This is a strict greater-than threshold, so landing exactly at or below 68000 is enough for No.",
+    "Only Binance BTCUSDT counts; other venues do not rescue a bad Binance print."
+  ],
+  "key_assumptions": [
+    "BTC does not suffer a roughly 9%+ drawdown into the 2026-04-19 noon ET settlement minute.",
+    "Binance does not experience a venue-specific anomaly that distorts the relevant BTCUSDT 1-minute close.",
+    "The market's ET timing is read correctly as the ordinary 12:00 PM ET minute on April 19."
+  ],
+  "main_logical_chain": [
+    "The contract resolves on the Binance BTCUSDT 12:00 ET 1-minute candle close on 2026-04-19.",
+    "Current Binance BTCUSDT is around 75k, putting the 68k threshold materially below spot.",
+    "That makes Yes the clear directional base case.",
+    "But the 98%+ market price likely underweights exact-minute, exact-venue, and tail-drawdown risk.",
+    "So the best risk-manager view is high-probability Yes, but slightly below market confidence."
+  ],
+  "main_thesis": "Yes is still the likely outcome because Binance BTCUSDT is currently far above 68000, but the market is slightly overconfident because exact-minute and exchange-specific tail risk remains.",
+  "own_probability": 0.96,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "The resolution source for this market is Binance, specifically the BTC/USDT 'Close' prices",
+    "Buy Yes 98.6\u00a2",
+    "BTCUSDT price 75060.85000000"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "risk_management",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-cb25c8c6",
+    "dispatch_id": "dispatch-case-20260415-cb25c8c6-20260415T194743Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "c3b60cc7-bd19-4364-8fe1-e3dff7b28d18",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-cb25c8c6/researcher-analyses/2026-04-15/dispatch-case-20260415-cb25c8c6-20260415T194743Z/personas/risk-manager.md",
+    "source_persona_sha256": "6878c8ddc47cae41b91a35bd5bf63d8acf6ae6b0e7b4a02a4dc6d028af955c26"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is good for this case: Polymarket rules clarify contract mechanics, Binance API is the closest direct verification surface, and CoinGecko adds an independent contextual cross-check; ambiguity is low to medium because exact-minute settlement still creates mechanical fragility.",
+  "strongest_disconfirmers": [
+    "A fast BTC drawdown into Sunday noon ET could still push the exact relevant close to or below 68000.",
+    "Because only Binance BTCUSDT at one exact minute counts, venue-specific dislocation or settlement-minute fragility is underpriced risk."
+  ],
+  "strongest_supports": [
+    "Binance public API showed BTCUSDT around 75060.85 at check time, well above 68000.",
+    "Recent Binance 1-minute kline closes were also near 75k.",
+    "CoinGecko cross-check showed BTC near 74997, supporting the same broad price regime."
+  ],
+  "timing_relevance": "The market settles on one exact minute at 12:00 ET on 2026-04-19, so timing and venue mechanics matter more than in a generic directional BTC view.",
+  "unresolved_ambiguities": [
+    "How much probability mass should be assigned to weekend tail risk versus routine volatility.",
+    "Whether residual exchange-specific operational risk deserves more than a small discount versus market pricing."
+  ],
+  "what_would_change_view": "A sharp BTC drop toward 68k, Binance-specific reliability concerns, or a fresh pre-settlement Binance check showing a much smaller cushion would move the estimate lower; stable trading well above 68k into Sunday would move it toward the market."
+}

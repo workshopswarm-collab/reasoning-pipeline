@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A fresh overnight or morning shock could compress the cushion quickly.",
+    "This resolves on one exact minute rather than a broader daily close."
+  ],
+  "key_assumptions": [
+    "No fresh major downside catalyst hits before Apr 17 noon ET.",
+    "Binance spot remains a reliable settlement venue without abnormal distortion at the key minute.",
+    "A roughly 153-point cushion above 2200 is large enough to survive ordinary noise."
+  ],
+  "main_logical_chain": [
+    "Verify the exact contract mechanics and settlement source.",
+    "Check the actual Binance ETHUSDT spot state and timestamp mapping.",
+    "Measure how far current spot is above 2200.",
+    "Ask whether any near-term catalyst is likely to force a >6% drop into the exact resolution minute.",
+    "Conclude Yes remains more likely than the market's downside tail, but with some haircut for timing fragility."
+  ],
+  "main_thesis": "ETH is already materially above 2200 on Binance, so Yes is the base case unless a fresh downside catalyst forces a sharp drop into the exact Apr 17 noon ET settlement minute.",
+  "own_probability": 0.92,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "Binance 1 minute candle for ETH/USDT 12:00 in the ET timezone",
+    "Ticker endpoint returned price around 2353.42"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "catalyst_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-989964fe",
+    "dispatch_id": "dispatch-case-20260416-989964fe-20260416T020418Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "d3bad876-2b84-4db0-84c0-1cd8ee6aff39",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-989964fe/researcher-analyses/2026-04-16/dispatch-case-20260416-989964fe-20260416T020418Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "49bf27f786f7160f473c60d3b02631399e980c21c047baffb34c822020c8d86d"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High for direct mechanics and current venue data, medium overall because evidence was strong on contract/source-of-truth but lighter on independent catalyst sourcing.",
+  "strongest_disconfirmers": [
+    "Single-minute settlement creates path fragility if crypto sells off sharply before noon ET.",
+    "ETH can move more than 6% quickly under macro or liquidation shocks."
+  ],
+  "strongest_supports": [
+    "Binance ETHUSDT spot checked around 2353-2354, well above 2200.",
+    "24h Binance low of 2308.50 still left spot above the threshold.",
+    "No dominant scheduled downside catalyst was identified in the collected evidence."
+  ],
+  "timing_relevance": "Timing is central because the contract depends on one Binance 1-minute close at Apr 17 12:00 ET rather than a broad daily ETH view.",
+  "unresolved_ambiguities": [
+    "No especially strong independent macro catalyst source was captured in this run.",
+    "Unscheduled newsflow remains inherently hard to verify in advance."
+  ],
+  "what_would_change_view": "A sharp break below 2300, a concrete underpriced downside catalyst before noon ET, or abnormal Binance-specific trading conditions would lower the Yes estimate."
+}

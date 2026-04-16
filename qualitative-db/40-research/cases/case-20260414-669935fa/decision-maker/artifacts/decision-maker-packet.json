@@ -1,0 +1,154 @@
+{
+  "schema_version": "decision-packet/v1",
+  "generated_at": "2026-04-14T13:38:00-04:00",
+  "context": {
+    "case_key": "case-20260414-669935fa",
+    "dispatch_id": "dispatch-case-20260414-669935fa-20260414T172940Z",
+    "question": "Will Bitcoin reach $76,000 April 13-19?",
+    "market_id": "68ca5139-c1c1-453d-abba-968b9e22aa50",
+    "external_market_id": "0xf51551b39d50396009471492879718c582a9b1e7c8448793544f480991c1c019",
+    "market_slug": "will-bitcoin-reach-76k-april-13-19",
+    "platform": "polymarket",
+    "primary_market_url": "https://polymarket.com/event/will-bitcoin-reach-76k-april-13-19",
+    "market_title": "Will Bitcoin reach $76,000 April 13-19?",
+    "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260414-669935fa/synthesizer-agent/decision-handoff.md",
+    "source_syndicated_finding_path": "qualitative-db/40-research/cases/case-20260414-669935fa/synthesizer-agent/syndicated-finding.md",
+    "source_light_refresh_brief_path": "",
+    "refresh_mode": "",
+    "decision_maker_agent": "decision-maker",
+    "canonical_markdown_path": "decision-maker-packet.md",
+    "canonical_json_path": "artifacts/decision-maker-packet.json"
+  },
+  "decision": {
+    "side": "yes",
+    "trade_authorization": "watch_only",
+    "position_policy": "hold_only",
+    "decision_readiness": "ready",
+    "primary_crux": "The contract appears effectively already satisfied because bundled Binance in-window data recorded a BTC/USDT high of 76,038, which is above the 76,000 touch threshold, but the market's 0.9995 price already leaves almost no room for the small residual parity and settlement-administration risk that remains until formal resolution.",
+    "secondary_cruxes": [
+      "This is a touch-style contract keyed to any qualifying Binance 1-minute high, not a closing-price contract.",
+      "The remaining uncertainty is narrow source-of-truth parity risk between archived Binance API prints and the exact Binance chart or settlement surface Polymarket operationally uses.",
+      "The edge versus market is negligible even if the contract is almost certainly already Yes."
+    ],
+    "thesis_class": "price_not_good_enough"
+  },
+  "valuation": {
+    "fair_value_low": 0.992,
+    "fair_value_high": 0.998,
+    "fair_value_mid": 0.995,
+    "independent_verification_quality": "high",
+    "compressed_toward_market_applied": false,
+    "compression_reason": "Direct bundled Binance evidence shows an in-window high above 76,000, leaving only small settlement-surface and administrative tail risk rather than directional uncertainty.",
+    "market_reference_price": 0.9995,
+    "edge_mid_vs_market_pct_points": -0.5
+  },
+  "execution_semantics": {
+    "price_source": "market_snapshot_quote",
+    "price_axis": "market_implied_true_prob",
+    "rebalance_threshold_fraction": 0.1,
+    "allow_auto_reversal": false,
+    "quote_staleness_seconds": 300,
+    "valid_until": "2026-04-15T17:38:59.087141+00:00"
+  },
+  "risk_controls": {
+    "confidence_level": "high",
+    "portfolio_constraints": [
+      "Do not initiate fresh exposure from this packet because the market is already near bounded fair value.",
+      "Only reassess if a credible settlement-source dispute, data revision, or administrative clarification emerges.",
+      "Treat this as an effectively satisfied touch contract with residual operational tail, not as an ongoing BTC directional bet."
+    ],
+    "liquidity_caution": "low",
+    "max_position_size_pct_bankroll": 0.02,
+    "max_additional_exposure_pct_bankroll": 0.01,
+    "max_single_order_pct_bankroll": 0.005,
+    "slippage_tolerance_bps": 100,
+    "liquidity_min_depth": 0,
+    "correlation_bucket_limit_pct_bankroll": 0.05
+  },
+  "bands": [
+    {
+      "name": "max_enter",
+      "min_p": 0,
+      "max_p": 0.97,
+      "target_exposure_fraction": 0,
+      "notes": "No autonomous entry from this packet; materially cheaper pricing would require a fresh dispute- and source-parity check."
+    },
+    {
+      "name": "scaled_enter",
+      "min_p": 0.97,
+      "max_p": 0.992,
+      "target_exposure_fraction": 0,
+      "notes": "No entry authorized because the case is already in tiny-tail settlement-risk territory."
+    },
+    {
+      "name": "hold",
+      "min_p": 0.992,
+      "max_p": 0.998,
+      "target_exposure_fraction": 0,
+      "notes": "Hold zone consistent with bounded fair value for an effectively already-satisfied Yes outcome."
+    },
+    {
+      "name": "trim",
+      "min_p": 0.998,
+      "max_p": 0.9995,
+      "target_exposure_fraction": 0,
+      "notes": "Trim or avoid increasing as price reaches the upper edge of justified fair value and operational tail dominates."
+    },
+    {
+      "name": "exit",
+      "min_p": 0.9995,
+      "max_p": 1,
+      "target_exposure_fraction": 0,
+      "notes": "Exit or avoid at extreme prices because remaining uncertainty is almost entirely settlement-surface and administrative."
+    }
+  ],
+  "invalidation": {
+    "thesis_breakers": [
+      "A direct Binance 1-minute source-of-truth check shows no qualifying in-window high at or above 76,000.",
+      "A credible data correction or Polymarket settlement clarification rejects the observed 76,038 print.",
+      "A venue-specific dispute establishes that the archived API print does not match the operational settlement surface."
+    ],
+    "time_breakers": [
+      "Formal settlement or an official dispute notice should supersede this packet immediately.",
+      "Any post-print delay in settlement increases the relevance of administrative tail risk over price-path reasoning."
+    ],
+    "market_structure_breakers": [
+      "A source-of-truth mismatch between Binance API data and the cited Binance chart becomes material.",
+      "The displayed market quote becomes stale relative to a new settlement-status update."
+    ],
+    "reversal_conditions": [
+      "Move to fully closed confidence only after formal settlement or an exact settlement-surface confirmation.",
+      "Move materially lower only on a fresh packet if a real source-parity dispute or data revision emerges.",
+      "Do not auto-reverse from this packet."
+    ]
+  },
+  "epistemic_status": {
+    "key_uncertainties": [
+      "Whether the exact Binance chart or UI surface cited by Polymarket matches the archived 76,038 print.",
+      "Whether any late administrative clarification, correction, or dispute affects settlement.",
+      "The exact first qualifying 1-minute candle was not archived in this bounded bundle."
+    ],
+    "what_would_change_my_mind": [
+      "Direct confirmation from the exact Binance settlement surface showing the qualifying high would eliminate most residual doubt.",
+      "A credible data revision below 76,000 or a settlement clarification rejecting the observed print would lower fair value sharply.",
+      "Official market settlement to Yes would collapse the remaining tail to zero."
+    ],
+    "reasons_to_pass": [
+      "The market is already near certainty and leaves no meaningful valuation cushion.",
+      "The remaining uncertainty is operational rather than an exploitable forecasting edge."
+    ],
+    "decision_quality": "good_not_clean"
+  },
+  "audit": {
+    "one_sentence_rationale": "Bitcoin very likely already satisfied this contract because bundled Binance data showed an in-window high above $76,000, but since the market is already at 0.9995 and the only residual risk is narrow settlement-surface parity or administrative correction risk, the disciplined output is watch-only rather than fresh action.",
+    "notes": "This is another case where directional truth and execution value diverge sharply: the contract looks effectively won, but the market already prices that.",
+    "market_baseline_respected": true,
+    "action_bias_check_passed": true,
+    "self_preservation_bias_check_passed": true,
+    "structured_handoff_primary_used": true,
+    "prose_fallback_used": true,
+    "verification_mode_used": "targeted_escalation",
+    "additional_verification_performed": true,
+    "additional_verification_notes": "targeted_pack"
+  }
+}

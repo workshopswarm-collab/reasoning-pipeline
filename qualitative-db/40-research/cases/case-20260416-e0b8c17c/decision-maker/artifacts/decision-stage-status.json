@@ -1,0 +1,260 @@
+{
+  "actor": "orchestrator",
+  "agent_tool_use_allowed": true,
+  "artifact_type": "decision_stage_status",
+  "case_key": "case-20260416-e0b8c17c",
+  "decision_context_path": "roles/decision-maker/runtime/artifacts/case-20260416-e0b8c17c/decision-context-dispatch-case-20260416-e0b8c17c-20260416T050131Z.json",
+  "decision_lane": {
+    "topic_id": "4416",
+    "topic_title": "case-20260416-e0b8c17c | decision | T050131Z",
+    "session_key": "agent:main:telegram:group:-1003846500961:topic:4416"
+  },
+  "decision_launch_claim": {
+    "claimed_at": "2026-04-16T05:11:19.901426Z",
+    "decision_context_path": "roles/decision-maker/runtime/artifacts/case-20260416-e0b8c17c/decision-context-dispatch-case-20260416-e0b8c17c-20260416T050131Z.json",
+    "launch_log_path": "scripts/.runtime-state/decision-maker-launches/case-20260416-e0b8c17c-20260416T051119Z.log",
+    "launcher": "pipeline_automation_actions.launch_decision_maker",
+    "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260416-e0b8c17c/decision-prompt-dispatch-case-20260416-e0b8c17c-20260416T050131Z.md",
+    "runner_pid": 81724
+  },
+  "decision_prompt_path": "roles/decision-maker/runtime/artifacts/case-20260416-e0b8c17c/decision-prompt-dispatch-case-20260416-e0b8c17c-20260416T050131Z.md",
+  "decision_readiness": "",
+  "decision_target_chat_id": "-1003846500961",
+  "decision_target_session_key": "agent:main:telegram:group:-1003846500961:topic:4416",
+  "decision_visible_finish_marker": "DECISION-MAKING COMPLETED, DECISION PACKAGE CREATED | market=Will the price of Bitcoin be above $72,000 on April 20? | dispatch_id=dispatch-case-20260416-e0b8c17c-20260416T050131Z | packet_path=qualitative-db/40-research/cases/case-20260416-e0b8c17c/decision-maker/decision-maker-packet.md",
+  "decision_visible_receipt_marker": "SYNTHESIS RECEIVED | market=Will the price of Bitcoin be above $72,000 on April 20? | dispatch_id=dispatch-case-20260416-e0b8c17c-20260416T050131Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260416-e0b8c17c/decision-context-dispatch-case-20260416-e0b8c17c-20260416T050131Z.json",
+  "decision_visible_start_marker": "DECISION-MAKING ANALYSIS UNDERWAY | market=Will the price of Bitcoin be above $72,000 on April 20? | dispatch_id=dispatch-case-20260416-e0b8c17c-20260416T050131Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260416-e0b8c17c/decision-context-dispatch-case-20260416-e0b8c17c-20260416T050131Z.json",
+  "dispatch_id": "dispatch-case-20260416-e0b8c17c-20260416T050131Z",
+  "last_stage_event": {
+    "at": "2026-04-16T05:12:56.008196Z",
+    "stage": "decision_execution",
+    "state": "decision_failed",
+    "message": "Decision-Maker executor crashed",
+    "error": "command failed (1): /opt/homebrew/opt/python@3.14/bin/python3.14 /Users/agent2/.openclaw/orchestrator/roles/decision-maker/runtime/scripts/render_decision_packet.py --packet-json /Users/agent2/.openclaw/orchestrator/qualitative-db/40-research/cases/case-20260416-e0b8c17c/decision-maker/artifacts/decision-maker-packet.json --pretty\nSTDOUT:\n\nSTDERR:\nTraceback (most recent call last):\n  File \"/Users/agent2/.openclaw/orchestrator/roles/decision-maker/runtime/scripts/render_decision_packet.py\", line 252, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/agent2/.openclaw/orchestrator/roles/decision-maker/runtime/scripts/render_decision_packet.py\", line 236, in main\n    out_path.write_text(dump_frontmatter(ordered_frontmatter(packet), build_body(packet)))\n                                                                      ~~~~~~~~~~^^^^^^^^\n  File \"/Users/agent2/.openclaw/orchestrator/roles/decision-maker/runtime/scripts/render_decision_packet.py\", line 212, in build_body\n    return \"\\n\".join(lines).rstrip() + \"\\n\"\n           ~~~~~~~~~^^^^^^^\nTypeError: sequence item 23: expected str instance, list found\n"
+  },
+  "packet_json_path": "qualitative-db/40-research/cases/case-20260416-e0b8c17c/decision-maker/artifacts/decision-maker-packet.json",
+  "packet_markdown_path": "qualitative-db/40-research/cases/case-20260416-e0b8c17c/decision-maker/decision-maker-packet.md",
+  "position_policy": "",
+  "question": "Will the price of Bitcoin be above $72,000 on April 20?",
+  "recommended_side": "",
+  "schema_version": "decision-stage-status/v1",
+  "selected_input_bundle_estimated_tokens": 3797,
+  "selected_input_bundle_mode": "targeted_escalation",
+  "selected_input_bundle_path": "roles/decision-maker/runtime/artifacts/case-20260416-e0b8c17c/selected-inputs-dispatch-case-20260416-e0b8c17c-20260416T050131Z.json",
+  "stage_events": [
+    {
+      "at": "2026-04-16T05:11:19.194564Z",
+      "message": "Decision-Maker stage initialized from synthesis handoff",
+      "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260416-e0b8c17c/synthesizer-agent/decision-handoff.md",
+      "stage": "kickoff",
+      "state": "decision_ready_for_receipt"
+    },
+    {
+      "agent_tool_use_allowed": true,
+      "approx_tokens_after_trim": 3797,
+      "at": "2026-04-16T05:11:19.863390Z",
+      "message": "Built deterministic Decision-Maker selected-input bundle",
+      "selected_input_bundle_path": "roles/decision-maker/runtime/artifacts/case-20260416-e0b8c17c/selected-inputs-dispatch-case-20260416-e0b8c17c-20260416T050131Z.json",
+      "stage": "decision_input_selection",
+      "state": "built",
+      "verification_mode": "targeted_escalation",
+      "verification_mode_path": "roles/decision-maker/runtime/artifacts/case-20260416-e0b8c17c/verification-mode-dispatch-case-20260416-e0b8c17c-20260416T050131Z.json"
+    },
+    {
+      "approx_tokens_after_trim": 1363,
+      "at": "2026-04-16T05:11:19.863627Z",
+      "message": "Built deterministic targeted verification pack",
+      "stage": "decision_targeted_verification",
+      "state": "built",
+      "targeted_verification_pack_path": "roles/decision-maker/runtime/artifacts/case-20260416-e0b8c17c/targeted-verification-pack-dispatch-case-20260416-e0b8c17c-20260416T050131Z.json"
+    },
+    {
+      "at": "2026-04-16T05:11:19.863803Z",
+      "message": "Built Decision-Maker prompt from compact selected-input bundle",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260416-e0b8c17c/decision-prompt-dispatch-case-20260416-e0b8c17c-20260416T050131Z.md",
+      "stage": "decision_prompt",
+      "state": "built"
+    },
+    {
+      "at": "2026-04-16T05:11:19.865063Z",
+      "message": "Decision-Maker inputs prepared; awaiting launch claim",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260416-e0b8c17c/decision-prompt-dispatch-case-20260416-e0b8c17c-20260416T050131Z.md",
+      "stage": "decision_prepare",
+      "state": "handoff_prepared"
+    },
+    {
+      "at": "2026-04-16T05:11:19.901426Z",
+      "decision_context_path": "roles/decision-maker/runtime/artifacts/case-20260416-e0b8c17c/decision-context-dispatch-case-20260416-e0b8c17c-20260416T050131Z.json",
+      "launch_log_path": "scripts/.runtime-state/decision-maker-launches/case-20260416-e0b8c17c-20260416T051119Z.log",
+      "message": "Decision-Maker launch claimed by automation controller",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260416-e0b8c17c/decision-prompt-dispatch-case-20260416-e0b8c17c-20260416T050131Z.md",
+      "runner_pid": 81724,
+      "stage": "decision_receipt",
+      "state": "handoff_sent"
+    },
+    {
+      "at": "2026-04-16T05:11:20.088704Z",
+      "stage": "kickoff",
+      "state": "reentered",
+      "message": "Decision-Maker executor resumed from existing prepared/running state",
+      "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260416-e0b8c17c/synthesizer-agent/decision-handoff.md"
+    },
+    {
+      "at": "2026-04-16T05:11:20.756791Z",
+      "stage": "decision_input_selection",
+      "state": "built",
+      "message": "Built deterministic Decision-Maker selected-input bundle",
+      "verification_mode_path": "roles/decision-maker/runtime/artifacts/case-20260416-e0b8c17c/verification-mode-dispatch-case-20260416-e0b8c17c-20260416T050131Z.json",
+      "selected_input_bundle_path": "roles/decision-maker/runtime/artifacts/case-20260416-e0b8c17c/selected-inputs-dispatch-case-20260416-e0b8c17c-20260416T050131Z.json",
+      "verification_mode": "targeted_escalation",
+      "approx_tokens_after_trim": 3797,
+      "agent_tool_use_allowed": true
+    },
+    {
+      "at": "2026-04-16T05:11:20.757020Z",
+      "stage": "decision_targeted_verification",
+      "state": "built",
+      "message": "Built deterministic targeted verification pack",
+      "targeted_verification_pack_path": "roles/decision-maker/runtime/artifacts/case-20260416-e0b8c17c/targeted-verification-pack-dispatch-case-20260416-e0b8c17c-20260416T050131Z.json",
+      "approx_tokens_after_trim": 1363
+    },
+    {
+      "at": "2026-04-16T05:11:20.757193Z",
+      "stage": "decision_prompt",
+      "state": "built",
+      "message": "Built Decision-Maker prompt from compact selected-input bundle",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260416-e0b8c17c/decision-prompt-dispatch-case-20260416-e0b8c17c-20260416T050131Z.md"
+    },
+    {
+      "at": "2026-04-16T05:11:27.270345Z",
+      "stage": "decision_lane_bootstrap",
+      "state": "created",
+      "message": "Created dedicated Telegram decision lane",
+      "topic_id": "4416",
+      "topic_title": "case-20260416-e0b8c17c | decision | T050131Z",
+      "session_key": "agent:main:telegram:group:-1003846500961:topic:4416"
+    },
+    {
+      "at": "2026-04-16T05:11:44.638667Z",
+      "stage": "decision_receipt",
+      "state": "visible_marker_sent",
+      "message": "SYNTHESIS RECEIVED | market=Will the price of Bitcoin be above $72,000 on April 20? | dispatch_id=dispatch-case-20260416-e0b8c17c-20260416T050131Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260416-e0b8c17c/decision-context-dispatch-case-20260416-e0b8c17c-20260416T050131Z.json"
+    },
+    {
+      "at": "2026-04-16T05:11:44.640412Z",
+      "stage": "decision_receipt",
+      "state": "accepted",
+      "message": "Decision-Maker handoff accepted",
+      "session_key": "agent:decision-maker:case:case-20260416-e0b8c17c",
+      "handoff_status": "started",
+      "gateway_response_path": "roles/decision-maker/runtime/artifacts/case-20260416-e0b8c17c/decision-gateway-response-dispatch-case-20260416-e0b8c17c-20260416T050131Z.json"
+    },
+    {
+      "at": "2026-04-16T05:11:44.640603Z",
+      "stage": "decision_execution",
+      "state": "decision_analysis_running",
+      "message": "Decision-Maker agent invocation accepted and analysis started",
+      "session_key": "agent:decision-maker:case:case-20260416-e0b8c17c",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260416-e0b8c17c/decision-prompt-dispatch-case-20260416-e0b8c17c-20260416T050131Z.md",
+      "handoff_status": "started"
+    },
+    {
+      "at": "2026-04-16T05:11:56.139457Z",
+      "stage": "decision_execution",
+      "state": "visible_marker_sent",
+      "message": "DECISION-MAKING ANALYSIS UNDERWAY | market=Will the price of Bitcoin be above $72,000 on April 20? | dispatch_id=dispatch-case-20260416-e0b8c17c-20260416T050131Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260416-e0b8c17c/decision-context-dispatch-case-20260416-e0b8c17c-20260416T050131Z.json"
+    },
+    {
+      "at": "2026-04-16T05:12:27.517497Z",
+      "stage": "decision_validation",
+      "state": "decision_validation_failed_retrying",
+      "message": "Decision packet failed validation; retrying once",
+      "attempt": 1,
+      "errors": [
+        "schema_version must equal decision-packet/v1"
+      ],
+      "warnings": [],
+      "raw_response_text_path": "roles/decision-maker/runtime/artifacts/case-20260416-e0b8c17c/decision-response-dispatch-case-20260416-e0b8c17c-20260416T050131Z.raw.txt",
+      "gateway_response_path": "roles/decision-maker/runtime/artifacts/case-20260416-e0b8c17c/decision-gateway-response-dispatch-case-20260416-e0b8c17c-20260416T050131Z.json",
+      "parse_failure_artifact_path": "roles/decision-maker/runtime/artifacts/case-20260416-e0b8c17c/decision-parse-failure-dispatch-case-20260416-e0b8c17c-20260416T050131Z.json"
+    },
+    {
+      "at": "2026-04-16T05:12:27.518085Z",
+      "stage": "decision_execution",
+      "state": "decision_retry_requested",
+      "message": "Decision-Maker output invalid; requested one strict JSON retry",
+      "attempt": 2,
+      "retry_error": "schema_version must equal decision-packet/v1",
+      "validation_errors": [
+        "schema_version must equal decision-packet/v1"
+      ]
+    },
+    {
+      "at": "2026-04-16T05:12:27.518098Z",
+      "stage": "decision_execution",
+      "state": "decision_analysis_running",
+      "message": "Decision-Maker retry requested after invalid packet output",
+      "attempt": 2,
+      "retry_error": "schema_version must equal decision-packet/v1",
+      "validation_errors": [
+        "schema_version must equal decision-packet/v1"
+      ]
+    },
+    {
+      "at": "2026-04-16T05:12:35.150086Z",
+      "stage": "decision_execution",
+      "state": "decision_retry_accepted",
+      "message": "Decision-Maker retry accepted",
+      "attempt": 2,
+      "session_key": "agent:decision-maker:case:case-20260416-e0b8c17c",
+      "gateway_response_path": "roles/decision-maker/runtime/artifacts/case-20260416-e0b8c17c/decision-gateway-response-dispatch-case-20260416-e0b8c17c-20260416T050131Z-attempt-2.json"
+    },
+    {
+      "at": "2026-04-16T05:12:56.008196Z",
+      "stage": "decision_execution",
+      "state": "decision_failed",
+      "message": "Decision-Maker executor crashed",
+      "error": "command failed (1): /opt/homebrew/opt/python@3.14/bin/python3.14 /Users/agent2/.openclaw/orchestrator/roles/decision-maker/runtime/scripts/render_decision_packet.py --packet-json /Users/agent2/.openclaw/orchestrator/qualitative-db/40-research/cases/case-20260416-e0b8c17c/decision-maker/artifacts/decision-maker-packet.json --pretty\nSTDOUT:\n\nSTDERR:\nTraceback (most recent call last):\n  File \"/Users/agent2/.openclaw/orchestrator/roles/decision-maker/runtime/scripts/render_decision_packet.py\", line 252, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/agent2/.openclaw/orchestrator/roles/decision-maker/runtime/scripts/render_decision_packet.py\", line 236, in main\n    out_path.write_text(dump_frontmatter(ordered_frontmatter(packet), build_body(packet)))\n                                                                      ~~~~~~~~~~^^^^^^^^\n  File \"/Users/agent2/.openclaw/orchestrator/roles/decision-maker/runtime/scripts/render_decision_packet.py\", line 212, in build_body\n    return \"\\n\".join(lines).rstrip() + \"\\n\"\n           ~~~~~~~~~^^^^^^^\nTypeError: sequence item 23: expected str instance, list found\n"
+    }
+  ],
+  "status": "decision_failed",
+  "targeted_verification_pack_path": "roles/decision-maker/runtime/artifacts/case-20260416-e0b8c17c/targeted-verification-pack-dispatch-case-20260416-e0b8c17c-20260416T050131Z.json",
+  "targeted_verification_pack_required": true,
+  "trade_authorization": "",
+  "updated_at": "2026-04-16T05:12:56.008265Z",
+  "verification_mode_path": "roles/decision-maker/runtime/artifacts/case-20260416-e0b8c17c/verification-mode-dispatch-case-20260416-e0b8c17c-20260416T050131Z.json",
+  "warnings": [],
+  "previous_status": "handoff_sent",
+  "raw_gateway_response_path": "roles/decision-maker/runtime/artifacts/case-20260416-e0b8c17c/decision-gateway-response-dispatch-case-20260416-e0b8c17c-20260416T050131Z-attempt-2.json",
+  "raw_response_text_path": "roles/decision-maker/runtime/artifacts/case-20260416-e0b8c17c/decision-response-dispatch-case-20260416-e0b8c17c-20260416T050131Z-attempt-2.raw.txt",
+  "decision_parse_failure_artifact_path": "roles/decision-maker/runtime/artifacts/case-20260416-e0b8c17c/decision-parse-failure-dispatch-case-20260416-e0b8c17c-20260416T050131Z-attempt-2.json",
+  "decision_parse_attempt_count": 2,
+  "decision_recovered_after_retry": false,
+  "decision_lane_topic_id": "4416",
+  "decision_lane_topic_title": "case-20260416-e0b8c17c | decision | T050131Z",
+  "decision_lane_session_key": "agent:main:telegram:group:-1003846500961:topic:4416",
+  "decision_target_topic_id": "4416",
+  "decision_target_topic_title": "case-20260416-e0b8c17c | decision | T050131Z",
+  "decision_receipt_marker_sent_at": "2026-04-16T05:11:44.638471+00:00",
+  "decision_analysis_marker_sent_at": "2026-04-16T05:11:56.139177+00:00",
+  "terminal_summary": {
+    "at": "2026-04-16T05:12:56.008282Z",
+    "status": "decision_failed",
+    "decision_lane": {
+      "topic_id": "4416",
+      "topic_title": "case-20260416-e0b8c17c | decision | T050131Z",
+      "session_key": "agent:main:telegram:group:-1003846500961:topic:4416"
+    },
+    "packet_json_path": "qualitative-db/40-research/cases/case-20260416-e0b8c17c/decision-maker/artifacts/decision-maker-packet.json",
+    "packet_markdown_path": "qualitative-db/40-research/cases/case-20260416-e0b8c17c/decision-maker/decision-maker-packet.md",
+    "trade_authorization": "",
+    "decision_readiness": "",
+    "last_stage_event": {
+      "at": "2026-04-16T05:12:56.008196Z",
+      "stage": "decision_execution",
+      "state": "decision_failed",
+      "message": "Decision-Maker executor crashed",
+      "error": "command failed (1): /opt/homebrew/opt/python@3.14/bin/python3.14 /Users/agent2/.openclaw/orchestrator/roles/decision-maker/runtime/scripts/render_decision_packet.py --packet-json /Users/agent2/.openclaw/orchestrator/qualitative-db/40-research/cases/case-20260416-e0b8c17c/decision-maker/artifacts/decision-maker-packet.json --pretty\nSTDOUT:\n\nSTDERR:\nTraceback (most recent call last):\n  File \"/Users/agent2/.openclaw/orchestrator/roles/decision-maker/runtime/scripts/render_decision_packet.py\", line 252, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/agent2/.openclaw/orchestrator/roles/decision-maker/runtime/scripts/render_decision_packet.py\", line 236, in main\n    out_path.write_text(dump_frontmatter(ordered_frontmatter(packet), build_body(packet)))\n                                                                      ~~~~~~~~~~^^^^^^^^\n  File \"/Users/agent2/.openclaw/orchestrator/roles/decision-maker/runtime/scripts/render_decision_packet.py\", line 212, in build_body\n    return \"\\n\".join(lines).rstrip() + \"\\n\"\n           ~~~~~~~~~^^^^^^^\nTypeError: sequence item 23: expected str instance, list found\n"
+    }
+  }
+}

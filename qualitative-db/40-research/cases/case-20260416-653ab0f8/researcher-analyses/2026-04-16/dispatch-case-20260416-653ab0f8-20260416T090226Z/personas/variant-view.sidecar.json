@@ -1,0 +1,61 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "BTC could revisit the low-73k or sub-72k area before the exact settlement minute.",
+    "A late volatility spike could matter more than current spot level.",
+    "This view depends heavily on Binance-centric evidence because Binance is the source of truth."
+  ],
+  "key_assumptions": [
+    "No major macro or crypto-specific shock drives BTC down more than about 3.6% before settlement.",
+    "Binance remains operationally reliable and the noon ET 1-minute close is unambiguous.",
+    "Recent realized BTC volatility is a fair guide for the next ~48 hours."
+  ],
+  "main_logical_chain": [
+    "The contract resolves on Binance BTC/USDT 12:00 ET 1-minute close above 72000.",
+    "Current Binance spot and recent realized range sit comfortably above 72000.",
+    "That makes Yes favored.",
+    "But exact-minute settlement plus ordinary BTC volatility leaves a meaningful No path.",
+    "Therefore the market is directionally right but somewhat too confident."
+  ],
+  "main_thesis": "Yes is still favored, but the market is modestly overconfident because the contract resolves on one exact Binance noon ET minute roughly two days away.",
+  "own_probability": 0.82,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "I estimate 82% for Yes versus the market\u2019s roughly 87.5%-88%.",
+    "The strongest credible variant view is that the market is a bit too confident because this is an exact Binance 12:00 ET one-minute close two days away."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation",
+    "variant_hypothesis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-653ab0f8",
+    "dispatch_id": "dispatch-case-20260416-653ab0f8-20260416T090226Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "59b0e8b3-7f5f-4ed0-91e4-2b8a3f584d85",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-653ab0f8/researcher-analyses/2026-04-16/dispatch-case-20260416-653ab0f8-20260416T090226Z/personas/variant-view.md",
+    "source_persona_sha256": "66a7fb6ca7e33b975ce1e16b4adf5a043a62a1ed9721086958bebad795bce433"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High quality on primary mechanics and price data, but evidence independence is only medium-low because Binance is both the object and source of truth.",
+  "strongest_disconfirmers": [
+    "A roughly 3.6% drop over two days is plausible for BTC.",
+    "The contract resolves on one exact 12:00 ET minute close, not a daily close or average."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT was around 74720, leaving meaningful cushion above 72000.",
+    "Recent daily closes and the recent 24h low were all above 72000.",
+    "Recent hourly trading stayed mostly in a mid-74k regime rather than near the strike."
+  ],
+  "timing_relevance": "High: the market settles at 12:00 ET on 2026-04-18, about two days after the run, and resolves on a single exact-minute candle close.",
+  "unresolved_ambiguities": [
+    "How much downside volatility will cluster into the exact noon ET minute.",
+    "Whether any Binance-specific operational quirk appears before settlement."
+  ],
+  "what_would_change_view": "I would get more bullish if BTC keeps holding well above 74k into April 17-18; I would get more bearish if BTC breaks toward 73k or lower, if a macro shock emerges, or if Binance-specific reliability issues appear."
+}

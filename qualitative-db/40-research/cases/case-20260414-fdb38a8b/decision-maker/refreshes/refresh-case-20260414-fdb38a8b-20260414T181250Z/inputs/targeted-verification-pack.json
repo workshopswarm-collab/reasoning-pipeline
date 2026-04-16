@@ -1,0 +1,76 @@
+{
+  "artifact_type": "targeted_verification_pack",
+  "schema_version": "decision-targeted-verification-pack/v1",
+  "case_key": "case-20260414-fdb38a8b",
+  "dispatch_id": "refresh-case-20260414-fdb38a8b-20260414T181250Z",
+  "required": true,
+  "verification_mode": "targeted_escalation",
+  "pack_purpose": "Deterministic narrow follow-up pack for targeted escalation. It defines the crux questions and operational budgets, while source choice may remain model-driven within runtime-enforced tool guardrails.",
+  "verification_questions": [
+    "Does the latest available information materially change the decision, given: BTC path and volatility into the Apr 17 12:00 ET Binance settlement minute?",
+    "How decision-relevant is the remaining contract/source-of-truth ambiguity: minor operational ambiguity around exact ET-to-Binance minute mapping/chart surface, but contract wording is otherwise explicit?",
+    "Are the current blockers still material to final judgment: No high-quality independent volatility model for the exact settlement-minute downside risk?",
+    "Is the main verification gap still decision-material: No direct independent estimate of settlement-minute downside distribution beyond spot-buffer and recent realized range was obtained.?"
+  ],
+  "structured_handoff_focus": {
+    "contract_ambiguity_level": "minor",
+    "contract_ambiguity_reason": "minor operational ambiguity around exact ET-to-Binance minute mapping/chart surface, but contract wording is otherwise explicit",
+    "verification_gap_summary": "No direct independent estimate of settlement-minute downside distribution beyond spot-buffer and recent realized range was obtained.",
+    "best_countercase_summary": "If BTC simply holds mid-74k to 75k into Friday morning, the market’s 81.5% may be fair or even slightly conservative.",
+    "main_reason_for_disagreement": "The main disagreement is how much exact-minute path dependence should discount a spot-already-above-strike setup.",
+    "resolution_mechanics_summary": "Resolve Yes only if the Binance BTC/USDT 12:00 ET 1-minute candle on Apr 17 closes strictly above 72,000.",
+    "freshness_sensitive": "yes",
+    "freshness_driver": "BTC path and volatility into the Apr 17 12:00 ET Binance settlement minute",
+    "decision_blockers": [
+      "No high-quality independent volatility model for the exact settlement-minute downside risk",
+      "Short-horizon crypto moves could still erase the cushion before the resolving minute",
+      "Minor operational uncertainty remains around exact chart-minute mapping despite otherwise clear rules"
+    ],
+    "disagreement_type": "timing"
+  },
+  "supporting_persona_summaries": [
+    {
+      "persona": "market-implied",
+      "recommended_weight": "medium",
+      "own_probability": 0.78,
+      "main_thesis": "The market's ~81.5% Yes price looks broadly efficient because Binance BTC/USDT is already well above 72k, but the exact-minute settlement keeps enough downside path risk to justify a slightly lower 78% estimate.",
+      "main_logical_chain": [
+        "Start from the live market prior of 81.5% Yes.",
+        "Check the governing resolution source and verify Binance BTCUSDT is currently well above 72k.",
+        "Use recent Binance price range and nearby strike ladder to judge whether the market's confidence is plausible.",
+        "Apply a modest discount for short-horizon volatility and exact-minute settlement fragility, landing at 78% Yes."
+      ],
+      "strongest_supports": [
+        "Binance BTCUSDT spot during the run was about 74.8k, roughly 2.8k above strike.",
+        "Polymarket adjacent strike ladder is internally coherent and supports a low-to-mid 74k settlement distribution."
+      ],
+      "strongest_disconfirmers": [
+        "BTC has recently moved above and below 72k within days, so a routine pullback could flip the exact-minute outcome.",
+        "The contract settles on one exact 12:00 ET one-minute close, not a broader daily or intraday average."
+      ],
+      "unresolved_ambiguities": [
+        "No direct read of the future April 17 settlement minute exists yet; all inference is path-based.",
+        "Short-horizon realized volatility into the exact timestamp could still dominate current spot cushion."
+      ],
+      "what_would_change_view": "I would move lower if BTC lost the mid-74k area and started trading near 72-73k, and higher if BTC held above 75k into April 16 with subdued volatility.",
+      "timing_relevance": "Highly timing-sensitive: the contract resolves on the Binance BTCUSDT 1-minute candle close at exactly 12:00 ET on 2026-04-17.",
+      "source_quality_view": "High-quality primary source for settlement mechanics and direct price context; medium independence because Polymarket prices and Binance data both reflect the same underlying market environment.",
+      "persona_finding_path": "qualitative-db/40-research/cases/case-20260414-fdb38a8b/researcher-analyses/2026-04-14/dispatch-case-20260414-fdb38a8b-20260414T180238Z/personas/market-implied.md",
+      "assumption_artifact_paths": [
+        "qualitative-db/40-research/cases/case-20260414-fdb38a8b/researcher-analyses/2026-04-14/dispatch-case-20260414-fdb38a8b-20260414T180238Z/assumptions/market-implied.md"
+      ],
+      "evidence_artifact_paths": []
+    }
+  ],
+  "selected_assumption_snippets": [],
+  "selected_evidence_snippets": [],
+  "selected_supporting_note_snippets": [],
+  "pack_budget": {
+    "max_chars": 6000,
+    "actual_chars_before_trim": 7717,
+    "actual_chars_after_trim": 5261,
+    "approx_tokens_before_trim": 1929,
+    "approx_tokens_after_trim": 1315,
+    "trim_applied": true
+  }
+}

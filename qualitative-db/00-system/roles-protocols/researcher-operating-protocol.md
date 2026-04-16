@@ -2,7 +2,7 @@
 type: system_protocol
 domain: research
 status: active
-last_updated: 2026-03-29
+last_updated: 2026-04-14
 owner: orchestrator
 tags: [researcher/protocol, qualitative-db/research, permissions, onboarding]
 ---
@@ -61,7 +61,7 @@ Unless explicitly authorized, do **not** directly edit:
 - `qualitative-db/10-domains/`
 - `qualitative-db/20-entities/`
 - `qualitative-db/30-drivers/`
-- `qualitative-db/50-retrospectives/`
+- `qualitative-db/50-learnings/`
 
 Default rule:
 - new evidence -> `40-research/`
@@ -164,7 +164,7 @@ Path:
 
 Use for:
 - recurring or potentially generalizable lessons discovered during research
-- methodology improvements worth later retrospective review
+- methodology improvements worth later learning review
 - source-quality lessons that may deserve future promotion
 - candidate driver lessons that are not yet ready for canon
 

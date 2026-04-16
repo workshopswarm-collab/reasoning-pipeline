@@ -1,0 +1,57 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A sharp BTC selloff before or into noon ET Apr 21 would flip the contract.",
+    "The estimate depends on current above-threshold trading remaining informative over the next four days."
+  ],
+  "key_assumptions": [
+    "Current above-threshold Binance trading is informative about the Apr 21 noon ET close.",
+    "No major downside shock arrives before the target minute.",
+    "Settlement mechanics are exactly the Binance BTC/USDT 12:00 ET one-minute close."
+  ],
+  "main_logical_chain": [
+    "Verify the governing source and exact settlement mechanic from the Polymarket rules.",
+    "Check Binance venue-aligned current price and recent range to see whether 72k is remote or already in-range.",
+    "Conclude the market is broadly efficient because BTC is already above 72k, then discount for exact-minute-close path risk."
+  ],
+  "main_thesis": "BTC already trading above 72k on Binance makes the market's bullish prior broadly defensible, but the exact Apr 21 noon ET one-minute close keeps meaningful downside risk alive.",
+  "own_probability": 0.76,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "Binance BTC/USDT 12:00 ET one-minute Close must be strictly greater than 72,000.",
+    "Binance BTCUSDT spot was approximately 73,746 during review."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-66f6f47e",
+    "dispatch_id": "dispatch-case-20260416-66f6f47e-20260416T141457Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "6426ecd8-f3ad-4044-81ce-4fc1a9151c85",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-66f6f47e/researcher-analyses/2026-04-16/dispatch-case-20260416-66f6f47e-20260416T141457Z/personas/market-implied.md",
+    "source_persona_sha256": "9413d6f2b1de50852a2f5e91ea6fa98842083f692ace946c1df4325dda591570"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality rules source plus high-quality venue-aligned price context; independence medium and source-of-truth ambiguity low.",
+  "strongest_disconfirmers": [
+    "This is a single exact future-minute close, not a touch market or intraday-high market.",
+    "Recent Binance range still includes sub-72k trading, so a drawdown into Apr 21 remains plausible."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT spot was about 73,746 during review, already above the threshold.",
+    "Recent Binance daily candles show multiple closes/highs above 72k.",
+    "The market price above 70% is consistent with a nearby already-cleared threshold rather than a distant rally bet."
+  ],
+  "timing_relevance": "High: settlement depends on one exact Binance BTC/USDT one-minute close at 12:00 ET on 2026-04-21.",
+  "unresolved_ambiguities": [
+    "Assignment snapshot price 0.705 differed from fetched Polymarket display around 0.79-0.80, implying quote drift.",
+    "No independent macro source was added beyond venue-aligned market data and contract rules."
+  ],
+  "what_would_change_view": "A sustained move back below 72k, a new downside catalyst, or evidence of a misunderstood timezone/candle interpretation would lower the estimate."
+}

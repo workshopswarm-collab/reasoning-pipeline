@@ -1,0 +1,52 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "schema_version": "v1",
+  "persona": "base-rate",
+  "main_thesis": "BTC is already materially above 70k on Binance, so the short-horizon outside-view favors a Yes resolution unless a roughly 5.8% downside move or exchange-specific settlement-minute anomaly occurs before Apr 20 noon ET.",
+  "own_probability": 0.9,
+  "reasoning_mode": ["base_rate", "contract_interpretation", "market_anchor"],
+  "key_assumptions": [
+    "BTC does not fall roughly 5.8% or more from the current ~74.3k Binance level into the exact settlement minute.",
+    "No Binance-specific pricing anomaly or operational issue distorts the relevant 12:00 ET candle.",
+    "No major macro or crypto-specific shock arrives before Apr 20 that materially changes short-horizon downside odds."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT was around 74.3k on Apr 15, already comfortably above the 70k threshold.",
+    "Recent Binance daily closes for Apr 13-15 were above 70k.",
+    "Short-horizon threshold markets usually favor the already-in-the-money side absent a clear catalyst or mechanics trap."
+  ],
+  "strongest_disconfirmers": [
+    "The contract is settled by one exact Binance BTCUSDT 12:00 ET 1-minute candle close, so a temporary dip at the settlement minute can still produce No."
+  ],
+  "main_logical_chain": [
+    "Verify the contract mechanics: Binance BTCUSDT, 12:00 ET on Apr 20, final 1-minute candle close must be strictly above 70,000.",
+    "Verify current Binance context: BTCUSDT is already around 74.3k and recent daily closes are above 70k.",
+    "Apply outside-view reasoning: with only five days remaining, maintaining an already-cleared threshold is more likely than not at high probability unless a meaningful downside shock occurs.",
+    "Retain residual No probability because this is a narrow timestamp-specific and exchange-specific contract."
+  ],
+  "fragility_points": [
+    "Single-minute settlement timing creates path dependence.",
+    "Exchange-specific source-of-truth means Binance-specific anomalies matter more than broader market averages."
+  ],
+  "unresolved_ambiguities": [
+    "Polymarket cites the Binance website candle display as the formal settlement surface, while verification here used Binance docs/API as close source-family checks rather than the literal final chart print."
+  ],
+  "timing_relevance": "The market resolves at Apr 20 12:00 ET, so only the exact noon ET 1-minute candle close matters; five days remain from the analysis date.",
+  "source_quality_view": "High relevance and adequate quality: Polymarket rules provide the contract mechanics, and Binance provides the named source-of-truth family and live price context; independence is only medium because the best evidence is concentrated on the named exchange.",
+  "what_would_change_view": "A decisive move back toward 71k or below, a new near-term macro/crypto shock, or evidence of Binance-specific settlement fragility would lower the estimate.",
+  "recommended_weight": "medium",
+  "confidence_in_extract": "high",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone (noon) ... has a final 'Close' price higher than the price specified in the title.",
+    "ticker/price BTCUSDT: 74273.07000000"
+  ],
+  "runtime_metadata": {
+    "generation_mode": "researcher_sidecar_v1",
+    "case_key": "case-20260415-7b143efd",
+    "dispatch_id": "dispatch-case-20260415-7b143efd-20260415T132144Z",
+    "research_run_id": "6c9570bc-680e-46ca-b04a-e03dfb5ff5ff",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-7b143efd/researcher-analyses/2026-04-15/dispatch-case-20260415-7b143efd-20260415T132144Z/personas/base-rate.md",
+    "source_persona_sha256": "c7d3ff7b3610350bd650270648049f3b1df92c3e31fdae293ab28c759cef1706",
+    "prompt_contract_version": "researcher-sidecar-v1"
+  }
+}

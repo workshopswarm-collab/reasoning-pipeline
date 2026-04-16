@@ -1,0 +1,245 @@
+{
+  "artifact_type": "decision_selected_inputs",
+  "schema_version": "decision-selected-inputs/v1",
+  "case_key": "case-20260416-969f7c01",
+  "dispatch_id": "refresh-case-20260416-969f7c01-20260416T020025Z",
+  "verification_mode": "targeted_escalation",
+  "verification_triggers": [
+    "large_apparent_edge_vs_market",
+    "freshness_sensitive_catalyst",
+    "decision_blockers_present"
+  ],
+  "core_case": {
+    "question": "Will the price of Ethereum be above $2,200 on April 17?",
+    "market_title": "Will the price of Ethereum be above $2,200 on April 17?",
+    "market_reference_price": 0.955,
+    "market_quote_timestamp": "2026-04-16T02:00:00+00:00",
+    "syndicated_probability_low": 0.89,
+    "syndicated_probability_high": 0.92,
+    "syndicated_probability_midpoint": 0.905,
+    "edge_mid_vs_market_pct_points": -5.0,
+    "relation_to_market": "below_market",
+    "edge_independent_verification_quality": "medium",
+    "contract_ambiguity_level": "minor",
+    "contract_ambiguity_reason": "small residual UI-versus-API and exact candle-label interpretation risk, but rules are explicit enough for practical use",
+    "freshness_sensitive": "yes",
+    "freshness_driver": "ETH can still move materially before the Apr 17 12:00 ET resolving minute, so a morning Binance check would meaningfully update odds.",
+    "decision_blockers": [
+      "No major contract blocker; main blocker is unverified near-settlement price path risk.",
+      "Residual minor ambiguity about Binance UI-versus-API representation is not zero.",
+      "Actionability is limited because final view remains below market only modestly."
+    ],
+    "blockers_require_new_research": "no",
+    "disagreement_type": "market_pricing",
+    "follow_up_needed": "yes"
+  },
+  "required_upstream_inputs": {
+    "decision_handoff_path": "qualitative-db/40-research/cases/case-20260416-969f7c01/synthesizer-agent/decision-handoff.md",
+    "syndicated_runtime_path": "qualitative-db/40-research/cases/case-20260416-969f7c01/synthesizer-agent/syndicated-finding.runtime.json",
+    "syndicated_finding_path": "qualitative-db/40-research/cases/case-20260416-969f7c01/synthesizer-agent/syndicated-finding.md",
+    "sidecar_synthesis_bundle_path": "qualitative-db/40-research/cases/case-20260416-969f7c01/researcher-analyses/2026-04-16/dispatch-case-20260416-969f7c01-20260416T013210Z/sidecar-synthesis-bundle.json",
+    "synthesis_sidecar_readiness": {
+      "ready_sidecar_count": 5,
+      "pending_sidecar_count": 0,
+      "sidecar_bundle_sidecar_count": 5,
+      "sidecar_bundle_coverage_status": "complete"
+    },
+    "syndicated_runtime_summary": {
+      "artifact_type": "syndicated_finding_runtime_metadata",
+      "market_snapshot_time": "2026-04-16T01:32:10.423466+00:00",
+      "source_persona_count": 0,
+      "supporting_artifact_count": 0
+    }
+  },
+  "structured_handoff_primary": {
+    "relation_to_market": "below_market",
+    "edge_quality": "moderate",
+    "edge_independent_verification_quality": "medium",
+    "compressed_toward_market_due_to_verification": "no",
+    "contract_ambiguity_level": "minor",
+    "contract_ambiguity_reason": "small residual UI-versus-API and exact candle-label interpretation risk, but rules are explicit enough for practical use",
+    "independently_verified_points": [
+      "Polymarket rules explicitly resolve on Binance ETH/USDT 12:00 ET 1m final close",
+      "Live Binance ETHUSDT remained around 2353 during synthesis-stage check",
+      "Binance 24h low was still above 2200 at 2308.5",
+      "Recent Binance 1m closes were clustered near 2353, not near threshold",
+      "Swarm consensus that main residual risk is exact-minute path risk was faithful to raw findings"
+    ],
+    "verification_gap_summary": "No near-settlement Apr 17 morning verification yet, so overnight shock risk remains only partially checked.",
+    "best_countercase_summary": "A fast overnight or U.S.-morning selloff or Binance-specific wick into the exact noon ET minute could still flip this to No.",
+    "main_reason_for_disagreement": "Remaining disagreement is mostly about how much probability to charge for exact-minute crypto tail risk versus treating the current cushion as nearly dispositive.",
+    "resolution_mechanics_summary": "Yes resolves only if Binance ETH/USDT's 12:00 ET Apr 17 one-minute candle final close is strictly above 2200.",
+    "disagreement_intensity": "",
+    "freshness_sensitive": "yes",
+    "freshness_driver": "ETH can still move materially before the Apr 17 12:00 ET resolving minute, so a morning Binance check would meaningfully update odds.",
+    "decision_blockers": [
+      "No major contract blocker; main blocker is unverified near-settlement price path risk.",
+      "Residual minor ambiguity about Binance UI-versus-API representation is not zero.",
+      "Actionability is limited because final view remains below market only modestly."
+    ],
+    "blockers_require_new_research": "no",
+    "disagreement_type": "market_pricing",
+    "follow_up_needed": "yes"
+  },
+  "structured_handoff_policy": {
+    "structured_handoff_is_primary_starting_point": true,
+    "prose_is_fallback_only": true,
+    "structured_handoff_complete": true,
+    "missing_structured_fields": []
+  },
+  "verification_enforcement": {
+    "agent_tool_use_allowed": true,
+    "allowed_agent_tools": [
+      "web_search",
+      "web_fetch"
+    ],
+    "enforcement_method": "session_message_inspection",
+    "violation_action": "fail_run",
+    "rationale": "Decision-Maker may perform bounded independent source discovery/search during targeted escalation, but only within runtime-enforced tool/query/fetch budgets."
+  },
+  "verification_budget": {
+    "search_queries_allowed": 5,
+    "source_fetches_allowed": 3,
+    "minimum_distinct_source_families": 2,
+    "preferred_distinct_source_families": 2
+  },
+  "prose_fallback": {
+    "included": true,
+    "reason": "targeted_escalation_context",
+    "decision_handoff_excerpt": "# Decision summary\n\nETH resolving above 2200 on the specified April 17 Binance noon-ET 1-minute close remains the clear base case, but the swarm’s mild below-market view survives synthesis: current Binance price context strongly supports Yes, yet a 94.5% market price still looks a bit too aggressive for a venue-specific single-minute crypto close with sub-24h tail risk still live.\n\n## Why this may matter now\n\nMarket implied probability is 0.945. My post-synthesis range is 0.89 to 0.92 Yes. That leaves only a modest below-market edge, not a large one. The likely mispricing is that the market is treating a roughly 6-7% cushion as almost sufficient for near-certainty even though settlement depends on one exact Binance minute close.\n\n## Shift versus swarm baseline\n\nThis is not a material departure from the swarm-implied center of about 0.90. If anything I stayed close to it because the raw lanes were unusually aligned and the synthesis-stage verification confirmed the core factual setup rather than overturning it.\n\n## Edge verification status\n\nIndependent verification quality is medium. I independently checked the Polymarket rule text and current Binance ETHUSDT data during synthesis. …"
+  },
+  "selected_persona_sidecars": [
+    {
+      "persona": "market-implied",
+      "recommended_weight": "high",
+      "own_probability": 0.9,
+      "main_thesis": "The market is broadly right that Yes is the base case because Binance ETH/USDT is comfortably above 2200, but 94.5% looks slightly too high for a venue-specific one-minute crypto close that is still nearly a day away.",
+      "main_logical_chain": [
+        "Start from the market prior of 94.5% Yes.",
+        "Check the governing source of truth and exact settlement mechanics on Polymarket rules.",
+        "Verify current Binance ETH/USDT level and short-horizon context directly on Binance data.",
+        "Conclude that Yes is the base case, but trim confidence modestly for tail-risk and venue-specific settlement mechanics."
+      ],
+      "strongest_supports": [
+        "Direct Binance ETHUSDT checks were around 2352.5-2352.6, well above 2200.",
+        "Binance 24h low in the check was 2308.5, still above the threshold."
+      ],
+      "strongest_disconfirmers": [
+        "Crypto can still move more than 6% in less than a day.",
+        "Settlement is venue-specific and minute-specific, so a Binance-only wick or operational anomaly could matter."
+      ],
+      "unresolved_ambiguities": [
+        "Whether Binance website chart presentation and public API would ever diverge in a way that matters for settlement.",
+        "How much tail-risk should be charged over the remaining sub-24h window."
+      ],
+      "what_would_change_view": "I would cut the estimate if Binance ETH/USDT moved materially closer to 2200, if Binance underperformed other spot references, or if an exchange-specific operational/data issue appeared near settlement.",
+      "timing_relevance": "Very high: the market resolves on the Apr 17 12:00 ET Binance 1-minute candle close, and the remaining window is short enough that current spot matters but long enough for crypto tail-risk to remain live.",
+      "source_quality_view": "High-quality direct venue data plus clear contract rules, with only medium independence because most important evidence points back to the same underlying Binance market.",
+      "persona_finding_path": "qualitative-db/40-research/cases/case-20260416-969f7c01/researcher-analyses/2026-04-16/dispatch-case-20260416-969f7c01-20260416T013210Z/personas/market-implied.md",
+      "assumption_artifact_paths": [
+        "qualitative-db/40-research/cases/case-20260416-969f7c01/researcher-analyses/2026-04-16/dispatch-case-20260416-969f7c01-20260416T013210Z/assumptions/market-implied.md"
+      ],
+      "evidence_artifact_paths": [
+        "qualitative-db/40-research/cases/case-20260416-969f7c01/researcher-analyses/2026-04-16/dispatch-case-20260416-969f7c01-20260416T013210Z/evidence/market-implied.md"
+      ]
+    },
+    {
+      "persona": "base-rate",
+      "recommended_weight": "medium",
+      "own_probability": 0.88,
+      "main_thesis": "Yes is still the right side because ETH/USDT is materially above 2200 close to resolution, but the market slightly overstates certainty for a one-minute Binance-close contract.",
+      "main_logical_chain": [
+        "Contract asks about one specific Binance ETH/USDT minute close above 2200 at noon ET on Apr 17.",
+        "Current ETH/USDT context is materially above 2200, so the outside-view prior favors Yes.",
+        "Because crypto is volatile and the market settles on one minute rather than a broad average, near-certainty is too aggressive.",
+        "Therefore Yes remains favored, but at about 88% rather than the market's 94.5%."
+      ],
+      "strongest_supports": [
+        "ETH/USDT contextual spot was around the mid-2300s during research, leaving a roughly 6-7% cushion above 2200.",
+        "Less than a day remained to resolution, favoring the currently above-strike side absent a sharp selloff."
+      ],
+      "strongest_disconfirmers": [
+        "Settlement depends on a single Binance one-minute close at noon ET, so a brief downside move is enough for No.",
+        "Recent context included at least one nearby daily close below 2200, showing sub-2200 prints are still plausible."
+      ],
+      "unresolved_ambiguities": [
+        "Direct live extraction from Binance was limited, leaving small residual ET-to-candle mapping uncertainty.",
+        "No fresh Apr 17 morning check yet; current view depends on Apr 16 spot context persisting."
+      ],
+      "what_would_change_view": "A fresh check showing ETH/USDT near or below 2200 on Apr 17 morning, or Binance-specific operational problems near settlement, would move the estimate down materially.",
+      "timing_relevance": "This is a date- and timezone-sensitive single-minute market resolving at 12:00 PM ET on 2026-04-17, so proximity to resolution and intraday volatility matter heavily.",
+      "source_quality_view": "High confidence in contract mechanics from Polymarket rules, moderate confidence in contextual price level from independent price pages/search snippets, with medium evidence independence overall.",
+      "persona_finding_path": "qualitative-db/40-research/cases/case-20260416-969f7c01/researcher-analyses/2026-04-16/dispatch-case-20260416-969f7c01-20260416T013210Z/personas/base-rate.md",
+      "assumption_artifact_paths": [
+        "qualitative-db/40-research/cases/case-20260416-969f7c01/researcher-analyses/2026-04-16/dispatch-case-20260416-969f7c01-20260416T013210Z/assumptions/base-rate.md"
+      ],
+      "evidence_artifact_paths": [
+        "qualitative-db/40-research/cases/case-20260416-969f7c01/researcher-analyses/2026-04-16/dispatch-case-20260416-969f7c01-20260416T013210Z/evidence/base-rate.md"
+      ]
+    },
+    {
+      "persona": "catalyst-hunter",
+      "recommended_weight": "medium",
+      "own_probability": 0.91,
+      "main_thesis": "ETH is likely to stay above 2200 at the Binance noon ET resolving minute, but the single-minute close mechanic keeps residual downside timing risk nontrivial.",
+      "main_logical_chain": [
+        "Contract resolves on one exact Binance ETH/USDT 1-minute close at 12:00 ET on April 17.",
+        "Current Binance spot is materially above 2200 and recent sampled range stayed above the threshold.",
+        "No clearly identified scheduled catalyst looks large enough on its own to erase that cushion before resolution.",
+        "Residual risk remains because a sharp selloff into the exact resolving minute could still flip the market to No."
+      ],
+      "strongest_supports": [
+        "Binance ETH/USDT last price sampled at 2353.84, well above 2200.",
+        "Binance 24h low sampled at 2308.50, still above 2200."
+      ],
+      "strongest_disconfirmers": [
+        "Single-minute resolution creates path-sensitive downside risk even if ETH trades above 2200 most of the time.",
+        "Crypto can move more than 6% intraday on shock headlines or liquidation."
+      ],
+      "unresolved_ambiguities": [
+        "Whether any unscheduled macro or crypto headline emerges before the resolving window."
+      ],
+      "what_would_change_view": "A decisive break toward/below 2300, a new bearish catalyst, or Binance-specific instability near resolution would cut the Yes probability materially.",
+      "timing_relevance": "This case is mainly about whether the current >2200 cushion survives into the exact noon ET resolving minute, not about ETH direction in a broad daily sense.",
+      "source_quality_view": "Source-of-truth ambiguity is low because the contract is explicit, but evidence independence is only medium because the thesis leans heavily on Binance and contract mechanics.",
+      "persona_finding_path": "qualitative-db/40-research/cases/case-20260416-969f7c01/researcher-analyses/2026-04-16/dispatch-case-20260416-969f7c01-20260416T013210Z/personas/catalyst-hunter.md",
+      "assumption_artifact_paths": [
+        "qualitative-db/40-research/cases/case-20260416-969f7c01/researcher-analyses/2026-04-16/dispatch-case-20260416-969f7c01-20260416T013210Z/assumptions/catalyst-hunter.md"
+      ],
+      "evidence_artifact_paths": [
+        "qualitative-db/40-research/cases/case-20260416-969f7c01/researcher-analyses/2026-04-16/dispatch-case-20260416-969f7c01-20260416T013210Z/evidence/catalyst-hunter.md"
+      ]
+    }
+  ],
+  "selected_assumption_snippets": [],
+  "selected_evidence_snippets": [],
+  "selected_supporting_note_snippets": [],
+  "bundle_budget": {
+    "max_chars": 18000,
+    "approx_tokens_before_trim": 5509,
+    "approx_tokens_after_trim": 3825,
+    "actual_chars_before_trim": 22037,
+    "actual_chars_after_trim": 15303,
+    "trim_applied": true
+  },
+  "enforcement_summary": {
+    "full_case_tree_excluded": true,
+    "full_persona_markdown_excluded": true,
+    "unbounded_research_excluded_from_default_bundle": true,
+    "structured_handoff_primary_enforced": true,
+    "prose_fallback_only": true,
+    "agent_tool_use_allowed": true,
+    "selected_persona_count": 3,
+    "selected_assumption_count": 0,
+    "selected_evidence_count": 0,
+    "selected_supporting_note_count": 0
+  },
+  "sidecar_selection_guardrail": {
+    "expected_nonzero_sidecars": true,
+    "violation": false,
+    "message": "",
+    "resolved_sidecar_bundle_path": "qualitative-db/40-research/cases/case-20260416-969f7c01/researcher-analyses/2026-04-16/dispatch-case-20260416-969f7c01-20260416T013210Z/sidecar-synthesis-bundle.json",
+    "resolved_sidecar_bundle_sidecar_count": 5,
+    "selected_persona_count": 3
+  }
+}

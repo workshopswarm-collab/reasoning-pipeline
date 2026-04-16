@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Estimate is sensitive to overnight price trend and realized volatility.",
+    "A wider cushion above strike would quickly collapse the disagreement with market.",
+    "Binance-specific minute-close mechanics matter at the margin."
+  ],
+  "key_assumptions": [
+    "A sub-1% cushion over 74000 with roughly 15 hours remaining is not large enough for high confidence.",
+    "Short-horizon BTC volatility remains material enough that the noon ET minute can still close below strike.",
+    "Settlement-minute fragility matters more here than broad BTC directional strength."
+  ],
+  "main_logical_chain": [
+    "Read the contract as a Binance BTC/USDT 12:00 ET one-minute close market rather than a generic BTC-above-level market.",
+    "Check current Binance price regime and confirm BTC is above 74000 but only modestly so.",
+    "Compare the small cushion and remaining time window to ordinary BTC short-horizon volatility.",
+    "Conclude that Yes remains the modal outcome but market confidence is slightly too high because of minute-close path dependence."
+  ],
+  "main_thesis": "The market slightly overprices Yes because current above-strike spot is being mapped too directly onto a narrow single-minute Binance close condition.",
+  "own_probability": 0.58,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone has a final 'Close' price higher than the price specified.",
+    "Klines are uniquely identified by their open time."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation",
+    "variant_hypothesis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-cd7fa6c7",
+    "dispatch_id": "dispatch-case-20260416-cd7fa6c7-20260416T010113Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "94c3dbe6-72ad-4cf3-ae0f-dc20fa64caae",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-cd7fa6c7/researcher-analyses/2026-04-16/dispatch-case-20260416-cd7fa6c7-20260416T010113Z/personas/variant-view.md",
+    "source_persona_sha256": "edc49433b33f43b3b376d66ce71aa0bb9192dd0bc9ae78db32a044408425ec4d"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary rule/source-of-truth quality is high; contextual independence is medium because CoinGecko checks regime rather than settlement.",
+  "strongest_disconfirmers": [
+    "BTC is already above 74000, so a flat-to-up overnight path would make 65% look reasonable or low.",
+    "A modest upward drift into Apr 17 morning could quickly remove the variant edge."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT was already around 74645 at fetch time, above strike.",
+    "Recent Binance 1-minute klines confirmed above-strike status was live rather than stale.",
+    "CoinGecko broadly confirmed the same mid-74k price regime."
+  ],
+  "timing_relevance": "High: contract resolves on the Apr 17 12:00 ET Binance 1-minute candle, which maps to 2026-04-17T16:00:00Z open time.",
+  "unresolved_ambiguities": [
+    "No dedicated short-horizon volatility model was run for the final window.",
+    "Exchange-specific basis versus broader spot composites could matter slightly near a tight threshold."
+  ],
+  "what_would_change_view": "I would move closer to or above market if BTCUSDT built and held a materially wider cushion, especially sustained trade above roughly 75.5k-76k into Apr 17 morning."
+}

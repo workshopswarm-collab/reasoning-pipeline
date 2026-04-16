@@ -1,0 +1,78 @@
+{
+  "artifact_type": "targeted_verification_pack",
+  "schema_version": "decision-targeted-verification-pack/v1",
+  "case_key": "case-20260416-969f7c01",
+  "dispatch_id": "refresh-case-20260416-969f7c01-20260416T020025Z",
+  "required": true,
+  "verification_mode": "targeted_escalation",
+  "pack_purpose": "Deterministic narrow follow-up pack for targeted escalation. It defines the crux questions and operational budgets, while source choice may remain model-driven within runtime-enforced tool guardrails.",
+  "verification_questions": [
+    "Does the latest available information materially change the decision, given: ETH can still move materially before the Apr 17 12:00 ET resolving minute, so a morning Binance check would meaningfully update odds.?",
+    "How decision-relevant is the remaining contract/source-of-truth ambiguity: small residual UI-versus-API and exact candle-label interpretation risk, but rules are explicit enough for practical use?",
+    "Are the current blockers still material to final judgment: No major contract blocker; main blocker is unverified near-settlement price path risk.?",
+    "Is the main verification gap still decision-material: No near-settlement Apr 17 morning verification yet, so overnight shock risk remains only partially checked.?"
+  ],
+  "structured_handoff_focus": {
+    "contract_ambiguity_level": "minor",
+    "contract_ambiguity_reason": "small residual UI-versus-API and exact candle-label interpretation risk, but rules are explicit enough for practical use",
+    "verification_gap_summary": "No near-settlement Apr 17 morning verification yet, so overnight shock risk remains only partially checked.",
+    "best_countercase_summary": "A fast overnight or U.S.-morning selloff or Binance-specific wick into the exact noon ET minute could still flip this to No.",
+    "main_reason_for_disagreement": "Remaining disagreement is mostly about how much probability to charge for exact-minute crypto tail risk versus treating the current cushion as nearly dispositive.",
+    "resolution_mechanics_summary": "Yes resolves only if Binance ETH/USDT's 12:00 ET Apr 17 one-minute candle final close is strictly above 2200.",
+    "freshness_sensitive": "yes",
+    "freshness_driver": "ETH can still move materially before the Apr 17 12:00 ET resolving minute, so a morning Binance check would meaningfully update odds.",
+    "decision_blockers": [
+      "No major contract blocker; main blocker is unverified near-settlement price path risk.",
+      "Residual minor ambiguity about Binance UI-versus-API representation is not zero.",
+      "Actionability is limited because final view remains below market only modestly."
+    ],
+    "disagreement_type": "market_pricing"
+  },
+  "supporting_persona_summaries": [
+    {
+      "persona": "market-implied",
+      "recommended_weight": "high",
+      "own_probability": 0.9,
+      "main_thesis": "The market is broadly right that Yes is the base case because Binance ETH/USDT is comfortably above 2200, but 94.5% looks slightly too high for a venue-specific one-minute crypto close that is still nearly a day away.",
+      "main_logical_chain": [
+        "Start from the market prior of 94.5% Yes.",
+        "Check the governing source of truth and exact settlement mechanics on Polymarket rules.",
+        "Verify current Binance ETH/USDT level and short-horizon context directly on Binance data.",
+        "Conclude that Yes is the base case, but trim confidence modestly for tail-risk and venue-specific settlement mechanics."
+      ],
+      "strongest_supports": [
+        "Direct Binance ETHUSDT checks were around 2352.5-2352.6, well above 2200.",
+        "Binance 24h low in the check was 2308.5, still above the threshold."
+      ],
+      "strongest_disconfirmers": [
+        "Crypto can still move more than 6% in less than a day.",
+        "Settlement is venue-specific and minute-specific, so a Binance-only wick or operational anomaly could matter."
+      ],
+      "unresolved_ambiguities": [
+        "Whether Binance website chart presentation and public API would ever diverge in a way that matters for settlement.",
+        "How much tail-risk should be charged over the remaining sub-24h window."
+      ],
+      "what_would_change_view": "I would cut the estimate if Binance ETH/USDT moved materially closer to 2200, if Binance underperformed other spot references, or if an exchange-specific operational/data issue appeared near settlement.",
+      "timing_relevance": "Very high: the market resolves on the Apr 17 12:00 ET Binance 1-minute candle close, and the remaining window is short enough that current spot matters but long enough for crypto tail-risk to remain live.",
+      "source_quality_view": "High-quality direct venue data plus clear contract rules, with only medium independence because most important evidence points back to the same underlying Binance market.",
+      "persona_finding_path": "qualitative-db/40-research/cases/case-20260416-969f7c01/researcher-analyses/2026-04-16/dispatch-case-20260416-969f7c01-20260416T013210Z/personas/market-implied.md",
+      "assumption_artifact_paths": [
+        "qualitative-db/40-research/cases/case-20260416-969f7c01/researcher-analyses/2026-04-16/dispatch-case-20260416-969f7c01-20260416T013210Z/assumptions/market-implied.md"
+      ],
+      "evidence_artifact_paths": [
+        "qualitative-db/40-research/cases/case-20260416-969f7c01/researcher-analyses/2026-04-16/dispatch-case-20260416-969f7c01-20260416T013210Z/evidence/market-implied.md"
+      ]
+    }
+  ],
+  "selected_assumption_snippets": [],
+  "selected_evidence_snippets": [],
+  "selected_supporting_note_snippets": [],
+  "pack_budget": {
+    "max_chars": 6000,
+    "actual_chars_before_trim": 8096,
+    "actual_chars_after_trim": 5482,
+    "approx_tokens_before_trim": 2024,
+    "approx_tokens_after_trim": 1370,
+    "trim_applied": true
+  }
+}

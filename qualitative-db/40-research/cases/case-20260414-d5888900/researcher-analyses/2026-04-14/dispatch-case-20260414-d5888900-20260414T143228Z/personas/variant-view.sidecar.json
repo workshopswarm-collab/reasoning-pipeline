@@ -1,0 +1,63 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Settlement depends on a narrow one-minute Binance close.",
+    "UI/chart versus API/database representation could theoretically diverge.",
+    "This estimate would move if BTC sold off violently into the exact governing minute."
+  ],
+  "key_assumptions": [
+    "BTCUSDT remaining around 75.6k means a drop below 70k into the governing minute is extraordinarily unlikely.",
+    "Binance's final settlement-relevant candle presentation will align with documented kline structure.",
+    "No Binance-specific outage, bad print, or chart/API mismatch materially affects the governing close."
+  ],
+  "main_logical_chain": [
+    "The contract resolves off Binance BTC/USDT 12:00 ET 1m candle close, not generic BTC price.",
+    "Binance docs clarify kline mechanics and open-time indexing; noon ET maps to 16:00 UTC on this date.",
+    "Live Binance data shows BTCUSDT around 75.6k, comfortably above 70k.",
+    "Therefore price-level risk is tiny, but residual mechanics risk keeps own probability slightly below market certainty."
+  ],
+  "main_thesis": "Yes is overwhelmingly likely, but the market is slightly overconfident because the residual risk is narrow Binance-specific settlement mechanics rather than generic BTC price direction.",
+  "own_probability": 0.992,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "This market will resolve to \"Yes\" if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone (noon)... has a final \"Close\" price higher than the price specified in the title.",
+    "Klines are uniquely identified by their open time.",
+    "ticker price: 75641.98000000"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "contract_interpretation",
+    "variant_hypothesis",
+    "technical_reference"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-d5888900",
+    "dispatch_id": "dispatch-case-20260414-d5888900-20260414T143228Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "8fb66e23-ed5f-4a55-a1c7-4a42c5d26c6e",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-d5888900/researcher-analyses/2026-04-14/dispatch-case-20260414-d5888900-20260414T143228Z/personas/variant-view.md",
+    "source_persona_sha256": "dee2bb6f7568ef27fa67c72c7c246a7d3a047608695c3d3684d533fe4f1542e5"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is strong for a medium-difficulty rule-sensitive case: exact contract rules plus Binance docs and live Binance data. Independence is medium because the contract itself keys off Binance.",
+  "strongest_disconfirmers": [
+    "Single-exchange single-minute settlement leaves small operational and interpretation risk.",
+    "A Binance-specific bad print, outage, or chart/API mismatch near noon ET could matter despite price being far above strike.",
+    "An extraordinary intraminute crash into the governing close would still flip the result."
+  ],
+  "strongest_supports": [
+    "Assignment market price implies 99.95% Yes.",
+    "Live Binance ticker during run showed BTCUSDT at 75641.98.",
+    "Recent Binance 1m closes captured during run were all in the mid-75k range.",
+    "Polymarket rules narrowly define settlement as Binance BTC/USDT 12:00 ET 1m candle final close."
+  ],
+  "timing_relevance": "Timing is central because the market keys to the 12:00 ET one-minute candle on 2026-04-14; I explicitly checked ET-to-UTC conversion and recent live Binance 1m data.",
+  "unresolved_ambiguities": [
+    "Whether Polymarket would rely strictly on Binance UI chart presentation if it diverged from raw API/database values.",
+    "Whether any exchange-specific anomaly occurs around the governing minute."
+  ],
+  "what_would_change_view": "Evidence of BTCUSDT approaching 70k into noon ET, or a Binance chart/API mismatch, outage, or candle-identification ambiguity near settlement would lower confidence."
+}

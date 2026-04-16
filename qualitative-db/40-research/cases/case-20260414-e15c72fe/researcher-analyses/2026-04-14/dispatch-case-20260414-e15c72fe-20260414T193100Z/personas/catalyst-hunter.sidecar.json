@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Single-timestamp settlement increases path sensitivity.",
+    "Exchange-specific pricing creates venue risk not captured by broader BTC narratives.",
+    "Probability should fall quickly if BTC compresses back toward 71k-70k before resolution."
+  ],
+  "key_assumptions": [
+    "No major macro or crypto-specific shock forces a >5% downside move before settlement.",
+    "Binance trading conditions remain normal enough that the exchange-specific print is not unusually distorted.",
+    "Recent trading range remains informative over the next six days."
+  ],
+  "main_logical_chain": [
+    "Contract settles on Binance BTC/USDT 12:00 ET 1-minute close on April 20.",
+    "Current Binance spot is materially above 70k, creating a meaningful cushion.",
+    "Therefore the residual question is whether a downside catalyst before settlement can overcome that cushion.",
+    "No identified sourced catalyst currently looks strong enough on its own to make No the base case.",
+    "So Yes remains more likely, but slightly less likely than the market implies because timestamp and venue fragility still matter."
+  ],
+  "main_thesis": "BTC is already materially above 70k on Binance, so Yes remains the base case unless a downside shock or Binance-specific dislocation hits before the April 20 noon ET settlement minute.",
+  "own_probability": 0.82,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone (noon) ... has a final 'Close' price higher than the price specified in the title.",
+    "Binance ticker check during the run returned BTCUSDT around 74,049.50."
+  ],
+  "reasoning_mode": [
+    "catalyst_analysis",
+    "market_anchor",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-e15c72fe",
+    "dispatch_id": "dispatch-case-20260414-e15c72fe-20260414T193100Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "f4378d2e-4884-436e-9678-b660dfa5f425",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-e15c72fe/researcher-analyses/2026-04-14/dispatch-case-20260414-e15c72fe-20260414T193100Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "cbb946aa01838899102c28e172480234d7347b9e604f0a92f3a52c5d7e3d7a31"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is good: Polymarket gives clear authoritative settlement rules, Binance API gives direct exchange pricing, and CoinGecko adds secondary range context; independence is medium and source-of-truth ambiguity is low on mechanics but not zero on venue-specific execution risk.",
+  "strongest_disconfirmers": [
+    "This is a single-minute, single-exchange settlement, so a late shock or venue-specific dislocation could resolve No without a durable trend break.",
+    "A macro-led risk-off move or liquidation cascade could erase the current cushion quickly."
+  ],
+  "strongest_supports": [
+    "Direct Binance ticker check showed BTCUSDT around 74049.50, roughly 5.8% above the threshold.",
+    "Recent Binance 1m klines were clustered around 74.0k-74.3k rather than barely above 70k.",
+    "CoinGecko 7-day data places 70k inside the recent range rather than far above market."
+  ],
+  "timing_relevance": "Timing is central because the contract resolves on one Binance minute at noon ET on April 20, making late downside catalysts far more important than generic medium-term bullishness.",
+  "unresolved_ambiguities": [
+    "Whether any unobserved macro calendar item before April 20 carries enough downside information value to move BTC by more than the current cushion.",
+    "Whether Binance-specific microstructure stress could emerge near the event minute."
+  ],
+  "what_would_change_view": "A move back toward 71k-70k with rising volatility, a macro shock, or Binance operational stress would make me materially less confident in Yes."
+}

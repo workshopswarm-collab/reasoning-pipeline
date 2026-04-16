@@ -1,0 +1,123 @@
+{
+  "artifact_type": "targeted_verification_pack",
+  "schema_version": "decision-targeted-verification-pack/v1",
+  "case_key": "case-20260415-3f432366",
+  "dispatch_id": "refresh-case-20260415-3f432366-20260415T080902Z",
+  "required": true,
+  "verification_mode": "targeted_escalation",
+  "pack_purpose": "Deterministic narrow follow-up pack for targeted escalation. It defines the crux questions and operational budgets, while source choice may remain model-driven within runtime-enforced tool guardrails.",
+  "verification_questions": [
+    "Does the latest available information materially change the decision, given: The decisive driver is the April 17 12:00 ET Binance settlement-minute print and any late risk-off move before it.?",
+    "How decision-relevant is the remaining contract/source-of-truth ambiguity: Binance UI-named candle versus API proxy equivalence is not fully proven, though mechanics are otherwise clear?",
+    "Are the current blockers still material to final judgment: No decisive independent read on late-window macro or crypto catalysts?",
+    "Is the main verification gap still decision-material: No strong independent verification of near-term catalyst calendar or of how much exact-minute path risk should haircut current above-strike spot.?"
+  ],
+  "structured_handoff_focus": {
+    "contract_ambiguity_level": "minor",
+    "contract_ambiguity_reason": "Binance UI-named candle versus API proxy equivalence is not fully proven, though mechanics are otherwise clear",
+    "verification_gap_summary": "No strong independent verification of near-term catalyst calendar or of how much exact-minute path risk should haircut current above-strike spot.",
+    "best_countercase_summary": "If BTC simply stays in its current regime and avoids an ordinary 2% drawdown, mid-70s Yes pricing could be fair or slightly cheap.",
+    "main_reason_for_disagreement": "The main disagreement is how much to discount current above-strike spot for exact-minute settlement and short-horizon BTC volatility.",
+    "resolution_mechanics_summary": "Yes resolves only if the Binance BTC/USDT 12:00 ET one-minute candle on Apr 17 closes strictly above 72000.",
+    "freshness_sensitive": "yes",
+    "freshness_driver": "The decisive driver is the April 17 12:00 ET Binance settlement-minute print and any late risk-off move before it.",
+    "decision_blockers": [
+      "No decisive independent read on late-window macro or crypto catalysts",
+      "Exact-minute path risk is inherently judgmental rather than directly observable in advance",
+      "Minor residual uncertainty about Binance UI-versus-API settlement surface equivalence"
+    ],
+    "disagreement_type": "timing"
+  },
+  "supporting_persona_summaries": [
+    {
+      "persona": "market-implied",
+      "recommended_weight": "medium",
+      "own_probability": 0.7,
+      "main_thesis": "The market's ~74.5% Yes price is directionally reasonable because BTC is already above 72k on Binance, but the single noon-ET 1-minute close makes the contract narrow enough that fair odds look a bit lower, around 70%.",
+      "main_logical_chain": [
+        "Start from the market's 74.5% prior and audit whether current price context supports it.",
+        "Confirm the governing source is Binance BTC/USDT 1-minute close at 12:00 ET on April 17.",
+        "Observe that Binance spot is already above 72k by about 1.6k, which justifies Yes as favorite.",
+        "Apply a modest haircut because the contract is timestamp-specific and BTC volatility can erase that cushion."
+      ],
+      "strongest_supports": [
+        "Binance BTCUSDT spot was about 73,568.70 at research time, roughly 2.2% above the strike.",
+        "Recent Binance 1-minute closes were also in the mid-73.5k range."
+      ],
+      "strongest_disconfirmers": [
+        "The contract resolves on one exact 12:00 ET 1-minute Binance close, so timing/path risk is real.",
+        "A roughly 2.2% cushion is meaningful but not huge for BTC over ~48 hours."
+      ],
+      "unresolved_ambiguities": [
+        "No strong ambiguity in source of truth, but the exact fair haircut for timestamp-specific risk remains judgmental."
+      ],
+      "what_would_change_view": "A decisive move back below 72k, a fresh downside catalyst, or evidence of elevated Binance-specific settlement/microstructure risk would lower the estimate.",
+      "timing_relevance": "High: resolution depends on one Binance 1-minute close at 12:00 PM ET on April 17, 2026.",
+      "source_quality_view": "Primary quality is solid for this case: Polymarket gives explicit rules and Binance provides direct governing-exchange price context; CoinGecko is only a contextual cross-check.",
+      "persona_finding_path": "qualitative-db/40-research/cases/case-20260415-3f432366/researcher-analyses/2026-04-15/dispatch-case-20260415-3f432366-20260415T074424Z/personas/market-implied.md",
+      "assumption_artifact_paths": [
+        "qualitative-db/40-research/cases/case-20260415-3f432366/researcher-analyses/2026-04-15/dispatch-case-20260415-3f432366-20260415T074424Z/assumptions/market-implied.md"
+      ],
+      "evidence_artifact_paths": [
+        "qualitative-db/40-research/cases/case-20260415-3f432366/researcher-analyses/2026-04-15/dispatch-case-20260415-3f432366-20260415T074424Z/evidence/market-implied.md"
+      ]
+    }
+  ],
+  "selected_assumption_snippets": [
+    {
+      "path": "qualitative-db/40-research/cases/case-20260415-3f432366/researcher-analyses/2026-04-15/dispatch-case-20260415-3f432366-20260415T074424Z/assumptions/base-rate.md",
+      "frontmatter": {
+        "type": "assumption_note",
+        "case_key": "case-20260415-3f432366",
+        "dispatch_id": "dispatch-case-20260415-3f432366-20260415T074424Z",
+        "research_run_id": "9770aefb-185e-40d9-877c-daaa68bdfc17",
+        "analysis_date": "2026-04-15",
+        "persona": "base-rate",
+        "domain": "crypto",
+        "subdomain": "bitcoin",
+        "entity": "bitcoin",
+        "topic": "will-the-binance-btc-usdt-12-00-et-1-minute-candle-close-on-2026-04-17-be-above-72000",
+        "question": "Will the Binance BTC/USDT 12:00 ET 1-minute candle close on 2026-04-17 be above 72000?",
+        "driver": "operational-risk",
+        "date_created": "2026-04-15",
+        "agent": "orchestrator",
+        "status": "active",
+        "certainty": "medium",
+        "importance": "high",
+        "time_horizon": "through 2026-04-17 12:00 ET",
+        "related_entities": [
+          "bitcoin"
+        ],
+        "related_drivers": [
+          "operational-risk",
+          "reliability"
+        ],
+        "proposed_entities": [],
+        "proposed_drivers": [],
+        "upstream_inputs": [],
+        "downstream_uses": [
+          "qualitative-db/40-research/cases/case-20260415-3f432366/researcher-analyses/2026-04-15/dispatch-case-20260415-3f432366-20260415T074424Z/personas/base-rate.md"
+        ],
+        "tags": [
+          "assumption",
+          "binance",
+          "btcusdt",
+          "resolution"
+        ]
+      },
+      "snippet": "# Assumption\nThe best usable outside-view proxy is that BTC/USDT remaining materially above 72k across recent spot, daily, and recent noon-ET minute observations makes the exact April 17 12:00 ET minute more likely than not to also print above 72k, absent a sharp adverse move or exchange-specific anomaly.\n## Why this assumption matters\nThe case resolves on a single minute close, so the analysis cannot rely only on broad bullish direction. The probability estimate depends on treating recent same-venue level persistence as informative for that exact future minute.\n## What this assumption supports\n- A probability estimate above 50%.\n- A view that the market's 74.5% price is directionally sensible but somewhat rich.\n- Use of recent Binance daily and intraday persistence as the main base-rate anchor.\n## Evidence or logic behind the assumption\n- Current BTC/USDT spot during the run is around 73.6k, already above the strike.\n- Recent Binance noon-ET minute data shows the 2026-04-14 noon ET candle well above 72k.\n- In a 120-day Binance daily sample, when BTC was already above 72k, it stayed above 72k two days later in roughly 89.5% of cases.\n- However, the narrow single-minute resolution argues for haircutting that persistence rate materially rather than copying it directly.\n## What would falsify it\n- BTC/USDT drops back below 72k and remains there before April 17.\n- A volatility shock makes noon-ET pricing unusually unstable around the strike.\n- Evidence emerges that Binance UI settlement candles can differ materially from API-observed values.\n## Early warning signs\n- Loss of the …",
+      "full_char_count": 2263,
+      "snippet_char_count": 1601
+    }
+  ],
+  "selected_evidence_snippets": [],
+  "selected_supporting_note_snippets": [],
+  "pack_budget": {
+    "max_chars": 6000,
+    "actual_chars_before_trim": 10699,
+    "actual_chars_after_trim": 8271,
+    "approx_tokens_before_trim": 2674,
+    "approx_tokens_after_trim": 2067,
+    "trim_applied": true
+  }
+}

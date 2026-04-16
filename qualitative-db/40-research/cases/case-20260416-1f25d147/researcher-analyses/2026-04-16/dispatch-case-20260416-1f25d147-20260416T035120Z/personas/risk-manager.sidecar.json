@@ -1,0 +1,61 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Short-horizon crypto drawdown before settlement.",
+    "Compression of the buffer toward 81-82 before April 19.",
+    "Exchange-specific microstructure or print risk on Binance at noon ET."
+  ],
+  "key_assumptions": [
+    "SOL retains enough cushion above 80 through noon ET on April 19.",
+    "No broad crypto selloff erases the current mid-80s cushion before settlement.",
+    "Binance remains a functioning and representative venue at the decisive minute."
+  ],
+  "main_logical_chain": [
+    "The governing contract source is the Binance SOL/USDT 12:00 ET one-minute candle close on April 19.",
+    "Current Binance spot and recent Binance candles put SOL several dollars above 80.",
+    "That makes Yes the base case, but the exact-minute structure means residual No risk is larger than near-certainty pricing suggests.",
+    "Therefore the market direction is reasonable, but 92% looks modestly too high and 86% is a better risk-adjusted estimate."
+  ],
+  "main_thesis": "Yes is still the base case, but the 92% market price slightly underprices exact-minute and short-horizon volatility risk for a Binance-settled SOL threshold contract.",
+  "own_probability": 0.86,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "My risk-manager view is Yes at 86%, not 92%.",
+    "The strongest disconfirming consideration is that the contract is exact-minute and exchange-specific."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "risk_management",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-1f25d147",
+    "dispatch_id": "dispatch-case-20260416-1f25d147-20260416T035120Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "1ede30cc-9915-4cf7-a5e8-74c4d5684a9c",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-1f25d147/researcher-analyses/2026-04-16/dispatch-case-20260416-1f25d147-20260416T035120Z/personas/risk-manager.md",
+    "source_persona_sha256": "d43282cf6fd793ed2102c1d62a163d1cd736632e9357360942395179769f00d4"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary source quality is high because the rules and named venue were checked directly; secondary verification quality is useful but only moderately independent.",
+  "strongest_disconfirmers": [
+    "The contract settles on one exact Binance 12:00 ET one-minute close, so timing risk remains real.",
+    "A volatile altcoin can lose a 5-dollar cushion over several days without an exotic catalyst.",
+    "A Binance-specific downside print at the decisive minute could still produce No."
+  ],
+  "strongest_supports": [
+    "Binance spot was about 85.37 during the run, already above the threshold.",
+    "Recent Binance daily and hourly candles show sustained trading above 80.",
+    "CoinGecko cross-check near 85.29 supports that Binance was not showing an isolated outlier price."
+  ],
+  "timing_relevance": "The case is highly timing-sensitive because the market resolves on one exact Binance one-minute close at 12:00 ET on April 19, 2026.",
+  "unresolved_ambiguities": [
+    "Exact settlement-minute price is unknowable in advance.",
+    "Minor operational nuance may remain in how the Binance candle is viewed manually, though core source-of-truth ambiguity is low."
+  ],
+  "what_would_change_view": "I would move higher if SOL stays comfortably in the mid-80s into April 19 morning, and lower if Binance hourly closes compress toward 81-82 or broader crypto turns sharply risk-off."
+}

@@ -1,0 +1,55 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Possible mismatch between captured public rule text and final canonical rule transcript.",
+    "Residual exchange-data correction risk."
+  ],
+  "key_assumptions": [
+    "A Binance hourly or 24h high above $76,000 implies at least one qualifying 1-minute Binance candle high above the threshold.",
+    "The captured Polymarket rule note accurately reflects the governing settlement rule."
+  ],
+  "main_logical_chain": [
+    "The contract is governed by Binance BTC/USDT 1-minute highs, not closes or other exchanges.",
+    "Binance data already shows a print above $76,000 during the valid window.",
+    "Therefore the key catalyst likely already happened and remaining uncertainty is mostly administrative or transcript-related."
+  ],
+  "main_thesis": "The decisive catalyst likely already occurred because Binance BTC/USDT printed above $76,000 during the valid window, so this should resolve Yes absent a narrow data or rule-transcript surprise.",
+  "own_probability": 0.992,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "any Binance 1-minute candle ... High ... equal to or greater than ... $76,000",
+    "highPrice = 76038.00"
+  ],
+  "reasoning_mode": [
+    "catalyst_analysis",
+    "contract_interpretation",
+    "market_anchor"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260414-669935fa",
+    "dispatch_id": "dispatch-case-20260414-669935fa-20260414T172940Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "f6f42fe2-b2d9-4818-842e-60d900aec762",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-669935fa/researcher-analyses/2026-04-14/dispatch-case-20260414-669935fa-20260414T172940Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "b46af0ebde17623f55dca1b2c464e00e759a23504c8e1d31c507933a6791bcd2"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is high overall, with a primary contract surface plus contract-aligned Binance verification; independence is medium because the best evidence strands both center on Binance.",
+  "strongest_disconfirmers": [
+    "The exact qualifying 1-minute Binance candle was not independently archived in this run.",
+    "CoinGecko aggregated sampled series did not clearly show a $76,000 touch."
+  ],
+  "strongest_supports": [
+    "Polymarket rule note keys settlement to any Binance BTC/USDT 1-minute high >= $76,000 during Apr 13-19 ET.",
+    "Binance verification notes recorded highs of $76,038 during the relevant window."
+  ],
+  "timing_relevance": "Timing matters because this is a hit-any-time market; the key repricing catalyst appears already realized on Apr 14, shifting the case from forward forecasting to settlement verification.",
+  "unresolved_ambiguities": [
+    "Exact minute of the first qualifying touch was not archived here.",
+    "Public Polymarket fetch path did not expose a perfect full rules transcript."
+  ],
+  "what_would_change_view": "I would cut confidence if an archived Binance 1-minute transcript showed no qualifying high, if Polymarket clarified a different governing source, or if the $76,038 print were corrected away."
+}

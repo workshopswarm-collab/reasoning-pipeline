@@ -1,0 +1,157 @@
+{
+  "schema_version": "decision-packet/v1",
+  "generated_at": "2026-04-13T20:16:00-04:00",
+  "context": {
+    "case_key": "case-20260413-600f720f",
+    "dispatch_id": "refresh-case-20260413-600f720f-20260414T001553Z",
+    "question": "Will Bitcoin reach $76,000 April 13-19?",
+    "market_id": "case-20260413-600f720f",
+    "market_title": "Will Bitcoin reach $76,000 April 13-19?",
+    "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260413-600f720f/synthesizer-agent/decision-handoff.md",
+    "source_syndicated_finding_path": "qualitative-db/40-research/cases/case-20260413-600f720f/synthesizer-agent/syndicated-finding.md",
+    "decision_maker_agent": "decision-maker",
+    "canonical_markdown_path": "decision-maker-packet.md",
+    "canonical_json_path": "artifacts/decision-maker-packet.json",
+    "external_market_id": "0xf51551b39d50396009471492879718c582a9b1e7c8448793544f480991c1c019",
+    "market_slug": "will-bitcoin-reach-76k-april-13-19",
+    "platform": "polymarket",
+    "primary_market_url": "https://polymarket.com/event/will-bitcoin-reach-76k-april-13-19",
+    "source_light_refresh_brief_path": "qualitative-db/40-research/cases/case-20260413-600f720f/decision-maker/refreshes/refresh-case-20260413-600f720f-20260414T001553Z/light-refresh-brief.json",
+    "refresh_mode": "light"
+  },
+  "decision": {
+    "side": "yes",
+    "trade_authorization": "watch_only",
+    "position_policy": "hold_only",
+    "decision_readiness": "ready",
+    "primary_crux": "This looks like repricing without a factual regime change: BTC reaching $76k this week is still more likely than not because only one Binance 1-minute high is needed and spot remains close to the threshold, but the move down to 0.72 only narrows the prior mild-under rather than creating a compelling edge.",
+    "secondary_cruxes": [
+      "The prior crux is still intact: proximity and touch mechanics favor Yes, but path-failure risk remains real when momentum has not yet actually completed the final move.",
+      "The refresh brief indicates a material price move but no new independent evidence that momentum has either clearly strengthened or clearly broken.",
+      "Time-to-close remains long enough that both a quick breakout and a timed-out near miss remain live, so action discipline should stay tighter than a simple spot-distance heuristic."
+    ],
+    "thesis_class": "edge_too_small"
+  },
+  "valuation": {
+    "fair_value_low": 0.64,
+    "fair_value_high": 0.69,
+    "fair_value_mid": 0.665,
+    "market_reference_price": 0.72,
+    "edge_mid_vs_market_pct_points": -5.5,
+    "independent_verification_quality": "medium",
+    "compressed_toward_market_applied": false,
+    "compression_reason": "No new first-hand momentum or rule evidence was added in this light refresh, so the correct update is to keep the prior range broadly intact rather than chase a modest market decline."
+  },
+  "execution_semantics": {
+    "price_axis": "market_implied_true_prob",
+    "price_source": "market_snapshot_quote",
+    "rebalance_threshold_fraction": 0.08,
+    "allow_auto_reversal": false,
+    "valid_until": "2026-04-16T23:59:00-04:00",
+    "quote_staleness_seconds": 7200,
+    "time_horizon": "Apr 13-19 intrawindow Binance high mechanics through week-end resolution"
+  },
+  "risk_controls": {
+    "max_position_size_pct_bankroll": 0.0075,
+    "max_additional_exposure_pct_bankroll": 0.0,
+    "max_single_order_pct_bankroll": 0.0,
+    "slippage_tolerance_bps": 60,
+    "liquidity_min_depth": 1000,
+    "correlation_bucket_limit_pct_bankroll": 0.05,
+    "confidence_level": "medium",
+    "portfolio_constraints": [
+      "Do not initiate fresh exposure from this packet because the market remains above bounded fair value and the residual edge is too small for confident action.",
+      "Existing aligned exposure may be held, but refresh on materially new BTC price action or breakout failure before any adjustment.",
+      "Treat short-dated touch contracts as highly path-dependent even when the threshold is close."
+    ],
+    "liquidity_caution": "medium"
+  },
+  "bands": [
+    {
+      "name": "max_enter",
+      "min_p": 0,
+      "max_p": 0.52,
+      "target_exposure_fraction": 0,
+      "notes": "No autonomous entry from this packet; materially cheaper pricing would require a refreshed momentum check."
+    },
+    {
+      "name": "scaled_enter",
+      "min_p": 0.52,
+      "max_p": 0.62,
+      "target_exposure_fraction": 0,
+      "notes": "No entry authorized because the current packet is hold/watch only and the market remains richer than justified fair value."
+    },
+    {
+      "name": "hold",
+      "min_p": 0.62,
+      "max_p": 0.69,
+      "target_exposure_fraction": 0,
+      "notes": "Hold zone consistent with a moderate-high Yes probability but not enough edge for fresh adds."
+    },
+    {
+      "name": "trim",
+      "min_p": 0.69,
+      "max_p": 0.82,
+      "target_exposure_fraction": 0,
+      "notes": "Trim or avoid increasing as price rises above bounded fair value and path-failure risk dominates."
+    },
+    {
+      "name": "exit",
+      "min_p": 0.82,
+      "max_p": 1,
+      "target_exposure_fraction": 0,
+      "notes": "Exit/avoid at extreme prices because proximity does not guarantee a touch during the remaining window."
+    }
+  ],
+  "invalidation": {
+    "thesis_breakers": [
+      "BTC loses the mid-74k area and fails to sustain momentum toward the threshold.",
+      "A clean breakout through recent highs and into the mid-75k area would materially weaken the mild-under thesis.",
+      "Any clarification that the settlement mechanics are more restrictive than the stated Binance 1-minute high rule would lower fair value."
+    ],
+    "market_structure_breakers": [
+      "The market reprices materially again on new momentum or reversal information before a fresh packet is produced.",
+      "Short-horizon BTC volatility changes enough that prior proximity-based calibration becomes stale.",
+      "Liquidity or momentum chasing temporarily distorts the displayed quote away from fair probabilistic pricing."
+    ],
+    "time_breakers": [
+      "New BTC price action over the next 24-48 hours can change the probability materially.",
+      "As the weekly window shortens, path assumptions should be refreshed rather than extrapolated."
+    ],
+    "reversal_conditions": [
+      "Move toward authorized yes only after a fresh packet if BTC cleanly extends toward 76k while price remains favorable.",
+      "Move materially lower if BTC rejects recent highs and sells off away from the threshold.",
+      "Do not auto-reverse from this packet."
+    ]
+  },
+  "epistemic_status": {
+    "key_uncertainties": [
+      "Whether current upside momentum persists strongly enough to complete the final move this week.",
+      "How durable nearby resistance will be after the sharp recent rebound.",
+      "How much short-horizon path dependence the current market is already pricing correctly."
+    ],
+    "reasons_to_pass": [
+      "The market decline from 0.75 to 0.72 compresses the prior valuation gap but does not clearly invert it into attractive edge.",
+      "The remaining disagreement is still about path completion, which can change quickly on new price action.",
+      "The bounded evidence supports only a modest under versus market, not a robust enough edge for fresh action."
+    ],
+    "what_would_change_my_mind": [
+      "A clean breakout above recent highs, especially sustained trade through 75k toward 76k, would move fair value higher and potentially eliminate the mild-under stance.",
+      "A reversal away from the threshold or loss of momentum would move fair value lower.",
+      "Fresh evidence that the market is correctly incorporating stronger momentum persistence than captured in the bounded package would reduce the current under view."
+    ],
+    "decision_quality": "good_not_clean"
+  },
+  "audit": {
+    "market_baseline_respected": true,
+    "action_bias_check_passed": true,
+    "self_preservation_bias_check_passed": true,
+    "one_sentence_rationale": "BTC reaching $76k this week remains more likely than not because only one Binance 1-minute high is needed and spot is still close, but the move down to 0.72 mainly compresses the prior mild-under rather than creating a robust new edge, so the disciplined posture remains watch-only.",
+    "notes": "This refresh is bounded and lightweight; no new first-hand momentum evidence was added, so the update is about market repricing rather than a changed underlying thesis.",
+    "structured_handoff_primary_used": true,
+    "prose_fallback_used": true,
+    "verification_mode_used": "targeted_escalation",
+    "additional_verification_performed": true,
+    "additional_verification_notes": "targeted_pack"
+  }
+}

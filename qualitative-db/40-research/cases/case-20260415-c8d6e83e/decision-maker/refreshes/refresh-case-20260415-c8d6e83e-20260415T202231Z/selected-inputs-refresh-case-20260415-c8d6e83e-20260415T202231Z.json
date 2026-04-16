@@ -1,0 +1,201 @@
+{
+  "artifact_type": "decision_selected_inputs",
+  "schema_version": "decision-selected-inputs/v1",
+  "case_key": "case-20260415-c8d6e83e",
+  "dispatch_id": "refresh-case-20260415-c8d6e83e-20260415T202231Z",
+  "verification_mode": "not_ready_reopen_recommended",
+  "verification_triggers": [
+    "large_apparent_edge_vs_market",
+    "freshness_sensitive_catalyst",
+    "decision_blockers_present"
+  ],
+  "core_case": {
+    "question": "Will the price of Bitcoin be above $68,000 on April 20?",
+    "market_title": "Will the price of Bitcoin be above $68,000 on April 20?",
+    "market_reference_price": 0.9715,
+    "market_quote_timestamp": "2026-04-15T19:42:40.305016+00:00",
+    "syndicated_probability_low": 0.9,
+    "syndicated_probability_high": 0.94,
+    "syndicated_probability_midpoint": 0.92,
+    "edge_mid_vs_market_pct_points": -5.1,
+    "relation_to_market": "below_market",
+    "edge_independent_verification_quality": "medium",
+    "contract_ambiguity_level": "minor",
+    "contract_ambiguity_reason": "Residual Binance website candle vs API/operational minute-mapping sensitivity, though wording is otherwise clear.",
+    "freshness_sensitive": "yes",
+    "freshness_driver": "BTC can reprice materially within five days, and the contract depends on one exact April 20 noon ET Binance minute.",
+    "decision_blockers": [
+      "No strong independently verified basis for a large edge versus the market.",
+      "Outcome remains sensitive to short-horizon BTC downside volatility and one-minute settlement mechanics.",
+      "Need fresher pre-settlement spot/volatility check if acting materially closer to resolution."
+    ],
+    "blockers_require_new_research": "yes",
+    "disagreement_type": "market_pricing",
+    "follow_up_needed": "yes"
+  },
+  "required_upstream_inputs": {
+    "decision_handoff_path": "qualitative-db/40-research/cases/case-20260415-c8d6e83e/synthesizer-agent/decision-handoff.md",
+    "syndicated_runtime_path": "qualitative-db/40-research/cases/case-20260415-c8d6e83e/synthesizer-agent/syndicated-finding.runtime.json",
+    "syndicated_finding_path": "qualitative-db/40-research/cases/case-20260415-c8d6e83e/synthesizer-agent/syndicated-finding.md",
+    "sidecar_synthesis_bundle_path": "qualitative-db/40-research/cases/case-20260415-c8d6e83e/researcher-analyses/2026-04-15/dispatch-case-20260415-c8d6e83e-20260415T151858Z/sidecar-synthesis-bundle.json",
+    "synthesis_sidecar_readiness": {
+      "ready_sidecar_count": 5,
+      "pending_sidecar_count": 0,
+      "sidecar_bundle_sidecar_count": 5,
+      "sidecar_bundle_coverage_status": "complete"
+    },
+    "syndicated_runtime_summary": {
+      "artifact_type": "syndicated_finding_runtime_metadata",
+      "market_snapshot_time": "2026-04-15T15:18:58.877416+00:00",
+      "source_persona_count": 0,
+      "supporting_artifact_count": 0
+    }
+  },
+  "structured_handoff_primary": {
+    "relation_to_market": "below_market",
+    "edge_quality": "moderate",
+    "edge_independent_verification_quality": "medium",
+    "compressed_toward_market_due_to_verification": "yes",
+    "contract_ambiguity_level": "minor",
+    "contract_ambiguity_reason": "Residual Binance website candle vs API/operational minute-mapping sensitivity, though wording is otherwise clear.",
+    "independently_verified_points": [
+      "Polymarket rules explicitly use the Binance BTC/USDT 12:00 ET one-minute candle final Close.",
+      "Current Binance BTC/USDT spot is about 74,038-74,044, leaving roughly a 6k cushion over 68,000.",
+      "The live market strip still prices the 68k line around 96% Yes.",
+      "All personas agree Yes is the directional base case, not a close toss-up."
+    ],
+    "verification_gap_summary": "The key remaining gap is fresh independent evidence on short-horizon downside-tail risk between now and the exact April 20 noon ET settlement minute.",
+    "best_countercase_summary": "An ordinary crypto risk-off move or settlement-minute downtick could still erase the current cushion and make 95%+ too confident.",
+    "main_reason_for_disagreement": "The main disagreement is how much single-minute settlement and short-horizon BTC tail risk should discount a large current spot cushion.",
+    "resolution_mechanics_summary": "Yes resolves only if Binance BTC/USDT's April 20 12:00 ET one-minute candle final Close is strictly above 68,000.",
+    "disagreement_intensity": "",
+    "freshness_sensitive": "yes",
+    "freshness_driver": "BTC can reprice materially within five days, and the contract depends on one exact April 20 noon ET Binance minute.",
+    "decision_blockers": [
+      "No strong independently verified basis for a large edge versus the market.",
+      "Outcome remains sensitive to short-horizon BTC downside volatility and one-minute settlement mechanics.",
+      "Need fresher pre-settlement spot/volatility check if acting materially closer to resolution."
+    ],
+    "blockers_require_new_research": "yes",
+    "disagreement_type": "market_pricing",
+    "follow_up_needed": "yes"
+  },
+  "structured_handoff_policy": {
+    "structured_handoff_is_primary_starting_point": true,
+    "prose_is_fallback_only": true,
+    "structured_handoff_complete": true,
+    "missing_structured_fields": []
+  },
+  "verification_enforcement": {
+    "agent_tool_use_allowed": false,
+    "allowed_agent_tools": [],
+    "enforcement_method": "session_message_inspection",
+    "violation_action": "fail_run",
+    "rationale": "Decision-Maker should use the deterministic selected-input bundle as its verification boundary; additional agent-side tool use is disallowed in this mode."
+  },
+  "verification_budget": {
+    "search_queries_allowed": 0,
+    "source_fetches_allowed": 0,
+    "minimum_distinct_source_families": 0,
+    "preferred_distinct_source_families": 0
+  },
+  "prose_fallback": {
+    "included": false,
+    "reason": "not_included",
+    "decision_handoff_excerpt": ""
+  },
+  "selected_persona_sidecars": [
+    {
+      "persona": "market-implied",
+      "recommended_weight": "high",
+      "own_probability": 0.93,
+      "main_thesis": "Market is directionally right: Binance BTC/USDT is comfortably above 68000, but single-minute settlement and crypto downside tails justify a small discount to the market's near-certainty.",
+      "main_logical_chain": [
+        "Start from the market-implied probability of about 95.5%.",
+        "Check the governing venue directly: Binance BTC/USDT is around 74044, well above 68000.",
+        "Verify recent realized context including ET-noon timing; recent comparable closes are also well above the strike.",
+        "Apply a modest discount for single-minute settlement risk and crypto downside tails."
+      ],
+      "strongest_supports": [
+        "Binance spot was about 74044 on April 15, leaving roughly a 6000-point cushion above the strike.",
+        "Recent sampled Binance daily closes and ET-noon context were all above 68000."
+      ],
+      "strongest_disconfirmers": [
+        "The contract resolves on one exact Binance one-minute close, so a sharp intraday downtick or wick could still flip it.",
+        "BTC can move more than 8% over a few days during risk-off episodes."
+      ],
+      "unresolved_ambiguities": [
+        "How much short-horizon downside volatility will emerge over the next five days.",
+        "Whether the final noon ET minute could be unusually noisy relative to surrounding trade."
+      ],
+      "what_would_change_view": "A sharp move toward 70k or below, a new macro/crypto shock, or Binance operational irregularities near resolution would lower the estimate materially.",
+      "timing_relevance": "This is a date-sensitive, time-specific contract settling on the Binance BTC/USDT 12:00 ET one-minute close on April 20, so timezone and exact-minute mechanics matter materially.",
+      "source_quality_view": "Source quality is good: official Polymarket rules for the contract plus direct Binance pricing/context. Independence is medium and source-of-truth ambiguity is low-medium because the wording is clear but Binance-specific execution still matters.",
+      "persona_finding_path": "qualitative-db/40-research/cases/case-20260415-c8d6e83e/researcher-analyses/2026-04-15/dispatch-case-20260415-c8d6e83e-20260415T151858Z/personas/market-implied.md",
+      "assumption_artifact_paths": [
+        "qualitative-db/40-research/cases/case-20260415-c8d6e83e/researcher-analyses/2026-04-15/dispatch-case-20260415-c8d6e83e-20260415T151858Z/assumptions/market-implied.md"
+      ],
+      "evidence_artifact_paths": [
+        "qualitative-db/40-research/cases/case-20260415-c8d6e83e/researcher-analyses/2026-04-15/dispatch-case-20260415-c8d6e83e-20260415T151858Z/evidence/market-implied.md"
+      ]
+    },
+    {
+      "persona": "base-rate",
+      "recommended_weight": "medium",
+      "own_probability": 0.89,
+      "main_thesis": "Yes is still highly likely because BTC is materially above 68k with only about five days left, but the market is a bit too close to certainty for an exact-minute crypto threshold contract.",
+      "main_logical_chain": [
+        "The contract resolves on one exact Binance BTC/USDT minute at noon ET on April 20.",
+        "Current Binance spot is materially above 68,000, so the outside-view prior favors Yes."
+      ],
+      "strongest_supports": [
+        "Binance BTCUSDT spot was about 74,044 when checked, leaving about a 6k cushion above 68,000."
+      ],
+      "strongest_disconfirmers": [
+        "Crypto can still realize sharp multi-day drawdowns, and this contract settles on one exact minute."
+      ],
+      "unresolved_ambiguities": [
+        "How much additional downside volatility emerges between now and the final 24 hours."
+      ],
+      "what_would_change_view": "I would move higher if BTC stays comfortably above 72k-73k into the final 24-48 hours with lower volatility, and lower if BTC loses 70k or if venue-specific settlement risk increases.",
+      "timing_relevance": "Settlement is about 5.03 days after the run-time check, and the contract depends on the 12:00 ET one-minute close on 2026-04-20.",
+      "source_quality_view": "Primary contract wording from Polymarket plus direct Binance market data gave a solid, mostly low-ambiguity basis; independence is medium because both sources are tightly tied to the same contract setup.",
+      "persona_finding_path": "qualitative-db/40-research/cases/case-20260415-c8d6e83e/researcher-analyses/2026-04-15/dispatch-case-20260415-c8d6e83e-20260415T151858Z/personas/base-rate.md",
+      "assumption_artifact_paths": [
+        "qualitative-db/40-research/cases/case-20260415-c8d6e83e/researcher-analyses/2026-04-15/dispatch-case-20260415-c8d6e83e-20260415T151858Z/assumptions/base-rate.md"
+      ],
+      "evidence_artifact_paths": []
+    }
+  ],
+  "selected_assumption_snippets": [],
+  "selected_evidence_snippets": [],
+  "selected_supporting_note_snippets": [],
+  "bundle_budget": {
+    "max_chars": 10000,
+    "approx_tokens_before_trim": 3576,
+    "approx_tokens_after_trim": 2738,
+    "actual_chars_before_trim": 14306,
+    "actual_chars_after_trim": 10954,
+    "trim_applied": true
+  },
+  "enforcement_summary": {
+    "full_case_tree_excluded": true,
+    "full_persona_markdown_excluded": true,
+    "unbounded_research_excluded_from_default_bundle": true,
+    "structured_handoff_primary_enforced": true,
+    "prose_fallback_only": true,
+    "agent_tool_use_allowed": false,
+    "selected_persona_count": 2,
+    "selected_assumption_count": 0,
+    "selected_evidence_count": 0,
+    "selected_supporting_note_count": 0
+  },
+  "sidecar_selection_guardrail": {
+    "expected_nonzero_sidecars": true,
+    "violation": false,
+    "message": "",
+    "resolved_sidecar_bundle_path": "qualitative-db/40-research/cases/case-20260415-c8d6e83e/researcher-analyses/2026-04-15/dispatch-case-20260415-c8d6e83e-20260415T151858Z/sidecar-synthesis-bundle.json",
+    "resolved_sidecar_bundle_sidecar_count": 5,
+    "selected_persona_count": 2
+  }
+}

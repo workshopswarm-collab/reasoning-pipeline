@@ -1,0 +1,63 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Short-term crypto volatility can be large enough to cross the threshold.",
+    "A single-minute settlement design increases timing sensitivity.",
+    "No dedicated volatility-distribution model was built in this run."
+  ],
+  "key_assumptions": [
+    "Current Binance spot around 74.65k is a reasonable baseline for the April 16 noon ET close distribution.",
+    "Ordinary 1-2 day BTC volatility is unlikely to erase a >6% cushion by the exact settlement minute.",
+    "Binance remains operationally normal and does not print an anomalous settlement candle."
+  ],
+  "main_logical_chain": [
+    "Read Polymarket rules to confirm exact contract mechanics and market-implied probability.",
+    "Check Binance directly because Binance BTC/USDT 1-minute close is the governing source of truth.",
+    "Observe BTC trading around 74.65k, leaving roughly a 4.65k cushion over the threshold.",
+    "Cross-check with CoinGecko and Coinbase to ensure Binance is not obviously anomalous.",
+    "Conclude the market's extreme Yes pricing is broadly efficient, but trim slightly for short-horizon downside and settlement-minute risk."
+  ],
+  "main_thesis": "BTC is already comfortably above the $70,000 threshold on Binance and the market's ~96% Yes pricing is broadly justified, though short-horizon crypto volatility keeps my estimate slightly lower at 94%.",
+  "own_probability": 0.94,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone (noon)... has a final 'Close' price higher than the price specified in the title.",
+    "Binance ticker endpoint returned {\"symbol\":\"BTCUSDT\",\"price\":\"74652.91000000\"}."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation",
+    "technical_reference"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260414-94e8aad1",
+    "dispatch_id": "dispatch-case-20260414-94e8aad1-20260414T175223Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "4ea4a6bf-dabd-4494-ba95-713c5a08e044",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-94e8aad1/researcher-analyses/2026-04-14/dispatch-case-20260414-94e8aad1-20260414T175223Z/personas/market-implied.md",
+    "source_persona_sha256": "d1bf94364882fc51b26816fbc201889da9383286bb6c648c2518d4e1231bbad6"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Good overall for this case: direct Polymarket rules plus direct Binance checks, with moderate independence after adding CoinGecko and Coinbase as contextual price cross-checks; source-of-truth ambiguity is low.",
+  "strongest_disconfirmers": [
+    "A >6% drawdown over ~42 hours is possible in crypto.",
+    "The contract resolves on one exact Binance 1-minute close, so timing/path risk matters more than a broad weekly view.",
+    "Binance-specific operational or pricing anomalies could matter because Binance is the controlling source."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT spot checked around 74652.91, well above 70000.",
+    "Recent Binance 1m klines were also in the mid-74k range.",
+    "CoinGecko and Coinbase cross-checks were both near 74.70k, supporting the observed level.",
+    "Polymarket was pricing the threshold leg around 96%, indicating the crowd sees the same cushion."
+  ],
+  "timing_relevance": "High: the case resolves on April 16, 2026 at 12:00 PM ET using the exact Binance BTC/USDT 1-minute close, so both date and minute-level timing are material.",
+  "unresolved_ambiguities": [
+    "How much short-horizon downside tail risk the market is embedding versus underweighting.",
+    "Whether any Binance-specific microstructure event could distort the noon ET close."
+  ],
+  "what_would_change_view": "I would move lower if BTC drifts toward 70k-72k, if major negative market news appears, or if Binance shows operational/pricing anomalies; I would move closer to the market if BTC holds above 74k through most of April 15 without venue issues."
+}

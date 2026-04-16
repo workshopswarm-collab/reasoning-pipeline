@@ -1,0 +1,56 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Residual uncertainty remains until exact Binance 1m candles are archived for the qualifying hour.",
+    "A data-display or rule-interpretation anomaly could still challenge the obvious reading."
+  ],
+  "key_assumptions": [
+    "A Binance 1h high above 2400 implies at least one underlying 1m high above 2400 in that hour.",
+    "The observed Binance print falls inside the contract's April 13-19 ET window."
+  ],
+  "main_logical_chain": [
+    "Start from the market's extreme 91.6% prior and ask what would justify it.",
+    "Read the contract rules and identify Binance ETH/USDT 1m highs as the governing source of truth.",
+    "Check Binance price data and find a high above 2400 within the contract window.",
+    "Conclude the market is likely pricing already-satisfied settlement-relevant evidence rather than speculative future upside."
+  ],
+  "main_thesis": "The market's 91.6% Yes price is mostly justified because Binance appears already to have printed above $2,400 within the contract window, making this more a source-of-truth case than a fresh directional ETH bet.",
+  "own_probability": 0.97,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "This market will immediately resolve to Yes if any Binance 1-minute candle for ETH/USDT... has a final High price equal to or greater than the price specified in the title.",
+    "Binance ETHUSDT 1h high observed: 2415.50 on 2026-04-14T14:00:00Z."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "contract_interpretation",
+    "technical_reference"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260414-4ed80a0a",
+    "dispatch_id": "dispatch-case-20260414-4ed80a0a-20260414T174040Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "11f1ee38-19b5-4660-8255-0cc1fdcfb859",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-4ed80a0a/researcher-analyses/2026-04-14/dispatch-case-20260414-4ed80a0a-20260414T174040Z/personas/market-implied.md",
+    "source_persona_sha256": "3911874d898b9923b1fd41d437bf9d11539fa33def91dd9ff325df7cf38f28d9"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Strong primary rules source plus strong venue-specific verification; residual precision gap from not saving the exact 1m series.",
+  "strongest_disconfirmers": [
+    "The saved verification artifact used Binance 1h candles rather than directly archived 1m candles.",
+    "CoinGecko contextual highs were lower, showing non-governing feeds can diverge from Binance."
+  ],
+  "strongest_supports": [
+    "Polymarket rules explicitly name Binance ETH/USDT 1m candle highs as the settlement source.",
+    "Binance ETHUSDT kline data showed a 2415.50 high on 2026-04-14 within the relevant window."
+  ],
+  "timing_relevance": "High; this is a date-window threshold contract and the key evidence appears to have occurred already on April 14.",
+  "unresolved_ambiguities": [
+    "Whether the exact 1m chart series used by Polymarket/UMA perfectly matches the saved Binance verification path.",
+    "Why the market remains at 91.6% rather than even closer to certainty."
+  ],
+  "what_would_change_view": "Direct Binance 1m data showing no qualifying candle, or an official Polymarket/UMA clarification excluding the observed print, would materially reduce the estimate."
+}

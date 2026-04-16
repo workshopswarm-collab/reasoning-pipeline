@@ -1,0 +1,118 @@
+{
+  "artifact_type": "targeted_verification_pack",
+  "schema_version": "decision-targeted-verification-pack/v1",
+  "case_key": "case-20260413-600f720f",
+  "dispatch_id": "refresh-case-20260413-600f720f-20260414T001553Z",
+  "required": true,
+  "verification_mode": "targeted_escalation",
+  "pack_purpose": "Deterministic narrow follow-up pack for targeted escalation. It defines the crux questions and operational budgets, while source choice may remain model-driven within runtime-enforced tool guardrails.",
+  "verification_questions": [
+    "Does the latest available information materially change the decision, given: Short-horizon BTC momentum and Binance intrawindow highs can change the forecast quickly over the remaining week.?",
+    "Are the current blockers still material to final judgment: No decisive independent evidence on whether momentum persists strongly enough to finish the final move?",
+    "Is the main verification gap still decision-material: The main remaining gap is fresh evidence on whether near-term momentum is strong enough to complete the final move before week-end.?",
+    "Does the strongest surviving countercase remain live enough to compress the edge further: Because only one Binance 1-minute spike is needed and BTC is already within roughly 1.5%-1.8%, the market may simply be right that touch odds are near three-in-four.?"
+  ],
+  "structured_handoff_focus": {
+    "contract_ambiguity_level": "none",
+    "contract_ambiguity_reason": "",
+    "verification_gap_summary": "The main remaining gap is fresh evidence on whether near-term momentum is strong enough to complete the final move before week-end.",
+    "best_countercase_summary": "Because only one Binance 1-minute spike is needed and BTC is already within roughly 1.5%-1.8%, the market may simply be right that touch odds are near three-in-four.",
+    "main_reason_for_disagreement": "Most disagreement is about how much weight to put on proximity-to-strike and touch mechanics versus simple path-failure risk.",
+    "resolution_mechanics_summary": "Yes resolves if any Binance BTC/USDT 1-minute candle high is at least $76,000 between Apr 13 00:00 ET and Apr 19 23:59 ET.",
+    "freshness_sensitive": "yes",
+    "freshness_driver": "Short-horizon BTC momentum and Binance intrawindow highs can change the forecast quickly over the remaining week.",
+    "decision_blockers": [
+      "No decisive independent evidence on whether momentum persists strongly enough to finish the final move",
+      "Short-dated path dependence means the modest edge versus market could vanish quickly on new price action"
+    ],
+    "disagreement_type": "timing"
+  },
+  "supporting_persona_summaries": [
+    {
+      "persona": "market-implied",
+      "recommended_weight": "medium",
+      "own_probability": 0.66,
+      "main_thesis": "The market is directionally right that a 76k touch is favored because the contract only needs one Binance 1-minute high and BTC is already near the threshold, but 0.75 looks somewhat aggressive; my estimate is 0.66.",
+      "main_logical_chain": [
+        "Start from market prior near 0.75 because prediction markets often aggregate real information and the contract is touch-based.",
+        "Read the exact rules and confirm the governing source is Binance BTC/USDT 1-minute highs, which materially favors Yes versus a close-based reading.",
+        "Check independent contextual price sources and confirm BTC is already near 75k, making a 76k touch plausible within a week.",
+        "Discount modestly because the level has not been hit yet and momentum could fail, landing at 0.66 rather than fully matching the market."
+      ],
+      "strongest_supports": [
+        "Contract resolves Yes on any Binance BTC/USDT 1-minute high >= 76,000 during Apr 13-19.",
+        "Contextual price data put BTC around 74.8k-74.9k at research time, leaving a modest gap to 76k."
+      ],
+      "strongest_disconfirmers": [
+        "76k had not been hit yet, and a fast reversal from current levels would make the market's optimism look too rich."
+      ],
+      "unresolved_ambiguities": [
+        "How much current upside momentum persists over the next several sessions.",
+        "Whether a near-term macro or crypto-specific risk-off move interrupts the approach to 76k."
+      ],
+      "what_would_change_view": "I would move up if BTC quickly challenges fresh highs near 76k, and move down if BTC sells off meaningfully away from the threshold.",
+      "timing_relevance": "High; this is a one-week threshold-touch market and the estimate depends heavily on the current distance from 76k and near-term momentum.",
+      "source_quality_view": "High quality on contract mechanics from Polymarket; medium-high on contextual market regime from Binance with Coinbase/CoinGecko cross-checks; source-of-truth ambiguity is low.",
+      "persona_finding_path": "qualitative-db/40-research/cases/case-20260413-600f720f/researcher-analyses/2026-04-13/dispatch-case-20260413-600f720f-20260413T233138Z/personas/market-implied.md",
+      "assumption_artifact_paths": [
+        "qualitative-db/40-research/cases/case-20260413-600f720f/researcher-analyses/2026-04-13/dispatch-case-20260413-600f720f-20260413T233138Z/assumptions/market-implied.md"
+      ],
+      "evidence_artifact_paths": []
+    }
+  ],
+  "selected_assumption_snippets": [
+    {
+      "path": "qualitative-db/40-research/cases/case-20260413-600f720f/researcher-analyses/2026-04-13/dispatch-case-20260413-600f720f-20260413T233138Z/assumptions/base-rate.md",
+      "frontmatter": {
+        "type": "assumption_note",
+        "case_key": "case-20260413-600f720f",
+        "dispatch_id": "dispatch-case-20260413-600f720f-20260413T233138Z",
+        "research_run_id": "b49ccd98-45e0-4768-bf63-3521fbea1539",
+        "analysis_date": "2026-04-13",
+        "persona": "base-rate",
+        "domain": "crypto",
+        "subdomain": "markets",
+        "entity": "bitcoin",
+        "topic": "will-bitcoin-reach-76k-april-13-19",
+        "question": "Will Bitcoin reach $76,000 April 13-19?",
+        "date_created": "2026-04-13",
+        "agent": "Orchestrator",
+        "status": "active",
+        "certainty": "medium",
+        "importance": "high",
+        "time_horizon": "1 week",
+        "related_entities": [
+          "bitcoin"
+        ],
+        "related_drivers": [],
+        "proposed_entities": [],
+        "proposed_drivers": [
+          "weekly-threshold-touch-dynamics"
+        ],
+        "upstream_inputs": [],
+        "downstream_uses": [
+          "qualitative-db/40-research/cases/case-20260413-600f720f/researcher-analyses/2026-04-13/dispatch-case-20260413-600f720f-20260413T233138Z/personas/base-rate.md"
+        ],
+        "tags": [
+          "assumption",
+          "btc",
+          "threshold-market"
+        ],
+        "driver": ""
+      },
+      "snippet": "# Assumption\nThe current weekly trading regime that produced a fast move from roughly $70.7k to the mid-$74k area will not automatically extend another roughly 1.5% to 1.8% upward to the $76k threshold within the remaining contract window.\n## Why this assumption matters\nThe final estimate depends on treating the threshold as reachable but not already likely enough to justify the market's 75% implied probability.\n## What this assumption supports\n- A below-market estimate for YES on $76,000.\n- A view that the market may be overweighting momentum and salience from the sharp Apr 13 rebound.\n- A conclusion that the outside-view prior should still discount the chance of one more clean extension leg within days.\n## Evidence or logic behind the assumption\n- Observed contextual pricing shows BTC still below the threshold after a strong daily move.\n- Threshold-touch contracts are nonlinear: getting close is not the same as crossing.\n- In short-horizon crypto markets, late-stage round-number targets can attract narrative overconfidence.\n## What would falsify it\n- A verified continuation breakout through $75k followed by sustained strength toward $76k.\n- New contextual evidence showing the governing source already printed at or above $76,000.\n- A material macro or crypto-specific catalyst that changes the expected volatility regime upward.\n## Early warning signs\n- Multiple major spot venues printing fresh weekly highs above the current observed range.\n- Rapid follow-through after the Apr 13 close rather than mean reversion/consolidation.\n- Perpetual funding/open-interest behavior consi …",
+      "full_char_count": 2081,
+      "snippet_char_count": 1602
+    }
+  ],
+  "selected_evidence_snippets": [],
+  "selected_supporting_note_snippets": [],
+  "pack_budget": {
+    "max_chars": 6000,
+    "actual_chars_before_trim": 10212,
+    "actual_chars_after_trim": 8125,
+    "approx_tokens_before_trim": 2553,
+    "approx_tokens_after_trim": 2031,
+    "trim_applied": true
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A sustained move above roughly 74.5k-75k before settlement would weaken the variant case.",
+    "This is a short-horizon estimate and is highly sensitive to overnight price action."
+  ],
+  "key_assumptions": [
+    "Current above-threshold spot level does not fully carry through to the exact noon ET one-minute close.",
+    "Recent Binance minute-level distribution is informative about threshold fragility.",
+    "Binance API klines are close enough to the referenced Binance UI candle data for pre-settlement analysis."
+  ],
+  "main_logical_chain": [
+    "The contract resolves on one exact Binance BTC/USDT one-minute close at 12:00 ET on April 17.",
+    "BTC is currently above 74000 on Binance, so Yes deserves a baseline edge.",
+    "But the cushion above 74000 is modest relative to observed minute-level variability and recent dips below threshold.",
+    "Therefore Yes should be favored only modestly, below the market's 61% implied probability."
+  ],
+  "main_thesis": "The market slightly overprices Yes because this is a narrow Binance-only exact-noon threshold test and BTC's current cushion above 74000 is not large.",
+  "own_probability": 0.54,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "The final Close must be strictly greater than 74,000.",
+    "I estimate 54% Yes."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation",
+    "variant_hypothesis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-2ab48f50",
+    "dispatch_id": "dispatch-case-20260416-2ab48f50-20260416T002737Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "62d0984e-d722-44a1-979f-0116662f6a84",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-2ab48f50/researcher-analyses/2026-04-16/dispatch-case-20260416-2ab48f50-20260416T002737Z/personas/variant-view.md",
+    "source_persona_sha256": "56d84372472da26a498a4b9b9748bf3800a1a2257ae6229b36d9aa8483c08220"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary quality is high because Binance is the governing venue and Polymarket rules are explicit; independence is medium and there is minor UI/API source-of-truth ambiguity.",
+  "strongest_disconfirmers": [
+    "BTC is already above 74000 on the governing venue, so simple persistence could justify the market's 61% Yes price.",
+    "Cross-venue checks broadly confirmed the same mid-74k price region."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT was trading around 74.6k-74.7k during the run, already above the threshold.",
+    "761 of the last 1000 Binance one-minute closes were above 74000."
+  ],
+  "timing_relevance": "High: the market is decided by a single noon ET minute on April 17, so point-in-time fragility matters more than generic daily direction.",
+  "unresolved_ambiguities": [
+    "Small operational ambiguity remains between Binance UI candle presentation and API-delivered kline values.",
+    "No closer-to-settlement sample was available yet."
+  ],
+  "what_would_change_view": "I would move toward or above the market if BTC built and held a materially wider cushion above 74000 into the settlement window."
+}

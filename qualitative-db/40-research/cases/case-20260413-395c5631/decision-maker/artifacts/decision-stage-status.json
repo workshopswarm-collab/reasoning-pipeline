@@ -1,0 +1,198 @@
+{
+  "artifact_type": "decision_stage_status",
+  "schema_version": "decision-stage-status/v1",
+  "case_key": "case-20260413-395c5631",
+  "dispatch_id": "dispatch-case-20260413-395c5631-20260413T221534Z",
+  "question": "Will the price of Bitcoin be above $72,000 on April 15?",
+  "decision_context_path": "roles/decision-maker/runtime/artifacts/case-20260413-395c5631/decision-context-dispatch-case-20260413-395c5631-20260413T221534Z.json",
+  "actor": "decision-maker",
+  "decision_target_chat_id": "-1003846500961",
+  "decision_target_session_key": "agent:main:telegram:group:-1003846500961:topic:1410",
+  "trade_authorization": "watch_only",
+  "position_policy": "hold_only",
+  "decision_readiness": "needs_more_research",
+  "recommended_side": "yes",
+  "warnings": [],
+  "packet_json_path": "qualitative-db/40-research/cases/case-20260413-395c5631/decision-maker/artifacts/decision-maker-packet.json",
+  "packet_markdown_path": "qualitative-db/40-research/cases/case-20260413-395c5631/decision-maker/decision-maker-packet.md",
+  "decision_visible_receipt_marker": "SYNTHESIS RECEIVED | market=Will the price of Bitcoin be above $72,000 on April 15? | dispatch_id=dispatch-case-20260413-395c5631-20260413T221534Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260413-395c5631/decision-context-dispatch-case-20260413-395c5631-20260413T221534Z.json",
+  "decision_visible_start_marker": "DECISION-MAKING ANALYSIS UNDERWAY | market=Will the price of Bitcoin be above $72,000 on April 15? | dispatch_id=dispatch-case-20260413-395c5631-20260413T221534Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260413-395c5631/decision-context-dispatch-case-20260413-395c5631-20260413T221534Z.json",
+  "decision_visible_finish_marker": "DECISION-MAKING COMPLETED, DECISION PACKAGE CREATED | market=Will the price of Bitcoin be above $72,000 on April 15? | dispatch_id=dispatch-case-20260413-395c5631-20260413T221534Z | packet_path=qualitative-db/40-research/cases/case-20260413-395c5631/decision-maker/decision-maker-packet.md",
+  "status": "decision_completed",
+  "stage_events": [
+    {
+      "at": "2026-04-13T22:23:56.459323Z",
+      "stage": "kickoff",
+      "state": "decision_ready_for_receipt",
+      "message": "Decision-Maker stage initialized from synthesis handoff",
+      "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260413-395c5631/synthesizer-agent/decision-handoff.md"
+    },
+    {
+      "at": "2026-04-13T22:23:56.573940Z",
+      "stage": "decision_input_selection",
+      "state": "built",
+      "message": "Built deterministic Decision-Maker selected-input bundle",
+      "verification_mode_path": "roles/decision-maker/runtime/artifacts/case-20260413-395c5631/verification-mode-dispatch-case-20260413-395c5631-20260413T221534Z.json",
+      "selected_input_bundle_path": "roles/decision-maker/runtime/artifacts/case-20260413-395c5631/selected-inputs-dispatch-case-20260413-395c5631-20260413T221534Z.json",
+      "verification_mode": "not_ready_reopen_recommended",
+      "approx_tokens_after_trim": 2764,
+      "agent_tool_use_allowed": false
+    },
+    {
+      "at": "2026-04-13T22:23:56.574003Z",
+      "stage": "decision_prompt",
+      "state": "built",
+      "message": "Built Decision-Maker prompt from compact selected-input bundle",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260413-395c5631/decision-prompt-dispatch-case-20260413-395c5631-20260413T221534Z.md"
+    },
+    {
+      "at": "2026-04-13T22:24:00.498902Z",
+      "stage": "decision_lane_bootstrap",
+      "state": "created",
+      "message": "Created dedicated Telegram decision lane",
+      "topic_id": "1410",
+      "topic_title": "case-20260413-395c5631 | decision | T221534Z",
+      "session_key": "agent:main:telegram:group:-1003846500961:topic:1410"
+    },
+    {
+      "at": "2026-04-13T22:24:05.744246Z",
+      "stage": "decision_receipt",
+      "state": "visible_marker_sent",
+      "message": "SYNTHESIS RECEIVED | market=Will the price of Bitcoin be above $72,000 on April 15? | dispatch_id=dispatch-case-20260413-395c5631-20260413T221534Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260413-395c5631/decision-context-dispatch-case-20260413-395c5631-20260413T221534Z.json"
+    },
+    {
+      "at": "2026-04-13T22:24:05.744962Z",
+      "stage": "decision_receipt",
+      "state": "accepted",
+      "message": "Decision-Maker handoff accepted",
+      "session_key": "agent:decision-maker:main",
+      "handoff_status": "started"
+    },
+    {
+      "at": "2026-04-13T22:24:05.745143Z",
+      "stage": "decision_execution",
+      "state": "decision_analysis_running",
+      "message": "Decision-Maker agent invocation accepted and analysis started",
+      "session_key": "agent:decision-maker:main",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260413-395c5631/decision-prompt-dispatch-case-20260413-395c5631-20260413T221534Z.md",
+      "handoff_status": "started"
+    },
+    {
+      "at": "2026-04-13T22:24:07.708914Z",
+      "stage": "decision_execution",
+      "state": "visible_marker_sent",
+      "message": "DECISION-MAKING ANALYSIS UNDERWAY | market=Will the price of Bitcoin be above $72,000 on April 15? | dispatch_id=dispatch-case-20260413-395c5631-20260413T221534Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260413-395c5631/decision-context-dispatch-case-20260413-395c5631-20260413T221534Z.json"
+    },
+    {
+      "at": "2026-04-13T22:24:33.626278Z",
+      "stage": "decision_execution",
+      "state": "decision_completed",
+      "message": "Decision-Maker completed and packet rendered",
+      "warnings": [],
+      "forecast_decision_persist_error": ""
+    },
+    {
+      "at": "2026-04-13T22:24:35.803497Z",
+      "stage": "decision_execution",
+      "state": "visible_marker_sent",
+      "message": "DECISION-MAKING COMPLETED, DECISION PACKAGE CREATED | market=Will the price of Bitcoin be above $72,000 on April 15? | dispatch_id=dispatch-case-20260413-395c5631-20260413T221534Z | packet_path=qualitative-db/40-research/cases/case-20260413-395c5631/decision-maker/decision-maker-packet.md"
+    }
+  ],
+  "last_stage_event": {
+    "at": "2026-04-13T22:24:35.803497Z",
+    "stage": "decision_execution",
+    "state": "visible_marker_sent",
+    "message": "DECISION-MAKING COMPLETED, DECISION PACKAGE CREATED | market=Will the price of Bitcoin be above $72,000 on April 15? | dispatch_id=dispatch-case-20260413-395c5631-20260413T221534Z | packet_path=qualitative-db/40-research/cases/case-20260413-395c5631/decision-maker/decision-maker-packet.md"
+  },
+  "updated_at": "2026-04-13T22:24:35.803516Z",
+  "decision_lane": {
+    "topic_id": "1410",
+    "topic_title": "case-20260413-395c5631 | decision | T221534Z",
+    "session_key": "agent:main:telegram:group:-1003846500961:topic:1410"
+  },
+  "verification_mode_path": "roles/decision-maker/runtime/artifacts/case-20260413-395c5631/verification-mode-dispatch-case-20260413-395c5631-20260413T221534Z.json",
+  "selected_input_bundle_path": "roles/decision-maker/runtime/artifacts/case-20260413-395c5631/selected-inputs-dispatch-case-20260413-395c5631-20260413T221534Z.json",
+  "selected_input_bundle_mode": "not_ready_reopen_recommended",
+  "selected_input_bundle_estimated_tokens": 2764,
+  "targeted_verification_pack_path": "",
+  "targeted_verification_pack_required": false,
+  "decision_prompt_path": "roles/decision-maker/runtime/artifacts/case-20260413-395c5631/decision-prompt-dispatch-case-20260413-395c5631-20260413T221534Z.md",
+  "agent_tool_use_allowed": false,
+  "decision_lane_topic_id": "1410",
+  "decision_lane_topic_title": "case-20260413-395c5631 | decision | T221534Z",
+  "decision_lane_session_key": "agent:main:telegram:group:-1003846500961:topic:1410",
+  "decision_target_topic_id": "1410",
+  "decision_target_topic_title": "case-20260413-395c5631 | decision | T221534Z",
+  "decision_receipt_marker_sent_at": "2026-04-13T22:24:05.744198+00:00",
+  "decision_analysis_marker_sent_at": "2026-04-13T22:24:07.708889+00:00",
+  "timeline_update": {
+    "appended": true,
+    "case_key": "case-20260413-395c5631",
+    "dispatch_id": "dispatch-case-20260413-395c5631-20260413T221534Z",
+    "packet_path": "qualitative-db/40-research/cases/case-20260413-395c5631/decision-maker/decision-maker-packet.md",
+    "entry": "- 2026-04-13T22:24:33.625637+00:00 — completed decision-making `dispatch-case-20260413-395c5631-20260413T221534Z` with packet `qualitative-db/40-research/cases/case-20260413-395c5631/decision-maker/decision-maker-packet.md`."
+  },
+  "forecast_decision_persist": {
+    "ok": true,
+    "packet_json": "qualitative-db/40-research/cases/case-20260413-395c5631/decision-maker/artifacts/decision-maker-packet.json",
+    "persisted": {
+      "forecast_id": "dispatch-case-20260413-395c5631-20260413T221534Z",
+      "market_id": "3fc6402b-4650-461d-9068-18ee4cd7525a",
+      "contract_id": "yes",
+      "forecast_prob": 0.73,
+      "decision_status": "void",
+      "decision_packet_path": "qualitative-db/40-research/cases/case-20260413-395c5631/decision-maker/artifacts/decision-maker-packet.json",
+      "supersedes_forecast_id": null,
+      "superseded_forecast_ids": [],
+      "market_state": {
+        "market_id": "3fc6402b-4650-461d-9068-18ee4cd7525a",
+        "current_price": 0.765,
+        "last_reasoned_price": 0.73,
+        "pipeline_status": "closed"
+      }
+    },
+    "record": {
+      "forecast_id": "dispatch-case-20260413-395c5631-20260413T221534Z",
+      "decision_ts": "2026-04-13T18:24:00-04:00",
+      "case_id": "case-20260413-395c5631",
+      "dispatch_id": "dispatch-case-20260413-395c5631-20260413T221534Z",
+      "market_id": "3fc6402b-4650-461d-9068-18ee4cd7525a",
+      "contract_id": "yes",
+      "platform": "polymarket",
+      "market_slug": "bitcoin-above-72k-on-april-15",
+      "question": "Will the price of Bitcoin be above $72,000 on April 15?",
+      "forecast_prob": "0.73",
+      "forecast_direction": "yes",
+      "confidence_label": "medium",
+      "confidence_score": "",
+      "time_horizon_label": "Now through the Apr. 15 12:00 ET Binance settlement minute",
+      "verification_mode": "not_ready_reopen_recommended",
+      "decision_status": "void",
+      "rationale_summary": "BTC above 72k remains slightly more likely than not by the Apr. 15 noon ET Binance minute, but because the market is already near fair value and the contract is mechanically fragile to exact-minute volatility, the disciplined output is watch-only and needs-more-research rather than an authorized trade.",
+      "decision_packet_path": "qualitative-db/40-research/cases/case-20260413-395c5631/decision-maker/artifacts/decision-maker-packet.json",
+      "decision_handoff_path": "qualitative-db/40-research/cases/case-20260413-395c5631/synthesizer-agent/decision-handoff.md",
+      "syndicated_finding_path": "qualitative-db/40-research/cases/case-20260413-395c5631/synthesizer-agent/syndicated-finding.md"
+    },
+    "warnings": []
+  },
+  "terminal_summary": {
+    "at": "2026-04-13T22:24:35.803523Z",
+    "status": "decision_completed",
+    "decision_lane": {
+      "topic_id": "1410",
+      "topic_title": "case-20260413-395c5631 | decision | T221534Z",
+      "session_key": "agent:main:telegram:group:-1003846500961:topic:1410"
+    },
+    "packet_json_path": "qualitative-db/40-research/cases/case-20260413-395c5631/decision-maker/artifacts/decision-maker-packet.json",
+    "packet_markdown_path": "qualitative-db/40-research/cases/case-20260413-395c5631/decision-maker/decision-maker-packet.md",
+    "trade_authorization": "watch_only",
+    "decision_readiness": "needs_more_research",
+    "last_stage_event": {
+      "at": "2026-04-13T22:24:35.803497Z",
+      "stage": "decision_execution",
+      "state": "visible_marker_sent",
+      "message": "DECISION-MAKING COMPLETED, DECISION PACKAGE CREATED | market=Will the price of Bitcoin be above $72,000 on April 15? | dispatch_id=dispatch-case-20260413-395c5631-20260413T221534Z | packet_path=qualitative-db/40-research/cases/case-20260413-395c5631/decision-maker/decision-maker-packet.md"
+    }
+  },
+  "decision_completion_marker_sent_at": "2026-04-13T22:24:35.803474+00:00"
+}

@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Exact settlement depends on one Binance 1-minute candle Close.",
+    "A sudden macro or crypto-specific selloff before noon ET could invalidate the current cushion."
+  ],
+  "key_assumptions": [
+    "BTC avoids a roughly 5.5%-6.0% drawdown before the April 17 12:00 ET resolution minute.",
+    "No Binance-specific operational or print anomaly affects the settlement candle.",
+    "Nearby strike pricing is broadly coherent and not stale."
+  ],
+  "main_logical_chain": [
+    "Market implies about 93.5% Yes for above $70k on April 17 noon ET.",
+    "Binance, the governing source, shows BTCUSDT already near $74.1k.",
+    "That leaves a material but not huge cushion above the threshold with limited time remaining.",
+    "Therefore the market is probably mostly pricing ordinary volatility correctly, with residual discount for contract-specific path and venue risk."
+  ],
+  "main_thesis": "The market's ~93.5% Yes price is broadly efficient because Binance BTC/USDT is already around $74.1k with only about 2.5 days left, though single-minute Binance-specific settlement risk justifies a small discount.",
+  "own_probability": 0.91,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "Binance BTC/USDT trading around $74.1k",
+    "Polymarket around 93.5%-93.9% Yes",
+    "12:00 ET Binance 1-minute candle final Close"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260414-f6393095",
+    "dispatch_id": "dispatch-case-20260414-f6393095-20260414T222237Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "57dc8e44-4251-43d2-9e1f-c3a9cc26f3e8",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-f6393095/researcher-analyses/2026-04-14/dispatch-case-20260414-f6393095-20260414T222237Z/personas/market-implied.md",
+    "source_persona_sha256": "7d51a3a70839b8e908322c3d01d776bcde596a8f5519ed9bd2c9477e536a71ba"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality direct source for underlying price because Binance is the governing source; medium independence because Polymarket contract state still references Binance for settlement.",
+  "strongest_disconfirmers": [
+    "This is a single-minute, single-exchange contract, so a sharp downside move or Binance-specific wick could still flip the outcome.",
+    "Crypto can move 5%-6% over a couple of days."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT traded around $74,071-$74,084 during the run, comfortably above the $70,000 threshold.",
+    "Only about 2.5 days remained until resolution.",
+    "Nearby strike ladder pricing looked internally coherent around 72k/74k/76k."
+  ],
+  "timing_relevance": "Highly time-sensitive: the market resolves at 12:00 ET on 2026-04-17, and the short remaining window is central to the probability.",
+  "unresolved_ambiguities": [
+    "No full short-horizon volatility model was built in this run.",
+    "Exchange-specific edge cases remain low probability but nonzero."
+  ],
+  "what_would_change_view": "A drop toward 72k or below, evidence of Binance stress near resolution, or sharp incoherent repricing across nearby strikes would move the estimate lower."
+}

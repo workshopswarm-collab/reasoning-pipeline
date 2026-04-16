@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "If the official Polymarket benchmark/index did not print at or above 76k, the estimate is too high.",
+    "A contract rule excluding exchange-specific wicks would weaken the conclusion materially."
+  ],
+  "key_assumptions": [
+    "The official settlement benchmark recognizes the move consistently with major observed market highs.",
+    "No hidden rule nuance excludes a brief touch above the threshold.",
+    "This behaves like an ordinary mechanically resolved threshold market."
+  ],
+  "main_logical_chain": [
+    "Start from the market near-certainty anchor but haircut it for residual settlement-mechanics risk.",
+    "Verify whether a major direct source shows BTC trading above 76k during the relevant window.",
+    "Binance high above 76k strongly supports Yes, while CoinGecko below 76k sampled max shows the remaining ambiguity is benchmark-definition rather than broad direction.",
+    "Therefore the answer is still Yes with slightly less than market certainty."
+  ],
+  "main_thesis": "Bitcoin very likely already hit $76,000 during the April 13-19 window, with residual risk mainly from contract benchmark-definition ambiguity rather than market direction.",
+  "own_probability": 0.97,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "current_price = 0.9995",
+    "highPrice = 76038.00",
+    "sampled max below 76k"
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "market_anchor",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260414-669935fa",
+    "dispatch_id": "dispatch-case-20260414-669935fa-20260414T172940Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "6aaafba9-cb74-4bef-8d83-1f2c69271142",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-669935fa/researcher-analyses/2026-04-14/dispatch-case-20260414-669935fa-20260414T172940Z/personas/base-rate.md",
+    "source_persona_sha256": "40702c6466125e88e1162fed1cf4d46fa4ca16ace5c64342f21bcbb26b4075f8"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary contract surface plus one direct exchange-data verification and one independent contextual aggregator check; decent quality overall, but source-of-truth ambiguity remains medium because the full rules text was not fully extracted.",
+  "strongest_disconfirmers": [
+    "CoinGecko sampled series stayed below 76k in returned observations.",
+    "Full Polymarket Rules text and named official benchmark were not cleanly extracted, leaving settlement-source ambiguity."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT 24hr high printed 76038.00, above the threshold.",
+    "Market-implied probability is already about 99.95%.",
+    "Outside-view for simple threshold markets says uncertainty usually collapses after a major venue prints through the level."
+  ],
+  "timing_relevance": "High; this is a narrow April 13-19 hit-window market and the thesis depends on whether the threshold was already touched during that window.",
+  "unresolved_ambiguities": [
+    "Exact official settlement benchmark named in the Polymarket Rules section.",
+    "Whether the qualifying source counts a brief touch/wick the same way Binance does."
+  ],
+  "what_would_change_view": "Seeing the exact Polymarket official benchmark and confirming it never printed 76k, or learning that Binance-style highs do not count, would lower the estimate materially."
+}

@@ -1,0 +1,57 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A modest overnight selloff could push BTC back below 74000 before the resolving candle.",
+    "Any Binance-specific weakness near noon ET matters more than broader market averages."
+  ],
+  "key_assumptions": [
+    "BTC stays roughly in its current trading regime into the Apr 17 noon ET window.",
+    "No fresh downside move larger than the current cushion erases the edge before the relevant close."
+  ],
+  "main_logical_chain": [
+    "The contract resolves from a single Binance BTC/USDT 12:00 ET 1-minute close on Apr 17.",
+    "BTC is currently above the threshold by roughly 1.2%, which makes Yes more likely than No.",
+    "But one day of crypto volatility is enough to erase that cushion, so the market's 71% looks somewhat rich.",
+    "That leaves a mild Yes lean around 62% rather than strong conviction."
+  ],
+  "main_thesis": "BTC is already modestly above 74000, so Yes is slightly more likely than not, but the market looks somewhat too confident for a one-day-ahead single-candle close contract.",
+  "own_probability": 0.62,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone has a final 'Close' price higher than the price specified.",
+    "BTCUSDT price: 74912.01000000"
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "contract_interpretation",
+    "market_anchor"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-7bf6a6c4",
+    "dispatch_id": "dispatch-case-20260416-7bf6a6c4-20260416T025105Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "e711d43e-5ea4-4790-a7da-2a16d69cb5b3",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-7bf6a6c4/researcher-analyses/2026-04-16/dispatch-case-20260416-7bf6a6c4-20260416T025105Z/personas/base-rate.md",
+    "source_persona_sha256": "eda3f75480006ce2ee2c60705f3ded634624a1a38357343a6444b681fa79fd77"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Low source-of-truth ambiguity, medium evidence independence, with Binance plus Polymarket as the core direct inputs and CoinGecko as a contextual cross-check.",
+  "strongest_disconfirmers": [
+    "BTC can easily move 1-2% in a day, and only one exact Binance 1-minute close matters.",
+    "This is a close market, not a touch market, so current cushion is helpful but not decisive."
+  ],
+  "strongest_supports": [
+    "Binance spot checked during the run was about 74912, already above 74000.",
+    "Recent Binance 1-minute closes were mostly in the 74912-75198 range.",
+    "CoinGecko also showed BTC near 74990, supporting broad spot context near 75k."
+  ],
+  "timing_relevance": "Very high: the market resolves on one exact Apr 17 noon ET Binance 1-minute close, and the current checks were about a day earlier.",
+  "unresolved_ambiguities": [
+    "How stable BTC remains above 74000 through Apr 16 and early Apr 17.",
+    "Whether late volatility compresses the current cushion before the exact close."
+  ],
+  "what_would_change_view": "I would move up if Binance stays comfortably above 74000 into the resolving window, and down if BTC spends sustained time back below 74000."
+}

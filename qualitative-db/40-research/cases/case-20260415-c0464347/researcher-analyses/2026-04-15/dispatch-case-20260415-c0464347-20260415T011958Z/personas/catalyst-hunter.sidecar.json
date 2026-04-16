@@ -1,0 +1,61 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Single-minute settlement noise on Binance.",
+    "Weekend or geopolitical risk-off move.",
+    "Binance-specific operational or price-dislocation issues."
+  ],
+  "key_assumptions": [
+    "No major still-pending scheduled catalyst before Apr. 20 noon ET is likely to push BTC below 70k by itself.",
+    "Binance remains operational and representative at settlement.",
+    "BTC does not suffer a fresh shock large enough to erase the current price cushion."
+  ],
+  "main_logical_chain": [
+    "Verify the exact settlement mechanics and source of truth.",
+    "Verify current Binance BTCUSDT level relative to the 70k threshold.",
+    "Check whether a major scheduled macro catalyst still remains before settlement.",
+    "Conclude that absent a fresh shock, the current cushion supports a high-probability Yes view, discounted somewhat for one-minute settlement fragility."
+  ],
+  "main_thesis": "BTC is currently well above 70k on Binance and no major scheduled catalyst remains ahead of Apr. 20 noon ET, so Yes is high probability, with the main risk coming from unscheduled volatility and one-minute Binance settlement fragility.",
+  "own_probability": 0.84,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "Binance BTCUSDT price: 74598.54000000",
+    "Yes if the Binance 1 minute candle for BTC/USDT 12:00 ET has a final Close higher than 70,000"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "catalyst_analysis",
+    "contract_interpretation",
+    "scenario_analysis"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260415-c0464347",
+    "dispatch_id": "dispatch-case-20260415-c0464347-20260415T011958Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "8d532d1f-400f-4bf0-9042-47fa51bb248e",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-c0464347/researcher-analyses/2026-04-15/dispatch-case-20260415-c0464347-20260415T011958Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "c3dcb49814f2b1141773aaaa591dd2608547b2c69e62c89752b915ba37a6bf3f"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary source quality is high and source-of-truth ambiguity is low, but evidence independence is only medium because the main direct sources are the contract page and Binance itself.",
+  "strongest_disconfirmers": [
+    "A roughly 6% BTC drop in five days is plausible in crypto.",
+    "This market is fragile to a single Binance one-minute print rather than a broader average price.",
+    "An unscheduled macro or geopolitical shock could still force a sub-70k settlement minute."
+  ],
+  "strongest_supports": [
+    "Direct Binance BTCUSDT verification showed spot around 74.6k, materially above 70k.",
+    "Polymarket rules make the source of truth explicit: Binance BTC/USDT 12:00 ET 1m close.",
+    "BLS schedule shows the obvious CPI catalyst already occurred on Apr. 10."
+  ],
+  "timing_relevance": "Timing is central because the contract settles on one exact noon ET minute and the key catalyst question is whether any remaining event can push Binance BTC/USDT below 70k at that moment.",
+  "unresolved_ambiguities": [
+    "No direct read on ETF flow or large-holder flow between now and settlement.",
+    "Magnitude of unscheduled shock risk in the final five-day window remains uncertain."
+  ],
+  "what_would_change_view": "A break below 72k, emergence of a major in-window catalyst, or Binance-specific instability would move the estimate lower."
+}

@@ -165,8 +165,26 @@ def default_rationale_lines(difficulty_profile: dict, custom_hints: list[str] | 
     return list(dict.fromkeys(lines))[:4]
 
 
-def build_completion_checklist(difficulty_profile: dict) -> str:
-    if not difficulty_profile:
+LMD_CHECK_INSTRUCTIONS = {
+    "verify_primary_resolution_source": "verify the primary resolution / governing source directly before finalizing",
+    "capture_governing_source_proof_when_event_near_complete": "capture explicit governing-source proof when the event appears near-complete",
+    "separate_resolution_risk_from_path_probability": "separate resolution-risk uncertainty from path-probability uncertainty explicitly",
+    "label_unverified_vs_not_occurred_distinctly": "distinguish 'not yet verified' from 'not yet occurred' explicitly",
+    "confirm_any_qualifying_touch_resolves_yes": "confirm whether any qualifying touch resolves Yes before applying discretionary discounts",
+    "evaluate_distance_to_threshold": "evaluate the remaining distance to the threshold explicitly",
+    "evaluate_time_remaining_and_path_volatility": "evaluate remaining time and path volatility explicitly",
+    "justify_any_resistance_discount_explicitly": "justify any resistance- or reversal-based discount explicitly rather than implying it",
+    "label_event_state": "label the event-state explicitly",
+    "label_verification_state": "label the verification-state explicitly",
+}
+
+
+def humanize_check_key(check_key: str) -> str:
+    return LMD_CHECK_INSTRUCTIONS.get(check_key, check_key.replace('_', ' ').strip())
+
+
+def build_completion_checklist(difficulty_profile: dict, *, lmd_required_checks: list[str] | None = None) -> str:
+    if not difficulty_profile and not lmd_required_checks:
         return ""
 
     difficulty_class = difficulty_profile.get("difficulty_class") or "unknown"
@@ -209,6 +227,11 @@ def build_completion_checklist(difficulty_profile: dict) -> str:
         bullets.append("explicitly explain what counts, what does not count, and how the contract wording affects your view")
     if extra_verification_required or "extra_verification" in normalized_hints:
         bullets.append("perform and reflect an additional verification pass before finishing")
+    if lmd_required_checks:
+        for check_key in lmd_required_checks:
+            if not isinstance(check_key, str) or not check_key.strip():
+                continue
+            bullets.append(f"reviewed mechanism-specific check: {humanize_check_key(check_key.strip())}")
     if "date_timing_check" in normalized_hints:
         bullets.append("verify the relevant date, deadline, timezone, or reporting window explicitly")
     if "attribution_check" in normalized_hints:
@@ -238,12 +261,12 @@ Do not finish until you have done all of the following:
 """
 
 
-def load_qmd_bundle(payload: dict) -> dict | None:
-    inline = payload.get("qmd_bundle")
+def load_bundle(payload: dict, *, inline_key: str, path_key: str) -> dict | None:
+    inline = payload.get(inline_key)
     if isinstance(inline, dict):
         return inline
 
-    bundle_path = payload.get("qmd_bundle_path")
+    bundle_path = payload.get(path_key)
     if not bundle_path:
         return None
     path = Path(bundle_path)
@@ -258,6 +281,23 @@ def load_qmd_bundle(payload: dict) -> dict | None:
     return data if isinstance(data, dict) else None
 
 
+def load_qmd_bundle(payload: dict) -> dict | None:
+    return load_bundle(payload, inline_key="qmd_bundle", path_key="qmd_bundle_path")
+
+
+def load_lmd_bundle(payload: dict) -> dict | None:
+    return load_bundle(payload, inline_key="lmd_bundle", path_key="lmd_bundle_path")
+
+
+def render_path_block(label: str, paths: list[str]) -> list[str]:
+    lines = [f"{label}:"]
+    if paths:
+        lines.extend(f"- {path}" for path in paths)
+    else:
+        lines.append("- []")
+    return lines
+
+
 def render_qmd_section(payload: dict) -> str:
     bundle = load_qmd_bundle(payload)
     if not bundle or not bundle.get("qmd_used"):
@@ -268,18 +308,166 @@ def render_qmd_section(payload: dict) -> str:
     driver_paths = [item.get("path") for item in (results.get("driver_notes") or []) if item.get("path")]
     case_paths = [item.get("path") for item in (results.get("similar_cases") or []) if item.get("path")]
 
-    def render_path_block(label: str, paths: list[str]) -> list[str]:
-        lines = [f"{label}:"]
-        if paths:
-            lines.extend(f"- {path}" for path in paths)
-        else:
-            lines.append("- []")
-        return lines
-
     sections = ["## QMD"]
     sections.extend(render_path_block("entity_paths", entity_paths))
     sections.extend(render_path_block("driver_paths", driver_paths))
     sections.extend(render_path_block("case_paths", case_paths))
+    sections.append("")
+    return "\n".join(sections)
+
+
+def edge_metadata_lookup(causal_context: dict) -> dict[str, dict]:
+    out: dict[str, dict] = {}
+    for row in (causal_context.get("matched_edge_metadata") or []):
+        if not isinstance(row, dict):
+            continue
+        edge_key = str(row.get("edge_key") or "").strip()
+        if edge_key:
+            out[edge_key] = row
+    return out
+
+
+def node_metadata_lookup(causal_context: dict) -> dict[str, dict]:
+    out: dict[str, dict] = {}
+    for row in (causal_context.get("active_node_metadata") or []):
+        if not isinstance(row, dict):
+            continue
+        node_key = str(row.get("node_key") or "").strip()
+        if node_key:
+            out[node_key] = row
+    return out
+
+
+def edge_endpoint_nodes(edge_key: str) -> set[str]:
+    parts = str(edge_key or "").split("__")
+    if len(parts) >= 3:
+        return {parts[0], parts[2]}
+    return set()
+
+
+def render_causal_node_line(node_key: str, node_metadata: dict | None = None) -> str:
+    if not isinstance(node_key, str) or not node_key.strip():
+        return ""
+    line = str((node_metadata or {}).get("node_label") or node_key).strip() or node_key
+    suffixes: list[str] = []
+    lifecycle_stage = str((node_metadata or {}).get("lifecycle_stage") or "").strip().lower()
+    if lifecycle_stage and lifecycle_stage != "active":
+        suffixes.append(lifecycle_stage)
+    if suffixes:
+        line += f" ({', '.join(suffixes)})"
+    return line
+
+
+def render_causal_focus_line(edge_key: str, contested_edges: set[str], edge_metadata: dict | None = None) -> str:
+    if not isinstance(edge_key, str) or not edge_key.strip():
+        return ""
+    parts = edge_key.split("__")
+    if len(parts) >= 3:
+        source, effect, target = parts[0], parts[1], parts[2]
+        effect_map = {
+            "increases": "->",
+            "decreases": "-x->",
+            "conditions": "=>",
+        }
+        arrow = effect_map.get(effect, "->")
+        line = f"{source} {arrow} {target}"
+    else:
+        line = edge_key
+    suffixes: list[str] = []
+    lifecycle_stage = str((edge_metadata or {}).get("lifecycle_stage") or "").strip().lower()
+    if lifecycle_stage and lifecycle_stage != "active":
+        suffixes.append(lifecycle_stage)
+    if edge_key in contested_edges:
+        suffixes.append("contested")
+    if suffixes:
+        line += f" ({', '.join(suffixes)})"
+    return line
+
+
+def render_lmd_section(payload: dict) -> tuple[str, list[str]]:
+    bundle = load_lmd_bundle(payload)
+    if not bundle or not bundle.get("lmd_used"):
+        return "", []
+
+    results = bundle.get("results") or {}
+    case_paths = [item.get("review_path") for item in (results.get("case_reviews") or []) if item.get("review_path")]
+    intervention_paths = [item.get("path") for item in (results.get("active_interventions") or []) if item.get("path")]
+    required_check_rows = results.get("required_checks") or []
+    required_check_keys = [row.get("check_key") for row in required_check_rows if isinstance(row, dict) and row.get("check_key")]
+    negative_check_rows = [row for row in (results.get("negative_checks") or []) if isinstance(row, dict)]
+    negative_check_text = [row.get("avoid") for row in negative_check_rows if row.get("avoid")]
+    causal_context = bundle.get("causal_context") or {}
+    contested_edges = set(causal_context.get("contested_edges") or [])
+    edge_metadata = edge_metadata_lookup(causal_context)
+    node_metadata = node_metadata_lookup(causal_context)
+    matched_edges = [render_causal_focus_line(edge_key, contested_edges, edge_metadata.get(edge_key)) for edge_key in (causal_context.get("matched_edges") or [])]
+    matched_edges = [line for line in matched_edges if line]
+    covered_node_keys: set[str] = set()
+    for edge_key in (causal_context.get("matched_edges") or []):
+        covered_node_keys.update(edge_endpoint_nodes(str(edge_key or "")))
+    disclosed_trial_nodes = [
+        render_causal_node_line(node_key, node_metadata.get(node_key))
+        for node_key in (causal_context.get("active_nodes") or [])
+        if str((node_metadata.get(node_key) or {}).get("lifecycle_stage") or "").strip().lower() == "trial"
+        and node_key not in covered_node_keys
+    ]
+    disclosed_trial_nodes = [line for line in disclosed_trial_nodes if line]
+    has_trial_edges = any(str((row or {}).get("lifecycle_stage") or "").strip().lower() == "trial" for row in edge_metadata.values())
+    has_trial_nodes = bool(disclosed_trial_nodes)
+
+    sections = [
+        "## LMD",
+        "Use this as compact reviewed mechanism-specific guidance for this case. Treat it as case-relevant prior learning, not unconditional canon.",
+    ]
+    if has_trial_edges or has_trial_nodes:
+        sections.append("Some causal_focus items below are live-graph trial mechanisms exposed only for this treatment/trial run. Treat them as bounded experimental structure, not settled canon.")
+    sections.extend(render_path_block("case_review_paths", case_paths))
+    sections.extend(render_path_block("active_intervention_paths", intervention_paths))
+    sections.extend(render_path_block("causal_focus", matched_edges))
+    if disclosed_trial_nodes:
+        sections.extend(render_path_block("experimental_trial_nodes", disclosed_trial_nodes))
+    sections.extend(render_path_block("required_checks", required_check_keys))
+    sections.extend(render_path_block("negative_checks", negative_check_text))
+    sections.append("")
+    return "\n".join(sections), required_check_keys
+
+
+
+def render_trial_overlay_section(payload: dict) -> str:
+    bundle = load_lmd_bundle(payload)
+    if not bundle:
+        return ""
+    overlay = bundle.get("trial_overlay") or {}
+    if not isinstance(overlay, dict):
+        return ""
+    if not bool(overlay.get("used")):
+        return ""
+
+    selected = [row for row in (overlay.get("selected_candidates") or []) if isinstance(row, dict) and row.get("injected")]
+    if not selected:
+        return ""
+
+    sections = [
+        "## Trial mechanism checks (experimental)",
+        "These items are proposal-layer trial overlays selected for this treatment run.",
+        "Treat them as bounded experimental hypotheses, not canon. Use them only if the evidence supports them, and say so explicitly if they do not help.",
+    ]
+    for row in selected:
+        proposal_key = str(row.get("proposal_key") or row.get("proposal_id") or "unknown").strip()
+        candidate_type = str(row.get("candidate_type") or "unknown").strip()
+        mechanism_family = str(row.get("mechanism_family") or "unassigned").strip()
+        sections.append(
+            f"- {proposal_key} [{candidate_type}; family={mechanism_family}; trial_score={row.get('shadow_trial_score')}; overlay_score={row.get('overlay_score')}]"
+        )
+        active_nodes = row.get("matched_active_nodes") or []
+        candidate_edges = (row.get("matched_candidate_edges") or []) + (row.get("matched_contested_edges") or [])
+        required_checks = row.get("matched_required_checks") or []
+        if active_nodes:
+            sections.append(f"  - matched_active_nodes: {', '.join(str(item) for item in active_nodes)}")
+        if candidate_edges:
+            sections.append(f"  - matched_edges: {', '.join(str(item) for item in candidate_edges)}")
+        if required_checks:
+            sections.append(f"  - suggested_checks: {', '.join(str(item) for item in required_checks)}")
     sections.append("")
     return "\n".join(sections)
 
@@ -320,6 +508,8 @@ def build_prompt(payload: dict) -> str:
     timeline_file_path = payload.get("timeline_file_path") or f"qualitative-db/40-research/cases/{case_key}/timeline.md"
     difficulty_profile = payload.get("difficulty_profile") or {}
     qmd_section = render_qmd_section(payload)
+    lmd_section, lmd_required_checks = render_lmd_section(payload)
+    trial_overlay_section = render_trial_overlay_section(payload)
     base_contract_rel = BASE_CONTRACT_PATH.relative_to(WORKSPACE_ROOT)
     persona_prompt_rel = PERSONA_FILES[agent_label].relative_to(WORKSPACE_ROOT)
     agent_finding_template_rel = AGENT_FINDING_TEMPLATE_PATH.relative_to(WORKSPACE_ROOT)
@@ -361,7 +551,9 @@ def build_prompt(payload: dict) -> str:
 Why this case is flagged:
 {rendered_rationale}
 """
-        completion_checklist = build_completion_checklist(difficulty_profile)
+        completion_checklist = build_completion_checklist(difficulty_profile, lmd_required_checks=lmd_required_checks)
+    elif lmd_required_checks:
+        completion_checklist = build_completion_checklist({}, lmd_required_checks=lmd_required_checks)
 
     prompt = f"""You are the `{agent_label}` researcher for one active market case.
 
@@ -392,6 +584,8 @@ Read only what you need, not the whole repo:
 {difficulty_lines}
 {completion_checklist}
 {qmd_section}
+{lmd_section}
+{trial_overlay_section}
 ## Required output
 - write the main agent finding exactly to: `{workspace_note_path}`
 - also write a compact reasoning sidecar JSON exactly to: `{reasoning_sidecar_path}`

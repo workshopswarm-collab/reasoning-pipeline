@@ -1,0 +1,330 @@
+{
+  "actor": "orchestrator",
+  "agent_tool_use_allowed": true,
+  "artifact_type": "decision_stage_status",
+  "case_key": "case-20260416-ca40bc37",
+  "decision_context_path": "roles/decision-maker/runtime/artifacts/case-20260416-ca40bc37/decision-context-dispatch-case-20260416-ca40bc37-20260416T053546Z.json",
+  "decision_lane": {
+    "topic_id": "4601",
+    "topic_title": "case-20260416-ca40bc37 | decision | T053546Z",
+    "session_key": "agent:main:telegram:group:-1003846500961:topic:4601"
+  },
+  "decision_launch_claim": {
+    "claimed_at": "2026-04-16T07:18:31.040673Z",
+    "decision_context_path": "roles/decision-maker/runtime/artifacts/case-20260416-ca40bc37/decision-context-dispatch-case-20260416-ca40bc37-20260416T053546Z.json",
+    "launch_log_path": "scripts/.runtime-state/decision-maker-launches/case-20260416-ca40bc37-20260416T071831Z.log",
+    "launcher": "pipeline_automation_actions.launch_decision_maker",
+    "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260416-ca40bc37/decision-prompt-dispatch-case-20260416-ca40bc37-20260416T053546Z.md",
+    "runner_pid": 19848
+  },
+  "decision_prompt_path": "roles/decision-maker/runtime/artifacts/case-20260416-ca40bc37/decision-prompt-dispatch-case-20260416-ca40bc37-20260416T053546Z.md",
+  "decision_readiness": "",
+  "decision_target_chat_id": "-1003846500961",
+  "decision_target_session_key": "agent:main:telegram:group:-1003846500961:topic:4601",
+  "decision_visible_finish_marker": "DECISION-MAKING COMPLETED, DECISION PACKAGE CREATED | market=Will the price of Bitcoin be above $72,000 on April 20? | dispatch_id=dispatch-case-20260416-ca40bc37-20260416T053546Z | packet_path=qualitative-db/40-research/cases/case-20260416-ca40bc37/decision-maker/decision-maker-packet.md",
+  "decision_visible_receipt_marker": "SYNTHESIS RECEIVED | market=Will the price of Bitcoin be above $72,000 on April 20? | dispatch_id=dispatch-case-20260416-ca40bc37-20260416T053546Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260416-ca40bc37/decision-context-dispatch-case-20260416-ca40bc37-20260416T053546Z.json",
+  "decision_visible_start_marker": "DECISION-MAKING ANALYSIS UNDERWAY | market=Will the price of Bitcoin be above $72,000 on April 20? | dispatch_id=dispatch-case-20260416-ca40bc37-20260416T053546Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260416-ca40bc37/decision-context-dispatch-case-20260416-ca40bc37-20260416T053546Z.json",
+  "dispatch_id": "dispatch-case-20260416-ca40bc37-20260416T053546Z",
+  "last_stage_event": {
+    "at": "2026-04-16T07:19:50.952881Z",
+    "stage": "decision_validation",
+    "state": "decision_failed",
+    "message": "Decision packet failed validation",
+    "errors": [
+      "band at index 0 has invalid name",
+      "band at index 1 has invalid name",
+      "band at index 2 has invalid name",
+      "band at index 3 has invalid name",
+      "band at index 4 has invalid name"
+    ],
+    "warnings": [
+      "bands do not include the full canonical five-band set"
+    ],
+    "attempt": 2
+  },
+  "packet_json_path": "qualitative-db/40-research/cases/case-20260416-ca40bc37/decision-maker/artifacts/decision-maker-packet.json",
+  "packet_markdown_path": "qualitative-db/40-research/cases/case-20260416-ca40bc37/decision-maker/decision-maker-packet.md",
+  "position_policy": "",
+  "question": "Will the price of Bitcoin be above $72,000 on April 20?",
+  "recommended_side": "",
+  "schema_version": "decision-stage-status/v1",
+  "selected_input_bundle_estimated_tokens": 4414,
+  "selected_input_bundle_mode": "targeted_escalation",
+  "selected_input_bundle_path": "roles/decision-maker/runtime/artifacts/case-20260416-ca40bc37/selected-inputs-dispatch-case-20260416-ca40bc37-20260416T053546Z.json",
+  "stage_events": [
+    {
+      "at": "2026-04-16T07:18:30.354746Z",
+      "message": "Decision-Maker stage initialized from synthesis handoff",
+      "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260416-ca40bc37/synthesizer-agent/decision-handoff.md",
+      "stage": "kickoff",
+      "state": "decision_ready_for_receipt"
+    },
+    {
+      "agent_tool_use_allowed": true,
+      "approx_tokens_after_trim": 4414,
+      "at": "2026-04-16T07:18:31.008325Z",
+      "message": "Built deterministic Decision-Maker selected-input bundle",
+      "selected_input_bundle_path": "roles/decision-maker/runtime/artifacts/case-20260416-ca40bc37/selected-inputs-dispatch-case-20260416-ca40bc37-20260416T053546Z.json",
+      "stage": "decision_input_selection",
+      "state": "built",
+      "verification_mode": "targeted_escalation",
+      "verification_mode_path": "roles/decision-maker/runtime/artifacts/case-20260416-ca40bc37/verification-mode-dispatch-case-20260416-ca40bc37-20260416T053546Z.json"
+    },
+    {
+      "approx_tokens_after_trim": 2033,
+      "at": "2026-04-16T07:18:31.008554Z",
+      "message": "Built deterministic targeted verification pack",
+      "stage": "decision_targeted_verification",
+      "state": "built",
+      "targeted_verification_pack_path": "roles/decision-maker/runtime/artifacts/case-20260416-ca40bc37/targeted-verification-pack-dispatch-case-20260416-ca40bc37-20260416T053546Z.json"
+    },
+    {
+      "at": "2026-04-16T07:18:31.008729Z",
+      "message": "Built Decision-Maker prompt from compact selected-input bundle",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260416-ca40bc37/decision-prompt-dispatch-case-20260416-ca40bc37-20260416T053546Z.md",
+      "stage": "decision_prompt",
+      "state": "built"
+    },
+    {
+      "at": "2026-04-16T07:18:31.009967Z",
+      "message": "Decision-Maker inputs prepared; awaiting launch claim",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260416-ca40bc37/decision-prompt-dispatch-case-20260416-ca40bc37-20260416T053546Z.md",
+      "stage": "decision_prepare",
+      "state": "handoff_prepared"
+    },
+    {
+      "at": "2026-04-16T07:18:31.040673Z",
+      "decision_context_path": "roles/decision-maker/runtime/artifacts/case-20260416-ca40bc37/decision-context-dispatch-case-20260416-ca40bc37-20260416T053546Z.json",
+      "launch_log_path": "scripts/.runtime-state/decision-maker-launches/case-20260416-ca40bc37-20260416T071831Z.log",
+      "message": "Decision-Maker launch claimed by automation controller",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260416-ca40bc37/decision-prompt-dispatch-case-20260416-ca40bc37-20260416T053546Z.md",
+      "runner_pid": 19848,
+      "stage": "decision_receipt",
+      "state": "handoff_sent"
+    },
+    {
+      "at": "2026-04-16T07:18:31.222656Z",
+      "stage": "kickoff",
+      "state": "reentered",
+      "message": "Decision-Maker executor resumed from existing prepared/running state",
+      "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260416-ca40bc37/synthesizer-agent/decision-handoff.md"
+    },
+    {
+      "at": "2026-04-16T07:18:31.851804Z",
+      "stage": "decision_input_selection",
+      "state": "built",
+      "message": "Built deterministic Decision-Maker selected-input bundle",
+      "verification_mode_path": "roles/decision-maker/runtime/artifacts/case-20260416-ca40bc37/verification-mode-dispatch-case-20260416-ca40bc37-20260416T053546Z.json",
+      "selected_input_bundle_path": "roles/decision-maker/runtime/artifacts/case-20260416-ca40bc37/selected-inputs-dispatch-case-20260416-ca40bc37-20260416T053546Z.json",
+      "verification_mode": "targeted_escalation",
+      "approx_tokens_after_trim": 4414,
+      "agent_tool_use_allowed": true
+    },
+    {
+      "at": "2026-04-16T07:18:31.852028Z",
+      "stage": "decision_targeted_verification",
+      "state": "built",
+      "message": "Built deterministic targeted verification pack",
+      "targeted_verification_pack_path": "roles/decision-maker/runtime/artifacts/case-20260416-ca40bc37/targeted-verification-pack-dispatch-case-20260416-ca40bc37-20260416T053546Z.json",
+      "approx_tokens_after_trim": 2033
+    },
+    {
+      "at": "2026-04-16T07:18:31.852204Z",
+      "stage": "decision_prompt",
+      "state": "built",
+      "message": "Built Decision-Maker prompt from compact selected-input bundle",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260416-ca40bc37/decision-prompt-dispatch-case-20260416-ca40bc37-20260416T053546Z.md"
+    },
+    {
+      "at": "2026-04-16T07:18:37.036048Z",
+      "stage": "decision_lane_bootstrap",
+      "state": "created",
+      "message": "Created dedicated Telegram decision lane",
+      "topic_id": "4601",
+      "topic_title": "case-20260416-ca40bc37 | decision | T053546Z",
+      "session_key": "agent:main:telegram:group:-1003846500961:topic:4601"
+    },
+    {
+      "at": "2026-04-16T07:18:52.269181Z",
+      "stage": "decision_receipt",
+      "state": "visible_marker_sent",
+      "message": "SYNTHESIS RECEIVED | market=Will the price of Bitcoin be above $72,000 on April 20? | dispatch_id=dispatch-case-20260416-ca40bc37-20260416T053546Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260416-ca40bc37/decision-context-dispatch-case-20260416-ca40bc37-20260416T053546Z.json"
+    },
+    {
+      "at": "2026-04-16T07:18:52.270741Z",
+      "stage": "decision_receipt",
+      "state": "accepted",
+      "message": "Decision-Maker handoff accepted",
+      "session_key": "agent:decision-maker:case:case-20260416-ca40bc37",
+      "handoff_status": "started",
+      "gateway_response_path": "roles/decision-maker/runtime/artifacts/case-20260416-ca40bc37/decision-gateway-response-dispatch-case-20260416-ca40bc37-20260416T053546Z.json"
+    },
+    {
+      "at": "2026-04-16T07:18:52.270954Z",
+      "stage": "decision_execution",
+      "state": "decision_analysis_running",
+      "message": "Decision-Maker agent invocation accepted and analysis started",
+      "session_key": "agent:decision-maker:case:case-20260416-ca40bc37",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260416-ca40bc37/decision-prompt-dispatch-case-20260416-ca40bc37-20260416T053546Z.md",
+      "handoff_status": "started"
+    },
+    {
+      "at": "2026-04-16T07:19:00.778925Z",
+      "stage": "decision_execution",
+      "state": "visible_marker_sent",
+      "message": "DECISION-MAKING ANALYSIS UNDERWAY | market=Will the price of Bitcoin be above $72,000 on April 20? | dispatch_id=dispatch-case-20260416-ca40bc37-20260416T053546Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260416-ca40bc37/decision-context-dispatch-case-20260416-ca40bc37-20260416T053546Z.json"
+    },
+    {
+      "at": "2026-04-16T07:19:19.323705Z",
+      "stage": "decision_validation",
+      "state": "decision_validation_failed_retrying",
+      "message": "Decision packet failed validation; retrying once",
+      "attempt": 1,
+      "errors": [
+        "schema_version must equal decision-packet/v1",
+        "valuation.compressed_toward_market_applied must be boolean",
+        "band at index 0 has invalid name",
+        "band at index 1 has invalid name",
+        "band at index 2 has invalid name",
+        "band at index 3 has invalid name",
+        "band at index 4 has invalid name"
+      ],
+      "warnings": [
+        "bands do not include the full canonical five-band set"
+      ],
+      "raw_response_text_path": "roles/decision-maker/runtime/artifacts/case-20260416-ca40bc37/decision-response-dispatch-case-20260416-ca40bc37-20260416T053546Z.raw.txt",
+      "gateway_response_path": "roles/decision-maker/runtime/artifacts/case-20260416-ca40bc37/decision-gateway-response-dispatch-case-20260416-ca40bc37-20260416T053546Z.json",
+      "parse_failure_artifact_path": "roles/decision-maker/runtime/artifacts/case-20260416-ca40bc37/decision-parse-failure-dispatch-case-20260416-ca40bc37-20260416T053546Z.json"
+    },
+    {
+      "at": "2026-04-16T07:19:19.325026Z",
+      "stage": "decision_execution",
+      "state": "decision_retry_requested",
+      "message": "Decision-Maker output invalid; requested one strict JSON retry",
+      "attempt": 2,
+      "retry_error": "schema_version must equal decision-packet/v1; valuation.compressed_toward_market_applied must be boolean; band at index 0 has invalid name; band at index 1 has invalid name; band at index 2 has invalid name; band at index 3 has invalid name; band at index 4 has invalid name",
+      "validation_errors": [
+        "schema_version must equal decision-packet/v1",
+        "valuation.compressed_toward_market_applied must be boolean",
+        "band at index 0 has invalid name",
+        "band at index 1 has invalid name",
+        "band at index 2 has invalid name",
+        "band at index 3 has invalid name",
+        "band at index 4 has invalid name"
+      ]
+    },
+    {
+      "at": "2026-04-16T07:19:19.325060Z",
+      "stage": "decision_execution",
+      "state": "decision_analysis_running",
+      "message": "Decision-Maker retry requested after invalid packet output",
+      "attempt": 2,
+      "retry_error": "schema_version must equal decision-packet/v1; valuation.compressed_toward_market_applied must be boolean; band at index 0 has invalid name; band at index 1 has invalid name; band at index 2 has invalid name; band at index 3 has invalid name; band at index 4 has invalid name",
+      "validation_errors": [
+        "schema_version must equal decision-packet/v1",
+        "valuation.compressed_toward_market_applied must be boolean",
+        "band at index 0 has invalid name",
+        "band at index 1 has invalid name",
+        "band at index 2 has invalid name",
+        "band at index 3 has invalid name",
+        "band at index 4 has invalid name"
+      ]
+    },
+    {
+      "at": "2026-04-16T07:19:25.729878Z",
+      "stage": "decision_execution",
+      "state": "decision_retry_accepted",
+      "message": "Decision-Maker retry accepted",
+      "attempt": 2,
+      "session_key": "agent:decision-maker:case:case-20260416-ca40bc37",
+      "gateway_response_path": "roles/decision-maker/runtime/artifacts/case-20260416-ca40bc37/decision-gateway-response-dispatch-case-20260416-ca40bc37-20260416T053546Z-attempt-2.json"
+    },
+    {
+      "at": "2026-04-16T07:19:50.951975Z",
+      "stage": "decision_validation",
+      "state": "decision_validation_failed_exhausted",
+      "message": "Decision packet remained invalid after retry budget exhausted",
+      "attempt": 2,
+      "errors": [
+        "band at index 0 has invalid name",
+        "band at index 1 has invalid name",
+        "band at index 2 has invalid name",
+        "band at index 3 has invalid name",
+        "band at index 4 has invalid name"
+      ],
+      "warnings": [
+        "bands do not include the full canonical five-band set"
+      ],
+      "raw_response_text_path": "roles/decision-maker/runtime/artifacts/case-20260416-ca40bc37/decision-response-dispatch-case-20260416-ca40bc37-20260416T053546Z-attempt-2.raw.txt",
+      "gateway_response_path": "roles/decision-maker/runtime/artifacts/case-20260416-ca40bc37/decision-gateway-response-dispatch-case-20260416-ca40bc37-20260416T053546Z-attempt-2.json",
+      "parse_failure_artifact_path": "roles/decision-maker/runtime/artifacts/case-20260416-ca40bc37/decision-parse-failure-dispatch-case-20260416-ca40bc37-20260416T053546Z-attempt-2.json"
+    },
+    {
+      "at": "2026-04-16T07:19:50.952881Z",
+      "stage": "decision_validation",
+      "state": "decision_failed",
+      "message": "Decision packet failed validation",
+      "errors": [
+        "band at index 0 has invalid name",
+        "band at index 1 has invalid name",
+        "band at index 2 has invalid name",
+        "band at index 3 has invalid name",
+        "band at index 4 has invalid name"
+      ],
+      "warnings": [
+        "bands do not include the full canonical five-band set"
+      ],
+      "attempt": 2
+    }
+  ],
+  "status": "decision_failed",
+  "targeted_verification_pack_path": "roles/decision-maker/runtime/artifacts/case-20260416-ca40bc37/targeted-verification-pack-dispatch-case-20260416-ca40bc37-20260416T053546Z.json",
+  "targeted_verification_pack_required": true,
+  "trade_authorization": "",
+  "updated_at": "2026-04-16T07:19:50.952905Z",
+  "verification_mode_path": "roles/decision-maker/runtime/artifacts/case-20260416-ca40bc37/verification-mode-dispatch-case-20260416-ca40bc37-20260416T053546Z.json",
+  "warnings": [],
+  "previous_status": "handoff_sent",
+  "raw_gateway_response_path": "roles/decision-maker/runtime/artifacts/case-20260416-ca40bc37/decision-gateway-response-dispatch-case-20260416-ca40bc37-20260416T053546Z-attempt-2.json",
+  "raw_response_text_path": "roles/decision-maker/runtime/artifacts/case-20260416-ca40bc37/decision-response-dispatch-case-20260416-ca40bc37-20260416T053546Z-attempt-2.raw.txt",
+  "decision_parse_failure_artifact_path": "roles/decision-maker/runtime/artifacts/case-20260416-ca40bc37/decision-parse-failure-dispatch-case-20260416-ca40bc37-20260416T053546Z-attempt-2.json",
+  "decision_parse_attempt_count": 2,
+  "decision_recovered_after_retry": false,
+  "decision_lane_topic_id": "4601",
+  "decision_lane_topic_title": "case-20260416-ca40bc37 | decision | T053546Z",
+  "decision_lane_session_key": "agent:main:telegram:group:-1003846500961:topic:4601",
+  "decision_target_topic_id": "4601",
+  "decision_target_topic_title": "case-20260416-ca40bc37 | decision | T053546Z",
+  "decision_receipt_marker_sent_at": "2026-04-16T07:18:52.269131+00:00",
+  "decision_analysis_marker_sent_at": "2026-04-16T07:19:00.778870+00:00",
+  "terminal_summary": {
+    "at": "2026-04-16T07:19:50.952912Z",
+    "status": "decision_failed",
+    "decision_lane": {
+      "topic_id": "4601",
+      "topic_title": "case-20260416-ca40bc37 | decision | T053546Z",
+      "session_key": "agent:main:telegram:group:-1003846500961:topic:4601"
+    },
+    "packet_json_path": "qualitative-db/40-research/cases/case-20260416-ca40bc37/decision-maker/artifacts/decision-maker-packet.json",
+    "packet_markdown_path": "qualitative-db/40-research/cases/case-20260416-ca40bc37/decision-maker/decision-maker-packet.md",
+    "trade_authorization": "",
+    "decision_readiness": "",
+    "last_stage_event": {
+      "at": "2026-04-16T07:19:50.952881Z",
+      "stage": "decision_validation",
+      "state": "decision_failed",
+      "message": "Decision packet failed validation",
+      "errors": [
+        "band at index 0 has invalid name",
+        "band at index 1 has invalid name",
+        "band at index 2 has invalid name",
+        "band at index 3 has invalid name",
+        "band at index 4 has invalid name"
+      ],
+      "warnings": [
+        "bands do not include the full canonical five-band set"
+      ],
+      "attempt": 2
+    }
+  }
+}

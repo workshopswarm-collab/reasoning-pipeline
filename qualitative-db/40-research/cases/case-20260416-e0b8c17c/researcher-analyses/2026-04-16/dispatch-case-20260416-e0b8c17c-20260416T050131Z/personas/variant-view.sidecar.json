@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "The view relies on current distance above 72k remaining meaningful through April 20.",
+    "A fast BTC drawdown could erase the cushion and make No much more live.",
+    "Minor residual ambiguity remains around UI-versus-API equivalence even though it appears low."
+  ],
+  "key_assumptions": [
+    "The Binance UI candle referenced by Polymarket is operationally equivalent to Binance's API-exposed BTCUSDT 1-minute kline.",
+    "A roughly 4% price cushion with four days remaining still leaves material path risk into the exact noon ET minute.",
+    "No exchange anomaly or settlement clarification will materially alter the straightforward contract reading."
+  ],
+  "main_logical_chain": [
+    "Market implies 83.5% Yes and BTC currently trades above the threshold on the named venue.",
+    "Contract settlement is narrower than a generic BTC-above-threshold view because it depends on one exact Binance minute close at noon ET.",
+    "That path dependence creates modest but real downside to overconfidence, so own probability is below market while remaining pro-Yes."
+  ],
+  "main_thesis": "Yes is still more likely than No, but the market is modestly overconfident because this is a venue-specific single-minute settlement and BTC's current cushion above 72k is meaningful but not decisive over four days.",
+  "own_probability": 0.78,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone (noon) ... has a final 'Close' price higher than the price specified in the title.",
+    "ticker/price returned BTCUSDT 75009.98000000 during the run"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation",
+    "variant_hypothesis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-e0b8c17c",
+    "dispatch_id": "dispatch-case-20260416-e0b8c17c-20260416T050131Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "f323ba38-840d-4af0-b5fb-b38a4f0c308c",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-e0b8c17c/researcher-analyses/2026-04-16/dispatch-case-20260416-e0b8c17c-20260416T050131Z/personas/variant-view.md",
+    "source_persona_sha256": "cd63853dae4060833016232a089175754d5604cf33959fd7ed6020cf941005be"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is good for this case: authoritative Polymarket rules plus direct Binance-operated verification, with moderate evidence independence but low-to-medium source-of-truth ambiguity.",
+  "strongest_disconfirmers": [
+    "BTC is already comfortably above the strike, so ordinary volatility may not be enough to break the Yes case.",
+    "If BTC remains rangebound or trends up, the exact-minute timing concern may be underpowered."
+  ],
+  "strongest_supports": [
+    "Direct Binance ticker verification during the run showed BTCUSDT around 75009.98, already above 72000.",
+    "Polymarket rules explicitly define settlement as the Binance BTC/USDT 12:00 ET 1-minute candle close on April 20.",
+    "Recent Binance kline/timezone verification confirmed the noon ET candle mapping is operationally straightforward."
+  ],
+  "timing_relevance": "The market resolves on the Binance BTC/USDT 1-minute candle labeled 12:00 ET on 2026-04-20, so exact timing is central rather than incidental.",
+  "unresolved_ambiguities": [
+    "Whether the exact web UI candle display could differ in any practical way from the API kline surface used for verification.",
+    "How much realized BTC volatility will compress or expand before the observation minute."
+  ],
+  "what_would_change_view": "I would move toward or above market if BTC held well above 72k with lower volatility and added verification removed residual settlement ambiguity; I would move more bearish if BTC lost the current cushion or if venue-specific data issues appeared."
+}

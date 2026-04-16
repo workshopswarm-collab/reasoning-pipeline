@@ -24,6 +24,7 @@ Current runtime entry points:
 - `bootstrap_decision_telegram_lane.py` — create/reuse a dedicated Telegram decision lane
 - `run_decision_maker.py` — invoke the separate `decision-maker` agent, validate the returned packet, render artifacts, and update lifecycle state
 - `show_decision_stage_status.py` — summarize current decision-stage state for a case
+- `build_light_refresh_lmd_bundle.py` — build a compact, read-only light-refresh LMD overlay bundle by reusing the researcher-side LMD generator without logging exposures or writing evaluator learning artifacts
 
 Visible Telegram stage markers owned by the Decision-Maker runtime:
 - `SYNTHESIS RECEIVED ...`

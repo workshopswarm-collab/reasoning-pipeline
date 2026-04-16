@@ -1,0 +1,58 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A weekend or Monday-morning risk-off shock could erase the current cushion.",
+    "Exchange-specific print mechanics matter because settlement uses Binance only."
+  ],
+  "key_assumptions": [
+    "No major downside catalyst hits before Monday noon ET.",
+    "Binance BTC/USDT remains a clean settlement surface without an anomalous print.",
+    "A roughly 4% cushion over the strike is meaningful over the remaining four-day window."
+  ],
+  "main_logical_chain": [
+    "The contract resolves on the Binance BTC/USDT 12:00 ET 1-minute close on April 20.",
+    "Current Binance spot is materially above 72k with only four days remaining.",
+    "Absent a fresh downside catalyst, time decay and existing price cushion favor Yes.",
+    "Residual risk remains meaningful because a single volatile downswing or exchange-specific anomaly could still flip the result."
+  ],
+  "main_thesis": "BTC/USDT is already materially above 72k with only four days left, so Yes is favored unless a fresh downside catalyst pushes Binance spot below the strike at the exact noon-ET resolution minute.",
+  "own_probability": 0.88,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone ... has a final 'Close' price higher than ... 72,000.",
+    "Binance BTCUSDT spot was around 74.9k during review."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "catalyst_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260416-bbc8ed19",
+    "dispatch_id": "dispatch-case-20260416-bbc8ed19-20260416T072336Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "73a44d4e-fa51-49a1-9f56-3669c78f831b",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-bbc8ed19/researcher-analyses/2026-04-16/dispatch-case-20260416-bbc8ed19-20260416T072336Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "6932015a8037db694b625c359586db6341017e629716c3b6807e38cfc7016abc"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality direct contract and settlement sources, with medium evidence independence because both mechanics and context rely heavily on Binance.",
+  "strongest_disconfirmers": [
+    "BTC can easily move 4% in four days, and the contract settles on one exact 1-minute close.",
+    "Earlier in the week Binance daily range reached roughly 70.5k intraday, showing sub-72k is plausible."
+  ],
+  "strongest_supports": [
+    "Binance BTC/USDT traded around 74.9k during review, about 2.9k above the strike.",
+    "The contract horizon is short: resolution is Monday, April 20 at 12:00 ET.",
+    "Recent Binance daily candles show BTC has spent multiple sessions above 72k."
+  ],
+  "timing_relevance": "The relevant catalyst window is now through weekend trading and Monday morning ET; if no downside trigger arrives, Yes should slowly strengthen into resolution.",
+  "unresolved_ambiguities": [
+    "Exact chart-label interpretation of the noon-ET candle deserves care, though the governing venue is clearly Binance.",
+    "No separate scheduled macro catalyst source was pulled in this run."
+  ],
+  "what_would_change_view": "A sustained move back below 73k, a push toward or below 72k before Sunday night, or evidence of Binance-specific settlement anomalies would make me materially less bullish."
+}

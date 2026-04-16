@@ -1,0 +1,58 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Short-horizon BTC volatility can erase the cushion quickly.",
+    "The market settles on one exact minute close, making path and timing risk nontrivial."
+  ],
+  "key_assumptions": [
+    "BTC/USDT remains broadly in its current Binance trading regime through the resolution window.",
+    "Binance prints remain operationally normal and representative at the deciding minute.",
+    "No hidden contract nuance changes the plain reading of the noon ET one-minute close condition."
+  ],
+  "main_logical_chain": [
+    "Interpret the contract narrowly using Polymarket rules: only the Binance BTC/USDT 12:00 ET one-minute close matters.",
+    "Check current Binance minute-level price context and compare it with the 72000 threshold.",
+    "Because current price sits several percent above the threshold, the base-rate path is persistence rather than a large enough drop before resolution.",
+    "Adjust slightly above the market's 82.5% because the observed cushion looks comfortably non-marginal."
+  ],
+  "main_thesis": "Because Binance BTC/USDT was already trading materially above 72000 on April 15, the base-rate expectation is that the April 16 noon ET one-minute close stays above 72000 unless there is a meaningful downside move or exchange-specific dislocation.",
+  "own_probability": 0.87,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "This market will resolve to Yes if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone has a final Close price higher than 72000.",
+    "current_price = 0.825",
+    "Binance recent 1m data showed BTC around 74k-75k"
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "market_anchor",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260415-1e5e80f9",
+    "dispatch_id": "dispatch-case-20260415-1e5e80f9-20260415T080017Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "02d74f12-cdde-4f01-8fcc-d7096b9d2a89",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-1e5e80f9/researcher-analyses/2026-04-15/dispatch-case-20260415-1e5e80f9-20260415T080017Z/personas/base-rate.md",
+    "source_persona_sha256": "0440869ca1316124daf906d1882124db6cd34080e142c79ea15ad0748b8d6976"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is strong for a medium-difficulty narrow-resolution market: Polymarket provides explicit rules and Binance provides direct exchange-specific price context; source-of-truth ambiguity is low.",
+  "strongest_disconfirmers": [
+    "Bitcoin can still move more than 3-4% in less than a day.",
+    "A Binance-specific wick or dislocation at the relevant minute could produce a losing close even if broader spot remains higher elsewhere."
+  ],
+  "strongest_supports": [
+    "Polymarket rules make the settlement source and timing unusually explicit: Binance BTC/USDT 1m candle at 12:00 ET on April 16.",
+    "Recent Binance 1m klines showed BTC trading around 74k-75k, leaving a several-percent cushion above 72k.",
+    "On a roughly one-day horizon, ordinary persistence is the outside-view default when spot is already comfortably above the strike."
+  ],
+  "timing_relevance": "This is a one-day, noon-ET, one-minute-candle market, so current distance to threshold on Binance is the key timing-sensitive input.",
+  "unresolved_ambiguities": [
+    "No major rule ambiguity remains, but late price action before noon ET could materially change the estimate."
+  ],
+  "what_would_change_view": "A fresh Binance-specific check showing BTC much closer to or below 72000, or evidence of Binance-specific operational/pricing anomalies, would reduce the estimate materially."
+}

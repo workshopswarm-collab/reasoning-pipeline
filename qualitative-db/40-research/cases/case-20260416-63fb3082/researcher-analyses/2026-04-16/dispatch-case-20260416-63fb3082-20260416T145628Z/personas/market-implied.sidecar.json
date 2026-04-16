@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A fast BTC selloff over the next few days would compress the cushion quickly.",
+    "Exchange-specific anomaly on Binance would matter more than usual because Binance is the sole governing source."
+  ],
+  "key_assumptions": [
+    "Current Binance spot cushion above 68k remains the dominant predictor over the next five days.",
+    "No major macro or crypto-specific shock hits before the April 21 noon ET settlement minute.",
+    "Binance BTCUSDT remains operationally reliable as the contract source of truth."
+  ],
+  "main_logical_chain": [
+    "Read the market's 95.25% price as an information-rich prior and inspect the exact settlement mechanics.",
+    "Verify directly on Binance that BTCUSDT is trading around 73.9k and that the relevant instrument is active and priced to $0.01 precision.",
+    "Compare the 68k threshold to current spot and nearby strike prices to infer that the market is pricing a comfortable but not infinite cushion.",
+    "Discount slightly from market because single-minute settlement and crypto volatility leave more residual tail risk than a 95% price fully reflects."
+  ],
+  "main_thesis": "The market's high-Yes view is broadly justified because Binance BTC/USDT is already trading near 73.9k, comfortably above 68k, but 95% slightly understates five-day single-minute-close tail risk.",
+  "own_probability": 0.92,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "Binance BTCUSDT price 73885.71",
+    "Polymarket 68,000 line around 95%",
+    "Yes requires Binance BTC/USDT 12:00 ET one-minute Close above 68,000"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260416-63fb3082",
+    "dispatch_id": "dispatch-case-20260416-63fb3082-20260416T145628Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "e0f959a1-35b0-43f4-b819-54ad318b66a4",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-63fb3082/researcher-analyses/2026-04-16/dispatch-case-20260416-63fb3082-20260416T145628Z/personas/market-implied.md",
+    "source_persona_sha256": "0f4745f5edee28f781040c0b59e4526d82163981d8e18a95f3ab823cd34c7a61"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is fairly strong for this case because the core evidence comes from Polymarket contract rules plus direct Binance venue data, with a secondary CNBC cross-check; independence is medium and source-of-truth ambiguity is low.",
+  "strongest_disconfirmers": [
+    "The contract settles on one exact 12:00 ET one-minute close, so a short-lived dip at the wrong minute can still defeat a high-Yes position.",
+    "Bitcoin can move more than 8% over five days, so the current cushion is meaningful but not invulnerable."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT spot was about 73,885.71 during research, roughly 5.9k above the threshold.",
+    "Recent Binance 1-minute closes clustered around 73.88k-74.01k, supporting that the spot reading was current and normal.",
+    "Neighboring Polymarket strike prices form a coherent ladder consistent with 68k being well inside the current distribution."
+  ],
+  "timing_relevance": "The contract resolves at 2026-04-21 12:00 ET, about 5.04 days after research time, so near-term volatility and exact settlement-minute behavior matter more than longer-term Bitcoin thesis.",
+  "unresolved_ambiguities": [
+    "How much single-minute-close risk traders are already pricing versus broad directional risk.",
+    "Whether any near-term macro catalyst could change the volatility regime before April 21."
+  ],
+  "what_would_change_view": "I would cut the estimate if BTC loses much of its cushion toward 68k or if new macro/crypto stress appears; I would move closer to market if BTC stays firmly above roughly 74k into April 20-21 without new adverse catalysts."
+}

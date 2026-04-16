@@ -1,0 +1,56 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A fast selloff before Apr 17 noon ET could erase the current cushion.",
+    "The relevant failure mode is minute-specific timing risk, not only broad directional weakness."
+  ],
+  "key_assumptions": [
+    "BTC remains in roughly its current price regime through the Apr 17 noon ET resolution window.",
+    "Binance BTC/USDT remains representative enough that exchange-specific distortion is not the dominant risk."
+  ],
+  "main_logical_chain": [
+    "Read Polymarket rules to verify the governing source, timestamp, and close-above condition.",
+    "Check direct Binance BTCUSDT pricing and recent candles to see whether BTC already has a meaningful cushion above 72k.",
+    "Compare that cushion and the ladder structure to the 83.5% market prior.",
+    "Shade slightly below market because this is a future one-minute close-above contract rather than a touch or current-spot question."
+  ],
+  "main_thesis": "The market's 83.5% Yes price is mostly efficient because BTC/USDT is already trading around 74.1k, but it is slightly rich because the contract resolves on one exact future Binance minute close above 72k.",
+  "own_probability": 0.79,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone has a final 'Close' price higher than the price specified in the title.",
+    "Current estimate: 79% Yes versus market-implied 83.5%."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-d63a2806",
+    "dispatch_id": "dispatch-case-20260415-d63a2806-20260415T175526Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "9f219832-10ec-44a2-956e-72409b569e55",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-d63a2806/researcher-analyses/2026-04-15/dispatch-case-20260415-d63a2806-20260415T175526Z/personas/market-implied.md",
+    "source_persona_sha256": "f93defdeb891ae47904a41b33767eb39f8d1c35d29179c44072097fc5db0249b"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality rules source plus direct Binance price context, with medium evidence independence and low source-of-truth ambiguity.",
+  "strongest_disconfirmers": [
+    "The contract depends on one exact future Binance 1-minute close, so a timing-specific dip below 72k can still resolve No.",
+    "BTC can move more than 2k intraday without a major regime shift."
+  ],
+  "strongest_supports": [
+    "BTC/USDT was already around 74.1k during research, giving roughly a 2.1k cushion above the threshold.",
+    "Nearby Polymarket strike prices looked internally coherent, supporting an efficient short-horizon distribution."
+  ],
+  "timing_relevance": "Very high: the contract resolves on the Binance BTC/USDT 12:00 ET 1-minute candle close on Apr 17, 2026.",
+  "unresolved_ambiguities": [
+    "No direct proof exists yet for the resolving minute because it has not occurred.",
+    "The degree of downside volatility into the exact noon ET window remains uncertain."
+  ],
+  "what_would_change_view": "I would cut the estimate if BTC loses the 73k area or if downside volatility rises sharply into the resolving minute; I would move closer to market or above it if BTC stays firm into late Apr 16 / early Apr 17."
+}

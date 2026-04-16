@@ -1,0 +1,63 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "The edge over strike was less than 1% at research time.",
+    "This is a date-sensitive and exact-minute contract rather than a broad daily-close question.",
+    "Short-horizon BTC volatility can overwhelm simple spot anchoring."
+  ],
+  "key_assumptions": [
+    "Current BTC strength modestly above 74,000 has some persistence into the April 17 noon ET print.",
+    "Binance remains operationally normal and broadly aligned with broader spot pricing through settlement.",
+    "No major overnight or morning shock materially changes crypto risk sentiment before the resolving minute."
+  ],
+  "main_logical_chain": [
+    "Start from the market's ~65% Yes price as an information-rich prior.",
+    "Check the governing rules and confirm the exact Binance BTC/USDT 12:00 ET 1-minute close is the source of truth.",
+    "Verify that Binance spot and recent 1-minute closes are currently above 74,000 and that Coinbase is broadly aligned.",
+    "Discount somewhat for the narrow timing condition and small cushion above strike.",
+    "Land slightly below market at 61% Yes rather than making a strong contrarian move."
+  ],
+  "main_thesis": "The market's ~65% Yes price is broadly defensible because Binance BTC/USDT was already modestly above 74,000, but the narrow one-minute noon ET resolution window keeps meaningful reversal risk alive, so fair value looks slightly lower around 61%.",
+  "own_probability": 0.61,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone (noon) ... has a final 'Close' price higher than the price specified in the title.",
+    "Binance API ticker showed BTCUSDT around 74,645.30 at fetch time.",
+    "Coinbase BTC-USD ticker cross-check showed about 74,659.5 at nearly the same timestamp."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation",
+    "technical_reference"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-cd7fa6c7",
+    "dispatch_id": "dispatch-case-20260416-cd7fa6c7-20260416T010113Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "21f0a156-5a26-4e98-87c3-0e4b3216cab5",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-cd7fa6c7/researcher-analyses/2026-04-16/dispatch-case-20260416-cd7fa6c7-20260416T010113Z/personas/market-implied.md",
+    "source_persona_sha256": "cf49c39da92975d8e4e43d9ec80e9031484226e349b0166b62d92303eebd23b5"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is solid for a medium-difficulty short-horizon case: Polymarket rules give clear resolution mechanics, Binance API is close to the settlement venue, and Coinbase provides a modest independent contextual cross-check; source-of-truth ambiguity is low.",
+  "strongest_disconfirmers": [
+    "The contract resolves on one exact future one-minute close, and BTC was only modestly above the strike.",
+    "A normal sub-1% downside move by noon ET could flip the outcome to No.",
+    "No strong catalyst was identified that would make persistence above 74,000 especially secure."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT spot was about 74,645 at research time, already above the strike.",
+    "Recent Binance 1-minute closes fetched during research were all above 74,000.",
+    "Coinbase BTC-USD was nearly identical, reducing concern that Binance was unusually dislocated."
+  ],
+  "timing_relevance": "High timing sensitivity: the contract depends on the Binance BTC/USDT 12:00 ET one-minute candle close on April 17, so ordinary overnight or morning volatility remains decision-relevant.",
+  "unresolved_ambiguities": [
+    "How much persistence should be inferred from current-above-strike spot context into the specific noon ET minute.",
+    "Whether any material overnight or morning catalyst emerges before settlement."
+  ],
+  "what_would_change_view": "I would turn more bearish if Binance traded back below 74,000 into the late-morning ET window or if crypto risk sentiment rolled over sharply; I would turn more bullish if BTC built a larger sustained buffer above 74,000 before settlement."
+}

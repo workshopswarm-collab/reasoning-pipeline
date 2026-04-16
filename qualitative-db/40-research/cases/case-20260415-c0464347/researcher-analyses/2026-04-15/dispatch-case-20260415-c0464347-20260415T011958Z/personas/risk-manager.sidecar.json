@@ -1,0 +1,61 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Exact-minute settlement sensitivity.",
+    "Binance-specific market-structure or operational anomaly risk.",
+    "Remaining five-day crypto volatility window."
+  ],
+  "key_assumptions": [
+    "BTC keeps enough cushion above 70000 over the next five days to survive ordinary volatility.",
+    "Binance UI and API candle interpretation align for the relevant noon ET minute.",
+    "No Binance-specific anomaly distorts the settlement print."
+  ],
+  "main_logical_chain": [
+    "Check governing rules and confirm exact settlement mechanics.",
+    "Verify Binance candle close and timezone interpretation directly from exchange docs.",
+    "Measure current cushion above 70000 using live Binance price and recent range.",
+    "Discount the naive bullish read for exact-minute and Binance-specific tail risk.",
+    "Conclude Yes remains favored, but slightly less than the market's 88% confidence."
+  ],
+  "main_thesis": "Yes is still more likely than not by a wide margin, but the 88% market price is slightly too confident because a single Binance one-minute noon ET close determines settlement.",
+  "own_probability": 0.84,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone (noon) ... has a final 'Close' price higher than ... 70000.",
+    "If timeZone provided, kline intervals are interpreted in that timezone instead of UTC."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "risk_management",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-c0464347",
+    "dispatch_id": "dispatch-case-20260415-c0464347-20260415T011958Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "8357c265-76f4-4779-9bdb-36852971e867",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-c0464347/researcher-analyses/2026-04-15/dispatch-case-20260415-c0464347-20260415T011958Z/personas/risk-manager.md",
+    "source_persona_sha256": "2bee0e00b1a2ba07ccf441f3415522344ecd9b94a4d331701398510c54dac4d6"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality direct sources were used, but evidence concentration is medium because rules come from Polymarket and price/mechanics from Binance only.",
+  "strongest_disconfirmers": [
+    "A single one-minute Binance close at 12:00 ET determines settlement, so timestamp-specific path risk remains real.",
+    "Five days is enough time for a 6%+ BTC drawdown or exchange-specific wick."
+  ],
+  "strongest_supports": [
+    "Live Binance BTC/USDT traded around 74632-74643 during the run, about 6.6% above threshold.",
+    "Binance 24hr low around 73795 remained above 70000.",
+    "Polymarket rules and Binance kline docs make the contract mechanics relatively clear."
+  ],
+  "timing_relevance": "The case resolves on a single 12:00 ET one-minute candle on 2026-04-20, so remaining path risk over the next five days matters more than average spot comfort.",
+  "unresolved_ambiguities": [
+    "Polymarket cites the Binance trading UI rather than a formal API endpoint as the settlement surface.",
+    "No direct preview of Apr 20 noon ET market conditions is possible yet."
+  ],
+  "what_would_change_view": "A drop toward 71000, higher realized volatility, Binance operational issues, or evidence of a different intended candle interpretation would push the estimate down; stable trade above 73000 into Apr 19-20 would push it up."
+}

@@ -1,0 +1,155 @@
+{
+  "schema_version": "decision-packet/v1",
+  "generated_at": "2026-04-15T09:30:00-04:00",
+  "context": {
+    "case_key": "case-20260415-7b143efd",
+    "dispatch_id": "dispatch-case-20260415-7b143efd-20260415T132144Z",
+    "question": "Will the price of Bitcoin be above $70,000 on April 20?",
+    "market_id": "551a0230-0ffb-42cc-9103-4bea5dc0cb4e",
+    "external_market_id": "0x73f9d7c48acbeefbe93bdcdc747947e2e8573945f11720617290fe672bf997d2",
+    "market_slug": "bitcoin-above-70k-on-april-20",
+    "platform": "polymarket",
+    "primary_market_url": "https://polymarket.com/event/bitcoin-above-70k-on-april-20",
+    "market_title": "Will the price of Bitcoin be above $70,000 on April 20?",
+    "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260415-7b143efd/synthesizer-agent/decision-handoff.md",
+    "source_syndicated_finding_path": "qualitative-db/40-research/cases/case-20260415-7b143efd/synthesizer-agent/syndicated-finding.md",
+    "source_light_refresh_brief_path": "",
+    "refresh_mode": "",
+    "decision_maker_agent": "decision-maker",
+    "canonical_markdown_path": "decision-maker-packet.md",
+    "canonical_json_path": "artifacts/decision-maker-packet.json"
+  },
+  "decision": {
+    "side": "yes",
+    "trade_authorization": "watch_only",
+    "position_policy": "hold_only",
+    "decision_readiness": "ready",
+    "primary_crux": "Bitcoin is still more likely than not to close above $70,000 on the April 20 noon ET Binance minute because same-venue spot around 74.3k leaves a real cushion, but the market at 0.88 still overpays for a five-day, single-minute, single-venue threshold where a routine 5-6% pullback can still decide the contract.",
+    "secondary_cruxes": [
+      "There is no major contract blocker; the disagreement is about pricing exact-minute timing risk, not direction.",
+      "A 6% cushion is meaningful, but not large enough to eliminate normal five-day BTC downside and settlement-minute fragility.",
+      "The remaining UI-versus-API ambiguity is minor and not decisive, but it reinforces caution at high prices."
+    ],
+    "thesis_class": "price_not_good_enough"
+  },
+  "valuation": {
+    "fair_value_low": 0.81,
+    "fair_value_high": 0.86,
+    "fair_value_mid": 0.835,
+    "independent_verification_quality": "medium",
+    "compressed_toward_market_applied": true,
+    "compression_reason": "Fresh same-venue verification supports a high-probability Yes baseline and narrows room for a large bearish fade, but exact-minute settlement fragility and ordinary five-day BTC volatility still keep fair value below market.",
+    "market_reference_price": 0.88,
+    "edge_mid_vs_market_pct_points": -4.5
+  },
+  "execution_semantics": {
+    "price_source": "market_snapshot_quote",
+    "price_axis": "market_implied_true_prob",
+    "rebalance_threshold_fraction": 0.1,
+    "allow_auto_reversal": false,
+    "quote_staleness_seconds": 300,
+    "valid_until": "2026-04-16T13:31:20.740876+00:00"
+  },
+  "risk_controls": {
+    "confidence_level": "medium",
+    "portfolio_constraints": [
+      "Do not add fresh exposure at the current price.",
+      "Treat exact-minute Binance settlement risk as the dominant execution constraint even with a favorable spot regime.",
+      "Reopen only if market cheapens materially or later same-venue checks show the cushion holding with reduced downside risk."
+    ],
+    "liquidity_caution": "low",
+    "max_position_size_pct_bankroll": 0.02,
+    "max_additional_exposure_pct_bankroll": 0.01,
+    "max_single_order_pct_bankroll": 0.005,
+    "slippage_tolerance_bps": 100,
+    "liquidity_min_depth": 0,
+    "correlation_bucket_limit_pct_bankroll": 0.05
+  },
+  "bands": [
+    {
+      "name": "max_enter",
+      "min_p": 0.0,
+      "max_p": 0.73,
+      "target_exposure_fraction": 0.0,
+      "notes": "Would require a much cheaper price and still refreshed same-venue confirmation."
+    },
+    {
+      "name": "scaled_enter",
+      "min_p": 0.73,
+      "max_p": 0.81,
+      "target_exposure_fraction": 0.0,
+      "notes": "Potential value zone only if BTC remains comfortably above 70k and downside regime stays benign."
+    },
+    {
+      "name": "hold",
+      "min_p": 0.81,
+      "max_p": 0.86,
+      "target_exposure_fraction": 0.0,
+      "notes": "Bounded fair-value zone; maintain watch-only hold posture."
+    },
+    {
+      "name": "trim",
+      "min_p": 0.86,
+      "max_p": 0.92,
+      "target_exposure_fraction": 0.0,
+      "notes": "Above fair value for a one-minute settlement contract with meaningful five-day path dependence."
+    },
+    {
+      "name": "exit",
+      "min_p": 0.92,
+      "max_p": 1.0,
+      "target_exposure_fraction": 0.0,
+      "notes": "Avoid or exit at very rich prices because exact-minute downside tail dominates residual uncertainty."
+    }
+  ],
+  "invalidation": {
+    "thesis_breakers": [
+      "BTC loses cushion and trades back toward 71k-70k on Binance before the Apr 20 fixing window.",
+      "A major downside crypto or macro catalyst materially raises the probability of a sub-70k settlement minute.",
+      "Binance-specific weakness or settlement-surface issues emerge ahead of the resolving minute."
+    ],
+    "time_breakers": [
+      "A fresh direct Binance observation closer to Apr 20 12:00 ET should supersede this packet before any action.",
+      "The actual Apr 20 12:00 ET Binance 1-minute close fully resolves and obsoletes this judgment."
+    ],
+    "market_structure_breakers": [
+      "Market reprices materially without corresponding same-venue spot deterioration, changing the value comparison.",
+      "Binance operational or microstructure issues emerge near settlement."
+    ],
+    "reversal_conditions": [
+      "Upgrade only if price becomes materially cheaper relative to fair value or if later pre-fix Binance checks show a still-strong cushion with reduced downside risk.",
+      "Downgrade if BTC loses cushion or if downside volatility or catalyst risk increases.",
+      "Do not auto-reverse from this packet."
+    ]
+  },
+  "epistemic_status": {
+    "key_uncertainties": [
+      "The true probability of a 5-6% pullback landing exactly on the settlement minute.",
+      "Whether the market already embeds fresher venue-specific information than the bounded package contains.",
+      "How much Binance-specific settlement presentation deserves additional discount versus broad spot context."
+    ],
+    "what_would_change_my_mind": [
+      "Later same-venue checks showing BTC still comfortably above 72k into Apr. 18-19 would move me somewhat closer to market.",
+      "A move back toward the low-71k or 70k area would lower fair value materially.",
+      "A materially cheaper market price with unchanged Binance cushion would create a cleaner edge."
+    ],
+    "reasons_to_pass": [
+      "The current market price is above bounded fair value.",
+      "This is a one-minute single-venue settlement contract where path risk matters more than broad BTC direction.",
+      "The edge is modest and not robust enough to justify authorization."
+    ],
+    "decision_quality": "good_not_clean"
+  },
+  "audit": {
+    "one_sentence_rationale": "BTC is still more likely than not to finish above $70,000 on the April 20 Binance noon minute, but with fair value closer to 0.835 than the 0.88 market and meaningful five-day path risk still live, the disciplined output remains watch-only rather than an authorized Yes trade.",
+    "notes": "This remains a high-probability but slightly overconfident crypto threshold market: directional Yes survives, execution value does not.",
+    "market_baseline_respected": true,
+    "action_bias_check_passed": true,
+    "self_preservation_bias_check_passed": true,
+    "structured_handoff_primary_used": true,
+    "prose_fallback_used": true,
+    "verification_mode_used": "targeted_escalation",
+    "additional_verification_performed": true,
+    "additional_verification_notes": "targeted_pack"
+  }
+}

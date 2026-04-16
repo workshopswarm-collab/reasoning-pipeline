@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Short-horizon BTC volatility can erase a 2-3% cushion quickly.",
+    "Minute-candle timestamp interpretation always deserves care in narrow contracts.",
+    "The view depends more on regime persistence than on any deterministic catalyst."
+  ],
+  "key_assumptions": [
+    "BTC stays in roughly the current trading regime into Apr 21 rather than suffering a >3% drawdown into noon ET.",
+    "Binance BTC/USDT remains the clean governing source without operational anomaly.",
+    "Recent above-72000 persistence is more informative than the full 60-day lower-price lookback."
+  ],
+  "main_logical_chain": [
+    "Read the Polymarket rules to identify the governing source and exact close-above condition.",
+    "Check Binance BTC/USDT current and recent candles to measure present distance from the threshold.",
+    "Adjust a bullish spot-level read downward because exact-minute-close contracts are narrower than touch or broad trend bets.",
+    "Conclude that Yes is more likely than No, but with a modest discount versus the market's 70.5% pricing."
+  ],
+  "main_thesis": "BTC is currently comfortably above 72000 and recent Binance closes support a Yes lean, but the exact-minute noon ET close mechanic makes the setup narrower than the market price implies.",
+  "own_probability": 0.64,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone has a final 'Close' price higher than the price specified.",
+    "Current price context during the run was about 73943.98 on Binance BTC/USDT."
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "market_anchor",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-8bef05aa",
+    "dispatch_id": "dispatch-case-20260416-8bef05aa-20260416T144205Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "b6903382-0d33-43ef-b410-c752a884fa22",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-8bef05aa/researcher-analyses/2026-04-16/dispatch-case-20260416-8bef05aa-20260416T144205Z/personas/base-rate.md",
+    "source_persona_sha256": "35ed295f1581f70e27a4e658ae425704e686494d6d4f590b5ae286478664f009"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality mechanism source from Polymarket rules plus high-quality direct contextual price data from Binance; independence is medium because they serve different roles rather than independently verifying the same proposition.",
+  "strongest_disconfirmers": [
+    "The contract resolves on one exact 12:00 ET one-minute close, not on an intraday touch or broad daily strength.",
+    "A routine multi-percent BTC drawdown before Apr 21 noon ET would be enough to lose.",
+    "Apr 12 recently closed below 72000, so threshold loss is not hypothetical."
+  ],
+  "strongest_supports": [
+    "Binance ticker during the run was about 73944, roughly 2.7% above the threshold.",
+    "Recent Binance daily closes from Apr 13-15 were all above 74000.",
+    "Most recent 10 daily candles were mostly above 72000."
+  ],
+  "timing_relevance": "The market resolves on the Apr 21 12:00 ET Binance 1-minute close, so near-term price regime persistence matters more than broad April bullishness.",
+  "unresolved_ambiguities": [
+    "Exact BTC level at Apr 21 noon ET remains unknown.",
+    "No direct settlement proof exists yet because the relevant candle has not occurred."
+  ],
+  "what_would_change_view": "I would move up if BTC keeps holding comfortably above 72000 into Apr 20-21, and move down materially if Binance BTC/USDT breaks back below 72000 or contract-timestamp ambiguity appears."
+}

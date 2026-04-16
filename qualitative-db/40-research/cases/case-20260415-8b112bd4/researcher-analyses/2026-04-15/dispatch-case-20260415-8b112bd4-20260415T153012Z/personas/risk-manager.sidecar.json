@@ -1,0 +1,58 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A fast crypto selloff before noon ET could flip the result.",
+    "Exact-minute settlement is less forgiving than end-of-day or average-price contracts."
+  ],
+  "key_assumptions": [
+    "BTC avoids roughly a 5% downside move into the April 16 noon ET candle close.",
+    "Binance market data remains operationally normal around settlement.",
+    "Binance UI and API kline representations align in practical settlement interpretation."
+  ],
+  "main_logical_chain": [
+    "The contract resolves from the Binance BTC/USDT 12:00 ET one-minute candle close on April 16.",
+    "Current Binance data shows BTC materially above 70000.",
+    "Therefore Yes is the base case unless a moderate downside move hits before the settlement minute.",
+    "That residual path risk justifies a small haircut versus the market's 98.5% implied probability."
+  ],
+  "main_thesis": "Yes is the likely outcome because Binance BTC/USDT is currently well above 70000 and the contract mechanics are clear, but the market is slightly overconfident because exact-minute settlement leaves meaningful one-day downside path risk.",
+  "own_probability": 0.95,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone has a final 'Close' price higher than the price specified in the title.",
+    "My estimate is 95% Yes."
+  ],
+  "reasoning_mode": [
+    "risk_management",
+    "contract_interpretation",
+    "scenario_analysis"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260415-8b112bd4",
+    "dispatch_id": "dispatch-case-20260415-8b112bd4-20260415T153012Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "e673a17b-2bcd-4d85-bc78-1f9dfefad023",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-8b112bd4/researcher-analyses/2026-04-15/dispatch-case-20260415-8b112bd4-20260415T153012Z/personas/risk-manager.md",
+    "source_persona_sha256": "dbaa5d506649d04a7f01a29dd11fb37bda8f06a7b3a1b65d0b931840481a18f4"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality primary sources for mechanics and current state; independence is only medium because key evidence comes from the same governing exchange/source chain.",
+  "strongest_disconfirmers": [
+    "BTC can move more than 5% in a day.",
+    "The contract settles on one exact minute close, increasing timing/path dependence."
+  ],
+  "strongest_supports": [
+    "Binance spot price was around 73.67k on April 15, about 5.2% above the threshold.",
+    "Sampled 24-hour low in pulled Binance data remained above 73.5k.",
+    "Polymarket rules explicitly identify the Binance BTC/USDT 12:00 ET 1-minute close as the governing source of truth."
+  ],
+  "timing_relevance": "High: this resolves on the April 16 12:00 ET one-minute close, which is 2026-04-16 16:00:00 UTC.",
+  "unresolved_ambiguities": [
+    "Low ambiguity overall, but the contract points to Binance UI while verification used Binance API plus documented kline semantics.",
+    "No independent non-Binance directional source was obtained because one contextual source was blocked."
+  ],
+  "what_would_change_view": "A move toward or below 70k, especially BTC under 72k ahead of settlement, or any Binance-specific data issue around the noon ET window."
+}

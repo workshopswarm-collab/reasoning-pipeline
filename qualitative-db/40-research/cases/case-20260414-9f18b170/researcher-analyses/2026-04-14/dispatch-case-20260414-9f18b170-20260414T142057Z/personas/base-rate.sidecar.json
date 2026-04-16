@@ -1,0 +1,57 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A sharp reversal away from $76k would reduce touch probability quickly.",
+    "This estimate is based on proximity and realized volatility more than a specific catalyst."
+  ],
+  "key_assumptions": [
+    "BTC remains within striking distance of $76k rather than reversing sharply lower.",
+    "The Polymarket rule text is applied literally: a one-minute Binance BTC/USDT high is sufficient."
+  ],
+  "main_logical_chain": [
+    "The contract resolves from Binance BTC/USDT 1-minute highs during the stated ET window.",
+    "BTC was already within roughly 0.5% of the threshold with several days remaining.",
+    "A one-minute touch is easier than a sustained break, so the outside-view probability is very high.",
+    "That supports a probability slightly above the market's 89%, but still below certainty."
+  ],
+  "main_thesis": "BTC reaching $76,000 during Apr 13-19 is likely because the contract only requires a one-minute Binance wick and BTC was already trading in the mid-$75k area early in the window.",
+  "own_probability": 0.92,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "The resolution source for this market is Binance, specifically the BTC/USDT 'High' prices... with '1m' candles selected.",
+    "current_price = 0.89",
+    "Own probability estimate: 92%."
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "contract_interpretation",
+    "technical_reference"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-9f18b170",
+    "dispatch_id": "dispatch-case-20260414-9f18b170-20260414T142057Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "26aa0112-d56c-4350-8c4d-e932b86dc3a4",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-9f18b170/researcher-analyses/2026-04-14/dispatch-case-20260414-9f18b170-20260414T142057Z/personas/base-rate.md",
+    "source_persona_sha256": "1bf3a002267b560c31cc23be2b249a9356dc3cc0f56f2ba243fe6c6cde2c189d"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Low source-of-truth ambiguity after rule check; medium overall independence because the best sources all reference overlapping BTC market activity.",
+  "strongest_disconfirmers": [
+    "The sampled Binance high was still below $76k at the time checked, so the event had not yet happened.",
+    "Round-number resistance can still produce a reversal that kills an extreme-probability touch market."
+  ],
+  "strongest_supports": [
+    "Binance is the governing source and sampled prices were already near $75.7k.",
+    "Recent realized BTC range was larger than the remaining gap to $76k."
+  ],
+  "timing_relevance": "High: this is a short-horizon weekly threshold market and the remaining days plus current proximity dominate the estimate.",
+  "unresolved_ambiguities": [
+    "No quantified historical dataset of near-threshold BTC touch rates was assembled for this run.",
+    "Only sampled exchange checks were captured, not the full minute-by-minute Binance path."
+  ],
+  "what_would_change_view": "A clear momentum reversal on Binance, repeated failures just below $76k, or better evidence that near-threshold weekly touch rates are lower than implied would move me down."
+}

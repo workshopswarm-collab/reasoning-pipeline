@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A broad risk-off macro move before Apr. 20.",
+    "BTC trading back near 70k shortly before the noon-ET observation minute.",
+    "Settlement-surface operational ambiguity if Binance display and API were to diverge."
+  ],
+  "key_assumptions": [
+    "BTC remains comfortably above 70000 into the Apr. 20 observation window.",
+    "No sharp macro or crypto-specific risk-off catalyst forces BTC back toward the threshold.",
+    "The Polymarket-described Binance candle surface behaves as expected for settlement."
+  ],
+  "main_logical_chain": [
+    "Verify the exact settlement mechanics and timezone mapping.",
+    "Check Binance-specific current price and recent realized range.",
+    "Assess what near-term catalyst could realistically push BTC from mid-75k back below 70k at the exact settlement minute.",
+    "Conclude Yes is favored but not as overwhelmingly as touch-style logic would imply."
+  ],
+  "main_thesis": "BTC is sufficiently above 70000 on Binance that Yes is favored for the Apr. 20 noon-ET close, but the market is slightly rich because the contract hinges on one exact minute close.",
+  "own_probability": 0.91,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "This market will resolve to \"Yes\" if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone has a final \"Close\" price higher than the price specified.",
+    "Apr. 20 12:00 ET = 2026-04-20 16:00:00 UTC"
+  ],
+  "reasoning_mode": [
+    "catalyst_analysis",
+    "contract_interpretation",
+    "market_anchor"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-5996483c",
+    "dispatch_id": "dispatch-case-20260415-5996483c-20260415T193222Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "9a28bc34-598a-43e6-af36-5447817f72a4",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-5996483c/researcher-analyses/2026-04-15/dispatch-case-20260415-5996483c-20260415T193222Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "e3821b2ee419ce6d2f3e253d48c9e1848471cc3dfd8f4b5ee2d7e600e7af26b2"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Good direct mechanics from Polymarket plus strong Binance exchange context; independence is only medium because Binance is both the settlement venue and a key context source.",
+  "strongest_disconfirmers": [
+    "The contract resolves on one exact minute close five days from now, so a fast selloff could still flip the outcome.",
+    "Extreme market probability leaves limited room for error if BTC revisits the threshold zone."
+  ],
+  "strongest_supports": [
+    "Binance spot during the run was about 75252, leaving a >7% cushion above 70000.",
+    "Recent Binance daily closes remained above 70000, including after a pullback.",
+    "Rules explicitly define Binance BTC/USDT 12:00 ET 1-minute close as the governing source."
+  ],
+  "timing_relevance": "The market is mostly about whether any negative catalyst arrives before Apr. 20 noon ET; absent that, time decay supports Yes.",
+  "unresolved_ambiguities": [
+    "Whether late-weekend volatility meaningfully increases exact-minute close risk beyond current estimate.",
+    "Threshold proximity is useful structurally but lacks a clean current canonical driver slug."
+  ],
+  "what_would_change_view": "A move back toward 70k on Binance, especially if BTC loses 72k-73k before the weekend or approaches settlement only marginally above the strike."
+}

@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Short-horizon BTC volatility could pull the exact settlement minute below 70k even if broader trend stays constructive.",
+    "Derived persistence uses recent history and daily-close proxies rather than a long-run or fully contract-matched sample.",
+    "There is minor UI-versus-API source-of-truth ambiguity because Polymarket names the Binance website chart."
+  ],
+  "key_assumptions": [
+    "Recent Binance daily-close persistence and recent noon-ET 1-minute closes are informative for the final noon-ET settlement minute.",
+    "No Binance-specific operational issue distorts the settlement candle.",
+    "BTC remains in a broadly similar short-horizon volatility regime into April 19."
+  ],
+  "main_logical_chain": [
+    "The governing source is Binance BTC/USDT 12:00 ET 1-minute candle close on April 19.",
+    "Current Binance spot is comfortably above 70k, so the event starts with a meaningful cushion.",
+    "Recent Binance threshold-persistence base rates favor staying above 70k over four days, but not strongly enough to justify near-certainty.",
+    "Therefore Yes is still likelier than No, but below the market-implied 90%."
+  ],
+  "main_thesis": "BTC staying above 70k by the April 19 noon ET Binance 1-minute close is more likely than not, but the 90% market price looks somewhat too confident for a volatile single-minute threshold contract.",
+  "own_probability": 0.82,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "My estimate is 82% for Yes.",
+    "The strongest disconfirming consideration is that threshold persistence is much weaker when BTC starts only modestly above the line.",
+    "Governing source of truth: the market resolves using the Binance BTC/USDT 1-minute candle for 12:00 ET on 2026-04-19."
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "contract_interpretation",
+    "technical_reference"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-91430615",
+    "dispatch_id": "dispatch-case-20260414-91430615-20260414T235247Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "96e76e5c-a20f-41f0-8f25-cae6c2e8512c",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-91430615/researcher-analyses/2026-04-14/dispatch-case-20260414-91430615-20260414T235247Z/personas/base-rate.md",
+    "source_persona_sha256": "30a87cce4eff477739488dce886a0111b12dd5625a615cb8974a283faebe415f"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is good because Binance is the governing source family, but evidence independence is only medium and there is mild operational ambiguity between the website chart named in rules and the API used for verification.",
+  "strongest_disconfirmers": [
+    "When starting only modestly above the threshold (70k-74.2k), four-day persistence above 70k was only 10 of 21 in the recent sample.",
+    "The contract depends on one exact noon-ET 1-minute close rather than a broader daily price condition."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT was around 74.1k on April 14, materially above the 70k threshold.",
+    "Recent 24h Binance range stayed above 70k.",
+    "In the recent 120-day Binance sample, 59 of 72 cases that started with a close above 70k were still above 70k four days later."
+  ],
+  "timing_relevance": "The market resolves on Sunday 2026-04-19 at the 12:00 PM America/New_York Binance BTCUSDT 1-minute candle close, so short-horizon volatility and timezone accuracy are material.",
+  "unresolved_ambiguities": [
+    "How representative the recent 120-day sample is for the next four days.",
+    "Whether the exact settlement-minute distribution is materially noisier than nearby spot behavior implies."
+  ],
+  "what_would_change_view": "I would move higher if BTC holds well above 72k-73k into April 18-19; I would move lower if BTC revisits the low 70s with repeated breaks below 70k or if settlement-source ambiguity grows."
+}

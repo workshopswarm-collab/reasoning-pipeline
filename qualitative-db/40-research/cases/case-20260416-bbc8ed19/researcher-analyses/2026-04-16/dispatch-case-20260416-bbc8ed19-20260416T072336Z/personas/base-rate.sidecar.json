@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A fast macro or crypto-specific selloff before April 20 would break the threshold-retention thesis.",
+    "Exchange-specific print or operational anomalies on Binance could matter because settlement is venue-specific and timestamp-specific."
+  ],
+  "key_assumptions": [
+    "The recent BTC trading regime remains broadly continuous through April 20.",
+    "No major shock forces BTC below 72k before the resolving minute.",
+    "Binance remains operationally reliable enough that the resolving print is representative."
+  ],
+  "main_logical_chain": [
+    "The governing market asks about the Binance BTCUSDT 12:00 ET 1-minute candle close on April 20 being strictly above 72,000.",
+    "BTC is currently already above that threshold by roughly 4%.",
+    "Historical short-horizon Binance returns suggest staying above the threshold over 3-5 days is common from such starting levels.",
+    "Because settlement depends on a single exact minute, discount the raw retention base rate modestly rather than adopting it directly.",
+    "That yields a final estimate slightly below the market but still clearly Yes-leaning."
+  ],
+  "main_thesis": "BTC is already about 4% above the threshold with only four calendar days left, so the outside-view favors retention above 72k, though the exact 1-minute Binance resolving print adds some noise.",
+  "own_probability": 0.82,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "market-implied probability is 84.5% for Yes",
+    "My own estimate is 82% for Yes",
+    "the strongest disconfirming consideration is that this market settles on a single exact one-minute Binance print"
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-bbc8ed19",
+    "dispatch_id": "dispatch-case-20260416-bbc8ed19-20260416T072336Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "fe68063c-5ebd-4e0c-8741-db8f1a15ca20",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-bbc8ed19/researcher-analyses/2026-04-16/dispatch-case-20260416-bbc8ed19-20260416T072336Z/personas/base-rate.md",
+    "source_persona_sha256": "242902f0c5ba0be4322bcc241540d7d25a09ae5e5c8f8792a73822aa0dad495d"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary source quality is high because Binance is the named settlement venue; independence is only low-to-medium because both direct and contextual checks rely on Binance surfaces.",
+  "strongest_disconfirmers": [
+    "The contract resolves on one exact 1-minute Binance close rather than a daily close, so intraday volatility can matter more than the simple base-rate model implies.",
+    "A 4% cushion is meaningful but not enormous for BTC over several days."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT spot was 74909.72 on 2026-04-16, already about 4% above 72k.",
+    "In a 365-day Binance sample, roughly 83.7% of 4-day forward windows tolerated the decline needed to stay above 72k from today's level.",
+    "About 83.3% of sampled daily closes were above 72k in the recent regime."
+  ],
+  "timing_relevance": "Resolution is only four calendar days away and depends on the April 20, 2026 12:00 ET Binance 1-minute candle close.",
+  "unresolved_ambiguities": [
+    "Polymarket names the Binance chart UI specifically, while mechanical verification here used Binance API documentation and matching market-data fields.",
+    "Daily-close analogs are not identical to an exact noon ET 1-minute resolving print."
+  ],
+  "what_would_change_view": "I would move lower if BTC lost 72k and failed to reclaim it or if Binance-specific anomalies emerged; I would move somewhat higher if BTC held comfortably above 73-74k into April 19-20 with calm intraday trading."
+}

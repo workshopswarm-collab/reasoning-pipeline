@@ -1,0 +1,63 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Weekend or macro risk-off move could erase a roughly $5 buffer before settlement.",
+    "Binance-specific weakness near the noon ET minute could matter even if broader SOL sentiment stays constructive.",
+    "A generally correct directional call can still fail because this is a single-minute-close contract."
+  ],
+  "key_assumptions": [
+    "SOL remains above 80 on Binance spot into the settlement minute.",
+    "Binance spot does not print an anomalously weak settlement close versus broader market conditions.",
+    "Recent acceptance above 80 is more informative than a transient spike."
+  ],
+  "main_logical_chain": [
+    "Check the governing contract mechanics and exact resolution source.",
+    "Verify current Binance spot price and recent path on the settlement venue.",
+    "Observe that SOL already trades above 80 with recent persistence above strike.",
+    "Discount the market's 92% confidence because narrow one-minute-close timing risk remains material.",
+    "Conclude Yes is favored, but at 84% rather than near-certainty."
+  ],
+  "main_thesis": "SOL is already above $80 on Binance spot, so Yes is favored, but the market overstates confidence because resolution depends on one exact noon ET Binance 1-minute close on April 19.",
+  "own_probability": 0.84,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "SOLUSDT price 85.39000000",
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for SOL/USDT 12:00 in the ET timezone has a final 'Close' price higher than 80."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "risk_management",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-97839980",
+    "dispatch_id": "dispatch-case-20260416-97839980-20260416T040518Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "3a7e2827-18f7-4f75-9a5f-9b536335e7b1",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-97839980/researcher-analyses/2026-04-16/dispatch-case-20260416-97839980-20260416T040518Z/personas/risk-manager.md",
+    "source_persona_sha256": "684ffb033285811bae3bff476ee062beffa3f2d85e065e767f0f24fe85f3f0b1"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality direct sources for rules and settlement venue state, but independence is only medium because both sources are tightly linked to the same contract mechanism.",
+  "strongest_disconfirmers": [
+    "The market resolves on one exact Binance 1-minute close at 12:00 ET on April 19, so last-mile timing risk is real.",
+    "A multi-dollar crypto move over three days is plausible, so the current buffer is meaningful but not decisive.",
+    "80.00 resolves No because the rule is strictly above 80 and Binance tick size is 0.01."
+  ],
+  "strongest_supports": [
+    "Binance SOL/USDT spot was 85.39 at research time, about $5.39 above the strike.",
+    "Recent Binance daily and hourly candles show repeated trading above 80 rather than a one-off breakout.",
+    "The contract only requires a close above 80, so no further upside breakout is necessary from current levels."
+  ],
+  "timing_relevance": "Timing is central because resolution depends on the final Close of the Binance SOL/USDT 12:00 ET 1-minute candle on April 19, 2026.",
+  "unresolved_ambiguities": [
+    "How much realized volatility SOL will see into the April 19 noon ET window.",
+    "Whether Binance spot will track other venues tightly near settlement.",
+    "Whether the market is correctly pricing timing fragility versus simply extrapolating current spot cushion."
+  ],
+  "what_would_change_view": "I would move lower if Binance SOL/USDT loses 80 support before settlement or if a broad crypto drawdown develops; I would move closer to market confidence if SOL keeps holding 84-85+ on Binance into April 18-19 with low volatility."
+}

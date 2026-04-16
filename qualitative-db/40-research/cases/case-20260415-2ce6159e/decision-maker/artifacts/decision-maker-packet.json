@@ -1,0 +1,155 @@
+{
+  "schema_version": "decision-packet/v1",
+  "generated_at": "2026-04-15T10:38:00-04:00",
+  "context": {
+    "case_key": "case-20260415-2ce6159e",
+    "dispatch_id": "dispatch-case-20260415-2ce6159e-20260415T142913Z",
+    "question": "Will the price of Bitcoin be above $72,000 on April 16?",
+    "market_id": "7da0bb87-594f-4bdb-a7ae-fddfc3f0f8bd",
+    "external_market_id": "0xee2d4eeeae30d06342d630e97c23ff423da2e542cbfb30a8ce252b9f47ccc9e3",
+    "market_slug": "bitcoin-above-72k-on-april-16",
+    "platform": "polymarket",
+    "primary_market_url": "https://polymarket.com/event/bitcoin-above-72k-on-april-16",
+    "market_title": "Will the price of Bitcoin be above $72,000 on April 16?",
+    "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260415-2ce6159e/synthesizer-agent/decision-handoff.md",
+    "source_syndicated_finding_path": "qualitative-db/40-research/cases/case-20260415-2ce6159e/synthesizer-agent/syndicated-finding.md",
+    "source_light_refresh_brief_path": "",
+    "refresh_mode": "",
+    "decision_maker_agent": "decision-maker",
+    "canonical_markdown_path": "decision-maker-packet.md",
+    "canonical_json_path": "artifacts/decision-maker-packet.json"
+  },
+  "decision": {
+    "side": "yes",
+    "trade_authorization": "watch_only",
+    "position_policy": "hold_only",
+    "decision_readiness": "ready",
+    "primary_crux": "Bitcoin is still more likely than not to close above $72,000 on the April 16 noon ET Binance minute because current same-venue spot remains around 74.3k-74.4k, but the market at 0.925 is too confident for a one-day, exact-minute settlement where only about a 3.2% downside move is needed to flip the outcome.",
+    "secondary_cruxes": [
+      "There is no major contract ambiguity left; the disagreement is about pricing exact-minute path risk, not direction or source identity.",
+      "A 3%+ drawdown in under a day is plausible enough in BTC that near-certainty is not warranted from the bounded evidence set.",
+      "The main missing information is closer-to-resolution volatility behavior, not more rule interpretation."
+    ],
+    "thesis_class": "price_not_good_enough"
+  },
+  "valuation": {
+    "fair_value_low": 0.86,
+    "fair_value_high": 0.9,
+    "fair_value_mid": 0.88,
+    "independent_verification_quality": "medium",
+    "compressed_toward_market_applied": false,
+    "compression_reason": "Fresh same-venue verification supports a high-probability Yes view, but exact-minute downside and settlement-window risk still keep fair value below the current market price.",
+    "market_reference_price": 0.925,
+    "edge_mid_vs_market_pct_points": -4.5
+  },
+  "execution_semantics": {
+    "price_source": "market_snapshot_quote",
+    "price_axis": "market_implied_true_prob",
+    "rebalance_threshold_fraction": 0.1,
+    "allow_auto_reversal": false,
+    "quote_staleness_seconds": 300,
+    "valid_until": "2026-04-16T14:39:28.563377+00:00"
+  },
+  "risk_controls": {
+    "confidence_level": "medium",
+    "portfolio_constraints": [
+      "Do not add fresh exposure at the current price.",
+      "Treat exact-minute Binance settlement risk as the dominant execution constraint.",
+      "Reopen only if market cheapens materially or a fresher near-settlement Binance check shows the cushion holding with calmer volatility."
+    ],
+    "liquidity_caution": "low",
+    "max_position_size_pct_bankroll": 0.02,
+    "max_additional_exposure_pct_bankroll": 0.01,
+    "max_single_order_pct_bankroll": 0.005,
+    "slippage_tolerance_bps": 100,
+    "liquidity_min_depth": 0,
+    "correlation_bucket_limit_pct_bankroll": 0.05
+  },
+  "bands": [
+    {
+      "name": "max_enter",
+      "min_p": 0.0,
+      "max_p": 0.8,
+      "target_exposure_fraction": 0.0,
+      "notes": "Would require a much cheaper price and still a fresh Binance check near settlement."
+    },
+    {
+      "name": "scaled_enter",
+      "min_p": 0.8,
+      "max_p": 0.86,
+      "target_exposure_fraction": 0.0,
+      "notes": "Potential value zone only if same-venue cushion remains intact and overnight volatility stays contained."
+    },
+    {
+      "name": "hold",
+      "min_p": 0.86,
+      "max_p": 0.9,
+      "target_exposure_fraction": 0.0,
+      "notes": "Bounded fair-value zone; maintain watch-only hold posture."
+    },
+    {
+      "name": "trim",
+      "min_p": 0.9,
+      "max_p": 0.95,
+      "target_exposure_fraction": 0.0,
+      "notes": "Above fair value for a one-minute settlement contract with meaningful path dependence."
+    },
+    {
+      "name": "exit",
+      "min_p": 0.95,
+      "max_p": 1.0,
+      "target_exposure_fraction": 0.0,
+      "notes": "Avoid or exit at very rich prices because exact-minute downside tail dominates residual uncertainty."
+    }
+  ],
+  "invalidation": {
+    "thesis_breakers": [
+      "BTC loses cushion and trades materially back toward 72k-73k on Binance before the Apr 16 fixing window.",
+      "A concrete downside catalyst or volatility shock materially raises the odds of a sub-72k settlement minute.",
+      "Binance-specific weakness or settlement-surface issues emerge ahead of the resolving minute."
+    ],
+    "time_breakers": [
+      "A fresh direct Binance observation closer to Apr 16 12:00 ET should supersede this packet before any action.",
+      "The actual Apr 16 12:00 ET Binance 1-minute close fully resolves and obsoletes this judgment."
+    ],
+    "market_structure_breakers": [
+      "Market price moves materially again without corresponding same-venue spot support, changing the value comparison.",
+      "Binance operational or microstructure issues emerge near settlement."
+    ],
+    "reversal_conditions": [
+      "Upgrade only if price becomes materially cheaper relative to fair value or if a fresh pre-fix Binance check shows a meaningfully larger cushion.",
+      "Downgrade if BTC loses cushion or if downside volatility or catalyst risk increases.",
+      "Do not auto-reverse from this packet."
+    ]
+  },
+  "epistemic_status": {
+    "key_uncertainties": [
+      "The true probability of a ~3% downside move or wick landing exactly at the settlement minute.",
+      "Whether overnight and U.S.-morning volatility remain benign into the fixing window.",
+      "How much late settlement-window behavior differs from current same-venue spot stability."
+    ],
+    "what_would_change_my_mind": [
+      "A fresh Binance check near settlement showing sustained trade well above 72k with subdued volatility would move me somewhat closer to market.",
+      "A move back toward the low-73k or high-72k area would lower fair value materially.",
+      "A materially cheaper market price with unchanged Binance cushion would create a cleaner edge."
+    ],
+    "reasons_to_pass": [
+      "The current market price is above bounded fair value.",
+      "This is a one-minute single-venue settlement contract where path risk matters more than broad BTC direction.",
+      "The edge is modest and not robust enough to justify authorization."
+    ],
+    "decision_quality": "good_not_clean"
+  },
+  "audit": {
+    "one_sentence_rationale": "BTC is still more likely than not to finish above $72,000 on the April 16 Binance noon minute, but with fair value closer to 0.88 than the 0.925 market and only about a 3.2% cushion above strike, the disciplined output remains watch-only rather than an authorized Yes trade.",
+    "notes": "This is another high-probability but overconfident crypto threshold market: directional Yes survives, execution value does not.",
+    "market_baseline_respected": true,
+    "action_bias_check_passed": true,
+    "self_preservation_bias_check_passed": true,
+    "structured_handoff_primary_used": true,
+    "prose_fallback_used": true,
+    "verification_mode_used": "targeted_escalation",
+    "additional_verification_performed": true,
+    "additional_verification_notes": "targeted_pack"
+  }
+}

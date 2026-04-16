@@ -1,0 +1,55 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Exact-timestamp settlement sensitivity.",
+    "Exchange-specific operational or pricing anomaly risk on Binance."
+  ],
+  "key_assumptions": [
+    "ETH/USDT on Binance stays in roughly the current trading regime through noon ET April 17.",
+    "No major crypto-wide selloff or Binance-specific dislocation hits before the settlement minute."
+  ],
+  "main_logical_chain": [
+    "Polymarket rules define settlement as Binance ETH/USDT 1m candle close at 12:00 PM ET on April 17 strictly above 2200.",
+    "Current Binance ETH/USDT is already in the mid-2300s, creating a material buffer above the strike.",
+    "Outside-view continuation therefore favors Yes unless a volatility shock or venue-specific anomaly occurs.",
+    "Because crypto is volatile and settlement is a single-minute print, the probability should be high but not near-certain."
+  ],
+  "main_thesis": "ETH on Binance is already materially above 2200, so Yes is the base-rate lean, but single-minute crypto settlement risk keeps the probability below the market's near-certainty.",
+  "own_probability": 0.9,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "Yes if the Binance 1 minute candle for ETH/USDT 12:00 in the ET timezone has a final Close price higher than 2200.",
+    "Own probability estimate: 90% Yes."
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "market_anchor",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-989964fe",
+    "dispatch_id": "dispatch-case-20260416-989964fe-20260416T020418Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "5cae2cce-4164-48b7-94a8-799a5e7e95b2",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-989964fe/researcher-analyses/2026-04-16/dispatch-case-20260416-989964fe-20260416T020418Z/personas/base-rate.md",
+    "source_persona_sha256": "bbcffd5746be5034d884642717962438c486ec0029d252aca35870fe867591c4"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary contract interpretation is clear from Polymarket rules, and Binance API provides strong direct contextual verification, but the final outcome still depends on one future minute close on one exchange.",
+  "strongest_disconfirmers": [
+    "The contract settles on one exact noon ET minute close, so a transient selloff could flip the outcome.",
+    "One nearby Binance daily close around 2191.65 shows the threshold is reachable on normal volatility."
+  ],
+  "strongest_supports": [
+    "Binance ETHUSDT spot was around 2355 during the research window, comfortably above 2200.",
+    "Recent Binance daily closes were mostly above 2200 on nearby dates."
+  ],
+  "timing_relevance": "This is a date- and timezone-sensitive market: only the Binance ETH/USDT 12:00 PM ET one-minute close on April 17 matters.",
+  "unresolved_ambiguities": [
+    "How much weight to put on current spot-distance versus minute-close tail risk in a short-dated crypto threshold market."
+  ],
+  "what_would_change_view": "A fresh check showing ETHUSDT near or below 2200 before settlement, or evidence of Binance-specific pricing/operational irregularity, would reduce the Yes probability materially."
+}

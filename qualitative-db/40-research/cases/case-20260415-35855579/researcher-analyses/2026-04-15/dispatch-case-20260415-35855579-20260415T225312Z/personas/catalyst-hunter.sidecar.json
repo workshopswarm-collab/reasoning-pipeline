@@ -1,0 +1,58 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A roughly 4% selloff before the observation minute would make the market genuinely live.",
+    "Narrow contract timing means intraminute volatility near noon ET matters more than broad daily trend."
+  ],
+  "key_assumptions": [
+    "BTC can absorb normal overnight volatility and still remain above 72,000 at the noon ET observation minute.",
+    "No major negative macro or crypto catalyst arrives before resolution.",
+    "Binance's relevant BTC/USDT candle surface behaves normally at settlement."
+  ],
+  "main_logical_chain": [
+    "Market rules make the Binance BTC/USDT 12:00 ET 1-minute close the governing source of truth.",
+    "Current Binance spot and recent 1-minute closes are materially above 72,000.",
+    "With less than a day to resolution, the key risk is a discrete downside catalyst or exchange-specific issue rather than baseline drift.",
+    "Therefore Yes remains highly likely, though slightly less certain than the market's 97.65% price implies."
+  ],
+  "main_thesis": "BTC is likely to remain above 72,000 on Binance at the specific noon ET 1-minute close on April 16, but the contract remains vulnerable to a short-horizon downside shock or Binance-specific issue.",
+  "own_probability": 0.96,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "resolution is based on the Binance BTC/USDT 1-minute candle for 12:00 ET on Apr 16 and the candle's final Close price",
+    "Direct Binance spot check during the run returned BTCUSDT = 74,912.06"
+  ],
+  "reasoning_mode": [
+    "catalyst_analysis",
+    "contract_interpretation",
+    "market_anchor"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260415-35855579",
+    "dispatch_id": "dispatch-case-20260415-35855579-20260415T225312Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "0e88c12c-936b-4717-a3da-c1b50a03eb64",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-35855579/researcher-analyses/2026-04-15/dispatch-case-20260415-35855579-20260415T225312Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "bb79516e6d5be3d5f04b028789c783123f890593f9dbfec15a2663674d4bc67d"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality for a narrow market: Polymarket provides explicit contract rules, Binance provides the named economic source, and contextual confirmation adds modest secondary support; independence is medium because evidence is concentrated around the named venue.",
+  "strongest_disconfirmers": [
+    "This settles on one specific future 1-minute close, so a sharp drawdown before noon ET could still flip the result.",
+    "Binance-specific operational or display anomalies are low-probability but relevant because Binance is the named source of truth."
+  ],
+  "strongest_supports": [
+    "Direct Binance spot check during the run showed BTCUSDT at 74,912.06, well above 72,000.",
+    "Recent Binance 1-minute kline closes retrieved during the run were also above 72,000.",
+    "Polymarket rules clearly specify venue, pair, timeframe, and close-price mechanic."
+  ],
+  "timing_relevance": "Timing is central: the contract depends on one Binance 1-minute close at 12:00 ET on Apr 16, so near-term downside catalysts dominate the risk analysis.",
+  "unresolved_ambiguities": [
+    "API data were used as direct verification, but the literal settlement surface named in the rules is Binance's trading/candle display.",
+    "Unknown overnight catalysts could still alter short-horizon volatility materially."
+  ],
+  "what_would_change_view": "A move toward or below 72,000 on Binance before noon ET, or evidence of a Binance-specific issue affecting the relevant candle surface, would lower confidence materially."
+}

@@ -1,0 +1,61 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Leaderboard volatility before the check time.",
+    "Ambiguity if the top score compresses into a tie.",
+    "Low-probability fallback-source scenario if the named leaderboard becomes unavailable."
+  ],
+  "key_assumptions": [
+    "Current first-place status on the LM Arena text leaderboard maps cleanly to the listed market outcome.",
+    "No rival overtakes before the April 17, 2026 12:00 PM ET check.",
+    "No tie emerges that causes the alphabetical tiebreak to favor another model."
+  ],
+  "main_logical_chain": [
+    "Start from the 93.1% market price as an information-rich prior.",
+    "Check the governing contract and confirm the exact source, timing, and tiebreak mechanics.",
+    "Verify whether claude-opus-4-6-thinking is currently leading on the named leaderboard family.",
+    "Conclude that YES remains the correct base case, but discount somewhat for unresolved timing and tie risk."
+  ],
+  "main_thesis": "The market is directionally right that claude-opus-4-6-thinking is the favorite because it appears to be the current leader on the governing leaderboard, but 93.1% is somewhat too extreme for a future-timestamp, tie-sensitive contract.",
+  "own_probability": 0.88,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "April 17, 2026, 12:00 PM ET",
+    "Text Arena | Overall",
+    "style control off",
+    "claude-opus-4-6-thinking"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "contract_interpretation",
+    "risk_management"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260415-8c14b373",
+    "dispatch_id": "dispatch-case-20260415-8c14b373-20260415T130923Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "71ccfc53-a2fe-4f74-84d7-4a67846b4892",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-8c14b373/researcher-analyses/2026-04-15/dispatch-case-20260415-8c14b373-20260415T130923Z/personas/market-implied.md",
+    "source_persona_sha256": "30ce5a6c7c1cb27e9653e84da56405ec0ea3c903514835ca07f6b5f233af081e"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Two strong primary sources were used: Polymarket rules for contract mechanics and LM Arena for live status. Independence is medium because both point to the same settlement mechanism.",
+  "strongest_disconfirmers": [
+    "The contract resolves at a future timestamp, so current leadership does not settle the market.",
+    "A modest leaderboard move or a tie lost alphabetically could still flip the result."
+  ],
+  "strongest_supports": [
+    "The governing leaderboard page currently shows claude-opus-4-6-thinking at #1.",
+    "The contract resolves on that specific leaderboard/table rather than on broad model reputation.",
+    "The remaining time to the check is short, so persistence is a strong prior."
+  ],
+  "timing_relevance": "High: the market is about a noon ET leaderboard check on April 17, 2026, not current status alone.",
+  "unresolved_ambiguities": [
+    "How stable the top ranking will remain over the final window.",
+    "Whether a near-top rival is closer than the readable extraction makes clear."
+  ],
+  "what_would_change_view": "A fresh leaderboard check showing another model first, an effective tie with an alphabetically advantaged rival, or cleaner evidence of row-name mismatch would lower the estimate materially."
+}

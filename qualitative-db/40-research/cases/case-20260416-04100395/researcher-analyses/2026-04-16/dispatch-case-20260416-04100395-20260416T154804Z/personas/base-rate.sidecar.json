@@ -1,0 +1,63 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A sharp crypto-wide move before noon ET could quickly invalidate the near-threshold prior.",
+    "Using daily closes as context is imperfect for an exact-minute settlement market.",
+    "Any Binance-specific market dislocation would matter more than broader ETH pricing elsewhere."
+  ],
+  "key_assumptions": [
+    "Recent Binance price behavior around the low-2300s is the best outside-view anchor for the next day's noon ET settlement minute.",
+    "No major catalyst or exchange-specific disruption emerges before settlement.",
+    "Daily threshold-crossing behavior is useful contextual evidence even though the contract settles on one exact minute."
+  ],
+  "main_logical_chain": [
+    "Start with a moderate prior for a one-day crypto market resolved by one exact minute close.",
+    "Update upward because Binance spot is currently above 2300.",
+    "Limit that update because the margin above the threshold is small and recent prices crossed both sides of 2300.",
+    "End with a slight Yes lean below the market's implied probability."
+  ],
+  "main_thesis": "ETH is slightly more likely than not to finish above 2300 at the contract minute, but the market appears too bullish because current spot is only modestly above the threshold and recent realized prices crossed it repeatedly.",
+  "own_probability": 0.58,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "strictly higher than 2300",
+    "12:00 ET",
+    "spot was around 2333.42",
+    "58% Yes"
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "market_anchor",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-04100395",
+    "dispatch_id": "dispatch-case-20260416-04100395-20260416T154804Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "b2985bb1-f13a-4cea-b14f-3b4f8d56b47b",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-04100395/researcher-analyses/2026-04-16/dispatch-case-20260416-04100395-20260416T154804Z/personas/base-rate.md",
+    "source_persona_sha256": "7737dc5e587994ea776cc5bd523f18af0bf0137e676af227fe6f21c02c38f753"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Good enough for a medium-difficulty case: one governing contract source, one settlement-venue data source, and one contextual cross-check; source-of-truth ambiguity is low to medium because the exact settlement minute still matters.",
+  "strongest_disconfirmers": [
+    "Current price is only about 1.45% above 2300, a thin cushion for a 24-hour crypto threshold market.",
+    "Recent Binance daily closes also printed below 2300, including around 2285 and 2191.65.",
+    "The contract resolves on one exact Binance noon ET minute close, increasing path dependence."
+  ],
+  "strongest_supports": [
+    "Binance ETHUSDT spot was around 2333.42 during retrieval, already above the 2300 threshold.",
+    "Several recent Binance daily closes were above 2300, showing the current regime can support a Yes outcome.",
+    "CoinGecko cross-check broadly confirmed ETH in the same price regime."
+  ],
+  "timing_relevance": "High: the market resolves at 12:00 ET on 2026-04-17 using one specific Binance 1-minute close, so date, timezone, and minute selection are all material.",
+  "unresolved_ambiguities": [
+    "Exact live market-implied probability may have moved from the assigned 0.725 baseline during retrieval.",
+    "No granular intraday distribution analysis around noon ET was performed.",
+    "Potential short-term catalysts were not deeply investigated in this base-rate lane."
+  ],
+  "what_would_change_view": "I would move higher on sustained trading materially above 2300 into settlement or stronger verified catalyst evidence, and lower if ETH loses 2300 and fails to reclaim it before the contract minute."
+}

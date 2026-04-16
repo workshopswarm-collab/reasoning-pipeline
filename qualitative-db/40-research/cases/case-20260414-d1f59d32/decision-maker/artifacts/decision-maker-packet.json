@@ -1,0 +1,157 @@
+{
+  "schema_version": "decision-packet/v1",
+  "generated_at": "2026-04-14T10:54:00-04:00",
+  "context": {
+    "case_key": "case-20260414-d1f59d32",
+    "dispatch_id": "dispatch-case-20260414-d1f59d32-20260414T144613Z",
+    "question": "Will the price of Bitcoin be above $74,000 on April 15?",
+    "market_id": "case-20260414-d1f59d32",
+    "market_title": "Will the price of Bitcoin be above $74,000 on April 15?",
+    "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260414-d1f59d32/synthesizer-agent/decision-handoff.md",
+    "source_syndicated_finding_path": "qualitative-db/40-research/cases/case-20260414-d1f59d32/synthesizer-agent/syndicated-finding.md",
+    "decision_maker_agent": "decision-maker",
+    "canonical_markdown_path": "decision-maker-packet.md",
+    "canonical_json_path": "artifacts/decision-maker-packet.json",
+    "external_market_id": "0xfb00ff35de120017fabe413f445c7260fcbbe3c17b11d69108f953ab573b7c92",
+    "market_slug": "bitcoin-above-74k-on-april-15",
+    "platform": "polymarket",
+    "primary_market_url": "https://polymarket.com/event/bitcoin-above-74k-on-april-15",
+    "source_light_refresh_brief_path": "",
+    "refresh_mode": ""
+  },
+  "decision": {
+    "side": "yes",
+    "trade_authorization": "watch_only",
+    "position_policy": "hold_only",
+    "decision_readiness": "needs_more_research",
+    "primary_crux": "BTC is more likely than not to finish above $74,000 on the April 15 noon ET Binance minute because same-venue price was still materially above the strike, but the market's 81.5% price is somewhat rich for a one-minute settlement contract with a plausible sub-24-hour 1.8% downside path.",
+    "secondary_cruxes": [
+      "This contract is harder than a touch market because it requires the exact 12:00 ET Binance 1-minute close to remain above the strike.",
+      "Current Binance price clustered in the low-75k area, which supports Yes, but not strongly enough to erase ordinary overnight and morning volatility risk.",
+      "The remaining disagreement with market is modest and fragile because a further BTC firming would quickly eliminate it, while a downside move toward 74k would widen it."
+    ],
+    "thesis_class": "not_decision_ready"
+  },
+  "valuation": {
+    "fair_value_low": 0.74,
+    "fair_value_high": 0.8,
+    "fair_value_mid": 0.77,
+    "market_reference_price": 0.815,
+    "edge_mid_vs_market_pct_points": -4.5,
+    "independent_verification_quality": "medium",
+    "compressed_toward_market_applied": true,
+    "compression_reason": "Current same-venue Binance pricing above $74k supports a real Yes lean, but exact-candle settlement mechanics and unquantified final-hours downside volatility keep fair value modestly below the market."
+  },
+  "execution_semantics": {
+    "price_axis": "market_implied_true_prob",
+    "price_source": "market_snapshot_quote",
+    "rebalance_threshold_fraction": 0.06,
+    "allow_auto_reversal": false,
+    "valid_until": "2026-04-15T11:00:00-04:00",
+    "quote_staleness_seconds": 3600,
+    "time_horizon": "Through the April 15 12:00 ET Binance 1-minute settlement close"
+  },
+  "risk_controls": {
+    "max_position_size_pct_bankroll": 0.005,
+    "max_additional_exposure_pct_bankroll": 0.0,
+    "max_single_order_pct_bankroll": 0.0,
+    "slippage_tolerance_bps": 40,
+    "liquidity_min_depth": 1500,
+    "correlation_bucket_limit_pct_bankroll": 0.05,
+    "confidence_level": "low",
+    "portfolio_constraints": [
+      "Do not initiate new exposure from this packet because the market is already above bounded fair value and the edge is modest.",
+      "Reassess close to settlement with a fresh same-venue Binance check before acting.",
+      "Treat exact-minute crypto settle markets as path- and microstructure-sensitive even when spot is currently above strike."
+    ],
+    "liquidity_caution": "medium"
+  },
+  "bands": [
+    {
+      "name": "max_enter",
+      "min_p": 0,
+      "max_p": 0.58,
+      "target_exposure_fraction": 0,
+      "notes": "No autonomous entry from this packet; much cheaper prices would require a fresh pre-settlement venue check."
+    },
+    {
+      "name": "scaled_enter",
+      "min_p": 0.58,
+      "max_p": 0.7,
+      "target_exposure_fraction": 0,
+      "notes": "No entry authorized because the current packet sees only a modest and fragile edge."
+    },
+    {
+      "name": "hold",
+      "min_p": 0.7,
+      "max_p": 0.79,
+      "target_exposure_fraction": 0,
+      "notes": "Hold zone consistent with a favored Yes outcome but insufficient valuation cushion for fresh adds."
+    },
+    {
+      "name": "trim",
+      "min_p": 0.79,
+      "max_p": 0.9,
+      "target_exposure_fraction": 0,
+      "notes": "Trim or avoid increasing as price rises above bounded fair value and exact-minute downside risk dominates."
+    },
+    {
+      "name": "exit",
+      "min_p": 0.9,
+      "max_p": 1,
+      "target_exposure_fraction": 0,
+      "notes": "Exit/avoid at very high prices because one-minute settlement and plausible sub-day BTC volatility still matter."
+    }
+  ],
+  "invalidation": {
+    "thesis_breakers": [
+      "BTC trades back near or below $74,000 on Binance before the resolving minute.",
+      "A fresh same-venue Binance check shows deteriorating price structure or repeated rejection through late morning ET on April 15.",
+      "A verified final resolving candle above $74,000 would collapse the residual uncertainty and supersede this packet."
+    ],
+    "market_structure_breakers": [
+      "A Binance-specific microstructure, API/UI, or candle-mapping issue affects confidence in the governing close.",
+      "The market reprices materially on new BTC path information before a fresh packet is produced.",
+      "Late breaking macro or crypto-specific news materially changes intraday volatility expectations."
+    ],
+    "time_breakers": [
+      "The final-hours path into the noon ET candle can dominate all current reasoning.",
+      "A fresh same-venue pre-settlement check is required as the event approaches."
+    ],
+    "reversal_conditions": [
+      "Move toward authorized yes only after a fresh packet if BTC remains comfortably above $74,000 closer to settlement while price remains favorable.",
+      "Move materially lower if BTC weakens toward the strike or volatility rises sharply before the event.",
+      "Do not auto-reverse from this packet."
+    ]
+  },
+  "epistemic_status": {
+    "key_uncertainties": [
+      "How much downside volatility BTC will realize before the April 15 noon ET minute.",
+      "Whether any Binance-specific microstructure or candle-surface issue matters at settlement.",
+      "How much the current market already incorporates near-term volatility and morning catalyst risk."
+    ],
+    "reasons_to_pass": [
+      "The edge versus market is modest and could disappear quickly if BTC firms further.",
+      "The contract settles on one exact Binance minute close, so timing risk remains material.",
+      "No robust independent quantification of final-hours downside risk was assembled in the bounded package."
+    ],
+    "what_would_change_my_mind": [
+      "A fresh Binance check late on April 14 or early on April 15 showing BTC still comfortably above 75k would move fair value somewhat higher.",
+      "A move back toward 74k or below would move fair value materially lower.",
+      "Evidence of increased downside catalyst risk or Binance-specific settlement-surface issues would reduce confidence further."
+    ],
+    "decision_quality": "not_ready"
+  },
+  "audit": {
+    "market_baseline_respected": true,
+    "action_bias_check_passed": true,
+    "self_preservation_bias_check_passed": true,
+    "one_sentence_rationale": "BTC is favored to finish above $74,000 on the April 15 noon ET Binance minute because same-venue pricing remained materially above the strike, but since the market's 81.5% price already leans hard into that view and the contract is a one-minute settle vulnerable to ordinary sub-day volatility, the disciplined output is watch-only and needs-more-research rather than an authorized trade.",
+    "notes": "This packet distinguishes a real directional Yes lean from execution readiness: the contract's exact-minute mechanics and the modest edge versus market make this a poor place to force action before a fresher pre-settlement check.",
+    "structured_handoff_primary_used": true,
+    "prose_fallback_used": false,
+    "verification_mode_used": "not_ready_reopen_recommended",
+    "additional_verification_performed": false,
+    "additional_verification_notes": ""
+  }
+}

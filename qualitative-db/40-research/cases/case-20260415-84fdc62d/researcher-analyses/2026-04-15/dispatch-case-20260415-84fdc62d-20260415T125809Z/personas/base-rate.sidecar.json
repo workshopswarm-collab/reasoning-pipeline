@@ -1,0 +1,58 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Short-dated crypto volatility can erase the current cushion quickly.",
+    "Venue-specific exact-minute settlement makes the position less robust than a broad weekly price claim."
+  ],
+  "key_assumptions": [
+    "The recent above-70000 Binance trading regime persists through the April 20 noon ET resolution window.",
+    "There is no roughly 5-6% drawdown before the exact settlement minute."
+  ],
+  "main_logical_chain": [
+    "Verify the exact contract mechanics, venue, threshold, and timing.",
+    "Check the current Binance BTC/USDT level relative to the 70000 threshold.",
+    "Compare the current bullish cushion against recent frequency and normal BTC short-horizon volatility.",
+    "Conclude yes is favored but not as strongly as the market implies."
+  ],
+  "main_thesis": "Yes is more likely than no because BTC is currently well above 70000 on the named venue, but the market is somewhat overconfident given the contract's exact-minute resolution and Bitcoin's ability to move more than 5% in five days.",
+  "own_probability": 0.78,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "Binance BTC/USDT 1-minute candle 12:00 ET",
+    "strictly higher than 70000",
+    "market somewhat overconfident"
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "market_anchor",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-84fdc62d",
+    "dispatch_id": "dispatch-case-20260415-84fdc62d-20260415T125809Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "6b7a203d-2b34-4f67-89c3-97e85086fe5b",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-84fdc62d/researcher-analyses/2026-04-15/dispatch-case-20260415-84fdc62d-20260415T125809Z/personas/base-rate.md",
+    "source_persona_sha256": "c7de291cbeb947bb8fc61f16a62a579a18fff6cca0076aedb6ee3ef1d91c2499"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High quality on direct rules and venue data, with medium overall independence because Binance is both trading context and named settlement venue; CoinGecko adds a useful independent contextual cross-check.",
+  "strongest_disconfirmers": [
+    "A move from about 74300 to below 70000 is only about a 5.8% drawdown, which is not unusual for Bitcoin over five days.",
+    "The contract resolves on one exact Binance 1-minute close, increasing path and microstructure risk."
+  ],
+  "strongest_supports": [
+    "Binance BTC/USDT was around 74311 during the run, leaving a material cushion above 70000.",
+    "Recent Binance daily closes were mostly above 70000, indicating a supportive current regime.",
+    "CoinGecko independently confirmed BTC spot in the mid-74000s."
+  ],
+  "timing_relevance": "The market resolves on April 20, 2026 at 12:00 ET using one exact Binance 1-minute close, so timing precision is materially important.",
+  "unresolved_ambiguities": [
+    "Daily close frequencies are only a rough proxy for a specific noon ET one-minute close.",
+    "Short-horizon macro or crypto-specific catalysts between now and April 20 could still matter."
+  ],
+  "what_would_change_view": "I would become more bullish if BTC keeps holding or extends above the mid-74000s into the weekend, and more bearish if Binance BTC/USDT loses 72000 decisively or repeatedly threatens 70000 before resolution."
+}

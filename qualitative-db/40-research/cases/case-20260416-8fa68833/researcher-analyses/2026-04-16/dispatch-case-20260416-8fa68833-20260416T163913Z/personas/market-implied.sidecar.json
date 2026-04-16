@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "medium",
+  "fragility_points": [
+    "Lineup/injury news before kickoff.",
+    "Potential bookmaker or market drift against Barcelona.",
+    "Partial extraction quality from contextual stats source."
+  ],
+  "key_assumptions": [
+    "The current price mainly reflects a real Barcelona-vs-Celta quality gap.",
+    "No major late Barcelona absences materially reduce the home-favorite edge.",
+    "The contract's simple 90-minute structure limits interpretation risk."
+  ],
+  "main_logical_chain": [
+    "Start from the market's 77.5% prior because simple sports prices often aggregate dispersed information well.",
+    "Check the contract wording and source of truth to confirm this is a normal regulation-only match-result market.",
+    "Use current-season team-strength context to test whether strong Barcelona favoritism is directionally plausible.",
+    "Conclude the market is broadly efficient but shade slightly lower because exact-price verification remained partial and team-news risk remains."
+  ],
+  "main_thesis": "Barcelona looks like a justified strong favorite, but the market's 77.5% is slightly rich versus a 74% fair estimate absent fresh team news.",
+  "own_probability": 0.74,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "This market refers only to the outcome within the first 90 minutes of regular play plus stoppage time.",
+    "The primary resolution source for this market is the official statistics of the event as recognized by the governing body or event organizers."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-8fa68833",
+    "dispatch_id": "dispatch-case-20260416-8fa68833-20260416T163913Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "ffe559ec-3cb1-4da6-aed8-c81ed4b63ce0",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-8fa68833/researcher-analyses/2026-04-16/dispatch-case-20260416-8fa68833-20260416T163913Z/personas/market-implied.md",
+    "source_persona_sha256": "f4ddf0714bf8ff26e062e50a664ed2000a6eac4abae3a73a056cd19113353c99"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary contract quality is strong, contextual support is adequate but independence and exact-price verification are only moderate.",
+  "strongest_disconfirmers": [
+    "Exact 77.5% pricing was not independently confirmed with a clean bookmaker-consensus capture in this run.",
+    "Late injury, rotation, or schedule news could still move fair value materially before kickoff."
+  ],
+  "strongest_supports": [
+    "Polymarket contract is straightforward and low-ambiguity for a regulation win market.",
+    "Barcelona is a canonical elite-side entity and the market baseline is consistent with a normal strong-home-favorite prior.",
+    "Current-season Understat team pages support evaluating the game through live-season strength context rather than stale brand only."
+  ],
+  "timing_relevance": "The match is still several days away, so late team news could matter more than the current memo's small deviation from market.",
+  "unresolved_ambiguities": [
+    "No in-run clean canonical slug verified for RC Celta de Vigo.",
+    "No directly captured independent bookmaker consensus for exact fair price."
+  ],
+  "what_would_change_view": "I would cut the estimate if credible reports show key Barcelona absences, meaningful rotation, or strong independent market movement against Barcelona."
+}

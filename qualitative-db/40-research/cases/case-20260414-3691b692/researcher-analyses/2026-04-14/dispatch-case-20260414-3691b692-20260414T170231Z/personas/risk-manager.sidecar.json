@@ -1,0 +1,58 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A fast move back toward 72000 before noon ET Apr 16 would sharply weaken the thesis.",
+    "Rejection near 75000 could accelerate downside and compress the buffer.",
+    "Binance-specific anomalies matter more than broader market averages here."
+  ],
+  "key_assumptions": [
+    "BTC stays above 72000 on Binance through the exact 12:00 ET resolving minute.",
+    "No Binance-specific operational or pricing anomaly distorts the reference candle.",
+    "Near-term volatility does not erase the current price cushion."
+  ],
+  "main_logical_chain": [
+    "The governing source of truth is the Binance BTCUSDT 12:00 ET one-minute close on Apr 16, not a generic BTC price.",
+    "Current Binance spot is materially above 72000, so Yes is the correct directional lean.",
+    "Because BTC recently moved below 71000 and the contract is minute-specific, confidence should be discounted below the market's 90%."
+  ],
+  "main_thesis": "Yes is still more likely than not, but the market is overconfident because this resolves on a narrow Binance-specific one-minute close and short-horizon BTC volatility can still break the threshold.",
+  "own_probability": 0.79,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "Binance BTC/USDT 12:00 ET 1m candle close is the governing source of truth.",
+    "The market may be underpricing timing risk and one-minute path risk, not necessarily bearish direction."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "risk_management",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-3691b692",
+    "dispatch_id": "dispatch-case-20260414-3691b692-20260414T170231Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "f61d4b53-f199-470e-8c80-20d7c9b20d85",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-3691b692/researcher-analyses/2026-04-14/dispatch-case-20260414-3691b692-20260414T170231Z/personas/risk-manager.md",
+    "source_persona_sha256": "4d23e7ab32cea87c06bb2ce56669fb6fe89ee65e54a56ad25518d435c961de09"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Low ambiguity on source of truth, strong direct mechanics and exchange data, but contextual evidence is only moderately independent because price context centers on the same market.",
+  "strongest_disconfirmers": [
+    "Recent Binance ranges show BTC can swing several thousand dollars in days, enough to break the strike.",
+    "The contract depends on one exact minute and one venue, so timing/microstructure risk is underpriced."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT traded around 74729 on Apr 14, leaving a meaningful buffer over 72000.",
+    "Recent Binance daily data show a rebound back above the threshold before resolution."
+  ],
+  "timing_relevance": "This is a date- and minute-specific threshold contract resolving at 12:00 ET on 2026-04-16, so path risk matters more than for a generic daily close question.",
+  "unresolved_ambiguities": [
+    "How much realized volatility remains over the next two days.",
+    "Whether current strength persists through the exact resolving window."
+  ],
+  "what_would_change_view": "A fresh Binance check near resolution showing BTC still comfortably above 74000 would move me closer to market; sustained trading near or below 72000 would move me materially lower."
+}

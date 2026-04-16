@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A broad crypto drawdown before Apr 19 could quickly put 80 back in play.",
+    "Binance-specific underperformance or operational issues could matter because settlement is exchange-specific."
+  ],
+  "key_assumptions": [
+    "The market is mostly pricing ordinary short-horizon volatility around a current Binance SOL/USDT level already above 80.",
+    "Binance-specific settlement behavior remains operationally normal through the deadline.",
+    "No major crypto-wide downside shock arrives before Apr 19 noon ET."
+  ],
+  "main_logical_chain": [
+    "Start from the live 88.5% market prior because SOL is already above 80 on the named settlement venue.",
+    "Verify the governing source directly: Polymarket rules name Binance SOL/USDT 12:00 ET one-minute close as the source of truth.",
+    "Check current exchange-specific state: Binance public data shows SOL around 84.70, comfortably above the threshold.",
+    "Use independent context: CoinGecko recent range also sits above 80, supporting the market's bullish posture.",
+    "Discount modestly for remaining path risk because only the Apr 19 noon ET final close matters."
+  ],
+  "main_thesis": "The market's high Yes price is broadly justified because Binance SOL/USDT is already comfortably above 80, but a modest discount remains because the contract resolves on one exact noon ET one-minute close on Apr 19 rather than on any prior touch.",
+  "own_probability": 0.84,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for SOL/USDT 12:00 in the ET timezone has a final 'Close' price higher than the price specified in the title.",
+    "Direct Binance checks showed SOL/USDT around 84.70 with recent one-minute closes near 84.7."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-a8277fc8",
+    "dispatch_id": "dispatch-case-20260416-a8277fc8-20260416T001420Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "415584b8-57d1-4833-a6d9-41f2cd595fdb",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-a8277fc8/researcher-analyses/2026-04-16/dispatch-case-20260416-a8277fc8-20260416T001420Z/personas/market-implied.md",
+    "source_persona_sha256": "30cde8ca3fa8f0ed815ff3887dc169d6966a8120ed44770cfa9b75bf3c8cfaca"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is good: direct contract rules plus direct Binance data and one independent contextual series. Source-of-truth ambiguity is low on mechanics, with modest operational ambiguity around UI-versus-API presentation.",
+  "strongest_disconfirmers": [
+    "This is a future exact-close market, not a touch market, so a drop at the governing minute is enough for No.",
+    "Crypto can move several percent over a few days, so the current cushion above 80 is meaningful but not overwhelming."
+  ],
+  "strongest_supports": [
+    "Direct Binance checks showed SOL/USDT around 84.70 with recent one-minute closes near 84.7.",
+    "Polymarket rules explicitly make Binance SOL/USDT 12:00 ET 1m close the governing source.",
+    "CoinGecko 48-hour context showed SOL trading roughly 82.96-87.34, keeping 80 below the recent observed range."
+  ],
+  "timing_relevance": "The event resolves at the Binance SOL/USDT 12:00 ET one-minute close on 2026-04-19, so current-above-threshold evidence is helpful but not dispositive.",
+  "unresolved_ambiguities": [
+    "Current evidence supports the venue and current level, but the governing settlement minute has not occurred yet.",
+    "The contract references the Binance trade UI while direct verification here used Binance public API endpoints rather than the rendered page."
+  ],
+  "what_would_change_view": "I would move lower if Binance SOL/USDT fell back toward or below 80 or if a broad crypto risk-off move hit before settlement; I would move higher if Binance still showed a comfortable cushion above 80 closer to Apr 19 noon ET."
+}

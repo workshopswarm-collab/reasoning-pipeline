@@ -1,0 +1,62 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Single-minute settlement window.",
+    "Continuous crypto trading through weekend and overnight periods.",
+    "Potential Binance-specific microstructure or display anomalies near settlement."
+  ],
+  "key_assumptions": [
+    "BTC remains materially above 72000 into the April 20 settlement window.",
+    "No Binance-specific anomaly distorts the settlement-relevant 1-minute close.",
+    "Current price cushion is not erased by a sharp weekend or intraday selloff."
+  ],
+  "main_logical_chain": [
+    "The governing rules resolve the market using the Binance BTC/USDT 1-minute candle close at 12:00 ET on April 20.",
+    "Current direct Binance data place BTC materially above 72000, which supports Yes.",
+    "Because resolution is timestamp-specific rather than based on a daily close, the main risk is path fragility rather than broad bearish trend.",
+    "That leaves Yes as the base case, but with conviction capped by settlement mechanics."
+  ],
+  "main_thesis": "Yes is still more likely than No because Binance BTC/USDT is currently well above 72000, but the single-minute noon ET settlement mechanic makes the setup more fragile than a generic directional BTC view.",
+  "own_probability": 0.88,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone (noon) ... has a final 'Close' price higher than the price specified in the title.",
+    "My directional view is Yes, but with lower confidence than the market price implies.",
+    "The strongest disconfirming consideration is not a bearish macro thesis but the contract design itself."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "risk_management",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-e0b8c17c",
+    "dispatch_id": "dispatch-case-20260416-e0b8c17c-20260416T050131Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "6b2a6cd0-b0cf-4d63-b6bc-8692d1c88c99",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-e0b8c17c/researcher-analyses/2026-04-16/dispatch-case-20260416-e0b8c17c-20260416T050131Z/personas/risk-manager.md",
+    "source_persona_sha256": "e0a67a076b94e147ac7e04f05f6c8137b8562a1c04bd4b675721cc2a2296b0f6"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary source quality is high because the Polymarket rules explicitly define the settlement source. Context verification quality is also high from direct Binance data, though independence is only medium because both point back to Binance.",
+  "strongest_disconfirmers": [
+    "Settlement depends on one exact 1-minute Binance close at 12:00 ET on April 20.",
+    "A recent 14-day hourly sample showed only about one-third of hourly closes above 72000, so path risk is real.",
+    "A transient selloff or venue-specific wick near settlement could defeat an otherwise correct broad directional thesis."
+  ],
+  "strongest_supports": [
+    "Direct Binance checks on 2026-04-16 showed BTC/USDT around 75000, roughly 3000 above the threshold.",
+    "Recent Binance daily closes were mostly above 72000.",
+    "The contract explicitly uses Binance BTC/USDT, matching the verified venue and pair."
+  ],
+  "timing_relevance": "High: the contract resolves on the 12:00 ET / 16:00 UTC Binance 1-minute close on 2026-04-20, so intraday path risk matters materially.",
+  "unresolved_ambiguities": [
+    "Whether the market is slightly underpricing timestamp-specific fragility.",
+    "How much of the current cushion will still exist by April 20 noon ET."
+  ],
+  "what_would_change_view": "A move back toward 72000 on Binance before April 20, repeated inability to hold above the threshold during U.S. hours, or venue-specific anomalies near settlement would push the estimate lower."
+}

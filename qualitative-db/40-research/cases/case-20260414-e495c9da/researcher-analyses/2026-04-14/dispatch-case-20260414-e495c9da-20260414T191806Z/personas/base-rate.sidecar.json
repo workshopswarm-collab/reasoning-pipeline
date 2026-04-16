@@ -1,0 +1,57 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A sharp weekend selloff could erase the current cushion.",
+    "An adverse exact-minute print could resolve No even if broader trend remains constructive."
+  ],
+  "key_assumptions": [
+    "BTC stays roughly in the current low/mid-70k regime through Apr 19 noon ET.",
+    "No major downside shock or Binance-specific dislocation occurs before settlement."
+  ],
+  "main_logical_chain": [
+    "The contract settles from Binance BTC/USDT at exactly 12:00 ET on Apr 19.",
+    "Binance and independent contextual sources show BTC currently trading in a >70000 regime.",
+    "Short-horizon regime persistence makes Yes more likely than not by a wide margin.",
+    "But because BTC is volatile and the contract is exact-minute, near-90% confidence looks slightly too high."
+  ],
+  "main_thesis": "Yes is likely because Binance BTC/USDT is already trading materially above 70000, but the market slightly overstates confidence for an exact-minute crypto threshold contract.",
+  "own_probability": 0.84,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone",
+    "current_price = 0.895",
+    "84% Yes"
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "contract_interpretation",
+    "market_anchor"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-e495c9da",
+    "dispatch_id": "dispatch-case-20260414-e495c9da-20260414T191806Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "bb3aa5ae-c532-47e8-a68c-d27624da9881",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-e495c9da/researcher-analyses/2026-04-14/dispatch-case-20260414-e495c9da-20260414T191806Z/personas/base-rate.md",
+    "source_persona_sha256": "223d09f0439797c346b05319d552f22808e3b28f769ef0d40cac3f536b74512c"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality contract/source-of-truth via Polymarket wording and Binance, with medium independence from CoinGecko and Yahoo contextual cross-checks.",
+  "strongest_disconfirmers": [
+    "BTC traded below 70000 within the last few weeks.",
+    "The contract resolves on one exact minute, so short-horizon volatility and weekend path risk matter."
+  ],
+  "strongest_supports": [
+    "Binance is the governing source and recent BTCUSDT closes are mostly above 70000.",
+    "Current Binance price near 74300-74400 leaves a meaningful cushion over the threshold.",
+    "CoinGecko and Yahoo Finance independently confirm the recent 70k+ regime."
+  ],
+  "timing_relevance": "Highly timing-sensitive because the contract resolves on the Apr 19, 2026 12:00 PM ET one-minute candle close.",
+  "unresolved_ambiguities": [
+    "No major source-of-truth ambiguity; remaining uncertainty is mostly path dependence into the settlement minute."
+  ],
+  "what_would_change_view": "I would raise confidence if BTC holds comfortably above 72k-74k into Apr 18-19 with muted volatility, and cut sharply if BTC re-enters the 69k area or Binance shows venue-specific weakness."
+}

@@ -1,0 +1,56 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A downside shock before April 20 noon ET could erase the current buffer.",
+    "Binance-specific operational or pricing issues near resolution could matter because Binance is the source of truth."
+  ],
+  "key_assumptions": [
+    "BTC remains above 70k into the April 20 noon ET settlement window absent a meaningful downside shock.",
+    "Binance remains a usable and stable governing resolution surface."
+  ],
+  "main_logical_chain": [
+    "Verify the exact contract mechanics and governing source directly.",
+    "Check current Binance BTCUSDT price and recent regime relative to the 70k threshold.",
+    "Conclude that current price buffer makes Yes more likely than not, while discounting for close-only timing risk and remaining volatility."
+  ],
+  "main_thesis": "BTC is currently far enough above $70,000 that simple persistence into the April 20 noon ET Binance close still makes Yes the higher-probability outcome.",
+  "own_probability": 0.9,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone (noon) ... has a final 'Close' price higher than the price specified in the title.",
+    "BTC is currently far enough above $70,000 that this still looks more likely than not to resolve Yes."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "catalyst_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-90641eba",
+    "dispatch_id": "dispatch-case-20260415-90641eba-20260415T174326Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "222526d8-e959-4e3a-9ba7-eb5ec3f17f0e",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-90641eba/researcher-analyses/2026-04-15/dispatch-case-20260415-90641eba-20260415T174326Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "52e95e9f358116e978a2834721922e86b882081061f99829fab8fe3844e83484"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is good: rules were checked directly on Polymarket and current state was verified directly on Binance; source-of-truth ambiguity is low after the mechanics check.",
+  "strongest_disconfirmers": [
+    "This is a strict one-minute close market, not a touch market, so BTC can trade above 70k most of the week and still resolve No.",
+    "Five days is enough time for a 5%+ downside move in BTC if a macro or crypto-specific shock hits."
+  ],
+  "strongest_supports": [
+    "Polymarket rules explicitly make this a Binance BTC/USDT 12:00 PM ET one-minute close-above-$70,000 market.",
+    "Direct Binance checks showed BTCUSDT around $73,989, leaving roughly a $4,000 cushion above the threshold.",
+    "Recent Binance daily candles kept BTC above 70k with highs up to $76,038."
+  ],
+  "timing_relevance": "The market is mainly about whether BTC can hold its current mid-70k regime into one exact settlement minute on April 20 at noon ET.",
+  "unresolved_ambiguities": [
+    "No decisive settlement proof exists yet because the relevant noon ET candle has not occurred.",
+    "The exact catalyst path is uncertain; downside shocks matter more than upside catalysts here."
+  ],
+  "what_would_change_view": "I would mark down Yes materially if BTC breaks toward 71k/70k before April 20, if a macro or crypto shock creates a fast drawdown, or if Binance-specific settlement-surface risk rises."
+}

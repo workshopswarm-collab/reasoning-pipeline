@@ -1,0 +1,57 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Noon-ET single-minute close risk is the main fragility.",
+    "Crypto can move enough in five days to erase the current cushion without any regime change."
+  ],
+  "key_assumptions": [
+    "BTC retains enough cushion to stay above 72000 at the specific Apr 21 noon ET close.",
+    "No material risk-off shock or Binance-specific dislocation occurs before settlement."
+  ],
+  "main_logical_chain": [
+    "Verify the governing source and exact settlement mechanics from Polymarket rules.",
+    "Check current Binance BTCUSDT state relative to the 72000 threshold.",
+    "Discount the bullish spot signal for close-only timing fragility at a single future minute.",
+    "Land slightly below the 70.5% market-implied probability rather than far below it."
+  ],
+  "main_thesis": "Yes is still more likely than No because Binance BTC/USDT is already above 72000, but the market slightly underprices single-timestamp close risk.",
+  "own_probability": 0.67,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "Binance BTC/USDT 12:00 ET 1-minute candle Close",
+    "Current spot verified around 73712.59"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "risk_management",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-66f6f47e",
+    "dispatch_id": "dispatch-case-20260416-66f6f47e-20260416T141457Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "c675a0cb-3861-460c-8378-abeff2057be0",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-66f6f47e/researcher-analyses/2026-04-16/dispatch-case-20260416-66f6f47e-20260416T141457Z/personas/risk-manager.md",
+    "source_persona_sha256": "ed8bfe5701475615e918aa33411be0bd8a66635c17f86cbc4b52e53ca5b599af"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary-source quality is strong for rules and current state; source-of-truth ambiguity is low, but forecasting evidence remains inherently contextual until settlement.",
+  "strongest_disconfirmers": [
+    "The contract resolves on one future 1-minute close, not on an intraperiod touch or broad daily average.",
+    "A routine 2% to 3% BTC drawdown over five days would be enough to flip the market to No."
+  ],
+  "strongest_supports": [
+    "Current Binance BTC/USDT was about 73712.59 at verification, roughly 2.4% above the threshold.",
+    "Recent 24h Binance low remained above 73309.85, leaving a cushion over 72000."
+  ],
+  "timing_relevance": "High: the contract depends on one exact Binance BTC/USDT 12:00 ET 1-minute close on Apr 21, 2026.",
+  "unresolved_ambiguities": [
+    "No direct settlement evidence exists yet because the qualifying candle has not occurred.",
+    "Near-term macro or crypto catalysts before Apr 21 remain uncertain."
+  ],
+  "what_would_change_view": "I would move up if BTC holds comfortably above 73k into Apr 20-21; I would move down quickly if Binance BTC/USDT loses 73k and especially 72k before settlement."
+}

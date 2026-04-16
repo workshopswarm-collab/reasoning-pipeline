@@ -1,0 +1,62 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Exact-minute settlement rather than daily close.",
+    "Exchange-specific source dependence on Binance.",
+    "Crypto can traverse the threshold quickly on overnight or morning volatility."
+  ],
+  "key_assumptions": [
+    "Binance ETH/USDT stays above 2200 through the exact April 17 noon ET 1-minute close.",
+    "The noon ET resolving candle is correctly mapped to 2026-04-17 16:00:00 UTC.",
+    "Binance public API context is a reasonable proxy for the future settlement surface."
+  ],
+  "main_logical_chain": [
+    "The contract resolves on Binance ETH/USDT 1-minute close above 2200 at exactly noon ET on April 17.",
+    "Current Binance ETHUSDT is materially above 2200, so the directional base case is Yes.",
+    "Because settlement depends on one precise future minute close, confidence should be haircut relative to the extreme 95.5% market price.",
+    "That yields a high-probability but not near-certain Yes estimate of 91%."
+  ],
+  "main_thesis": "Yes remains more likely than no, but the 95.5% market price is somewhat overconfident for a single-minute Binance-specific threshold contract; own estimate is 91%.",
+  "own_probability": 0.91,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for ETH/USDT 12:00 in the ET timezone ... has a final 'Close' price higher than [2200].",
+    "2026-04-17 12:00 PM ET = 2026-04-17 16:00:00 UTC",
+    "Current Binance ETHUSDT context check was about 2356.03"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "risk_management",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-989964fe",
+    "dispatch_id": "dispatch-case-20260416-989964fe-20260416T020418Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "fff189ab-e754-4a2c-b08d-e89b4163d7fa",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-989964fe/researcher-analyses/2026-04-16/dispatch-case-20260416-989964fe-20260416T020418Z/personas/risk-manager.md",
+    "source_persona_sha256": "105d4d144ec45f228ffb112d29bec4621c28101074eed21f4d2303b12f762959"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary contract source quality is high, but contextual evidence independence is only medium-low because Binance supplies both the settlement source and the strongest current-price check.",
+  "strongest_disconfirmers": [
+    "A single sharp crypto selloff of roughly 6.6% before the exact resolving minute could still flip the market.",
+    "This is a one-minute, exchange-specific threshold contract, so timing/path fragility is higher than the raw cushion suggests.",
+    "Evidence independence is limited because the strongest contextual check is also Binance-linked."
+  ],
+  "strongest_supports": [
+    "Current Binance ETHUSDT context was about 2356, leaving roughly 156 points of cushion above 2200.",
+    "Polymarket rules clearly define Binance ETH/USDT 1-minute close as the source of truth, limiting broad contract ambiguity.",
+    "The time horizon to resolution is short."
+  ],
+  "timing_relevance": "The relevant candle is the 12:00 PM ET candle on 2026-04-17, explicitly verified as 16:00 UTC; narrow timing is central to the risk haircut.",
+  "unresolved_ambiguities": [
+    "No independent stress test here of any Binance UI/API presentation edge cases or rounding quirks.",
+    "Third-party contextual confirmations were limited by anti-bot blocks."
+  ],
+  "what_would_change_view": "I would move closer to the market with a fresh pre-resolution Binance check still showing a large cushion and calm volatility; I would move away if ETH loses the 2300 area, broader crypto sells off sharply, or Binance-specific irregularities appear."
+}

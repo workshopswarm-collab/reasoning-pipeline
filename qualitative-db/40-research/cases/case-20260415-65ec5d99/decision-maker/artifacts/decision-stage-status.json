@@ -1,0 +1,257 @@
+{
+  "actor": "decision-maker",
+  "agent_tool_use_allowed": false,
+  "artifact_type": "decision_stage_status",
+  "case_key": "case-20260415-65ec5d99",
+  "decision_context_path": "roles/decision-maker/runtime/artifacts/case-20260415-65ec5d99/decision-context-dispatch-case-20260415-65ec5d99-20260415T210454Z.json",
+  "decision_lane": {
+    "topic_id": "3634",
+    "topic_title": "case-20260415-65ec5d99 | decision | T210454Z",
+    "session_key": "agent:main:telegram:group:-1003846500961:topic:3634"
+  },
+  "decision_launch_claim": {
+    "claimed_at": "2026-04-15T21:14:15.172287Z",
+    "decision_context_path": "roles/decision-maker/runtime/artifacts/case-20260415-65ec5d99/decision-context-dispatch-case-20260415-65ec5d99-20260415T210454Z.json",
+    "launch_log_path": "scripts/.runtime-state/decision-maker-launches/case-20260415-65ec5d99-20260415T211415Z.log",
+    "launcher": "pipeline_automation_actions.launch_decision_maker",
+    "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260415-65ec5d99/decision-prompt-dispatch-case-20260415-65ec5d99-20260415T210454Z.md",
+    "runner_pid": 17252
+  },
+  "decision_prompt_path": "roles/decision-maker/runtime/artifacts/case-20260415-65ec5d99/decision-prompt-dispatch-case-20260415-65ec5d99-20260415T210454Z.md",
+  "decision_readiness": "needs_more_research",
+  "decision_target_chat_id": "-1003846500961",
+  "decision_target_session_key": "agent:main:telegram:group:-1003846500961:topic:3634",
+  "decision_visible_finish_marker": "DECISION-MAKING COMPLETED, DECISION PACKAGE CREATED | market=Will Real Madrid CF win on 2026-04-21? | dispatch_id=dispatch-case-20260415-65ec5d99-20260415T210454Z | packet_path=qualitative-db/40-research/cases/case-20260415-65ec5d99/decision-maker/decision-maker-packet.md",
+  "decision_visible_receipt_marker": "SYNTHESIS RECEIVED | market=Will Real Madrid CF win on 2026-04-21? | dispatch_id=dispatch-case-20260415-65ec5d99-20260415T210454Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260415-65ec5d99/decision-context-dispatch-case-20260415-65ec5d99-20260415T210454Z.json",
+  "decision_visible_start_marker": "DECISION-MAKING ANALYSIS UNDERWAY | market=Will Real Madrid CF win on 2026-04-21? | dispatch_id=dispatch-case-20260415-65ec5d99-20260415T210454Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260415-65ec5d99/decision-context-dispatch-case-20260415-65ec5d99-20260415T210454Z.json",
+  "dispatch_id": "dispatch-case-20260415-65ec5d99-20260415T210454Z",
+  "last_stage_event": {
+    "at": "2026-04-15T21:15:11.911161Z",
+    "stage": "decision_execution",
+    "state": "visible_marker_sent",
+    "message": "DECISION-MAKING COMPLETED, DECISION PACKAGE CREATED | market=Will Real Madrid CF win on 2026-04-21? | dispatch_id=dispatch-case-20260415-65ec5d99-20260415T210454Z | packet_path=qualitative-db/40-research/cases/case-20260415-65ec5d99/decision-maker/decision-maker-packet.md"
+  },
+  "packet_json_path": "qualitative-db/40-research/cases/case-20260415-65ec5d99/decision-maker/artifacts/decision-maker-packet.json",
+  "packet_markdown_path": "qualitative-db/40-research/cases/case-20260415-65ec5d99/decision-maker/decision-maker-packet.md",
+  "position_policy": "flat",
+  "question": "Will Real Madrid CF win on 2026-04-21?",
+  "recommended_side": "yes",
+  "schema_version": "decision-stage-status/v1",
+  "selected_input_bundle_estimated_tokens": 2879,
+  "selected_input_bundle_mode": "not_ready_reopen_recommended",
+  "selected_input_bundle_path": "roles/decision-maker/runtime/artifacts/case-20260415-65ec5d99/selected-inputs-dispatch-case-20260415-65ec5d99-20260415T210454Z.json",
+  "stage_events": [
+    {
+      "at": "2026-04-15T21:14:14.628384Z",
+      "message": "Decision-Maker stage initialized from synthesis handoff",
+      "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260415-65ec5d99/synthesizer-agent/decision-handoff.md",
+      "stage": "kickoff",
+      "state": "decision_ready_for_receipt"
+    },
+    {
+      "agent_tool_use_allowed": false,
+      "approx_tokens_after_trim": 2879,
+      "at": "2026-04-15T21:14:15.132039Z",
+      "message": "Built deterministic Decision-Maker selected-input bundle",
+      "selected_input_bundle_path": "roles/decision-maker/runtime/artifacts/case-20260415-65ec5d99/selected-inputs-dispatch-case-20260415-65ec5d99-20260415T210454Z.json",
+      "stage": "decision_input_selection",
+      "state": "built",
+      "verification_mode": "not_ready_reopen_recommended",
+      "verification_mode_path": "roles/decision-maker/runtime/artifacts/case-20260415-65ec5d99/verification-mode-dispatch-case-20260415-65ec5d99-20260415T210454Z.json"
+    },
+    {
+      "at": "2026-04-15T21:14:15.132288Z",
+      "message": "Built Decision-Maker prompt from compact selected-input bundle",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260415-65ec5d99/decision-prompt-dispatch-case-20260415-65ec5d99-20260415T210454Z.md",
+      "stage": "decision_prompt",
+      "state": "built"
+    },
+    {
+      "at": "2026-04-15T21:14:15.133677Z",
+      "message": "Decision-Maker inputs prepared; awaiting launch claim",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260415-65ec5d99/decision-prompt-dispatch-case-20260415-65ec5d99-20260415T210454Z.md",
+      "stage": "decision_prepare",
+      "state": "handoff_prepared"
+    },
+    {
+      "at": "2026-04-15T21:14:15.172287Z",
+      "decision_context_path": "roles/decision-maker/runtime/artifacts/case-20260415-65ec5d99/decision-context-dispatch-case-20260415-65ec5d99-20260415T210454Z.json",
+      "launch_log_path": "scripts/.runtime-state/decision-maker-launches/case-20260415-65ec5d99-20260415T211415Z.log",
+      "message": "Decision-Maker launch claimed by automation controller",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260415-65ec5d99/decision-prompt-dispatch-case-20260415-65ec5d99-20260415T210454Z.md",
+      "runner_pid": 17252,
+      "stage": "decision_receipt",
+      "state": "handoff_sent"
+    },
+    {
+      "at": "2026-04-15T21:14:15.367975Z",
+      "stage": "kickoff",
+      "state": "reentered",
+      "message": "Decision-Maker executor resumed from existing prepared/running state",
+      "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260415-65ec5d99/synthesizer-agent/decision-handoff.md"
+    },
+    {
+      "at": "2026-04-15T21:14:15.844369Z",
+      "stage": "decision_input_selection",
+      "state": "built",
+      "message": "Built deterministic Decision-Maker selected-input bundle",
+      "verification_mode_path": "roles/decision-maker/runtime/artifacts/case-20260415-65ec5d99/verification-mode-dispatch-case-20260415-65ec5d99-20260415T210454Z.json",
+      "selected_input_bundle_path": "roles/decision-maker/runtime/artifacts/case-20260415-65ec5d99/selected-inputs-dispatch-case-20260415-65ec5d99-20260415T210454Z.json",
+      "verification_mode": "not_ready_reopen_recommended",
+      "approx_tokens_after_trim": 2879,
+      "agent_tool_use_allowed": false
+    },
+    {
+      "at": "2026-04-15T21:14:15.844601Z",
+      "stage": "decision_prompt",
+      "state": "built",
+      "message": "Built Decision-Maker prompt from compact selected-input bundle",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260415-65ec5d99/decision-prompt-dispatch-case-20260415-65ec5d99-20260415T210454Z.md"
+    },
+    {
+      "at": "2026-04-15T21:14:22.401734Z",
+      "stage": "decision_lane_bootstrap",
+      "state": "created",
+      "message": "Created dedicated Telegram decision lane",
+      "topic_id": "3634",
+      "topic_title": "case-20260415-65ec5d99 | decision | T210454Z",
+      "session_key": "agent:main:telegram:group:-1003846500961:topic:3634"
+    },
+    {
+      "at": "2026-04-15T21:14:42.279258Z",
+      "stage": "decision_receipt",
+      "state": "visible_marker_sent",
+      "message": "SYNTHESIS RECEIVED | market=Will Real Madrid CF win on 2026-04-21? | dispatch_id=dispatch-case-20260415-65ec5d99-20260415T210454Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260415-65ec5d99/decision-context-dispatch-case-20260415-65ec5d99-20260415T210454Z.json"
+    },
+    {
+      "at": "2026-04-15T21:14:42.280794Z",
+      "stage": "decision_receipt",
+      "state": "accepted",
+      "message": "Decision-Maker handoff accepted",
+      "session_key": "agent:decision-maker:main",
+      "handoff_status": "started",
+      "gateway_response_path": "roles/decision-maker/runtime/artifacts/case-20260415-65ec5d99/decision-gateway-response-dispatch-case-20260415-65ec5d99-20260415T210454Z.json"
+    },
+    {
+      "at": "2026-04-15T21:14:42.280958Z",
+      "stage": "decision_execution",
+      "state": "decision_analysis_running",
+      "message": "Decision-Maker agent invocation accepted and analysis started",
+      "session_key": "agent:decision-maker:main",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260415-65ec5d99/decision-prompt-dispatch-case-20260415-65ec5d99-20260415T210454Z.md",
+      "handoff_status": "started"
+    },
+    {
+      "at": "2026-04-15T21:14:53.953331Z",
+      "stage": "decision_execution",
+      "state": "visible_marker_sent",
+      "message": "DECISION-MAKING ANALYSIS UNDERWAY | market=Will Real Madrid CF win on 2026-04-21? | dispatch_id=dispatch-case-20260415-65ec5d99-20260415T210454Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260415-65ec5d99/decision-context-dispatch-case-20260415-65ec5d99-20260415T210454Z.json"
+    },
+    {
+      "at": "2026-04-15T21:15:02.013053Z",
+      "stage": "decision_execution",
+      "state": "decision_completed",
+      "message": "Decision-Maker completed and packet rendered",
+      "warnings": [],
+      "forecast_decision_persist_error": "",
+      "decision_parse_attempt_count": 1,
+      "decision_recovered_after_retry": false
+    },
+    {
+      "at": "2026-04-15T21:15:11.911161Z",
+      "stage": "decision_execution",
+      "state": "visible_marker_sent",
+      "message": "DECISION-MAKING COMPLETED, DECISION PACKAGE CREATED | market=Will Real Madrid CF win on 2026-04-21? | dispatch_id=dispatch-case-20260415-65ec5d99-20260415T210454Z | packet_path=qualitative-db/40-research/cases/case-20260415-65ec5d99/decision-maker/decision-maker-packet.md"
+    }
+  ],
+  "status": "decision_completed",
+  "targeted_verification_pack_path": "",
+  "targeted_verification_pack_required": false,
+  "trade_authorization": "forbidden",
+  "updated_at": "2026-04-15T21:15:11.911255Z",
+  "verification_mode_path": "roles/decision-maker/runtime/artifacts/case-20260415-65ec5d99/verification-mode-dispatch-case-20260415-65ec5d99-20260415T210454Z.json",
+  "warnings": [],
+  "previous_status": "handoff_sent",
+  "raw_gateway_response_path": "roles/decision-maker/runtime/artifacts/case-20260415-65ec5d99/decision-gateway-response-dispatch-case-20260415-65ec5d99-20260415T210454Z.json",
+  "raw_response_text_path": "roles/decision-maker/runtime/artifacts/case-20260415-65ec5d99/decision-response-dispatch-case-20260415-65ec5d99-20260415T210454Z.raw.txt",
+  "decision_parse_failure_artifact_path": "roles/decision-maker/runtime/artifacts/case-20260415-65ec5d99/decision-parse-failure-dispatch-case-20260415-65ec5d99-20260415T210454Z.json",
+  "decision_parse_attempt_count": 1,
+  "decision_recovered_after_retry": false,
+  "decision_lane_topic_id": "3634",
+  "decision_lane_topic_title": "case-20260415-65ec5d99 | decision | T210454Z",
+  "decision_lane_session_key": "agent:main:telegram:group:-1003846500961:topic:3634",
+  "decision_target_topic_id": "3634",
+  "decision_target_topic_title": "case-20260415-65ec5d99 | decision | T210454Z",
+  "decision_receipt_marker_sent_at": "2026-04-15T21:14:42.279164+00:00",
+  "decision_analysis_marker_sent_at": "2026-04-15T21:14:53.953237+00:00",
+  "timeline_update": {
+    "appended": true,
+    "case_key": "case-20260415-65ec5d99",
+    "dispatch_id": "dispatch-case-20260415-65ec5d99-20260415T210454Z",
+    "packet_path": "qualitative-db/40-research/cases/case-20260415-65ec5d99/decision-maker/decision-maker-packet.md",
+    "entry": "- 2026-04-15T21:15:01.989648+00:00 — completed decision-making `dispatch-case-20260415-65ec5d99-20260415T210454Z` with packet `qualitative-db/40-research/cases/case-20260415-65ec5d99/decision-maker/decision-maker-packet.md`."
+  },
+  "forecast_decision_persist": {
+    "ok": true,
+    "packet_json": "qualitative-db/40-research/cases/case-20260415-65ec5d99/decision-maker/artifacts/decision-maker-packet.json",
+    "persisted": {
+      "forecast_id": "dispatch-case-20260415-65ec5d99-20260415T210454Z",
+      "market_id": "09869589-771a-4a3b-bbd2-2d4108886e72",
+      "contract_id": "yes",
+      "forecast_prob": 0.76,
+      "decision_status": "void",
+      "decision_packet_path": "qualitative-db/40-research/cases/case-20260415-65ec5d99/decision-maker/artifacts/decision-maker-packet.json",
+      "supersedes_forecast_id": null,
+      "superseded_forecast_ids": [],
+      "market_state": {
+        "market_id": "09869589-771a-4a3b-bbd2-2d4108886e72",
+        "current_price": 0.765,
+        "last_reasoned_price": 0.76,
+        "pipeline_status": "closed"
+      }
+    },
+    "record": {
+      "forecast_id": "dispatch-case-20260415-65ec5d99-20260415T210454Z",
+      "decision_ts": "2026-04-15T17:14:00-04:00",
+      "case_id": "case-20260415-65ec5d99",
+      "dispatch_id": "dispatch-case-20260415-65ec5d99-20260415T210454Z",
+      "market_id": "09869589-771a-4a3b-bbd2-2d4108886e72",
+      "contract_id": "yes",
+      "platform": "polymarket",
+      "market_slug": "lal-rea-ala-2026-04-21-rea",
+      "question": "Will Real Madrid CF win on 2026-04-21?",
+      "forecast_prob": "0.76",
+      "forecast_direction": "yes",
+      "confidence_label": "medium",
+      "confidence_score": "",
+      "time_horizon_label": "",
+      "verification_mode": "not_ready_reopen_recommended",
+      "decision_status": "void",
+      "rationale_summary": "Real Madrid should be favored, but with fair value centered near 0.76 versus a 0.765 market and no fresh lineup or bookmaker-consensus validation, the correct packet is forbidden and needs_more_research rather than a marginal watch-only bet on a regulation-only soccer favorite.",
+      "decision_packet_path": "qualitative-db/40-research/cases/case-20260415-65ec5d99/decision-maker/artifacts/decision-maker-packet.json",
+      "decision_handoff_path": "qualitative-db/40-research/cases/case-20260415-65ec5d99/synthesizer-agent/decision-handoff.md",
+      "syndicated_finding_path": "qualitative-db/40-research/cases/case-20260415-65ec5d99/synthesizer-agent/syndicated-finding.md"
+    },
+    "warnings": []
+  },
+  "terminal_summary": {
+    "at": "2026-04-15T21:15:11.911315Z",
+    "status": "decision_completed",
+    "decision_lane": {
+      "topic_id": "3634",
+      "topic_title": "case-20260415-65ec5d99 | decision | T210454Z",
+      "session_key": "agent:main:telegram:group:-1003846500961:topic:3634"
+    },
+    "packet_json_path": "qualitative-db/40-research/cases/case-20260415-65ec5d99/decision-maker/artifacts/decision-maker-packet.json",
+    "packet_markdown_path": "qualitative-db/40-research/cases/case-20260415-65ec5d99/decision-maker/decision-maker-packet.md",
+    "trade_authorization": "forbidden",
+    "decision_readiness": "needs_more_research",
+    "last_stage_event": {
+      "at": "2026-04-15T21:15:11.911161Z",
+      "stage": "decision_execution",
+      "state": "visible_marker_sent",
+      "message": "DECISION-MAKING COMPLETED, DECISION PACKAGE CREATED | market=Will Real Madrid CF win on 2026-04-21? | dispatch_id=dispatch-case-20260415-65ec5d99-20260415T210454Z | packet_path=qualitative-db/40-research/cases/case-20260415-65ec5d99/decision-maker/decision-maker-packet.md"
+    }
+  },
+  "decision_completion_marker_sent_at": "2026-04-15T21:15:11.911039+00:00"
+}

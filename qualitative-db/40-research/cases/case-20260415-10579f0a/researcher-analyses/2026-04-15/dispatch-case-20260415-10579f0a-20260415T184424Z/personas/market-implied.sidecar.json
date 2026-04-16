@@ -1,0 +1,58 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A fast crypto drawdown into the settlement minute could flip the contract.",
+    "Binance-only settlement creates exchange-specific operational or wick risk."
+  ],
+  "key_assumptions": [
+    "No roughly 6%+ BTC selloff occurs before the April 17 noon ET settlement minute.",
+    "No Binance-specific anomaly or wick distorts the governing one-minute candle.",
+    "Current spot levels are representative rather than hiding a major near-term bearish catalyst."
+  ],
+  "main_logical_chain": [
+    "Read the contract literally: settlement depends only on the Binance BTC/USDT 12:00 ET one-minute close on April 17 being strictly above 70000.",
+    "Check current Binance price regime and recent one-minute candles.",
+    "Cross-check with independent spot context to see whether Binance looks isolated.",
+    "Conclude the market is mostly pricing maintenance of an existing level, not a new breakout, but retain a tail-risk haircut for single-minute settlement fragility."
+  ],
+  "main_thesis": "The market is broadly right to price a high-probability Yes because Binance BTC/USDT is already materially above 70000, but single-minute settlement mechanics justify a modest discount versus near-certainty.",
+  "own_probability": 0.94,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "This market will resolve to \"Yes\" if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone (noon)... has a final \"Close\" price higher than... 70000.",
+    "Binance BTCUSDT ticker: 74294.01000000"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "contract_interpretation",
+    "scenario_analysis"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260415-10579f0a",
+    "dispatch_id": "dispatch-case-20260415-10579f0a-20260415T184424Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "93ef9b07-1cc1-4499-a19d-79118106bf8f",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-10579f0a/researcher-analyses/2026-04-15/dispatch-case-20260415-10579f0a-20260415T184424Z/personas/market-implied.md",
+    "source_persona_sha256": "9601f11e18c3b78f6897e04dcf488f5b9000bddef2be314014156d9c0e2cff87"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality direct evidence for contract mechanics and governing exchange price, with medium independence after adding CoinGecko/Coinbase as contextual verification.",
+  "strongest_disconfirmers": [
+    "The contract resolves on one exact Binance one-minute close, so timestamp risk remains material.",
+    "BTC can move several percent in under two days, which could erase the current spot buffer."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT spot was about 74294 on April 15, roughly 4300 above the threshold.",
+    "Recent Binance 1m closes were clustered around the same level.",
+    "CoinGecko and Coinbase cross-checks also showed BTC in the mid-74k area."
+  ],
+  "timing_relevance": "Short-dated market with about two days remaining, so current spot matters a lot but exact-minute volatility still matters.",
+  "unresolved_ambiguities": [
+    "How much probability mass should be assigned to timestamp-specific tail risk versus ordinary spot distance-to-threshold.",
+    "Whether any new macro or crypto catalyst appears before settlement."
+  ],
+  "what_would_change_view": "I would cut the estimate if BTC starts losing the low-72k/high-71k area, if a sharp bearish catalyst appears, or if Binance shows settlement-window instability."
+}

@@ -1,0 +1,61 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A modest overnight or morning selloff can flip the outcome even if BTC spends much of the period above 74000.",
+    "Cross-venue agreement does not materially solve the exact-minute Binance close risk.",
+    "The current evidence is mostly one source class: exchange price context."
+  ],
+  "key_assumptions": [
+    "Current Binance BTC/USDT strength will broadly persist into the resolving noon ET minute.",
+    "No overnight or morning move larger than roughly 1.2% pushes BTC back below 74000 at the wrong time.",
+    "The ET noon contract wording maps cleanly to the relevant Binance 1-minute candle."
+  ],
+  "main_logical_chain": [
+    "Polymarket rules make Binance BTC/USDT 12:00 ET 1-minute close the governing source of truth.",
+    "Current Binance pricing is above 74000, so the base case favors Yes.",
+    "Because only one future minute close matters, current spot evidence must be discounted for path and timing risk.",
+    "That leaves a lean-Yes estimate below the market rather than a strongly bullish one."
+  ],
+  "main_thesis": "BTC is currently above 74000 on the governing venue, so Yes is favored, but the market appears somewhat too confident because this resolves on one exact future noon ET 1-minute close rather than generic spot strength.",
+  "own_probability": 0.66,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone (noon) ... has a final 'Close' price higher than ... 74000.",
+    "Lean Yes, but with less confidence than the market.",
+    "the contract only cares about the final close of one exact future 12:00 ET one-minute candle"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "risk_management",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-7bf6a6c4",
+    "dispatch_id": "dispatch-case-20260416-7bf6a6c4-20260416T025105Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "145d8deb-fe30-4690-9512-123c43ccf99c",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-7bf6a6c4/researcher-analyses/2026-04-16/dispatch-case-20260416-7bf6a6c4-20260416T025105Z/personas/risk-manager.md",
+    "source_persona_sha256": "0f5701d1deb557fc04bb1759cc78e5fa7cbd8f1d5763b15123b78fb03aa455d1"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Good on mechanics and current venue context, but only medium independence because most supporting evidence is exchange-price based and none can directly observe the future resolving minute yet.",
+  "strongest_disconfirmers": [
+    "The contract is a single exact future 12:00 ET one-minute close, not a touch-above or generic daily-above market.",
+    "The current cushion above 74000 is only about 900 points, small enough for ordinary sub-day BTC volatility to erase."
+  ],
+  "strongest_supports": [
+    "Binance BTC/USDT was around 74912 at research time, already above the strike on the governing venue.",
+    "Recent Binance 1-minute closes were mostly in the high-74800s to low-74900s.",
+    "CoinGecko and Coinbase spot checks broadly agreed on the high-74k level."
+  ],
+  "timing_relevance": "Timing is central because the contract resolves on the Binance BTC/USDT 12:00 ET one-minute close on April 17, not on any earlier trade above 74000.",
+  "unresolved_ambiguities": [
+    "Future intraday volatility between research time and noon ET April 17.",
+    "Exact Binance candle observation at resolution cannot yet be captured because the event has not occurred."
+  ],
+  "what_would_change_view": "I would move down if Binance BTC/USDT loses 74000 before the morning of April 17 or trades near the strike right before noon ET; I would move up if it remains comfortably above roughly 74500-75000 into late morning ET."
+}

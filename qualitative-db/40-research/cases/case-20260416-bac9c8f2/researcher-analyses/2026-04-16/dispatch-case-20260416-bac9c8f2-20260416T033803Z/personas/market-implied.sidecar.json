@@ -1,0 +1,57 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Settlement-minute wick or Binance-specific dislocation could flip the outcome.",
+    "The evidence is highly time-sensitive and loses value quickly as spot moves."
+  ],
+  "key_assumptions": [
+    "Binance API price and klines are a close practical proxy for the settlement surface named in the rules.",
+    "BTC will remain near the current 75k trading zone rather than selling off more than about 1.4% into settlement.",
+    "The current adjacent-strike ladder already captures ordinary short-horizon volatility risk reasonably well."
+  ],
+  "main_logical_chain": [
+    "The contract resolves off Binance BTC/USDT 12:00 ET 1-minute close above 74,000.",
+    "Direct Binance data during the run showed BTC above 74,000 by roughly 1,000 points.",
+    "That supports Yes, but only moderately because one-day BTC volatility can easily erase a 1.3%-1.4% cushion.",
+    "The market's low-70s pricing therefore looks broadly efficient rather than obviously stale or extreme."
+  ],
+  "main_thesis": "The market's roughly 71% Yes price is broadly efficient because Binance BTC/USDT is currently trading around 75k, but the narrow 1-minute noon ET settlement condition keeps meaningful downside risk alive.",
+  "own_probability": 0.69,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone ... has a final 'Close' price higher than the price specified in the title.",
+    "ticker/price returned BTCUSDT price 75029.99000000"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-bac9c8f2",
+    "dispatch_id": "dispatch-case-20260416-bac9c8f2-20260416T033803Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "75ecccba-c083-431c-aa2c-7157b5bd39a2",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-bac9c8f2/researcher-analyses/2026-04-16/dispatch-case-20260416-bac9c8f2-20260416T033803Z/personas/market-implied.md",
+    "source_persona_sha256": "abe3204fe29079c8a87bfeedf1e3b0de82aa68c2e689ec73a0ba35c459f9f818"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is good for a medium-difficulty threshold market: Binance is the named source of truth for outcome relevance, and Polymarket rules clarify mechanics, though evidence independence is only low-to-medium.",
+  "strongest_disconfirmers": [
+    "A roughly 1.3%-1.4% BTC move over a day is ordinary, so the current cushion is meaningful but not decisive.",
+    "The contract settles on one exact Binance 1-minute candle close at 12:00 ET, increasing timing and wick risk."
+  ],
+  "strongest_supports": [
+    "Direct Binance fetches showed BTC/USDT around 74,986 to 75,030 during the run, above the 74,000 threshold.",
+    "Adjacent Polymarket strikes were internally coherent: about 94% at 72k, about 72%-73% at 74k, and about 32% at 76k."
+  ],
+  "timing_relevance": "Very high; the case resolves at April 17, 2026 12:00 ET on a single one-minute Binance candle close.",
+  "unresolved_ambiguities": [
+    "Exact GUI-versus-API alignment on the Binance candle used at settlement was not independently proven in this run.",
+    "No deeper catalyst review was done because the market already looked close to efficient and the materiality stop rule was met."
+  ],
+  "what_would_change_view": "A fresh Binance check showing BTC materially below 74,500, evidence of a timed macro or crypto catalyst before noon ET, or proof that API values are a poor proxy for the GUI settlement candle would lower confidence and likely reduce the Yes estimate."
+}

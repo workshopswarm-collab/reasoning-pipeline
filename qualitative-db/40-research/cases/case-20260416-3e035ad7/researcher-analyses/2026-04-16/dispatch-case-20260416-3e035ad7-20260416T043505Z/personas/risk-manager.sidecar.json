@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Single-minute settlement at 12:00 ET.",
+    "Single-venue dependence on Binance BTC/USDT.",
+    "Extreme market confidence leaves little margin for operational or path-risk tails."
+  ],
+  "key_assumptions": [
+    "BTCUSDT remains above 70000 through the specific Binance 12:00 ET one-minute close on April 17.",
+    "The Binance chart settlement surface is economically consistent with the directly checked API spot/kline data.",
+    "No Binance-specific anomaly materially distorts the relevant settlement candle."
+  ],
+  "main_logical_chain": [
+    "Read the market rules to identify the governing source of truth and exact contract mechanics.",
+    "Verify the named Binance BTCUSDT market directly and compare current price to the 70000 threshold.",
+    "Assess residual risk from narrow timestamp, single-venue dependence, and remaining time to settlement.",
+    "Conclude that Yes is highly likely but not as close to certainty as the 99.15 percent market price implies."
+  ],
+  "main_thesis": "Yes is the clear base case because Binance BTCUSDT is materially above 70000, but the market likely slightly underprices narrow timestamp and venue-specific residual risk.",
+  "own_probability": 0.97,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone has a final 'Close' price higher than the price specified.",
+    "The market-implied probability from current_price = 0.9915 is 99.15% Yes.",
+    "Own probability estimate: 97% Yes."
+  ],
+  "reasoning_mode": [
+    "risk_management",
+    "contract_interpretation",
+    "scenario_analysis"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260416-3e035ad7",
+    "dispatch_id": "dispatch-case-20260416-3e035ad7-20260416T043505Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "52beb431-4480-452d-995c-b6167dca4b77",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-3e035ad7/researcher-analyses/2026-04-16/dispatch-case-20260416-3e035ad7-20260416T043505Z/personas/risk-manager.md",
+    "source_persona_sha256": "fc918cd81da2251f42b6ab72eed11e9a24b644eab5182c235cbbbb23c1296e60"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary source quality is strong because rules and named exchange data were checked directly; contextual independence is moderate because only one extra market data cross-check was added.",
+  "strongest_disconfirmers": [
+    "The contract resolves on one exact minute and one exchange pair, so a fast drop or venue-specific anomaly can still flip the market.",
+    "A roughly 6.5-7 percent drawdown before noon ET April 17 would still produce No."
+  ],
+  "strongest_supports": [
+    "Polymarket rules define a clean mechanical settlement test using Binance BTC/USDT 12:00 ET 1m close.",
+    "Direct Binance checks during the run showed BTCUSDT around 75010, roughly 5000 above the threshold.",
+    "Recent Binance 1-minute klines were also near 75000, supporting that the named source surface is comfortably above 70000."
+  ],
+  "timing_relevance": "Timing is central because the market resolves on the Binance BTC/USDT 12:00 ET one-minute close on April 17, not on a daily average or broader market print.",
+  "unresolved_ambiguities": [
+    "Rules name the Binance chart/candles surface, while practical verification used public API endpoints rather than the browser chart itself.",
+    "Residual probability depends on how much one-day BTC downside tail risk is still plausible from current levels."
+  ],
+  "what_would_change_view": "A later direct Binance check showing BTC much closer to 70000 or any evidence of Binance-specific anomaly would move me further away from the market; a near-settlement check with a large cushion still intact would move me modestly toward it."
+}

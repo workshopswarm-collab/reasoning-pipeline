@@ -1,0 +1,61 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Broad crypto selloff before April 19 noon ET.",
+    "XRP-specific adverse catalyst.",
+    "Binance operational or settlement-surface discrepancy."
+  ],
+  "key_assumptions": [
+    "The current XRP trading regime broadly persists through April 19 noon ET.",
+    "Binance continues publishing a normal XRP/USDT 1m candle without operational anomalies.",
+    "No major XRP-specific or broad-crypto shock pushes XRP below 1.30 by the target minute."
+  ],
+  "main_logical_chain": [
+    "The contract resolves from a specific Binance XRP/USDT one-minute close at 12:00 ET on April 19.",
+    "Current and recent Binance prices place XRP comfortably above 1.30 rather than near the threshold.",
+    "In short-dated crypto threshold markets, a threshold below the active regime usually resolves by persistence unless a volatility shock occurs.",
+    "That supports Yes as the base case, but not with full near-certainty because crypto downside moves can happen quickly."
+  ],
+  "main_thesis": "XRP is already trading well above 1.30 on Binance, so the April 19 noon ET threshold resolves Yes unless the current regime breaks via a meaningful downside shock or settlement-surface issue.",
+  "own_probability": 0.91,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for XRP/USDT 12:00 in the ET timezone (noon) ... has a final 'Close' price higher than the price specified in the title.",
+    "Current Binance XRPUSDT spot during the run was about 1.4018.",
+    "In a sampled set of the most recent 1000 one-minute closes, 100% were above 1.30."
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "contract_interpretation",
+    "market_anchor"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-b80742d2",
+    "dispatch_id": "dispatch-case-20260416-b80742d2-20260416T014833Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "d90bf1f3-8fc6-4bc5-8f32-0e10c2d61946",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-b80742d2/researcher-analyses/2026-04-16/dispatch-case-20260416-b80742d2-20260416T014833Z/personas/base-rate.md",
+    "source_persona_sha256": "1f55a78b4593b2e3180a92ce228a76e36492b05a09bb893992455ca96ad757c7"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality direct-source case overall: Polymarket contract text plus Binance-native documentation and exchange data; independence is only medium because Binance is both the venue and source of truth.",
+  "strongest_disconfirmers": [
+    "A roughly 7-8% drawdown from the current level would be enough to lose the market, and that is not rare in crypto over several days.",
+    "There is small residual risk around minute-specific settlement/display interpretation or exchange-surface anomalies."
+  ],
+  "strongest_supports": [
+    "Live Binance XRPUSDT during the run was about 1.4018, well above 1.30.",
+    "The sampled last 1000 Binance one-minute closes were all above 1.30.",
+    "Recent daily Binance candles from April 7 through April 16 all closed above 1.30.",
+    "Polymarket rules explicitly use the Binance XRP/USDT 12:00 ET 1m candle final close price."
+  ],
+  "timing_relevance": "This is a minute-specific, date-specific market settling at April 19 12:00 ET, so short-horizon volatility and exact candle mechanics matter more than long-run XRP fundamentals.",
+  "unresolved_ambiguities": [
+    "Minor residual ambiguity remains about website chart labeling versus API representation of the exact minute bar, though the contract text is fairly explicit.",
+    "The event is not directly settled yet, so regime persistence remains an assumption rather than a fact."
+  ],
+  "what_would_change_view": "I would cut the probability if XRP starts printing sustained one-minute closes near 1.35 or lower, if broad crypto weakens sharply, or if new settlement-surface ambiguity emerges; I would move closer to the market if XRP stays comfortably above roughly 1.36-1.38 into the final day."
+}

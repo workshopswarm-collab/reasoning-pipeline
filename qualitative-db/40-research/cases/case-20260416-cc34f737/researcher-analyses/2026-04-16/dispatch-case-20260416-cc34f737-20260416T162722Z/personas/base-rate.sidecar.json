@@ -1,0 +1,53 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Single-minute settlement path dependence.",
+    "Overnight crypto-wide risk-off move before noon ET."
+  ],
+  "key_assumptions": [
+    "ETH stays in roughly its current short-run trading regime through noon ET on April 17.",
+    "No Binance-specific anomaly distorts the settlement candle."
+  ],
+  "main_logical_chain": [
+    "Current Binance ETHUSDT pricing is above 2300, so the base rate starts with Yes favored.",
+    "Recent Binance closes mostly above 2300 support continuation rather than a break below the threshold.",
+    "But next-day crypto volatility and one-minute settlement mechanics reduce confidence versus the market price."
+  ],
+  "main_thesis": "ETH above 2300 at the Binance noon ET minute on April 17 is somewhat more likely than not, but less likely than the market implies because one-minute settlement fragility keeps No live.",
+  "own_probability": 0.64,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "current_price: 0.72",
+    "This market will resolve to \"Yes\" if the Binance 1 minute candle for ETH/USDT 12:00 in the ET timezone"
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "market_anchor",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-cc34f737",
+    "dispatch_id": "dispatch-case-20260416-cc34f737-20260416T162722Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "c3a170b1-81e5-4e94-8ea5-6ba1b6daa406",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-cc34f737/researcher-analyses/2026-04-16/dispatch-case-20260416-cc34f737-20260416T162722Z/personas/base-rate.md",
+    "source_persona_sha256": "289b033e71d1f124e4cc54203214af97031e1333eb7c1001a5d8fb79bf77b474"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Good source quality: contract text plus Binance documentation/endpoints are strong, but evidence independence is only medium because Binance is the underlying source for both mechanics and price context.",
+  "strongest_disconfirmers": [
+    "The contract settles on one specific one-minute candle, so an ordinary sub-2% move lower could still resolve No."
+  ],
+  "strongest_supports": [
+    "Binance ETHUSDT traded around 2335.94 on April 16, above the 2300 threshold.",
+    "Six of the last seven Binance daily closes were above 2300."
+  ],
+  "timing_relevance": "This is a next-day noon ET threshold market, so timezone handling and short-horizon volatility are central.",
+  "unresolved_ambiguities": [
+    "Polymarket points to the Binance chart UI as the resolution surface, while candle mechanics were additionally checked through Binance API docs."
+  ],
+  "what_would_change_view": "A move below 2300 ahead of settlement, a sharp crypto selloff, or evidence of Binance settlement-candle anomalies would move me toward No or a coinflip."
+}

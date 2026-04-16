@@ -1,0 +1,155 @@
+{
+  "schema_version": "decision-packet/v1",
+  "generated_at": "2026-04-14T14:23:00-04:00",
+  "context": {
+    "case_key": "case-20260414-26cfc91d",
+    "dispatch_id": "dispatch-case-20260414-26cfc91d-20260414T181516Z",
+    "question": "Will FC Internazionale Milano win on 2026-04-17?",
+    "market_id": "e4997a9f-4abd-47ad-aafd-ff8249c228ec",
+    "external_market_id": "0xbae558b7842eea7e1897618ca33da728dbae0415880a4593bd13a712f45b1d9f",
+    "market_slug": "sea-int-cag-2026-04-17-int",
+    "platform": "polymarket",
+    "primary_market_url": "https://polymarket.com/event/sea-int-cag-2026-04-17-int",
+    "market_title": "Will FC Internazionale Milano win on 2026-04-17?",
+    "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260414-26cfc91d/synthesizer-agent/decision-handoff.md",
+    "source_syndicated_finding_path": "qualitative-db/40-research/cases/case-20260414-26cfc91d/synthesizer-agent/syndicated-finding.md",
+    "source_light_refresh_brief_path": "",
+    "refresh_mode": "",
+    "decision_maker_agent": "decision-maker",
+    "canonical_markdown_path": "decision-maker-packet.md",
+    "canonical_json_path": "artifacts/decision-maker-packet.json"
+  },
+  "decision": {
+    "side": "yes",
+    "trade_authorization": "forbidden",
+    "position_policy": "flat",
+    "decision_readiness": "needs_more_research",
+    "primary_crux": "Inter are still the deserved favorite, but in a regulation-only match where draw is a full loss and late lineup news can move true win probability materially, the bounded package is not strong enough to justify acting against an 81.5% market without a preserved bookmaker screen and final team-news confirmation.",
+    "secondary_cruxes": [
+      "All upstream personas converged on Inter as stronger side, but mostly only slightly below market rather than on a large contrarian edge.",
+      "The key unresolved issue is not direction but execution readiness: lineup availability and draw-risk calibration were not independently tightened enough.",
+      "Minor settlement-source wording ambiguity exists, though the core 90-minute win mechanics are clear."
+    ],
+    "thesis_class": "not_decision_ready"
+  },
+  "valuation": {
+    "fair_value_low": 0.77,
+    "fair_value_high": 0.8,
+    "fair_value_mid": 0.785,
+    "independent_verification_quality": "medium",
+    "compressed_toward_market_applied": false,
+    "compression_reason": "Team-strength context supports Inter as a strong favorite, but absent a broad bookmaker screen and late lineup verification, fair value should stay only modestly below the market rather than implying an actionable anti-market edge.",
+    "market_reference_price": 0.815,
+    "edge_mid_vs_market_pct_points": -3.0
+  },
+  "execution_semantics": {
+    "price_source": "market_snapshot_quote",
+    "price_axis": "market_implied_true_prob",
+    "rebalance_threshold_fraction": 0.1,
+    "allow_auto_reversal": false,
+    "quote_staleness_seconds": 300,
+    "valid_until": "2026-04-15T18:24:04.383257+00:00"
+  },
+  "risk_controls": {
+    "confidence_level": "low",
+    "portfolio_constraints": [
+      "Do not enter from this packet; reopen only after lineup and late availability news are confirmed closer to kickoff.",
+      "Require an independently preserved broad bookmaker screen before treating a modest below-market view as tradable.",
+      "Treat regulation-time draw risk as the main No path, not a minor tail."
+    ],
+    "liquidity_caution": "medium",
+    "max_position_size_pct_bankroll": 0.02,
+    "max_additional_exposure_pct_bankroll": 0.01,
+    "max_single_order_pct_bankroll": 0.005,
+    "slippage_tolerance_bps": 100,
+    "liquidity_min_depth": 0,
+    "correlation_bucket_limit_pct_bankroll": 0.05
+  },
+  "bands": [
+    {
+      "name": "max_enter",
+      "min_p": 0,
+      "max_p": 0.7,
+      "target_exposure_fraction": 0,
+      "notes": "No entry authorized from this packet because the case is not decision-ready."
+    },
+    {
+      "name": "scaled_enter",
+      "min_p": 0.7,
+      "max_p": 0.77,
+      "target_exposure_fraction": 0,
+      "notes": "Even cheaper prices would still require refreshed lineup and odds verification."
+    },
+    {
+      "name": "hold",
+      "min_p": 0.77,
+      "max_p": 0.8,
+      "target_exposure_fraction": 0,
+      "notes": "Bounded fair value zone, but not actionable under current evidence quality."
+    },
+    {
+      "name": "trim",
+      "min_p": 0.8,
+      "max_p": 0.9,
+      "target_exposure_fraction": 0,
+      "notes": "Avoid increasing above fair value while draw risk and lineup uncertainty remain unresolved."
+    },
+    {
+      "name": "exit",
+      "min_p": 0.9,
+      "max_p": 1,
+      "target_exposure_fraction": 0,
+      "notes": "Flat/avoid at extreme prices because a regulation-only football market always retains real draw risk."
+    }
+  ],
+  "invalidation": {
+    "thesis_breakers": [
+      "Confirmed Inter absences or rotation materially reduce attacking quality before kickoff.",
+      "A preserved broad bookmaker screen shows consensus meaningfully higher than the current bounded fair value range.",
+      "New opponent or fixture-status information changes match context or settlement interpretation."
+    ],
+    "time_breakers": [
+      "Official starting lineups and late team-news should supersede this packet before kickoff.",
+      "If no fresh verification is available near kickoff, this packet should not be used for action."
+    ],
+    "market_structure_breakers": [
+      "Settlement wording is clarified in a way that differs from the assumed 90-minute-only mechanics.",
+      "The current quote becomes stale relative to late bookmaker or lineup information."
+    ],
+    "reversal_conditions": [
+      "Move from forbidden to watch-only or authorized only after fresh lineup confirmation and a preserved odds screen support the same view.",
+      "Move lower if key Inter attackers are unavailable or the market drifts against Inter on new information.",
+      "Do not auto-reverse from this packet."
+    ]
+  },
+  "epistemic_status": {
+    "key_uncertainties": [
+      "Final Inter lineup and key-attacker availability.",
+      "True draw probability in this specific matchup relative to the market's implied view.",
+      "Whether late bookmaker consensus would confirm or contradict the slight below-market assessment."
+    ],
+    "what_would_change_my_mind": [
+      "A clean late bookmaker screen and full-strength Inter lineup would move me closer to market and could upgrade readiness.",
+      "Credible reports of rotation or absences would move fair value lower.",
+      "Clarified settlement wording from the operator would reduce residual interpretation risk."
+    ],
+    "reasons_to_pass": [
+      "The bounded edge versus market is modest and could disappear on ordinary lineup updates.",
+      "Critical late information was not independently preserved in the synthesis package.",
+      "This is a regulation-only football market where draw risk is economically important."
+    ],
+    "decision_quality": "not_ready"
+  },
+  "audit": {
+    "one_sentence_rationale": "Inter are likely the better side and probable winner, but without preserved late lineup confirmation and a broad bookmaker screen, the disciplined output is forbidden and needs-more-research rather than acting against an 81.5% regulation-win market.",
+    "notes": "This is a classic case where directional opinion exists but execution readiness does not; the missing late-match inputs matter more than the modest valuation gap.",
+    "market_baseline_respected": true,
+    "action_bias_check_passed": true,
+    "self_preservation_bias_check_passed": true,
+    "structured_handoff_primary_used": true,
+    "prose_fallback_used": false,
+    "verification_mode_used": "not_ready_reopen_recommended",
+    "additional_verification_performed": false,
+    "additional_verification_notes": ""
+  }
+}

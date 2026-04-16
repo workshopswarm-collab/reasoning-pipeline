@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A routine crypto downside move over the next day could erase the cushion.",
+    "Binance-specific print or operational issues could matter because settlement is exchange-specific."
+  ],
+  "key_assumptions": [
+    "The current roughly 1.3k Binance cushion above 74000 remains informative over the next day.",
+    "No major downside catalyst or Binance-specific anomaly disrupts the resolving minute.",
+    "The plain reading of the contract mechanics is the correct settlement interpretation."
+  ],
+  "main_logical_chain": [
+    "Read the contract and verify the governing source is the Binance BTC/USDT 12:00 ET one-minute close on April 15.",
+    "Check current Binance price and recent one-minute trading distribution relative to 74000.",
+    "Apply outside-view logic: current spot above strike favors Yes, but one-day BTC volatility keeps No live.",
+    "Conclude Yes is likelier than No but less likely than the 81.5% market price implies."
+  ],
+  "main_thesis": "BTC is more likely than not to finish above 74000 on the April 15 noon-ET Binance minute close, but the market overstates that edge.",
+  "own_probability": 0.68,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "My estimate is 68% for Yes.",
+    "The current market price is 0.815, implying about 81.5% for Yes.",
+    "Governing source of truth: Binance BTC/USDT 1-minute candle, specifically the final close for the 12:00 ET candle on April 15, 2026."
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "market_anchor",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-d1f59d32",
+    "dispatch_id": "dispatch-case-20260414-d1f59d32-20260414T144613Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "d47c9a49-d828-4c3e-9347-e85c9b5f382f",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-d1f59d32/researcher-analyses/2026-04-14/dispatch-case-20260414-d1f59d32-20260414T144613Z/personas/base-rate.md",
+    "source_persona_sha256": "d8c4862c8d687497ffd32cb15a036f538502b21196d5fdfb91373e3099d43f8b"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality primary source for settlement and current price from Binance/contract rules, plus a useful but non-decisive independent contextual source from CoinGecko; overall source-of-truth ambiguity is low.",
+  "strongest_disconfirmers": [
+    "BTC can easily move more than 1.8% over roughly a day, enough to flip the contract.",
+    "Settlement depends on a single Binance minute close, so transient weakness at noon ET could resolve No."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT traded around 75.3k during the run, above the threshold by about 1.8%.",
+    "In the sampled recent 1000 Binance one-minute closes, 993 were above 74000.",
+    "The governing rules are explicit about venue, pair, time, and strict-above condition."
+  ],
+  "timing_relevance": "This is a date-sensitive one-minute settlement market resolving at 12:00 PM ET on 2026-04-15, so exact timing and timezone interpretation matter materially.",
+  "unresolved_ambiguities": [
+    "No full historical distribution of analogous noon-ET threshold settles was assembled.",
+    "The estimate is sensitive to late pre-resolution market direction."
+  ],
+  "what_would_change_view": "I would move up if BTC stays comfortably above 75k into late morning ET on April 15, and move down materially if BTC trades back near or below 74.5k or if Binance-specific anomalies appear."
+}

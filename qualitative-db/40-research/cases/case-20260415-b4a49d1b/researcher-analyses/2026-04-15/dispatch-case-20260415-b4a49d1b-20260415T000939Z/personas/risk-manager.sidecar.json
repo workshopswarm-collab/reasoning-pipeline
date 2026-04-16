@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Minute-specific path risk between now and Apr 20 noon ET.",
+    "Strictly-higher-than threshold means an exact 70000 close resolves No.",
+    "Evidence independence is only medium because the contract explicitly depends on Binance surfaces."
+  ],
+  "key_assumptions": [
+    "BTC remains above 70000 with enough cushion into Apr 20 noon ET.",
+    "Binance does not show unusual exchange-specific dislocation at the relevant minute.",
+    "Current spot strength is informative but not enough to erase short-horizon path risk."
+  ],
+  "main_logical_chain": [
+    "Polymarket rules make Binance BTCUSDT 12:00 ET 1-minute close the governing source of truth.",
+    "Binance docs show klines are keyed by open time, so exact time interpretation matters.",
+    "Current spot is comfortably above 70000, making Yes the directional favorite.",
+    "Because the contract is minute-specific, exchange-specific, and strict on the threshold, confidence should be discounted relative to a broad bullish spot view.",
+    "That yields a lean-Yes view below the market price rather than an outright No call."
+  ],
+  "main_thesis": "Yes remains more likely than not, but the 86% market price looks somewhat too confident for a narrow Binance-specific 12:00 ET one-minute close above 70000.",
+  "own_probability": 0.79,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "This market will resolve to Yes if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone has a final Close price higher than the price specified in the title.",
+    "Klines are uniquely identified by their open time."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "risk_management",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-b4a49d1b",
+    "dispatch_id": "dispatch-case-20260415-b4a49d1b-20260415T000939Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "8385e8e1-fbe8-44bf-b228-ac9aacdca552",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-b4a49d1b/researcher-analyses/2026-04-15/dispatch-case-20260415-b4a49d1b-20260415T000939Z/personas/risk-manager.md",
+    "source_persona_sha256": "0e7f54c56bd632dae5dcc69ad5765647027adb61ca5546d503fe8694e17b473f"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High quality on settlement mechanics via Polymarket plus Binance docs/API, but only medium independence because the contract itself references Binance.",
+  "strongest_disconfirmers": [
+    "BTC is already materially above 70000, so a 79% estimate may still be too conservative if price remains stable or rises further.",
+    "No strong bearish catalyst was found; the haircut is mostly about narrow timing/path risk rather than a negative BTC thesis."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT spot was around 74567 at fetch time, leaving a noticeable cushion above 70000.",
+    "The contract mechanics are explicit and observable: one Binance BTCUSDT 1m candle close decides the market."
+  ],
+  "timing_relevance": "High: Apr 20 12:00 ET is the decisive minute, mapping to 16:00 UTC during EDT, and the relevant Binance kline is identified by its open time.",
+  "unresolved_ambiguities": [
+    "How much short-horizon volatility remains over the next five days.",
+    "Whether the market has already fully priced timestamp-specific downside tails."
+  ],
+  "what_would_change_view": "I would move toward or above market if BTC stays materially higher into the final 24-48 hours with muted downside volatility; I would move further below market if BTC retraces toward the low 70s or volatility spikes."
+}

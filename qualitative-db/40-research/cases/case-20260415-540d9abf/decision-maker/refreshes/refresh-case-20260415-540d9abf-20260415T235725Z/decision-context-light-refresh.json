@@ -1,0 +1,640 @@
+{
+  "artifact_type": "decision_context_bundle",
+  "schema_version": "decision-context/v1",
+  "built_at": "2026-04-15T23:57:25.800011+00:00",
+  "builder": "roles/decision-maker/runtime/scripts/build_decision_context.py",
+  "case_key": "case-20260415-540d9abf",
+  "dispatch_id": "refresh-case-20260415-540d9abf-20260415T235725Z",
+  "question": "Will the price of Solana be above $80 on April 19?",
+  "market": {
+    "market_id": "139f80d9-bf3b-4b6b-9dea-031313b6ae5b",
+    "external_market_id": "0x00b28e37776a7f2f56ceec3bc4cf4f49d832b1c9db1ddd1cb597fb4438918f95",
+    "market_slug": "solana-above-80-on-april-19",
+    "platform": "polymarket",
+    "primary_market_url": "https://polymarket.com/event/solana-above-80-on-april-19",
+    "market_title": "Will the price of Solana be above $80 on April 19?",
+    "market_reference_price": 0.9,
+    "quote_timestamp": "2026-04-15T23:56:42.190566+00:00",
+    "price_source": "market_snapshot_quote"
+  },
+  "upstream": {
+    "decision_handoff_path": "qualitative-db/40-research/cases/case-20260415-540d9abf/synthesizer-agent/decision-handoff.md",
+    "syndicated_runtime_path": "qualitative-db/40-research/cases/case-20260415-540d9abf/synthesizer-agent/syndicated-finding.runtime.json",
+    "syndicated_finding_path": "qualitative-db/40-research/cases/case-20260415-540d9abf/synthesizer-agent/syndicated-finding.md",
+    "synthesis_stage_status_path": "qualitative-db/40-research/cases/case-20260415-540d9abf/researcher-analyses/2026-04-15/dispatch-case-20260415-540d9abf-20260415T234706Z/synthesis-stage-status.json",
+    "sidecar_synthesis_bundle_path": "qualitative-db/40-research/cases/case-20260415-540d9abf/researcher-analyses/2026-04-15/dispatch-case-20260415-540d9abf-20260415T234706Z/sidecar-synthesis-bundle.json",
+    "sidecar_synthesis_bundle_artifact_type": "sidecar_synthesis_bundle",
+    "sidecar_bundle_coverage_status": "complete",
+    "sidecar_bundle_sidecar_count": 5,
+    "ready_sidecar_personas": [
+      "base-rate",
+      "catalyst-hunter",
+      "market-implied",
+      "risk-manager",
+      "variant-view"
+    ],
+    "ready_sidecar_count": 5,
+    "pending_sidecar_personas": [],
+    "pending_sidecar_count": 0,
+    "syndicated_probability_low": 0.8,
+    "syndicated_probability_high": 0.87,
+    "syndicated_probability_midpoint": 0.835,
+    "relation_to_market": "below_market",
+    "edge_quality": "moderate",
+    "edge_independent_verification_quality": "medium",
+    "compressed_toward_market_due_to_verification": "no",
+    "contract_ambiguity_level": "minor",
+    "contract_ambiguity_reason": "small residual Binance UI vs API candle-mapping ambiguity",
+    "independently_verified_points": [
+      "Polymarket rules explicitly resolve on Binance SOL/USDT 1-minute 12:00 ET close",
+      "Current Binance SOLUSDT spot is about 84.92, above the 80 threshold",
+      "Recent Binance 24h low was about 82.65, still above 80",
+      "Recent daily Binance closes show SOL trading in an above-80 regime"
+    ],
+    "verification_gap_summary": "The key remaining gap is short-horizon downside/timestamp volatility into the exact Apr 19 noon ET minute.",
+    "best_countercase_summary": "A normal crypto selloff or brief noon-minute dip can still push a single-print settlement below 80 despite current spot above strike.",
+    "main_reason_for_disagreement": "Remaining disagreement is mostly about how much to discount confidence for single-minute path risk versus current cushion.",
+    "resolution_mechanics_summary": "Yes resolves only if Binance SOL/USDT's Apr 19 12:00 ET 1-minute candle final close is strictly above 80.",
+    "disagreement_intensity": "",
+    "freshness_sensitive": "yes",
+    "freshness_driver": "Binance SOL/USDT price path into the exact Apr 19 noon ET settlement minute",
+    "decision_blockers": [
+      "Single-minute settlement makes ordinary crypto volatility materially relevant",
+      "Verification is strong on mechanics but only medium on independent edge confirmation",
+      "Minor UI-versus-API implementation ambiguity remains"
+    ],
+    "blockers_require_new_research": "no",
+    "disagreement_type": "timing",
+    "follow_up_needed": "yes",
+    "edge_mid_vs_market_pct_points": -6.5,
+    "light_refresh_brief_path": "qualitative-db/40-research/cases/case-20260415-540d9abf/decision-maker/refreshes/refresh-case-20260415-540d9abf-20260415T235725Z/light-refresh-brief.json",
+    "light_refresh_mode": "light",
+    "source_dispatch_id": "dispatch-case-20260415-540d9abf-20260415T234706Z",
+    "source_decision_context_path": "qualitative-db/40-research/cases/case-20260415-540d9abf/decision-maker/refreshes/refresh-case-20260415-540d9abf-20260415T235725Z/decision-context-light-refresh.json"
+  },
+  "telegram": {
+    "controller_chat_id": "-1003846500961",
+    "synthesis_topic_id": "3864",
+    "synthesis_topic_title": "case-20260415-540d9abf | synthesis | T234706Z",
+    "synthesis_session_key": "agent:main:telegram:group:-1003846500961:topic:3864"
+  },
+  "portfolio_context": {
+    "status": "disabled",
+    "notes": [
+      "Portfolio-aware gating and execution context are currently out of scope for Decision-Maker."
+    ]
+  },
+  "verification_policy": {
+    "policy_version": "decision-verification/v1",
+    "default_mode": "bounded_internal_audit",
+    "mode_descriptions": {
+      "bounded_internal_audit": "Use synthesis as the starting compression, reread only the most decisive upstream artifacts, and avoid broad re-research by default.",
+      "targeted_escalation": "Use a bounded internal audit plus a small number of targeted checks when a narrow ambiguity or meaningful edge justifies it.",
+      "not_ready_reopen_recommended": "If responsible verification would require a much broader reread or new research pass, prefer a not-ready/non-action packet over pretending bounded verification was enough."
+    },
+    "default_artifact_budget": {
+      "persona_findings_max": 2,
+      "assumption_artifacts_max": 1,
+      "evidence_artifacts_max": 1,
+      "countercase_or_supporting_note_bundles_max": 1
+    },
+    "default_external_budget": {
+      "external_source_surfaces_max": 2,
+      "live_market_or_tracker_checks_max": 1
+    },
+    "escalation_triggers": [
+      "large_apparent_edge_vs_market",
+      "source_of_truth_or_contract_ambiguity",
+      "freshness_sensitive_catalyst",
+      "internal_inconsistency_in_package"
+    ],
+    "priority_order": [
+      "verify_exact_crux",
+      "verify_freshness_or_source_of_truth_mechanics",
+      "verify_strongest_countercase",
+      "only_then_expand_broader_reread"
+    ],
+    "hard_rule": "Decision-Maker is allowed to do targeted additional verification, but should not become a routine second synthesis pass. If adequate verification would require broader reread or new research, prefer a not-ready or non-action packet."
+  },
+  "canonical_runtime": {
+    "build_decision_prompt_script": "roles/decision-maker/planner/scripts/build_decision_prompt.py",
+    "run_decision_maker_script": "roles/decision-maker/runtime/scripts/run_decision_maker.py",
+    "validate_decision_packet_script": "roles/decision-maker/runtime/scripts/validate_decision_packet.py",
+    "render_decision_packet_script": "roles/decision-maker/runtime/scripts/render_decision_packet.py",
+    "bootstrap_decision_telegram_lane_script": "roles/decision-maker/runtime/scripts/bootstrap_decision_telegram_lane.py",
+    "show_decision_stage_status_script": "roles/decision-maker/runtime/scripts/show_decision_stage_status.py"
+  },
+  "canonical_outputs": {
+    "decision_packet_markdown": "qualitative-db/40-research/cases/case-20260415-540d9abf/decision-maker/decision-maker-packet.md",
+    "decision_packet_json": "qualitative-db/40-research/cases/case-20260415-540d9abf/decision-maker/artifacts/decision-maker-packet.json",
+    "decision_stage_status_json": "qualitative-db/40-research/cases/case-20260415-540d9abf/decision-maker/artifacts/decision-stage-status.json"
+  },
+  "recommended_runtime_defaults": {
+    "valid_for_hours": 24,
+    "quote_staleness_seconds": 300,
+    "allow_auto_reversal": false,
+    "rebalance_threshold_fraction": 0.1,
+    "price_source": "market_snapshot_quote",
+    "decision_agent_session_key": "agent:decision-maker:main"
+  },
+  "source_excerpt": {
+    "decision_handoff_frontmatter": {
+      "type": "synthesis_decision_handoff",
+      "case_key": "case-20260415-540d9abf",
+      "dispatch_id": "dispatch-case-20260415-540d9abf-20260415T234706Z",
+      "question": "Will the price of Solana be above $80 on April 19?",
+      "source_syndicated_finding_path": "qualitative-db/40-research/cases/case-20260415-540d9abf/researcher-analyses/2026-04-15/dispatch-case-20260415-540d9abf-20260415T234706Z/syndicated-finding.md",
+      "market_implied_probability": 0.9,
+      "syndicated_probability_low": 0.8,
+      "syndicated_probability_high": 0.87,
+      "syndicated_probability_midpoint": 0.835,
+      "relation_to_market": "below_market",
+      "edge_quality": "moderate",
+      "edge_independent_verification_quality": "medium",
+      "compressed_toward_market_due_to_verification": "no",
+      "contract_ambiguity_level": "minor",
+      "contract_ambiguity_reason": "small residual Binance UI vs API candle-mapping ambiguity",
+      "independently_verified_points": [
+        "Polymarket rules explicitly resolve on Binance SOL/USDT 1-minute 12:00 ET close",
+        "Current Binance SOLUSDT spot is about 84.92, above the 80 threshold",
+        "Recent Binance 24h low was about 82.65, still above 80",
+        "Recent daily Binance closes show SOL trading in an above-80 regime"
+      ],
+      "verification_gap_summary": "The key remaining gap is short-horizon downside/timestamp volatility into the exact Apr 19 noon ET minute.",
+      "best_countercase_summary": "A normal crypto selloff or brief noon-minute dip can still push a single-print settlement below 80 despite current spot above strike.",
+      "main_reason_for_disagreement": "Remaining disagreement is mostly about how much to discount confidence for single-minute path risk versus current cushion.",
+      "resolution_mechanics_summary": "Yes resolves only if Binance SOL/USDT's Apr 19 12:00 ET 1-minute candle final close is strictly above 80.",
+      "freshness_sensitive": "yes",
+      "freshness_driver": "Binance SOL/USDT price path into the exact Apr 19 noon ET settlement minute",
+      "decision_blockers": [
+        "Single-minute settlement makes ordinary crypto volatility materially relevant",
+        "Verification is strong on mechanics but only medium on independent edge confirmation",
+        "Minor UI-versus-API implementation ambiguity remains"
+      ],
+      "blockers_require_new_research": "no",
+      "disagreement_type": "timing",
+      "follow_up_needed": "yes"
+    },
+    "decision_handoff_body": "\n# Decision summary\n\nSOL > $80 on the April 19 noon-ET Binance 1-minute close is still more likely than not, but the market’s ~90% Yes price looks somewhat rich for a single-minute settlement several days out in a volatile asset; my post-synthesis view is a modestly compressed Yes range centered below market.\n\n## Why this may matter now\n\nMarket-implied probability is about 0.90. My syndicated probability range is 0.80 to 0.87. That is a modest bearish-to-market compression, so the edge versus market looks marginal rather than actionable. The likely mispricing is overconfidence in translating a mid-80s current spot price into near-certainty for a single future one-minute Binance close.\n\n## Shift versus swarm baseline\n\nThe provisional swarm center was about 0.84. My final range is broadly consistent with that center and does not materially depart from it. The main synthesis adjustment was not away from the swarm but against the most bullish lane: the base-rate 0.93 looked somewhat overconfident relative to the same raw facts once the single-minute settlement fragility is taken seriously.\n\n## Edge verification status\n\nIndependent verification quality is medium. I independently rechecked the Polymarket rule text and confirmed the named settlement mechanics, then rechecked Binance spot, 24h range, and recent daily klines. That verification supports the core bullish direction: SOL is around 84.92, recent 24h low is around 82.65, and recent daily closes are above 80. What remains weak is not the mechanics but the edge itself: there is no strong independent proof that a ~90% price is too high by much, because the unresolved risk is future volatility into one precise minute rather than a static factual error.\n\n## Compression toward market\n\nNo. The synthesis did not compress toward market because verification was insufficient; instead it stayed near the swarm center and below market because the verification largely confirmed the swarm's caution. The synthesis also did not widen into a more bearish stance because fresh checks still show SOL comfortably above the threshold and trading in an above-80 regime.\n\n## Timing and catalyst posture\n\nThe next meaningful checkpoint is the final 24 hours before Apr 19 noon ET. The dominant catalyst is not a scheduled bullish event but whether crypto tape remains stable into settlement. The edge is more likely to decay than widen unless SOL builds a materially larger cushion; waiting probably helps only if you expect better visibility on whether the price buffer survives into the exact minute.\n\n## Key blockers\n\nNo hard blocker prevents a directional judgment, but high-confidence action is limited by single-minute settlement risk, normal crypto downside volatility, and only medium-strength verification of any true edge versus market. Minor contract-surface ambiguity remains around Binance UI versus API representation, though it does not currently look outcome-changing.\n\n## Best countercase\n\nThe best countercase, represented most clearly by risk-manager and variant-view, is that the market is over-translating a mid-80s spot price into near-certainty even though a normal crypto drawdown or transient noon-minute dip can still resolve No. This is a confidence discount countercase, not a strong bearish catalyst thesis.\n\n## What would change the view\n\nI would move closer to market or above it if SOL builds and holds a materially wider cushion, such as sustained upper-80s trading into Apr 18-19. I would move lower if SOL revisits the low-80s, if broader crypto beta weakens materially, or if anything emerges suggesting Binance settlement-surface irregularity around the noon ET candle. The single most view-changing observation would be spot compressing toward 80 close to settlement.\n\n## Recommended next action\n\nRequest decision-maker review only if a marginal edge matters operationally; otherwise wait for the Apr 18-19 checkpoint and rerun a light verification pass focused on spot cushion, broader crypto tape, and noon-ET settlement mechanics.\n\n## Verification impact\n\nYes, additional synthesis-stage verification was used. It materially confirmed that the contract mechanics are clean and that current spot/range support a Yes lean. Cross-lane comparison also made clear that the real disagreement is calibration, not facts. The synthesis exposed one lane-level weakness: base-rate appears somewhat overconfident relative to the same verified mechanics and volatility structure, while the lower-confidence lanes better preserved timestamp fragility.\n",
+    "syndicated_runtime": {
+      "artifact_type": "syndicated_finding_runtime_metadata",
+      "artifact_path": "qualitative-db/40-research/cases/case-20260415-540d9abf/synthesizer-agent/syndicated-finding.md",
+      "case_key": "case-20260415-540d9abf",
+      "dispatch_id": "dispatch-case-20260415-540d9abf-20260415T234706Z",
+      "question": "Will the price of Solana be above $80 on April 19?",
+      "generated_by": "orchestrator",
+      "synthesis_method": "dispatch_bundle_v1",
+      "synthesis_status": "rendered",
+      "market_snapshot_time": "2026-04-15T23:47:06.646592+00:00",
+      "source_personas": [],
+      "missing_personas": [],
+      "source_finding_paths": [],
+      "source_supporting_artifacts": [],
+      "source_persona_count": 0,
+      "missing_persona_count": 0,
+      "supporting_artifact_count": 0,
+      "upstream_inputs": [],
+      "downstream_uses": []
+    },
+    "synthesis_stage_status": {
+      "artifact_type": "synthesis_stage_status",
+      "dispatch_id": "dispatch-case-20260415-540d9abf-20260415T234706Z",
+      "case_key": "case-20260415-540d9abf",
+      "bundle_path": "qualitative-db/40-research/cases/case-20260415-540d9abf/researcher-analyses/2026-04-15/dispatch-case-20260415-540d9abf-20260415T234706Z/synthesis-bundle.json",
+      "reasoning_sidecar_requests": [
+        {
+          "persona": "base-rate",
+          "artifact_path": "qualitative-db/40-research/cases/case-20260415-540d9abf/researcher-analyses/2026-04-15/dispatch-case-20260415-540d9abf-20260415T234706Z/personas/base-rate.sidecar.json",
+          "status": "completed",
+          "artifact_state": "current"
+        },
+        {
+          "persona": "catalyst-hunter",
+          "artifact_path": "qualitative-db/40-research/cases/case-20260415-540d9abf/researcher-analyses/2026-04-15/dispatch-case-20260415-540d9abf-20260415T234706Z/personas/catalyst-hunter.sidecar.json",
+          "status": "completed",
+          "artifact_state": "current"
+        },
+        {
+          "persona": "market-implied",
+          "artifact_path": "qualitative-db/40-research/cases/case-20260415-540d9abf/researcher-analyses/2026-04-15/dispatch-case-20260415-540d9abf-20260415T234706Z/personas/market-implied.sidecar.json",
+          "status": "completed",
+          "artifact_state": "current"
+        },
+        {
+          "persona": "risk-manager",
+          "artifact_path": "qualitative-db/40-research/cases/case-20260415-540d9abf/researcher-analyses/2026-04-15/dispatch-case-20260415-540d9abf-20260415T234706Z/personas/risk-manager.sidecar.json",
+          "status": "completed",
+          "artifact_state": "current"
+        },
+        {
+          "persona": "variant-view",
+          "artifact_path": "qualitative-db/40-research/cases/case-20260415-540d9abf/researcher-analyses/2026-04-15/dispatch-case-20260415-540d9abf-20260415T234706Z/personas/variant-view.sidecar.json",
+          "status": "completed",
+          "artifact_state": "current"
+        }
+      ],
+      "ready_sidecar_personas": [
+        "base-rate",
+        "catalyst-hunter",
+        "market-implied",
+        "risk-manager",
+        "variant-view"
+      ],
+      "pending_sidecar_personas": [],
+      "structured_bundle_path": "qualitative-db/40-research/cases/case-20260415-540d9abf/researcher-analyses/2026-04-15/dispatch-case-20260415-540d9abf-20260415T234706Z/sidecar-synthesis-bundle.json",
+      "structured_bundle_artifact_type": "sidecar_synthesis_bundle",
+      "synthesis_prompt_path": "qualitative-db/40-research/cases/case-20260415-540d9abf/researcher-analyses/2026-04-15/dispatch-case-20260415-540d9abf-20260415T234706Z/synthesis-prompt.md",
+      "synthesis_subagent_label": "synthesis-final:dispatch-case-20260415-540d9abf-20260415T234706Z",
+      "synthesis_visible_start_marker": "STARTING SYNTHESIS | market=Will the price of Solana be above $80 on April 19? | dispatch_id=dispatch-case-20260415-540d9abf-20260415T234706Z",
+      "synthesis_visible_finish_marker": "FINISHED SYNTHESIS | market=Will the price of Solana be above $80 on April 19? | dispatch_id=dispatch-case-20260415-540d9abf-20260415T234706Z",
+      "synthesis_target_chat_id": "-1003846500961",
+      "synthesis_target_topic_id": "3864",
+      "synthesis_target_topic_title": "case-20260415-540d9abf | synthesis | T234706Z",
+      "synthesis_target_session_key": "agent:main:telegram:group:-1003846500961:topic:3864",
+      "status": "synthesis_completed",
+      "stage_events": [
+        {
+          "at": "2026-04-15T23:53:40.711495Z",
+          "stage": "kickoff",
+          "state": "waiting_for_reasoning_sidecars",
+          "message": "Synthesis kickoff prepared current-stage artifacts",
+          "request_status_counts": {
+            "completed": 4,
+            "missing": 1
+          },
+          "ready_sidecar_personas": [
+            "base-rate",
+            "market-implied",
+            "risk-manager",
+            "variant-view"
+          ],
+          "pending_sidecar_personas": [
+            "catalyst-hunter"
+          ],
+          "structured_bundle_artifact_type": ""
+        },
+        {
+          "at": "2026-04-15T23:53:40.869398Z",
+          "stage": "synthesis_promotion",
+          "state": "waiting_for_reasoning_sidecars",
+          "message": "Waiting for all researcher sidecars before final synthesis",
+          "request_status_counts": {
+            "completed": 4,
+            "missing": 1
+          },
+          "waiting_for_personas": [
+            "catalyst-hunter"
+          ]
+        },
+        {
+          "at": "2026-04-15T23:53:41.207611Z",
+          "stage": "synthesis_promotion",
+          "state": "waiting_for_reasoning_sidecars",
+          "message": "Waiting for all researcher sidecars before final synthesis",
+          "request_status_counts": {
+            "completed": 4,
+            "missing": 1
+          },
+          "waiting_for_personas": [
+            "catalyst-hunter"
+          ]
+        },
+        {
+          "at": "2026-04-15T23:53:48.886706Z",
+          "stage": "synthesis_promotion",
+          "state": "waiting_for_reasoning_sidecars",
+          "message": "Waiting for all researcher sidecars before final synthesis",
+          "request_status_counts": {
+            "completed": 4,
+            "missing": 1
+          },
+          "waiting_for_personas": [
+            "catalyst-hunter"
+          ]
+        },
+        {
+          "at": "2026-04-15T23:53:49.213423Z",
+          "stage": "synthesis_promotion",
+          "state": "waiting_for_reasoning_sidecars",
+          "message": "Waiting for all researcher sidecars before final synthesis",
+          "request_status_counts": {
+            "completed": 4,
+            "missing": 1
+          },
+          "waiting_for_personas": [
+            "catalyst-hunter"
+          ]
+        },
+        {
+          "at": "2026-04-15T23:53:57.080210Z",
+          "stage": "synthesis_promotion",
+          "state": "waiting_for_reasoning_sidecars",
+          "message": "Waiting for all researcher sidecars before final synthesis",
+          "request_status_counts": {
+            "completed": 4,
+            "missing": 1
+          },
+          "waiting_for_personas": [
+            "catalyst-hunter"
+          ]
+        },
+        {
+          "at": "2026-04-15T23:53:57.435288Z",
+          "stage": "synthesis_promotion",
+          "state": "waiting_for_reasoning_sidecars",
+          "message": "Waiting for all researcher sidecars before final synthesis",
+          "request_status_counts": {
+            "completed": 4,
+            "missing": 1
+          },
+          "waiting_for_personas": [
+            "catalyst-hunter"
+          ]
+        },
+        {
+          "at": "2026-04-15T23:54:13.313843Z",
+          "stage": "synthesis_promotion",
+          "state": "waiting_for_reasoning_sidecars",
+          "message": "Waiting for all researcher sidecars before final synthesis",
+          "request_status_counts": {
+            "completed": 4,
+            "missing": 1
+          },
+          "waiting_for_personas": [
+            "catalyst-hunter"
+          ]
+        },
+        {
+          "at": "2026-04-15T23:54:13.673717Z",
+          "stage": "synthesis_promotion",
+          "state": "waiting_for_reasoning_sidecars",
+          "message": "Waiting for all researcher sidecars before final synthesis",
+          "request_status_counts": {
+            "completed": 4,
+            "missing": 1
+          },
+          "waiting_for_personas": [
+            "catalyst-hunter"
+          ]
+        },
+        {
+          "at": "2026-04-15T23:54:17.684815Z",
+          "stage": "kickoff",
+          "state": "ready_for_final_synthesis",
+          "message": "Synthesis kickoff prepared current-stage artifacts",
+          "request_status_counts": {
+            "completed": 5
+          },
+          "ready_sidecar_personas": [
+            "base-rate",
+            "catalyst-hunter",
+            "market-implied",
+            "risk-manager",
+            "variant-view"
+          ],
+          "pending_sidecar_personas": [],
+          "structured_bundle_artifact_type": "sidecar_synthesis_bundle"
+        },
+        {
+          "at": "2026-04-15T23:54:17.768614Z",
+          "stage": "synthesis_promotion",
+          "state": "final_synthesis_launching",
+          "message": "Claimed final synthesis launch",
+          "request_status_counts": {
+            "completed": 5
+          },
+          "launch_claim_pid": 36267
+        },
+        {
+          "at": "2026-04-15T23:54:19.421883Z",
+          "stage": "synthesis_lane_bootstrap",
+          "state": "created",
+          "message": "Created dedicated Telegram synthesis lane",
+          "request_status_counts": {
+            "completed": 5
+          },
+          "topic_id": "3864",
+          "topic_title": "case-20260415-540d9abf | synthesis | T234706Z",
+          "session_key": "agent:main:telegram:group:-1003846500961:topic:3864"
+        },
+        {
+          "at": "2026-04-15T23:54:19.433370Z",
+          "stage": "synthesis_promotion",
+          "state": "final_synthesis_launched",
+          "message": "Launched final synthesis executor",
+          "request_status_counts": {
+            "completed": 5
+          },
+          "pid": 36273,
+          "launch_log_path": "qualitative-db/40-research/cases/case-20260415-540d9abf/researcher-analyses/2026-04-15/dispatch-case-20260415-540d9abf-20260415T234706Z/final-synthesis-launch.log"
+        },
+        {
+          "at": "2026-04-15T23:54:19.520032Z",
+          "stage": "final_synthesis_execution",
+          "state": "running",
+          "message": "Final synthesis executor started",
+          "request_status_counts": {
+            "completed": 5
+          },
+          "prompt_path": "qualitative-db/40-research/cases/case-20260415-540d9abf/researcher-analyses/2026-04-15/dispatch-case-20260415-540d9abf-20260415T234706Z/synthesis-prompt.md"
+        },
+        {
+          "at": "2026-04-15T23:55:35.896260Z",
+          "stage": "final_synthesis_execution",
+          "state": "synthesis_completed",
+          "message": "Final synthesis completed and artifacts rendered",
+          "request_status_counts": {
+            "completed": 5
+          }
+        }
+      ],
+      "last_stage_event": {
+        "at": "2026-04-15T23:55:35.896260Z",
+        "stage": "final_synthesis_execution",
+        "state": "synthesis_completed",
+        "message": "Final synthesis completed and artifacts rendered",
+        "request_status_counts": {
+          "completed": 5
+        }
+      },
+      "updated_at": "2026-04-15T23:55:35.896305Z",
+      "request_status_counts": {
+        "completed": 5
+      },
+      "synthesis_lane": {
+        "topic_id": "3864",
+        "topic_title": "case-20260415-540d9abf | synthesis | T234706Z",
+        "session_key": "agent:main:telegram:group:-1003846500961:topic:3864"
+      },
+      "synthesis_lane_topic_id": "3864",
+      "synthesis_lane_topic_title": "case-20260415-540d9abf | synthesis | T234706Z",
+      "synthesis_lane_session_key": "agent:main:telegram:group:-1003846500961:topic:3864",
+      "final_synthesis_launch_log_path": "qualitative-db/40-research/cases/case-20260415-540d9abf/researcher-analyses/2026-04-15/dispatch-case-20260415-540d9abf-20260415T234706Z/final-synthesis-launch.log",
+      "final_synthesis_pid": 36273,
+      "result_json": "qualitative-db/40-research/cases/case-20260415-540d9abf/researcher-analyses/2026-04-15/dispatch-case-20260415-540d9abf-20260415T234706Z/synthesis-result.json",
+      "raw_response_text_path": "qualitative-db/40-research/cases/case-20260415-540d9abf/researcher-analyses/2026-04-15/dispatch-case-20260415-540d9abf-20260415T234706Z/synthesis-response.raw.txt",
+      "last_gateway_response_path": "qualitative-db/40-research/cases/case-20260415-540d9abf/researcher-analyses/2026-04-15/dispatch-case-20260415-540d9abf-20260415T234706Z/synthesis-response.json",
+      "synthesis_attempt_count": 1,
+      "synthesis_parse_failures": [],
+      "synthesis_parse_recovered": false,
+      "final_artifact_path": "qualitative-db/40-research/cases/case-20260415-540d9abf/researcher-analyses/2026-04-15/dispatch-case-20260415-540d9abf-20260415T234706Z/syndicated-finding.md",
+      "final_sidecar_path": "qualitative-db/40-research/cases/case-20260415-540d9abf/researcher-analyses/2026-04-15/dispatch-case-20260415-540d9abf-20260415T234706Z/syndicated-finding.runtime.json",
+      "final_decision_handoff_path": "qualitative-db/40-research/cases/case-20260415-540d9abf/researcher-analyses/2026-04-15/dispatch-case-20260415-540d9abf-20260415T234706Z/decision-handoff.md",
+      "timeline_update": {
+        "appended": true,
+        "case_key": "case-20260415-540d9abf",
+        "dispatch_id": "dispatch-case-20260415-540d9abf-20260415T234706Z",
+        "artifact_path": "qualitative-db/40-research/cases/case-20260415-540d9abf/researcher-analyses/2026-04-15/dispatch-case-20260415-540d9abf-20260415T234706Z/syndicated-finding.md",
+        "entry": "- 2026-04-15T23:55:33.177254+00:00 — completed synthesis `dispatch-case-20260415-540d9abf-20260415T234706Z` with artifact `qualitative-db/40-research/cases/case-20260415-540d9abf/researcher-analyses/2026-04-15/dispatch-case-20260415-540d9abf-20260415T234706Z/syndicated-finding.md`."
+      },
+      "terminal_summary": {
+        "at": "2026-04-15T23:55:35.896318Z",
+        "status": "synthesis_completed",
+        "request_status_counts": {
+          "completed": 5
+        },
+        "final_artifact_path": "qualitative-db/40-research/cases/case-20260415-540d9abf/researcher-analyses/2026-04-15/dispatch-case-20260415-540d9abf-20260415T234706Z/syndicated-finding.md",
+        "final_sidecar_path": "qualitative-db/40-research/cases/case-20260415-540d9abf/researcher-analyses/2026-04-15/dispatch-case-20260415-540d9abf-20260415T234706Z/syndicated-finding.runtime.json",
+        "final_decision_handoff_path": "qualitative-db/40-research/cases/case-20260415-540d9abf/researcher-analyses/2026-04-15/dispatch-case-20260415-540d9abf-20260415T234706Z/decision-handoff.md",
+        "synthesis_lane": {
+          "topic_id": "3864",
+          "topic_title": "case-20260415-540d9abf | synthesis | T234706Z",
+          "session_key": "agent:main:telegram:group:-1003846500961:topic:3864"
+        },
+        "synthesis_attempt_count": 1,
+        "synthesis_parse_failure_count": 0,
+        "synthesis_parse_recovered": false,
+        "last_parse_failure": {},
+        "last_stage_event": {
+          "at": "2026-04-15T23:55:35.896260Z",
+          "stage": "final_synthesis_execution",
+          "state": "synthesis_completed",
+          "message": "Final synthesis completed and artifacts rendered",
+          "request_status_counts": {
+            "completed": 5
+          }
+        }
+      }
+    }
+  },
+  "light_refresh": {
+    "artifact_type": "light_refresh_brief",
+    "schema_version": "light-refresh/v1",
+    "built_at": "2026-04-15T23:57:25.622718+00:00",
+    "case_key": "case-20260415-540d9abf",
+    "market": {
+      "market_id": "139f80d9-bf3b-4b6b-9dea-031313b6ae5b",
+      "platform": "polymarket",
+      "external_market_id": "0x00b28e37776a7f2f56ceec3bc4cf4f49d832b1c9db1ddd1cb597fb4438918f95",
+      "slug": "solana-above-80-on-april-19",
+      "title": "Will the price of Solana be above $80 on April 19?",
+      "description": "This market will resolve to \"Yes\" if the Binance 1 minute candle for SOL/USDT 12:00 in the ET timezone (noon) on the date specified in the title has a final \"Close\" price higher than the price specified in the title. Otherwise, this market will resolve to \"No\".\n\nThe resolution source for this market is Binance, specifically the SOL/USDT \"Close\" prices currently available at https://www.binance.com/en/trade/SOL_USDT with \"1m\" and \"Candles\" selected on the top bar.\n\nPlease note that this market is about the price according to Binance SOL/USDT, not according to other exchanges or trading pairs.\n\nPrice precision is determined by the number of decimal places in the source.",
+      "category": "polymarket-discovery",
+      "status": "open",
+      "current_price": 0.9,
+      "last_reasoned_price": 0.835,
+      "closes_at": "2026-04-19T12:00:00-04:00",
+      "resolves_at": "2026-04-19T12:00:00-04:00",
+      "quote_timestamp": "2026-04-15T23:56:42.190566+00:00"
+    },
+    "latest_forecast": {
+      "forecast_id": "dispatch-case-20260415-540d9abf-20260415T234706Z",
+      "case_id": "case-20260415-540d9abf",
+      "dispatch_id": "dispatch-case-20260415-540d9abf-20260415T234706Z",
+      "market_id": "139f80d9-bf3b-4b6b-9dea-031313b6ae5b",
+      "contract_id": "yes",
+      "question": "Will the price of Solana be above $80 on April 19?",
+      "forecast_prob": 0.835,
+      "forecast_direction": "yes",
+      "confidence_label": "medium",
+      "decision_status": "recorded",
+      "rationale_summary": "SOL is still more likely than not to finish above $80 on the April 19 Binance noon minute, but with fair value closer to 0.835 than the 0.90 market and meaningful exact-minute downside tail still live, the disciplined output remains watch-only rather than an authorized Yes trade.",
+      "decision_packet_path": "qualitative-db/40-research/cases/case-20260415-540d9abf/decision-maker/artifacts/decision-maker-packet.json",
+      "decision_ts": "2026-04-15T19:55:00-04:00",
+      "created_at": "2026-04-15T19:56:17.724517-04:00",
+      "resolution_status": null,
+      "resolved_outcome": null,
+      "resolved_value": null,
+      "resolved_ts": null
+    },
+    "snapshot_summary": {
+      "snapshot_count": 2,
+      "min_reference_price": 0.9,
+      "max_reference_price": 0.9,
+      "avg_reference_price": 0.9,
+      "oldest_observed_at": "2026-04-15T19:45:00-04:00",
+      "latest_observed_at": "2026-04-15T19:56:42.190566-04:00"
+    },
+    "recent_snapshots": [
+      {
+        "observed_at": "2026-04-15T19:56:42.190566-04:00",
+        "last_price": 0.9,
+        "yes_price": 0.9,
+        "no_price": 0.1,
+        "best_bid": 0.89,
+        "best_ask": 0.91,
+        "volume": 10015.908402,
+        "open_interest": 18528.847,
+        "reference_price": 0.9
+      },
+      {
+        "observed_at": "2026-04-15T19:45:00-04:00",
+        "last_price": 0.9,
+        "yes_price": 0.9,
+        "no_price": 0.1,
+        "best_bid": null,
+        "best_ask": null,
+        "volume": 10015.908402,
+        "open_interest": 18426.802,
+        "reference_price": 0.9
+      }
+    ],
+    "live_market_probe": {
+      "slug": "solana-above-80-on-april-19",
+      "question": "Will the price of Solana be above $80 on April 19?",
+      "closed": false,
+      "archived": false,
+      "acceptingOrders": true,
+      "automaticallyResolved": false,
+      "umaResolutionStatus": "",
+      "endDate": "2026-04-19T16:00:00Z",
+      "updatedAt": "2026-04-15T23:47:34.992906Z",
+      "outcomes": [
+        "Yes",
+        "No"
+      ],
+      "outcomePrices": [
+        "0.9",
+        "0.1"
+      ],
+      "oneDayPriceChange": 0.11,
+      "oneHourPriceChange": -0.01,
+      "volumeNum": 10015.908402000001,
+      "liquidityNum": 18376.8014
+    },
+    "refresh_assessment": {
+      "recommended_mode": "light",
+      "reasons": [
+        "material_price_move"
+      ],
+      "price_delta": 0.065,
+      "price_delta_pct_points": 6.5,
+      "hours_since_last_forecast": 0.04,
+      "hours_to_close": 88.04,
+      "forecast_vs_market_gap_pct_points": -6.5
+    },
+    "focused_questions": [
+      "Did the market move invalidate the prior crux, or is this mainly repricing without new information?",
+      "Does the new price imply the previous edge has materially compressed or inverted?",
+      "Has time-to-close changed the appropriate confidence or action threshold?",
+      "Can we update priors responsibly using prior synthesis plus current market state without rerunning the full swarm?"
+    ]
+  },
+  "refresh_bundle": {
+    "refresh_id": "refresh-case-20260415-540d9abf-20260415T235725Z",
+    "root": "qualitative-db/40-research/cases/case-20260415-540d9abf/decision-maker/refreshes/refresh-case-20260415-540d9abf-20260415T235725Z",
+    "light_refresh_brief_json": "qualitative-db/40-research/cases/case-20260415-540d9abf/decision-maker/refreshes/refresh-case-20260415-540d9abf-20260415T235725Z/light-refresh-brief.json",
+    "light_refresh_brief_markdown": "qualitative-db/40-research/cases/case-20260415-540d9abf/decision-maker/refreshes/refresh-case-20260415-540d9abf-20260415T235725Z/light-refresh-brief.md",
+    "decision_context_json": "qualitative-db/40-research/cases/case-20260415-540d9abf/decision-maker/refreshes/refresh-case-20260415-540d9abf-20260415T235725Z/decision-context-light-refresh.json"
+  }
+}

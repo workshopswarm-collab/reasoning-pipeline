@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A sustained rally above 75k would weaken the variant case quickly.",
+    "The thesis depends more on timing/volatility than on a hidden bearish fundamental."
+  ],
+  "key_assumptions": [
+    "A roughly 3% downside move before the April 17 noon ET settlement minute remains plausible for BTC over ~43 hours.",
+    "Binance-specific one-minute close mechanics add timing fragility beyond a generic spot-price view."
+  ],
+  "main_logical_chain": [
+    "The contract resolves on Binance BTCUSDT's exact April 17 12:00 ET one-minute close, not today's spot price.",
+    "BTC is currently above 72k, so Yes is the base case.",
+    "But the cushion is only about $2.1k, which BTC can lose within two days under normal volatility.",
+    "Therefore Yes remains more likely than not, but 82% is somewhat overconfident for such a narrow settlement rule."
+  ],
+  "main_thesis": "BTC is more likely than not to settle above 72k on April 17, but the 82% market price overstates confidence because the contract resolves on one exact Binance noon ET minute close and current cushion is only about 3%.",
+  "own_probability": 0.74,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "Binance BTC/USDT 12:00 ET one-minute candle close",
+    "market directionally right but somewhat overconfident",
+    "74% Yes vs 82% market-implied"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation",
+    "variant_hypothesis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-9c95ce3a",
+    "dispatch_id": "dispatch-case-20260415-9c95ce3a-20260415T173129Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "4f200d9b-fc80-4b73-a6d3-bd01dd13973d",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-9c95ce3a/researcher-analyses/2026-04-15/dispatch-case-20260415-9c95ce3a-20260415T173129Z/personas/variant-view.md",
+    "source_persona_sha256": "ef8631d73be838d42e2e382e9f6a3c647bad79c17aa6be7b66b47d64711b275a"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary source quality is high for contract mechanics and current price context; contextual independence is medium; source-of-truth ambiguity is low to medium.",
+  "strongest_disconfirmers": [
+    "No specific bearish catalyst emerged, and BTC is already above the threshold by about 3%.",
+    "If BTC stays rangebound or trends slightly up, Yes resolves comfortably."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT was around 74100 during the run, already above the 72000 threshold.",
+    "Independent contextual pricing also placed BTC in the mid-74k area on April 15.",
+    "Polymarket's adjacent strike ladder implies settlement expectations clustered only modestly above 72k."
+  ],
+  "timing_relevance": "Very high: this is a single-minute noon ET settlement on April 17, so ordinary intraday movement matters more than in a daily-close market.",
+  "unresolved_ambiguities": [
+    "Minor operational ambiguity remains between Binance UI presentation and API retrieval conventions, though not enough to dominate the case.",
+    "Current volatility evidence was qualitative rather than a full realized-vol dataset."
+  ],
+  "what_would_change_view": "A materially larger cushion above 72k into April 16-17, or better evidence that a >3% downside move is unlikely in the remaining window, would move the estimate upward."
+}

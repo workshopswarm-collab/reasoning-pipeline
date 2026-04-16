@@ -1,0 +1,62 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Single-minute settlement mechanic",
+    "Modest price cushion versus threshold",
+    "Venue-specific dependence on Binance ETH/USDT"
+  ],
+  "key_assumptions": [
+    "ETH remains sufficiently above 2300 into the April 17 noon ET Binance settlement minute.",
+    "No sharp macro, crypto-specific, or Binance-specific dip erases the current cushion before settlement.",
+    "Binance ETH/USDT remains the clean governing venue/pair without anomalous dislocation."
+  ],
+  "main_logical_chain": [
+    "The governing contract checks Binance ETH/USDT at one specific minute close on April 17 at noon ET.",
+    "Current direct Binance pricing is above 2300, so the base case favors Yes.",
+    "But because settlement depends on a single minute and the cushion is modest, path risk deserves a discount versus a naive spot-based view.",
+    "That leaves a Yes lean, but slightly below the market-implied probability."
+  ],
+  "main_thesis": "Lean Yes, but the market slightly underprices single-minute settlement fragility and path risk around the 2300 threshold.",
+  "own_probability": 0.68,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "Binance 1 minute candle for ETH/USDT 12:00 in the ET timezone",
+    "current_price 0.745",
+    "ETHUSDT around 2338 during research"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "risk_management",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-243d5bed",
+    "dispatch_id": "dispatch-case-20260416-243d5bed-20260416T161511Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "3f8e7a4e-ff0a-42a1-9cfa-290069d73894",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-243d5bed/researcher-analyses/2026-04-16/dispatch-case-20260416-243d5bed-20260416T161511Z/personas/risk-manager.md",
+    "source_persona_sha256": "49365d37f650e6dd0739d1c613d27c122310e6847f10c5edf16432eb1e18e62f"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Good direct source alignment via Binance API plus clear Polymarket rules, but overall independence is only medium-low because the key evidence is concentrated on one venue and contract surface.",
+  "strongest_disconfirmers": [
+    "The contract resolves on one exact 12:00 ET one-minute close, so a brief dip can still resolve No.",
+    "The observed cushion was only about $38, which is not large for a roughly one-day crypto window.",
+    "Only Binance ETH/USDT counts, so venue-specific weakness matters."
+  ],
+  "strongest_supports": [
+    "Direct Binance ETHUSDT pricing during research was around 2338, above the 2300 threshold.",
+    "Recent Binance 1m kline closes sampled during research were above 2300.",
+    "Market-implied probability of 74.5% supports a baseline Yes lean."
+  ],
+  "timing_relevance": "High; the contract depends on the final Close of the 12:00 ET Binance 1-minute candle on April 17, not a daily close or broad trend.",
+  "unresolved_ambiguities": [
+    "Near-term realized volatility into settlement remains unknown.",
+    "A late short-lived dip could dominate outcome despite otherwise bullish surrounding trade."
+  ],
+  "what_would_change_view": "A stable hold above roughly 2330-2350 into the April 17 morning would move the estimate up toward the market, while renewed Binance ETH/USDT trading near or below 2300 would cut the Yes estimate quickly."
+}

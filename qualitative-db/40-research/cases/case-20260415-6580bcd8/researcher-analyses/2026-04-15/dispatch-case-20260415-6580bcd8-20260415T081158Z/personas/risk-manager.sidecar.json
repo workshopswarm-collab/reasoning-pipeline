@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Single-venue dependence on Binance only.",
+    "Single-minute settlement timing.",
+    "Threshold distance is modest rather than huge."
+  ],
+  "key_assumptions": [
+    "BTC retains most of its current cushion above 72k into the April 17 noon ET settlement minute.",
+    "Binance does not show a venue-specific dislocation at the relevant 1-minute close.",
+    "No major macro or crypto-specific shock knocks BTC down more than roughly 2.5% before resolution."
+  ],
+  "main_logical_chain": [
+    "The governing source of truth is Binance BTC/USDT 1-minute close at 12:00 ET on April 17.",
+    "Current Binance price is already materially above 72000, so the contract starts with a favorable cushion.",
+    "That cushion is meaningful but not decisive because BTC can move more than 2.5% over the remaining horizon.",
+    "Result: moderate Yes lean with emphasis on timestamp and venue fragility rather than high-confidence bullishness."
+  ],
+  "main_thesis": "BTC is already trading materially above 72000 on Binance, so Yes is favored, but the edge is capped by exact-timestamp and single-venue fragility.",
+  "own_probability": 0.79,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone",
+    "price checked during this run was about 73,830.09"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "risk_management",
+    "contract_interpretation",
+    "scenario_analysis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-6580bcd8",
+    "dispatch_id": "dispatch-case-20260415-6580bcd8-20260415T081158Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "b8437e64-00fb-4b1c-ab80-575f352bfec2",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-6580bcd8/researcher-analyses/2026-04-15/dispatch-case-20260415-6580bcd8-20260415T081158Z/personas/risk-manager.md",
+    "source_persona_sha256": "7ed692660d3d2b10089b8d0778b29620799f462b3a7fee9627a5c9dd8e9ba8b1"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source-of-truth quality is strong because Binance and Polymarket rules are direct, but evidence independence is only medium-low because most relevant evidence clusters around the same exchange-defined mechanism.",
+  "strongest_disconfirmers": [
+    "The current cushion is only about 2.5%, a move BTC can make over two days.",
+    "Settlement depends on one exact Binance 1-minute close, so a brief downside spike can flip the result."
+  ],
+  "strongest_supports": [
+    "Binance spot price checked during the run was about 73830, roughly 1830 above the threshold.",
+    "Checked Binance 24h low was still above 72000.",
+    "Polymarket rules clearly specify Binance BTC/USDT 1-minute close at 12:00 ET as the settlement mechanism."
+  ],
+  "timing_relevance": "This is a narrow, date-sensitive contract resolving at exactly 12:00 ET on April 17, so path and timestamp risk matter more than broad daily BTC direction.",
+  "unresolved_ambiguities": [
+    "How much downside volatility will emerge between now and April 17 noon ET.",
+    "Whether Binance-specific microstructure or wick behavior matters near the resolution minute."
+  ],
+  "what_would_change_view": "Sustained trading below 72000 before the event, repeated tests of the threshold, or Binance-specific dislocation near the key minute would push the estimate down materially."
+}

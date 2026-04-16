@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A >4% BTC selloff before noon ET would materially weaken the thesis.",
+    "The exact one-minute settlement window increases sensitivity to transient volatility."
+  ],
+  "key_assumptions": [
+    "BTC will not fall more than roughly 4.3% before the 2026-04-16 12:00 ET settlement minute.",
+    "Binance remains an operationally coherent source of truth for the relevant BTCUSDT 1-minute candle."
+  ],
+  "main_logical_chain": [
+    "Verify the exact Polymarket resolution rule and settlement source.",
+    "Verify Binance exposes the relevant 1-minute kline close data and confirm the ET-to-UTC timing.",
+    "Measure current distance from strike using live Binance BTCUSDT data.",
+    "Apply an outside-view that short-horizon threshold markets are dominated by distance from strike versus remaining volatility.",
+    "Conclude Yes is likely but somewhat less certain than the market-implied 97.65%."
+  ],
+  "main_thesis": "BTC is already materially above 72000 on Binance with less than a day remaining, so Yes is favored, though one-minute settlement mechanics and crypto volatility keep it below near-certainty.",
+  "own_probability": 0.94,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone has a final 'Close' price higher than the price specified.",
+    "GET /api/v3/klines supports 1m data and returns the close price field.",
+    "Live Binance BTCUSDT during the run was about 75124."
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "contract_interpretation",
+    "technical_reference"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260415-35855579",
+    "dispatch_id": "dispatch-case-20260415-35855579-20260415T225312Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "23536336-a499-49bc-976a-33c97c12c415",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-35855579/researcher-analyses/2026-04-15/dispatch-case-20260415-35855579-20260415T225312Z/personas/base-rate.md",
+    "source_persona_sha256": "5a515678489901e93d0e0fdf45870102aaeb2a20d84011d6ef2054f08156885e"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is high for contract mechanics and current pricing because the finding relies on Polymarket's own rules plus Binance official docs and live API endpoints; ambiguity is low after the timing/source check.",
+  "strongest_disconfirmers": [
+    "BTC can move several percent within a day, and this contract resolves on one exact 1-minute close rather than a broader average.",
+    "A brief downside move or wick near noon ET could still flip the outcome."
+  ],
+  "strongest_supports": [
+    "Live Binance BTCUSDT during the run was about 75124, roughly 3124 above the threshold.",
+    "Observed Binance 24-hour low during the run was about 73514, still above 72000.",
+    "Contract wording is explicit about exchange, pair, timeframe, timezone, and strict higher-than rule."
+  ],
+  "timing_relevance": "Settlement is at 2026-04-16 12:00 ET, which is 2026-04-16 16:00 UTC; less than a day remained at research time.",
+  "unresolved_ambiguities": [
+    "The exact settlement candle is not yet known.",
+    "Binance website UI was WAF-protected from this environment, so verification used Binance official API/docs instead of the chart UI."
+  ],
+  "what_would_change_view": "A rapid move toward or below 72000 before settlement, major new macro/crypto stress, or Binance-specific operational issues would lower the Yes estimate materially."
+}

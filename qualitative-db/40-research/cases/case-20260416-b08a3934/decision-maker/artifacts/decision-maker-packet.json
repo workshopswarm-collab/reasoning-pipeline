@@ -1,0 +1,155 @@
+{
+  "schema_version": "decision-packet/v1",
+  "generated_at": "2026-04-15T22:47:00-04:00",
+  "context": {
+    "case_key": "case-20260416-b08a3934",
+    "dispatch_id": "dispatch-case-20260416-b08a3934-20260416T023832Z",
+    "question": "Will the price of Bitcoin be above $72,000 on April 17?",
+    "market_id": "34b19a2f-03db-4e0f-ba94-a0ddb3b0670c",
+    "external_market_id": "0x278e937ecb8ff1da49c4e04aba52d1922b3e0a7a15d09e621bbf33154c230287",
+    "market_slug": "bitcoin-above-72k-on-april-17",
+    "platform": "polymarket",
+    "primary_market_url": "https://polymarket.com/event/bitcoin-above-72k-on-april-17",
+    "market_title": "Will the price of Bitcoin be above $72,000 on April 17?",
+    "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260416-b08a3934/synthesizer-agent/decision-handoff.md",
+    "source_syndicated_finding_path": "qualitative-db/40-research/cases/case-20260416-b08a3934/synthesizer-agent/syndicated-finding.md",
+    "source_light_refresh_brief_path": "",
+    "refresh_mode": "",
+    "decision_maker_agent": "decision-maker",
+    "canonical_markdown_path": "decision-maker-packet.md",
+    "canonical_json_path": "artifacts/decision-maker-packet.json"
+  },
+  "decision": {
+    "side": "yes",
+    "trade_authorization": "forbidden",
+    "position_policy": "flat",
+    "decision_readiness": "needs_more_research",
+    "primary_crux": "BTC above $72,000 on the April 17 noon ET Binance minute is the directional base case because spot and the recent 24h low both sit above strike, but the bounded package explicitly says blockers_require_new_research is yes, and that should dominate in an exact-minute, exchange-specific contract where the main remaining issue is the unverified pre-settlement morning path.",
+    "secondary_cruxes": [
+      "The market may be slightly rich at 0.93, but the anti-market gap is modest relative to unresolved execution risk.",
+      "This is a maintenance-of-cushion bet, not a broad bullish BTC call, and a normal downside move can still flip the single fixing minute.",
+      "Residual Binance settlement-surface uncertainty is small but still economically relevant when pricing is already in the low-90s."
+    ],
+    "thesis_class": "not_decision_ready"
+  },
+  "valuation": {
+    "fair_value_low": 0.87,
+    "fair_value_high": 0.9,
+    "fair_value_mid": 0.885,
+    "independent_verification_quality": "medium",
+    "compressed_toward_market_applied": false,
+    "compression_reason": "Current BTC/USDT cushion strongly supports Yes, but the remaining exact-minute and settlement-surface risks are not sufficiently resolved for an executable valuation call.",
+    "market_reference_price": 0.93,
+    "edge_mid_vs_market_pct_points": -4.5
+  },
+  "execution_semantics": {
+    "price_source": "market_snapshot_quote",
+    "price_axis": "market_implied_true_prob",
+    "rebalance_threshold_fraction": 0.1,
+    "allow_auto_reversal": false,
+    "quote_staleness_seconds": 300,
+    "valid_until": "2026-04-17T02:48:12.756854+00:00"
+  },
+  "risk_controls": {
+    "confidence_level": "medium",
+    "portfolio_constraints": [
+      "Do not initiate or add exposure from this packet.",
+      "Require a fresh pre-settlement Binance check and clearer settlement-surface confidence before reconsidering action.",
+      "Treat exact-minute Binance path risk as the dominant execution constraint."
+    ],
+    "liquidity_caution": "low",
+    "max_position_size_pct_bankroll": 0.02,
+    "max_additional_exposure_pct_bankroll": 0.01,
+    "max_single_order_pct_bankroll": 0.005,
+    "slippage_tolerance_bps": 100,
+    "liquidity_min_depth": 0,
+    "correlation_bucket_limit_pct_bankroll": 0.05
+  },
+  "bands": [
+    {
+      "name": "max_enter",
+      "min_p": 0,
+      "max_p": 0.82,
+      "target_exposure_fraction": 0,
+      "notes": "Not actionable from this packet; would require materially stronger verification and a much cheaper price."
+    },
+    {
+      "name": "scaled_enter",
+      "min_p": 0.82,
+      "max_p": 0.87,
+      "target_exposure_fraction": 0,
+      "notes": "Potential value zone only after new research resolves the stated blockers."
+    },
+    {
+      "name": "hold",
+      "min_p": 0.87,
+      "max_p": 0.9,
+      "target_exposure_fraction": 0,
+      "notes": "Current bounded fair-value zone, but action remains forbidden because package-level blockers require new research."
+    },
+    {
+      "name": "trim",
+      "min_p": 0.9,
+      "max_p": 0.95,
+      "target_exposure_fraction": 0,
+      "notes": "Above fair value for a single-minute crypto settlement with unresolved final-morning verification risk."
+    },
+    {
+      "name": "exit",
+      "min_p": 0.95,
+      "max_p": 1,
+      "target_exposure_fraction": 0,
+      "notes": "Avoid near-certainty pricing absent stronger proof that exact-minute downside risk is negligible."
+    }
+  ],
+  "invalidation": {
+    "thesis_breakers": [
+      "BTC/USDT loses substantial cushion and trades back toward 72,000 before settlement.",
+      "A downside macro, crypto, or exchange-specific shock materially raises the probability of a sub-72,000 settlement minute.",
+      "Binance-specific settlement-surface, pricing, or operational issues emerge near resolution."
+    ],
+    "time_breakers": [
+      "A fresh pre-settlement packet with direct morning Binance verification should supersede this judgment.",
+      "The actual April 17 12:00 ET Binance 1-minute close fully resolves and obsoletes this packet."
+    ],
+    "market_structure_breakers": [
+      "Market reprices materially after fresh spot or volatility changes, altering the economic comparison.",
+      "New evidence clarifies or worsens the Binance UI-versus-API settlement mapping."
+    ],
+    "reversal_conditions": [
+      "Move to ready/watch-only or better only if new research resolves the stated blockers on final-morning verification and settlement-surface confidence.",
+      "Downgrade directional confidence if BTC loses its current cushion materially.",
+      "Do not auto-reverse from this packet."
+    ]
+  },
+  "epistemic_status": {
+    "key_uncertainties": [
+      "How much probability should be assigned to a 4%+ downside move into one exact settlement minute over the remaining horizon.",
+      "Whether the final pre-settlement Binance morning path confirms the current cushion or erodes it materially.",
+      "Whether the residual Binance UI-versus-API settlement-surface gap is fully immaterial in practice."
+    ],
+    "what_would_change_my_mind": [
+      "A direct near-settlement Binance check still showing BTC comfortably above 72,000 would improve actionability.",
+      "A materially cheaper market price with unchanged cushion and better settlement-surface confidence would improve the trade case.",
+      "A move back toward 72,000 would reduce even the directional Yes confidence."
+    ],
+    "reasons_to_pass": [
+      "The package explicitly says blockers_require_new_research is yes.",
+      "The valuation gap versus market is modest relative to unresolved exact-minute execution risk.",
+      "Low-90s pricing in a single-minute crypto threshold market requires stronger proof than this bounded package provides."
+    ],
+    "decision_quality": "not_ready"
+  },
+  "audit": {
+    "one_sentence_rationale": "BTC above $72,000 on April 17 is still the directional base case, but because this bounded package explicitly requires new research on the final morning path and settlement-surface confidence, the correct output is forbidden and flat rather than trading a modest below-market view at 0.93.",
+    "notes": "This is another case where directional truth and execution readiness diverge: strong Yes lean, but not decision-ready.",
+    "market_baseline_respected": true,
+    "action_bias_check_passed": true,
+    "self_preservation_bias_check_passed": true,
+    "structured_handoff_primary_used": true,
+    "prose_fallback_used": false,
+    "verification_mode_used": "not_ready_reopen_recommended",
+    "additional_verification_performed": false,
+    "additional_verification_notes": ""
+  }
+}

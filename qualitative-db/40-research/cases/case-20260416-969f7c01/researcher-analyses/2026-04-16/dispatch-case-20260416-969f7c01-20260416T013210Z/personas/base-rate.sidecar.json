@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Large overnight or morning crypto selloff before noon ET.",
+    "Binance-specific operational or chart-timing issue near settlement.",
+    "Single-minute settlement microstructure amplifying transient price moves."
+  ],
+  "key_assumptions": [
+    "Binance ETH/USDT remains operational and the noon ET candle maps cleanly to contract language.",
+    "No major downside catalyst hits ETH before the Apr 17 noon ET resolution minute."
+  ],
+  "main_logical_chain": [
+    "Contract asks about one specific Binance ETH/USDT minute close above 2200 at noon ET on Apr 17.",
+    "Current ETH/USDT context is materially above 2200, so the outside-view prior favors Yes.",
+    "Because crypto is volatile and the market settles on one minute rather than a broad average, near-certainty is too aggressive.",
+    "Therefore Yes remains favored, but at about 88% rather than the market's 94.5%."
+  ],
+  "main_thesis": "Yes is still the right side because ETH/USDT is materially above 2200 close to resolution, but the market slightly overstates certainty for a one-minute Binance-close contract.",
+  "own_probability": 0.88,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for ETH/USDT 12:00 in the ET timezone has a final 'Close' price higher than the price specified in the title.",
+    "Assigned market-implied probability: 0.945.",
+    "Own estimate: 88% Yes."
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "market_anchor",
+    "contract_interpretation",
+    "risk_management"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-969f7c01",
+    "dispatch_id": "dispatch-case-20260416-969f7c01-20260416T013210Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "810c1ece-82f1-479d-9fb3-d4c2b39fb0eb",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-969f7c01/researcher-analyses/2026-04-16/dispatch-case-20260416-969f7c01-20260416T013210Z/personas/base-rate.md",
+    "source_persona_sha256": "81def0fa0bddac242d8f1fef7fa4359aa8d99e043bb5c2ac4d3b0b9d81bf66a1"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High confidence in contract mechanics from Polymarket rules, moderate confidence in contextual price level from independent price pages/search snippets, with medium evidence independence overall.",
+  "strongest_disconfirmers": [
+    "Settlement depends on a single Binance one-minute close at noon ET, so a brief downside move is enough for No.",
+    "Recent context included at least one nearby daily close below 2200, showing sub-2200 prints are still plausible."
+  ],
+  "strongest_supports": [
+    "ETH/USDT contextual spot was around the mid-2300s during research, leaving a roughly 6-7% cushion above 2200.",
+    "Less than a day remained to resolution, favoring the currently above-strike side absent a sharp selloff.",
+    "Recent daily ETH/USDT context was mostly above 2200 over the prior week."
+  ],
+  "timing_relevance": "This is a date- and timezone-sensitive single-minute market resolving at 12:00 PM ET on 2026-04-17, so proximity to resolution and intraday volatility matter heavily.",
+  "unresolved_ambiguities": [
+    "Direct live extraction from Binance was limited, leaving small residual ET-to-candle mapping uncertainty.",
+    "No fresh Apr 17 morning check yet; current view depends on Apr 16 spot context persisting."
+  ],
+  "what_would_change_view": "A fresh check showing ETH/USDT near or below 2200 on Apr 17 morning, or Binance-specific operational problems near settlement, would move the estimate down materially."
+}

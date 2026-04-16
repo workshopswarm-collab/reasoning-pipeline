@@ -1,0 +1,149 @@
+---
+type: syndicated_finding
+case_key: case-20260413-17ac3b05
+dispatch_id: dispatch-case-20260413-17ac3b05-20260413T185719Z
+question: "Will China GDP growth in Q1 2026 be between 5.0% and 5.5%?"
+coverage_status: complete
+market_implied_probability: 0.74
+syndicated_probability_low: 0.64
+syndicated_probability_high: 0.72
+syndicated_probability_midpoint: 0.68
+edge_vs_market_pct_points: -6.0
+relation_to_market: below_market
+edge_quality: moderate
+edge_independent_verification_quality: medium
+compressed_toward_market_due_to_verification: yes
+contract_ambiguity_level: minor
+contract_ambiguity_reason: "small operational wrinkle around exact English-surface posting/timing despite clear initial-NBS-release rule"
+independently_verified_points: ["Contract resolves on the initial NBS Q1 2026 GDP release, not revisions.", "Boundary handling favors the higher bracket if the print lands exactly on a boundary.", "Quarterly national economic performance is scheduled on the normal April NBS cadence.", "Official Jan-Feb activity data were broadly consistent with a low-5s headline rather than an obvious sub-5 collapse.", "March PMI rebound reduced, but did not eliminate, late-quarter downside concern."]
+verification_gap_summary: "The main gap is lack of strong independent non-NBS consensus/nowcast evidence tightly centering the first print inside the bracket."
+best_countercase_summary: "Weak property and soft domestic-demand composition could still pull the narrow first print below 5.0% despite stable headline management."
+main_reason_for_disagreement: "The main disagreement is how much confidence to place in NBS-heavy partial-quarter evidence versus the market’s higher confidence."
+resolution_mechanics_summary: "Use the initial NBS Q1 2026 GDP release; revisions do not count and exact boundary values resolve to the higher bracket."
+freshness_sensitive: yes
+freshness_driver: "final March-to-Q1 signal flow and the imminent April initial NBS GDP release"
+decision_blockers: ["Independent evidence quality is only medium because most substantive support is NBS-derived.", "The bracket is narrow enough that one still-unseen/underweighted month can matter materially.", "There is minor operational ambiguity around exact release surface/timing, though not enough to change the governing metric."]
+blockers_require_new_research: yes
+disagreement_type: market_pricing
+disagreement_intensity: medium
+synthesis_confidence_quality: medium
+staleness_risk: high
+next_checkpoint: "Initial NBS Q1 2026 GDP release in the April 16/17 window, with any final March official signal check just before it."
+follow_up_needed: yes
+---
+
+# Claim
+
+Post-synthesis view: the yes outcome remains more likely than not because the contract resolves to China’s initial official NBS Q1 2026 GDP print and all lanes agree that the currently visible official Jan-Feb/March signal set is broadly compatible with a low-5s headline. But the swarm’s below-market stance is only moderately verified independently, since most substantive evidence comes from the same NBS source family and independent consensus retrieval was weak. I therefore keep a yes-lean while compressing somewhat toward the market relative to the swarm median, landing at 0.64-0.72 rather than endorsing either the market’s 0.74 or catalyst-hunter’s 0.78.
+
+## Alpha summary
+
+Market-implied probability is 0.74; my syndicated range is 0.64-0.72. That means mild yes-lean but no clean actionable edge versus market after synthesis. The likely mispricing, if any, is market overconfidence in a narrow bracket given limited independent verification and real below-5.0 downside from weak property/domestic demand.
+
+## Input coverage
+
+All five personas were available and usable: base-rate, catalyst-hunter, market-implied, risk-manager, and variant-view. No personas were missing. I used the raw lane findings as canonical and checked them against the sidecars; the sidecars were broadly faithful, though the market-implied sidecar was slightly compressed relative to its raw caveats on independence and narrow-band risk. Supporting assumption/evidence artifacts were referenced indirectly through the lane writeups rather than re-read separately because the raw findings already surfaced the decision-relevant content. Coverage is complete because all expected lanes were present and materially substantive.
+
+## Market-implied baseline
+
+Baseline market probability is 0.74 at the provided snapshot time. The swarm median was 0.66 with a 0.61-0.78 range, so the key synthesis task was to decide whether the swarm’s below-market lean was independently strong enough to trust.
+
+## Syndicated probability estimate
+
+My final post-synthesis estimate is 0.64-0.72. The yes case remains stronger than no because the contract keys to the initial official print, the official Jan-Feb data do not point to an obvious miss, and March PMI reportedly rebounded rather than collapsing. But the band is narrow and the evidence base is too source-concentrated to justify high-70s confidence or a large anti-market edge.
+
+## Difference from swarm-implied center
+
+The swarm-implied center was about 0.66. My final range is only slightly above that center, mainly because cross-lane review suggests the catalyst-hunter’s March-PMI-positive update is real enough to prevent moving lower, but not strong enough to fully offset the broad lane consensus that independence is weak and the market may still be too confident. So I moved a bit upward from the swarm center while still preserving the swarm’s core caution.
+
+## Agreement or disagreement with market
+
+I disagree modestly with the market. The market’s 0.74 yes price is plausible, but synthesis-stage checking did not verify enough independent support to endorse that confidence cleanly. My range sits mostly below market while acknowledging that the market could still be roughly right if the official first print remains in its usual policy-comfort zone.
+
+## Independent verification of edge
+
+Independent verification is medium, not high. I regard the following as adequately checked: the contract is about the initial NBS print, not revisions; boundary/fallback mechanics are clear enough; the April cadence is normal; and the official Jan-Feb plus cited March PMI context are compatible with a low-5s print. What remained weak is exactly what matters for a meaningful edge versus market: strong independent forecaster or bank consensus outside the bracket was not established, and most substantive evidence still comes from the same NBS ecosystem. That is enough to reject a large anti-market stance, but not enough to validate market confidence fully.
+
+## Compression toward market due to verification
+
+Yes. The provisional swarm view implied a meaningful below-market stance, but the synthesis pass could not independently verify a large negative edge because the strongest support for caution was mostly source-structure skepticism rather than a decisive fresh disconfirming fact. I therefore compressed toward market: instead of staying centered near the low end of the swarm range or leaning toward the 0.61 variant view, I kept the range in the mid-to-high 60s.
+
+## Timing and catalyst posture
+
+The decisive catalyst is the initial NBS Q1 GDP release in the April 16/17 window. Before then, only a final March official signal check or a credible independent consensus leak is likely to move the view materially. The edge is more likely to decay than widen without new independent evidence, because unresolved uncertainty naturally favors some reversion toward the market before resolution.
+
+## Decision blockers
+
+The main blockers are limited evidence independence, the narrowness of the bracket, and some residual operational timing uncertainty around the exact release surface. There is no major contract ambiguity, but there is also no strongly verified edge after synthesis.
+
+## Implication for the question
+
+The question still leans yes, but only moderately. The best current synthesis is that 5.0%-5.5% is the modal bracket for the initial official print, yet confidence should sit below the market’s 0.74 unless better independent verification emerges immediately before release.
+
+## Consensus across personas
+
+All personas agreed that the contract resolves on the initial NBS Q1 GDP release rather than revisions. All agreed the available official Jan-Feb evidence was broadly consistent with an in-band low-5s print. All agreed the market was at least directionally reasonable. Most agreed the main residual risk is that the market is somewhat too confident because March and narrow-band effects still matter. All agreed evidence independence is only low-to-medium because the decisive contextual evidence is NBS-heavy.
+
+## Key disagreements across personas
+
+Main disagreement 1, weighting-based/market-pricing: catalyst-hunter treated March PMI improvement and clean catalyst structure as enough to be near or slightly above market, while variant-view and risk-manager discounted confidence more aggressively because property/consumption weakness and source concentration still leave a meaningful downside tail. Main disagreement 2, interpretive: how much to trust official-print stability as a forecasting object versus how much to haircut it for narrow-bracket uncertainty. Main disagreement 3, timing-based: whether the remaining late-quarter information flow is mostly noise before a routine official print, or still material enough to justify a larger confidence discount.
+
+## Best countercase
+
+Best countercase: the official first print can still miss below 5.0% because weak retail, property drag, and soft domestic-demand composition may matter more than the industrial/export headline, and the market may be underpricing that downside tail. Variant-view expresses this most sharply, with support from risk-manager.
+
+## Encapsulated assumptions
+
+Shared assumptions: the initial NBS print is the governing resolution object; no major release-methodology surprise occurs; current quarter-to-date official data are not signaling collapse. Contested assumptions: how strongly official first-print smoothing/stability should anchor the forecast; how much March PMI improvement offsets property and consumption weakness. Fragile assumptions: that independent forecasters would not cluster outside the band if fully observed; that no operational release wrinkle complicates the exact settlement surface.
+
+## Encapsulated evidence map
+
+Strongest supporting evidence: contract mechanics clearly point to the initial official NBS print; official Jan-Feb activity showed respectable industry/services/trade performance; March PMI reportedly improved back above 50. Strongest contradictory evidence: retail growth and property metrics remained weak; the bracket is narrow; evidence independence is low because the same official system supplies both context and the resolving figure. Governing source-of-truth evidence: contract wording plus NBS release-calendar/release-family checks. Ambiguous evidence: whether official-print stability should dominate composition weakness strongly enough to warrant market-level confidence.
+
+## Evidence weighting
+
+I weighted settlement mechanics and official release-family verification heavily because this is an official-stat market. I also weighted broad cross-lane agreement on Jan-Feb compatibility with a low-5s print. I downweighted very strong directional conclusions based only on NBS-derived context, and I downweighted any implied large edge versus market because independent consensus retrieval was weak. I effectively ignored generic narratives about 'true' China growth when they were not clearly tied to the contract’s initial-print object.
+
+## Counterpoints / strongest disconfirming evidence
+
+The strongest disconfirming evidence against the syndicated yes-lean is that the same official Jan-Feb release showed weak retail and deep property drag, which leaves a real path to a sub-5.0 print in a narrow band market. The strongest disconfirming evidence against a larger no-lean is that March PMI improvement and the contract’s focus on the initial official print both support headline stability.
+
+## Resolution or source-of-truth interpretation
+
+I resolve this as a mostly clean contract. The market uses the initial NBS Q1 2026 GDP release, not revisions; exact boundary values go to the higher bracket; fallback only matters if the quarter release fails to appear by the next scheduled quarter date. The remaining ambiguity is operational rather than conceptual: exact English-surface posting/timing could be mildly messy, but it does not seem large enough to dominate the forecast.
+
+## Why this could create or destroy alpha
+
+This creates alpha only if one can verify that the market is materially overconfident in a narrow official-stat bracket. The swarm suggested that possibility, but synthesis-stage truth-finding did not verify it strongly enough. So the main alpha lesson is negative: avoid overstating a below-market edge when most evidence is source-concentrated and the contract is keyed to an official first print the market already understands.
+
+## What would falsify this interpretation / change the view
+
+A credible independent bank/Reuters/consensus cluster clearly below 5.0% would push the view lower fast. A tight independent cluster around roughly 5.1%-5.4% would push the view toward or even slightly above market confidence. Any real release-surface confusion or delay affecting fallback mechanics would also change the view materially.
+
+## Highest-value next research
+
+The single highest-value next step is to obtain one credible independent consensus/nowcast source for China Q1 2026 GDP immediately before the NBS release and compare it against the market price.
+
+## Source-quality assessment
+
+Primary source class relied on: official NBS contract-governing release surfaces and official Jan-Feb/March macro releases. Most important secondary source class: market contract text interpreting the governing release. Evidence independence is low-to-medium overall. Source-of-truth ambiguity is low-to-medium, closer to low on substance but with minor operational wrinkle risk. The synthesis remains somewhat bottlenecked by thin upstream sourcing from outside the NBS ecosystem.
+
+## Verification impact
+
+Yes, synthesis used additional truth-finding in the sense of critically comparing all raw lanes and checking whether any independently stronger evidence existed. That process materially changed confidence calibration more than direction: it supported keeping the forecast above 50% but prevented trusting either a large anti-market edge or the market’s full 0.74 confidence. It also exposed that the strongest lane disagreement was mostly about confidence calibration, not about the central object or mechanism.
+
+## Persona contribution map
+
+base-rate — strongest articulation of outside-view official-print clustering and the importance of boundary mechanics. catalyst-hunter — strongest case for near-market confidence via March PMI improvement and clear catalyst timing. market-implied — best framing of the market as an information-rich prior but slightly rich without more independent confirmation. risk-manager — best articulation of uncertainty discount from partial evidence, source concentration, and small operational fragility. variant-view — strongest preserved countercase that weak domestic demand/property create a meaningful below-5 downside tail even if yes remains modal.
+
+## Reusable lesson signals
+
+Possible durable lesson: in official-stat bracket markets, source-of-truth mechanics and evidence independence should be treated separately. Possible underbuilt driver: recurring distinction between official first-print stability and underlying economic reality in China macro markets. Possible source-quality lesson: do not trust a swarm-vs-market edge much when nearly all substantive evidence comes from the same official source family. Reusability confidence: medium.
+
+## Orchestrator review suggestions
+
+Review later for durable lesson: yes. Review later for driver candidate: yes. Review later for canon or linkage issue: no. Review later for swarm-method issue: yes. Reason: this case repeatedly surfaced a reusable mechanism around official first-print governance versus independent verification quality, and it also showed the need for a stronger synthesis-stage playbook for acquiring at least one non-source-family consensus check when the swarm wants to fade a well-informed market.
+
+## Recommended follow-up
+
+Request one final independent-consensus check before decision if practical; otherwise treat this as a modest yes-lean with limited edge and wait for the NBS release checkpoint rather than forcing a stronger view.

@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "One-minute-close resolution creates high path dependence.",
+    "A modest downside move over roughly 39.5 hours can invalidate the current cushion.",
+    "Only Binance BTCUSDT matters; other venue prices do not settle the contract."
+  ],
+  "key_assumptions": [
+    "Current Binance strength above 74000 has enough persistence to survive into the settlement minute.",
+    "No exchange-specific anomaly or timing misunderstanding changes the meaning of the relevant Binance close."
+  ],
+  "main_logical_chain": [
+    "The governing source is Binance BTCUSDT 1-minute close at 12:00 ET on April 17.",
+    "Current Binance price is above 74000, so Yes should be favored directionally.",
+    "But BTC volatility plus narrow minute-close resolution reduces confidence relative to naive spot anchoring.",
+    "That yields a modest Yes estimate below the market's confidence level."
+  ],
+  "main_thesis": "BTC is slightly more likely than not to finish above 74000 on the specified Binance noon ET minute close, but the edge is fragile because the contract is narrow and timing-sensitive.",
+  "own_probability": 0.56,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "Binance BTC/USDT 1 minute candle for 12:00 ET",
+    "final Close price higher than 74000",
+    "market-implied baseline about 62%",
+    "own probability estimate 56%"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "risk_management",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-2ab48f50",
+    "dispatch_id": "dispatch-case-20260416-2ab48f50-20260416T002737Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "66676d1a-96dc-4c2a-b777-5644bc3cf0cb",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-2ab48f50/researcher-analyses/2026-04-16/dispatch-case-20260416-2ab48f50-20260416T002737Z/personas/risk-manager.md",
+    "source_persona_sha256": "076ac3ea50e602250984b9c19fcc10ae5bd781d60685fb595ed094fb59a03650"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary settlement logic is strong because the contract names Binance explicitly; contextual independence is moderate because CoinGecko is useful for range-checking but not for settlement.",
+  "strongest_disconfirmers": [
+    "The contract resolves on one exact future Binance 1-minute close, so a routine pullback could flip the result.",
+    "Recent 2-day BTC range includes sub-74000 outcomes, so the strike is not safely in the money."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT was around 74769.89 at capture time, above the strike.",
+    "Independent CoinGecko context also placed BTC above 74000 and within a recent 2-day range that spent meaningful time above the strike."
+  ],
+  "timing_relevance": "Resolution is date-sensitive and minute-specific: April 17, 2026 at 12:00 ET, which corresponds to 16:00 UTC.",
+  "unresolved_ambiguities": [
+    "Minor operational ambiguity remains if a reviewer mishandles ET-to-UTC candle mapping.",
+    "Current price context is informative but only partially predictive for next-day noon resolution."
+  ],
+  "what_would_change_view": "A decisive loss of 74000 on Binance with weak reclaim behavior would push the view toward No; sustained trading comfortably above roughly 74500-75000 closer to settlement would raise confidence in Yes."
+}

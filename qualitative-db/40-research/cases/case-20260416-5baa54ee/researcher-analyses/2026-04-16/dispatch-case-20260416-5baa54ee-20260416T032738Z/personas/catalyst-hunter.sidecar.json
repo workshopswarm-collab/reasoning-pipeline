@@ -1,0 +1,56 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Single-minute settlement-window volatility on one exchange.",
+    "Weekend or macro-driven drawdown that compresses the current price cushion quickly."
+  ],
+  "key_assumptions": [
+    "The current ~75k Binance level persists well enough that only a meaningful downside move threatens settlement above 70000.",
+    "Binance provides a clean and representative 12:00 ET 1-minute close on April 20."
+  ],
+  "main_logical_chain": [
+    "Polymarket defines the contract by the Binance BTC/USDT 12:00 ET 1-minute candle close on April 20.",
+    "Binance direct data currently shows BTC/USDT near 75k, well above the 70k threshold.",
+    "That cushion makes Yes highly likely unless a sizable downside move or Binance-specific settlement anomaly occurs before resolution."
+  ],
+  "main_thesis": "BTC/USDT is already far enough above 70000 on Binance that this is a high-probability Yes unless a meaningful downside shock hits before the April 20 noon ET settlement minute.",
+  "own_probability": 0.96,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "Binance ticker during run: 75042.98",
+    "Market-implied baseline: 0.94",
+    "Own probability estimate: 96%"
+  ],
+  "reasoning_mode": [
+    "catalyst_analysis",
+    "contract_interpretation",
+    "risk_management"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260416-5baa54ee",
+    "dispatch_id": "dispatch-case-20260416-5baa54ee-20260416T032738Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "822d7f43-24e7-4c7a-b0be-faf0844b69d0",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-5baa54ee/researcher-analyses/2026-04-16/dispatch-case-20260416-5baa54ee-20260416T032738Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "30eab5dfbbe7200bd183c073952d4398fdb99fd5667acab0c96f67e3a5a3fb10"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality direct evidence from Binance carries the thesis; contextual media evidence is secondary and mainly useful for catalyst mapping.",
+  "strongest_disconfirmers": [
+    "Crypto can move more than 7% in four days if macro risk or ETF-flow sentiment turns sharply.",
+    "A single-minute Binance settlement print is more path-sensitive than a daily-close contract."
+  ],
+  "strongest_supports": [
+    "Direct Binance ticker during the run showed BTCUSDT at 75042.98, about 5043 points above strike.",
+    "Recent sampled Binance daily closes were also comfortably above 70000.",
+    "The contract requires only one specific 1-minute close above 70000, not a sustained multi-day hold."
+  ],
+  "timing_relevance": "The key issue is persistence of the current >70k regime into Monday noon ET, not the need for a new bullish catalyst.",
+  "unresolved_ambiguities": [
+    "Minor operational ambiguity remains around exact Binance UI/API candle presentation, though not enough to change the directional view."
+  ],
+  "what_would_change_view": "A sharp move toward or below 70k before settlement, or signs of Binance-specific settlement-minute instability, would reduce confidence materially."
+}

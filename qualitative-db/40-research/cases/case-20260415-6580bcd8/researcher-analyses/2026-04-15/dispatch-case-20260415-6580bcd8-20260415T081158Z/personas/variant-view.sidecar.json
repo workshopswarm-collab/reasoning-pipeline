@@ -1,0 +1,61 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A sharp intraday selloff near the exact resolution minute could flip the outcome.",
+    "Residual ambiguity around the exact operational interpretation of the 12:00 ET one-minute bar is low but nonzero.",
+    "This view weakens quickly if BTC re-rates materially higher before resolution."
+  ],
+  "key_assumptions": [
+    "The relevant risk is a narrow noon-ET Binance print, not broad end-of-day BTC direction.",
+    "BTC can still move more than 2.5% intraday over the next two days under ordinary volatility.",
+    "Noon-ET venue-specific microstructure risk is slightly underweighted by the market."
+  ],
+  "main_logical_chain": [
+    "Polymarket rules make Binance BTC/USDT 12:00 ET one-minute close the governing source of truth.",
+    "Live Binance spot is currently above 72k, so Yes is the baseline.",
+    "But the margin over threshold is not huge in BTC terms and recent realized ranges are larger than that gap.",
+    "Therefore Yes remains favored, but less strongly than the 77% market price suggests."
+  ],
+  "main_thesis": "BTC is still more likely than not to be above 72k at the April 17 noon ET Binance minute, but the market is slightly overconfident because a single-minute, single-venue settlement window leaves more downside path risk than the consensus price implies.",
+  "own_probability": 0.71,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone (noon) ... has a final 'Close' price higher than the price specified in the title.",
+    "BTCUSDT live price during run: 73830.09000000"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation",
+    "variant_hypothesis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-6580bcd8",
+    "dispatch_id": "dispatch-case-20260415-6580bcd8-20260415T081158Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "a7e3a370-9ab1-4854-b2ff-1a3a349a47cf",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-6580bcd8/researcher-analyses/2026-04-15/dispatch-case-20260415-6580bcd8-20260415T081158Z/personas/variant-view.md",
+    "source_persona_sha256": "fae04174f6a89ebdddfa7edf9c679ff904837847c475d43a7b54afe0af97e4d1"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality direct sources, but independence is only medium-low because the contract is venue-specific and several key checks come from Binance itself.",
+  "strongest_disconfirmers": [
+    "A roughly 2.5% drop is enough to lose, and that is well within normal BTC intraday movement.",
+    "Recent Binance daily history includes a close below 72k on 2026-04-12.",
+    "Single-minute Binance settlement creates timing and venue fragility."
+  ],
+  "strongest_supports": [
+    "Live Binance BTCUSDT during the run was about 73.8k, already above the 72k threshold.",
+    "Recent Binance trading has mostly held above 72k.",
+    "The contract resolves on the same venue whose live price is currently above threshold."
+  ],
+  "timing_relevance": "High: this market resolves on a single Binance 1-minute candle at 12:00 ET on 2026-04-17.",
+  "unresolved_ambiguities": [
+    "Whether market participants have already fully priced the narrow timing risk.",
+    "Minor operational ambiguity around the exact 12:00 ET bar mapping on Binance display surfaces."
+  ],
+  "what_would_change_view": "I would move more bullish if BTC holds well above 75k into April 17, and more bearish if price trades back near 72k-73k or if Binance-specific volatility/dislocation appears."
+}

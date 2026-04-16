@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A normal crypto downside move of more than roughly 3.6% before settlement would threaten the thesis.",
+    "Binance-specific anomalies or outages could matter more than in a generic BTC price market."
+  ],
+  "key_assumptions": [
+    "Binance spot market operations remain normal through settlement.",
+    "Current BTCUSDT levels are not a transient spike likely to mean-revert below 72k by noon ET Apr 16.",
+    "Binance API data is a meaningful verification layer for the named Binance chart settlement surface."
+  ],
+  "main_logical_chain": [
+    "Start from the market prior of about 90% because this is a straightforward, active crypto threshold market.",
+    "Verify the exact contract mechanics and governing source of truth on the Polymarket rules page.",
+    "Check Binance documentation and live BTCUSDT data to confirm the settlement surface family and current distance above the threshold.",
+    "Conclude that Yes is still the base case, but trim somewhat below market because single-minute and single-venue settlement risk are real."
+  ],
+  "main_thesis": "The market's ~90% Yes price is broadly efficient because BTCUSDT is already around 74.7k on Binance with limited time remaining, though single-minute and single-venue settlement risk justify a slightly lower estimate.",
+  "own_probability": 0.86,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "current price is 0.90",
+    "GET /api/v3/ticker/price?symbol=BTCUSDT -> 74735.96000000",
+    "12:00 ET one-minute candle"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-3691b692",
+    "dispatch_id": "dispatch-case-20260414-3691b692-20260414T170231Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "cb938f97-478d-4ccd-a2b1-2ed55c97be3b",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-3691b692/researcher-analyses/2026-04-14/dispatch-case-20260414-3691b692-20260414T170231Z/personas/market-implied.md",
+    "source_persona_sha256": "56faf61b8613bb05366ee0ce1cd21e865f19d5ab538e7b02a4dcdd965a42b8db"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality contract text plus direct Binance verification made the evidence floor adequate; independence is medium because the verification source is the same data family named by the contract.",
+  "strongest_disconfirmers": [
+    "BTC can move 3-4% in under two days, so the cushion is meaningful but not decisive.",
+    "The contract settles on a single Binance one-minute close, creating timing and venue fragility."
+  ],
+  "strongest_supports": [
+    "Live Binance BTCUSDT checks during the run were around 74.7k, about 3.8% above the threshold.",
+    "Only about 43 hours remained until the relevant settlement minute.",
+    "Adjacent strike prices on Polymarket formed a coherent probability ladder rather than a stale isolated print."
+  ],
+  "timing_relevance": "Resolution depends on the Apr 16, 2026 12:00 ET Binance BTC/USDT one-minute candle close, corresponding to 16:00 UTC during EDT.",
+  "unresolved_ambiguities": [
+    "Polymarket names the Binance website chart as the settlement surface, while this run used API checks as verification rather than literal settlement output.",
+    "No dedicated volatility model was run in this pass, so the estimate remains judgment-based rather than distribution-fitted."
+  ],
+  "what_would_change_view": "A drop back toward 72k before settlement, or evidence of Binance-specific operational/chart anomalies, would materially reduce confidence in Yes."
+}

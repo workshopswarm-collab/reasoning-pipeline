@@ -1,0 +1,61 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A modest pullback before noon ET could flip the contract to No.",
+    "A late macro or risk-off shock could dominate the maintenance thesis.",
+    "Venue-specific distortion on Binance would matter more than usual because Binance is the source of truth."
+  ],
+  "key_assumptions": [
+    "The main remaining catalyst is threshold maintenance into the specified minute rather than a fresh macro shock.",
+    "Binance remains operational and representative into settlement.",
+    "Cross-venue BTC pricing stays close enough that Binance does not become a major outlier."
+  ],
+  "main_logical_chain": [
+    "The contract resolves on the final Close of Binance BTC/USDT's 12:00 ET 1-minute candle on Apr 17.",
+    "BTC is already trading above 74k on Binance ahead of resolution, so no new breakout is required.",
+    "Because 74k lies inside the recent realized range, the key determinant is whether price holds that level into the exact minute.",
+    "That supports a modest Yes lean but only slightly above the market because timing risk remains meaningful."
+  ],
+  "main_thesis": "BTC is already above 74k on Binance, so the main catalyst is whether it can hold that level into the exact Apr 17 noon ET settlement minute; slight lean to Yes.",
+  "own_probability": 0.62,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "Binance BTCUSDT last price observed: 74758.88.",
+    "The decisive field is the candle's final Close price, not the high, low, or some average.",
+    "I estimate 62% for Yes."
+  ],
+  "reasoning_mode": [
+    "catalyst_analysis",
+    "market_anchor",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-f29db686",
+    "dispatch_id": "dispatch-case-20260416-f29db686-20260416T004058Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "7b216ce9-b594-47b6-9b6b-853ad1cd4658",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-f29db686/researcher-analyses/2026-04-16/dispatch-case-20260416-f29db686-20260416T004058Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "fcd46b05a03bd4ddea86af727f354eb0b11231c87f63cfe271b788e604600400"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Good for a medium-difficulty short-horizon case: primary contract mechanics from Polymarket, primary live market data from Binance, and a contextual Coinbase cross-check; source-of-truth ambiguity is low.",
+  "strongest_disconfirmers": [
+    "Binance's recent 24h range of 73,514 to 75,425 shows 74k sits inside normal volatility.",
+    "The prior day's Apr 15 12:00 ET Binance 1-minute close was about 73,792, below the strike.",
+    "Exact-noon timing creates fragility even if the broader tape remains constructive."
+  ],
+  "strongest_supports": [
+    "Binance spot during the run was about 74,759, already above the 74k strike.",
+    "Binance 24h weighted average price was about 74,277, also above the strike.",
+    "Coinbase spot cross-check was also near 74.8k, reducing concern about a Binance-only premium."
+  ],
+  "timing_relevance": "Very high: this is primarily a hold-above-threshold case for one exact noon ET minute close rather than a broad daily-direction market.",
+  "unresolved_ambiguities": [
+    "No single scheduled external macro catalyst was isolated from available sources during the run.",
+    "The final answer remains highly path-dependent on intraday price action into late morning ET."
+  ],
+  "what_would_change_view": "I would get less bullish if BTC loses 74k and fails to reclaim it by the US morning, and more bullish if it holds comfortably above roughly 74.5k into late morning ET."
+}

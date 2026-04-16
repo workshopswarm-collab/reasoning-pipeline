@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A sharp BTC selloff over the next five days could erase the current cushion.",
+    "Any Binance-specific anomaly at the exact resolution minute would matter disproportionately."
+  ],
+  "key_assumptions": [
+    "Current Binance spot and recent 1-minute candles fairly represent current venue state.",
+    "The contract resolves exactly from the Binance BTC/USDT 12:00 ET 1-minute candle close on April 20.",
+    "Five-day downside and venue-specific resolution risk are small but not negligible."
+  ],
+  "main_logical_chain": [
+    "The contract settles on a precise Binance BTC/USDT 12:00 ET one-minute close on April 20.",
+    "Current Binance spot is materially above 68000, making Yes the clear base case.",
+    "But a single-minute, single-venue five-day-ahead crypto contract still carries nonzero downside and operational tail risk.",
+    "Therefore Yes should be favored strongly, but somewhat less strongly than the 97.15% market price implies."
+  ],
+  "main_thesis": "Yes remains the base case because Binance BTC/USDT is well above 68000, but the market is somewhat overconfident for a one-minute, one-venue resolution five days ahead.",
+  "own_probability": 0.93,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone",
+    "price 74613.01000000",
+    "68,000 ~97%"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation",
+    "variant_hypothesis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-79281f9a",
+    "dispatch_id": "dispatch-case-20260415-79281f9a-20260415T202526Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "321f1c00-021d-4431-9fa5-c0ac74d11dc1",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-79281f9a/researcher-analyses/2026-04-15/dispatch-case-20260415-79281f9a-20260415T202526Z/personas/variant-view.md",
+    "source_persona_sha256": "7c12a2d764e632e6fd02c764ee62411bc0a7efbf25fded654857bec34b3804d4"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary source quality is high for contract mechanics and current venue pricing; contextual consensus evidence is useful but not highly independent.",
+  "strongest_disconfirmers": [
+    "BTC is already comfortably above the strike, so No still needs a meaningful downside move or a venue-specific edge case.",
+    "The market's bullish consensus is supported by a real spot cushion, not pure narrative."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT was around 74613 during the run, roughly 9.7% above the 68000 strike.",
+    "Recent Binance 1-minute klines were tightly clustered around 74.6k.",
+    "Polymarket ladder pricing showed uncertainty concentrated higher up the ladder, not near 68k."
+  ],
+  "timing_relevance": "High: the contract resolves at noon ET on April 20 from one specific 1-minute Binance candle, so date/time mechanics are central.",
+  "unresolved_ambiguities": [
+    "How much short-horizon volatility should be charged against the current cushion.",
+    "Whether Binance interface-displayed candle data and API data are perfectly aligned at the resolution minute."
+  ],
+  "what_would_change_view": "I would move closer to market if BTC stays firmly above 74k into April 19-20 and nearby strikes also compress toward near-certainty; I would move lower if BTC weakens materially or Binance-specific source-risk rises."
+}

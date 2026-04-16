@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "If BTC keeps expanding its cushion above 70k, the haircut versus market may be too conservative.",
+    "The view depends on ordinary BTC volatility remaining relevant into the settlement window."
+  ],
+  "key_assumptions": [
+    "Current Binance spot level is informative for the April 15 noon threshold outcome.",
+    "A roughly 6% cushion is meaningful but not enough for near-certainty in a one-minute crypto settlement.",
+    "No exchange-specific anomaly breaks practical parity between Binance API checks and the named settlement surface."
+  ],
+  "main_logical_chain": [
+    "Market implies 94.5% because BTC is currently safely above 70k.",
+    "But the contract resolves on one exact Binance one-minute close at noon ET on April 15.",
+    "That leaves nontrivial downside snapshot risk even in an otherwise bullish regime.",
+    "So Yes remains favored, but confidence should be lower than the market price suggests."
+  ],
+  "main_thesis": "Market is directionally right but slightly overconfident because a single noon ET Binance 1-minute close still carries plausible snapshot risk despite BTC trading comfortably above 70k.",
+  "own_probability": 0.88,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone (noon) ... has a final 'Close' price higher than ... 70,000.",
+    "Market implies 94.5%; own estimate 88%."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation",
+    "variant_hypothesis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260413-e2ee488e",
+    "dispatch_id": "dispatch-case-20260413-e2ee488e-20260413T222544Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "257d362e-13dc-4706-b1e1-079db7f10b09",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260413-e2ee488e/researcher-analyses/2026-04-13/dispatch-case-20260413-e2ee488e-20260413T222544Z/personas/variant-view.md",
+    "source_persona_sha256": "c7f6007259828083b40c137a2aac3c4edcccdb7d3e7c0a23887bfc5a60d5571e"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary source quality is high because Polymarket rules directly define settlement; Binance verification is strong contextual support; independence is medium and source-of-truth ambiguity is low to medium.",
+  "strongest_disconfirmers": [
+    "A normal crypto drawdown of 5-6% before or at the exact noon ET minute could still flip the result.",
+    "This contract is path-dependent because one specific one-minute close determines settlement."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT spot checked around 74.3k, about 4.3k above the 70k threshold.",
+    "Only about 43.5 hours remain until settlement, so the bullish base case is real.",
+    "Polymarket rules are clear that the relevant object is a Binance BTC/USDT one-minute close."
+  ],
+  "timing_relevance": "Highly time-sensitive: settlement is the Binance BTC/USDT 12:00 ET one-minute close on 2026-04-15.",
+  "unresolved_ambiguities": [
+    "Minor operational ambiguity remains between the explicitly named Binance web chart surface and API parity.",
+    "No fresh independent macro/flow source was obtained in this run beyond contract and exchange verification."
+  ],
+  "what_would_change_view": "I would move toward the market if BTC keeps holding well above 70k into settlement or if volatility/downside tail risk looks unusually compressed; I would turn more bearish if BTC revisits low-72k/high-71k or risk-off catalysts emerge."
+}

@@ -1,0 +1,74 @@
+{
+  "qmd_tier": "tier1",
+  "qmd_used": true,
+  "query_profile": {
+    "difficulty_class": "low",
+    "prior_case_count": 0,
+    "prior_dispatch_count": 0,
+    "rerun_scope": null,
+    "run_kind": "novel",
+    "source_of_truth_class": "multi_source_ambiguous",
+    "suppress_same_case": true,
+    "suppress_same_market": false
+  },
+  "result_paths": [
+    "qualitative-db/20-entities/teams/barcelona.md",
+    "qualitative-db/20-entities/companies/celsius-network.md",
+    "qualitative-db/30-drivers/reliability.md",
+    "qualitative-db/30-drivers/operational-risk.md"
+  ],
+  "results": {
+    "driver_notes": [
+      {
+        "artifact_exists": true,
+        "path": "qualitative-db/30-drivers/reliability.md",
+        "retrieval_role": "mechanism",
+        "retrieval_score": 4.0,
+        "slug": "reliability",
+        "summary": "Reliability captures whether performance, infrastructure, or execution holds up consistently under normal and stressful conditions.",
+        "type": "driver",
+        "why_retrieved": "source-of-truth / resolution mechanics suggest this canonical driver may be relevant"
+      },
+      {
+        "artifact_exists": true,
+        "path": "qualitative-db/30-drivers/operational-risk.md",
+        "retrieval_role": "mechanism",
+        "retrieval_score": 3.5,
+        "slug": "operational-risk",
+        "summary": "Operational-risk captures whether execution failures, outages, controls problems, logistical breakdowns, or internal process weaknesses can materially disrupt outcomes.",
+        "type": "driver",
+        "why_retrieved": "source-of-truth / resolution mechanics suggest this canonical driver may be relevant"
+      }
+    ],
+    "entity_notes": [
+      {
+        "artifact_exists": true,
+        "path": "qualitative-db/20-entities/teams/barcelona.md",
+        "retrieval_role": "canonical_context",
+        "retrieval_score": 4.5,
+        "slug": "barcelona",
+        "summary": "Barcelona is a high-yield soccer entity because elite club brand power, global fan attention, and recurring title-race relevance make it a major sports-market node.",
+        "type": "entity",
+        "why_retrieved": "matched market description via entity alias `bar-a`"
+      },
+      {
+        "artifact_exists": true,
+        "path": "qualitative-db/20-entities/companies/celsius-network.md",
+        "retrieval_role": "canonical_context",
+        "retrieval_score": 3.5,
+        "slug": "celsius-network",
+        "summary": "Celsius is a high-yield crypto entity because lending-platform failure, contagion memory, and trust breakdown remain important parts of crypto's institutional history.",
+        "type": "entity",
+        "why_retrieved": "matched market description via entity alias `celsius`"
+      }
+    ],
+    "similar_cases": []
+  },
+  "retrieval_policy": {
+    "analog_second": true,
+    "artifact_existence_gating": true,
+    "canon_first": true,
+    "similar_case_strategy": "rerun_or_tier2_only"
+  },
+  "status": "ok"
+}

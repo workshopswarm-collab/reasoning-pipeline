@@ -1,0 +1,346 @@
+{
+  "actor": "decision-maker",
+  "agent_tool_use_allowed": true,
+  "artifact_type": "decision_stage_status",
+  "case_key": "case-20260415-e4a8d83c",
+  "decision_context_path": "qualitative-db/40-research/cases/case-20260415-e4a8d83c/decision-maker/refreshes/refresh-case-20260415-e4a8d83c-20260416T002353Z/decision-context-light-refresh.json",
+  "decision_lane": {
+    "topic_id": "3819",
+    "topic_title": "case-20260415-e4a8d83c | decision | T230345Z",
+    "session_key": "agent:main:telegram:group:-1003846500961:topic:3819"
+  },
+  "decision_launch_claim": {
+    "claimed_at": "2026-04-15T23:11:22.702266Z",
+    "decision_context_path": "roles/decision-maker/runtime/artifacts/case-20260415-e4a8d83c/decision-context-dispatch-case-20260415-e4a8d83c-20260415T230345Z.json",
+    "launch_log_path": "scripts/.runtime-state/decision-maker-launches/case-20260415-e4a8d83c-20260415T231122Z.log",
+    "launcher": "pipeline_automation_actions.launch_decision_maker",
+    "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260415-e4a8d83c/decision-prompt-dispatch-case-20260415-e4a8d83c-20260415T230345Z.md",
+    "runner_pid": 32720
+  },
+  "decision_prompt_path": "qualitative-db/40-research/cases/case-20260415-e4a8d83c/decision-maker/refreshes/refresh-case-20260415-e4a8d83c-20260416T002353Z/decision-prompt-refresh-case-20260415-e4a8d83c-20260416T002353Z.md",
+  "decision_readiness": "ready",
+  "decision_target_chat_id": "-1003846500961",
+  "decision_target_session_key": "agent:main:telegram:group:-1003846500961:topic:3819",
+  "decision_visible_finish_marker": "DECISION-MAKING COMPLETED, DECISION PACKAGE CREATED | market=Will the price of Bitcoin be above $74,000 on April 17? | dispatch_id=refresh-case-20260415-e4a8d83c-20260416T002353Z | packet_path=qualitative-db/40-research/cases/case-20260415-e4a8d83c/decision-maker/decision-maker-packet.md",
+  "decision_visible_receipt_marker": "SYNTHESIS RECEIVED | market=Will the price of Bitcoin be above $74,000 on April 17? | dispatch_id=refresh-case-20260415-e4a8d83c-20260416T002353Z | decision_context_path=qualitative-db/40-research/cases/case-20260415-e4a8d83c/decision-maker/refreshes/refresh-case-20260415-e4a8d83c-20260416T002353Z/decision-context-light-refresh.json",
+  "decision_visible_start_marker": "DECISION-MAKING ANALYSIS UNDERWAY | market=Will the price of Bitcoin be above $74,000 on April 17? | dispatch_id=refresh-case-20260415-e4a8d83c-20260416T002353Z | decision_context_path=qualitative-db/40-research/cases/case-20260415-e4a8d83c/decision-maker/refreshes/refresh-case-20260415-e4a8d83c-20260416T002353Z/decision-context-light-refresh.json",
+  "dispatch_id": "refresh-case-20260415-e4a8d83c-20260416T002353Z",
+  "last_stage_event": {
+    "at": "2026-04-16T00:24:50.676316Z",
+    "stage": "decision_execution",
+    "state": "decision_completed",
+    "message": "Decision-Maker completed and packet rendered",
+    "warnings": [],
+    "forecast_decision_persist_error": "",
+    "decision_parse_attempt_count": 1,
+    "decision_recovered_after_retry": false
+  },
+  "packet_json_path": "qualitative-db/40-research/cases/case-20260415-e4a8d83c/decision-maker/artifacts/decision-maker-packet.json",
+  "packet_markdown_path": "qualitative-db/40-research/cases/case-20260415-e4a8d83c/decision-maker/decision-maker-packet.md",
+  "position_policy": "hold_only",
+  "question": "Will the price of Bitcoin be above $74,000 on April 17?",
+  "recommended_side": "yes",
+  "schema_version": "decision-stage-status/v1",
+  "selected_input_bundle_estimated_tokens": 3822,
+  "selected_input_bundle_mode": "targeted_escalation",
+  "selected_input_bundle_path": "qualitative-db/40-research/cases/case-20260415-e4a8d83c/decision-maker/refreshes/refresh-case-20260415-e4a8d83c-20260416T002353Z/selected-inputs-refresh-case-20260415-e4a8d83c-20260416T002353Z.json",
+  "stage_events": [
+    {
+      "at": "2026-04-15T23:11:22.002006Z",
+      "message": "Decision-Maker stage initialized from synthesis handoff",
+      "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260415-e4a8d83c/synthesizer-agent/decision-handoff.md",
+      "stage": "kickoff",
+      "state": "decision_ready_for_receipt"
+    },
+    {
+      "agent_tool_use_allowed": true,
+      "approx_tokens_after_trim": 3814,
+      "at": "2026-04-15T23:11:22.665297Z",
+      "message": "Built deterministic Decision-Maker selected-input bundle",
+      "selected_input_bundle_path": "roles/decision-maker/runtime/artifacts/case-20260415-e4a8d83c/selected-inputs-dispatch-case-20260415-e4a8d83c-20260415T230345Z.json",
+      "stage": "decision_input_selection",
+      "state": "built",
+      "verification_mode": "targeted_escalation",
+      "verification_mode_path": "roles/decision-maker/runtime/artifacts/case-20260415-e4a8d83c/verification-mode-dispatch-case-20260415-e4a8d83c-20260415T230345Z.json"
+    },
+    {
+      "approx_tokens_after_trim": 1373,
+      "at": "2026-04-15T23:11:22.665524Z",
+      "message": "Built deterministic targeted verification pack",
+      "stage": "decision_targeted_verification",
+      "state": "built",
+      "targeted_verification_pack_path": "roles/decision-maker/runtime/artifacts/case-20260415-e4a8d83c/targeted-verification-pack-dispatch-case-20260415-e4a8d83c-20260415T230345Z.json"
+    },
+    {
+      "at": "2026-04-15T23:11:22.665691Z",
+      "message": "Built Decision-Maker prompt from compact selected-input bundle",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260415-e4a8d83c/decision-prompt-dispatch-case-20260415-e4a8d83c-20260415T230345Z.md",
+      "stage": "decision_prompt",
+      "state": "built"
+    },
+    {
+      "at": "2026-04-15T23:11:22.666984Z",
+      "message": "Decision-Maker inputs prepared; awaiting launch claim",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260415-e4a8d83c/decision-prompt-dispatch-case-20260415-e4a8d83c-20260415T230345Z.md",
+      "stage": "decision_prepare",
+      "state": "handoff_prepared"
+    },
+    {
+      "at": "2026-04-15T23:11:22.702266Z",
+      "decision_context_path": "roles/decision-maker/runtime/artifacts/case-20260415-e4a8d83c/decision-context-dispatch-case-20260415-e4a8d83c-20260415T230345Z.json",
+      "launch_log_path": "scripts/.runtime-state/decision-maker-launches/case-20260415-e4a8d83c-20260415T231122Z.log",
+      "message": "Decision-Maker launch claimed by automation controller",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260415-e4a8d83c/decision-prompt-dispatch-case-20260415-e4a8d83c-20260415T230345Z.md",
+      "runner_pid": 32720,
+      "stage": "decision_receipt",
+      "state": "handoff_sent"
+    },
+    {
+      "at": "2026-04-15T23:11:22.887509Z",
+      "stage": "kickoff",
+      "state": "reentered",
+      "message": "Decision-Maker executor resumed from existing prepared/running state",
+      "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260415-e4a8d83c/synthesizer-agent/decision-handoff.md"
+    },
+    {
+      "at": "2026-04-15T23:11:23.546760Z",
+      "stage": "decision_input_selection",
+      "state": "built",
+      "message": "Built deterministic Decision-Maker selected-input bundle",
+      "verification_mode_path": "roles/decision-maker/runtime/artifacts/case-20260415-e4a8d83c/verification-mode-dispatch-case-20260415-e4a8d83c-20260415T230345Z.json",
+      "selected_input_bundle_path": "roles/decision-maker/runtime/artifacts/case-20260415-e4a8d83c/selected-inputs-dispatch-case-20260415-e4a8d83c-20260415T230345Z.json",
+      "verification_mode": "targeted_escalation",
+      "approx_tokens_after_trim": 3814,
+      "agent_tool_use_allowed": true
+    },
+    {
+      "at": "2026-04-15T23:11:23.546979Z",
+      "stage": "decision_targeted_verification",
+      "state": "built",
+      "message": "Built deterministic targeted verification pack",
+      "targeted_verification_pack_path": "roles/decision-maker/runtime/artifacts/case-20260415-e4a8d83c/targeted-verification-pack-dispatch-case-20260415-e4a8d83c-20260415T230345Z.json",
+      "approx_tokens_after_trim": 1373
+    },
+    {
+      "at": "2026-04-15T23:11:23.547146Z",
+      "stage": "decision_prompt",
+      "state": "built",
+      "message": "Built Decision-Maker prompt from compact selected-input bundle",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260415-e4a8d83c/decision-prompt-dispatch-case-20260415-e4a8d83c-20260415T230345Z.md"
+    },
+    {
+      "at": "2026-04-15T23:11:28.761493Z",
+      "stage": "decision_lane_bootstrap",
+      "state": "created",
+      "message": "Created dedicated Telegram decision lane",
+      "topic_id": "3819",
+      "topic_title": "case-20260415-e4a8d83c | decision | T230345Z",
+      "session_key": "agent:main:telegram:group:-1003846500961:topic:3819"
+    },
+    {
+      "at": "2026-04-15T23:11:44.314100Z",
+      "stage": "decision_receipt",
+      "state": "visible_marker_sent",
+      "message": "SYNTHESIS RECEIVED | market=Will the price of Bitcoin be above $74,000 on April 17? | dispatch_id=dispatch-case-20260415-e4a8d83c-20260415T230345Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260415-e4a8d83c/decision-context-dispatch-case-20260415-e4a8d83c-20260415T230345Z.json"
+    },
+    {
+      "at": "2026-04-15T23:11:44.315773Z",
+      "stage": "decision_receipt",
+      "state": "accepted",
+      "message": "Decision-Maker handoff accepted",
+      "session_key": "agent:decision-maker:main",
+      "handoff_status": "started",
+      "gateway_response_path": "roles/decision-maker/runtime/artifacts/case-20260415-e4a8d83c/decision-gateway-response-dispatch-case-20260415-e4a8d83c-20260415T230345Z.json"
+    },
+    {
+      "at": "2026-04-15T23:11:44.315961Z",
+      "stage": "decision_execution",
+      "state": "decision_analysis_running",
+      "message": "Decision-Maker agent invocation accepted and analysis started",
+      "session_key": "agent:decision-maker:main",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260415-e4a8d83c/decision-prompt-dispatch-case-20260415-e4a8d83c-20260415T230345Z.md",
+      "handoff_status": "started"
+    },
+    {
+      "at": "2026-04-15T23:11:52.978785Z",
+      "stage": "decision_execution",
+      "state": "visible_marker_sent",
+      "message": "DECISION-MAKING ANALYSIS UNDERWAY | market=Will the price of Bitcoin be above $74,000 on April 17? | dispatch_id=dispatch-case-20260415-e4a8d83c-20260415T230345Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260415-e4a8d83c/decision-context-dispatch-case-20260415-e4a8d83c-20260415T230345Z.json"
+    },
+    {
+      "at": "2026-04-15T23:12:05.673491Z",
+      "stage": "decision_execution",
+      "state": "decision_completed",
+      "message": "Decision-Maker completed and packet rendered",
+      "warnings": [],
+      "forecast_decision_persist_error": "",
+      "decision_parse_attempt_count": 1,
+      "decision_recovered_after_retry": false
+    },
+    {
+      "at": "2026-04-15T23:12:14.180058Z",
+      "stage": "decision_execution",
+      "state": "visible_marker_sent",
+      "message": "DECISION-MAKING COMPLETED, DECISION PACKAGE CREATED | market=Will the price of Bitcoin be above $74,000 on April 17? | dispatch_id=dispatch-case-20260415-e4a8d83c-20260415T230345Z | packet_path=qualitative-db/40-research/cases/case-20260415-e4a8d83c/decision-maker/decision-maker-packet.md"
+    },
+    {
+      "at": "2026-04-16T00:24:16.298275Z",
+      "stage": "kickoff",
+      "state": "reentered",
+      "message": "Decision-Maker executor resumed from existing prepared/running state",
+      "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260415-e4a8d83c/synthesizer-agent/decision-handoff.md"
+    },
+    {
+      "at": "2026-04-16T00:24:16.932745Z",
+      "stage": "decision_input_selection",
+      "state": "built",
+      "message": "Built deterministic Decision-Maker selected-input bundle",
+      "verification_mode_path": "qualitative-db/40-research/cases/case-20260415-e4a8d83c/decision-maker/refreshes/refresh-case-20260415-e4a8d83c-20260416T002353Z/verification-mode-refresh-case-20260415-e4a8d83c-20260416T002353Z.json",
+      "selected_input_bundle_path": "qualitative-db/40-research/cases/case-20260415-e4a8d83c/decision-maker/refreshes/refresh-case-20260415-e4a8d83c-20260416T002353Z/selected-inputs-refresh-case-20260415-e4a8d83c-20260416T002353Z.json",
+      "verification_mode": "targeted_escalation",
+      "approx_tokens_after_trim": 3822,
+      "agent_tool_use_allowed": true
+    },
+    {
+      "at": "2026-04-16T00:24:16.932908Z",
+      "stage": "decision_targeted_verification",
+      "state": "built",
+      "message": "Built deterministic targeted verification pack",
+      "targeted_verification_pack_path": "qualitative-db/40-research/cases/case-20260415-e4a8d83c/decision-maker/refreshes/refresh-case-20260415-e4a8d83c-20260416T002353Z/targeted-verification-pack-refresh-case-20260415-e4a8d83c-20260416T002353Z.json",
+      "approx_tokens_after_trim": 1372
+    },
+    {
+      "at": "2026-04-16T00:24:16.933012Z",
+      "stage": "decision_prompt",
+      "state": "built",
+      "message": "Built Decision-Maker prompt from compact selected-input bundle",
+      "prompt_path": "qualitative-db/40-research/cases/case-20260415-e4a8d83c/decision-maker/refreshes/refresh-case-20260415-e4a8d83c-20260416T002353Z/decision-prompt-refresh-case-20260415-e4a8d83c-20260416T002353Z.md"
+    },
+    {
+      "at": "2026-04-16T00:24:23.564823Z",
+      "stage": "decision_receipt",
+      "state": "accepted",
+      "message": "Decision-Maker handoff accepted",
+      "session_key": "agent:decision-maker:main",
+      "handoff_status": "started",
+      "gateway_response_path": "roles/decision-maker/runtime/artifacts/case-20260415-e4a8d83c/decision-gateway-response-refresh-case-20260415-e4a8d83c-20260416T002353Z.json"
+    },
+    {
+      "at": "2026-04-16T00:24:23.564936Z",
+      "stage": "decision_execution",
+      "state": "decision_analysis_running",
+      "message": "Decision-Maker agent invocation accepted and analysis started",
+      "session_key": "agent:decision-maker:main",
+      "prompt_path": "qualitative-db/40-research/cases/case-20260415-e4a8d83c/decision-maker/refreshes/refresh-case-20260415-e4a8d83c-20260416T002353Z/decision-prompt-refresh-case-20260415-e4a8d83c-20260416T002353Z.md",
+      "handoff_status": "started"
+    },
+    {
+      "at": "2026-04-16T00:24:50.676316Z",
+      "stage": "decision_execution",
+      "state": "decision_completed",
+      "message": "Decision-Maker completed and packet rendered",
+      "warnings": [],
+      "forecast_decision_persist_error": "",
+      "decision_parse_attempt_count": 1,
+      "decision_recovered_after_retry": false
+    }
+  ],
+  "status": "decision_completed",
+  "targeted_verification_pack_path": "qualitative-db/40-research/cases/case-20260415-e4a8d83c/decision-maker/refreshes/refresh-case-20260415-e4a8d83c-20260416T002353Z/targeted-verification-pack-refresh-case-20260415-e4a8d83c-20260416T002353Z.json",
+  "targeted_verification_pack_required": true,
+  "trade_authorization": "watch_only",
+  "updated_at": "2026-04-16T00:24:50.677469Z",
+  "verification_mode_path": "qualitative-db/40-research/cases/case-20260415-e4a8d83c/decision-maker/refreshes/refresh-case-20260415-e4a8d83c-20260416T002353Z/verification-mode-refresh-case-20260415-e4a8d83c-20260416T002353Z.json",
+  "warnings": [],
+  "previous_status": "decision_completed",
+  "raw_gateway_response_path": "roles/decision-maker/runtime/artifacts/case-20260415-e4a8d83c/decision-gateway-response-refresh-case-20260415-e4a8d83c-20260416T002353Z.json",
+  "raw_response_text_path": "roles/decision-maker/runtime/artifacts/case-20260415-e4a8d83c/decision-response-refresh-case-20260415-e4a8d83c-20260416T002353Z.raw.txt",
+  "decision_parse_failure_artifact_path": "roles/decision-maker/runtime/artifacts/case-20260415-e4a8d83c/decision-parse-failure-refresh-case-20260415-e4a8d83c-20260416T002353Z.json",
+  "decision_parse_attempt_count": 1,
+  "decision_recovered_after_retry": false,
+  "decision_lane_topic_id": "3819",
+  "decision_lane_topic_title": "case-20260415-e4a8d83c | decision | T230345Z",
+  "decision_lane_session_key": "agent:main:telegram:group:-1003846500961:topic:3819",
+  "decision_target_topic_id": "3819",
+  "decision_target_topic_title": "case-20260415-e4a8d83c | decision | T230345Z",
+  "decision_receipt_marker_sent_at": "2026-04-15T23:11:44.314047+00:00",
+  "decision_analysis_marker_sent_at": "2026-04-15T23:11:52.978745+00:00",
+  "timeline_update": {
+    "appended": true,
+    "case_key": "case-20260415-e4a8d83c",
+    "dispatch_id": "refresh-case-20260415-e4a8d83c-20260416T002353Z",
+    "packet_path": "qualitative-db/40-research/cases/case-20260415-e4a8d83c/decision-maker/decision-maker-packet.md",
+    "entry": "- 2026-04-16T00:24:50.675055+00:00 — completed decision-making `refresh-case-20260415-e4a8d83c-20260416T002353Z` with packet `qualitative-db/40-research/cases/case-20260415-e4a8d83c/decision-maker/decision-maker-packet.md`."
+  },
+  "forecast_decision_persist": {
+    "ok": true,
+    "packet_json": "qualitative-db/40-research/cases/case-20260415-e4a8d83c/decision-maker/artifacts/decision-maker-packet.json",
+    "persisted": {
+      "forecast_id": "refresh-case-20260415-e4a8d83c-20260416T002353Z",
+      "market_id": "367ed8d7-c08e-4588-a449-c83aead47ec3",
+      "contract_id": "yes",
+      "forecast_prob": 0.67,
+      "decision_status": "recorded",
+      "decision_packet_path": "qualitative-db/40-research/cases/case-20260415-e4a8d83c/decision-maker/artifacts/decision-maker-packet.json",
+      "supersedes_forecast_id": "dispatch-case-20260415-e4a8d83c-20260415T230345Z",
+      "superseded_forecast_ids": [
+        "dispatch-case-20260415-cd803ba3-20260415T203927Z",
+        "refresh-case-20260415-cd803ba3-20260415T224048Z",
+        "dispatch-case-20260415-e4a8d83c-20260415T230345Z"
+      ],
+      "market_state": {
+        "market_id": "367ed8d7-c08e-4588-a449-c83aead47ec3",
+        "current_price": 0.62,
+        "last_reasoned_price": 0.67,
+        "pipeline_status": "executed"
+      }
+    },
+    "record": {
+      "forecast_id": "refresh-case-20260415-e4a8d83c-20260416T002353Z",
+      "decision_ts": "2026-04-15T20:24:00-04:00",
+      "case_id": "case-20260415-e4a8d83c",
+      "dispatch_id": "refresh-case-20260415-e4a8d83c-20260416T002353Z",
+      "market_id": "367ed8d7-c08e-4588-a449-c83aead47ec3",
+      "contract_id": "yes",
+      "platform": "polymarket",
+      "market_slug": "bitcoin-above-74k-on-april-17",
+      "question": "Will the price of Bitcoin be above $74,000 on April 17?",
+      "forecast_prob": "0.67",
+      "forecast_direction": "yes",
+      "confidence_label": "medium",
+      "confidence_score": "",
+      "time_horizon_label": "",
+      "verification_mode": "targeted_escalation",
+      "decision_status": "recorded",
+      "rationale_summary": "BTC is still only modestly more likely than not to finish above $74,000 on the April 17 Binance noon minute, but with fair value near 0.67 and the market now down at 0.62, the valuation has improved enough to mark edge_present while keeping the disciplined output at watch-only because exact-minute downside fragility remains live.",
+      "decision_packet_path": "qualitative-db/40-research/cases/case-20260415-e4a8d83c/decision-maker/artifacts/decision-maker-packet.json",
+      "decision_handoff_path": "qualitative-db/40-research/cases/case-20260415-e4a8d83c/synthesizer-agent/decision-handoff.md",
+      "syndicated_finding_path": "qualitative-db/40-research/cases/case-20260415-e4a8d83c/synthesizer-agent/syndicated-finding.md"
+    },
+    "warnings": []
+  },
+  "decision_completion_marker_sent_at": "2026-04-15T23:12:14.180014+00:00",
+  "terminal_summary": {
+    "at": "2026-04-16T00:24:50.677481Z",
+    "status": "decision_completed",
+    "decision_lane": {
+      "topic_id": "3819",
+      "topic_title": "case-20260415-e4a8d83c | decision | T230345Z",
+      "session_key": "agent:main:telegram:group:-1003846500961:topic:3819"
+    },
+    "packet_json_path": "qualitative-db/40-research/cases/case-20260415-e4a8d83c/decision-maker/artifacts/decision-maker-packet.json",
+    "packet_markdown_path": "qualitative-db/40-research/cases/case-20260415-e4a8d83c/decision-maker/decision-maker-packet.md",
+    "trade_authorization": "watch_only",
+    "decision_readiness": "ready",
+    "last_stage_event": {
+      "at": "2026-04-16T00:24:50.676316Z",
+      "stage": "decision_execution",
+      "state": "decision_completed",
+      "message": "Decision-Maker completed and packet rendered",
+      "warnings": [],
+      "forecast_decision_persist_error": "",
+      "decision_parse_attempt_count": 1,
+      "decision_recovered_after_retry": false
+    }
+  }
+}

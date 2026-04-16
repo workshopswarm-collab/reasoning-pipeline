@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A sharp macro, geopolitical, or exchange-specific shock before noon ET could quickly erase the cushion above 72000.",
+    "If BTC trades toward 73k before settlement, the exact-minute mechanics become much more dangerous for Yes."
+  ],
+  "key_assumptions": [
+    "No major downside catalyst hits before settlement.",
+    "Binance public API is a faithful proxy for the Binance pricing surface referenced in the rules.",
+    "ET timing in the contract is literal and unambiguous."
+  ],
+  "main_logical_chain": [
+    "The contract resolves on one exact Binance BTC/USDT 1m close at 12:00 ET on April 17.",
+    "Current Binance price is materially above 72000, so Yes starts favored.",
+    "The remaining risk is mainly catalyst and path volatility into that exact minute, not long-run Bitcoin valuation.",
+    "That supports a high but sub-market Yes probability."
+  ],
+  "main_thesis": "BTC is currently materially above 72000 on Binance, so Yes is favored unless a short-window downside catalyst or exact-minute settlement volatility pushes the April 17 12:00 ET BTC/USDT 1m close below the strike.",
+  "own_probability": 0.88,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "This market will resolve to \"Yes\" if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone has a final \"Close\" price higher than the price specified.",
+    "Binance API spot check returned BTCUSDT around 75171.9 during the run."
+  ],
+  "reasoning_mode": [
+    "catalyst_analysis",
+    "contract_interpretation",
+    "market_anchor"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260416-b08a3934",
+    "dispatch_id": "dispatch-case-20260416-b08a3934-20260416T023832Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "34fd3e48-baa4-4b25-8c6a-521ce63966f9",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-b08a3934/researcher-analyses/2026-04-16/dispatch-case-20260416-b08a3934-20260416T023832Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "a52045d04553e9dd93f94e8333ff506eb913e2acde1f37b7f13b47658f4465a7"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is solid on mechanics and current price via Polymarket rules plus Binance API, but evidence independence is only moderate and the named Binance UI surface was not directly accessible from runtime.",
+  "strongest_disconfirmers": [
+    "BTC can still move several percent on headlines or liquidation cascades in a short window.",
+    "Exact one-minute noon ET settlement mechanics create path risk even if broader direction is right.",
+    "Binance web UI was WAF-challenged from runtime, leaving a small API-versus-UI operational caveat."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT was around 75171.9 at runtime, roughly 4.4% above the 72000 strike.",
+    "Polymarket rules explicitly define settlement as the Binance BTC/USDT 12:00 ET 1m candle close.",
+    "No verified near-term catalyst was found that clearly makes a >4% drop the base case."
+  ],
+  "timing_relevance": "This is primarily a short-window catalyst-and-path-risk market because settlement occurs on a single noon ET one-minute Binance candle less than a day from the runtime check.",
+  "unresolved_ambiguities": [
+    "Whether any scheduled macro event inside the remaining window is more important than this run could verify.",
+    "Whether Binance UI display could differ in any meaningful way from the accessible public API around settlement."
+  ],
+  "what_would_change_view": "A selloff toward 73k, a major adverse headline, or proof of a meaningful Binance UI/API discrepancy would push the estimate lower."
+}

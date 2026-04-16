@@ -2,7 +2,7 @@
 type: system_guide
 domain: domains
 status: active
-last_updated: 2026-03-26
+last_updated: 2026-04-14
 owner: orchestrator
 tags: [domains/guide, qualitative-db/10-domains, workflow]
 ---
@@ -100,7 +100,7 @@ The template is meant for:
 - `20-entities/` = durable object-level memory
 - `30-drivers/` = durable cross-case mechanisms
 - `40-research/` = case-specific evidence and reasoning
-- `50-retrospectives/` = after-the-fact lessons
+- `50-learnings/` = after-the-fact lessons
 
 A useful rule of thumb:
 - if you are asking **what kind of area is this?** -> `10-domains/`

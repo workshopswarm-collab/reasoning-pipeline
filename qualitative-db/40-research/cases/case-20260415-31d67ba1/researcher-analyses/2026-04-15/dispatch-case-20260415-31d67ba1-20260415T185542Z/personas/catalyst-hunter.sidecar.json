@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A sudden macro or crypto-specific negative headline could erase the current cushion quickly.",
+    "A Binance-specific outage or pricing anomaly near settlement could matter because the contract is venue-specific.",
+    "Short-horizon crypto volatility makes extreme probabilities somewhat brittle."
+  ],
+  "key_assumptions": [
+    "No major negative macro, crypto-specific, or Binance-specific shock pushes BTC down 5-6% before settlement.",
+    "Binance remains operational and representative at the exact settlement minute.",
+    "Current mid-74k price context remains broadly intact through the next ~45 hours."
+  ],
+  "main_logical_chain": [
+    "The contract resolves from Binance BTC/USDT's exact 12:00 ET one-minute close on April 17, so settlement mechanics must be verified explicitly.",
+    "Current Binance BTCUSDT is around 74.4k, materially above the 70k threshold.",
+    "With less than two days left, No requires a fairly sharp downside move rather than ordinary noise.",
+    "Absent a specific high-information negative catalyst, Yes remains the base case, though with slightly more tail risk than the market price implies."
+  ],
+  "main_thesis": "BTC is already trading materially above 70000, so absent a sharp downside shock before the exact Binance noon ET settlement minute on April 17, the market should resolve Yes.",
+  "own_probability": 0.94,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone ... has a final 'Close' price higher than [70,000].",
+    "Binance API ticker returned BTCUSDT 74,389.20 at capture time."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "catalyst_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260415-31d67ba1",
+    "dispatch_id": "dispatch-case-20260415-31d67ba1-20260415T185542Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "60d6771d-0788-4b9a-af3f-0d4097b62366",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-31d67ba1/researcher-analyses/2026-04-15/dispatch-case-20260415-31d67ba1-20260415T185542Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "15d6115b1807bd54822af46876db58624df1bb8a07d5c2b70b0707dac079c667"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High confidence in contract interpretation from the Polymarket rules page and medium-high confidence in current price context from Binance API cross-checked by TradingView and CNBC; source-of-truth ambiguity is low-to-medium because the contract is narrow but clearly specified.",
+  "strongest_disconfirmers": [
+    "BTC can move 5-6% in under two days.",
+    "The contract resolves on one exact one-minute close on one venue, so venue-specific operational or pricing issues matter at the margin.",
+    "At 97% implied probability, there is little room for unmodeled tail risk."
+  ],
+  "strongest_supports": [
+    "Binance API spot and recent 1-minute klines place BTCUSDT around 74.4k, leaving a roughly 4.4k cushion above the threshold.",
+    "Independent contextual checks from TradingView and CNBC also place BTC in the mid-74k range.",
+    "No high-information scheduled catalyst was identified that obviously justifies a >5% downside repricing before noon ET April 17."
+  ],
+  "timing_relevance": "This is a short-horizon shock-risk market: the key question is whether any downside catalyst arrives before the exact Binance noon ET close on April 17.",
+  "unresolved_ambiguities": [
+    "No deep catalyst calendar was identified beyond generic shock risk.",
+    "Tail risk around the exact settlement minute cannot be eliminated ahead of time."
+  ],
+  "what_would_change_view": "A decisive BTC breakdown toward 73k/70k, a meaningful risk-off headline, or Binance-specific operational concerns before settlement would move the estimate materially lower."
+}

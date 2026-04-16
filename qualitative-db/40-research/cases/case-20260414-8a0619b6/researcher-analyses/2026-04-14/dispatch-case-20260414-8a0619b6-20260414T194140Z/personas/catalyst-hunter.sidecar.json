@@ -1,0 +1,58 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A late macro or crypto-native risk-off move could erase the cushion quickly.",
+    "Small residual ambiguity remains around practical chart/UI interpretation versus API timing, though docs reduce it."
+  ],
+  "key_assumptions": [
+    "No major downside catalyst or exchange-specific dislocation pushes Binance BTCUSDT down more than about 5.6% before the resolving minute.",
+    "The Binance API kline time handling is a reliable proxy for the settlement candle timing interpretation.",
+    "Current spot cushion above 70k remains informative over the next four days."
+  ],
+  "main_logical_chain": [
+    "The contract resolves on one exact Binance minute close, so timestamp-specific path risk matters.",
+    "Current Binance spot is materially above 70k, so Yes is favored absent a downside shock.",
+    "Because the market is pricing about 89-90% Yes, even moderate path-volatility risk argues for a lower estimate than the market.",
+    "That yields an 82% Yes estimate: bullish, but less confident than the market."
+  ],
+  "main_thesis": "BTC is likely to stay above 70,000 by the April 18 noon ET Binance minute, but the market overstates confidence because this is a single-minute timestamped contract with meaningful path-volatility risk.",
+  "own_probability": 0.82,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone (noon) ... has a final 'Close' price higher than ... 70,000.",
+    "Klines are uniquely identified by their open time."
+  ],
+  "reasoning_mode": [
+    "catalyst_analysis",
+    "market_anchor",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-8a0619b6",
+    "dispatch_id": "dispatch-case-20260414-8a0619b6-20260414T194140Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "503b156c-4b23-4a47-a5c3-3fb88f8d3647",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-8a0619b6/researcher-analyses/2026-04-14/dispatch-case-20260414-8a0619b6-20260414T194140Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "ae5ad467b5a7156341dca5dd9929fe0daf9d0386f32e9f3d7440cf915e86bc36"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is solid: Polymarket is authoritative for rules, Binance is authoritative for underlying mechanics and price context, and the extra verification pass improved confidence in timing interpretation.",
+  "strongest_disconfirmers": [
+    "A single-minute crypto threshold contract can fail on a short sharp selloff even if BTC is generally trading above 70k.",
+    "BTC can move more than 5% over a few days without one neatly scheduled catalyst."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT spot during the run was about 74.1k, leaving roughly a 4.1k cushion above the threshold.",
+    "Polymarket rules clearly define settlement as the Binance BTC/USDT 12:00 ET one-minute candle final close.",
+    "No dominant scheduled bearish catalyst was identified before resolution."
+  ],
+  "timing_relevance": "The market is mostly about whether BTC avoids a roughly 5.6% drawdown into the exact noon ET resolving minute over the next four days.",
+  "unresolved_ambiguities": [
+    "No specific dominant catalyst was verified; the key catalyst may simply be volatility itself.",
+    "A final visual Binance chart check near resolution could further reduce timing ambiguity."
+  ],
+  "what_would_change_view": "A credible downside catalyst, sustained trade toward 70k before April 18, or better evidence of a different settlement-timing interpretation would lower the estimate materially; persistent trade well above 74k into April 17 would move it closer to market."
+}

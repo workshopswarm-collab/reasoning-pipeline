@@ -1,0 +1,125 @@
+{
+  "artifact_type": "targeted_verification_pack",
+  "schema_version": "decision-targeted-verification-pack/v1",
+  "case_key": "case-20260415-540d9abf",
+  "dispatch_id": "refresh-case-20260415-540d9abf-20260415T235725Z",
+  "required": true,
+  "verification_mode": "targeted_escalation",
+  "pack_purpose": "Deterministic narrow follow-up pack for targeted escalation. It defines the crux questions and operational budgets, while source choice may remain model-driven within runtime-enforced tool guardrails.",
+  "verification_questions": [
+    "Does the latest available information materially change the decision, given: Binance SOL/USDT price path into the exact Apr 19 noon ET settlement minute?",
+    "How decision-relevant is the remaining contract/source-of-truth ambiguity: small residual Binance UI vs API candle-mapping ambiguity?",
+    "Are the current blockers still material to final judgment: Single-minute settlement makes ordinary crypto volatility materially relevant?",
+    "Is the main verification gap still decision-material: The key remaining gap is short-horizon downside/timestamp volatility into the exact Apr 19 noon ET minute.?"
+  ],
+  "structured_handoff_focus": {
+    "contract_ambiguity_level": "minor",
+    "contract_ambiguity_reason": "small residual Binance UI vs API candle-mapping ambiguity",
+    "verification_gap_summary": "The key remaining gap is short-horizon downside/timestamp volatility into the exact Apr 19 noon ET minute.",
+    "best_countercase_summary": "A normal crypto selloff or brief noon-minute dip can still push a single-print settlement below 80 despite current spot above strike.",
+    "main_reason_for_disagreement": "Remaining disagreement is mostly about how much to discount confidence for single-minute path risk versus current cushion.",
+    "resolution_mechanics_summary": "Yes resolves only if Binance SOL/USDT's Apr 19 12:00 ET 1-minute candle final close is strictly above 80.",
+    "freshness_sensitive": "yes",
+    "freshness_driver": "Binance SOL/USDT price path into the exact Apr 19 noon ET settlement minute",
+    "decision_blockers": [
+      "Single-minute settlement makes ordinary crypto volatility materially relevant",
+      "Verification is strong on mechanics but only medium on independent edge confirmation",
+      "Minor UI-versus-API implementation ambiguity remains"
+    ],
+    "disagreement_type": "timing"
+  },
+  "supporting_persona_summaries": [
+    {
+      "persona": "market-implied",
+      "recommended_weight": "medium",
+      "own_probability": 0.84,
+      "main_thesis": "The market is directionally right that SOL > 80 on Apr 19 noon ET is likely, but ~90% looks somewhat rich for a single Binance one-minute close several days out; 84% Yes is a better estimate.",
+      "main_logical_chain": [
+        "Market implies about 90% Yes and should be taken seriously because spot is already above the strike.",
+        "Direct Binance pricing shows SOL near 84.9 with recent realized range still above 80.",
+        "That makes Yes clearly more likely than No, but the narrow timestamped settlement keeps nontrivial downside tail alive.",
+        "Therefore the market direction is right, but confidence is slightly overstated; estimate 84% Yes."
+      ],
+      "strongest_supports": [
+        "Binance SOLUSDT spot was around 84.86-84.87 at analysis time.",
+        "Recent Binance 24h low was about 82.65, still above the strike."
+      ],
+      "strongest_disconfirmers": [
+        "The contract resolves on a single one-minute Binance close several days away, so a 6% downside move is still plausible.",
+        "A brief noon ET dip could resolve No even if broader trading remains mostly above 80."
+      ],
+      "unresolved_ambiguities": [
+        "No separate Binance documentation source was found in-run to restate the ET mapping in Polymarket's terms.",
+        "The market may incorporate tacit information not visible from the checked public sources."
+      ],
+      "what_would_change_view": "A move back toward 80, a broader crypto selloff, or evidence of unusual Binance/noon-print behavior would make me less bullish; continued trading above 82-83 into Apr 18-19 would make me more comfortable with the market.",
+      "timing_relevance": "High: this is a date-sensitive, noon-ET single-minute close market resolving on Apr 19, 2026.",
+      "source_quality_view": "Good direct evidence on contract mechanics and current/recent Binance pricing, with medium independence because both paths rely heavily on Binance-centered logic.",
+      "persona_finding_path": "qualitative-db/40-research/cases/case-20260415-540d9abf/researcher-analyses/2026-04-15/dispatch-case-20260415-540d9abf-20260415T234706Z/personas/market-implied.md",
+      "assumption_artifact_paths": [
+        "qualitative-db/40-research/cases/case-20260415-540d9abf/researcher-analyses/2026-04-15/dispatch-case-20260415-540d9abf-20260415T234706Z/assumptions/market-implied.md"
+      ],
+      "evidence_artifact_paths": [
+        "qualitative-db/40-research/cases/case-20260415-540d9abf/researcher-analyses/2026-04-15/dispatch-case-20260415-540d9abf-20260415T234706Z/evidence/market-implied.md"
+      ]
+    }
+  ],
+  "selected_assumption_snippets": [
+    {
+      "path": "qualitative-db/40-research/cases/case-20260415-540d9abf/researcher-analyses/2026-04-15/dispatch-case-20260415-540d9abf-20260415T234706Z/assumptions/risk-manager.md",
+      "frontmatter": {
+        "type": "assumption_note",
+        "case_key": "case-20260415-540d9abf",
+        "dispatch_id": "dispatch-case-20260415-540d9abf-20260415T234706Z",
+        "research_run_id": "501666b7-5dc7-4a91-a291-52a63a6408e7",
+        "analysis_date": "2026-04-15",
+        "persona": "risk-manager",
+        "domain": "crypto",
+        "subdomain": "market-structure",
+        "entity": "sol",
+        "topic": "solana-above-80-on-april-19",
+        "question": "Will the Binance SOL/USDT 12:00 ET 1-minute candle on 2026-04-19 close above 80?",
+        "driver": "operational-risk",
+        "date_created": "2026-04-15",
+        "agent": "orchestrator",
+        "status": "active",
+        "certainty": "medium",
+        "importance": "high",
+        "time_horizon": "short",
+        "related_entities": [
+          "sol",
+          "solana"
+        ],
+        "related_drivers": [
+          "operational-risk",
+          "reliability"
+        ],
+        "proposed_entities": [],
+        "proposed_drivers": [],
+        "upstream_inputs": [],
+        "downstream_uses": [
+          "qualitative-db/40-research/cases/case-20260415-540d9abf/researcher-analyses/2026-04-15/dispatch-case-20260415-540d9abf-20260415T234706Z/personas/risk-manager.md"
+        ],
+        "tags": [
+          "assumption",
+          "volatility",
+          "contract-interpretation",
+          "sol"
+        ]
+      },
+      "snippet": "# Assumption\nThe current ~6% cushion above 80 on Binance SOL/USDT is large enough that ordinary short-horizon volatility is more likely than not to leave the 2026-04-19 12:00 ET close above 80.\n## Why this assumption matters\nThe market is pricing Yes around 90%, which implies not just directional bullishness but confidence that path risk over the next few days is modest. If the volatility buffer assumption is wrong, the market may be overconfident even if SOL is currently above 80.\n## What this assumption supports\n- A Yes-leaning probability estimate above 50%\n- A view that current spot level contains meaningful information for the final noon ET candle\n- A view that the right disagreement, if any, is about confidence calibration rather than direction\n## Evidence or logic behind the assumption\n- Current Binance SOLUSDT spot observed in-run was about 84.93, already above the threshold.\n- Recent 24h range observed in-run was 82.65 to 85.83, suggesting the threshold is not at the immediate edge of price action.\n- The contract horizon is short enough that current spot and recent range plausibly matter more than distant fundamentals.\n## What would falsify it\n- A material risk-off move in crypto that pushes SOL back below 80 before the target minute\n- New Solana-specific negative news, exchange disruption, or broader weekend selloff\n- A sharp increase in intraday realized volatility that makes a >6% drawdown by noon ET materially more likely than the market currently implies\n## Early warning signs\n- SOL losing the 82-83 zone decisively on Binance before the target date\n- Broad alt …",
+      "full_char_count": 2403,
+      "snippet_char_count": 1602
+    }
+  ],
+  "selected_evidence_snippets": [],
+  "selected_supporting_note_snippets": [],
+  "pack_budget": {
+    "max_chars": 6000,
+    "actual_chars_before_trim": 10573,
+    "actual_chars_after_trim": 8065,
+    "approx_tokens_before_trim": 2643,
+    "approx_tokens_after_trim": 2016,
+    "trim_applied": true
+  }
+}

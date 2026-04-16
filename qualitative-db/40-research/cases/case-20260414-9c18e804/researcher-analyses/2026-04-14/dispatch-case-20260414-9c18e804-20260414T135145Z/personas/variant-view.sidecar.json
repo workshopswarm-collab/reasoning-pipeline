@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "If BTC loses momentum and cannot retest current highs, the remaining edge to Yes shrinks quickly.",
+    "This case is highly sensitive to short-horizon price path rather than broader medium-term fundamentals."
+  ],
+  "key_assumptions": [
+    "A one-touch Binance 1-minute-high market should price more generously than a close-above market.",
+    "Routine BTC volatility from a mid-$75k starting point is enough to threaten $76k within the remaining window.",
+    "Recent strength does not guarantee immediate continuation and can still stall just below the threshold."
+  ],
+  "main_logical_chain": [
+    "Check exact rules and settlement source rather than treating this as a generic weekly BTC-above-threshold question.",
+    "Note that the contract resolves on any Binance 1-minute high, which materially favors Yes versus close-above framing.",
+    "Measure current distance to target using Binance and contextual spot cross-checks.",
+    "Haircut the market slightly because a sharp rally can still stall just below the threshold."
+  ],
+  "main_thesis": "BTC is more likely than not to touch $76k on Binance during Apr 13-19, but the market is slightly overconfident because near-threshold failure after a strong rally remains live.",
+  "own_probability": 0.74,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "The resolution source for this market is Binance, specifically the BTC/USDT 'High' prices",
+    "any Binance 1 minute candle for Bitcoin (BTC/USDT) during the date range specified in the title"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation",
+    "variant_hypothesis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-9c18e804",
+    "dispatch_id": "dispatch-case-20260414-9c18e804-20260414T135145Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "6cfc9c46-ce27-4382-848c-a879a841df77",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-9c18e804/researcher-analyses/2026-04-14/dispatch-case-20260414-9c18e804-20260414T135145Z/personas/variant-view.md",
+    "source_persona_sha256": "067ab0e3cacfb787d2d4999c9f67dca9277b9c29355838b53908ca0d443b7929"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Good for a low-difficulty case: Polymarket rules established settlement mechanics, Binance provided direct relevant price data, and Coinbase/CoinGecko served as contextual cross-checks.",
+  "strongest_disconfirmers": [
+    "The actual qualifying Binance high had not happened yet despite the strong move.",
+    "Near-threshold markets can fail if momentum exhausts or repeatedly rejects below round-number resistance."
+  ],
+  "strongest_supports": [
+    "Polymarket rules only require any Binance BTC/USDT 1-minute high at or above $76,000 during Apr 13-19.",
+    "Observed Binance 24h high near $75,397 left only about a $603 gap to target.",
+    "BTC was already up about 5.6% over 24 hours, showing enough realized range for another sub-1% extension."
+  ],
+  "timing_relevance": "High; this is a date-specific one-touch threshold contract and short-term price path dominates.",
+  "unresolved_ambiguities": [
+    "How much time-adjusted momentum remains after the current impulse.",
+    "Whether live Polymarket pricing reflects superior microstructure information or mild over-extrapolation."
+  ],
+  "what_would_change_view": "Repeated failure below roughly $75.5k or a reversal into low-$74k would move the estimate down; a fresh extension in Binance highs would move it up."
+}

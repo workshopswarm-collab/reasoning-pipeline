@@ -43,7 +43,7 @@ Examples:
 - `qualitative-db/30-drivers/`
 - `qualitative-db/10-domains/.../00-overview.md`
 - `qualitative-db/20-entities/...`
-- `qualitative-db/50-retrospectives/...`
+- `qualitative-db/50-learnings/...`
 - `qualitative-db/00-system/...`
 
 ## What should change if this is accepted

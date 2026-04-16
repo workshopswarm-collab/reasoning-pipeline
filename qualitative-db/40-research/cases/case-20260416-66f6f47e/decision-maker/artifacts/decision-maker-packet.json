@@ -1,0 +1,154 @@
+{
+  "schema_version": "decision-packet/v1",
+  "generated_at": "2026-04-16T14:25:00Z",
+  "context": {
+    "case_key": "case-20260416-66f6f47e",
+    "dispatch_id": "dispatch-case-20260416-66f6f47e-20260416T141457Z",
+    "question": "Will the price of Bitcoin be above $72,000 on April 21?",
+    "market_id": "6c5bfff7-39b3-49d4-bb33-c8b7881a4e51",
+    "external_market_id": "0x98836967b3291ac597477867ab3e5d141ec344cac432df45f0aea9539fb5c4f2",
+    "market_slug": "bitcoin-above-72k-on-april-21",
+    "platform": "polymarket",
+    "primary_market_url": "https://polymarket.com/event/bitcoin-above-72k-on-april-21",
+    "market_title": "Will the price of Bitcoin be above $72,000 on April 21?",
+    "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260416-66f6f47e/synthesizer-agent/decision-handoff.md",
+    "source_syndicated_finding_path": "qualitative-db/40-research/cases/case-20260416-66f6f47e/synthesizer-agent/syndicated-finding.md",
+    "source_light_refresh_brief_path": "",
+    "refresh_mode": "",
+    "decision_maker_agent": "decision-maker",
+    "canonical_markdown_path": "decision-maker-packet.md",
+    "canonical_json_path": "artifacts/decision-maker-packet.json"
+  },
+  "decision": {
+    "side": "none",
+    "trade_authorization": "watch_only",
+    "position_policy": "flat",
+    "decision_readiness": "needs_market_update",
+    "thesis_class": "price_not_good_enough",
+    "primary_crux": "This is an exact single-minute Binance close four days out, and the bounded verification available here does not establish a durable edge versus a 0.705 market baseline; modest current cushion can be erased by ordinary BTC volatility.",
+    "secondary_cruxes": [
+      "The decisive risk is path-dependent settlement timing rather than broad directional BTC outlook.",
+      "Upstream package itself compresses toward market and does not show a robust independently verified edge.",
+      "Fresh price/market drift appears material, and targeted external verification did not produce clean additional confirmation within budget."
+    ]
+  },
+  "valuation": {
+    "fair_value_low": 0.66,
+    "fair_value_high": 0.73,
+    "fair_value_mid": 0.695,
+    "independent_verification_quality": "medium",
+    "compressed_toward_market_applied": true,
+    "compression_reason": "Current above-threshold spot supports Yes, but exact-minute-close path risk remains dominant and no bounded verification here justifies a meaningful deviation from market.",
+    "market_reference_price": 0.705,
+    "edge_mid_vs_market_pct_points": -1.0
+  },
+  "execution_semantics": {
+    "price_axis": "market_implied_true_prob",
+    "price_source": "market_snapshot_quote",
+    "rebalance_threshold_fraction": 0.1,
+    "allow_auto_reversal": false,
+    "quote_staleness_seconds": 300,
+    "valid_until": "2026-04-17T14:26:06.572103+00:00"
+  },
+  "risk_controls": {
+    "max_position_size_pct_bankroll": 0.02,
+    "max_additional_exposure_pct_bankroll": 0.01,
+    "max_single_order_pct_bankroll": 0.005,
+    "slippage_tolerance_bps": 100,
+    "liquidity_min_depth": 0,
+    "correlation_bucket_limit_pct_bankroll": 0.05,
+    "confidence_level": "medium",
+    "portfolio_constraints": [],
+    "liquidity_caution": "medium"
+  },
+  "bands": [
+    {
+      "name": "max_enter",
+      "min_p": 0.0,
+      "max_p": 0.2,
+      "target_exposure_fraction": 0.0,
+      "notes": "default fallback band"
+    },
+    {
+      "name": "scaled_enter",
+      "min_p": 0.2,
+      "max_p": 0.4,
+      "target_exposure_fraction": 0.0,
+      "notes": "default fallback band"
+    },
+    {
+      "name": "hold",
+      "min_p": 0.4,
+      "max_p": 0.6,
+      "target_exposure_fraction": 0.0,
+      "notes": "default fallback band"
+    },
+    {
+      "name": "trim",
+      "min_p": 0.6,
+      "max_p": 0.8,
+      "target_exposure_fraction": 0.0,
+      "notes": "default fallback band"
+    },
+    {
+      "name": "exit",
+      "min_p": 0.8,
+      "max_p": 1.0,
+      "target_exposure_fraction": 0.0,
+      "notes": "default fallback band"
+    }
+  ],
+  "invalidation": {
+    "thesis_breakers": [
+      "BTC establishes and holds materially above the threshold into late Apr 20-Apr 21, reducing ordinary drawdown risk enough to move true probability clearly above current market.",
+      "BTC loses current cushion and trades back near or below 72000, confirming that single-minute settlement risk is more severe than a Yes-lean framing implies.",
+      "Reliable fresh venue-aligned evidence shows the current executable market price has moved materially away from the 0.705 reference, creating a real edge."
+    ],
+    "time_breakers": [
+      "Reassess closer to expiry when the settlement minute is near enough that path risk meaningfully collapses.",
+      "If no fresh Binance-aligned price update is available near decision time, this packet should not be used for entry."
+    ],
+    "market_structure_breakers": [
+      "Material discrepancy between reference snapshot and current executable market quote remains unresolved.",
+      "Any newly discovered issue with exact settlement-time interpretation or Binance candle mechanics would invalidate this judgment."
+    ],
+    "reversal_conditions": [
+      "Upgrade from watch-only only if fresh market/venue data produce a clear edge after accounting for exact-minute-close risk.",
+      "Move to No only if BTC price action deteriorates enough that sub-72000 at the settlement minute becomes more likely than implied by market."
+    ]
+  },
+  "epistemic_status": {
+    "key_uncertainties": [
+      "Short-horizon BTC volatility over the next four days.",
+      "How much persistence to assign to current above-72000 trading for one exact future-minute close.",
+      "Current executable market quote versus the provided reference price."
+    ],
+    "what_would_change_my_mind": [
+      "A sustained BTC cushion comfortably above 72000 into Apr 20-21.",
+      "A meaningful market repricing away from fair value without corresponding venue-price change.",
+      "Fresh evidence of weakening BTC momentum or downside catalyst before settlement."
+    ],
+    "reasons_to_pass": [
+      "Estimated fair value range straddles the market.",
+      "Contract resolves on a narrow timestamp, which is hard to beat with stale information.",
+      "Freshness is unusually important and current bounded verification did not materially improve the edge assessment."
+    ],
+    "decision_quality": "good_not_clean"
+  },
+  "audit": {
+    "one_sentence_rationale": "Yes is still plausible, but with only a modest cushion over 72000 and an exact-minute settlement four days away, I do not see a verified edge large enough over a 0.705 market baseline to authorize a trade now.",
+    "notes": [
+      "Upstream synthesis range 0.67-0.74 is reasonable but crosses market rather than clearly beating it.",
+      "Best surviving countercase is straightforward: an ordinary 2% to 3% BTC drawdown flips resolution to No.",
+      "Given bounded verification failure to add clean fresh confirmation, non-action is the disciplined output."
+    ],
+    "market_baseline_respected": true,
+    "action_bias_check_passed": true,
+    "self_preservation_bias_check_passed": true,
+    "structured_handoff_primary_used": true,
+    "prose_fallback_used": true,
+    "verification_mode_used": "targeted_escalation",
+    "additional_verification_performed": true,
+    "additional_verification_notes": "targeted_pack; tools:q=2,f=2,fam=2; web_search, web_fetch"
+  }
+}

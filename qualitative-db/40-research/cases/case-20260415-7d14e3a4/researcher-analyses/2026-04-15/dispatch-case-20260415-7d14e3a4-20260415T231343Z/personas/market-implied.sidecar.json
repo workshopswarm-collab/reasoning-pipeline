@@ -1,0 +1,58 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A sharp BTC drawdown before Apr 19 could erase the current cushion.",
+    "Narrow settlement timing makes path dependence more important than broad trend."
+  ],
+  "key_assumptions": [
+    "The current ~$2.7k cushion over $72k is large enough to survive ordinary volatility through Apr 19 noon ET.",
+    "No Binance-specific settlement anomaly or venue dislocation appears before resolution."
+  ],
+  "main_logical_chain": [
+    "Read market price as an 86.5% prior and inspect contract mechanics.",
+    "Verify that Binance BTCUSDT is currently well above $72,000 on the named venue/pair.",
+    "Note that the market is pricing persistence above an already-cleared threshold, which supports a high yes probability.",
+    "Discount somewhat for short-horizon BTC volatility and exact-minute settlement risk, yielding 81% yes rather than full agreement with market."
+  ],
+  "main_thesis": "BTC above $72,000 on the Binance noon ET Apr 19 candle is more likely than not because spot already sits materially above strike, but the market's 86.5% yes price looks slightly too confident given exact-minute settlement risk and normal BTC volatility.",
+  "own_probability": 0.81,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "current_price 0.865",
+    "Binance BTCUSDT price 74695.61000000",
+    "final 12:00 ET candle close must be strictly higher than $72,000"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-7d14e3a4",
+    "dispatch_id": "dispatch-case-20260415-7d14e3a4-20260415T231343Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "8e3762bf-5ed8-45f0-a13c-e1f786758034",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-7d14e3a4/researcher-analyses/2026-04-15/dispatch-case-20260415-7d14e3a4-20260415T231343Z/personas/market-implied.md",
+    "source_persona_sha256": "29cc4c48a0204e84de6b725411e8fcc5c4ba6a2f1bd3016ba31ea74505a911df"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary-quality contract text plus venue-aligned live exchange data, with one independent secondary contextual quote; overall source quality is good enough for a medium-difficulty short-horizon case.",
+  "strongest_disconfirmers": [
+    "BTC can move several percent over a few days, so a $2k-$3k cushion is meaningful but not invulnerable.",
+    "The contract settles on one exact Binance 12:00 ET one-minute close, so a temporary dip at the wrong minute is enough for no."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT was about $74,695.61 during research, already materially above strike.",
+    "Polymarket and assignment pricing both place the threshold around 86.5-87% yes, consistent with a persistence-above-strike framing rather than a breakout thesis.",
+    "Independent BTC quote context also showed a mid-$74k price band above $72k."
+  ],
+  "timing_relevance": "High; the contract resolves at 2026-04-19 12:00 PM America/New_York on one exact Binance 1m candle close.",
+  "unresolved_ambiguities": [
+    "The contract points to the Binance trading interface as source of truth rather than a formal benchmark endpoint, though source-family ambiguity is limited.",
+    "No full volatility model was built, so the exact probability haircut versus market remains judgmental."
+  ],
+  "what_would_change_view": "I would move higher if BTC stays comfortably above $74k into Apr 18-19 with stable cross-venue confirmation, and lower if BTC retraces toward $73k or volatility/event-risk rises into settlement."
+}

@@ -1,0 +1,54 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "schema_version": "v1",
+  "persona": "catalyst-hunter",
+  "main_thesis": "Binance BTC/USDT was trading comfortably above 70k before the relevant noon ET minute, so only a sharp pre-noon selloff or Binance-specific anomaly is likely to defeat a Yes resolution.",
+  "own_probability": 0.992,
+  "reasoning_mode": ["catalyst_analysis", "contract_interpretation", "technical_reference", "market_anchor"],
+  "key_assumptions": [
+    "No extraordinary intraday shock or Binance-specific dislocation drives BTC/USDT below 70k by the 12:00 ET candle close.",
+    "12:00 ET correctly maps to 16:00 UTC for the relevant Binance minute."
+  ],
+  "strongest_supports": [
+    "Polymarket explicitly names Binance BTC/USDT 12:00 ET 1m candle final Close as the source of truth.",
+    "Direct Binance API checks during the run showed BTC/USDT around 74,576.52, leaving a cushion of more than $4,500 above the threshold.",
+    "Recent 1m Binance klines were also in the 74.5k area."
+  ],
+  "strongest_disconfirmers": [
+    "The contract is governed by a single minute close on a single venue, so sudden liquidation, wick risk, outage, or data irregularity remains a tail risk.",
+    "This run did not itself capture the final settled 12:00 ET candle close."
+  ],
+  "main_logical_chain": [
+    "Read Polymarket rules to verify the exact settlement surface, pair, venue, interval, and timezone.",
+    "Verify that 12:00 ET on 2026-04-14 equals 16:00 UTC.",
+    "Check direct Binance BTC/USDT price state and recent 1m klines.",
+    "Observe that BTC/USDT is materially above 70k shortly before the event minute.",
+    "Conclude that only a sharp pre-noon adverse catalyst or venue-specific anomaly is likely to flip the outcome to No."
+  ],
+  "fragility_points": [
+    "Single-minute settlement mechanics make this a path-sensitive contract.",
+    "Single-venue dependence creates operational tail risk."
+  ],
+  "unresolved_ambiguities": [
+    "The final 12:00 ET candle close was not yet directly observed in this run.",
+    "Minor residual ambiguity remains around chart/UI versus API presentation, though contract wording is clear."
+  ],
+  "timing_relevance": "The decisive timing issue is the noon ET/16:00 UTC Binance 1m close; no positive catalyst is needed for Yes, only a negative shock before that minute could force repricing.",
+  "source_quality_view": "High-quality for a medium rule-sensitive case: one authoritative contract source plus direct Binance venue checks; source-of-truth ambiguity is low and evidence independence is medium.",
+  "what_would_change_view": "A rapid drop toward or below 70k on Binance BTC/USDT, evidence of Binance-specific feed instability, or a direct read of the relevant candle showing a different outcome would materially change the view.",
+  "recommended_weight": "high",
+  "confidence_in_extract": "high",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone (noon) ... has a final 'Close' price higher than the price specified in the title.",
+    "ticker price: 74,576.52"
+  ],
+  "runtime_metadata": {
+    "generation_mode": "researcher_sidecar_v1",
+    "case_key": "case-20260414-3ce42d6c",
+    "dispatch_id": "dispatch-case-20260414-3ce42d6c-20260414T130958Z",
+    "research_run_id": "d51f6252-858d-471d-aa31-5a5be77b6305",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-3ce42d6c/researcher-analyses/2026-04-14/dispatch-case-20260414-3ce42d6c-20260414T130958Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "4c8c31d6b7373f3b3bbd40ae492d087656b5cbd9cae7949089f87d872af38f52",
+    "prompt_contract_version": "researcher-sidecar-v1"
+  }
+}

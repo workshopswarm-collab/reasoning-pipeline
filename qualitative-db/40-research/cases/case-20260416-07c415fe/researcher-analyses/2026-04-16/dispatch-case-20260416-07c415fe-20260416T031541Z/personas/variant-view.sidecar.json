@@ -1,0 +1,58 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Weekend crypto weakness before settlement could erase the cushion quickly.",
+    "If Binance trades near 80 shortly before noon ET, probability should compress fast."
+  ],
+  "key_assumptions": [
+    "Current Binance above-threshold pricing remains informative for the April 19 noon ET print.",
+    "No broad crypto selloff or Binance-specific dislocation pushes SOL below 80 by settlement."
+  ],
+  "main_logical_chain": [
+    "The contract resolves on Binance SOL/USDT at one exact minute on April 19 noon ET.",
+    "Current venue-specific spot and recent closes are already above the 80 threshold.",
+    "That makes Yes the base case, but timestamp risk and crypto volatility keep No meaningfully alive.",
+    "Therefore the market is directionally right but slightly overconfident versus my 88% estimate."
+  ],
+  "main_thesis": "Yes is favored because Binance SOL/USDT is already above 80, but the market is slightly too confident for an exact-minute crypto threshold contract.",
+  "own_probability": 0.88,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "Binance SOLUSDT spot check returned about 85.29 on 2026-04-16.",
+    "12:00 ET = 16:00 UTC on that date."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation",
+    "variant_hypothesis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-07c415fe",
+    "dispatch_id": "dispatch-case-20260416-07c415fe-20260416T031541Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "05f95fe8-6350-4696-8c66-12fa7e0c022d",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-07c415fe/researcher-analyses/2026-04-16/dispatch-case-20260416-07c415fe-20260416T031541Z/personas/variant-view.md",
+    "source_persona_sha256": "227951eb64cdacc89a418380464c1de1273bdf4d451c62236fd1ece92ff1ced9"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Low source-of-truth ambiguity because Binance is named directly; medium evidence independence because contextual verification still orbits the same underlying market.",
+  "strongest_disconfirmers": [
+    "Settlement depends on one exact 12:00 ET Binance 1-minute close, not a broad trend.",
+    "The cushion above 80 is only about 6%, which is not huge for crypto over several days."
+  ],
+  "strongest_supports": [
+    "Binance SOLUSDT spot checked around 85.29 on April 16.",
+    "Recent Binance daily closes in the sampled window were all above 80.",
+    "CoinGecko independently placed SOL around 85.23, confirming above-threshold context."
+  ],
+  "timing_relevance": "This is a date- and minute-specific market; 12:00 ET on April 19 equals 16:00 UTC and the exact one-minute close governs resolution.",
+  "unresolved_ambiguities": [
+    "Near-settlement path of SOL into April 19 noon ET remains unknown.",
+    "Exact Binance minute-close behavior only becomes observable at settlement."
+  ],
+  "what_would_change_view": "I would raise confidence if Binance remains comfortably in the mid/high 80s near settlement, and lower it materially if SOL loses the low-80s area or trades near 80 before noon ET."
+}

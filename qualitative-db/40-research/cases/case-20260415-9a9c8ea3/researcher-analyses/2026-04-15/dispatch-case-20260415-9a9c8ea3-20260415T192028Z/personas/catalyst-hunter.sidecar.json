@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A sharp macro or liquidation-driven selloff before settlement.",
+    "Binance-specific dislocation versus other BTC venues.",
+    "Compression of the current cushion to near zero before noon ET."
+  ],
+  "key_assumptions": [
+    "No catalyst before noon ET on Apr 16 causes a >3.7% BTC/USDT drawdown on Binance.",
+    "Binance price formation remains normal into the settlement minute.",
+    "The relevant candle is correctly mapped to 16:00 UTC from 12:00 PM America/New_York."
+  ],
+  "main_logical_chain": [
+    "Check the contract mechanics and confirm the governing source is Binance BTC/USDT 1-minute close at noon ET Apr 16.",
+    "Verify current Binance BTCUSDT price and recent 1-minute closes.",
+    "Measure the buffer above 72000 and compare it to plausible sub-24h downside volatility.",
+    "Conclude that Yes remains high probability but not certainty because one-minute exchange-specific crypto markets retain path risk."
+  ],
+  "main_thesis": "BTC/USDT on Binance is already meaningfully above 72000, so absent a sub-24h downside shock or venue-specific anomaly the noon ET Apr 16 candle is more likely than not to close above the strike.",
+  "own_probability": 0.93,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone has a final 'Close' price higher than the price specified.",
+    "Binance BTCUSDT verified near 74646.39 on 2026-04-15."
+  ],
+  "reasoning_mode": [
+    "catalyst_analysis",
+    "market_anchor",
+    "contract_interpretation",
+    "technical_reference"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260415-9a9c8ea3",
+    "dispatch_id": "dispatch-case-20260415-9a9c8ea3-20260415T192028Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "bcc74157-37b0-48a8-b04a-9097384605e3",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-9a9c8ea3/researcher-analyses/2026-04-15/dispatch-case-20260415-9a9c8ea3-20260415T192028Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "d9ca579879274953ebcee18aeff1c435d903da058bb5264d384454aaf9dcc980"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary quality is good because the contract source and named underlying source were both checked directly; independence is only medium because these are complementary surfaces, not separate forecasts.",
+  "strongest_disconfirmers": [
+    "BTC can move more than 3-4% intraday, which is large enough to erase the current buffer.",
+    "Settlement depends on one exact minute and one exact exchange pair, creating venue-specific path risk."
+  ],
+  "strongest_supports": [
+    "Polymarket rules explicitly name Binance BTC/USDT 1-minute 12:00 PM ET candle close as the governing source.",
+    "Binance verification showed BTCUSDT around 74646.39, about 2646 points above the strike.",
+    "Recent Binance 1-minute klines were consistent with the live ticker level."
+  ],
+  "timing_relevance": "This market is mostly a sub-24h path-risk judgment: the decisive catalyst is whether any downside shock arrives before the specific noon ET candle.",
+  "unresolved_ambiguities": [
+    "No strong independent event calendar source was found to rule out all near-term macro shocks.",
+    "Exact frontend display/finality handling on Binance was not tested beyond API verification."
+  ],
+  "what_would_change_view": "I would cut the probability materially if Binance BTC/USDT fell back toward 72000, volatility surged, or a concrete pre-noon ET macro/crypto catalyst emerged."
+}

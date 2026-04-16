@@ -1,0 +1,198 @@
+{
+  "artifact_type": "decision_stage_status",
+  "schema_version": "decision-stage-status/v1",
+  "case_key": "case-20260413-61dcf900",
+  "dispatch_id": "dispatch-case-20260413-61dcf900-20260413T184628Z",
+  "question": "Will the Los Angeles Kings make the NHL Playoffs?",
+  "decision_context_path": "roles/decision-maker/runtime/artifacts/case-20260413-61dcf900/decision-context-dispatch-case-20260413-61dcf900-20260413T184628Z.json",
+  "actor": "decision-maker",
+  "decision_target_chat_id": "-1003846500961",
+  "decision_target_session_key": "agent:main:telegram:group:-1003846500961:topic:1129",
+  "trade_authorization": "forbidden",
+  "position_policy": "flat",
+  "decision_readiness": "needs_more_research",
+  "recommended_side": "none",
+  "warnings": [],
+  "packet_json_path": "qualitative-db/40-research/cases/case-20260413-61dcf900/decision-maker/artifacts/decision-maker-packet.json",
+  "packet_markdown_path": "qualitative-db/40-research/cases/case-20260413-61dcf900/decision-maker/decision-maker-packet.md",
+  "decision_visible_receipt_marker": "SYNTHESIS RECEIVED | market=Will the Los Angeles Kings make the NHL Playoffs? | dispatch_id=dispatch-case-20260413-61dcf900-20260413T184628Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260413-61dcf900/decision-context-dispatch-case-20260413-61dcf900-20260413T184628Z.json",
+  "decision_visible_start_marker": "DECISION-MAKING ANALYSIS UNDERWAY | market=Will the Los Angeles Kings make the NHL Playoffs? | dispatch_id=dispatch-case-20260413-61dcf900-20260413T184628Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260413-61dcf900/decision-context-dispatch-case-20260413-61dcf900-20260413T184628Z.json",
+  "decision_visible_finish_marker": "DECISION-MAKING COMPLETED, DECISION PACKAGE CREATED | market=Will the Los Angeles Kings make the NHL Playoffs? | dispatch_id=dispatch-case-20260413-61dcf900-20260413T184628Z | packet_path=qualitative-db/40-research/cases/case-20260413-61dcf900/decision-maker/decision-maker-packet.md",
+  "status": "decision_completed",
+  "stage_events": [
+    {
+      "at": "2026-04-13T18:54:48.957834Z",
+      "stage": "kickoff",
+      "state": "decision_ready_for_receipt",
+      "message": "Decision-Maker stage initialized from synthesis handoff",
+      "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260413-61dcf900/synthesizer-agent/decision-handoff.md"
+    },
+    {
+      "at": "2026-04-13T18:54:49.096165Z",
+      "stage": "decision_input_selection",
+      "state": "built",
+      "message": "Built deterministic Decision-Maker selected-input bundle",
+      "verification_mode_path": "roles/decision-maker/runtime/artifacts/case-20260413-61dcf900/verification-mode-dispatch-case-20260413-61dcf900-20260413T184628Z.json",
+      "selected_input_bundle_path": "roles/decision-maker/runtime/artifacts/case-20260413-61dcf900/selected-inputs-dispatch-case-20260413-61dcf900-20260413T184628Z.json",
+      "verification_mode": "not_ready_reopen_recommended",
+      "approx_tokens_after_trim": 2641,
+      "agent_tool_use_allowed": false
+    },
+    {
+      "at": "2026-04-13T18:54:49.096271Z",
+      "stage": "decision_prompt",
+      "state": "built",
+      "message": "Built Decision-Maker prompt from compact selected-input bundle",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260413-61dcf900/decision-prompt-dispatch-case-20260413-61dcf900-20260413T184628Z.md"
+    },
+    {
+      "at": "2026-04-13T18:54:51.025017Z",
+      "stage": "decision_lane_bootstrap",
+      "state": "created",
+      "message": "Created dedicated Telegram decision lane",
+      "topic_id": "1129",
+      "topic_title": "case-20260413-61dcf900 | decision | T184628Z",
+      "session_key": "agent:main:telegram:group:-1003846500961:topic:1129"
+    },
+    {
+      "at": "2026-04-13T18:54:54.622428Z",
+      "stage": "decision_receipt",
+      "state": "visible_marker_sent",
+      "message": "SYNTHESIS RECEIVED | market=Will the Los Angeles Kings make the NHL Playoffs? | dispatch_id=dispatch-case-20260413-61dcf900-20260413T184628Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260413-61dcf900/decision-context-dispatch-case-20260413-61dcf900-20260413T184628Z.json"
+    },
+    {
+      "at": "2026-04-13T18:54:54.623158Z",
+      "stage": "decision_receipt",
+      "state": "accepted",
+      "message": "Decision-Maker handoff accepted",
+      "session_key": "agent:decision-maker:main",
+      "handoff_status": "started"
+    },
+    {
+      "at": "2026-04-13T18:54:54.623323Z",
+      "stage": "decision_execution",
+      "state": "decision_analysis_running",
+      "message": "Decision-Maker agent invocation accepted and analysis started",
+      "session_key": "agent:decision-maker:main",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260413-61dcf900/decision-prompt-dispatch-case-20260413-61dcf900-20260413T184628Z.md",
+      "handoff_status": "started"
+    },
+    {
+      "at": "2026-04-13T18:54:56.757386Z",
+      "stage": "decision_execution",
+      "state": "visible_marker_sent",
+      "message": "DECISION-MAKING ANALYSIS UNDERWAY | market=Will the Los Angeles Kings make the NHL Playoffs? | dispatch_id=dispatch-case-20260413-61dcf900-20260413T184628Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260413-61dcf900/decision-context-dispatch-case-20260413-61dcf900-20260413T184628Z.json"
+    },
+    {
+      "at": "2026-04-13T18:55:25.494455Z",
+      "stage": "decision_execution",
+      "state": "decision_completed",
+      "message": "Decision-Maker completed and packet rendered",
+      "warnings": [],
+      "forecast_decision_persist_error": ""
+    },
+    {
+      "at": "2026-04-13T18:55:27.649136Z",
+      "stage": "decision_execution",
+      "state": "visible_marker_sent",
+      "message": "DECISION-MAKING COMPLETED, DECISION PACKAGE CREATED | market=Will the Los Angeles Kings make the NHL Playoffs? | dispatch_id=dispatch-case-20260413-61dcf900-20260413T184628Z | packet_path=qualitative-db/40-research/cases/case-20260413-61dcf900/decision-maker/decision-maker-packet.md"
+    }
+  ],
+  "last_stage_event": {
+    "at": "2026-04-13T18:55:27.649136Z",
+    "stage": "decision_execution",
+    "state": "visible_marker_sent",
+    "message": "DECISION-MAKING COMPLETED, DECISION PACKAGE CREATED | market=Will the Los Angeles Kings make the NHL Playoffs? | dispatch_id=dispatch-case-20260413-61dcf900-20260413T184628Z | packet_path=qualitative-db/40-research/cases/case-20260413-61dcf900/decision-maker/decision-maker-packet.md"
+  },
+  "updated_at": "2026-04-13T18:55:27.649160Z",
+  "decision_lane": {
+    "topic_id": "1129",
+    "topic_title": "case-20260413-61dcf900 | decision | T184628Z",
+    "session_key": "agent:main:telegram:group:-1003846500961:topic:1129"
+  },
+  "verification_mode_path": "roles/decision-maker/runtime/artifacts/case-20260413-61dcf900/verification-mode-dispatch-case-20260413-61dcf900-20260413T184628Z.json",
+  "selected_input_bundle_path": "roles/decision-maker/runtime/artifacts/case-20260413-61dcf900/selected-inputs-dispatch-case-20260413-61dcf900-20260413T184628Z.json",
+  "selected_input_bundle_mode": "not_ready_reopen_recommended",
+  "selected_input_bundle_estimated_tokens": 2641,
+  "targeted_verification_pack_path": "",
+  "targeted_verification_pack_required": false,
+  "decision_prompt_path": "roles/decision-maker/runtime/artifacts/case-20260413-61dcf900/decision-prompt-dispatch-case-20260413-61dcf900-20260413T184628Z.md",
+  "agent_tool_use_allowed": false,
+  "decision_lane_topic_id": "1129",
+  "decision_lane_topic_title": "case-20260413-61dcf900 | decision | T184628Z",
+  "decision_lane_session_key": "agent:main:telegram:group:-1003846500961:topic:1129",
+  "decision_target_topic_id": "1129",
+  "decision_target_topic_title": "case-20260413-61dcf900 | decision | T184628Z",
+  "decision_receipt_marker_sent_at": "2026-04-13T18:54:54.622398+00:00",
+  "decision_analysis_marker_sent_at": "2026-04-13T18:54:56.757367+00:00",
+  "timeline_update": {
+    "appended": true,
+    "case_key": "case-20260413-61dcf900",
+    "dispatch_id": "dispatch-case-20260413-61dcf900-20260413T184628Z",
+    "packet_path": "qualitative-db/40-research/cases/case-20260413-61dcf900/decision-maker/decision-maker-packet.md",
+    "entry": "- 2026-04-13T18:55:25.494040+00:00 — completed decision-making `dispatch-case-20260413-61dcf900-20260413T184628Z` with packet `qualitative-db/40-research/cases/case-20260413-61dcf900/decision-maker/decision-maker-packet.md`."
+  },
+  "forecast_decision_persist": {
+    "ok": true,
+    "packet_json": "qualitative-db/40-research/cases/case-20260413-61dcf900/decision-maker/artifacts/decision-maker-packet.json",
+    "persisted": {
+      "forecast_id": "dispatch-case-20260413-61dcf900-20260413T184628Z",
+      "market_id": "c501d24e-b369-4df3-915c-61c2bff8c6fa",
+      "contract_id": "yes",
+      "forecast_prob": 0.7,
+      "decision_status": "void",
+      "decision_packet_path": "qualitative-db/40-research/cases/case-20260413-61dcf900/decision-maker/artifacts/decision-maker-packet.json",
+      "supersedes_forecast_id": null,
+      "superseded_forecast_ids": [],
+      "market_state": {
+        "market_id": "c501d24e-b369-4df3-915c-61c2bff8c6fa",
+        "current_price": 0.735,
+        "last_reasoned_price": 0.7,
+        "pipeline_status": "closed"
+      }
+    },
+    "record": {
+      "forecast_id": "dispatch-case-20260413-61dcf900-20260413T184628Z",
+      "decision_ts": "2026-04-13T14:54:00-04:00",
+      "case_id": "case-20260413-61dcf900",
+      "dispatch_id": "dispatch-case-20260413-61dcf900-20260413T184628Z",
+      "market_id": "c501d24e-b369-4df3-915c-61c2bff8c6fa",
+      "contract_id": "yes",
+      "platform": "polymarket",
+      "market_slug": "will-the-los-angeles-kings-make-the-nhl-playoffs",
+      "question": "Will the Los Angeles Kings make the NHL Playoffs?",
+      "forecast_prob": "0.7",
+      "forecast_direction": "none",
+      "confidence_label": "medium",
+      "confidence_score": "",
+      "time_horizon_label": "Final regular-season slates and clinch window",
+      "verification_mode": "not_ready_reopen_recommended",
+      "decision_status": "void",
+      "rationale_summary": "Because the Kings' playoff race can move materially within hours and the exact clinch/tiebreak tree was not independently rebuilt, the disciplined output is to stay flat rather than pretend a small edge around a roughly efficient market is execution-ready.",
+      "decision_packet_path": "qualitative-db/40-research/cases/case-20260413-61dcf900/decision-maker/artifacts/decision-maker-packet.json",
+      "decision_handoff_path": "qualitative-db/40-research/cases/case-20260413-61dcf900/synthesizer-agent/decision-handoff.md",
+      "syndicated_finding_path": "qualitative-db/40-research/cases/case-20260413-61dcf900/synthesizer-agent/syndicated-finding.md"
+    },
+    "warnings": []
+  },
+  "terminal_summary": {
+    "at": "2026-04-13T18:55:27.649170Z",
+    "status": "decision_completed",
+    "decision_lane": {
+      "topic_id": "1129",
+      "topic_title": "case-20260413-61dcf900 | decision | T184628Z",
+      "session_key": "agent:main:telegram:group:-1003846500961:topic:1129"
+    },
+    "packet_json_path": "qualitative-db/40-research/cases/case-20260413-61dcf900/decision-maker/artifacts/decision-maker-packet.json",
+    "packet_markdown_path": "qualitative-db/40-research/cases/case-20260413-61dcf900/decision-maker/decision-maker-packet.md",
+    "trade_authorization": "forbidden",
+    "decision_readiness": "needs_more_research",
+    "last_stage_event": {
+      "at": "2026-04-13T18:55:27.649136Z",
+      "stage": "decision_execution",
+      "state": "visible_marker_sent",
+      "message": "DECISION-MAKING COMPLETED, DECISION PACKAGE CREATED | market=Will the Los Angeles Kings make the NHL Playoffs? | dispatch_id=dispatch-case-20260413-61dcf900-20260413T184628Z | packet_path=qualitative-db/40-research/cases/case-20260413-61dcf900/decision-maker/decision-maker-packet.md"
+    }
+  },
+  "decision_completion_marker_sent_at": "2026-04-13T18:55:27.649112+00:00"
+}

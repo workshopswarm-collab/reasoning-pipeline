@@ -1,0 +1,121 @@
+{
+  "summary": {
+    "generated_at": "2026-04-16T19:15:03.873383+00:00",
+    "merge_recommendation_count": 1,
+    "hold_item_count": 4,
+    "reactivation_candidate_count": 0,
+    "recommended_family_quarantine_count": 1,
+    "open_structural_violation_count": 0
+  },
+  "merge_recommendations": [
+    {
+      "proposal_id": "edge:resolution-surface-ambiguity__increases__verification-state-separation",
+      "candidate_type": "edge",
+      "mechanism_family": "source_resolution",
+      "lifecycle_stage": "aggregated",
+      "promotion_status": "insufficient_support",
+      "merge_candidate_key": "resolution-surface-ambiguity__increases__verification-caution",
+      "merge_recommended": true,
+      "near_live_graph_keys": [
+        "resolution-surface-ambiguity__increases__verification-caution",
+        "publication-window-timing__increases__reporting-state-uncertainty"
+      ],
+      "promotion_blockers": [
+        "below_draft_min_cases",
+        "below_draft_non_intervention_support_cases",
+        "below_proposed_min_cases",
+        "merge_recommended"
+      ]
+    }
+  ],
+  "hold_items": [
+    {
+      "entity_type": "node",
+      "entity_key": "fair-value-discounting-pressure",
+      "mechanism_family": "workflow_pricing",
+      "lifecycle_stage": "hold",
+      "status": "hold",
+      "superseded_by_key": null
+    },
+    {
+      "entity_type": "node",
+      "entity_key": "verification-caution",
+      "mechanism_family": "workflow_pricing",
+      "lifecycle_stage": "hold",
+      "status": "hold",
+      "superseded_by_key": null
+    },
+    {
+      "entity_type": "edge",
+      "entity_key": "resolution-surface-ambiguity__increases__verification-caution",
+      "mechanism_family": "source_resolution",
+      "lifecycle_stage": "hold",
+      "status": "hold",
+      "superseded_by_key": null
+    },
+    {
+      "entity_type": "edge",
+      "entity_key": "verification-caution__increases__fair-value-discounting-pressure",
+      "mechanism_family": "workflow_pricing",
+      "lifecycle_stage": "hold",
+      "status": "hold",
+      "superseded_by_key": null
+    }
+  ],
+  "reactivation_candidates": [],
+  "recommended_family_quarantines": [
+    {
+      "mechanism_family": "workflow_pricing",
+      "hold_count": 3,
+      "high_severity_open_violations": 0,
+      "policy_enabled": true,
+      "reason": "repeated_hold_state"
+    }
+  ],
+  "policy_controls": {
+    "publication_timing": {
+      "enabled": true,
+      "notes": {
+        "default_risk": "moderate",
+        "priority": "medium"
+      }
+    },
+    "source_resolution": {
+      "enabled": true,
+      "notes": {
+        "default_risk": "moderate",
+        "priority": "high",
+        "exploratory_trial": {
+          "enabled": true,
+          "max_candidates": 1,
+          "require_base_proposal_threshold": false,
+          "min_shadow_judged_count": 4,
+          "min_shadow_helpful_count": 0,
+          "min_non_intervention_support_cases": 1,
+          "min_shadow_trial_score": 0.0
+        }
+      }
+    },
+    "threshold_touch": {
+      "enabled": true,
+      "notes": {
+        "default_risk": "moderate",
+        "priority": "high"
+      }
+    },
+    "unassigned": {
+      "enabled": false,
+      "notes": {
+        "default_risk": "blocked",
+        "priority": "none"
+      }
+    },
+    "workflow_pricing": {
+      "enabled": true,
+      "notes": {
+        "default_risk": "moderate",
+        "priority": "medium"
+      }
+    }
+  }
+}

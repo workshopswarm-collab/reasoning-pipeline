@@ -1,0 +1,78 @@
+{
+  "artifact_type": "targeted_verification_pack",
+  "schema_version": "decision-targeted-verification-pack/v1",
+  "case_key": "case-20260414-e15c72fe",
+  "dispatch_id": "refresh-case-20260414-e15c72fe-20260414T201353Z",
+  "required": true,
+  "verification_mode": "targeted_escalation",
+  "pack_purpose": "Deterministic narrow follow-up pack for targeted escalation. It defines the crux questions and operational budgets, while source choice may remain model-driven within runtime-enforced tool guardrails.",
+  "verification_questions": [
+    "Does the latest available information materially change the decision, given: BTC can move several percent in days and the contract resolves on one exact minute on April 20.?",
+    "How decision-relevant is the remaining contract/source-of-truth ambiguity: Binance website/display-surface implementation at the exact resolving minute is not fully specified beyond rules text?",
+    "Are the current blockers still material to final judgment: No strong independent verification of short-horizon downside probability beyond spot-distance reasoning?",
+    "Is the main verification gap still decision-material: No independent volatility study or same-day minute-fragility evidence was added beyond spot/rules verification.?"
+  ],
+  "structured_handoff_focus": {
+    "contract_ambiguity_level": "minor",
+    "contract_ambiguity_reason": "Binance website/display-surface implementation at the exact resolving minute is not fully specified beyond rules text",
+    "verification_gap_summary": "No independent volatility study or same-day minute-fragility evidence was added beyond spot/rules verification.",
+    "best_countercase_summary": "A plausible 5-6% downside move or Binance-specific dislocation into the exact resolving minute could still flip the market to No.",
+    "main_reason_for_disagreement": "How much to discount current spot cushion for exact-minute settlement fragility.",
+    "resolution_mechanics_summary": "Yes requires the Binance BTC/USDT 12:00 PM ET 1-minute candle on April 20 to have a final Close strictly above 70,000.",
+    "freshness_sensitive": "yes",
+    "freshness_driver": "BTC can move several percent in days and the contract resolves on one exact minute on April 20.",
+    "decision_blockers": [
+      "No strong independent verification of short-horizon downside probability beyond spot-distance reasoning",
+      "Single-minute Binance-only settlement leaves residual operational and path-risk fragility",
+      "Any meaningful move back toward 71k-70k before April 20 would quickly change the estimate"
+    ],
+    "disagreement_type": "timing"
+  },
+  "supporting_persona_summaries": [
+    {
+      "persona": "market-implied",
+      "recommended_weight": "high",
+      "own_probability": 0.82,
+      "main_thesis": "The market is mostly efficient: Binance BTC/USDT is currently comfortably above 70k, so Yes should be favored, but the exact noon-ET one-minute-close mechanic merits a small discount versus the market's mid/high-80s confidence.",
+      "main_logical_chain": [
+        "Start from the market's 84.5% prior and take it seriously because short-dated threshold markets often encode useful strike-distance information.",
+        "Verify the governing rules and exact settlement source: Binance BTC/USDT 1-minute candle at 12:00 PM ET on April 20.",
+        "Check the exact venue's current price and recent context; Binance spot is comfortably above 70k and recent closes are above the threshold.",
+        "Apply a modest discount for minute-specific, venue-specific settlement risk and normal BTC volatility."
+      ],
+      "strongest_supports": [
+        "Direct Binance spot check showed BTCUSDT around 74,258, materially above the 70,000 threshold.",
+        "Recent Binance daily closes in the sampled window were all above 70,000."
+      ],
+      "strongest_disconfirmers": [
+        "The contract settles on one exact Binance 1-minute close at noon ET, so a single volatile minute can flip the result.",
+        "A roughly 6% drawdown from current spot would be enough to settle No and is plausible over six days in BTC."
+      ],
+      "unresolved_ambiguities": [
+        "How volatile the exact noon ET minute is likely to be on April 20.",
+        "Whether any Binance UI/data-surface quirks could matter for practical settlement interpretation."
+      ],
+      "what_would_change_view": "I would move lower if BTC falls back toward the low-71k/high-70k area, if Binance-specific risks emerge, or if closer-to-resolution minute-level checks show materially higher noon-close fragility.",
+      "timing_relevance": "High: the market resolves in six days on an exact minute-close, and the ET-to-UTC conversion was verified as 2026-04-20 16:00 UTC.",
+      "source_quality_view": "Primary evidence quality is strong because Binance is the named settlement venue and Polymarket supplies the contract rules; independence is only medium because the core evidence is mechanically tied to the settlement source, with CoinGecko serving as a contextual cross-check.",
+      "persona_finding_path": "qualitative-db/40-research/cases/case-20260414-e15c72fe/researcher-analyses/2026-04-14/dispatch-case-20260414-e15c72fe-20260414T193100Z/personas/market-implied.md",
+      "assumption_artifact_paths": [
+        "qualitative-db/40-research/cases/case-20260414-e15c72fe/researcher-analyses/2026-04-14/dispatch-case-20260414-e15c72fe-20260414T193100Z/assumptions/market-implied.md"
+      ],
+      "evidence_artifact_paths": [
+        "qualitative-db/40-research/cases/case-20260414-e15c72fe/researcher-analyses/2026-04-14/dispatch-case-20260414-e15c72fe-20260414T193100Z/evidence/market-implied.md"
+      ]
+    }
+  ],
+  "selected_assumption_snippets": [],
+  "selected_evidence_snippets": [],
+  "selected_supporting_note_snippets": [],
+  "pack_budget": {
+    "max_chars": 6000,
+    "actual_chars_before_trim": 8234,
+    "actual_chars_after_trim": 5651,
+    "approx_tokens_before_trim": 2058,
+    "approx_tokens_after_trim": 1412,
+    "trim_applied": true
+  }
+}

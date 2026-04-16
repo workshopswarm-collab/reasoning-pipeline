@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A fresh macro or crypto-specific shock before noon ET could quickly invalidate the high-probability Yes view.",
+    "Any settlement-surface mismatch between interpreted candle timing and Binance UI would matter."
+  ],
+  "key_assumptions": [
+    "BTC avoids a roughly 3%+ downside move before the exact Apr 16 12:00 ET Binance minute close.",
+    "12:00 ET on 2026-04-16 maps to 16:00 UTC for the relevant Binance candle.",
+    "Binance API market context is a valid pre-resolution proxy for the named Binance chart settlement surface."
+  ],
+  "main_logical_chain": [
+    "Start from the 89.5% market prior and ask what must be true for it to be efficient.",
+    "Verify Binance settlement mechanics, timezone mapping, and current BTC/USDT distance from the 72k threshold.",
+    "Check whether neighboring threshold prices form a coherent implied distribution.",
+    "Conclude that Yes is still the base case, but shave modestly for exact-minute downside tail risk."
+  ],
+  "main_thesis": "BTC above $72,000 on the Apr 16 noon ET Binance minute close looks high-probability and broadly in line with market pricing, though the exact-minute mechanic makes 89.5% slightly rich.",
+  "own_probability": 0.86,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "current_price: 0.895",
+    "Binance ticker roughly 74347.64 during run",
+    "12:00 ET on 2026-04-16 maps to 16:00 UTC"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-572502e1",
+    "dispatch_id": "dispatch-case-20260415-572502e1-20260415T124520Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "d0396446-b3be-4a86-be39-6f4bf4e787ec",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-572502e1/researcher-analyses/2026-04-15/dispatch-case-20260415-572502e1-20260415T124520Z/personas/market-implied.md",
+    "source_persona_sha256": "a733a5ecb475c6c0bde1350208d932bf91a26e1706e8a9b99b156526426750f3"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary source quality is high via Binance market data and explicit contract wording; contextual source quality is medium-high via Polymarket threshold pricing, with low-to-medium independence because both reflect the same underlying BTC state.",
+  "strongest_disconfirmers": [
+    "BTC can move more than 3% in under a day, enough to take price below 72k from current levels.",
+    "The contract resolves on one exact minute close, which adds timing risk beyond a looser daily threshold."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT traded around 74.3k during the run, materially above 72k.",
+    "Recent 24h Binance low was still above 73.5k.",
+    "Adjacent Polymarket thresholds imply a coherent distribution with 72k strongly favored but 74k much less certain."
+  ],
+  "timing_relevance": "This is highly timing-sensitive because resolution depends on the single Binance BTC/USDT 1-minute candle closing at 12:00 ET on 2026-04-16 (16:00 UTC).",
+  "unresolved_ambiguities": [
+    "Final settlement references the Binance chart UI candle close rather than an explicit REST endpoint.",
+    "Overnight news flow before the resolving minute remains unknown."
+  ],
+  "what_would_change_view": "I would cut the probability if BTC loses the mid-73k area or if Binance timing/settlement mapping looks different on a final pre-resolution check; I would move closer to market if BTC stays comfortably above 73.5k into the final hours."
+}

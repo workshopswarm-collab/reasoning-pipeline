@@ -1,0 +1,62 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Single-minute settlement on one exchange increases tail noise sensitivity.",
+    "BTC can move several percent in a few days, enough to cross the strike.",
+    "The view depends more on absence of bad catalysts than on presence of a strong positive catalyst."
+  ],
+  "key_assumptions": [
+    "No major adverse macro or crypto-specific shock hits before April 21 noon ET.",
+    "Binance remains a representative and usable settlement venue.",
+    "Short-horizon downside volatility does not erase the current cushion above 72,000."
+  ],
+  "main_logical_chain": [
+    "The governing contract resolves only on the Binance BTC/USDT 12:00 PM ET one-minute close on April 21.",
+    "Current Binance spot is materially above 72,000 and cross-venue checks show broadly similar BTC spot levels.",
+    "With less than a week left, the default path is Yes unless a meaningful downside catalyst arrives.",
+    "Because the contract is single-minute and single-venue, confidence should be discounted versus a broader daily-close style market.",
+    "That yields a Yes lean below the market-implied 81.5%, around 74%."
+  ],
+  "main_thesis": "BTC is still more likely than not to settle above 72,000 on April 21 because current Binance spot is comfortably above the strike, but the market slightly overprices confidence given single-minute Binance settlement fragility and six-day downside shock risk.",
+  "own_probability": 0.74,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone has a final 'Close' price higher than the price specified in the title.",
+    "Binance BTCUSDT spot during research was about 74,990.28."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "catalyst_analysis",
+    "contract_interpretation",
+    "scenario_analysis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-bebdf03e",
+    "dispatch_id": "dispatch-case-20260415-bebdf03e-20260415T221944Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "b5da4b4f-cc44-4354-949a-2fe5a30dcfe0",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-bebdf03e/researcher-analyses/2026-04-15/dispatch-case-20260415-bebdf03e-20260415T221944Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "441c2e40db4af71d21c87fa5ad8352cb4c82d7c9df69efe7c0ae151cec5c1c7f"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High confidence in contract interpretation from Polymarket rules and good current-state confidence from Binance with Coinbase/CoinGecko cross-checks, but predictive independence is only medium because all spot checks reflect the same BTC market.",
+  "strongest_disconfirmers": [
+    "The market settles on one exact Binance 1-minute candle, so microstructure and timing noise matter.",
+    "A 4% cushion is not especially large for BTC over six days.",
+    "One adverse catalyst could reprice the market quickly before Tuesday noon ET."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT spot during the run was about 74,990, roughly 4% above the threshold.",
+    "Only a few days remain until settlement, limiting time for a thesis reversal absent a sharp shock.",
+    "Adjacent Polymarket ladder prices were internally coherent and centered BTC in the low-to-mid 70s."
+  ],
+  "timing_relevance": "Timing is central: the contract only needs a single noon ET Binance close on April 21, so near-term shocks and the exact sequence into Monday-Tuesday matter more than broad monthly BTC direction.",
+  "unresolved_ambiguities": [
+    "Whether there is an underappreciated macro catalyst between now and settlement.",
+    "Whether the market is too complacent about Binance-minute microstructure risk."
+  ],
+  "what_would_change_view": "A decisive loss of 74k, a credible negative macro or crypto-specific catalyst before settlement, or evidence of Binance-specific weakness would push the estimate lower; continued stability above 74k into late Monday would push it higher."
+}

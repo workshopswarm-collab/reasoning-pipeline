@@ -2,7 +2,7 @@
 type: system_index
 domain: system
 status: active
-last_updated: 2026-03-26
+last_updated: 2026-04-14
 owner: orchestrator
 tags: [system/index, qualitative-db/governance, qualitative-db/policies]
 ---
@@ -27,6 +27,8 @@ Read detailed policy files only when needed:
 - when a `10-domains/` subdomain file should exist -> `governance/subdomain-overview-policy.md`
 - whether research should be promoted into canon -> `methodology/canonical-memory-workflow.md`
 - exact canonical update threshold -> `methodology/canonical-dossier-update-policy.md`
+- concrete recursive-learning / `50-learnings/` runtime design -> `methodology/recursive-learning-system-spec.md`
+- causal-map + LMD mechanism-aware retrieval design -> `methodology/causal-map-lmd-integration-spec.md`
 - writing a note -> `templates/README.md` and the matching template
 
 ## What 00-system is for
@@ -49,7 +51,7 @@ Runtime note:
 
 - `10-domains/`, `20-entities/`, and `30-drivers/` are stable layers
 - `40-research/` is the working evidence layer
-- `50-retrospectives/` is the resolved-case lesson layer
+- `50-learnings/` is the resolved-case lesson layer
 
 Default rule:
 - if information is new, fast-changing, provisional, or unresolved -> put it in `40-research/`
@@ -78,7 +80,7 @@ Preserve conflict early, resolve it late, learn from it afterward.
 Default workflow:
 1. preserve disagreement in `40-research/`
 2. let the decision-maker adjudicate it
-3. record lessons in `50-retrospectives/`
+3. record lessons in `50-learnings/`
 4. promote only durable cross-case lessons into stable layers
 
 ### 5) Duplicate / split rule
@@ -143,7 +145,7 @@ Templates for:
 - evidence maps
 - investigations
 - syntheses
-- retrospectives
+- learning notes
 - canonical entity notes
 - canonical update proposals
 - durable lesson candidates

@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Single-minute resolution window.",
+    "Potential UI/API source-of-truth mismatch.",
+    "Short-horizon BTC volatility around the strike."
+  ],
+  "key_assumptions": [
+    "Recent Binance persistence above 72k remains informative through April 17 noon ET.",
+    "Binance API candles are a good operational proxy for the UI candle named in the contract.",
+    "No sharp volatility shock or exchange anomaly hits near the resolution minute."
+  ],
+  "main_logical_chain": [
+    "Interpret the contract narrowly: Binance BTC/USDT, 1-minute candle, 12:00 ET, final Close, strictly above 72000.",
+    "Check same-venue current price and recent analog candles to see whether the strike is already in the money.",
+    "Use recent persistence above 72k as the outside-view anchor, then haircut it because single-minute resolution is fragile.",
+    "Result: Yes favored, but less strongly than the market's 74.5%."
+  ],
+  "main_thesis": "Yes is more likely than No because Binance BTC/USDT is already above 72k and recent same-venue persistence is favorable, but the exact single-minute noon-ET resolution makes the market somewhat too bullish.",
+  "own_probability": 0.68,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "Yes if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone has a final Close price higher than 72000.",
+    "Current market price 0.745 vs own probability 0.68."
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "contract_interpretation",
+    "market_anchor"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-3f432366",
+    "dispatch_id": "dispatch-case-20260415-3f432366-20260415T074424Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "9770aefb-185e-40d9-877c-daaa68bdfc17",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-3f432366/researcher-analyses/2026-04-15/dispatch-case-20260415-3f432366-20260415T074424Z/personas/base-rate.md",
+    "source_persona_sha256": "dd4d8769d287160cbfda055f6a01428d9b03e5b8d7f2d9b3e856640a1f9f67c4"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary contract wording plus Binance exchange data are strong enough for a medium-difficulty run, with medium evidence independence and low-to-medium source-of-truth ambiguity.",
+  "strongest_disconfirmers": [
+    "The contract resolves on one exact 12:00 ET 1-minute close, so an ordinary intraday downtick can still produce No.",
+    "The April 13 noon-ET analog candle closed at 71902.91, showing the exact minute can land below strike."
+  ],
+  "strongest_supports": [
+    "BTC/USDT spot during the run was about 73.6k on Binance, already above the strike.",
+    "Recent April 14 noon-ET analog candle on Binance closed well above 72k.",
+    "When BTC daily close was already above 72k in a 120-day Binance sample, the close two days later stayed above 72k in 51 of 57 cases."
+  ],
+  "timing_relevance": "Resolution depends specifically on the Binance 12:00 ET candle on April 17, which maps to 16:00 UTC during EDT and makes exact-time verification material.",
+  "unresolved_ambiguities": [
+    "Whether Binance UI display could differ transiently from API-observed candle values.",
+    "How much to haircut daily persistence statistics when mapping to an exact noon-minute contract."
+  ],
+  "what_would_change_view": "A sustained move back below 72k, a weak April 16 noon-ET analog candle, or evidence of Binance UI/API mismatch would lower the estimate materially; another comfortably above-strike noon analog would raise it."
+}

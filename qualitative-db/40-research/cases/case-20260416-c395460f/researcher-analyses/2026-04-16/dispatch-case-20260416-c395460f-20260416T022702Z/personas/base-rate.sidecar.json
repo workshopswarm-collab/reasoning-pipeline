@@ -1,0 +1,61 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Broad crypto selloff before April 19 noon ET.",
+    "SOL revisiting high-70s/low-80s region.",
+    "Any Binance-specific operational or pricing anomaly near settlement."
+  ],
+  "key_assumptions": [
+    "Recent low/mid-80s Binance trading is the right near-term reference class.",
+    "No major crypto or SOL-specific downside shock pushes the target minute below 80.",
+    "Binance API and Binance UI candle data are practically aligned for settlement interpretation."
+  ],
+  "main_logical_chain": [
+    "The governing contract asks only whether Binance SOL/USDT closes above 80 at one specific minute on April 19 noon ET.",
+    "Current Binance spot and recent Binance closes place SOL in a recent regime mostly above 80.",
+    "That makes Yes the base-rate favorite.",
+    "But multi-day crypto volatility and single-minute settlement risk make 89% look too high.",
+    "Therefore a Yes estimate below market, around 74%, is more defensible."
+  ],
+  "main_thesis": "SOL above $80 on April 19 is more likely than not because Binance spot and recent closes are already mostly above 80, but the market overstates certainty because a 3-day crypto move below the threshold remains plausible.",
+  "own_probability": 0.74,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "Binance SOLUSDT ticker: 84.94000000",
+    "Polymarket rule: final Close price higher than 80"
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "market_anchor",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-c395460f",
+    "dispatch_id": "dispatch-case-20260416-c395460f-20260416T022702Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "33ea9486-e962-4197-ac83-060b4d5041db",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-c395460f/researcher-analyses/2026-04-16/dispatch-case-20260416-c395460f-20260416T022702Z/personas/base-rate.md",
+    "source_persona_sha256": "6b6b844fd4f29e3cf917b13ee7c9aec73d4fdc974ba8ac8bb9739876fd147ae3"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Good enough for a medium-difficulty threshold case: primary exchange data from the settlement source family plus contract/rules and an extra live-price verification pass.",
+  "strongest_disconfirmers": [
+    "A roughly 6% drop in under three days is normal enough in crypto to keep No live.",
+    "Recent Binance range data included a daily low around 78.38.",
+    "The contract samples one exact minute, not a broader average or same-day high."
+  ],
+  "strongest_supports": [
+    "Binance SOLUSDT spot was about 84.94 at research time, already above 80.",
+    "Recent Binance daily closes were mostly above 80.",
+    "CoinGecko cross-check also placed SOL around 84.9, supporting the mid-80s regime view."
+  ],
+  "timing_relevance": "Resolution is fixed to April 19, 2026 at 12:00 ET on the Binance 1-minute candle close, so current-above-threshold evidence is helpful but not dispositive.",
+  "unresolved_ambiguities": [
+    "Exact intraday volatility distribution for the noon ET minute was not modeled directly.",
+    "Minor implementation ambiguity remains because verification used Binance API rather than the exact UI candle render."
+  ],
+  "what_would_change_view": "I would raise the estimate if SOL stayed comfortably above 80 into late April 18/early April 19 with calmer volatility; I would cut it if SOL traded back toward or below 80 or if broader crypto turned risk-off."
+}

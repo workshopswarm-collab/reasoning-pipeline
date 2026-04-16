@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Late selloff into noon ET on April 17.",
+    "Settlement-surface mismatch between Binance UI and API, though this appears low risk.",
+    "Crypto-wide risk-off move before the settlement minute."
+  ],
+  "key_assumptions": [
+    "ETH remains above 2200 into the April 17 12:00 ET settlement minute.",
+    "Binance UI candle and API kline output are practically aligned for verification purposes.",
+    "No large crypto-wide downside shock arrives before settlement."
+  ],
+  "main_logical_chain": [
+    "Start from market-implied 87.1% because the market likely aggregates real information.",
+    "Verify rule mechanics and governing source directly on Polymarket and Binance documentation.",
+    "Check live Binance pricing to see whether current spot actually supports the market's confidence.",
+    "Apply a modest discount because the contract is close-above at one exact future minute rather than touch-above."
+  ],
+  "main_thesis": "Market is directionally right because ETH is already comfortably above 2200 on Binance, but the quote is slightly rich for an exact future one-minute close contract.",
+  "own_probability": 0.83,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "final 'Close' price higher than the price specified in the title",
+    "Binance ETH/USDT 'Close' prices currently available"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-605a067d",
+    "dispatch_id": "dispatch-case-20260416-605a067d-20260416T142910Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "68f599bc-70db-4afc-921d-575b6a9e57c6",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-605a067d/researcher-analyses/2026-04-16/dispatch-case-20260416-605a067d-20260416T142910Z/personas/market-implied.md",
+    "source_persona_sha256": "2881d172325e966ca533117b27bde9292db8aed011d4564b851bf2eca083efdf"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality primary contract and exchange sources; low-to-medium source-of-truth ambiguity because Polymarket cites the Binance UI specifically while verification used docs plus live API.",
+  "strongest_disconfirmers": [
+    "The contract settles on one exact future one-minute close, not current spot or any intraday touch.",
+    "Recent hour showed downside drift from about 2345 to about 2298.",
+    "A 4% cushion can disappear in crypto over 24 hours."
+  ],
+  "strongest_supports": [
+    "Live Binance ETHUSDT was about 2298, roughly 4.5% above the 2200 threshold.",
+    "Sampled recent and 24h Binance lows remained above 2200.",
+    "Polymarket cross-strike ladder was internally coherent with spot in the high 2200s."
+  ],
+  "timing_relevance": "High: the contract resolves on a single April 17 12:00 ET one-minute candle close.",
+  "unresolved_ambiguities": [
+    "Exact April 17 path into the noon ET minute.",
+    "Whether the market has hidden order-flow information justifying higher confidence."
+  ],
+  "what_would_change_view": "ETH weakening toward or below 2240 on Binance before settlement, or evidence that Binance UI settlement candles differ materially from API-observed candles, would lower the estimate."
+}

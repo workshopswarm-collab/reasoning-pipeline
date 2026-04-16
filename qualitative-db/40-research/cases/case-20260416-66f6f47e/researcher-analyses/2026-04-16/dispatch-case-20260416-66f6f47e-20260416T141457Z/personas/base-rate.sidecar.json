@@ -1,0 +1,57 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A sustained break back below 72000 before April 21 would materially weaken the Yes case.",
+    "Exchange-specific microstructure at settlement matters more than broader BTC strength elsewhere."
+  ],
+  "key_assumptions": [
+    "BTC stays in roughly its current trading regime into April 21.",
+    "No Binance-specific dislocation materially distorts the settlement minute close."
+  ],
+  "main_logical_chain": [
+    "The contract resolves from a specific Binance BTC/USDT 1-minute close at an exact ET timestamp.",
+    "BTC is already materially above 72000 on the governing venue during research.",
+    "That shifts the problem from reaching the threshold to remaining above it at one future minute close.",
+    "Base rate therefore favors Yes, but not overwhelmingly because exact-time close risk remains meaningful."
+  ],
+  "main_thesis": "BTC is already above 72000 on Binance with several days remaining, so Yes is modestly favored, but the contract depends on one exact April 21 noon ET Binance 1-minute close rather than general strength.",
+  "own_probability": 0.74,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone has a final 'Close' price higher than the price specified.",
+    "Binance BTCUSDT spot check during research: 73764.37"
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "contract_interpretation",
+    "market_anchor"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-66f6f47e",
+    "dispatch_id": "dispatch-case-20260416-66f6f47e-20260416T141457Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "6e5f4e1f-3d3f-4191-9dc5-ba1afbf0d6cf",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-66f6f47e/researcher-analyses/2026-04-16/dispatch-case-20260416-66f6f47e-20260416T141457Z/personas/base-rate.md",
+    "source_persona_sha256": "5bf02ae60b71fc008d8c580845bd9b39cda36ca0c18adaad492f6e0dfbd0f04a"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary source quality is high because the contract rules and Binance data directly govern the question; independence is only medium-low because evidence is concentrated in the same mechanism stack.",
+  "strongest_disconfirmers": [
+    "Resolution depends on one exact Binance 1-minute close at 12:00 ET on April 21, so a modest pullback at that moment is enough for No.",
+    "BTC volatility over several days is easily large enough to move price back below 72000."
+  ],
+  "strongest_supports": [
+    "Direct Binance spot check showed BTCUSDT at 73764.37, already above the 72000 threshold.",
+    "Recent Binance candles show repeated trading above 72000, making this a persistence question rather than a fresh breakout requirement.",
+    "For a liquid 24/7 asset, being already above the threshold several days ahead gives Yes a favorable outside-view prior."
+  ],
+  "timing_relevance": "High: the market resolves on April 21 at 12:00 ET and depends on one exact 1-minute Binance close.",
+  "unresolved_ambiguities": [
+    "How stable BTC will remain relative to 72000 into the exact settlement minute.",
+    "Whether Binance-specific price behavior could diverge at the relevant minute."
+  ],
+  "what_would_change_view": "A decisive move back below 72000 on Binance with failed retests, or a new shock increasing downside regime risk into April 21, would move the estimate down materially."
+}

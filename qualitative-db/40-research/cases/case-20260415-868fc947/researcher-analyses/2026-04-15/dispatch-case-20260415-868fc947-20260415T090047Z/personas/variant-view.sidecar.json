@@ -1,0 +1,58 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A sustained move above 75k before settlement would weaken the variant case.",
+    "If realized volatility compresses sharply, downside path risk falls."
+  ],
+  "key_assumptions": [
+    "A roughly 2-3% move below spot into the settlement minute remains plausible over the next day.",
+    "Contract mechanics matter more than broad BTC sentiment because settlement is one venue, one pair, one minute."
+  ],
+  "main_logical_chain": [
+    "Market implies 87.5% Yes because BTC is currently above 72k.",
+    "But settlement depends on one exact Binance BTC/USDT 1-minute close at 12:00 ET on April 16.",
+    "With only a modest cushion versus crypto's ordinary short-horizon volatility, No remains more plausible than the market suggests.",
+    "Therefore Yes is still the base case, but closer to 80% than 87.5%."
+  ],
+  "main_thesis": "Yes remains more likely than not, but the 87.5% market price appears slightly overconfident because exact Binance one-minute settlement leaves meaningful path-dependent downside risk.",
+  "own_probability": 0.8,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone (noon) ... has a final 'Close' price higher than the price specified.",
+    "2026-04-16 12:00 ET = 2026-04-16 16:00 UTC"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation",
+    "variant_hypothesis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-868fc947",
+    "dispatch_id": "dispatch-case-20260415-868fc947-20260415T090047Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "2c6f28bb-8b8c-470e-98fa-341c1c7b510d",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-868fc947/researcher-analyses/2026-04-15/dispatch-case-20260415-868fc947-20260415T090047Z/personas/variant-view.md",
+    "source_persona_sha256": "44349cf7c1af706b0759e4897f2dda33dc57a2d46898b39fe59b86def27504d4"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-value primary sources with low source-of-truth ambiguity; external cross-check independence is medium rather than high.",
+  "strongest_disconfirmers": [
+    "BTC was already more than $2,000 above the threshold at check time.",
+    "Binance 24h low at check time was still above 72,000."
+  ],
+  "strongest_supports": [
+    "Direct Binance checks showed BTCUSDT around 74.0k-74.2k, above the 72k threshold.",
+    "CoinGecko and Coinbase spot cross-checks broadly matched Binance's level.",
+    "Source-of-truth wording is explicit and low-ambiguity."
+  ],
+  "timing_relevance": "This is a next-day, exact-minute contract; ET noon on 2026-04-16 was explicitly verified as 16:00 UTC.",
+  "unresolved_ambiguities": [
+    "How much cushion BTC will retain in the final pre-settlement hours.",
+    "Whether intraday volatility expands or compresses into the resolution window."
+  ],
+  "what_would_change_view": "I would move closer to the market if BTC holds materially above 75k into the final hours or if fresh Binance data shows a much wider cushion with calmer volatility."
+}

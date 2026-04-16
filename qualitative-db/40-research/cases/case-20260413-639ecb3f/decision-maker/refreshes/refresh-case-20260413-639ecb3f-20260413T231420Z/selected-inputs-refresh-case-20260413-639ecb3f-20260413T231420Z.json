@@ -1,0 +1,241 @@
+{
+  "artifact_type": "decision_selected_inputs",
+  "schema_version": "decision-selected-inputs/v1",
+  "case_key": "case-20260413-639ecb3f",
+  "dispatch_id": "refresh-case-20260413-639ecb3f-20260413T231420Z",
+  "verification_mode": "targeted_escalation",
+  "verification_triggers": [
+    "large_apparent_edge_vs_market",
+    "freshness_sensitive_catalyst",
+    "decision_blockers_present",
+    "internal_inconsistency_in_package"
+  ],
+  "core_case": {
+    "question": "Will Ethereum reach $2,400 April 13-19?",
+    "market_title": "Will Ethereum reach $2,400 April 13-19?",
+    "market_reference_price": 0.79,
+    "market_quote_timestamp": "2026-04-13T23:14:16.807936+00:00",
+    "syndicated_probability_low": 0.68,
+    "syndicated_probability_high": 0.74,
+    "syndicated_probability_midpoint": 0.71,
+    "edge_mid_vs_market_pct_points": -8.0,
+    "relation_to_market": "below_market",
+    "edge_independent_verification_quality": "medium",
+    "contract_ambiguity_level": "minor",
+    "contract_ambiguity_reason": "Public fetch confirms event framing but not the full rules text directly in this synthesis pass; upstream lanes consistently report Binance 1-minute high mechanics.",
+    "freshness_sensitive": "yes",
+    "freshness_driver": "Short-dated crypto price path; a single momentum extension or reversal in the next 24-48 hours can move the probability materially.",
+    "decision_blockers": [
+      "Independent verification of the exact authoritative settlement wording is not perfect in the synthesis pass.",
+      "Any sharp crypto-wide risk-off move could quickly invalidate proximity-based bullishness.",
+      "The apparent edge versus market is small after compression, so actionability is limited."
+    ],
+    "blockers_require_new_research": "no",
+    "disagreement_type": "interpretation",
+    "follow_up_needed": "yes"
+  },
+  "required_upstream_inputs": {
+    "decision_handoff_path": "qualitative-db/40-research/cases/case-20260413-639ecb3f/synthesizer-agent/decision-handoff.md",
+    "syndicated_runtime_path": "qualitative-db/40-research/cases/case-20260413-639ecb3f/synthesizer-agent/syndicated-finding.runtime.json",
+    "syndicated_finding_path": "qualitative-db/40-research/cases/case-20260413-639ecb3f/synthesizer-agent/syndicated-finding.md",
+    "sidecar_synthesis_bundle_path": "qualitative-db/40-research/cases/case-20260413-639ecb3f/researcher-analyses/2026-04-13/dispatch-case-20260413-639ecb3f-20260413T225424Z/sidecar-synthesis-bundle.json",
+    "synthesis_sidecar_readiness": {
+      "ready_sidecar_count": 5,
+      "pending_sidecar_count": 0,
+      "sidecar_bundle_sidecar_count": 5,
+      "sidecar_bundle_coverage_status": "complete"
+    },
+    "syndicated_runtime_summary": {
+      "artifact_type": "syndicated_finding_runtime_metadata",
+      "market_snapshot_time": "2026-04-13T22:54:24.597279+00:00",
+      "source_persona_count": 0,
+      "supporting_artifact_count": 0
+    }
+  },
+  "structured_handoff_primary": {
+    "relation_to_market": "below_market",
+    "edge_quality": "moderate",
+    "edge_independent_verification_quality": "medium",
+    "compressed_toward_market_due_to_verification": "yes",
+    "contract_ambiguity_level": "minor",
+    "contract_ambiguity_reason": "Public fetch confirms event framing but not the full rules text directly in this synthesis pass; upstream lanes consistently report Binance 1-minute high mechanics.",
+    "independently_verified_points": [
+      "ETH was trading in the low-to-mid 2340s at synthesis time, leaving roughly a 2%-plus move to 2400.",
+      "Binance 24h high was 2363.94, so the threshold had not yet been reached but was nearby.",
+      "Public Polymarket event page confirms the 2400 outcome was priced around 76% and that resolution depends on page rules rather than a weekly close narrative."
+    ],
+    "verification_gap_summary": "The main remaining gap is direct first-hand recovery of the full authoritative rules text naming Binance ETH/USDT 1-minute highs in this synthesis pass.",
+    "best_countercase_summary": "A visible round-number threshold can still fail despite proximity, and without a fresh forcing catalyst the final 1-2% may not print on Binance.",
+    "main_reason_for_disagreement": "Remaining disagreement is mostly about how much weight to put on proximity/touch mechanics versus failed-breakout path risk.",
+    "resolution_mechanics_summary": "This is effectively a venue-specific touch market, with Yes favored if the governing Binance threshold-high interpretation is correct.",
+    "disagreement_intensity": "",
+    "freshness_sensitive": "yes",
+    "freshness_driver": "Short-dated crypto price path; a single momentum extension or reversal in the next 24-48 hours can move the probability materially.",
+    "decision_blockers": [
+      "Independent verification of the exact authoritative settlement wording is not perfect in the synthesis pass.",
+      "Any sharp crypto-wide risk-off move could quickly invalidate proximity-based bullishness.",
+      "The apparent edge versus market is small after compression, so actionability is limited."
+    ],
+    "blockers_require_new_research": "no",
+    "disagreement_type": "interpretation",
+    "follow_up_needed": "yes"
+  },
+  "structured_handoff_policy": {
+    "structured_handoff_is_primary_starting_point": true,
+    "prose_is_fallback_only": true,
+    "structured_handoff_complete": true,
+    "missing_structured_fields": []
+  },
+  "verification_enforcement": {
+    "agent_tool_use_allowed": true,
+    "allowed_agent_tools": [
+      "web_search",
+      "web_fetch"
+    ],
+    "enforcement_method": "session_message_inspection",
+    "violation_action": "fail_run",
+    "rationale": "Decision-Maker may perform bounded independent source discovery/search during targeted escalation, but only within runtime-enforced tool/query/fetch budgets."
+  },
+  "verification_budget": {
+    "search_queries_allowed": 5,
+    "source_fetches_allowed": 4,
+    "minimum_distinct_source_families": 3,
+    "preferred_distinct_source_families": 4
+  },
+  "prose_fallback": {
+    "included": true,
+    "reason": "targeted_escalation_context",
+    "decision_handoff_excerpt": "# Decision summary\n\nPost-synthesis, ETH reaching $2,400 on Binance ETH/USDT during Apr 13-19 still looks more likely than not, but the market’s 0.76 price appears a bit rich rather than clearly wrong. My final view is 0.68 to 0.74: the contract mechanics are genuinely favorable to Yes because any Binance 1-minute high counts, but the independent verification mostly confirms proximity/mechanics rather than proving a large edge, so I compress modestly toward market while staying slightly below it.\n\n## Why this may matter now\n\nMarket implied probability is 0.76. My syndicated range is 0.68 to 0.74, so the edge is marginal and slightly below market rather than actionable on size. The likely market overpricing, if any, is traders treating nearness to a round-number barrier as almost equivalent to completion.\n\n## Shift versus swarm baseline\n\nThe provisional swarm center was 0.68. My final range is centered a bit above that, roughly around 0.71, because independent checking supports the stronger lanes on contract structure: this is not a close-above market but a touch-style threshold setup, which really does make Yes easier. I did not move all the way to market because the synthesis pass …"
+  },
+  "selected_persona_sidecars": [
+    {
+      "persona": "market-implied",
+      "recommended_weight": "medium",
+      "own_probability": 0.72,
+      "main_thesis": "Market pricing near 76% looks broadly efficient because ETH is already within about 2% of the barrier and the contract resolves on any Binance 1-minute high at or above $2,400.",
+      "main_logical_chain": [
+        "Start from the 76% market price as an information-rich prior.",
+        "Verify what counts for resolution: any Binance ETH/USDT 1-minute high >= $2,400 during Apr 13-19 ET.",
+        "Check live/contextual ETH pricing across multiple sources and find spot in the mid-$2,300s.",
+        "Infer that only a modest upside wick is required over a multi-day window."
+      ],
+      "strongest_supports": [
+        "ETH spot snapshots clustered around $2,356-$2,365, leaving only a modest move to $2,400.",
+        "Rules use any Binance 1-minute high, which is easier to satisfy than a close above $2,400."
+      ],
+      "strongest_disconfirmers": [
+        "ETH had not yet hit $2,400 at research time and a final 1.5%-2% move can still fail.",
+        "Support is mechanical/contextual rather than a full statistical volatility backtest."
+      ],
+      "unresolved_ambiguities": [
+        "No separate exhaustive realized-volatility study was performed.",
+        "Rule clarity comes from embedded market-page text rather than an independently fetched standalone rules page."
+      ],
+      "what_would_change_view": "I would move lower if ETH loses the $2,300 area or broader crypto sentiment turns sharply risk-off; higher if ETH repeatedly probes $2,380-$2,395 early in the window.",
+      "timing_relevance": "Very high: this is a short-dated barrier-touch market where current distance to target and remaining calendar time drive most of the probability.",
+      "source_quality_view": "Adequate for a low-difficulty case: primary contract/rules source plus multiple timely contextual spot checks, with medium evidence independence and low-to-medium source-of-truth ambiguity after verification.",
+      "persona_finding_path": "qualitative-db/40-research/cases/case-20260413-639ecb3f/researcher-analyses/2026-04-13/dispatch-case-20260413-639ecb3f-20260413T225424Z/personas/market-implied.md",
+      "assumption_artifact_paths": [
+        "qualitative-db/40-research/cases/case-20260413-639ecb3f/researcher-analyses/2026-04-13/dispatch-case-20260413-639ecb3f-20260413T225424Z/assumptions/market-implied.md"
+      ],
+      "evidence_artifact_paths": []
+    },
+    {
+      "persona": "catalyst-hunter",
+      "recommended_weight": "medium",
+      "own_probability": 0.64,
+      "main_thesis": "ETH is close enough to $2,400 that continued momentum could trigger a Binance 1-minute high above the threshold this week, but the market's 76% price looks somewhat rich absent a clear must-happen catalyst.",
+      "main_logical_chain": [
+        "The contract settles on any Binance ETH/USDT 1-minute high at or above 2400 during Apr 13-19 ET.",
+        "ETH was already trading in the mid-2350s and had printed a Binance 24h high near 2364.",
+        "Only a small additional move is needed, and recent realized volatility shows that move is feasible within the window.",
+        "Because the catalyst is mostly momentum continuation rather than a discrete scheduled event, the probability is above 50% but below the market's 76%."
+      ],
+      "strongest_supports": [
+        "Polymarket rules make this a Binance 1-minute high threshold-touch contract, which is easier than requiring a close above 2400.",
+        "Binance 24h high already reached 2363.94 while spot was around 2354-2356, leaving only about 1.5%-2.0% upside needed."
+      ],
+      "strongest_disconfirmers": [
+        "There is no clearly identified must-happen catalyst in the Apr 13-19 window that independently forces the final move to 2400.",
+        "A near-miss in the 2380s-2390s would still resolve No."
+      ],
+      "unresolved_ambiguities": [
+        "Whether the current rally is durable follow-through or a short-lived squeeze.",
+        "Whether any unsurfaced macro or crypto-specific event inside the window could materially change timing odds."
+      ],
+      "what_would_change_view": "A clean extension through the high-2300s would push the estimate up; failure to retest 2360s followed by reversal toward the low 2200s would push it clearly down.",
+      "timing_relevance": "High: this is a short-dated threshold-touch market where brief continuation through the high-2300s could resolve the contract quickly.",
+      "source_quality_view": "Low source-of-truth ambiguity because Polymarket explicitly names Binance ETH/USDT 1-minute highs; contextual independence is medium because CoinGecko is an independent aggregator but all evidence points to the same spot regime.",
+      "persona_finding_path": "qualitative-db/40-research/cases/case-20260413-639ecb3f/researcher-analyses/2026-04-13/dispatch-case-20260413-639ecb3f-20260413T225424Z/personas/catalyst-hunter.md",
+      "assumption_artifact_paths": [
+        "qualitative-db/40-research/cases/case-20260413-639ecb3f/researcher-analyses/2026-04-13/dispatch-case-20260413-639ecb3f-20260413T225424Z/assumptions/catalyst-hunter.md"
+      ],
+      "evidence_artifact_paths": []
+    },
+    {
+      "persona": "base-rate",
+      "recommended_weight": "medium",
+      "own_probability": 0.79,
+      "main_thesis": "Ethereum reaching $2,400 during April 13-19 is slightly more likely than the market implies because the threshold is only about 2% above current spot and sits inside recent realized ETH range.",
+      "main_logical_chain": [
+        "Start with market-implied probability of 76%.",
+        "Check current ETH spot relative to the 2400 threshold and note the hurdle is only about 2%.",
+        "Check recent realized ETH history and see that 2400 is inside recent range rather than a fresh breakout level.",
+        "Conclude the outside view supports a high probability and puts fair odds slightly above market, but not by much."
+      ],
+      "strongest_supports": [
+        "ETH spot was already in the mid-2300s, leaving only about a 2% move to reach 2400.",
+        "Recent realized ETH prices had already reached or exceeded 2400 within the prior month."
+      ],
+      "strongest_disconfirmers": [
+        "The empirical outside-view calibration is rough and may overstate the true hit probability.",
+        "If the exact Polymarket settlement rules are more restrictive than a simple touch interpretation, true probability could be lower."
+      ],
+      "unresolved_ambiguities": [
+        "Exact Polymarket settlement feed / rule text was not fully visible in the fetched snippet.",
+        "How representative recent realized volatility is for the coming week."
+      ],
+      "what_would_change_view": "Cleaner restrictive rule text, a sharp ETH selloff away from 2400, or better empirical calibration showing materially lower comparable hit rates would move me down; cleaner permissive touch rules or sustained proximity to 2400 would move me up.",
+      "timing_relevance": "High; this is a six-day threshold market and both spot distance and realized volatility matter immediately.",
+      "source_quality_view": "Source quality is adequate for a low-difficulty threshold market: Polymarket is strong for current pricing, while CoinGecko and CryptoCompare provide decent independent contextual price history, though exact settlement-feed precision was not fully recovered.",
+      "persona_finding_path": "qualitative-db/40-research/cases/case-20260413-639ecb3f/researcher-analyses/2026-04-13/dispatch-case-20260413-639ecb3f-20260413T225424Z/personas/base-rate.md",
+      "assumption_artifact_paths": [
+        "qualitative-db/40-research/cases/case-20260413-639ecb3f/researcher-analyses/2026-04-13/dispatch-case-20260413-639ecb3f-20260413T225424Z/assumptions/base-rate.md"
+      ],
+      "evidence_artifact_paths": [
+        "qualitative-db/40-research/cases/case-20260413-639ecb3f/researcher-analyses/2026-04-13/dispatch-case-20260413-639ecb3f-20260413T225424Z/evidence/base-rate.md"
+      ]
+    }
+  ],
+  "selected_assumption_snippets": [],
+  "selected_evidence_snippets": [],
+  "selected_supporting_note_snippets": [],
+  "bundle_budget": {
+    "max_chars": 18000,
+    "approx_tokens_before_trim": 4848,
+    "approx_tokens_after_trim": 3860,
+    "actual_chars_before_trim": 19393,
+    "actual_chars_after_trim": 15442,
+    "trim_applied": true
+  },
+  "enforcement_summary": {
+    "full_case_tree_excluded": true,
+    "full_persona_markdown_excluded": true,
+    "unbounded_research_excluded_from_default_bundle": true,
+    "structured_handoff_primary_enforced": true,
+    "prose_fallback_only": true,
+    "agent_tool_use_allowed": true,
+    "selected_persona_count": 3,
+    "selected_assumption_count": 0,
+    "selected_evidence_count": 0,
+    "selected_supporting_note_count": 0
+  },
+  "sidecar_selection_guardrail": {
+    "expected_nonzero_sidecars": true,
+    "violation": false,
+    "message": "",
+    "resolved_sidecar_bundle_path": "qualitative-db/40-research/cases/case-20260413-639ecb3f/researcher-analyses/2026-04-13/dispatch-case-20260413-639ecb3f-20260413T225424Z/sidecar-synthesis-bundle.json",
+    "resolved_sidecar_bundle_sidecar_count": 5,
+    "selected_persona_count": 3
+  }
+}

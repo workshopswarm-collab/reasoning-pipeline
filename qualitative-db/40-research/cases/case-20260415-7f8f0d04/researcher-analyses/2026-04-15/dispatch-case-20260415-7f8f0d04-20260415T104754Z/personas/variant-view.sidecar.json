@@ -1,0 +1,62 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A later snapshot could show rank movement.",
+    "A tie with claude-opus-4-6 would flip the outcome against the target.",
+    "Source substitution rules introduce small residual ambiguity if Arena is unavailable at check time."
+  ],
+  "key_assumptions": [
+    "Top-of-board Arena scores can still move meaningfully over the next ~49 hours.",
+    "A 6-point lead over claude-opus-4-6 is narrow enough that tie or flip risk matters.",
+    "The written alphabetical tie-break will be applied as stated if scores tie."
+  ],
+  "main_logical_chain": [
+    "Check the contract to identify the exact leaderboard, timing, and tie-break mechanics.",
+    "Verify the current leaderboard state under Style Control and note the target model is first.",
+    "Notice the lead over claude-opus-4-6 is only 6 points and that a tie would resolve against the thinking variant.",
+    "Conclude the model remains favorite but the market price overstates certainty for a future dynamic snapshot market."
+  ],
+  "main_thesis": "claude-opus-4-6-thinking is the deserved favorite but the market is overconfident because the lead is narrow, the snapshot is future-dated, and the tie-break explicitly works against the thinking variant versus claude-opus-4-6.",
+  "own_probability": 0.73,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "claude-opus-4-6-thinking ranked #1 with score 1502 \u00b15",
+    "claude-opus-4-6 ranked #2 with score 1496 \u00b15",
+    "claude-opus-4-6 would rank ahead of claude-opus-4-6-thinking on a tie"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation",
+    "variant_hypothesis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-7f8f0d04",
+    "dispatch_id": "dispatch-case-20260415-7f8f0d04-20260415T104754Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "418594c5-4efc-483c-a9f8-cea1b5ee3835",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-7f8f0d04/researcher-analyses/2026-04-15/dispatch-case-20260415-7f8f0d04-20260415T104754Z/personas/variant-view.md",
+    "source_persona_sha256": "b90a0cb000c7e6663604cf6aaf4c1fc0bd3f2d8f88c7f9c7f62b81aad95aaf05"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High relevance primary sources with medium independence: the contract is explicit and the live leaderboard is governing, but both center on the same dynamic resolution mechanism.",
+  "strongest_disconfirmers": [
+    "The target model is already first on the governing source, which may justify a high favorite probability if ranks are sticky.",
+    "No visible competitor is currently ahead of claude-opus-4-6-thinking."
+  ],
+  "strongest_supports": [
+    "The governing leaderboard snapshot currently shows claude-opus-4-6-thinking ranked #1.",
+    "Other visible rivals are below the target model in the fetched top rows.",
+    "The market contract explicitly uses this leaderboard and style-control setting as source of truth."
+  ],
+  "timing_relevance": "The market resolves at April 17, 2026 12:00 PM ET, about 49 hours after this analysis snapshot, so current rank is necessary but not sufficient.",
+  "unresolved_ambiguities": [
+    "How stable top Arena style-control ranks are over short windows.",
+    "Whether another near-top competitor can jump first before noon ET on April 17.",
+    "How a substitute source would be chosen if Arena were permanently unavailable."
+  ],
+  "what_would_change_view": "A later snapshot showing a wider durable lead would move me closer to the market; a closed gap, tie, or overtaking would make me more bearish."
+}

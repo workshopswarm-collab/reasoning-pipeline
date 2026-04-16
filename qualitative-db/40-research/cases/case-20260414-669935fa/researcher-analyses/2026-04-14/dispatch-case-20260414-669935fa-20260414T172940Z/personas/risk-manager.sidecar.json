@@ -1,0 +1,57 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "This view depends on API-versus-settlement-source parity.",
+    "The market had not yet mechanically resolved at write time."
+  ],
+  "key_assumptions": [
+    "The Binance public 1-minute klines API reflects the same underlying 1-minute highs the Polymarket rules intend.",
+    "The observed qualifying candle will not be revised away or excluded by hidden market-specific nuance."
+  ],
+  "main_logical_chain": [
+    "Read the market rules to identify the governing source of truth and exact threshold-touch mechanics.",
+    "Verify whether any Binance BTC/USDT 1-minute high inside the contract window reached or exceeded 76,000.",
+    "A qualifying 76,038 print was found inside the window, so ordinary path risk largely disappears.",
+    "Residual uncertainty is reduced to narrow implementation or settlement-source mismatch risk, not BTC directional risk."
+  ],
+  "main_thesis": "The contract is effectively already Yes because direct Binance 1-minute data showed a 76,038 high inside the contract window, leaving only small settlement-source implementation risk.",
+  "own_probability": 0.997,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "any Binance 1-minute candle for BTC/USDT",
+    "High price equal to or greater than",
+    "76038.0 high at 2026-04-14 10:32 ET"
+  ],
+  "reasoning_mode": [
+    "risk_management",
+    "contract_interpretation",
+    "technical_reference",
+    "market_anchor"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260414-669935fa",
+    "dispatch_id": "dispatch-case-20260414-669935fa-20260414T172940Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "591764aa-483b-4dd8-b2ab-48ab921b4a9b",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-669935fa/researcher-analyses/2026-04-14/dispatch-case-20260414-669935fa-20260414T172940Z/personas/risk-manager.md",
+    "source_persona_sha256": "010ba518d4db04614713424beaf85a54b9722ee454187cfb6594b60b211e223b"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High overall: one primary contract-rules source, one direct venue-data source, and one contextual cross-check; residual ambiguity is implementation-level rather than evidentiary breadth.",
+  "strongest_disconfirmers": [
+    "Residual risk remains that the Binance public API print does not exactly match the chart/high values the market operator uses for settlement."
+  ],
+  "strongest_supports": [
+    "Polymarket rules say any Binance BTC/USDT 1-minute High at or above 76,000 during Apr 13-19 ET resolves Yes.",
+    "Binance 1-minute kline data showed a 76,038.0 high at 2026-04-14 10:32 ET, inside the contract window."
+  ],
+  "timing_relevance": "Immediate; the decisive print was already observed on 2026-04-14, so the remaining issue is settlement confirmation rather than future weekly path risk.",
+  "unresolved_ambiguities": [
+    "Whether the exact Binance chart/UI named in the rules would display the same qualifying high as the public API.",
+    "Whether any hidden contract nuance overrides the plain-language touch interpretation."
+  ],
+  "what_would_change_view": "A direct check of the exact Binance chart/UI failing to show a qualifying high, or a settlement clarification rejecting the observed API print, would move the estimate down materially."
+}

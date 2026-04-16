@@ -1,0 +1,58 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A sharp BTC selloff before tomorrow noon ET.",
+    "A Binance-specific print or operational irregularity at the exact resolution minute.",
+    "Any hidden source-of-truth implementation wrinkle between chart UI and verification proxy."
+  ],
+  "key_assumptions": [
+    "Residual downside risk is mainly tail-event or venue-specific, not ordinary drift.",
+    "Binance API is a reasonable live verification proxy for the Binance chart source named in the rules."
+  ],
+  "main_logical_chain": [
+    "The contract resolves on the Binance BTC/USDT 12:00 ET one-minute candle close on 2026-04-15.",
+    "Current Binance pricing is several thousand dollars above 70k and recent minute closes are comfortably above threshold.",
+    "That makes Yes highly likely, but a single-minute, single-venue contract still leaves some underpriced tail risk.",
+    "Therefore the market direction looks right but its confidence looks slightly too high."
+  ],
+  "main_thesis": "Yes remains the likely outcome, but a one-minute, one-venue crypto contract deserves slightly less confidence than the market's 97.9% pricing.",
+  "own_probability": 0.95,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "final 'Close' price higher than the price specified",
+    "12:00 ET = 16:00 UTC on this date",
+    "market direction looks right but its confidence looks slightly too high"
+  ],
+  "reasoning_mode": [
+    "contract_interpretation",
+    "variant_hypothesis",
+    "risk_management"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-8dcead65",
+    "dispatch_id": "dispatch-case-20260414-8dcead65-20260414T160342Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "ec54cc43-d0f9-4685-b48d-3db8e30bf797",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-8dcead65/researcher-analyses/2026-04-14/dispatch-case-20260414-8dcead65-20260414T160342Z/personas/variant-view.md",
+    "source_persona_sha256": "59fa8b8afe1846f300194dd51b369ee744ad07a2c2aafe42772794e21e59889d"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High on governing mechanics and direct underlying verification, with only medium evidence independence because Binance is both the governing source and the main live data source.",
+  "strongest_disconfirmers": [
+    "The current cushion above 70k may make the remaining downside path genuinely negligible over the next day."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT was around 75.4k at retrieval time, well above 70k.",
+    "Recent 1-minute Binance candles and a 1000-candle sample showed no closes at or below 70k in the retrieved window.",
+    "The contract wording is straightforward once the ET-to-UTC timing is checked."
+  ],
+  "timing_relevance": "Resolution depends on the 2026-04-15 12:00 ET candle, which is 2026-04-15 16:00 UTC.",
+  "unresolved_ambiguities": [
+    "How much exact-minute venue risk should be priced versus generic BTC spot risk.",
+    "Whether Binance UI and API surfaces are perfectly aligned for the settlement candle."
+  ],
+  "what_would_change_view": "I would move lower on a sharp selloff toward the threshold or Binance anomalies; I would move closer to the market if another pre-deadline check still showed a large cushion and clean operation."
+}

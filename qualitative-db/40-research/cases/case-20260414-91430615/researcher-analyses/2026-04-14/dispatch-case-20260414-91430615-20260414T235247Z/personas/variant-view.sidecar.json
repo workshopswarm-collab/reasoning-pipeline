@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Weekend volatility or a fast move toward 70000 before Sunday would raise No risk quickly.",
+    "Estimate depends on contextual daily data rather than exact settlement-minute history.",
+    "Exchange-specific pricing or operational irregularity at the settlement minute could matter disproportionately."
+  ],
+  "key_assumptions": [
+    "Recent above-70k Binance trading regime is informative but not determinative for Sunday noon ET.",
+    "Single-minute exchange-specific settlement creates more residual No probability than the headline spot cushion suggests.",
+    "No major Binance-specific operational anomaly distorts the relevant settlement print."
+  ],
+  "main_logical_chain": [
+    "Polymarket rules make Binance BTC/USDT 12:00 ET one-minute close the governing source of truth.",
+    "Current Binance spot and recent price context strongly favor Yes because BTC is well above 70000.",
+    "But one-minute Sunday-noon settlement on a specific exchange/pair is narrower and more fragile than a broad BTC-above-70k narrative.",
+    "Therefore Yes remains likely, but the market-implied 90% looks modestly overstated; 83% better reflects residual path and settlement risk."
+  ],
+  "main_thesis": "Yes is still more likely than not, but the market is somewhat overconfident because settlement depends on a single Binance BTC/USDT one-minute close at Sunday noon ET rather than a broad daily-level intuition.",
+  "own_probability": 0.83,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone (noon) ... has a final 'Close' price higher than the price specified",
+    "Binance BTCUSDT fetched around 74,065.09"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation",
+    "variant_hypothesis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-91430615",
+    "dispatch_id": "dispatch-case-20260414-91430615-20260414T235247Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "e3d41036-ca94-4b82-ac15-92550a71c177",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-91430615/researcher-analyses/2026-04-14/dispatch-case-20260414-91430615-20260414T235247Z/personas/variant-view.md",
+    "source_persona_sha256": "48d46f83e55647084f811571c1350bf73b088c25b2dc5394e876ae1698fccaf4"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality primary contract and exchange data, with medium independence because direct evidence is necessarily Binance-centric; source-of-truth ambiguity is low-to-medium rather than high.",
+  "strongest_disconfirmers": [
+    "Recent Binance trading already shows BTC comfortably above 70000, so the market's 90% may simply be appropriate.",
+    "The current cushion above the threshold is large enough that the variant discount may be too conservative if regime stability persists."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT spot was around 74065, roughly 5.8% above the 70000 threshold.",
+    "Recent Binance daily closes and lows in the sampled period remained above 70000.",
+    "Only five days remained to settlement, limiting time for a full bearish regime shift absent a shock."
+  ],
+  "timing_relevance": "High; the contract resolves at a specific Sunday April 19 12:00 ET one-minute close, so timing/path dependence is central rather than incidental.",
+  "unresolved_ambiguities": [
+    "Exact Binance display/labeling mechanics for the ET noon one-minute candle were not independently validated beyond the stated rules.",
+    "Independent context source was not settlement-direct; Binance remains the unavoidable core evidence base."
+  ],
+  "what_would_change_view": "I would move closer to market if BTC holds comfortably above 72k-74k into the weekend with low downside volatility; I would move more bearish if BTC retests 70k, macro/crypto risk-off intensifies, or Binance-specific settlement-print concerns appear."
+}

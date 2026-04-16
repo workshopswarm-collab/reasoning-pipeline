@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A fast downside move into the exact noon ET minute could still resolve No",
+    "This contract is sensitive to timezone conversion and exact settlement mechanics",
+    "Exchange-specific operational issues on Binance would matter more than broad market averages"
+  ],
+  "key_assumptions": [
+    "Current spot cushion above 72k is large enough to absorb ordinary volatility before noon ET on April 16",
+    "No major negative macro, ETF-flow, or exchange catalyst hits before settlement",
+    "Binance remains operationally stable around the deciding minute"
+  ],
+  "main_logical_chain": [
+    "Confirm the contract settles on Binance BTCUSDT 1-minute close at 12:00 ET on April 16",
+    "Check direct Binance spot and recent same-time reference pricing against the 72k threshold",
+    "Check whether any obvious scheduled catalyst before settlement could plausibly erase the current cushion",
+    "Conclude Yes remains more likely than not, but not quite as high as the market because single-minute path risk remains real"
+  ],
+  "main_thesis": "BTC is likely to stay above 72k into the April 16 noon ET Binance settlement minute, but exact-minute path risk keeps the probability below the market's 90%.",
+  "own_probability": 0.86,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone",
+    "April 14 16:00 UTC / 12:00 ET one-minute close: 75,356.48",
+    "Current market price is 0.90"
+  ],
+  "reasoning_mode": [
+    "catalyst_analysis",
+    "contract_interpretation",
+    "market_anchor"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260414-3691b692",
+    "dispatch_id": "dispatch-case-20260414-3691b692-20260414T170231Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "c22c5aa3-8105-4edf-8f44-fdd7f6f7ce3f",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-3691b692/researcher-analyses/2026-04-14/dispatch-case-20260414-3691b692-20260414T170231Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "28644e99e4e1d471c002fca02d5702fffcad9a6961a2ca1afc7d74e6a2781432"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality direct settlement evidence from Polymarket rules and Binance data, plus a useful independent catalyst-timing check from BLS; overall source-of-truth ambiguity is low.",
+  "strongest_disconfirmers": [
+    "The contract resolves on one exact minute close, so timing fragility is high",
+    "Recent Binance trading still included sub-72k levels, with a 72-hour sampled low around 70.5k"
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT was around 74.7k when checked, materially above the 72k threshold",
+    "The April 14 12:00 ET Binance minute closed at 75,356.48, giving a same-time reference comfortably above 72k",
+    "No obvious top-tier scheduled macro catalyst was identified immediately before settlement"
+  ],
+  "timing_relevance": "Very high: the contract depends on a single Binance 1-minute close at noon ET, so catalyst timing matters almost as much as direction.",
+  "unresolved_ambiguities": [
+    "Whether an unscheduled downside catalyst appears in the next ~48 hours",
+    "Whether April 16 morning trading introduces unusual volatility near the settlement minute"
+  ],
+  "what_would_change_view": "A drop toward or below 73k before settlement, a meaningful negative macro or ETF-flow shock, or signs of Binance instability near the settlement window would lower the Yes estimate."
+}

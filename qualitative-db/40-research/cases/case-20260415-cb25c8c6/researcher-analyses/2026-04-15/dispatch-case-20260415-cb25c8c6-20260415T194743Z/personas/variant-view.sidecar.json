@@ -1,0 +1,61 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A sharp BTC selloff into Sunday noon ET would quickly compress the cushion.",
+    "Single-minute candle settlement introduces more path dependence than broader spot or daily-close formulations.",
+    "The view is only a modest disagreement; if BTC stays comfortably above threshold, the market is basically right."
+  ],
+  "key_assumptions": [
+    "BTC stays broadly in the same price regime through April 19.",
+    "The main residual risk is timestamp-specific path risk rather than source ambiguity.",
+    "Current Binance spot remains a useful contextual proxy for the eventual settlement surface."
+  ],
+  "main_logical_chain": [
+    "The contract resolves from a narrow Binance BTC/USDT one-minute close at a precise ET timestamp.",
+    "Current Binance price context strongly favors Yes because BTC is roughly 7k above the threshold.",
+    "But a single-minute, exchange-specific close is slightly more fragile than a generic daily-above-threshold intuition.",
+    "Therefore Yes remains the base case, but market confidence near 98% looks modestly too high; 94% is more defensible."
+  ],
+  "main_thesis": "Yes is still likely, but the market slightly overstates certainty because settlement depends on a single Binance BTC/USDT one-minute close at exactly noon ET.",
+  "own_probability": 0.94,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "single Binance 1-minute close at exactly 12:00 PM ET on April 19",
+    "all material conditions must hold simultaneously",
+    "94% Yes"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "contract_interpretation",
+    "variant_hypothesis",
+    "technical_reference"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-cb25c8c6",
+    "dispatch_id": "dispatch-case-20260415-cb25c8c6-20260415T194743Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "a8d2f88a-c45f-4a45-a4b9-21089cf18482",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-cb25c8c6/researcher-analyses/2026-04-15/dispatch-case-20260415-cb25c8c6-20260415T194743Z/personas/variant-view.md",
+    "source_persona_sha256": "be20305a6a912c4f290f7d5bc25ac9515222fe08caadeaa2b53d3e0445f31073"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality direct contract source plus direct exchange contextual data; source-of-truth ambiguity is low, but evidence independence is only medium-low.",
+  "strongest_disconfirmers": [
+    "BTC already has a large cushion above 68k, so a high-90s Yes probability may be justified if the regime holds.",
+    "No direct evidence reviewed suggests imminent Binance-specific settlement disruption or a likely collapse below threshold."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT spot check was about 75,037.79 on 2026-04-15, well above 68,000.",
+    "Binance 24h low check was about 73,514, still materially above the threshold.",
+    "Polymarket rules clearly specify Binance BTC/USDT 1m candle close at 12:00 PM ET as source of truth."
+  ],
+  "timing_relevance": "Timing is central because settlement depends on the Binance BTC/USDT 12:00 PM ET one-minute candle close on April 19, not a daily close or cross-exchange average.",
+  "unresolved_ambiguities": [
+    "The exact April 19 noon ET close cannot be known yet.",
+    "No additional independent dataset was used beyond Polymarket rules and Binance direct price surfaces."
+  ],
+  "what_would_change_view": "I would move closer to the market if BTC keeps or widens a large cushion into the final 24 hours; I would move lower if BTC sells off sharply toward the high-60s/low-70s or Binance-specific volatility rises near settlement."
+}

@@ -1,0 +1,58 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "medium",
+  "fragility_points": [
+    "Lack of official standings, injury news, and independent bookmaker pricing makes the estimate vulnerable to missing case-specific information.",
+    "Source-of-truth wording is implicit rather than fully explicit in the assignment."
+  ],
+  "key_assumptions": [
+    "No hidden injury or squad-news asymmetry is large enough to justify an 83% outright home-win price.",
+    "This is a normal Saudi Professional League fixture with standard match-result settlement.",
+    "Generic league parity and draw risk remain material absent stronger case-specific evidence."
+  ],
+  "main_logical_chain": [
+    "Start with the market at 83% but do not let price replace the prior.",
+    "Apply the outside view for ordinary first-division soccer, where draw risk and league parity usually keep outright-win probabilities below extreme levels.",
+    "Check contextual league evidence to verify this is a normal SPL fixture between established participants rather than an obvious class mismatch.",
+    "Conclude that Al Qadisiyah are still likelier than not to win, but closer to 68% than 83%."
+  ],
+  "main_thesis": "Al Qadisiyah should be favored, but the market's 83% straight-win price looks too high for a normal top-flight league match against another established SPL side.",
+  "own_probability": 0.68,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "Base-rate view: Al Qadisiyah may deserve to be favored at home, but an 83% win probability looks too high.",
+    "My outside-view estimate is 68% for an Al Qadisiyah win."
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "market_anchor",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-4c35c81d",
+    "dispatch_id": "dispatch-case-20260414-4c35c81d-20260414T204205Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "4ab19f81-2fc3-495a-9446-ef4964a02dee",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-4c35c81d/researcher-analyses/2026-04-14/dispatch-case-20260414-4c35c81d-20260414T204205Z/personas/base-rate.md",
+    "source_persona_sha256": "ff2a722cbf027249eba322f30e89b271a7e5f9d3786f713d831507265250cec5"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "One direct market source plus one useful but non-authoritative contextual sports-data source is enough for a low-difficulty base-rate pass, but evidence independence is only low-to-medium.",
+  "strongest_disconfirmers": [
+    "The market itself is at 83%, implying bettors may have stronger table, form, or team-news evidence not captured here.",
+    "If broader bookmaker consensus also sits near this level, the 68% estimate is likely too low."
+  ],
+  "strongest_supports": [
+    "Outside-view soccer base rates rarely support extreme outright-win probabilities against another established top-flight side.",
+    "Soccerway competition context shows both clubs are normal late-season SPL participants rather than an obviously extreme mismatch.",
+    "The contextual source note indicates a prior Al Qadisiyah-Al Shabab meeting ended 2-2, reinforcing draw risk."
+  ],
+  "timing_relevance": "This is a pre-match pricing judgment roughly nine days before the scheduled fixture, so late team news could still matter.",
+  "unresolved_ambiguities": [
+    "Exact official settlement source Polymarket would rely on if schedule or result edge cases occur.",
+    "Whether current team-strength or lineup asymmetry materially exceeds the base-rate prior."
+  ],
+  "what_would_change_view": "I would move upward if official standings, injury news, or multi-book odds screens showed a much larger true strength gap in Al Qadisiyah's favor."
+}

@@ -1,0 +1,249 @@
+{
+  "actor": "decision-maker",
+  "agent_tool_use_allowed": false,
+  "artifact_type": "decision_stage_status",
+  "case_key": "case-20260414-435e3a50",
+  "decision_context_path": "roles/decision-maker/runtime/artifacts/case-20260414-435e3a50/decision-context-dispatch-case-20260414-435e3a50-20260414T023540Z.json",
+  "decision_lane": {
+    "topic_id": "1669",
+    "topic_title": "case-20260414-435e3a50 | decision | T023540Z",
+    "session_key": "agent:main:telegram:group:-1003846500961:topic:1669"
+  },
+  "decision_launch_claim": {
+    "claimed_at": "2026-04-14T02:43:49.083554Z",
+    "decision_context_path": "roles/decision-maker/runtime/artifacts/case-20260414-435e3a50/decision-context-dispatch-case-20260414-435e3a50-20260414T023540Z.json",
+    "launch_log_path": "scripts/.runtime-state/decision-maker-launches/case-20260414-435e3a50-20260414T024349Z.log",
+    "launcher": "pipeline_automation_actions.launch_decision_maker",
+    "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260414-435e3a50/decision-prompt-dispatch-case-20260414-435e3a50-20260414T023540Z.md",
+    "runner_pid": 6359
+  },
+  "decision_prompt_path": "roles/decision-maker/runtime/artifacts/case-20260414-435e3a50/decision-prompt-dispatch-case-20260414-435e3a50-20260414T023540Z.md",
+  "decision_readiness": "needs_more_research",
+  "decision_target_chat_id": "-1003846500961",
+  "decision_target_session_key": "agent:main:telegram:group:-1003846500961:topic:1669",
+  "decision_visible_finish_marker": "DECISION-MAKING COMPLETED, DECISION PACKAGE CREATED | market=Will the Bank of Russia decrease the key rate after the April Meeting? | dispatch_id=dispatch-case-20260414-435e3a50-20260414T023540Z | packet_path=qualitative-db/40-research/cases/case-20260414-435e3a50/decision-maker/decision-maker-packet.md",
+  "decision_visible_receipt_marker": "SYNTHESIS RECEIVED | market=Will the Bank of Russia decrease the key rate after the April Meeting? | dispatch_id=dispatch-case-20260414-435e3a50-20260414T023540Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260414-435e3a50/decision-context-dispatch-case-20260414-435e3a50-20260414T023540Z.json",
+  "decision_visible_start_marker": "DECISION-MAKING ANALYSIS UNDERWAY | market=Will the Bank of Russia decrease the key rate after the April Meeting? | dispatch_id=dispatch-case-20260414-435e3a50-20260414T023540Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260414-435e3a50/decision-context-dispatch-case-20260414-435e3a50-20260414T023540Z.json",
+  "dispatch_id": "dispatch-case-20260414-435e3a50-20260414T023540Z",
+  "last_stage_event": {
+    "at": "2026-04-14T02:44:49.989831Z",
+    "stage": "decision_execution",
+    "state": "visible_marker_sent",
+    "message": "DECISION-MAKING COMPLETED, DECISION PACKAGE CREATED | market=Will the Bank of Russia decrease the key rate after the April Meeting? | dispatch_id=dispatch-case-20260414-435e3a50-20260414T023540Z | packet_path=qualitative-db/40-research/cases/case-20260414-435e3a50/decision-maker/decision-maker-packet.md"
+  },
+  "packet_json_path": "qualitative-db/40-research/cases/case-20260414-435e3a50/decision-maker/artifacts/decision-maker-packet.json",
+  "packet_markdown_path": "qualitative-db/40-research/cases/case-20260414-435e3a50/decision-maker/decision-maker-packet.md",
+  "position_policy": "hold_only",
+  "question": "Will the Bank of Russia decrease the key rate after the April Meeting?",
+  "recommended_side": "yes",
+  "schema_version": "decision-stage-status/v1",
+  "selected_input_bundle_estimated_tokens": 3133,
+  "selected_input_bundle_mode": "not_ready_reopen_recommended",
+  "selected_input_bundle_path": "roles/decision-maker/runtime/artifacts/case-20260414-435e3a50/selected-inputs-dispatch-case-20260414-435e3a50-20260414T023540Z.json",
+  "stage_events": [
+    {
+      "at": "2026-04-14T02:43:48.513075Z",
+      "message": "Decision-Maker stage initialized from synthesis handoff",
+      "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260414-435e3a50/synthesizer-agent/decision-handoff.md",
+      "stage": "kickoff",
+      "state": "decision_ready_for_receipt"
+    },
+    {
+      "agent_tool_use_allowed": false,
+      "approx_tokens_after_trim": 3133,
+      "at": "2026-04-14T02:43:49.041955Z",
+      "message": "Built deterministic Decision-Maker selected-input bundle",
+      "selected_input_bundle_path": "roles/decision-maker/runtime/artifacts/case-20260414-435e3a50/selected-inputs-dispatch-case-20260414-435e3a50-20260414T023540Z.json",
+      "stage": "decision_input_selection",
+      "state": "built",
+      "verification_mode": "not_ready_reopen_recommended",
+      "verification_mode_path": "roles/decision-maker/runtime/artifacts/case-20260414-435e3a50/verification-mode-dispatch-case-20260414-435e3a50-20260414T023540Z.json"
+    },
+    {
+      "at": "2026-04-14T02:43:49.042077Z",
+      "message": "Built Decision-Maker prompt from compact selected-input bundle",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260414-435e3a50/decision-prompt-dispatch-case-20260414-435e3a50-20260414T023540Z.md",
+      "stage": "decision_prompt",
+      "state": "built"
+    },
+    {
+      "at": "2026-04-14T02:43:49.042929Z",
+      "message": "Decision-Maker inputs prepared; awaiting launch claim",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260414-435e3a50/decision-prompt-dispatch-case-20260414-435e3a50-20260414T023540Z.md",
+      "stage": "decision_prepare",
+      "state": "handoff_prepared"
+    },
+    {
+      "at": "2026-04-14T02:43:49.083554Z",
+      "decision_context_path": "roles/decision-maker/runtime/artifacts/case-20260414-435e3a50/decision-context-dispatch-case-20260414-435e3a50-20260414T023540Z.json",
+      "launch_log_path": "scripts/.runtime-state/decision-maker-launches/case-20260414-435e3a50-20260414T024349Z.log",
+      "message": "Decision-Maker launch claimed by automation controller",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260414-435e3a50/decision-prompt-dispatch-case-20260414-435e3a50-20260414T023540Z.md",
+      "runner_pid": 6359,
+      "stage": "decision_receipt",
+      "state": "handoff_sent"
+    },
+    {
+      "at": "2026-04-14T02:43:49.256299Z",
+      "stage": "kickoff",
+      "state": "reentered",
+      "message": "Decision-Maker executor resumed from existing prepared/running state",
+      "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260414-435e3a50/synthesizer-agent/decision-handoff.md"
+    },
+    {
+      "at": "2026-04-14T02:43:49.773391Z",
+      "stage": "decision_input_selection",
+      "state": "built",
+      "message": "Built deterministic Decision-Maker selected-input bundle",
+      "verification_mode_path": "roles/decision-maker/runtime/artifacts/case-20260414-435e3a50/verification-mode-dispatch-case-20260414-435e3a50-20260414T023540Z.json",
+      "selected_input_bundle_path": "roles/decision-maker/runtime/artifacts/case-20260414-435e3a50/selected-inputs-dispatch-case-20260414-435e3a50-20260414T023540Z.json",
+      "verification_mode": "not_ready_reopen_recommended",
+      "approx_tokens_after_trim": 3133,
+      "agent_tool_use_allowed": false
+    },
+    {
+      "at": "2026-04-14T02:43:49.773658Z",
+      "stage": "decision_prompt",
+      "state": "built",
+      "message": "Built Decision-Maker prompt from compact selected-input bundle",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260414-435e3a50/decision-prompt-dispatch-case-20260414-435e3a50-20260414T023540Z.md"
+    },
+    {
+      "at": "2026-04-14T02:43:55.421518Z",
+      "stage": "decision_lane_bootstrap",
+      "state": "created",
+      "message": "Created dedicated Telegram decision lane",
+      "topic_id": "1669",
+      "topic_title": "case-20260414-435e3a50 | decision | T023540Z",
+      "session_key": "agent:main:telegram:group:-1003846500961:topic:1669"
+    },
+    {
+      "at": "2026-04-14T02:44:11.955873Z",
+      "stage": "decision_receipt",
+      "state": "visible_marker_sent",
+      "message": "SYNTHESIS RECEIVED | market=Will the Bank of Russia decrease the key rate after the April Meeting? | dispatch_id=dispatch-case-20260414-435e3a50-20260414T023540Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260414-435e3a50/decision-context-dispatch-case-20260414-435e3a50-20260414T023540Z.json"
+    },
+    {
+      "at": "2026-04-14T02:44:11.956955Z",
+      "stage": "decision_receipt",
+      "state": "accepted",
+      "message": "Decision-Maker handoff accepted",
+      "session_key": "agent:decision-maker:main",
+      "handoff_status": "started"
+    },
+    {
+      "at": "2026-04-14T02:44:11.957393Z",
+      "stage": "decision_execution",
+      "state": "decision_analysis_running",
+      "message": "Decision-Maker agent invocation accepted and analysis started",
+      "session_key": "agent:decision-maker:main",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260414-435e3a50/decision-prompt-dispatch-case-20260414-435e3a50-20260414T023540Z.md",
+      "handoff_status": "started"
+    },
+    {
+      "at": "2026-04-14T02:44:20.708928Z",
+      "stage": "decision_execution",
+      "state": "visible_marker_sent",
+      "message": "DECISION-MAKING ANALYSIS UNDERWAY | market=Will the Bank of Russia decrease the key rate after the April Meeting? | dispatch_id=dispatch-case-20260414-435e3a50-20260414T023540Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260414-435e3a50/decision-context-dispatch-case-20260414-435e3a50-20260414T023540Z.json"
+    },
+    {
+      "at": "2026-04-14T02:44:40.981654Z",
+      "stage": "decision_execution",
+      "state": "decision_completed",
+      "message": "Decision-Maker completed and packet rendered",
+      "warnings": [],
+      "forecast_decision_persist_error": ""
+    },
+    {
+      "at": "2026-04-14T02:44:49.989831Z",
+      "stage": "decision_execution",
+      "state": "visible_marker_sent",
+      "message": "DECISION-MAKING COMPLETED, DECISION PACKAGE CREATED | market=Will the Bank of Russia decrease the key rate after the April Meeting? | dispatch_id=dispatch-case-20260414-435e3a50-20260414T023540Z | packet_path=qualitative-db/40-research/cases/case-20260414-435e3a50/decision-maker/decision-maker-packet.md"
+    }
+  ],
+  "status": "decision_completed",
+  "targeted_verification_pack_path": "",
+  "targeted_verification_pack_required": false,
+  "trade_authorization": "watch_only",
+  "updated_at": "2026-04-14T02:44:49.989898Z",
+  "verification_mode_path": "roles/decision-maker/runtime/artifacts/case-20260414-435e3a50/verification-mode-dispatch-case-20260414-435e3a50-20260414T023540Z.json",
+  "warnings": [],
+  "previous_status": "handoff_sent",
+  "decision_lane_topic_id": "1669",
+  "decision_lane_topic_title": "case-20260414-435e3a50 | decision | T023540Z",
+  "decision_lane_session_key": "agent:main:telegram:group:-1003846500961:topic:1669",
+  "decision_target_topic_id": "1669",
+  "decision_target_topic_title": "case-20260414-435e3a50 | decision | T023540Z",
+  "decision_receipt_marker_sent_at": "2026-04-14T02:44:11.955802+00:00",
+  "decision_analysis_marker_sent_at": "2026-04-14T02:44:20.708880+00:00",
+  "timeline_update": {
+    "appended": true,
+    "case_key": "case-20260414-435e3a50",
+    "dispatch_id": "dispatch-case-20260414-435e3a50-20260414T023540Z",
+    "packet_path": "qualitative-db/40-research/cases/case-20260414-435e3a50/decision-maker/decision-maker-packet.md",
+    "entry": "- 2026-04-14T02:44:40.980379+00:00 — completed decision-making `dispatch-case-20260414-435e3a50-20260414T023540Z` with packet `qualitative-db/40-research/cases/case-20260414-435e3a50/decision-maker/decision-maker-packet.md`."
+  },
+  "forecast_decision_persist": {
+    "ok": true,
+    "packet_json": "qualitative-db/40-research/cases/case-20260414-435e3a50/decision-maker/artifacts/decision-maker-packet.json",
+    "persisted": {
+      "forecast_id": "dispatch-case-20260414-435e3a50-20260414T023540Z",
+      "market_id": "22f9c927-587e-4245-ad8e-330b8b925a0d",
+      "contract_id": "yes",
+      "forecast_prob": 0.85,
+      "decision_status": "void",
+      "decision_packet_path": "qualitative-db/40-research/cases/case-20260414-435e3a50/decision-maker/artifacts/decision-maker-packet.json",
+      "supersedes_forecast_id": null,
+      "superseded_forecast_ids": [],
+      "market_state": {
+        "market_id": "22f9c927-587e-4245-ad8e-330b8b925a0d",
+        "current_price": 0.915,
+        "last_reasoned_price": 0.85,
+        "pipeline_status": "closed"
+      }
+    },
+    "record": {
+      "forecast_id": "dispatch-case-20260414-435e3a50-20260414T023540Z",
+      "decision_ts": "2026-04-13T22:44:00-04:00",
+      "case_id": "case-20260414-435e3a50",
+      "dispatch_id": "dispatch-case-20260414-435e3a50-20260414T023540Z",
+      "market_id": "22f9c927-587e-4245-ad8e-330b8b925a0d",
+      "contract_id": "yes",
+      "platform": "polymarket",
+      "market_slug": "will-the-bank-of-russia-decrease-the-key-rate-after-the-april-meeting",
+      "question": "Will the Bank of Russia decrease the key rate after the April Meeting?",
+      "forecast_prob": "0.85",
+      "forecast_direction": "yes",
+      "confidence_label": "medium",
+      "confidence_score": "",
+      "time_horizon_label": "Through the Apr. 24 Bank of Russia meeting and official decision release",
+      "verification_mode": "not_ready_reopen_recommended",
+      "decision_status": "void",
+      "rationale_summary": "Another April cut remains the base case, but because Bank of Russia communication still preserves a live one-meeting pause path and the 91.5% market price leaves little room for late hawkish data or guidance, the disciplined output is watch-only and needs-more-research rather than an authorized trade.",
+      "decision_packet_path": "qualitative-db/40-research/cases/case-20260414-435e3a50/decision-maker/artifacts/decision-maker-packet.json",
+      "decision_handoff_path": "qualitative-db/40-research/cases/case-20260414-435e3a50/synthesizer-agent/decision-handoff.md",
+      "syndicated_finding_path": "qualitative-db/40-research/cases/case-20260414-435e3a50/synthesizer-agent/syndicated-finding.md"
+    },
+    "warnings": []
+  },
+  "terminal_summary": {
+    "at": "2026-04-14T02:44:49.989930Z",
+    "status": "decision_completed",
+    "decision_lane": {
+      "topic_id": "1669",
+      "topic_title": "case-20260414-435e3a50 | decision | T023540Z",
+      "session_key": "agent:main:telegram:group:-1003846500961:topic:1669"
+    },
+    "packet_json_path": "qualitative-db/40-research/cases/case-20260414-435e3a50/decision-maker/artifacts/decision-maker-packet.json",
+    "packet_markdown_path": "qualitative-db/40-research/cases/case-20260414-435e3a50/decision-maker/decision-maker-packet.md",
+    "trade_authorization": "watch_only",
+    "decision_readiness": "needs_more_research",
+    "last_stage_event": {
+      "at": "2026-04-14T02:44:49.989831Z",
+      "stage": "decision_execution",
+      "state": "visible_marker_sent",
+      "message": "DECISION-MAKING COMPLETED, DECISION PACKAGE CREATED | market=Will the Bank of Russia decrease the key rate after the April Meeting? | dispatch_id=dispatch-case-20260414-435e3a50-20260414T023540Z | packet_path=qualitative-db/40-research/cases/case-20260414-435e3a50/decision-maker/decision-maker-packet.md"
+    }
+  },
+  "decision_completion_marker_sent_at": "2026-04-14T02:44:49.989734+00:00"
+}

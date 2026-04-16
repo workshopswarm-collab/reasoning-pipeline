@@ -1,0 +1,55 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A sharp macro or crypto-specific selloff before settlement.",
+    "Binance-specific dislocation or unusual venue behavior.",
+    "Higher-than-expected intraday volatility near the exact settlement minute."
+  ],
+  "key_assumptions": [
+    "BTC remains in roughly its current trading regime over the next ~48 hours rather than suffering a drawdown that pushes the settlement-minute close below 72k.",
+    "Recent Binance spot context is informative for the exact venue named in the contract."
+  ],
+  "main_logical_chain": [
+    "Polymarket rules make Binance BTC/USDT 12:00 ET one-minute close on April 17 the governing observation.",
+    "Binance recent daily and hourly data show BTC already above 72k with a meaningful cushion.",
+    "Because the threshold is below current spot, the main risk is downside volatility into one minute rather than upside failure.",
+    "That supports a Yes-leaning view, but short-horizon crypto volatility keeps the probability below the market's 84%."
+  ],
+  "main_thesis": "Yes is more likely than No because BTC is already above 72k on Binance, but the market slightly overstates confidence for an exact-minute crypto settlement.",
+  "own_probability": 0.78,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone (noon)... has a final 'Close' price higher than... 72,000.",
+    "Recent daily Binance closes included approximately 74,417.99 and 74,131.55."
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-30541231",
+    "dispatch_id": "dispatch-case-20260415-30541231-20260415T133406Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "97ed79a4-7f1a-421c-a97b-6e98c2f0bdcc",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-30541231/researcher-analyses/2026-04-15/dispatch-case-20260415-30541231-20260415T133406Z/personas/base-rate.md",
+    "source_persona_sha256": "739dc7abb77ef11d68d3ca6e1c0d58954424782ad27b264a05cf9f9aa9a6cb69"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Good enough for this case: Polymarket rules clearly specify the governing mechanics and Binance provides the direct venue-specific price context, though source independence is medium-low because Binance is central to both.",
+  "strongest_disconfirmers": [
+    "BTC can easily move more than 3% within 48 hours.",
+    "The contract settles on one exact one-minute close, so a brief selloff at the wrong time can flip the outcome."
+  ],
+  "strongest_supports": [
+    "Recent Binance BTC/USDT trading context was already above 72k, around 74.0k-74.4k.",
+    "The contract only requires BTC to avoid roughly a 3% drawdown into the settlement minute, not to break out upward."
+  ],
+  "timing_relevance": "High: this is a narrow, exact-minute, date-sensitive contract settling at 2026-04-17 12:00 ET / 16:00 UTC.",
+  "unresolved_ambiguities": [
+    "No ambiguity in contract wording remained after verification, but future volatility path remains inherently uncertain."
+  ],
+  "what_would_change_view": "A sustained move back below 73k, especially below 72k, or evidence of Binance-specific downside/dislocation risk would lower the estimate materially."
+}

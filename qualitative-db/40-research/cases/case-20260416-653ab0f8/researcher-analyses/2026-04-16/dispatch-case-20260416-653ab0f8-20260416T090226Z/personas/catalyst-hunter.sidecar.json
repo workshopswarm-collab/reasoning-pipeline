@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A sharp bearish macro or crypto headline before Saturday noon ET.",
+    "Binance operational instability or candle irregularity near settlement.",
+    "Rapid loss of the current price cushion into Friday/Saturday."
+  ],
+  "key_assumptions": [
+    "No major bearish catalyst hits before the settlement window.",
+    "Binance remains operational and representative at the relevant minute.",
+    "The roughly 3.6% current cushion above strike remains informative over the next two days."
+  ],
+  "main_logical_chain": [
+    "Verify the exact contract mechanics, timezone, venue, pair, and Close-field requirement.",
+    "Check current Binance BTCUSDT level and recent venue range versus the 72k strike.",
+    "Cross-check the broader BTC level outside Binance.",
+    "Conclude Yes is still favored, but discount for settlement-minute fragility."
+  ],
+  "main_thesis": "BTC is likely to stay above 72k for the Binance noon-ET minute on April 18, but single-minute single-venue fragility keeps conviction below the market price.",
+  "own_probability": 0.84,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "This market will resolve to \"Yes\" if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone (noon)... has a final \"Close\" price higher than... 72,000.",
+    "ET noon on 2026-04-18 converts to 2026-04-18T16:00:00Z."
+  ],
+  "reasoning_mode": [
+    "catalyst_analysis",
+    "contract_interpretation",
+    "market_anchor"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-653ab0f8",
+    "dispatch_id": "dispatch-case-20260416-653ab0f8-20260416T090226Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "a202c359-6c61-4754-83d8-85c28b2579ff",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-653ab0f8/researcher-analyses/2026-04-16/dispatch-case-20260416-653ab0f8-20260416T090226Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "c3ede12c71ebc0ac5ead8b662b1238320f7b0ff3614baa943f6623936c1be6f3"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High confidence in contract interpretation from Polymarket plus Binance API checks; medium overall independence because the most probative evidence is concentrated on the named venue.",
+  "strongest_disconfirmers": [
+    "The contract settles on a single minute close on a single venue, so a late 3.5%-4% downswing or venue issue could flip it.",
+    "Contextual sentiment remained fearful rather than euphoric."
+  ],
+  "strongest_supports": [
+    "Binance spot checked around 74.67k, roughly 2.67k above strike.",
+    "Recent Binance 24h low checked at 73,580.85, still above 72k.",
+    "Polymarket rules are explicit about Binance BTC/USDT 1-minute Close at noon ET."
+  ],
+  "timing_relevance": "Timing is central because the contract resolves on one Binance 1-minute close at 12:00 PM ET on 2026-04-18, not on a broader daily average.",
+  "unresolved_ambiguities": [
+    "No directly verified catalyst calendar source in this run identified a specific dominant scheduled mover.",
+    "Weekend headline risk remains inherently hard to rule out."
+  ],
+  "what_would_change_view": "I would move lower if BTC trades toward 73k or below before resolution, if a clear bearish catalyst emerges, or if Binance shows operational instability near the settlement minute."
+}

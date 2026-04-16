@@ -1,0 +1,63 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A single upward wick above 90 would immediately invalidate the below-market variant view.",
+    "This estimate is highly sensitive to remaining time in the market window.",
+    "Exchange-specific chart/API presentation nuances could matter at the exact threshold if a borderline wick occurs."
+  ],
+  "key_assumptions": [
+    "A near-touch regime that has not yet printed 90 on Binance should still be treated as materially uncertain.",
+    "Binance API minute highs are an adequate proxy for pre-settlement assessment of whether the event has already happened.",
+    "No major hidden catalyst or abrupt risk-off move dominates the remaining window."
+  ],
+  "main_logical_chain": [
+    "The market implies 74% Yes because SOL is already trading near the $90 threshold.",
+    "The contract resolves only from Binance SOL/USDT 1-minute highs, so direct Binance evidence matters more than generalized bullish commentary.",
+    "Direct Binance checks show a peak of 89.15 rather than a qualifying 90+ print.",
+    "That keeps Yes favored because the remaining gap is small, but it leaves enough unresolved completion risk to justify a probability below market."
+  ],
+  "main_thesis": "Yes is still favored, but the market likely overprices a SOL $90 touch because direct Binance evidence shows a near-miss regime rather than a completed or obviously imminent threshold break.",
+  "own_probability": 0.66,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "maximum recorded high ... was 89.15",
+    "current_price = 0.74",
+    "any Binance SOL/USDT 1-minute candle ... High of 90.00 or greater"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation",
+    "variant_hypothesis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-143465dc",
+    "dispatch_id": "dispatch-case-20260416-143465dc-20260416T191321Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "650a5f85-0f84-4bcf-9184-5b7a92c66a57",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-143465dc/researcher-analyses/2026-04-16/dispatch-case-20260416-143465dc-20260416T191321Z/personas/variant-view.md",
+    "source_persona_sha256": "306906d5890c38a29e76aab3693b9ff1db4be6b1ce30fa1d00db984d5ad45265"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Low source-of-truth ambiguity and strong venue-specific evidence, with medium independence because contextual cross-checks cannot replace Binance for settlement.",
+  "strongest_disconfirmers": [
+    "No verified Binance 1-minute high of 90.00 or greater was found in the checked contract window.",
+    "Repeated highs below 90 suggest near-touch is not equivalent to completion in a short-dated threshold market.",
+    "Time decay and possible risk-off moves can still prevent a final touch despite proximity."
+  ],
+  "strongest_supports": [
+    "Binance 24h ticker showed lastPrice 88.91 and highPrice 89.15, leaving only a small gap to the strike.",
+    "Full Binance minute-window pull found a max high of 89.15, confirming the market has already approached the threshold closely.",
+    "CoinGecko contextual data also showed a high-88s regime, supporting that SOL is broadly trading near the target."
+  ],
+  "timing_relevance": "Very high: this is a short-dated touch market where one additional upward impulse before April 19 can settle the contract.",
+  "unresolved_ambiguities": [
+    "How much meaningful time remains after this run for another test of 90.",
+    "Whether Binance chart display conventions could matter if a 90-area wick occurs right at the boundary.",
+    "How much broader crypto momentum persists into the remainder of the window."
+  ],
+  "what_would_change_view": "I would move up if Binance prints fresh highs above 89.5 or any qualifying 90+ minute high; I would move down if SOL retreats into the mid-80s or repeatedly fails below 89 as time decays."
+}

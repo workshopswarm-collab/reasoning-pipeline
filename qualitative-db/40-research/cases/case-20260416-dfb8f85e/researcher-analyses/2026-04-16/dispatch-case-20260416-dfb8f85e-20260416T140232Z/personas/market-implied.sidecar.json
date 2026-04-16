@@ -1,0 +1,57 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Short-horizon BTC volatility can erase the current buffer quickly.",
+    "The contract depends on one exact venue/pair/minute close rather than a broader reference price."
+  ],
+  "key_assumptions": [
+    "Current Binance spot being above 72000 is a meaningful prior for the Apr 21 noon ET close.",
+    "No exchange-specific dislocation or operational issue will distort the relevant Binance 1m close.",
+    "BTC will avoid a drawdown of roughly 2-3% into settlement."
+  ],
+  "main_logical_chain": [
+    "The contract resolves on a specific Binance BTC/USDT 1m close at noon ET on Apr 21.",
+    "Binance spot and recent 1m closes are currently above 72000, so Yes is the correct first-order prior.",
+    "Because the spot cushion is modest relative to normal BTC volatility, Yes should be favored but not treated as near-certain."
+  ],
+  "main_thesis": "The market is broadly right to favor Yes because Binance BTC/USDT is already above 72000, but the current buffer is small enough relative to normal BTC volatility that confidence should stay below near-certainty.",
+  "own_probability": 0.74,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone",
+    "BTCUSDT price 73720.78000000"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-dfb8f85e",
+    "dispatch_id": "dispatch-case-20260416-dfb8f85e-20260416T140232Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "f30d2553-5326-45db-aa0b-f114656158d9",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-dfb8f85e/researcher-analyses/2026-04-16/dispatch-case-20260416-dfb8f85e-20260416T140232Z/personas/market-implied.md",
+    "source_persona_sha256": "319f8a0ef82abf43d5ed8e20e73e7c86592f46e3724859938e53b5ecbf207832"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Good for a medium-difficulty short-dated case: one governing contract source plus one direct exchange source tied to the stated settlement venue.",
+  "strongest_disconfirmers": [
+    "A roughly 2.3% decline from observed Binance spot would be enough to flip the contract to No.",
+    "Five days is long enough for ordinary BTC volatility to erase the current buffer."
+  ],
+  "strongest_supports": [
+    "Binance ticker spot-check showed BTCUSDT at 73720.78, already above the strike.",
+    "Recent Binance 1m closes clustered around 73.65k-73.73k rather than barely clearing 72k.",
+    "Polymarket contract is narrow and clear, making venue-specific price evidence highly relevant."
+  ],
+  "timing_relevance": "High: this is a date-specific noon ET 1-minute-candle market with only five days remaining.",
+  "unresolved_ambiguities": [
+    "Exact live market-implied probability moved between assignment context (0.71) and page fetch (~0.79).",
+    "No dedicated realized-volatility study was done beyond direct spot and recent kline checks."
+  ],
+  "what_would_change_view": "A decisive move below 72k on Binance before Apr 21, evidence of elevated downside event risk, or Binance-specific pricing anomalies would push me more bearish; stable trade well above 74k into settlement would push me more bullish."
+}

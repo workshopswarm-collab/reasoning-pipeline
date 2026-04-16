@@ -1,0 +1,57 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A narrow named oracle could in principle exclude the checked spot references.",
+    "If the contract counts a specific source that never touched 74k, the conclusion weakens materially."
+  ],
+  "key_assumptions": [
+    "The Polymarket contract uses standard recognized BTC price-source or high-print logic rather than a narrow excluded venue/oracle.",
+    "Cross-exchange spot agreement is a reasonable proxy that the settlement source likely touched 74k as well."
+  ],
+  "main_logical_chain": [
+    "Market implies 89% for hitting 74k during Apr. 13-19.",
+    "Direct multi-venue spot checks show BTC already above 74k early in the week.",
+    "Therefore ordinary price-path risk is low and remaining risk is mainly contract mechanics.",
+    "That supports a probability slightly above market at 96%."
+  ],
+  "main_thesis": "BTC already appears to have traded above $74,000 early in the relevant week on multiple major spot references, so remaining risk is mostly contract source-of-truth mechanics rather than missing upside catalysts.",
+  "own_probability": 0.96,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "Coinbase price 74341.67",
+    "Kraken 24h high 74529.9",
+    "Market baseline 0.89"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "catalyst_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260414-b6293fe0",
+    "dispatch_id": "dispatch-case-20260414-b6293fe0-20260414T001837Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "8830db06-dc60-4771-a35f-912f50967454",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-b6293fe0/researcher-analyses/2026-04-14/dispatch-case-20260414-b6293fe0-20260414T001837Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "636a8e9c048890ebe07dbe96555c36232dc3c3224614f16a74cb3adc5e7e936a"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High recency direct market data with medium-high independence across venues; residual medium source-of-truth ambiguity because the exact settlement rule text was not fully captured.",
+  "strongest_disconfirmers": [
+    "The exact Polymarket Rules/oracle text was not fully recoverable from lightweight page extraction, leaving residual source-of-truth ambiguity."
+  ],
+  "strongest_supports": [
+    "Coinbase spot around 74.34k during the verification pass.",
+    "Kraken showed last trade around 74.32k and 24h high around 74.53k.",
+    "Binance and CoinGecko also showed BTC above 74k, reducing single-venue error risk."
+  ],
+  "timing_relevance": "The key timing fact is that the apparent threshold hit happened already at the start of the week, so the main repricing catalyst now is rule/oracle confirmation rather than new macro news.",
+  "unresolved_ambiguities": [
+    "Exact named settlement source in Polymarket Rules was not cleanly extracted.",
+    "Full Fed-speaker/week catalyst calendar was not necessary after direct threshold confirmation but remains only partially checked."
+  ],
+  "what_would_change_view": "Clear evidence that the contract uses a narrower source/oracle that did not print 74k, or an official settlement clarification excluding the observed spot references."
+}

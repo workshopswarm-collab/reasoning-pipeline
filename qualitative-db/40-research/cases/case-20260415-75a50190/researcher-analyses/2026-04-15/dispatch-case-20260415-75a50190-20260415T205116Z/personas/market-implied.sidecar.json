@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Single-minute settlement mechanic magnifies timing risk.",
+    "Short-dated crypto volatility can erase a 4% cushion quickly.",
+    "Evidence set validates mechanics and current level more than forward volatility distribution."
+  ],
+  "key_assumptions": [
+    "Current roughly 4% Binance cushion above 72,000 is enough that ordinary six-day volatility still leaves Yes more likely than not by a wide margin.",
+    "No major venue-specific distortion or operational issue affects the Binance BTC/USDT noon ET close.",
+    "No new macro or crypto shock causes a material downside regime shift before settlement."
+  ],
+  "main_logical_chain": [
+    "Polymarket prices the 72,000 line around 78-81% Yes.",
+    "Direct Binance venue data shows BTC already near 74.85k, about 3.96% above threshold.",
+    "Given the short horizon, the market's persistence logic is mostly reasonable.",
+    "But exact-minute, single-venue settlement adds enough tail risk to justify a slightly lower estimate than market."
+  ],
+  "main_thesis": "The market's high Yes price is broadly justified by BTC trading materially above 72,000 on the named settlement venue, though exact-minute settlement makes me slightly less bullish than market.",
+  "own_probability": 0.74,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "Binance API response: {\"symbol\":\"BTCUSDT\",\"price\":\"74850.96000000\"}",
+    "This market will resolve to \"Yes\" if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone has a final \"Close\" price higher than the price specified in the title."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation",
+    "technical_reference"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-75a50190",
+    "dispatch_id": "dispatch-case-20260415-75a50190-20260415T205116Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "1a47f10d-a868-4795-9191-17cfa9347ab4",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-75a50190/researcher-analyses/2026-04-15/dispatch-case-20260415-75a50190-20260415T205116Z/personas/market-implied.md",
+    "source_persona_sha256": "6a43ea7eaf47f874f60d8d1f9a87661062f0df1a3306ba1489b08ae644b0dfb4"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality direct venue data plus explicit contract rules made source-of-truth ambiguity low, though evidence independence was only medium.",
+  "strongest_disconfirmers": [
+    "A roughly 4% BTC downside move over six days is plausible.",
+    "Resolution depends on one exact Binance minute close, so temporary weakness at the wrong moment can flip the outcome."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT spot was 74850.96 at review time, materially above the 72000 threshold.",
+    "Recent Binance 1-minute klines also sat above 74700, so the cushion was not a stale single print.",
+    "The horizon is short and the contract only needs the specified Binance noon ET minute close above threshold."
+  ],
+  "timing_relevance": "Settlement is Tuesday April 21, 2026 at 12:00 PM EDT on the Binance BTC/USDT 1-minute close, so current cushion matters but can still be eroded over six days.",
+  "unresolved_ambiguities": [
+    "How much downside volatility the market is implicitly pricing over the remaining window.",
+    "Whether any near-term catalyst could cause a sudden BTC risk-off move before April 21 noon ET."
+  ],
+  "what_would_change_view": "I would move lower if Binance BTCUSDT loses most of the cushion or volatility spikes; I would move higher if BTC holds comfortably above 72,000 with stable venue behavior into settlement."
+}

@@ -1,0 +1,61 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A sudden downside move into tomorrow noon ET.",
+    "A Binance-only pricing anomaly at the exact resolution minute.",
+    "Small ambiguity between chart UI wording and API representation, though likely immaterial."
+  ],
+  "key_assumptions": [
+    "BTC on Binance is unlikely to fall more than roughly 3% by Apr 16 noon ET.",
+    "Binance remains operational and representative at the settlement minute.",
+    "No major catalyst materially increases downside tail risk before resolution."
+  ],
+  "main_logical_chain": [
+    "Polymarket rules make Binance BTC/USDT 12:00 ET 1m close the governing source of truth.",
+    "Current Binance spot and recent minute closes are materially above 72000.",
+    "That makes a high Yes probability sensible as the market prior.",
+    "Residual risk remains because one short sharp move or exchange-specific print could still flip the outcome.",
+    "Therefore the market looks broadly efficient but slightly rich at 88.5%, leading to an 84% own estimate."
+  ],
+  "main_thesis": "The market's high Yes price is broadly justified because Binance BTC/USDT is trading comfortably above 72000 and the main remaining risk is a short-horizon drop or Binance-specific wick before the exact noon ET settlement minute.",
+  "own_probability": 0.84,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "resolution is based on the Binance BTC/USDT 1-minute candle for 12:00 ET on Apr 16",
+    "Current price is 0.885, implying an 88.5% Yes probability.",
+    "My estimate is 84% Yes."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "contract_interpretation",
+    "risk_management"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260415-2cba3460",
+    "dispatch_id": "dispatch-case-20260415-2cba3460-20260415T115730Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "9774bb24-9aa8-41be-a493-88d9f4739b6f",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-2cba3460/researcher-analyses/2026-04-15/dispatch-case-20260415-2cba3460-20260415T115730Z/personas/market-implied.md",
+    "source_persona_sha256": "5624c6492b5569022bc573989a4ddbed1b412c9487a301be34886e31127e4895"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary evidence quality is good because the contract names Binance directly; independence is only medium because the governing evidence is concentrated on the settlement venue.",
+  "strongest_disconfirmers": [
+    "Crypto can move more than 3% in under 24 hours.",
+    "The contract is minute-specific and Binance-specific, so a wick or venue dislocation could matter."
+  ],
+  "strongest_supports": [
+    "Binance spot checked around 74187.70, comfortably above 72000.",
+    "Recent Binance 1m closes were around 74.17k-74.22k.",
+    "Binance 24h low check was about 73514, still above the strike."
+  ],
+  "timing_relevance": "High: the contract resolves on the Apr 16 12:00 PM ET Binance 1-minute close, so short-horizon path risk matters more than broad thesis.",
+  "unresolved_ambiguities": [
+    "Whether any catalyst emerges before resolution that materially changes short-horizon volatility.",
+    "Whether the eventual settlement display could differ in presentation from API checks despite matching candle logic."
+  ],
+  "what_would_change_view": "I would lower the estimate if BTC moves back toward the low-72k area, volatility spikes, or Binance-specific anomaly risk rises; I would move closer to the market if repeated Binance checks keep the entire realized range safely above 72000."
+}

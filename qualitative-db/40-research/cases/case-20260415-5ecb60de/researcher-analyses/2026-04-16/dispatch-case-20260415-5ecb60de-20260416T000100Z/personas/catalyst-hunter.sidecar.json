@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A broad BTC-led risk-off move could compress SOL's cushion quickly.",
+    "A Solana reliability issue or Binance-specific operational problem could matter disproportionately because settlement is venue-specific.",
+    "The view depends more on lack of downside catalysts than on a known positive trigger."
+  ],
+  "key_assumptions": [
+    "No major downside crypto or venue-specific shock emerges before the settlement window.",
+    "Recent trading persistence above $80 remains informative over the next few days.",
+    "Binance trading remains orderly at the exact settlement minute."
+  ],
+  "main_logical_chain": [
+    "Verify the governing rules: resolution depends only on the Binance SOL/USDT 12:00 ET 1-minute candle close on April 19, and the close must be strictly above 80.",
+    "Check direct Binance prices: SOL traded around 84.73 with recent 1-minute and daily closes above 80, so the contract currently has cushion.",
+    "Apply catalyst/timing lens: absent a concrete negative catalyst, persistence favors Yes, but exact-minute crypto volatility makes 90% somewhat rich.",
+    "Conclude with a Yes lean below the market at roughly 82%."
+  ],
+  "main_thesis": "SOL is likely to stay above $80 by the April 19 noon ET Binance candle, but the market's 90% Yes price looks somewhat too aggressive given exact-minute settlement risk and normal crypto downside volatility.",
+  "own_probability": 0.82,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "Binance spot at research time was 84.73.",
+    "The strongest disconfirming consideration is the contract structure itself: it resolves on one exact Binance one-minute close at 12:00 ET."
+  ],
+  "reasoning_mode": [
+    "catalyst_analysis",
+    "market_anchor",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-5ecb60de",
+    "dispatch_id": "dispatch-case-20260415-5ecb60de-20260416T000100Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "452df171-89a9-4f89-9df9-72b825e1be51",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-5ecb60de/researcher-analyses/2026-04-16/dispatch-case-20260415-5ecb60de-20260416T000100Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "3c7a2e28c1f8a2f8ac89e0823fc43c6888c8638dc45def14649eb9fa15b1f395"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is solid for mechanics because Binance and Polymarket rules directly govern the market, but thinner for path forecasting because the catalyst set is limited and mostly inferred from current price behavior.",
+  "strongest_disconfirmers": [
+    "The market resolves on one exact Binance 1-minute close at 12:00 ET, so a temporary dip can still cause No.",
+    "A roughly 6% drawdown is enough to fail the strike, which is not extreme for SOL over several days.",
+    "No specific bullish catalyst was identified that would force further upside repricing."
+  ],
+  "strongest_supports": [
+    "Binance SOLUSDT spot was 84.73 at research time, well above the $80 strike.",
+    "Recent Binance daily closes in the pulled sample were all above $80.",
+    "There is only a short time left to resolution, so persistence alone can carry Yes."
+  ],
+  "timing_relevance": "This is a short-horizon timing case where exact-minute settlement and the absence or arrival of downside catalysts matter more than long-run Solana fundamentals.",
+  "unresolved_ambiguities": [
+    "No clean scheduled near-term catalyst was identified from the available web tools.",
+    "Forecast uncertainty is in path volatility rather than source-of-truth mechanics."
+  ],
+  "what_would_change_view": "I would cut the probability materially if SOL loses the 82-83 area, trades near the strike into the final 24 hours, or if a BTC-led selloff, Solana reliability issue, or Binance disruption appears."
+}

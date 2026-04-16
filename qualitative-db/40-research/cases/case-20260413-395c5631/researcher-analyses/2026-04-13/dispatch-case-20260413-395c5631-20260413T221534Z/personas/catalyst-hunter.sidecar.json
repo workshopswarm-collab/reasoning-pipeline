@@ -1,0 +1,61 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Narrow timing window makes path dependence high.",
+    "Short-term BTC volatility can erase a 2k cushion quickly.",
+    "Incomplete visibility into all April 15 morning macro releases limits catalyst certainty."
+  ],
+  "key_assumptions": [
+    "No still-unpriced major scheduled catalyst hits before noon ET April 15.",
+    "Current Binance spot cushion above 72000 remains informative over the next ~36 hours.",
+    "Binance-specific operational issues do not disrupt the governing candle or market structure."
+  ],
+  "main_logical_chain": [
+    "Contract resolves on Binance BTCUSDT 12:00 ET 1-minute close on April 15 and requires a close strictly above 72000.",
+    "BTC is currently above the threshold with a meaningful cushion.",
+    "The most obvious scheduled macro catalyst, CPI, is already behind the market.",
+    "Therefore the main remaining risk is ordinary volatility or an unscheduled shock, not a known major event.",
+    "That leaves Yes favored, modestly above the market-implied baseline."
+  ],
+  "main_thesis": "BTC is already materially above 72000 and no obvious major scheduled macro catalyst remains before the April 15 noon ET resolution, so the contract looks more like a hold-the-line volatility test than a pending shock setup.",
+  "own_probability": 0.78,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "Yes if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone has a final Close price higher than 72000.",
+    "March 2026 CPI release date: Apr. 10, 2026, 08:30 AM."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "catalyst_analysis",
+    "contract_interpretation",
+    "scenario_analysis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260413-395c5631",
+    "dispatch_id": "dispatch-case-20260413-395c5631-20260413T221534Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "2cdbc3e8-7250-4324-b812-4d99561f2031",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260413-395c5631/researcher-analyses/2026-04-13/dispatch-case-20260413-395c5631-20260413T221534Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "1ddd4ee6452cdba81770b6764447594fb06f6de273c54520697387248c4d84da"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Low source-of-truth ambiguity, medium evidence independence: the contract and price context are strong via Polymarket plus Binance, while the catalyst calendar check relies mainly on official BLS scheduling.",
+  "strongest_disconfirmers": [
+    "This is a single-minute threshold contract and BTC recently traded down near 70.5k-70.7k, so a sub-72k noon print remains plausible.",
+    "A same-day macro or headline shock could still force fast repricing before resolution."
+  ],
+  "strongest_supports": [
+    "Binance spot during the run was about 74164, more than 2100 above the threshold.",
+    "Recent sampled 1-minute range stayed above 72000 despite notable volatility.",
+    "BLS schedule shows March CPI was already released on April 10, so it is not an upcoming catalyst."
+  ],
+  "timing_relevance": "High: this market is less about generic BTC direction than whether spot can hold above 72000 at one specific minute after a short catalyst window.",
+  "unresolved_ambiguities": [
+    "Whether any April 15 morning U.S. data release before noon ET could materially hit BTC was not fully enumerated from accessible sources.",
+    "How much overnight risk sentiment or ETF-flow tone will matter by the exact resolution minute."
+  ],
+  "what_would_change_view": "A decisive move back toward or below 72000, discovery of a meaningful pre-noon April 15 macro catalyst, or Binance-specific operational disruption would reduce the Yes probability."
+}

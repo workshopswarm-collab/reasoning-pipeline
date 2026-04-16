@@ -1,0 +1,123 @@
+{
+  "artifact_type": "targeted_verification_pack",
+  "schema_version": "decision-targeted-verification-pack/v1",
+  "case_key": "case-20260415-6c8d8ca4",
+  "dispatch_id": "refresh-case-20260415-6c8d8ca4-20260415T125510Z",
+  "required": true,
+  "verification_mode": "targeted_escalation",
+  "pack_purpose": "Deterministic narrow follow-up pack for targeted escalation. It defines the crux questions and operational budgets, while source choice may remain model-driven within runtime-enforced tool guardrails.",
+  "verification_questions": [
+    "Does the latest available information materially change the decision, given: Binance BTC/USDT price path into the Apr 17 noon ET settlement minute?",
+    "Are the current blockers still material to final judgment: No high-quality independent catalyst map for the remaining pre-settlement window?",
+    "Is the main verification gap still decision-material: No strong independent verification of near-term downside catalyst or realized-volatility path before settlement.?",
+    "Does the strongest surviving countercase remain live enough to compress the edge further: A normal 2-3% crypto drawdown or badly timed Binance minute print can still flip this to No despite current spot being above the strike.?"
+  ],
+  "structured_handoff_focus": {
+    "contract_ambiguity_level": "none",
+    "contract_ambiguity_reason": "",
+    "verification_gap_summary": "No strong independent verification of near-term downside catalyst or realized-volatility path before settlement.",
+    "best_countercase_summary": "A normal 2-3% crypto drawdown or badly timed Binance minute print can still flip this to No despite current spot being above the strike.",
+    "main_reason_for_disagreement": "Different weighting of current cushion versus exact-minute settlement fragility.",
+    "resolution_mechanics_summary": "Yes resolves only if Binance BTC/USDT's 12:00 ET Apr 17 one-minute final close is strictly above 72,000.",
+    "freshness_sensitive": "yes",
+    "freshness_driver": "Binance BTC/USDT price path into the Apr 17 noon ET settlement minute",
+    "decision_blockers": [
+      "No high-quality independent catalyst map for the remaining pre-settlement window",
+      "Single-minute Binance settlement leaves meaningful path risk despite current cushion"
+    ],
+    "disagreement_type": "timing"
+  },
+  "supporting_persona_summaries": [
+    {
+      "persona": "market-implied",
+      "recommended_weight": "medium",
+      "own_probability": 0.78,
+      "main_thesis": "The market's ~81% Yes price is broadly justified because Binance BTC/USDT is already around 74k, but the contract's single-minute Binance noon-ET settlement leaves a meaningful downside tail, so my estimate is slightly lower at 78%.",
+      "main_logical_chain": [
+        "Start from the market's ~81% Yes price as an information-rich prior.",
+        "Check whether governing-venue spot is already above the strike and whether broader BTC context agrees.",
+        "Find that Binance and CoinGecko both place BTC around 74k, supporting the market's bullish baseline.",
+        "Discount slightly because the contract is narrow and short-horizon volatility can still push the exact noon-ET minute below 72k."
+      ],
+      "strongest_supports": [
+        "Binance BTC/USDT spot fetched around 74,041.95, already above the 72,000 strike.",
+        "CoinGecko cross-check near 74,120 supports broader BTC spot also above threshold."
+      ],
+      "strongest_disconfirmers": [
+        "BTC only needs about a 2.8% downside move from current spot to settle No.",
+        "The contract resolves on one exact Binance 1-minute close, not a daily close or multi-exchange average."
+      ],
+      "unresolved_ambiguities": [
+        "How much realized volatility BTC will see in the final ~48 hours.",
+        "Whether the decisive 12:00 ET minute lands during a transient downswing."
+      ],
+      "what_would_change_view": "I would move lower if BTC trades persistently near or below 72k before Apr 17 or if Binance underperforms broader spot; I would move higher if BTC holds comfortably above 74k into settlement.",
+      "timing_relevance": "High: this is a narrow date/time-specific market resolving on the Binance BTC/USDT 12:00 ET 1-minute close on Apr 17, 2026.",
+      "source_quality_view": "Contract mechanics are clear and source-of-truth ambiguity is low; evidence independence is medium because live market pricing and Binance spot are related, with CoinGecko providing a modest cross-check.",
+      "persona_finding_path": "qualitative-db/40-research/cases/case-20260415-6c8d8ca4/researcher-analyses/2026-04-15/dispatch-case-20260415-6c8d8ca4-20260415T084705Z/personas/market-implied.md",
+      "assumption_artifact_paths": [
+        "qualitative-db/40-research/cases/case-20260415-6c8d8ca4/researcher-analyses/2026-04-15/dispatch-case-20260415-6c8d8ca4-20260415T084705Z/assumptions/market-implied.md"
+      ],
+      "evidence_artifact_paths": [
+        "qualitative-db/40-research/cases/case-20260415-6c8d8ca4/researcher-analyses/2026-04-15/dispatch-case-20260415-6c8d8ca4-20260415T084705Z/evidence/market-implied.md"
+      ]
+    }
+  ],
+  "selected_assumption_snippets": [
+    {
+      "path": "qualitative-db/40-research/cases/case-20260415-6c8d8ca4/researcher-analyses/2026-04-15/dispatch-case-20260415-6c8d8ca4-20260415T084705Z/assumptions/risk-manager.md",
+      "frontmatter": {
+        "type": "assumption_note",
+        "case_key": "case-20260415-6c8d8ca4",
+        "dispatch_id": "dispatch-case-20260415-6c8d8ca4-20260415T084705Z",
+        "research_run_id": "f8f73c4f-55be-4d85-9bb7-b2ca07acd76c",
+        "analysis_date": "2026-04-15",
+        "persona": "risk-manager",
+        "domain": "crypto",
+        "subdomain": "bitcoin",
+        "entity": "bitcoin",
+        "topic": "bitcoin-above-72k-on-april-17",
+        "question": "Will the Binance BTC/USDT 12:00 ET one-minute candle close on April 17 above 72000?",
+        "driver": "operational-risk",
+        "date_created": "2026-04-15",
+        "agent": "orchestrator",
+        "status": "active",
+        "certainty": "medium",
+        "importance": "high",
+        "time_horizon": "through 2026-04-17 12:00 ET",
+        "related_entities": [
+          "bitcoin"
+        ],
+        "related_drivers": [
+          "operational-risk",
+          "reliability"
+        ],
+        "proposed_entities": [],
+        "proposed_drivers": [],
+        "upstream_inputs": [],
+        "downstream_uses": [
+          "qualitative-db/40-research/cases/case-20260415-6c8d8ca4/researcher-analyses/2026-04-15/dispatch-case-20260415-6c8d8ca4-20260415T084705Z/personas/risk-manager.md"
+        ],
+        "tags": [
+          "assumption",
+          "settlement-minute",
+          "timing-risk",
+          "bitcoin"
+        ]
+      },
+      "snippet": "# Assumption\nThe market-implied edge assumes that BTC/USDT on Binance will remain comfortably above 72,000 not just generally over the next two days, but specifically at the final close of the 12:00 ET one-minute candle on April 17.\n## Why this assumption matters\nThe contract is narrow: being above 72,000 most of the day is irrelevant if the settlement-minute close is below the strike. A bullish medium-term view can still lose on timing.\n## What this assumption supports\n- A Yes probability materially above 50%\n- Treating the current spot buffer over 72,000 as genuinely protective\n- Rough agreement with the market's optimistic pricing\n## Evidence or logic behind the assumption\n- Current Binance spot was around 74,037, giving a roughly 2,037-point cushion above the strike.\n- Recent sampled 1-minute candles showed ordinary minute-to-minute movement much smaller than that cushion.\n- With no identified immediate settlement-specific exclusion or alternate source-of-truth trap, the main challenge appears to be plain price movement rather than contract ambiguity.\n## What would falsify it\n- BTC/USDT falls below 72,000 and fails to recover by the 12:00 ET settlement-minute close on April 17.\n- Material volatility or a sharp risk-off move compresses the current cushion before settlement.\n- A Binance-specific pricing dislocation appears around the relevant candle.\n## Early warning signs\n- Spot drifting back toward 73,000 or lower before April 17\n- Increased intraday realized volatility or macro-driven crypto drawdowns\n- Visible divergence between Binance pricing behavior and broader ma …",
+      "full_char_count": 2029,
+      "snippet_char_count": 1602
+    }
+  ],
+  "selected_evidence_snippets": [],
+  "selected_supporting_note_snippets": [],
+  "pack_budget": {
+    "max_chars": 6000,
+    "actual_chars_before_trim": 10639,
+    "actual_chars_after_trim": 8058,
+    "approx_tokens_before_trim": 2659,
+    "approx_tokens_after_trim": 2014,
+    "trim_applied": true
+  }
+}

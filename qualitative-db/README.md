@@ -16,7 +16,7 @@ Use it to store:
 - reusable driver notes
 - time-stamped research artifacts
 - source reliability guidance
-- retrospective lessons
+- learning artifacts
 
 Current runtime note:
 - the live research swarm executes in Telegram forum topics, with one controller topic plus one persona topic per case while research is active
@@ -64,7 +64,7 @@ Think of the vault as six layers:
 3. **Entities** — reusable canonical entity dossiers on important objects
 4. **Drivers** — reusable causal mechanisms
 5. **Research** — time-stamped source notes, findings, syntheses
-6. **Retrospectives** — what helped, what misled, what to improve
+6. **Learnings** — resolved-case reviews, recurring patterns, and what to improve
 
 ---
 
@@ -77,7 +77,7 @@ qualitative-db/
   20-entities/
   30-drivers/
   40-research/
-  50-retrospectives/
+  50-learnings/
   60-uncategorized/
 ```
 
@@ -147,8 +147,8 @@ Use for:
 Important: the canonical live `40-research/` structure is moving toward `cases/<case-key>/researcher-analyses/<YYYY-MM-DD>/<dispatch-id>/...` for rerun-safe history, while legacy flat folders such as `agent-findings/`, `assumption-notes/`, and `evidence-maps/` may remain as compatibility or latest-view surfaces during migration. Existing historical flat notes should be preserved unless they are already generated compatibility notes.
 Historical references to `syntheses/` or `investigations/` should be treated as conceptual artifact types or future/optional folders, not guaranteed live directories.
 
-### `50-retrospectives/`
-Hindsight and methodology-improvement layer.
+### `50-learnings/`
+Resolved-case learning and recursive-improvement layer.
 
 ### `60-uncategorized/`
 Temporary holding area for useful notes that do not yet have a stable home.
@@ -197,12 +197,13 @@ Usually represented by a higher-level research artifact in `40-research/`.
 Purpose:
 - combine multiple upstream inputs into a current interpretation
 
-### Retrospective note
-Usually under `50-retrospectives/`.
+### Learning note
+Usually under `50-learnings/`.
 
 Purpose:
-- record what inputs helped or hurt
-- improve future source selection and methodology
+- record what helped, what misled, and what was missing
+- capture reusable lessons from resolved cases
+- support concrete intervention and promotion decisions
 
 ---
 
@@ -272,7 +273,7 @@ Read in this order:
 1. this `README.md`
 2. `qualitative-db/00-system/START-HERE.md`
 3. `qualitative-db/00-system/README.md`
-4. relevant layer README (`20-entities/`, `30-drivers/`, `40-research/`, or `50-retrospectives/`)
+4. relevant layer README (`20-entities/`, `30-drivers/`, `40-research/`, or `50-learnings/`)
 5. relevant `10-domains/.../00-overview.md`, `20-entities/.../*.md`, and `30-drivers/*.md`
 
 ### If you need recent evidence
@@ -317,7 +318,7 @@ This is expected.
 The system is meant to improve through:
 - more research artifacts
 - selective canonical promotion
-- periodic retrospective cleanup
+- periodic learning-loop cleanup
 
 ---
 

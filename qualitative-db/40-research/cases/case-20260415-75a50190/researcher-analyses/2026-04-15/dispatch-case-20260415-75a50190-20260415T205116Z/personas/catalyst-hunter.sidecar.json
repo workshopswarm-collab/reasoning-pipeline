@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Single-minute settlement on one exchange.",
+    "BTC can move 4% quickly on adverse headlines.",
+    "Exchange-specific pricing or microstructure noise could matter near settlement."
+  ],
+  "key_assumptions": [
+    "No macro or crypto-specific catalyst before April 21 noon ET causes a sustained ~4% downside move in Binance BTC/USDT.",
+    "Binance remains a usable and representative settlement venue at the relevant minute.",
+    "The current above-72k regime is not an immediate overextension that mean-reverts before settlement."
+  ],
+  "main_logical_chain": [
+    "The contract settles on Binance BTC/USDT at one exact minute, so exact timing and venue mechanics matter.",
+    "Current Binance spot is comfortably above 72,000 and recent daily regime has mostly held above that level.",
+    "There is no scheduled FOMC decision before settlement, so the main path to NO is an unscheduled macro or crypto-specific risk-off shock.",
+    "Absent such a shock, time decay favors YES in a short hold-above-threshold market."
+  ],
+  "main_thesis": "BTC is already materially above 72,000 and the known catalyst calendar before April 21 noon ET looks light, so YES is more likely unless an unscheduled macro or crypto-specific downside shock forces a fast drawdown.",
+  "own_probability": 0.84,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "This market will resolve to \"Yes\" if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone (noon) ... has a final \"Close\" price higher than ... 72,000.",
+    "2026 FOMC Meetings: April 28-29"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "catalyst_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-75a50190",
+    "dispatch_id": "dispatch-case-20260415-75a50190-20260415T205116Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "467c1f6e-e1d1-41e0-b956-cc44590c1737",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-75a50190/researcher-analyses/2026-04-15/dispatch-case-20260415-75a50190-20260415T205116Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "f50fdc07d3534bd0841892e1134839f1fedd9c626093ac0f8f6183d53949c639"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is medium-high overall: contract mechanics are explicit and Binance is the stated settlement source, while macro timing was cross-checked independently with the Fed calendar; independence is only medium because core evidence is necessarily Binance/Polymarket-centric.",
+  "strongest_disconfirmers": [
+    "A routine ~4% BTC downside move before Tuesday noon ET would be enough to settle NO.",
+    "The contract resolves on one exact Binance one-minute close, creating path fragility."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT spot was about 74,830 on April 15, roughly 3.8% above threshold.",
+    "Recent Binance daily closes were mostly above 72,000.",
+    "Next scheduled FOMC meeting is April 28-29, after settlement."
+  ],
+  "timing_relevance": "This is a short-window persistence case: the crucial question is whether any catalyst before April 21 noon ET can force BTC back below 72,000, not whether BTC has long-run upside.",
+  "unresolved_ambiguities": [
+    "No direct read on ETF-flow or other near-term crypto-specific catalysts inside the window was obtained.",
+    "Unscheduled macro headlines remain inherently hard to pre-verify."
+  ],
+  "what_would_change_view": "I would lower the estimate if BTC quickly lost 74k and 73k, if a major macro shock or crypto-specific stress event emerged, or if Binance-specific settlement-quality concerns increased."
+}

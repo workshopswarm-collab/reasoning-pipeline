@@ -1,0 +1,61 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Single-minute settlement mechanics create path risk.",
+    "A five-day drawdown of roughly 6% is not extreme for BTC.",
+    "A temporary noon ET downdraft on Binance could decide the market even if the broader trend stays bullish."
+  ],
+  "key_assumptions": [
+    "Current BTCUSDT cushion above 70000 persists through Apr. 20 noon ET.",
+    "No major macro or crypto-specific downside shock hits before settlement.",
+    "The Binance noon print behaves broadly in line with recent spot conditions rather than briefly wicking below threshold."
+  ],
+  "main_logical_chain": [
+    "Polymarket rules make the relevant event a Binance BTC/USDT 12:00 ET 1-minute close above 70000 on Apr. 20.",
+    "Current Binance spot and recent closes place BTC materially above the threshold, so Yes is the base case.",
+    "Because the market settles on a single timed print and BTC remains volatile, confidence should be somewhat below the 87.5% market price."
+  ],
+  "main_thesis": "Yes is still the base case, but the market is slightly overconfident because this resolves on a single Binance 12:00 ET 1-minute close and five-day BTC volatility can still threaten 70000.",
+  "own_probability": 0.82,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "12:00 ET on Apr. 20 corresponds to 16:00 UTC.",
+    "The strongest disconfirming consideration is that this is a single-minute, single-exchange settlement market with five days still to run."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "risk_management",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-84fdc62d",
+    "dispatch_id": "dispatch-case-20260415-84fdc62d-20260415T125809Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "ddbe3337-0269-4228-bf0f-87f75752f460",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-84fdc62d/researcher-analyses/2026-04-15/dispatch-case-20260415-84fdc62d-20260415T125809Z/personas/risk-manager.md",
+    "source_persona_sha256": "929668bdfa2ad64a656d4744a3b743c3eb7beeb643753245f69652f518bfff75"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary source quality is high because contract wording and Binance market data are direct. Evidence independence is medium, with Cointelegraph used only as a contextual volatility check. Source-of-truth ambiguity is low.",
+  "strongest_disconfirmers": [
+    "Settlement depends on one specific minute on one exchange rather than broader weekly strength.",
+    "Recent BTC daily ranges are large enough that an ordinary pullback could threaten 70000 within five days.",
+    "Secondary market commentary still flags correction and resistance risk in the 70000-75000 zone."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT was around 74257 on Apr. 15, leaving a material cushion over 70000.",
+    "Recent Binance daily closes since Apr. 7 were all above 70000.",
+    "Contract source of truth is explicit, limiting ambiguity about what data series matters."
+  ],
+  "timing_relevance": "Critical: the market resolves on the final close of the 12:00 ET / 16:00 UTC Binance 1-minute candle on Apr. 20, not a daily close or cross-exchange average.",
+  "unresolved_ambiguities": [
+    "How much downside volatility remains between now and Apr. 20.",
+    "Whether any macro or crypto-specific shock emerges before settlement.",
+    "Whether the noon ET print on the day behaves cleanly or sees transient weakness."
+  ],
+  "what_would_change_view": "I would move up if BTC keeps closing comfortably above 72000 into Apr. 18-19; I would move down if Binance spot compresses back toward 70000 or if new risk-off / ETF-flow weakness appears."
+}

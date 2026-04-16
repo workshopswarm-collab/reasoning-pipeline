@@ -2,7 +2,7 @@
 type: research_review_queue_index
 domain: research
 status: active
-last_updated: 2026-03-29
+last_updated: 2026-04-14
 owner: orchestrator
 tags: [research/review-queue, qualitative-db/40-research, review]
 ---
@@ -50,7 +50,7 @@ Examples:
 
 These may later be:
 - rejected as case-specific noise
-- routed into `50-retrospectives/`
+- routed into `50-learnings/`
 - promoted into `30-drivers/`, `10-domains/`, `20-entities/`, or `00-system/` guidance
 
 ### `drivers-candidates/`
@@ -91,7 +91,7 @@ Researchers should use this folder to **propose**, not to bypass stable-layer re
 The Orchestrator reviews queue items and decides whether to:
 - keep them in research only
 - promote them into canon
-- turn them into retrospective lessons
+- turn them into structured learning notes
 - reject them as transient or weakly supported
 
 ## Naming guidance

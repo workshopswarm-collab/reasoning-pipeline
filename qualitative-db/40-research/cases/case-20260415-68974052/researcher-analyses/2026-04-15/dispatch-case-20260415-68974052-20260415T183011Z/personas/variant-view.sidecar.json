@@ -1,0 +1,58 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A roughly 3% drawdown into the exact resolving minute would flip the outcome.",
+    "Exchange-specific underperformance on Binance could matter even if broader BTC spot looks stronger elsewhere."
+  ],
+  "key_assumptions": [
+    "BTC can absorb ordinary 24-48 hour volatility and still remain above 72,000 at the exact resolving minute.",
+    "Binance BTC/USDT will remain representative of broader BTC spot into April 17 noon ET."
+  ],
+  "main_logical_chain": [
+    "The contract resolves on one exact Binance BTC/USDT 1-minute close at 12:00 ET on April 17, so mechanics and timing must be checked explicitly.",
+    "Current Binance price is materially above 72,000, making Yes more likely than No.",
+    "But a narrow one-minute-close contract has more residual tail risk than a broad spot-above-threshold framing suggests.",
+    "That makes the market directionally right but somewhat overconfident, so 78% is more defensible than 85%."
+  ],
+  "main_thesis": "Yes is still more likely than No, but the market is somewhat overconfident because this resolves on one exact Binance 1-minute close and that leaves meaningful short-horizon path risk.",
+  "own_probability": 0.78,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone has a final 'Close' price higher than the price specified.",
+    "Live Binance spot check: BTCUSDT 74242.30000000"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation",
+    "variant_hypothesis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-68974052",
+    "dispatch_id": "dispatch-case-20260415-68974052-20260415T183011Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "8d889154-a6ce-48c8-8afb-94127aa038b4",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-68974052/researcher-analyses/2026-04-15/dispatch-case-20260415-68974052-20260415T183011Z/personas/variant-view.md",
+    "source_persona_sha256": "d3d01d457b011c70a2a60a54b57ae03ad8d4ca5e163e9ad92fac439cb6ab3e7e"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary source quality is high because the contract rules and named resolution venue were checked directly; secondary contextual verification quality is adequate; source-of-truth ambiguity is low.",
+  "strongest_disconfirmers": [
+    "There is no direct evidence of an imminent bearish catalyst or Binance-specific dislocation.",
+    "The current cushion above 72,000 is substantial with less than two days left."
+  ],
+  "strongest_supports": [
+    "Live Binance BTC/USDT was about 74,242 on April 15, roughly 3.1% above the 72,000 threshold.",
+    "Polymarket rules clearly identify Binance BTC/USDT 1-minute candle Close at 12:00 ET on April 17 as the governing source of truth.",
+    "CoinGecko cross-check showed bitcoin around 74,224, confirming the same general price region."
+  ],
+  "timing_relevance": "Resolution is about 45.5 hours after the observation point, so current distance from the threshold matters, but there is still enough time for a meaningful BTC move.",
+  "unresolved_ambiguities": [
+    "No major source-of-truth ambiguity remains, but future volatility over the next ~45 hours is inherently uncertain.",
+    "The exact noon ET candle can differ from nearby minute-by-minute trading context."
+  ],
+  "what_would_change_view": "I would move toward the market if BTC keeps holding comfortably above 73k-74k into resolution morning with low volatility, and lower my estimate if BTC breaks 73k or risk-off pressure grows into the final hours."
+}

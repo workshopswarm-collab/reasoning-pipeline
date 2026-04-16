@@ -1,0 +1,226 @@
+from __future__ import annotations
+
+from typing import Any
+
+NODE_THRESHOLD_PROFILE = {
+    'proposed_min_cases': 2,
+    'draft_min_cases': 3,
+    'draft_min_support_cases': 2,
+    'max_genericity_for_proposed': 0.35,
+    'max_genericity_for_draft': 0.25,
+}
+
+EDGE_THRESHOLD_PROFILE = {
+    'proposed_min_cases': 2,
+    'proposed_min_support_cases': 2,
+    'draft_min_cases': 3,
+    'draft_min_support_cases': 3,
+    'min_support_to_contest_ratio': 2.0,
+    'max_genericity_for_proposed': 0.35,
+    'max_genericity_for_draft': 0.25,
+}
+
+NODE_RULES: list[dict[str, Any]] = [
+    {
+        'proposal_key': 'primary-resolution-source-identification',
+        'candidate_type': 'node',
+        'candidate_label': 'Primary resolution source identification',
+        'node_type': 'workflow_condition',
+        'mechanism_family': 'source_resolution',
+        'proposal_source': 'rule_projection',
+        'genericity_penalty': 0.18,
+        'threshold_profile': NODE_THRESHOLD_PROFILE,
+        'required_checks_any': ['verify_primary_resolution_source'],
+        'active_nodes_any': ['settlement-source-specificity', 'resolution-surface-ambiguity'],
+        'description': 'A reusable workflow state where the analyst must explicitly identify the governing resolution surface before pricing the case.',
+    },
+    {
+        'proposal_key': 'governing-source-proof-capture',
+        'candidate_type': 'node',
+        'candidate_label': 'Governing source proof capture',
+        'node_type': 'workflow_condition',
+        'mechanism_family': 'source_resolution',
+        'proposal_source': 'rule_projection',
+        'genericity_penalty': 0.16,
+        'threshold_profile': NODE_THRESHOLD_PROFILE,
+        'required_checks_any': ['capture_governing_source_proof_when_event_near_complete'],
+        'active_nodes_any': ['resolution-surface-ambiguity', 'settlement-source-specificity'],
+        'linked_intervention_keys_any': ['capture-governing-source-proof-for-touch-markets'],
+        'description': 'A workflow condition where the main remaining task is to capture decisive proof from the governing source rather than gather generic directional evidence.',
+    },
+    {
+        'proposal_key': 'verification-state-separation',
+        'candidate_type': 'node',
+        'candidate_label': 'Verification-state separation',
+        'node_type': 'workflow_condition',
+        'mechanism_family': 'source_resolution',
+        'proposal_source': 'rule_projection',
+        'genericity_penalty': 0.15,
+        'threshold_profile': NODE_THRESHOLD_PROFILE,
+        'required_checks_any': ['label_unverified_vs_not_occurred_distinctly'],
+        'active_nodes_any': ['resolution-surface-ambiguity', 'verification-caution'],
+        'contested_edges_any': ['verification-caution__increases__fair-value-discounting-pressure'],
+        'description': 'A workflow condition where event-state and verification-state need to be represented separately.',
+    },
+    {
+        'proposal_key': 'resolution-risk-path-separation',
+        'candidate_type': 'node',
+        'candidate_label': 'Resolution-risk / path-risk separation',
+        'node_type': 'workflow_condition',
+        'mechanism_family': 'workflow_pricing',
+        'proposal_source': 'rule_projection',
+        'genericity_penalty': 0.14,
+        'threshold_profile': NODE_THRESHOLD_PROFILE,
+        'required_checks_any': ['separate_resolution_risk_from_path_probability'],
+        'active_nodes_any': ['verification-caution', 'touch-probability'],
+        'description': 'A workflow condition where settlement/verification risk must be priced separately from the underlying event path probability.',
+    },
+    {
+        'proposal_key': 'threshold-distance-scaling',
+        'candidate_type': 'node',
+        'candidate_label': 'Threshold-distance scaling',
+        'node_type': 'market_state',
+        'mechanism_family': 'threshold_touch',
+        'proposal_source': 'rule_projection',
+        'genericity_penalty': 0.17,
+        'threshold_profile': NODE_THRESHOLD_PROFILE,
+        'required_checks_any': ['evaluate_distance_to_threshold'],
+        'active_nodes_any': ['price-near-threshold'],
+        'description': 'A reusable market-state node capturing that the residual distance to the threshold should be explicitly scaled in the analysis.',
+    },
+    {
+        'proposal_key': 'path-volatility-pressure',
+        'candidate_type': 'node',
+        'candidate_label': 'Path volatility pressure',
+        'node_type': 'risk_state',
+        'mechanism_family': 'threshold_touch',
+        'proposal_source': 'rule_projection',
+        'genericity_penalty': 0.18,
+        'threshold_profile': NODE_THRESHOLD_PROFILE,
+        'required_checks_any': ['evaluate_time_remaining_and_path_volatility'],
+        'active_nodes_any': ['time-remaining-nontrivial', 'touch-probability'],
+        'description': 'A latent risk-state where remaining time and expected path volatility materially pressure the chance of a qualifying move.',
+    },
+    {
+        'proposal_key': 'resistance-discount-justification',
+        'candidate_type': 'node',
+        'candidate_label': 'Resistance discount justification',
+        'node_type': 'workflow_condition',
+        'mechanism_family': 'workflow_pricing',
+        'proposal_source': 'rule_projection',
+        'genericity_penalty': 0.22,
+        'threshold_profile': NODE_THRESHOLD_PROFILE,
+        'required_checks_any': ['justify_any_resistance_discount_explicitly'],
+        'active_nodes_any': ['verification-caution', 'touch-probability'],
+        'description': 'A workflow condition where discretionary resistance or reversal discounts must be explicitly justified rather than implied.',
+    },
+]
+
+EDGE_RULES: list[dict[str, Any]] = [
+    {
+        'proposal_key': 'settlement-source-specificity__increases__primary-resolution-source-identification',
+        'candidate_type': 'edge',
+        'candidate_label': 'Settlement source specificity increases primary resolution source identification',
+        'source_node_key': 'settlement-source-specificity',
+        'target_node_key': 'primary-resolution-source-identification',
+        'effect_sign': 'increases',
+        'mechanism_family': 'source_resolution',
+        'proposal_source': 'rule_projection',
+        'genericity_penalty': 0.18,
+        'threshold_profile': EDGE_THRESHOLD_PROFILE,
+        'required_checks_any': ['verify_primary_resolution_source'],
+        'active_nodes_any': ['settlement-source-specificity'],
+        'description': 'Venue-specific or benchmark-specific settlement raises the need to identify the primary governing source explicitly.',
+    },
+    {
+        'proposal_key': 'resolution-surface-ambiguity__increases__governing-source-proof-capture',
+        'candidate_type': 'edge',
+        'candidate_label': 'Resolution surface ambiguity increases governing source proof capture',
+        'source_node_key': 'resolution-surface-ambiguity',
+        'target_node_key': 'governing-source-proof-capture',
+        'effect_sign': 'increases',
+        'mechanism_family': 'source_resolution',
+        'proposal_source': 'rule_projection',
+        'genericity_penalty': 0.16,
+        'threshold_profile': EDGE_THRESHOLD_PROFILE,
+        'required_checks_any': ['capture_governing_source_proof_when_event_near_complete'],
+        'active_nodes_any': ['resolution-surface-ambiguity'],
+        'description': 'When the governing settlement surface is ambiguous, the workflow need for direct proof capture rises.',
+    },
+    {
+        'proposal_key': 'resolution-surface-ambiguity__increases__verification-state-separation',
+        'candidate_type': 'edge',
+        'candidate_label': 'Resolution surface ambiguity increases verification-state separation',
+        'source_node_key': 'resolution-surface-ambiguity',
+        'target_node_key': 'verification-state-separation',
+        'effect_sign': 'increases',
+        'mechanism_family': 'source_resolution',
+        'proposal_source': 'rule_projection',
+        'genericity_penalty': 0.15,
+        'threshold_profile': EDGE_THRESHOLD_PROFILE,
+        'required_checks_any': ['label_unverified_vs_not_occurred_distinctly'],
+        'active_nodes_any': ['resolution-surface-ambiguity'],
+        'description': 'When settlement proof is ambiguous, the workflow need to separate verification-state from event-state rises.',
+    },
+    {
+        'proposal_key': 'verification-caution__conditions__resolution-risk-path-separation',
+        'candidate_type': 'edge',
+        'candidate_label': 'Verification caution conditions resolution-risk / path-risk separation',
+        'source_node_key': 'verification-caution',
+        'target_node_key': 'resolution-risk-path-separation',
+        'effect_sign': 'conditions',
+        'mechanism_family': 'workflow_pricing',
+        'proposal_source': 'rule_projection',
+        'genericity_penalty': 0.14,
+        'threshold_profile': EDGE_THRESHOLD_PROFILE,
+        'required_checks_any': ['separate_resolution_risk_from_path_probability'],
+        'active_nodes_any': ['verification-caution'],
+        'description': 'When verification caution is active, the workflow should explicitly separate settlement/verification risk from path probability.',
+    },
+    {
+        'proposal_key': 'price-near-threshold__increases__threshold-distance-scaling',
+        'candidate_type': 'edge',
+        'candidate_label': 'Price near threshold increases threshold-distance scaling',
+        'source_node_key': 'price-near-threshold',
+        'target_node_key': 'threshold-distance-scaling',
+        'effect_sign': 'increases',
+        'mechanism_family': 'threshold_touch',
+        'proposal_source': 'rule_projection',
+        'genericity_penalty': 0.17,
+        'threshold_profile': EDGE_THRESHOLD_PROFILE,
+        'required_checks_any': ['evaluate_distance_to_threshold'],
+        'active_nodes_any': ['price-near-threshold'],
+        'description': 'Near-threshold markets raise the importance of explicitly scaling the residual distance in the analysis.',
+    },
+    {
+        'proposal_key': 'time-remaining-nontrivial__increases__path-volatility-pressure',
+        'candidate_type': 'edge',
+        'candidate_label': 'Time remaining increases path volatility pressure',
+        'source_node_key': 'time-remaining-nontrivial',
+        'target_node_key': 'path-volatility-pressure',
+        'effect_sign': 'increases',
+        'mechanism_family': 'threshold_touch',
+        'proposal_source': 'rule_projection',
+        'genericity_penalty': 0.18,
+        'threshold_profile': EDGE_THRESHOLD_PROFILE,
+        'required_checks_any': ['evaluate_time_remaining_and_path_volatility'],
+        'active_nodes_any': ['time-remaining-nontrivial'],
+        'description': 'When meaningful time remains, the pressure from path volatility becomes more decision-relevant.',
+    },
+]
+
+
+def proposal_id(candidate_type: str, proposal_key: str) -> str:
+    return f"{candidate_type}:{proposal_key}"
+
+
+
+def default_threshold_profile(candidate_type: str) -> dict[str, Any]:
+    if str(candidate_type) == 'edge':
+        return dict(EDGE_THRESHOLD_PROFILE)
+    return dict(NODE_THRESHOLD_PROFILE)
+
+
+
+def all_rules() -> list[dict[str, Any]]:
+    return NODE_RULES + EDGE_RULES

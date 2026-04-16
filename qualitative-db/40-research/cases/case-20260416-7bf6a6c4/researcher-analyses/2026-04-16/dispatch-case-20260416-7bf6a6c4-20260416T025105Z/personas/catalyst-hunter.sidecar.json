@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Single-minute close mechanics create path fragility.",
+    "A late-morning ET fade can invalidate an otherwise bullish day.",
+    "Timezone/candle alignment should still be checked at settlement time."
+  ],
+  "key_assumptions": [
+    "BTC's current cushion above 74000 is more likely than not to persist into the governing minute.",
+    "No late macro or exchange-specific move pushes Binance BTC/USDT back below 74000 at noon ET.",
+    "Ordinary volatility remains compatible with a hold-above outcome rather than a last-hour fade."
+  ],
+  "main_logical_chain": [
+    "Polymarket rules make the decisive condition the Binance BTC/USDT 12:00 ET 1-minute close on Apr 17 being above 74000.",
+    "Binance direct data shows BTC already above 74000 with a modest cushion and recent above-threshold trading.",
+    "Because no fresh breakout is needed, the case reduces mainly to persistence through one specific minute.",
+    "That persistence looks more likely than not, but not overwhelmingly so because normal intraday volatility could still flip the exact close."
+  ],
+  "main_thesis": "BTC is already above 74000 on Binance, so the key question is whether it can hold above the threshold through the specific Apr 17 12:00 ET 1-minute close; that makes Yes modestly more likely than the low-70s market price implies.",
+  "own_probability": 0.76,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "The governing source of truth is Binance BTC/USDT, specifically the final close of the 1-minute candle labeled 12:00 ET on Apr 17.",
+    "BTC is already trading above 74000 on Binance, so the remaining question is mostly a hold-above-persistence question into one exact settlement minute rather than a breakout question."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "catalyst_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-7bf6a6c4",
+    "dispatch_id": "dispatch-case-20260416-7bf6a6c4-20260416T025105Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "5dcdc519-2ca3-4897-9616-bcac2068e141",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-7bf6a6c4/researcher-analyses/2026-04-16/dispatch-case-20260416-7bf6a6c4-20260416T025105Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "9e637ec77ebd102c94a39da94c9e66f7066f2fda106ce378712d7111c612b903"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is medium-high: contract mechanics came from the Polymarket rules page and venue context came directly from Binance, with low-to-medium source-of-truth ambiguity aside from settlement-time candle alignment.",
+  "strongest_disconfirmers": [
+    "This is a close-at-time market, not a touch market, so a normal intraday fade below 74000 at the exact minute still resolves No.",
+    "Recent observed range shows sub-74000 trading is plausible without any extraordinary catalyst."
+  ],
+  "strongest_supports": [
+    "Direct Binance spot during research was roughly 74900-74950, already above threshold.",
+    "Recent Binance range included meaningful trading above 74000 and highs around 75425.",
+    "Contract is mechanical and near-dated, so direct governing-venue context is highly decision-useful."
+  ],
+  "timing_relevance": "The key catalyst is not a headline but whether BTC holds above 74000 into late morning ET on Apr 17; that persistence path should drive repricing.",
+  "unresolved_ambiguities": [
+    "No future governing candle exists yet, so final proof cannot be captured in this run.",
+    "Exchange-specific noise on Binance near settlement remains an unobserved residual risk."
+  ],
+  "what_would_change_view": "A clean move back below 74000 during the late-morning ET pre-settlement window, or evidence of Binance-specific dislocation, would push the estimate down materially."
+}

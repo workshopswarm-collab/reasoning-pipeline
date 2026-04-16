@@ -1,0 +1,57 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A fast crypto selloff of roughly 3% could flip the outcome.",
+    "Any operational/timestamp ambiguity around the exact Binance settlement candle would matter disproportionately."
+  ],
+  "key_assumptions": [
+    "No new downside shock knocks Binance BTC/USDT below 72,000 before the April 16 noon-ET candle close.",
+    "Binance public market data is a reliable proxy for the exchange surface named in the contract.",
+    "The ET noon wording maps straightforwardly to the intended settlement minute."
+  ],
+  "main_logical_chain": [
+    "Polymarket resolves this market from the Binance BTC/USDT 1-minute candle close at 12:00 ET on April 16.",
+    "Current Binance BTC/USDT pricing is materially above 72,000 and recent 24-hour lows also stayed above the threshold.",
+    "Therefore Yes is more likely than not unless a fresh downside catalyst arrives before settlement.",
+    "Because the remaining risk is concentrated in a short-horizon shock, the estimate should stay high but not near certainty."
+  ],
+  "main_thesis": "BTC/USDT on Binance is sufficiently above 72,000 that Yes remains the likely outcome absent a fresh downside catalyst before the specific noon-ET settlement minute.",
+  "own_probability": 0.9,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone (noon) ... has a final 'Close' price higher than the price specified in the title.",
+    "Binance spot during this run was around 74,145-74,155, about 2,145 points above the threshold."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "catalyst_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260415-2cba3460",
+    "dispatch_id": "dispatch-case-20260415-2cba3460-20260415T115730Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "11293da9-d37f-4d72-8aa6-1bba5606fdca",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-2cba3460/researcher-analyses/2026-04-15/dispatch-case-20260415-2cba3460-20260415T115730Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "40b496b1ba0a10fd26efb8551fbda382c8a0d2ca8176dc5006828200abdbed6c"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is good: Polymarket provides explicit contract mechanics, Binance provides resolution-adjacent direct price data, and CoinGecko offered a consistent contextual cross-check.",
+  "strongest_disconfirmers": [
+    "BTC can move the required ~3% in less than a day if a macro shock, liquidation cascade, or exchange-specific issue hits.",
+    "The contract resolves on one exact minute, so path risk matters more than broader daily direction."
+  ],
+  "strongest_supports": [
+    "Binance spot during the run was around 74.1k, about 2.9% above the threshold.",
+    "Binance 24-hour low was still above 72,000.",
+    "Polymarket rules explicitly define the deciding source and field."
+  ],
+  "timing_relevance": "This is mainly a catalyst-timing market: the key question is whether a downside shock occurs before the single noon-ET settlement minute.",
+  "unresolved_ambiguities": [
+    "Website candle labeling versus underlying API representation is not fully audited beyond the explicit ET rules wording."
+  ],
+  "what_would_change_view": "A break below 72k on Binance, a newly identified catalyst inside the remaining window that raises downside risk, or a clarified settlement-timing interpretation would lower confidence materially."
+}

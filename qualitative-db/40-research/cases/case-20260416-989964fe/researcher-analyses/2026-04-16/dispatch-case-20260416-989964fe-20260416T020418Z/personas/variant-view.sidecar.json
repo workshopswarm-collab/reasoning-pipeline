@@ -1,0 +1,56 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Fast crypto downside could erase the cushion before the exact settle minute.",
+    "The market may underweight timestamp-specific and venue-specific tail risk."
+  ],
+  "key_assumptions": [
+    "ETH's roughly 7% cushion above 2200 is likely to survive ordinary sub-24-hour volatility.",
+    "Binance's noon ET close will track broader ETH spot conditions without major venue-specific disruption."
+  ],
+  "main_logical_chain": [
+    "The contract resolves off Binance ETH/USDT 1-minute close at 12:00 ET on April 17, so exact timing and venue matter.",
+    "Current ETH spot near 2355 leaves a meaningful cushion above 2200.",
+    "That cushion makes Yes more likely than not by a wide margin, but not as close to certain as a 95.5% market price implies."
+  ],
+  "main_thesis": "ETH likely closes above 2200 on Binance at noon ET April 17, but the market is slightly overconfident because the contract is venue-specific and timestamp-specific.",
+  "own_probability": 0.91,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "final 'Close' price higher than the price specified",
+    "Binance 1 minute candle for ETH/USDT 12:00 in the ET timezone"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation",
+    "variant_hypothesis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-989964fe",
+    "dispatch_id": "dispatch-case-20260416-989964fe-20260416T020418Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "ba2d7faa-1f0b-433c-a0b5-6267292e531a",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-989964fe/researcher-analyses/2026-04-16/dispatch-case-20260416-989964fe-20260416T020418Z/personas/variant-view.md",
+    "source_persona_sha256": "59c90e91d5ac608adc1ebf1cc21da20d4efbf5a349d3ce1e44e0a3648d8fd83e"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Good enough for a medium-difficulty date-sensitive case: clear contract rules, settlement-relevant Binance context, and independent contextual cross-checks from Coinbase and CoinGecko.",
+  "strongest_disconfirmers": [
+    "A 7% one-day drop is plausible in crypto, and the contract resolves on one exact minute close on one exchange.",
+    "Binance-specific operational or print anomalies could matter more than on a broader price contract."
+  ],
+  "strongest_supports": [
+    "Binance spot traded around 2355, materially above 2200.",
+    "Coinbase and CoinGecko roughly matched the same ETH level during verification."
+  ],
+  "timing_relevance": "High: the contract resolves on a single Binance 1-minute close at 12:00 ET on April 17, 2026.",
+  "unresolved_ambiguities": [
+    "No direct April 17 noon print exists yet; the conclusion depends on persistence of current spot context.",
+    "Canonical entity slugs for Ethereum/Binance appear malformed in-vault, limiting clean linkage confidence."
+  ],
+  "what_would_change_view": "A sharp pre-resolution selloff, clear Binance-specific operational issues, or any evidence of an imminent >7% downside catalyst would push the probability materially lower."
+}

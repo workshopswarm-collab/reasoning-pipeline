@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A sharp crypto risk-off move before settlement could invalidate the cushion quickly.",
+    "Single-minute measurement risk makes timing more fragile than a broad 'trades above 80' interpretation."
+  ],
+  "key_assumptions": [
+    "Current Binance spot near 85 remains a useful anchor through the final day.",
+    "No major crypto-wide selloff hits before the April 19 noon ET settlement minute.",
+    "Binance SOL/USDT 1-minute settlement mechanics remain straightforward and available."
+  ],
+  "main_logical_chain": [
+    "The market implies about 89% Yes for SOL above 80 on April 19.",
+    "Binance spot near 84.96 and recent closes mostly above 80 explain why the market is highly confident.",
+    "Because settlement is one specific 1-minute close, residual downside path risk remains material.",
+    "That supports a high Yes estimate, but a bit below market, around 82%."
+  ],
+  "main_thesis": "The market's high Yes probability is broadly justified by SOL trading above 80 with little time left, but single-minute settlement risk makes 89% slightly rich.",
+  "own_probability": 0.82,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "Binance SOLUSDT price: 84.96000000",
+    "Polymarket 80 strike: about 89%",
+    "Resolution: Binance SOL/USDT 1m candle at 12:00 ET on April 19"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-c395460f",
+    "dispatch_id": "dispatch-case-20260416-c395460f-20260416T022702Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "94ac9173-5138-4674-9bf1-859e6b7026a2",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-c395460f/researcher-analyses/2026-04-16/dispatch-case-20260416-c395460f-20260416T022702Z/personas/market-implied.md",
+    "source_persona_sha256": "9b430f6d049227800417a7a0606ff0331ac736b6918719dedaf60fc1dad21e79"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality direct evidence on pricing and contract mechanics from Binance plus Polymarket; independence is medium, but source-of-truth ambiguity is low after verification.",
+  "strongest_disconfirmers": [
+    "SOL can still move more than 5% over a weekend.",
+    "The contract resolves on one narrow noon-ET minute, not a daily close.",
+    "Recent Binance daily lows still dipped below 80 in the checked sample."
+  ],
+  "strongest_supports": [
+    "Binance SOL/USDT spot was about 84.96 during the run, already above the 80 threshold.",
+    "Recent Binance daily closes were mostly above 80.",
+    "Only about three days remained, so elapsed time supports the in-the-money side."
+  ],
+  "timing_relevance": "Timing is central because the contract resolves on the Binance SOL/USDT 12:00 ET 1-minute candle close on April 19, 2026, with only a short horizon remaining from the research date.",
+  "unresolved_ambiguities": [
+    "How much weekend realized volatility the market is implicitly discounting.",
+    "Whether intraday wick risk into the exact noon ET minute is slightly underweighted by traders."
+  ],
+  "what_would_change_view": "A broad crypto selloff, rising realized intraday volatility into settlement, or new evidence of timing/settlement nuance would lower the estimate materially."
+}

@@ -1,0 +1,57 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A fast risk-off move into U.S. morning on April 17.",
+    "Binance-specific print anomaly or liquidity disruption near noon ET."
+  ],
+  "key_assumptions": [
+    "No fresh bearish macro or crypto catalyst drives a >6% selloff before noon ET Friday.",
+    "Binance market functioning remains normal into the resolving minute."
+  ],
+  "main_logical_chain": [
+    "Contract resolves on one exact Binance ETH/USDT 1-minute close at 12:00 ET on April 17.",
+    "Current Binance spot is materially above 2200 and recent sampled range stayed above the threshold.",
+    "No clearly identified scheduled catalyst looks large enough on its own to erase that cushion before resolution.",
+    "Residual risk remains because a sharp selloff into the exact resolving minute could still flip the market to No."
+  ],
+  "main_thesis": "ETH is likely to stay above 2200 at the Binance noon ET resolving minute, but the single-minute close mechanic keeps residual downside timing risk nontrivial.",
+  "own_probability": 0.91,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "Polymarket: resolves to Yes if Binance 1 minute candle for ETH/USDT 12:00 ET has final Close higher than 2200.",
+    "Binance sampled last price: 2352.86."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "catalyst_analysis",
+    "contract_interpretation",
+    "scenario_analysis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-969f7c01",
+    "dispatch_id": "dispatch-case-20260416-969f7c01-20260416T013210Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "bf3202e7-01fb-467a-9b76-ed89ca9c9287",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-969f7c01/researcher-analyses/2026-04-16/dispatch-case-20260416-969f7c01-20260416T013210Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "2cd60d1b807483e73d0ec8b284f7d9c7af85590c4ba77c25db73cb6486f7cb0d"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source-of-truth ambiguity is low because the contract is explicit, but evidence independence is only medium because the thesis leans heavily on Binance and contract mechanics.",
+  "strongest_disconfirmers": [
+    "Single-minute resolution creates path-sensitive downside risk even if ETH trades above 2200 most of the time.",
+    "Crypto can move more than 6% intraday on shock headlines or liquidation."
+  ],
+  "strongest_supports": [
+    "Binance ETH/USDT last price sampled at 2353.84, well above 2200.",
+    "Binance 24h low sampled at 2308.50, still above 2200.",
+    "Polymarket contract wording clearly points to Binance ETH/USDT 12:00 ET 1m close as the governing source."
+  ],
+  "timing_relevance": "This case is mainly about whether the current >2200 cushion survives into the exact noon ET resolving minute, not about ETH direction in a broad daily sense.",
+  "unresolved_ambiguities": [
+    "Whether any unscheduled macro or crypto headline emerges before the resolving window."
+  ],
+  "what_would_change_view": "A decisive break toward/below 2300, a new bearish catalyst, or Binance-specific instability near resolution would cut the Yes probability materially."
+}

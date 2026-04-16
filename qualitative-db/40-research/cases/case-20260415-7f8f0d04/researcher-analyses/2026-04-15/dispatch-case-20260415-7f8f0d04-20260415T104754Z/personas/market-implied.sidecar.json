@@ -1,0 +1,63 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A single leaderboard update before resolution could flip the outcome.",
+    "The current evidence is a snapshot rather than a locked final result.",
+    "Close competitors are within a range that makes late movement plausible."
+  ],
+  "key_assumptions": [
+    "Current #1 status on the governing leaderboard has moderate short-horizon persistence.",
+    "No competitor overtakes before the April 17 noon ET check.",
+    "No methodology or availability disruption changes the meaning of the style-control-on table before resolution."
+  ],
+  "main_logical_chain": [
+    "Read the market as anchored to the live price and ask what would justify 87.4%.",
+    "Verify the governing source and style-control-on condition directly on the Arena leaderboard.",
+    "Observe that Claude Opus 4.6 Thinking is currently #1, validating the market's direction.",
+    "Net that against modest score separation, tie mechanics, and future-check timing risk.",
+    "Conclude yes is more likely than no, but not as high as the market price implies."
+  ],
+  "main_thesis": "Claude Opus 4.6 Thinking is the deserved favorite because it currently leads the exact governing style-control-on Arena leaderboard, but the 87.4% market price looks too high for a modest lead into a future-dated check.",
+  "own_probability": 0.74,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "claude-opus-4-6-thinking rank #1, rating 1502.33",
+    "checked on April 17, 2026, 12:00 PM ET",
+    "alphabetical order ... used as a tiebreaker"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "contract_interpretation",
+    "scenario_analysis"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260415-7f8f0d04",
+    "dispatch_id": "dispatch-case-20260415-7f8f0d04-20260415T104754Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "0d191d17-73e4-4046-8c4c-8a9710d6033d",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-7f8f0d04/researcher-analyses/2026-04-15/dispatch-case-20260415-7f8f0d04-20260415T104754Z/personas/market-implied.md",
+    "source_persona_sha256": "cd81dd9603ffb00a5239e2899bb15404f669180062ce7da6ea7cf56070c70a02"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality direct settlement evidence from the Arena leaderboard plus direct contract wording, with a contextual vendor verification source; independence is medium rather than high.",
+  "strongest_disconfirmers": [
+    "The lead over #2 is only about 6.65 points and the top cluster has overlapping uncertainty bands.",
+    "The contract resolves on a future timestamp, not on the current snapshot.",
+    "Alphabetical tiebreaking favors claude-opus-4-6 over claude-opus-4-6-thinking in a tie."
+  ],
+  "strongest_supports": [
+    "The governing Chatbot Arena style-control-on text leaderboard currently shows claude-opus-4-6-thinking ranked #1.",
+    "There are only about two days left until the named resolution check.",
+    "Translation risk is low because the same leaderboard family and setting govern settlement."
+  ],
+  "timing_relevance": "High: the market resolves on April 17, 2026 at 12:00 PM ET, so the gap between current #1 status and the future check is the main reason the estimate stays below market.",
+  "unresolved_ambiguities": [
+    "How stable the top ranking has been over the last several days was not fully reconstructed here.",
+    "Exact near-term vote-flow and leaderboard update cadence remain uncertain.",
+    "Fallback handling if the source is unavailable at check time is explicit but operationally untested in this run."
+  ],
+  "what_would_change_view": "A later pre-resolution snapshot still showing Claude clearly first would push the estimate up; a rival taking #1 or the lead compressing sharply would push it down."
+}

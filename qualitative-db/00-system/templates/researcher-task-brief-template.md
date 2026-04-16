@@ -22,7 +22,7 @@ Role and permissions:
 - You may read any relevant vault document.
 - You should normally write only inside `qualitative-db/40-research/`.
 - You may write to `qualitative-db/40-research/review-queue/` for proposals and durable lesson candidates.
-- Do **not** directly edit `10-domains/`, `20-entities/`, `30-drivers/`, or `50-retrospectives/` unless explicitly authorized.
+- Do **not** directly edit `10-domains/`, `20-entities/`, `30-drivers/`, or `50-learnings/` unless explicitly authorized.
 - Before creating or substantially rewriting a real vault artifact, read the matching template once per artifact type per run.
 - Do not apply the template rule to scratch reasoning, chat replies, or lightweight status updates.
 

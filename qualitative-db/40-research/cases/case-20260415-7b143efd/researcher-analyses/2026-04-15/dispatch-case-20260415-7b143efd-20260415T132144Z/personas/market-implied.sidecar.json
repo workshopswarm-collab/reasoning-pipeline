@@ -1,0 +1,58 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A sharp BTC selloff or liquidation cascade before April 20 could erase the cushion.",
+    "Exchange-specific dislocation or operational issues on Binance could matter because settlement is venue-specific."
+  ],
+  "key_assumptions": [
+    "BTCUSDT's roughly 6% cushion over 70,000 survives ordinary volatility through April 20 noon ET.",
+    "Binance remains a reliable settlement surface without meaningful pricing disruption near the event window.",
+    "No major downside catalyst produces a sharper-than-expected BTC drawdown before settlement."
+  ],
+  "main_logical_chain": [
+    "Market implies about 88% Yes, so start from a high-persistence prior.",
+    "Binance primary-source data shows BTCUSDT already above 70,000 by roughly 6.1%.",
+    "Rules confirm that only the Binance BTC/USDT noon ET minute close on April 20 matters.",
+    "Because BTC volatility and single-minute settlement risk remain real, trim modestly below market rather than matching 0.88."
+  ],
+  "main_thesis": "The market is mostly right that BTC staying above 70,000 on Binance through the April 20 noon ET minute is likely, though 0.88 looks slightly rich versus residual five-day volatility and single-minute settlement risk.",
+  "own_probability": 0.83,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "This market will resolve to \"Yes\" if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone (noon) ... has a final \"Close\" price higher than the price specified in the title.",
+    "{\"symbol\":\"BTCUSDT\",\"price\":\"74250.01000000\"}"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "contract_interpretation",
+    "scenario_analysis"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260415-7b143efd",
+    "dispatch_id": "dispatch-case-20260415-7b143efd-20260415T132144Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "773b307c-e7c0-4a7f-9c03-441850a7bbca",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-7b143efd/researcher-analyses/2026-04-15/dispatch-case-20260415-7b143efd-20260415T132144Z/personas/market-implied.md",
+    "source_persona_sha256": "bf720d9ccebe8f4e152389c68c01bd42ede22b8350f59ecfa16ff2e60f43646a"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is solid: direct Binance primary-source price and kline data plus Polymarket's explicit rules page. Independence is medium because the contract itself points to Binance, but source-of-truth ambiguity is low.",
+  "strongest_disconfirmers": [
+    "BTC can move more than 6% in five days.",
+    "The contract resolves on one exact Binance 1-minute close, so transient downside at the wrong time can decide it."
+  ],
+  "strongest_supports": [
+    "Direct Binance check showed BTCUSDT around 74,250, already materially above 70,000.",
+    "Only about five days remained until settlement, making this more of a persistence question than a breakout question.",
+    "Contract wording is explicit about venue, pair, minute, and close field, reducing interpretation ambiguity."
+  ],
+  "timing_relevance": "The contract is highly timing-sensitive because it settles on the Binance BTC/USDT 1-minute candle for 12:00 ET on April 20, 2026, which I explicitly verified as 16:00 UTC.",
+  "unresolved_ambiguities": [
+    "UI-versus-API implementation detail is a minor residual ambiguity, though both are Binance-origin data.",
+    "Near-term realized volatility remains the main unresolved forecasting variable."
+  ],
+  "what_would_change_view": "I would cut the estimate if BTC drifts toward 71k-70k before settlement, if a credible downside catalyst emerges, or if Binance shows instability or unusual dislocation near the event window."
+}

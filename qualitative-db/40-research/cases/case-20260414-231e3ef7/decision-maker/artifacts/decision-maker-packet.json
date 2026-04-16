@@ -1,0 +1,157 @@
+{
+  "schema_version": "decision-packet/v1",
+  "generated_at": "2026-04-14T10:18:00-04:00",
+  "context": {
+    "case_key": "case-20260414-231e3ef7",
+    "dispatch_id": "dispatch-case-20260414-231e3ef7-20260414T140546Z",
+    "question": "Will Javokhir Sindarov win the 2026 FIDE Candidates Tournament?",
+    "market_id": "case-20260414-231e3ef7",
+    "market_title": "Will Javokhir Sindarov win the 2026 FIDE Candidates Tournament?",
+    "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260414-231e3ef7/synthesizer-agent/decision-handoff.md",
+    "source_syndicated_finding_path": "qualitative-db/40-research/cases/case-20260414-231e3ef7/synthesizer-agent/syndicated-finding.md",
+    "decision_maker_agent": "decision-maker",
+    "canonical_markdown_path": "decision-maker-packet.md",
+    "canonical_json_path": "artifacts/decision-maker-packet.json",
+    "external_market_id": "0xddbfffed3078bc556ff8fabc7ff92515c092b5f38db97e557b5f8ee8af8b2597",
+    "market_slug": "will-javokhir-sindarov-win-the-2026-fide-candidates-tournament",
+    "platform": "polymarket",
+    "primary_market_url": "https://polymarket.com/event/will-javokhir-sindarov-win-the-2026-fide-candidates-tournament",
+    "source_light_refresh_brief_path": "",
+    "refresh_mode": ""
+  },
+  "decision": {
+    "side": "yes",
+    "trade_authorization": "watch_only",
+    "position_policy": "hold_only",
+    "decision_readiness": "needs_more_research",
+    "primary_crux": "Sindarov is still overwhelmingly likely to win, but a 99.05% price is too aggressive without a clean official FIDE crosstable or tiebreak capture showing the exact late-stage state, so the residual risk is concentrated in verification fragility and the remaining rounds rather than broad field uncertainty.",
+    "secondary_cruxes": [
+      "The contract resolves on the actual FIDE-declared winner, so dominant tournament position is not identical to settled winner until official completion.",
+      "Multiple upstream lanes agree Sindarov is the overwhelming favorite, but the main missing evidence is exactly the evidence needed to justify a near-99% price: clean official standings and tiebreak state.",
+      "The dissenting low-probability variant view is structurally underfit, but it correctly points at the real vulnerability: extreme prices require cleaner official verification than is present here."
+    ],
+    "thesis_class": "not_decision_ready"
+  },
+  "valuation": {
+    "fair_value_low": 0.94,
+    "fair_value_high": 0.97,
+    "fair_value_mid": 0.955,
+    "market_reference_price": 0.9905,
+    "edge_mid_vs_market_pct_points": -3.6,
+    "independent_verification_quality": "medium",
+    "compressed_toward_market_applied": false,
+    "compression_reason": "The bounded evidence already supports a very high Sindarov win probability, but without a clean official FIDE crosstable/tiebreak capture there is no basis to follow the market all the way to near-certainty."
+  },
+  "execution_semantics": {
+    "price_axis": "market_implied_true_prob",
+    "price_source": "market_snapshot_quote",
+    "rebalance_threshold_fraction": 0.04,
+    "allow_auto_reversal": false,
+    "valid_until": "2026-04-15T23:59:00-04:00",
+    "quote_staleness_seconds": 14400,
+    "time_horizon": "Through remaining rounds, official FIDE standings updates, and final winner declaration"
+  },
+  "risk_controls": {
+    "max_position_size_pct_bankroll": 0.005,
+    "max_additional_exposure_pct_bankroll": 0.0,
+    "max_single_order_pct_bankroll": 0.0,
+    "slippage_tolerance_bps": 40,
+    "liquidity_min_depth": 1000,
+    "correlation_bucket_limit_pct_bankroll": 0.03,
+    "confidence_level": "low",
+    "portfolio_constraints": [
+      "Do not initiate fresh exposure from this packet because the market is already richer than bounded fair value and the key missing evidence is official-state verification.",
+      "Existing aligned exposure may be held, but refresh on any official FIDE crosstable, tiebreak, or winner update before adjusting.",
+      "Treat unresolved live-tournament state as a hard cap on confidence when prices approach certainty."
+    ],
+    "liquidity_caution": "low"
+  },
+  "bands": [
+    {
+      "name": "max_enter",
+      "min_p": 0,
+      "max_p": 0.85,
+      "target_exposure_fraction": 0,
+      "notes": "No autonomous entry from this packet; much cheaper pricing would require a fresh official-state review."
+    },
+    {
+      "name": "scaled_enter",
+      "min_p": 0.85,
+      "max_p": 0.93,
+      "target_exposure_fraction": 0,
+      "notes": "No entry authorized because the current packet is constrained by missing clean official standings verification."
+    },
+    {
+      "name": "hold",
+      "min_p": 0.93,
+      "max_p": 0.965,
+      "target_exposure_fraction": 0,
+      "notes": "Hold zone consistent with Sindarov being a very strong favorite but not cleanly enough verified for fresh adds."
+    },
+    {
+      "name": "trim",
+      "min_p": 0.965,
+      "max_p": 0.99,
+      "target_exposure_fraction": 0,
+      "notes": "Trim or avoid increasing as price moves above justified fair value and verification fragility dominates."
+    },
+    {
+      "name": "exit",
+      "min_p": 0.99,
+      "max_p": 1,
+      "target_exposure_fraction": 0,
+      "notes": "Exit/avoid at extreme prices because remaining-round and source-of-truth tails still matter economically."
+    }
+  ],
+  "invalidation": {
+    "thesis_breakers": [
+      "A clean official FIDE crosstable or result update shows the race is materially tighter than currently described.",
+      "A remaining-round result or tiebreak development reopens the tournament materially.",
+      "Official FIDE winner declaration confirms Sindarov, which would collapse the residual uncertainty entirely."
+    ],
+    "market_structure_breakers": [
+      "The market is incorporating stronger live-state information than the bounded package captured.",
+      "Thin liquidity or momentum chasing is exaggerating certainty without matching official verification.",
+      "A discrepancy emerges between credible reporting and official FIDE state that changes settlement confidence."
+    ],
+    "time_breakers": [
+      "Round 13/14 results can materially change the probability quickly.",
+      "Any official FIDE standings or winner update should replace this packet immediately rather than merely modify it."
+    ],
+    "reversal_conditions": [
+      "Move toward authorized yes only after a fresh packet if a clean official crosstable or winner confirmation removes the remaining verification tail.",
+      "Move materially lower if official standings or results show a tighter race or reopened tie path.",
+      "Do not auto-reverse from this packet."
+    ]
+  },
+  "epistemic_status": {
+    "key_uncertainties": [
+      "The exact official FIDE crosstable and tiebreak state after the latest round.",
+      "Residual upset probability across the remaining rounds and any tie/tiebreak path.",
+      "How much the market price reflects live-state detail unavailable in the bounded package."
+    ],
+    "reasons_to_pass": [
+      "The market is already near certainty, leaving very little room for verification error.",
+      "The key missing evidence is exactly what would justify or falsify a 99% price.",
+      "This is still a live tournament rather than an officially finished event, so remaining-round tails are not zero."
+    ],
+    "what_would_change_my_mind": [
+      "A clean official FIDE crosstable showing a near-clinch or mathematically overwhelming lead would move fair value closer to the market.",
+      "An official FIDE winner declaration naming Sindarov would effectively resolve the case.",
+      "A clean official update showing a materially tighter race or less favorable tiebreak state would move fair value lower."
+    ],
+    "decision_quality": "not_ready"
+  },
+  "audit": {
+    "market_baseline_respected": true,
+    "action_bias_check_passed": true,
+    "self_preservation_bias_check_passed": true,
+    "one_sentence_rationale": "Sindarov still looks overwhelmingly likely to win, but because the 99.05% market price is not matched by a clean official FIDE crosstable or winner confirmation and the tournament remained live at analysis time, the disciplined output is watch-only and needs-more-research rather than chasing near-certainty.",
+    "notes": "This packet intentionally preserves a very high Yes view while refusing to promote it to execution-quality certainty; the disagreement with the market is small in absolute terms but still meaningful at a near-99% price.",
+    "structured_handoff_primary_used": true,
+    "prose_fallback_used": false,
+    "verification_mode_used": "not_ready_reopen_recommended",
+    "additional_verification_performed": false,
+    "additional_verification_notes": ""
+  }
+}

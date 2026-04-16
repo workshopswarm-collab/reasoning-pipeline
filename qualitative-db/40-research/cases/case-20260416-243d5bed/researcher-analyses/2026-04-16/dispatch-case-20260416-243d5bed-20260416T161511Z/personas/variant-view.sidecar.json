@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Single-minute settlement precision can defeat an otherwise correct broad directional call.",
+    "The governing source is the Binance UI, not an explicit API spec.",
+    "Short-horizon crypto volatility can erase a 1-2% cushion quickly."
+  ],
+  "key_assumptions": [
+    "Binance spot API is a faithful verification proxy for the Binance UI settlement surface.",
+    "No major overnight shock drives ETH materially below 2300 into the settlement minute.",
+    "A roughly 1.7% cushion above threshold is helpful but not large enough to remove minute-specific downside risk."
+  ],
+  "main_logical_chain": [
+    "Polymarket rules define the contract as the Binance ETH/USDT 12:00 ET 1-minute candle close on April 17 being strictly above 2300.",
+    "Binance direct data verifies ETH is currently above 2300 and that 1-minute klines exist with clean timestamps.",
+    "Because settlement is one exact minute and the current cushion is only about 1.7%, the path to No is larger than a generic spot-price framing implies.",
+    "That supports a cautious Yes estimate below the market-implied 74.5%."
+  ],
+  "main_thesis": "Yes is still the base case because Binance ETH/USDT is already above 2300, but the exact noon-ET 1-minute close condition makes the contract slightly more fragile than the market price suggests.",
+  "own_probability": 0.68,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for ETH/USDT 12:00 in the ET timezone (noon) ... has a final 'Close' price higher than the price specified.",
+    "ETHUSDT current spot verification: 2339.44000000"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "contract_interpretation",
+    "scenario_analysis",
+    "variant_hypothesis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-243d5bed",
+    "dispatch_id": "dispatch-case-20260416-243d5bed-20260416T161511Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "8ee4cce6-b1ba-44a9-ae74-94eca73dc39f",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-243d5bed/researcher-analyses/2026-04-16/dispatch-case-20260416-243d5bed-20260416T161511Z/personas/variant-view.md",
+    "source_persona_sha256": "5915d2a4db2c54789c4be8c918b20b48985867a898a1aa2fa991a303a052bba4"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary contract source quality is high, Binance verification quality is high for current state and mechanics, and source-of-truth ambiguity is low-to-medium because the rules cite the Binance UI rather than an API spec.",
+  "strongest_disconfirmers": [
+    "ETH is already above 2300 on the named exchange and no verified adverse catalyst was found that makes a >1.7% drop especially likely.",
+    "If realized volatility remains ordinary or supportive, the market may be roughly right or slightly conservative."
+  ],
+  "strongest_supports": [
+    "Binance direct price check showed ETHUSDT at 2339.44 on 2026-04-16.",
+    "Recent Binance 1-minute klines were also above 2300.",
+    "With less than a day left, only a modest downside move is needed to flip the contract."
+  ],
+  "timing_relevance": "Settlement is the Binance ETH/USDT 1-minute close at 2026-04-17 12:00 ET, which maps to 2026-04-17 16:00 UTC.",
+  "unresolved_ambiguities": [
+    "Minor residual ambiguity remains around UI-display versus API verification details.",
+    "No dedicated macro or order-flow catalyst check was completed beyond direct price/mechanics verification."
+  ],
+  "what_would_change_view": "I would move closer to or above the market if ETH sustains a materially larger cushion above 2300 into the settlement window, and more bearish if ETH retraces toward threshold or Binance-specific irregularities emerge."
+}

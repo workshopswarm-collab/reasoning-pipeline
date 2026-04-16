@@ -1,0 +1,155 @@
+{
+  "schema_version": "decision-packet/v1",
+  "generated_at": "2026-04-15T07:55:00-04:00",
+  "context": {
+    "case_key": "case-20260415-868fc947",
+    "dispatch_id": "refresh-case-20260415-868fc947-20260415T115501Z",
+    "question": "Will the price of Bitcoin be above $72,000 on April 16?",
+    "market_id": "7da0bb87-594f-4bdb-a7ae-fddfc3f0f8bd",
+    "external_market_id": "0xee2d4eeeae30d06342d630e97c23ff423da2e542cbfb30a8ce252b9f47ccc9e3",
+    "market_slug": "bitcoin-above-72k-on-april-16",
+    "platform": "polymarket",
+    "primary_market_url": "https://polymarket.com/event/bitcoin-above-72k-on-april-16",
+    "market_title": "Will the price of Bitcoin be above $72,000 on April 16?",
+    "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260415-868fc947/synthesizer-agent/decision-handoff.md",
+    "source_syndicated_finding_path": "qualitative-db/40-research/cases/case-20260415-868fc947/synthesizer-agent/syndicated-finding.md",
+    "source_light_refresh_brief_path": "qualitative-db/40-research/cases/case-20260415-868fc947/decision-maker/refreshes/refresh-case-20260415-868fc947-20260415T115501Z/light-refresh-brief.json",
+    "refresh_mode": "light",
+    "decision_maker_agent": "decision-maker",
+    "canonical_markdown_path": "decision-maker-packet.md",
+    "canonical_json_path": "artifacts/decision-maker-packet.json"
+  },
+  "decision": {
+    "side": "yes",
+    "trade_authorization": "watch_only",
+    "position_policy": "hold_only",
+    "decision_readiness": "ready",
+    "primary_crux": "The move from a prior fair-value center near 0.83 to a market price of 0.885 is best treated as repricing rather than a broken thesis: BTC is still more likely than not to close above $72,000 on the April 16 noon ET Binance minute, but the market is now materially above bounded fair value for a one-minute settlement with unresolved wick and downside-path risk.",
+    "secondary_cruxes": [
+      "There is no new bounded evidence that the exact-minute downside tail has shrunk; the refresh is primarily valuation deterioration.",
+      "The disagreement remains timing and path dependence, not direction or contract identity.",
+      "With only about 28 hours left, the contract is closer to resolution, but not enough to justify near-90% confidence from the current evidence set."
+    ],
+    "thesis_class": "price_not_good_enough"
+  },
+  "valuation": {
+    "fair_value_low": 0.8,
+    "fair_value_high": 0.86,
+    "fair_value_mid": 0.83,
+    "independent_verification_quality": "medium",
+    "compressed_toward_market_applied": false,
+    "compression_reason": "No new bounded evidence justifies changing the prior probability range; the refresh adds price movement but not stronger verification of exact-minute stability or downside-tail suppression.",
+    "market_reference_price": 0.885,
+    "edge_mid_vs_market_pct_points": -5.5
+  },
+  "execution_semantics": {
+    "price_source": "market_snapshot_quote",
+    "price_axis": "market_implied_true_prob",
+    "rebalance_threshold_fraction": 0.1,
+    "allow_auto_reversal": false,
+    "quote_staleness_seconds": 300,
+    "valid_until": "2026-04-16T11:56:04.260405+00:00"
+  },
+  "risk_controls": {
+    "confidence_level": "medium",
+    "portfolio_constraints": [
+      "Do not add fresh exposure at the updated market price.",
+      "Treat exact-minute Binance settlement risk as the dominant execution constraint even when spot remains above strike.",
+      "Reopen only if price cheapens materially or a fresher pre-fix Binance check materially improves the cushion and path confidence."
+    ],
+    "liquidity_caution": "low",
+    "max_position_size_pct_bankroll": 0.02,
+    "max_additional_exposure_pct_bankroll": 0.01,
+    "max_single_order_pct_bankroll": 0.005,
+    "slippage_tolerance_bps": 100,
+    "liquidity_min_depth": 0,
+    "correlation_bucket_limit_pct_bankroll": 0.05
+  },
+  "bands": [
+    {
+      "name": "max_enter",
+      "min_p": 0.0,
+      "max_p": 0.74,
+      "target_exposure_fraction": 0.0,
+      "notes": "Would require a much cheaper price and still a fresh Binance check near settlement."
+    },
+    {
+      "name": "scaled_enter",
+      "min_p": 0.74,
+      "max_p": 0.8,
+      "target_exposure_fraction": 0.0,
+      "notes": "Potential value zone only if same-venue cushion remains intact and pre-fix volatility stays contained."
+    },
+    {
+      "name": "hold",
+      "min_p": 0.8,
+      "max_p": 0.86,
+      "target_exposure_fraction": 0.0,
+      "notes": "Bounded fair-value zone; maintain watch-only hold posture."
+    },
+    {
+      "name": "trim",
+      "min_p": 0.86,
+      "max_p": 0.92,
+      "target_exposure_fraction": 0.0,
+      "notes": "Above fair value for a one-minute settlement contract with meaningful path dependence."
+    },
+    {
+      "name": "exit",
+      "min_p": 0.92,
+      "max_p": 1.0,
+      "target_exposure_fraction": 0.0,
+      "notes": "Avoid or exit at very rich prices because exact-minute downside tail dominates residual uncertainty."
+    }
+  ],
+  "invalidation": {
+    "thesis_breakers": [
+      "BTC loses cushion and trades materially back toward 72k-73k on Binance before the Apr 16 fixing window.",
+      "A concrete downside catalyst or volatility shock materially raises the odds of a sub-72k settlement minute.",
+      "Evidence appears that Binance's operative settlement surface differs materially from the assumed UI/API mapping."
+    ],
+    "time_breakers": [
+      "A fresh direct Binance observation closer to Apr 16 12:00 ET should supersede this packet before any action.",
+      "The actual Apr 16 12:00 ET Binance 1-minute close fully resolves and obsoletes this judgment."
+    ],
+    "market_structure_breakers": [
+      "Market price moves materially again without corresponding same-venue spot support, changing the value comparison.",
+      "Binance operational or microstructure issues emerge near settlement."
+    ],
+    "reversal_conditions": [
+      "Upgrade only if price becomes materially cheaper relative to fair value or if a fresh pre-fix Binance check shows a meaningfully larger cushion.",
+      "Downgrade if BTC loses cushion or if downside volatility or catalyst risk increases.",
+      "Do not auto-reverse from this packet."
+    ]
+  },
+  "epistemic_status": {
+    "key_uncertainties": [
+      "The true probability of a meaningful downside move or wick landing exactly at the settlement minute.",
+      "Whether the market embeds fresher venue-specific information than the bounded package contains.",
+      "How much the mild UI-versus-API implementation ambiguity matters in practice."
+    ],
+    "what_would_change_my_mind": [
+      "A fresh Binance check near settlement showing sustained trade well above 72k with subdued volatility would move me somewhat closer to market.",
+      "A move back toward 73k or evidence of elevated downside catalyst risk would lower fair value materially.",
+      "A materially cheaper market price with unchanged Binance cushion would create a cleaner edge."
+    ],
+    "reasons_to_pass": [
+      "The updated market price is now clearly above bounded fair value.",
+      "This is a one-minute single-venue settlement contract where path risk matters more than broad BTC direction.",
+      "The refresh added price movement, not new evidence supporting a higher probability."
+    ],
+    "decision_quality": "good_not_clean"
+  },
+  "audit": {
+    "one_sentence_rationale": "BTC is still more likely than not to finish above $72,000 on the April 16 Binance noon minute, but the market's move up to 0.885 only worsens the prior below-market valuation view, so the disciplined output remains watch-only with fair value anchored near 0.83 rather than chasing a richer price.",
+    "notes": "This refresh is a pure valuation update: same directional Yes, weaker execution case.",
+    "market_baseline_respected": true,
+    "action_bias_check_passed": true,
+    "self_preservation_bias_check_passed": true,
+    "structured_handoff_primary_used": true,
+    "prose_fallback_used": false,
+    "verification_mode_used": "not_ready_reopen_recommended",
+    "additional_verification_performed": false,
+    "additional_verification_notes": ""
+  }
+}

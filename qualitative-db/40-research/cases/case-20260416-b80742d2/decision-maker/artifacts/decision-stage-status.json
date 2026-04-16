@@ -1,0 +1,297 @@
+{
+  "actor": "orchestrator",
+  "agent_tool_use_allowed": false,
+  "artifact_type": "decision_stage_status",
+  "case_key": "case-20260416-b80742d2",
+  "decision_context_path": "roles/decision-maker/runtime/artifacts/case-20260416-b80742d2/decision-context-dispatch-case-20260416-b80742d2-20260416T014833Z.json",
+  "decision_lane": {
+    "topic_id": "4048",
+    "topic_title": "case-20260416-b80742d2 | decision | T014833Z",
+    "session_key": "agent:main:telegram:group:-1003846500961:topic:4048"
+  },
+  "decision_launch_claim": {
+    "claimed_at": "2026-04-16T01:58:06.258829Z",
+    "decision_context_path": "roles/decision-maker/runtime/artifacts/case-20260416-b80742d2/decision-context-dispatch-case-20260416-b80742d2-20260416T014833Z.json",
+    "launch_log_path": "scripts/.runtime-state/decision-maker-launches/case-20260416-b80742d2-20260416T015806Z.log",
+    "launcher": "pipeline_automation_actions.launch_decision_maker",
+    "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260416-b80742d2/decision-prompt-dispatch-case-20260416-b80742d2-20260416T014833Z.md",
+    "runner_pid": 52130
+  },
+  "decision_prompt_path": "roles/decision-maker/runtime/artifacts/case-20260416-b80742d2/decision-prompt-dispatch-case-20260416-b80742d2-20260416T014833Z.md",
+  "decision_readiness": "",
+  "decision_target_chat_id": "-1003846500961",
+  "decision_target_session_key": "agent:main:telegram:group:-1003846500961:topic:4048",
+  "decision_visible_finish_marker": "DECISION-MAKING COMPLETED, DECISION PACKAGE CREATED | market=Will the price of XRP be above $1.30 on April 19? | dispatch_id=dispatch-case-20260416-b80742d2-20260416T014833Z | packet_path=qualitative-db/40-research/cases/case-20260416-b80742d2/decision-maker/decision-maker-packet.md",
+  "decision_visible_receipt_marker": "SYNTHESIS RECEIVED | market=Will the price of XRP be above $1.30 on April 19? | dispatch_id=dispatch-case-20260416-b80742d2-20260416T014833Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260416-b80742d2/decision-context-dispatch-case-20260416-b80742d2-20260416T014833Z.json",
+  "decision_visible_start_marker": "DECISION-MAKING ANALYSIS UNDERWAY | market=Will the price of XRP be above $1.30 on April 19? | dispatch_id=dispatch-case-20260416-b80742d2-20260416T014833Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260416-b80742d2/decision-context-dispatch-case-20260416-b80742d2-20260416T014833Z.json",
+  "dispatch_id": "dispatch-case-20260416-b80742d2-20260416T014833Z",
+  "last_stage_event": {
+    "at": "2026-04-16T01:59:16.593576Z",
+    "stage": "decision_execution",
+    "state": "decision_failed",
+    "message": "Decision-Maker violated verification tool policy",
+    "error": "Decision-Maker used tools during a no-tools verification mode",
+    "tool_usage": {
+      "tool_activity_detected": true,
+      "tool_names": [
+        "read",
+        "edit"
+      ],
+      "tool_names_sequence": [
+        "read",
+        "read",
+        "edit",
+        "edit"
+      ],
+      "search_queries": [],
+      "fetched_urls": [],
+      "search_query_count": 0,
+      "source_fetch_count": 0,
+      "source_families": [],
+      "distinct_source_family_count": 0
+    },
+    "verification_mode": "not_ready_reopen_recommended"
+  },
+  "packet_json_path": "qualitative-db/40-research/cases/case-20260416-b80742d2/decision-maker/artifacts/decision-maker-packet.json",
+  "packet_markdown_path": "qualitative-db/40-research/cases/case-20260416-b80742d2/decision-maker/decision-maker-packet.md",
+  "position_policy": "",
+  "question": "Will the price of XRP be above $1.30 on April 19?",
+  "recommended_side": "",
+  "schema_version": "decision-stage-status/v1",
+  "selected_input_bundle_estimated_tokens": 2711,
+  "selected_input_bundle_mode": "not_ready_reopen_recommended",
+  "selected_input_bundle_path": "roles/decision-maker/runtime/artifacts/case-20260416-b80742d2/selected-inputs-dispatch-case-20260416-b80742d2-20260416T014833Z.json",
+  "stage_events": [
+    {
+      "at": "2026-04-16T01:58:05.720609Z",
+      "message": "Decision-Maker stage initialized from synthesis handoff",
+      "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260416-b80742d2/synthesizer-agent/decision-handoff.md",
+      "stage": "kickoff",
+      "state": "decision_ready_for_receipt"
+    },
+    {
+      "agent_tool_use_allowed": false,
+      "approx_tokens_after_trim": 2711,
+      "at": "2026-04-16T01:58:06.224750Z",
+      "message": "Built deterministic Decision-Maker selected-input bundle",
+      "selected_input_bundle_path": "roles/decision-maker/runtime/artifacts/case-20260416-b80742d2/selected-inputs-dispatch-case-20260416-b80742d2-20260416T014833Z.json",
+      "stage": "decision_input_selection",
+      "state": "built",
+      "verification_mode": "not_ready_reopen_recommended",
+      "verification_mode_path": "roles/decision-maker/runtime/artifacts/case-20260416-b80742d2/verification-mode-dispatch-case-20260416-b80742d2-20260416T014833Z.json"
+    },
+    {
+      "at": "2026-04-16T01:58:06.224991Z",
+      "message": "Built Decision-Maker prompt from compact selected-input bundle",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260416-b80742d2/decision-prompt-dispatch-case-20260416-b80742d2-20260416T014833Z.md",
+      "stage": "decision_prompt",
+      "state": "built"
+    },
+    {
+      "at": "2026-04-16T01:58:06.226435Z",
+      "message": "Decision-Maker inputs prepared; awaiting launch claim",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260416-b80742d2/decision-prompt-dispatch-case-20260416-b80742d2-20260416T014833Z.md",
+      "stage": "decision_prepare",
+      "state": "handoff_prepared"
+    },
+    {
+      "at": "2026-04-16T01:58:06.258829Z",
+      "decision_context_path": "roles/decision-maker/runtime/artifacts/case-20260416-b80742d2/decision-context-dispatch-case-20260416-b80742d2-20260416T014833Z.json",
+      "launch_log_path": "scripts/.runtime-state/decision-maker-launches/case-20260416-b80742d2-20260416T015806Z.log",
+      "message": "Decision-Maker launch claimed by automation controller",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260416-b80742d2/decision-prompt-dispatch-case-20260416-b80742d2-20260416T014833Z.md",
+      "runner_pid": 52130,
+      "stage": "decision_receipt",
+      "state": "handoff_sent"
+    },
+    {
+      "at": "2026-04-16T01:58:06.443201Z",
+      "stage": "kickoff",
+      "state": "reentered",
+      "message": "Decision-Maker executor resumed from existing prepared/running state",
+      "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260416-b80742d2/synthesizer-agent/decision-handoff.md"
+    },
+    {
+      "at": "2026-04-16T01:58:06.917021Z",
+      "stage": "decision_input_selection",
+      "state": "built",
+      "message": "Built deterministic Decision-Maker selected-input bundle",
+      "verification_mode_path": "roles/decision-maker/runtime/artifacts/case-20260416-b80742d2/verification-mode-dispatch-case-20260416-b80742d2-20260416T014833Z.json",
+      "selected_input_bundle_path": "roles/decision-maker/runtime/artifacts/case-20260416-b80742d2/selected-inputs-dispatch-case-20260416-b80742d2-20260416T014833Z.json",
+      "verification_mode": "not_ready_reopen_recommended",
+      "approx_tokens_after_trim": 2711,
+      "agent_tool_use_allowed": false
+    },
+    {
+      "at": "2026-04-16T01:58:06.917144Z",
+      "stage": "decision_prompt",
+      "state": "built",
+      "message": "Built Decision-Maker prompt from compact selected-input bundle",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260416-b80742d2/decision-prompt-dispatch-case-20260416-b80742d2-20260416T014833Z.md"
+    },
+    {
+      "at": "2026-04-16T01:58:12.876418Z",
+      "stage": "decision_lane_bootstrap",
+      "state": "created",
+      "message": "Created dedicated Telegram decision lane",
+      "topic_id": "4048",
+      "topic_title": "case-20260416-b80742d2 | decision | T014833Z",
+      "session_key": "agent:main:telegram:group:-1003846500961:topic:4048"
+    },
+    {
+      "at": "2026-04-16T01:58:29.676490Z",
+      "stage": "decision_receipt",
+      "state": "visible_marker_sent",
+      "message": "SYNTHESIS RECEIVED | market=Will the price of XRP be above $1.30 on April 19? | dispatch_id=dispatch-case-20260416-b80742d2-20260416T014833Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260416-b80742d2/decision-context-dispatch-case-20260416-b80742d2-20260416T014833Z.json"
+    },
+    {
+      "at": "2026-04-16T01:58:29.678192Z",
+      "stage": "decision_receipt",
+      "state": "accepted",
+      "message": "Decision-Maker handoff accepted",
+      "session_key": "agent:decision-maker:main",
+      "handoff_status": "started",
+      "gateway_response_path": "roles/decision-maker/runtime/artifacts/case-20260416-b80742d2/decision-gateway-response-dispatch-case-20260416-b80742d2-20260416T014833Z.json"
+    },
+    {
+      "at": "2026-04-16T01:58:29.678413Z",
+      "stage": "decision_execution",
+      "state": "decision_analysis_running",
+      "message": "Decision-Maker agent invocation accepted and analysis started",
+      "session_key": "agent:decision-maker:main",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260416-b80742d2/decision-prompt-dispatch-case-20260416-b80742d2-20260416T014833Z.md",
+      "handoff_status": "started"
+    },
+    {
+      "at": "2026-04-16T01:58:39.021052Z",
+      "stage": "decision_execution",
+      "state": "visible_marker_sent",
+      "message": "DECISION-MAKING ANALYSIS UNDERWAY | market=Will the price of XRP be above $1.30 on April 19? | dispatch_id=dispatch-case-20260416-b80742d2-20260416T014833Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260416-b80742d2/decision-context-dispatch-case-20260416-b80742d2-20260416T014833Z.json"
+    },
+    {
+      "at": "2026-04-16T01:58:51.019329Z",
+      "stage": "decision_execution",
+      "state": "decision_parse_failed_retrying",
+      "message": "Decision-Maker output was not valid JSON; retrying once",
+      "attempt": 1,
+      "error": "could not parse JSON object from decision-maker response text",
+      "raw_response_text_path": "roles/decision-maker/runtime/artifacts/case-20260416-b80742d2/decision-response-dispatch-case-20260416-b80742d2-20260416T014833Z.raw.txt",
+      "gateway_response_path": "roles/decision-maker/runtime/artifacts/case-20260416-b80742d2/decision-gateway-response-dispatch-case-20260416-b80742d2-20260416T014833Z.json",
+      "parse_failure_artifact_path": "roles/decision-maker/runtime/artifacts/case-20260416-b80742d2/decision-parse-failure-dispatch-case-20260416-b80742d2-20260416T014833Z.json"
+    },
+    {
+      "at": "2026-04-16T01:58:51.019922Z",
+      "stage": "decision_execution",
+      "state": "decision_retry_requested",
+      "message": "Decision-Maker output invalid; requested one strict JSON retry",
+      "attempt": 2,
+      "retry_error": "could not parse JSON object from decision-maker response text",
+      "validation_errors": []
+    },
+    {
+      "at": "2026-04-16T01:58:51.019942Z",
+      "stage": "decision_execution",
+      "state": "decision_analysis_running",
+      "message": "Decision-Maker retry requested after invalid packet output",
+      "attempt": 2,
+      "retry_error": "could not parse JSON object from decision-maker response text",
+      "validation_errors": []
+    },
+    {
+      "at": "2026-04-16T01:58:57.569988Z",
+      "stage": "decision_execution",
+      "state": "decision_retry_accepted",
+      "message": "Decision-Maker retry accepted",
+      "attempt": 2,
+      "session_key": "agent:decision-maker:main",
+      "gateway_response_path": "roles/decision-maker/runtime/artifacts/case-20260416-b80742d2/decision-gateway-response-dispatch-case-20260416-b80742d2-20260416T014833Z-attempt-2.json"
+    },
+    {
+      "at": "2026-04-16T01:59:16.593576Z",
+      "stage": "decision_execution",
+      "state": "decision_failed",
+      "message": "Decision-Maker violated verification tool policy",
+      "error": "Decision-Maker used tools during a no-tools verification mode",
+      "tool_usage": {
+        "tool_activity_detected": true,
+        "tool_names": [
+          "read",
+          "edit"
+        ],
+        "tool_names_sequence": [
+          "read",
+          "read",
+          "edit",
+          "edit"
+        ],
+        "search_queries": [],
+        "fetched_urls": [],
+        "search_query_count": 0,
+        "source_fetch_count": 0,
+        "source_families": [],
+        "distinct_source_family_count": 0
+      },
+      "verification_mode": "not_ready_reopen_recommended"
+    }
+  ],
+  "status": "decision_failed",
+  "targeted_verification_pack_path": "",
+  "targeted_verification_pack_required": false,
+  "trade_authorization": "",
+  "updated_at": "2026-04-16T01:59:16.593623Z",
+  "verification_mode_path": "roles/decision-maker/runtime/artifacts/case-20260416-b80742d2/verification-mode-dispatch-case-20260416-b80742d2-20260416T014833Z.json",
+  "warnings": [],
+  "previous_status": "handoff_sent",
+  "raw_gateway_response_path": "roles/decision-maker/runtime/artifacts/case-20260416-b80742d2/decision-gateway-response-dispatch-case-20260416-b80742d2-20260416T014833Z-attempt-2.json",
+  "raw_response_text_path": "roles/decision-maker/runtime/artifacts/case-20260416-b80742d2/decision-response-dispatch-case-20260416-b80742d2-20260416T014833Z-attempt-2.raw.txt",
+  "decision_parse_failure_artifact_path": "roles/decision-maker/runtime/artifacts/case-20260416-b80742d2/decision-parse-failure-dispatch-case-20260416-b80742d2-20260416T014833Z-attempt-2.json",
+  "decision_parse_attempt_count": 2,
+  "decision_recovered_after_retry": false,
+  "decision_lane_topic_id": "4048",
+  "decision_lane_topic_title": "case-20260416-b80742d2 | decision | T014833Z",
+  "decision_lane_session_key": "agent:main:telegram:group:-1003846500961:topic:4048",
+  "decision_target_topic_id": "4048",
+  "decision_target_topic_title": "case-20260416-b80742d2 | decision | T014833Z",
+  "decision_receipt_marker_sent_at": "2026-04-16T01:58:29.676395+00:00",
+  "decision_analysis_marker_sent_at": "2026-04-16T01:58:39.020997+00:00",
+  "terminal_summary": {
+    "at": "2026-04-16T01:59:16.593636Z",
+    "status": "decision_failed",
+    "decision_lane": {
+      "topic_id": "4048",
+      "topic_title": "case-20260416-b80742d2 | decision | T014833Z",
+      "session_key": "agent:main:telegram:group:-1003846500961:topic:4048"
+    },
+    "packet_json_path": "qualitative-db/40-research/cases/case-20260416-b80742d2/decision-maker/artifacts/decision-maker-packet.json",
+    "packet_markdown_path": "qualitative-db/40-research/cases/case-20260416-b80742d2/decision-maker/decision-maker-packet.md",
+    "trade_authorization": "",
+    "decision_readiness": "",
+    "last_stage_event": {
+      "at": "2026-04-16T01:59:16.593576Z",
+      "stage": "decision_execution",
+      "state": "decision_failed",
+      "message": "Decision-Maker violated verification tool policy",
+      "error": "Decision-Maker used tools during a no-tools verification mode",
+      "tool_usage": {
+        "tool_activity_detected": true,
+        "tool_names": [
+          "read",
+          "edit"
+        ],
+        "tool_names_sequence": [
+          "read",
+          "read",
+          "edit",
+          "edit"
+        ],
+        "search_queries": [],
+        "fetched_urls": [],
+        "search_query_count": 0,
+        "source_fetch_count": 0,
+        "source_families": [],
+        "distinct_source_family_count": 0
+      },
+      "verification_mode": "not_ready_reopen_recommended"
+    }
+  }
+}

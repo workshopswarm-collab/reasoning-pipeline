@@ -1,0 +1,249 @@
+{
+  "actor": "decision-maker",
+  "agent_tool_use_allowed": false,
+  "artifact_type": "decision_stage_status",
+  "case_key": "case-20260414-69f2d608",
+  "decision_context_path": "roles/decision-maker/runtime/artifacts/case-20260414-69f2d608/decision-context-dispatch-case-20260414-69f2d608-20260414T020911Z.json",
+  "decision_lane": {
+    "topic_id": "1617",
+    "topic_title": "case-20260414-69f2d608 | decision | T020911Z",
+    "session_key": "agent:main:telegram:group:-1003846500961:topic:1617"
+  },
+  "decision_launch_claim": {
+    "claimed_at": "2026-04-14T02:18:02.616714Z",
+    "decision_context_path": "roles/decision-maker/runtime/artifacts/case-20260414-69f2d608/decision-context-dispatch-case-20260414-69f2d608-20260414T020911Z.json",
+    "launch_log_path": "scripts/.runtime-state/decision-maker-launches/case-20260414-69f2d608-20260414T021802Z.log",
+    "launcher": "pipeline_automation_actions.launch_decision_maker",
+    "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260414-69f2d608/decision-prompt-dispatch-case-20260414-69f2d608-20260414T020911Z.md",
+    "runner_pid": 2669
+  },
+  "decision_prompt_path": "roles/decision-maker/runtime/artifacts/case-20260414-69f2d608/decision-prompt-dispatch-case-20260414-69f2d608-20260414T020911Z.md",
+  "decision_readiness": "needs_more_research",
+  "decision_target_chat_id": "-1003846500961",
+  "decision_target_session_key": "agent:main:telegram:group:-1003846500961:topic:1617",
+  "decision_visible_finish_marker": "DECISION-MAKING COMPLETED, DECISION PACKAGE CREATED | market=Will the US x Iran ceasefire be extended by April 21, 2026? | dispatch_id=dispatch-case-20260414-69f2d608-20260414T020911Z | packet_path=qualitative-db/40-research/cases/case-20260414-69f2d608/decision-maker/decision-maker-packet.md",
+  "decision_visible_receipt_marker": "SYNTHESIS RECEIVED | market=Will the US x Iran ceasefire be extended by April 21, 2026? | dispatch_id=dispatch-case-20260414-69f2d608-20260414T020911Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260414-69f2d608/decision-context-dispatch-case-20260414-69f2d608-20260414T020911Z.json",
+  "decision_visible_start_marker": "DECISION-MAKING ANALYSIS UNDERWAY | market=Will the US x Iran ceasefire be extended by April 21, 2026? | dispatch_id=dispatch-case-20260414-69f2d608-20260414T020911Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260414-69f2d608/decision-context-dispatch-case-20260414-69f2d608-20260414T020911Z.json",
+  "dispatch_id": "dispatch-case-20260414-69f2d608-20260414T020911Z",
+  "last_stage_event": {
+    "at": "2026-04-14T02:18:38.904557Z",
+    "stage": "decision_execution",
+    "state": "visible_marker_sent",
+    "message": "DECISION-MAKING COMPLETED, DECISION PACKAGE CREATED | market=Will the US x Iran ceasefire be extended by April 21, 2026? | dispatch_id=dispatch-case-20260414-69f2d608-20260414T020911Z | packet_path=qualitative-db/40-research/cases/case-20260414-69f2d608/decision-maker/decision-maker-packet.md"
+  },
+  "packet_json_path": "qualitative-db/40-research/cases/case-20260414-69f2d608/decision-maker/artifacts/decision-maker-packet.json",
+  "packet_markdown_path": "qualitative-db/40-research/cases/case-20260414-69f2d608/decision-maker/decision-maker-packet.md",
+  "position_policy": "flat",
+  "question": "Will the US x Iran ceasefire be extended by April 21, 2026?",
+  "recommended_side": "yes",
+  "schema_version": "decision-stage-status/v1",
+  "selected_input_bundle_estimated_tokens": 2725,
+  "selected_input_bundle_mode": "not_ready_reopen_recommended",
+  "selected_input_bundle_path": "roles/decision-maker/runtime/artifacts/case-20260414-69f2d608/selected-inputs-dispatch-case-20260414-69f2d608-20260414T020911Z.json",
+  "stage_events": [
+    {
+      "at": "2026-04-14T02:18:02.506247Z",
+      "message": "Decision-Maker stage initialized from synthesis handoff",
+      "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260414-69f2d608/synthesizer-agent/decision-handoff.md",
+      "stage": "kickoff",
+      "state": "decision_ready_for_receipt"
+    },
+    {
+      "agent_tool_use_allowed": false,
+      "approx_tokens_after_trim": 2725,
+      "at": "2026-04-14T02:18:02.608126Z",
+      "message": "Built deterministic Decision-Maker selected-input bundle",
+      "selected_input_bundle_path": "roles/decision-maker/runtime/artifacts/case-20260414-69f2d608/selected-inputs-dispatch-case-20260414-69f2d608-20260414T020911Z.json",
+      "stage": "decision_input_selection",
+      "state": "built",
+      "verification_mode": "not_ready_reopen_recommended",
+      "verification_mode_path": "roles/decision-maker/runtime/artifacts/case-20260414-69f2d608/verification-mode-dispatch-case-20260414-69f2d608-20260414T020911Z.json"
+    },
+    {
+      "at": "2026-04-14T02:18:02.608174Z",
+      "message": "Built Decision-Maker prompt from compact selected-input bundle",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260414-69f2d608/decision-prompt-dispatch-case-20260414-69f2d608-20260414T020911Z.md",
+      "stage": "decision_prompt",
+      "state": "built"
+    },
+    {
+      "at": "2026-04-14T02:18:02.608449Z",
+      "message": "Decision-Maker inputs prepared; awaiting launch claim",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260414-69f2d608/decision-prompt-dispatch-case-20260414-69f2d608-20260414T020911Z.md",
+      "stage": "decision_prepare",
+      "state": "handoff_prepared"
+    },
+    {
+      "at": "2026-04-14T02:18:02.616714Z",
+      "decision_context_path": "roles/decision-maker/runtime/artifacts/case-20260414-69f2d608/decision-context-dispatch-case-20260414-69f2d608-20260414T020911Z.json",
+      "launch_log_path": "scripts/.runtime-state/decision-maker-launches/case-20260414-69f2d608-20260414T021802Z.log",
+      "message": "Decision-Maker launch claimed by automation controller",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260414-69f2d608/decision-prompt-dispatch-case-20260414-69f2d608-20260414T020911Z.md",
+      "runner_pid": 2669,
+      "stage": "decision_receipt",
+      "state": "handoff_sent"
+    },
+    {
+      "at": "2026-04-14T02:18:02.652411Z",
+      "stage": "kickoff",
+      "state": "reentered",
+      "message": "Decision-Maker executor resumed from existing prepared/running state",
+      "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260414-69f2d608/synthesizer-agent/decision-handoff.md"
+    },
+    {
+      "at": "2026-04-14T02:18:02.755091Z",
+      "stage": "decision_input_selection",
+      "state": "built",
+      "message": "Built deterministic Decision-Maker selected-input bundle",
+      "verification_mode_path": "roles/decision-maker/runtime/artifacts/case-20260414-69f2d608/verification-mode-dispatch-case-20260414-69f2d608-20260414T020911Z.json",
+      "selected_input_bundle_path": "roles/decision-maker/runtime/artifacts/case-20260414-69f2d608/selected-inputs-dispatch-case-20260414-69f2d608-20260414T020911Z.json",
+      "verification_mode": "not_ready_reopen_recommended",
+      "approx_tokens_after_trim": 2725,
+      "agent_tool_use_allowed": false
+    },
+    {
+      "at": "2026-04-14T02:18:02.755137Z",
+      "stage": "decision_prompt",
+      "state": "built",
+      "message": "Built Decision-Maker prompt from compact selected-input bundle",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260414-69f2d608/decision-prompt-dispatch-case-20260414-69f2d608-20260414T020911Z.md"
+    },
+    {
+      "at": "2026-04-14T02:18:04.382560Z",
+      "stage": "decision_lane_bootstrap",
+      "state": "created",
+      "message": "Created dedicated Telegram decision lane",
+      "topic_id": "1617",
+      "topic_title": "case-20260414-69f2d608 | decision | T020911Z",
+      "session_key": "agent:main:telegram:group:-1003846500961:topic:1617"
+    },
+    {
+      "at": "2026-04-14T02:18:08.260551Z",
+      "stage": "decision_receipt",
+      "state": "visible_marker_sent",
+      "message": "SYNTHESIS RECEIVED | market=Will the US x Iran ceasefire be extended by April 21, 2026? | dispatch_id=dispatch-case-20260414-69f2d608-20260414T020911Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260414-69f2d608/decision-context-dispatch-case-20260414-69f2d608-20260414T020911Z.json"
+    },
+    {
+      "at": "2026-04-14T02:18:08.261071Z",
+      "stage": "decision_receipt",
+      "state": "accepted",
+      "message": "Decision-Maker handoff accepted",
+      "session_key": "agent:decision-maker:main",
+      "handoff_status": "started"
+    },
+    {
+      "at": "2026-04-14T02:18:08.261176Z",
+      "stage": "decision_execution",
+      "state": "decision_analysis_running",
+      "message": "Decision-Maker agent invocation accepted and analysis started",
+      "session_key": "agent:decision-maker:main",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260414-69f2d608/decision-prompt-dispatch-case-20260414-69f2d608-20260414T020911Z.md",
+      "handoff_status": "started"
+    },
+    {
+      "at": "2026-04-14T02:18:10.477875Z",
+      "stage": "decision_execution",
+      "state": "visible_marker_sent",
+      "message": "DECISION-MAKING ANALYSIS UNDERWAY | market=Will the US x Iran ceasefire be extended by April 21, 2026? | dispatch_id=dispatch-case-20260414-69f2d608-20260414T020911Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260414-69f2d608/decision-context-dispatch-case-20260414-69f2d608-20260414T020911Z.json"
+    },
+    {
+      "at": "2026-04-14T02:18:36.843772Z",
+      "stage": "decision_execution",
+      "state": "decision_completed",
+      "message": "Decision-Maker completed and packet rendered",
+      "warnings": [],
+      "forecast_decision_persist_error": ""
+    },
+    {
+      "at": "2026-04-14T02:18:38.904557Z",
+      "stage": "decision_execution",
+      "state": "visible_marker_sent",
+      "message": "DECISION-MAKING COMPLETED, DECISION PACKAGE CREATED | market=Will the US x Iran ceasefire be extended by April 21, 2026? | dispatch_id=dispatch-case-20260414-69f2d608-20260414T020911Z | packet_path=qualitative-db/40-research/cases/case-20260414-69f2d608/decision-maker/decision-maker-packet.md"
+    }
+  ],
+  "status": "decision_completed",
+  "targeted_verification_pack_path": "",
+  "targeted_verification_pack_required": false,
+  "trade_authorization": "forbidden",
+  "updated_at": "2026-04-14T02:18:38.904574Z",
+  "verification_mode_path": "roles/decision-maker/runtime/artifacts/case-20260414-69f2d608/verification-mode-dispatch-case-20260414-69f2d608-20260414T020911Z.json",
+  "warnings": [],
+  "previous_status": "handoff_sent",
+  "decision_lane_topic_id": "1617",
+  "decision_lane_topic_title": "case-20260414-69f2d608 | decision | T020911Z",
+  "decision_lane_session_key": "agent:main:telegram:group:-1003846500961:topic:1617",
+  "decision_target_topic_id": "1617",
+  "decision_target_topic_title": "case-20260414-69f2d608 | decision | T020911Z",
+  "decision_receipt_marker_sent_at": "2026-04-14T02:18:08.260523+00:00",
+  "decision_analysis_marker_sent_at": "2026-04-14T02:18:10.477853+00:00",
+  "timeline_update": {
+    "appended": true,
+    "case_key": "case-20260414-69f2d608",
+    "dispatch_id": "dispatch-case-20260414-69f2d608-20260414T020911Z",
+    "packet_path": "qualitative-db/40-research/cases/case-20260414-69f2d608/decision-maker/decision-maker-packet.md",
+    "entry": "- 2026-04-14T02:18:36.843216+00:00 — completed decision-making `dispatch-case-20260414-69f2d608-20260414T020911Z` with packet `qualitative-db/40-research/cases/case-20260414-69f2d608/decision-maker/decision-maker-packet.md`."
+  },
+  "forecast_decision_persist": {
+    "ok": true,
+    "packet_json": "qualitative-db/40-research/cases/case-20260414-69f2d608/decision-maker/artifacts/decision-maker-packet.json",
+    "persisted": {
+      "forecast_id": "dispatch-case-20260414-69f2d608-20260414T020911Z",
+      "market_id": "e2223aed-b2c3-4ddd-8d29-dbc771eff68a",
+      "contract_id": "yes",
+      "forecast_prob": 0.575,
+      "decision_status": "void",
+      "decision_packet_path": "qualitative-db/40-research/cases/case-20260414-69f2d608/decision-maker/artifacts/decision-maker-packet.json",
+      "supersedes_forecast_id": null,
+      "superseded_forecast_ids": [],
+      "market_state": {
+        "market_id": "e2223aed-b2c3-4ddd-8d29-dbc771eff68a",
+        "current_price": 0.705,
+        "last_reasoned_price": 0.575,
+        "pipeline_status": "closed"
+      }
+    },
+    "record": {
+      "forecast_id": "dispatch-case-20260414-69f2d608-20260414T020911Z",
+      "decision_ts": "2026-04-13T22:18:00-04:00",
+      "case_id": "case-20260414-69f2d608",
+      "dispatch_id": "dispatch-case-20260414-69f2d608-20260414T020911Z",
+      "market_id": "e2223aed-b2c3-4ddd-8d29-dbc771eff68a",
+      "contract_id": "yes",
+      "platform": "polymarket",
+      "market_slug": "will-the-us-x-iran-ceasefire-be-extended-by-april-21-2026",
+      "question": "Will the US x Iran ceasefire be extended by April 21, 2026?",
+      "forecast_prob": "0.575",
+      "forecast_direction": "yes",
+      "confidence_label": "medium",
+      "confidence_score": "",
+      "time_horizon_label": "Through any no-gap extension announcement or expiry-window diplomacy before April 21",
+      "verification_mode": "not_ready_reopen_recommended",
+      "decision_status": "void",
+      "rationale_summary": "An extension remains somewhat more likely than not because the ceasefire is still holding and diplomacy is active, but with no official bilateral extension confirmation and a contract that is strict about no-gap mechanics, the market's 70.5% confidence is too high to trust or fade aggressively, so the disciplined output is forbidden and needs-more-research.",
+      "decision_packet_path": "qualitative-db/40-research/cases/case-20260414-69f2d608/decision-maker/artifacts/decision-maker-packet.json",
+      "decision_handoff_path": "qualitative-db/40-research/cases/case-20260414-69f2d608/synthesizer-agent/decision-handoff.md",
+      "syndicated_finding_path": "qualitative-db/40-research/cases/case-20260414-69f2d608/synthesizer-agent/syndicated-finding.md"
+    },
+    "warnings": []
+  },
+  "terminal_summary": {
+    "at": "2026-04-14T02:18:38.904586Z",
+    "status": "decision_completed",
+    "decision_lane": {
+      "topic_id": "1617",
+      "topic_title": "case-20260414-69f2d608 | decision | T020911Z",
+      "session_key": "agent:main:telegram:group:-1003846500961:topic:1617"
+    },
+    "packet_json_path": "qualitative-db/40-research/cases/case-20260414-69f2d608/decision-maker/artifacts/decision-maker-packet.json",
+    "packet_markdown_path": "qualitative-db/40-research/cases/case-20260414-69f2d608/decision-maker/decision-maker-packet.md",
+    "trade_authorization": "forbidden",
+    "decision_readiness": "needs_more_research",
+    "last_stage_event": {
+      "at": "2026-04-14T02:18:38.904557Z",
+      "stage": "decision_execution",
+      "state": "visible_marker_sent",
+      "message": "DECISION-MAKING COMPLETED, DECISION PACKAGE CREATED | market=Will the US x Iran ceasefire be extended by April 21, 2026? | dispatch_id=dispatch-case-20260414-69f2d608-20260414T020911Z | packet_path=qualitative-db/40-research/cases/case-20260414-69f2d608/decision-maker/decision-maker-packet.md"
+    }
+  },
+  "decision_completion_marker_sent_at": "2026-04-14T02:18:38.904533+00:00"
+}

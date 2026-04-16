@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Single-minute settlement path dependence.",
+    "Modest cushion above strike.",
+    "Exchange-specific print risk on Binance."
+  ],
+  "key_assumptions": [
+    "ETH retains enough cushion above 2300 into the 2026-04-17 noon ET settlement minute.",
+    "Binance spot remains representative and does not show a settlement-time dislocation."
+  ],
+  "main_logical_chain": [
+    "The governing contract resolves from the Binance ETH/USDT 1-minute candle close at 12:00 ET on 2026-04-17.",
+    "Current direct Binance pricing and sampled 1-minute candles are above 2300, so Yes is more likely than No.",
+    "But the narrow minute-level settlement structure makes confidence lower than a generic directional ETH-above-2300 view.",
+    "Therefore the correct risk-manager stance is modest Yes with a confidence discount versus the market."
+  ],
+  "main_thesis": "Yes is still more likely than no, but the market appears somewhat overconfident because settlement depends on one exact Binance ETH/USDT 1-minute close at 12:00 ET rather than on ETH's general daily level.",
+  "own_probability": 0.64,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for ETH/USDT 12:00 in the ET timezone has a final 'Close' price higher than the price specified.",
+    "Market-implied baseline: 72.5%; own probability estimate: 64% Yes."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "risk_management",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-04100395",
+    "dispatch_id": "dispatch-case-20260416-04100395-20260416T154804Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "5d28a326-6ea4-49d7-ab83-b240db3558aa",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-04100395/researcher-analyses/2026-04-16/dispatch-case-20260416-04100395-20260416T154804Z/personas/risk-manager.md",
+    "source_persona_sha256": "52a33abc319f975ff31d16531b668f007f15b2f45c02e7c7f8c6b75022f55694"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality contract interpretation from Polymarket rules and Binance settlement-venue data, with medium evidence independence because the contextual cross-check is external but the decisive direct evidence comes from Binance.",
+  "strongest_disconfirmers": [
+    "The contract resolves on one exact 1-minute close tomorrow, so routine ETH volatility could still flip the outcome.",
+    "The observed cushion over 2300 is only around 30-40 dollars, which is not large over an overnight-to-noon horizon."
+  ],
+  "strongest_supports": [
+    "Binance ETHUSDT spot during the run was about 2333, above the threshold.",
+    "Recent Binance 1-minute candles sampled during the run closed in the mid/high 2330s.",
+    "CoinGecko also showed ETH above 2300, reducing concern that Binance was an isolated high print."
+  ],
+  "timing_relevance": "Timing is central because the market resolves on one specific Binance 1-minute close at 12:00 ET on 2026-04-17, not on a daily average or broad end-of-day level.",
+  "unresolved_ambiguities": [
+    "How much volatility ETH will experience between the run time and the noon ET settlement minute.",
+    "Whether Binance will remain tightly aligned with broader ETH pricing at settlement."
+  ],
+  "what_would_change_view": "A materially larger cushion above 2300 into the final morning would move me toward the market or above it; repeated prints near 2300 or a drop below would move me meaningfully lower."
+}

@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Extreme market pricing above 95% leaves little room for unpriced downside catalyst risk.",
+    "A liquidation or risk-off event close to settlement could matter more than broader weekly price behavior."
+  ],
+  "key_assumptions": [
+    "No near-term macro, regulatory, or exchange-specific shock pushes BTC below 68,000 at the settlement minute.",
+    "Recent above-strike trading range is more informative than ordinary short-term noise.",
+    "Binance remains the reliable governing venue for the relevant candle."
+  ],
+  "main_logical_chain": [
+    "The governing contract checks one Binance BTC/USDT 1-minute close at noon ET on April 19.",
+    "Current Binance spot is materially above 68,000 and recent closes are also above the strike.",
+    "Therefore ordinary volatility is less likely to matter than a specific downside catalyst.",
+    "Absent such a catalyst, Yes remains the high-probability outcome, though slightly less certain than the market price implies."
+  ],
+  "main_thesis": "BTC is likely to stay above 68,000 at the Binance BTC/USDT noon ET settlement minute on April 19 because current spot is around 74.1k and only a meaningful downside catalyst is likely to erase that cushion in time.",
+  "own_probability": 0.93,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "Binance BTC/USDT 1-minute candle at 12:00 ET on April 19",
+    "spot price about 74,093.41",
+    "93% Yes versus market-implied 95.75%"
+  ],
+  "reasoning_mode": [
+    "catalyst_analysis",
+    "market_anchor",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260414-c44f46c0",
+    "dispatch_id": "dispatch-case-20260414-c44f46c0-20260414T185449Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "886d121d-193d-4386-8bb1-34de654c630f",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-c44f46c0/researcher-analyses/2026-04-14/dispatch-case-20260414-c44f46c0-20260414T185449Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "1eb9ce2bfb0ea6577aecd35511ecee3a37aa13e2a583cbf3ec8ac2170bd03af3"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source-of-truth ambiguity is low because the contract wording is explicit; evidence independence is medium because Binance is both the named settlement venue and the direct contextual price source.",
+  "strongest_disconfirmers": [
+    "A sharp macro or crypto-specific downside shock could move BTC several thousand dollars quickly.",
+    "The contract resolves on one exact minute, so a temporary drawdown near noon ET could flip the outcome."
+  ],
+  "strongest_supports": [
+    "Binance spot during the run was about 74,093, leaving roughly a 6.1k cushion above the strike.",
+    "Recent Binance daily closes over the prior week were all above 68,000.",
+    "Contract wording is explicit about venue, pair, timeframe, and threshold, reducing interpretation ambiguity."
+  ],
+  "timing_relevance": "This is a narrow, date-sensitive contract where only the April 19 12:00 ET Binance 1-minute close matters, so settlement-window catalyst risk is more important than medium-term BTC narrative.",
+  "unresolved_ambiguities": [
+    "No single clearly dominant scheduled downside catalyst was confirmed in this run.",
+    "Front-end Binance display specifics versus API formatting were not independently cross-validated, though broad price level is unambiguous."
+  ],
+  "what_would_change_view": "I would turn more cautious if BTC broke down toward 69k-70k, if a specific downside macro or regulatory catalyst emerged, or if market stress increased near the settlement window."
+}

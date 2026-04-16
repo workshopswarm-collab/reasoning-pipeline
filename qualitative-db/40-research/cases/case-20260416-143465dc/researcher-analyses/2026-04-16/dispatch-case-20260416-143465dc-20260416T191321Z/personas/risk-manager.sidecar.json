@@ -1,0 +1,61 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "This is a narrow-source touch market with operationally specific settlement mechanics.",
+    "A broadly bullish SOL narrative can still fail to resolve Yes if Binance never prints 90.00+ on a 1-minute high.",
+    "Confidence is sensitive to short-horizon volatility and momentum persistence."
+  ],
+  "key_assumptions": [
+    "SOL remains close enough to $90 that ordinary short-horizon volatility can generate a qualifying wick.",
+    "Binance will reflect any broader upside move in SOL during the remaining window.",
+    "Market conditions do not deteriorate enough to push SOL materially away from the threshold before expiry."
+  ],
+  "main_logical_chain": [
+    "Polymarket contract text makes Binance SOL/USDT 1-minute highs the governing source of truth.",
+    "Binance data shows SOL already reached 89.15 during the relevant week and was still trading around 88.8-88.9 during analysis.",
+    "Because only a brief wick is needed, Yes is favored, but narrow venue-specific and timing risks justify a lower probability than the market's 74%."
+  ],
+  "main_thesis": "SOL is more likely than not to touch $90 on Binance before April 19, but the market overstates confidence because narrow source-of-truth and timing/path risks remain material.",
+  "own_probability": 0.62,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "This market will immediately resolve to \"Yes\" if any Binance 1-minute candle for SOL/USDT ... has a final \"High\" price equal to or greater than the price specified in the title.",
+    "Binance highPrice: 89.15000000"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "risk_management",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-143465dc",
+    "dispatch_id": "dispatch-case-20260416-143465dc-20260416T191321Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "c1e9bcf5-9f84-4ad4-ba08-72626c299f68",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-143465dc/researcher-analyses/2026-04-16/dispatch-case-20260416-143465dc-20260416T191321Z/personas/risk-manager.md",
+    "source_persona_sha256": "3e265abdff1c3bcb74de57dc841657a3c3e947fdfe9e3ea68a804a54f269cc92"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary quality is solid because the contract text and Binance data directly match the settlement mechanics; independence is medium and contextual cross-checking is lighter than ideal.",
+  "strongest_disconfirmers": [
+    "No checked Binance data in this run showed a qualifying 90+ print yet.",
+    "Only Binance SOL/USDT 1-minute highs count, so other-venue strength is irrelevant.",
+    "Round-number rejection and late-window volatility compression could keep SOL below the threshold."
+  ],
+  "strongest_supports": [
+    "Binance, the governing venue, already printed a relevant-week high of 89.15.",
+    "Current spot checks were still in the high-88s, leaving less than 1% upside to trigger a Yes.",
+    "The contract only requires a 1-minute touch, not a sustained break or close above $90."
+  ],
+  "timing_relevance": "High. The market resolves on a date-specific touch condition, so path and remaining-window volatility matter more than medium-term SOL fundamentals.",
+  "unresolved_ambiguities": [
+    "Whether $90 acts as a brief wick target or a near-term ceiling.",
+    "How much volatility will remain in the final days before expiry.",
+    "Whether a stronger independent market-context source would shift the estimate by a few points."
+  ],
+  "what_would_change_view": "I would move up if Binance highs start probing 89.5-89.9 or a direct 1-minute pass shows repeated 90 attempts; I would move down if SOL loses the high-88 area or momentum fades into expiry."
+}

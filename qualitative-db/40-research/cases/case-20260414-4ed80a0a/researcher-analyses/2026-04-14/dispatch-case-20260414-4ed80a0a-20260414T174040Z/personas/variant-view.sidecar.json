@@ -1,0 +1,54 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "If the designated settlement source differs materially from Binance and stayed below $2,400, the view is too high.",
+    "Cross-venue verification was partial because some fetches were blocked."
+  ],
+  "key_assumptions": [
+    "The designated Polymarket settlement source probably tracks major spot venue highs closely.",
+    "Source-of-truth mismatch risk is real but not dominant."
+  ],
+  "main_logical_chain": [
+    "A major venue already showed ETH above $2,400, so the directional YES case is strong.",
+    "But threshold contracts resolve off named sources, and that source was not directly verified here.",
+    "Therefore the market should still be high probability, but not quite as extreme as 91.6%."
+  ],
+  "main_thesis": "ETH likely reaches or already reached $2,400 on a major venue, but the market is somewhat overconfident because the contract's exact settlement source was not directly verified.",
+  "own_probability": 0.84,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "Binance 24h high: 2415.50",
+    "Polymarket page: rules define the official data sources used to determine the result"
+  ],
+  "reasoning_mode": [
+    "variant_hypothesis",
+    "contract_interpretation",
+    "market_anchor"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-4ed80a0a",
+    "dispatch_id": "dispatch-case-20260414-4ed80a0a-20260414T174040Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "d4883d27-d611-489a-a1e9-e4968019a939",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-4ed80a0a/researcher-analyses/2026-04-14/dispatch-case-20260414-4ed80a0a-20260414T174040Z/personas/variant-view.md",
+    "source_persona_sha256": "3c756403a93feec0e762591d4485f70549f704469188e4560a9444f335ab4c12"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Good direct venue evidence plus useful contract-surface context, but only medium overall confidence because the governing rules text was not directly extracted.",
+  "strongest_disconfirmers": [
+    "The exact Polymarket rules and named official data source were not recoverable in-tool, so Binance alone is not fully dispositive."
+  ],
+  "strongest_supports": [
+    "Binance ETHUSDT 24h high printed 2415.50, above the $2,400 threshold.",
+    "The extreme market price implies traders likely already saw threshold-touch evidence."
+  ],
+  "timing_relevance": "This is a short-dated threshold market, so source-of-truth and timing alignment matter more than long-run ETH direction.",
+  "unresolved_ambiguities": [
+    "Exact settlement venue / oracle in Polymarket rules.",
+    "Whether the designated source already recorded a qualifying print."
+  ],
+  "what_would_change_view": "Direct recovery of the Polymarket rules or the designated settlement source showing a >=$2,400 print would push the estimate into the mid/high 90s; proof the named source stayed below $2,400 would push it lower."
+}

@@ -1,0 +1,157 @@
+{
+  "schema_version": "decision-packet/v1",
+  "generated_at": "2026-04-13T18:24:00-04:00",
+  "context": {
+    "case_key": "case-20260413-395c5631",
+    "dispatch_id": "dispatch-case-20260413-395c5631-20260413T221534Z",
+    "question": "Will the price of Bitcoin be above $72,000 on April 15?",
+    "market_id": "case-20260413-395c5631",
+    "market_title": "Will the price of Bitcoin be above $72,000 on April 15?",
+    "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260413-395c5631/synthesizer-agent/decision-handoff.md",
+    "source_syndicated_finding_path": "qualitative-db/40-research/cases/case-20260413-395c5631/synthesizer-agent/syndicated-finding.md",
+    "decision_maker_agent": "decision-maker",
+    "canonical_markdown_path": "decision-maker-packet.md",
+    "canonical_json_path": "artifacts/decision-maker-packet.json",
+    "external_market_id": "0x7bdc81de7fa3bafa5ac9d027ff0a88d2b52e13a9b7b6872e2b49d4d281ae4f94",
+    "market_slug": "bitcoin-above-72k-on-april-15",
+    "platform": "polymarket",
+    "primary_market_url": "https://polymarket.com/event/bitcoin-above-72k-on-april-15",
+    "source_light_refresh_brief_path": "",
+    "refresh_mode": ""
+  },
+  "decision": {
+    "side": "yes",
+    "trade_authorization": "watch_only",
+    "position_policy": "hold_only",
+    "decision_readiness": "needs_more_research",
+    "primary_crux": "BTC is currently above the 72k strike and Yes is directionally favored, but the market already prices that at 72.5% and the contract resolves on a single Binance one-minute close at noon ET, so timing and exact-minute volatility risk leave too little edge for authorization without a fresher governing-venue check.",
+    "secondary_cruxes": [
+      "This is a mechanically fragile single-minute settlement, so even a brief downside move can flip the outcome despite broader bullish drift.",
+      "The bounded package has no fresh synthesis-time Binance verification, which is unusually important for a near-dated price-threshold contract.",
+      "Morning-of-resolution macro or headline risk is not zero, and those short-horizon catalysts matter more when the market is already near fair value."
+    ],
+    "thesis_class": "not_decision_ready"
+  },
+  "valuation": {
+    "fair_value_low": 0.68,
+    "fair_value_high": 0.76,
+    "fair_value_mid": 0.73,
+    "market_reference_price": 0.725,
+    "edge_mid_vs_market_pct_points": 0.5,
+    "independent_verification_quality": "medium",
+    "compressed_toward_market_applied": true,
+    "compression_reason": "The current above-strike cushion supports a modest yes lean, but exact-minute settlement fragility and lack of fresh governing-venue verification compress fair value toward the market."
+  },
+  "execution_semantics": {
+    "price_axis": "market_implied_true_prob",
+    "price_source": "market_snapshot_quote",
+    "rebalance_threshold_fraction": 0.08,
+    "allow_auto_reversal": false,
+    "valid_until": "2026-04-15T10:00:00-04:00",
+    "quote_staleness_seconds": 3600,
+    "time_horizon": "Now through the Apr. 15 12:00 ET Binance settlement minute"
+  },
+  "risk_controls": {
+    "max_position_size_pct_bankroll": 0.005,
+    "max_additional_exposure_pct_bankroll": 0.0,
+    "max_single_order_pct_bankroll": 0.0,
+    "slippage_tolerance_bps": 50,
+    "liquidity_min_depth": 1000,
+    "correlation_bucket_limit_pct_bankroll": 0.05,
+    "confidence_level": "low",
+    "portfolio_constraints": [
+      "Do not initiate new exposure from this packet because the market is near bounded fair value and the case remains mechanically fragile.",
+      "Reassess only after a fresh governing-venue Binance check close to settlement and a morning-of-resolution catalyst sweep.",
+      "Treat exact-minute threshold markets as higher-risk than ordinary directional crypto views because path and timing matter as much as level."
+    ],
+    "liquidity_caution": "medium"
+  },
+  "bands": [
+    {
+      "name": "max_enter",
+      "min_p": 0,
+      "max_p": 0.4,
+      "target_exposure_fraction": 0,
+      "notes": "No entry authorized because the case is not ready and requires a fresh pre-settlement venue check."
+    },
+    {
+      "name": "scaled_enter",
+      "min_p": 0.4,
+      "max_p": 0.62,
+      "target_exposure_fraction": 0,
+      "notes": "No entry authorized until exact-minute settlement risk is refreshed close to resolution."
+    },
+    {
+      "name": "hold",
+      "min_p": 0.62,
+      "max_p": 0.75,
+      "target_exposure_fraction": 0,
+      "notes": "Hold/watch zone; yes is directionally favored but edge is too small and timing risk too important."
+    },
+    {
+      "name": "trim",
+      "min_p": 0.75,
+      "max_p": 0.88,
+      "target_exposure_fraction": 0,
+      "notes": "Avoid adding above fair value because single-minute volatility can still flip the contract."
+    },
+    {
+      "name": "exit",
+      "min_p": 0.88,
+      "max_p": 1,
+      "target_exposure_fraction": 0,
+      "notes": "Exit/avoid at very high prices because exact-minute settlement risk is nontrivial even with spot above strike."
+    }
+  ],
+  "invalidation": {
+    "thesis_breakers": [
+      "Fresh Binance price action loses 72k and fails to recover as settlement approaches.",
+      "Morning-of-resolution macro or headline shocks trigger a broad risk-off move into the noon ET settlement minute.",
+      "Clarification of resolution mechanics changes the effective settlement candle or venue interpretation."
+    ],
+    "market_structure_breakers": [
+      "The displayed market is already efficiently pricing the exact-minute volatility distribution, leaving no actionable edge.",
+      "Venue-specific Binance microstructure or liquidation cascades distort the one-minute close relative to broader spot conditions.",
+      "Adjacent strike pricing or updated market structure implies a materially different short-horizon distribution than currently assumed."
+    ],
+    "time_breakers": [
+      "A fresh pre-settlement Binance check is mandatory because this packet will stale quickly on a sub-day horizon.",
+      "The Apr. 15 morning U.S. data window and the final approach to noon ET can rapidly dominate all current reasoning."
+    ],
+    "reversal_conditions": [
+      "Move toward authorized yes only if fresh Binance verification still shows a comfortable buffer above 72k with no major catalyst risk and market price remains favorable.",
+      "Move toward no if BTC repeatedly trades below 72k or if volatility regime worsens materially before settlement.",
+      "Do not auto-reverse from this packet."
+    ]
+  },
+  "epistemic_status": {
+    "key_uncertainties": [
+      "Exact Binance BTC/USDT level and volatility profile closer to the settlement minute.",
+      "Whether Apr. 15 morning macro or headline flow creates a short-lived downside move below strike.",
+      "How much the current market already embeds exact-minute settlement fragility."
+    ],
+    "reasons_to_pass": [
+      "The package explicitly flags no fresh synthesis-time Binance verification.",
+      "The market is effectively at bounded fair value, so there is minimal valuation cushion.",
+      "Single-minute settlement contracts are unusually sensitive to path-dependent volatility and last-hour catalysts."
+    ],
+    "what_would_change_my_mind": [
+      "A fresh Binance check near settlement showing BTC stably and comfortably above 72k would improve readiness for yes.",
+      "Repeated trading below 72k or rising realized volatility into the settlement window would move me lower.",
+      "A cleaner morning-of-resolution catalyst audit showing low shock risk would modestly improve the yes case."
+    ],
+    "decision_quality": "not_ready"
+  },
+  "audit": {
+    "market_baseline_respected": true,
+    "action_bias_check_passed": true,
+    "self_preservation_bias_check_passed": true,
+    "one_sentence_rationale": "BTC above 72k remains slightly more likely than not by the Apr. 15 noon ET Binance minute, but because the market is already near fair value and the contract is mechanically fragile to exact-minute volatility, the disciplined output is watch-only and needs-more-research rather than an authorized trade.",
+    "notes": "This packet intentionally distinguishes directional lean from execution readiness: the bounded evidence supports a modest yes view, but not enough edge or freshness to justify action in a short-dated single-minute crypto market.",
+    "structured_handoff_primary_used": true,
+    "prose_fallback_used": false,
+    "verification_mode_used": "not_ready_reopen_recommended",
+    "additional_verification_performed": false,
+    "additional_verification_notes": ""
+  }
+}

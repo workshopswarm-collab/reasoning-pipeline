@@ -1,0 +1,157 @@
+{
+  "schema_version": "decision-packet/v1",
+  "generated_at": "2026-04-14T09:49:00-04:00",
+  "context": {
+    "case_key": "case-20260414-4e668883",
+    "dispatch_id": "dispatch-case-20260414-4e668883-20260414T133938Z",
+    "question": "Will Ethereum reach $2,400 April 13-19?",
+    "market_id": "case-20260414-4e668883",
+    "market_title": "Will Ethereum reach $2,400 April 13-19?",
+    "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260414-4e668883/synthesizer-agent/decision-handoff.md",
+    "source_syndicated_finding_path": "qualitative-db/40-research/cases/case-20260414-4e668883/synthesizer-agent/syndicated-finding.md",
+    "decision_maker_agent": "decision-maker",
+    "canonical_markdown_path": "decision-maker-packet.md",
+    "canonical_json_path": "artifacts/decision-maker-packet.json",
+    "external_market_id": "0x9a91f5fa90b334c224cb4e638248acc8907b44fa8ed56361b24573cd20491763",
+    "market_slug": "will-ethereum-reach-2400-april-13-19",
+    "platform": "polymarket",
+    "primary_market_url": "https://polymarket.com/event/will-ethereum-reach-2400-april-13-19",
+    "source_light_refresh_brief_path": "",
+    "refresh_mode": ""
+  },
+  "decision": {
+    "side": "yes",
+    "trade_authorization": "watch_only",
+    "position_policy": "hold_only",
+    "decision_readiness": "ready",
+    "primary_crux": "ETH remains likely to print a qualifying Binance 1-minute high at or above $2,400 because it is trading within roughly half a percent of the threshold with several days left, but the market's 92.35% price still overstates certainty for a hit that had not yet been verified on the governing source during the reviewed checks.",
+    "secondary_cruxes": [
+      "This is a touch-style market, so the mechanics are favorable to Yes, but they do not eliminate path-failure risk when the threshold still has not actually printed.",
+      "The remaining disagreement is mostly about how much probability to reserve for repeated rejection just below $2,400 or a short-horizon crypto pullback.",
+      "The contract/source ambiguity is now minor enough not to block judgment, but not minor enough to justify following the market all the way into the low 90s."
+    ],
+    "thesis_class": "price_not_good_enough"
+  },
+  "valuation": {
+    "fair_value_low": 0.84,
+    "fair_value_high": 0.9,
+    "fair_value_mid": 0.87,
+    "market_reference_price": 0.9235,
+    "edge_mid_vs_market_pct_points": -5.3,
+    "independent_verification_quality": "medium",
+    "compressed_toward_market_applied": true,
+    "compression_reason": "ETH's proximity to the threshold and permissive touch mechanics support a high Yes probability, but fresh governing-source confirmation of an actual $2,400 print was still absent in the reviewed checks, so fair value remains modestly below the market."
+  },
+  "execution_semantics": {
+    "price_axis": "market_implied_true_prob",
+    "price_source": "market_snapshot_quote",
+    "rebalance_threshold_fraction": 0.05,
+    "allow_auto_reversal": false,
+    "valid_until": "2026-04-18T23:59:00-04:00",
+    "quote_staleness_seconds": 7200,
+    "time_horizon": "Apr 13-19 Binance ETH/USDT intrawindow high-touch resolution"
+  },
+  "risk_controls": {
+    "max_position_size_pct_bankroll": 0.0075,
+    "max_additional_exposure_pct_bankroll": 0.0,
+    "max_single_order_pct_bankroll": 0.0,
+    "slippage_tolerance_bps": 50,
+    "liquidity_min_depth": 1200,
+    "correlation_bucket_limit_pct_bankroll": 0.05,
+    "confidence_level": "medium",
+    "portfolio_constraints": [
+      "Do not initiate fresh exposure from this packet because the market is already above bounded fair value.",
+      "Existing aligned exposure may be held, but refresh on any verified Binance $2,400 print or sharp pullback away from the threshold before adjusting.",
+      "Treat short-dated threshold-touch markets as path-dependent even when spot is only a few dollars below the trigger."
+    ],
+    "liquidity_caution": "medium"
+  },
+  "bands": [
+    {
+      "name": "max_enter",
+      "min_p": 0,
+      "max_p": 0.68,
+      "target_exposure_fraction": 0,
+      "notes": "No autonomous entry from this packet; materially cheaper pricing would require a fresh path check."
+    },
+    {
+      "name": "scaled_enter",
+      "min_p": 0.68,
+      "max_p": 0.8,
+      "target_exposure_fraction": 0,
+      "notes": "No entry authorized because the market is already richer than justified fair value."
+    },
+    {
+      "name": "hold",
+      "min_p": 0.8,
+      "max_p": 0.88,
+      "target_exposure_fraction": 0,
+      "notes": "Hold zone consistent with a high-probability Yes outcome but not enough edge for fresh adds."
+    },
+    {
+      "name": "trim",
+      "min_p": 0.88,
+      "max_p": 0.95,
+      "target_exposure_fraction": 0,
+      "notes": "Trim or avoid increasing as price rises above bounded fair value and residual path-failure risk dominates."
+    },
+    {
+      "name": "exit",
+      "min_p": 0.95,
+      "max_p": 1,
+      "target_exposure_fraction": 0,
+      "notes": "Exit/avoid at extreme prices because even a sub-1% threshold touch can still fail over the remaining window."
+    }
+  ],
+  "invalidation": {
+    "thesis_breakers": [
+      "A verified Binance ETH/USDT 1-minute high at or above $2,400 immediately resolves the market and supersedes this packet.",
+      "ETH repeatedly rejects just below $2,400 and then sells off materially away from the threshold.",
+      "Fresh evidence shows a broader crypto risk-off move or weakening momentum that materially lowers touch odds."
+    ],
+    "market_structure_breakers": [
+      "The market reprices sharply again on new ETH path information before a fresh packet is produced.",
+      "Short-term volatility or exchange-specific liquidity conditions change enough to invalidate current near-touch calibration.",
+      "A clearer authoritative rules capture reveals more restrictive mechanics than assumed."
+    ],
+    "time_breakers": [
+      "A single fresh Binance wick to $2,400 can change the forecast immediately.",
+      "As the remaining window shortens, stale path assumptions should be refreshed rather than extrapolated."
+    ],
+    "reversal_conditions": [
+      "Move toward authorized yes only after a fresh packet if ETH continues pressing the threshold while price remains favorable.",
+      "Move materially lower if ETH rejects again and pulls away from $2,400.",
+      "Do not auto-reverse from this packet."
+    ]
+  },
+  "epistemic_status": {
+    "key_uncertainties": [
+      "Whether a qualifying Binance $2,400 print has already occurred since the last reviewed checks.",
+      "How much residual path-failure risk survives when ETH is trading within roughly half a percent of the trigger.",
+      "Whether current price action reflects informed momentum continuation or simple threshold-chasing."
+    ],
+    "reasons_to_pass": [
+      "The market is already pricing a very high Yes probability, leaving little room for error.",
+      "The checked sources still had ETH below the threshold on the governing metric at review time.",
+      "Short-dated crypto threshold markets can remain path-sensitive even when the remaining move is small."
+    ],
+    "what_would_change_my_mind": [
+      "A fresh verified Binance print at or above $2,400 would collapse the residual tail and move confidence toward resolution.",
+      "Repeated renewed tests of $2,397-$2,399 without broader reversal would move fair value somewhat higher.",
+      "A sharp move away from the threshold or fresh restrictive rule clarification would move fair value lower."
+    ],
+    "decision_quality": "good_not_clean"
+  },
+  "audit": {
+    "market_baseline_respected": true,
+    "action_bias_check_passed": true,
+    "self_preservation_bias_check_passed": true,
+    "one_sentence_rationale": "ETH is still more likely than not to hit $2,400 during Apr 13-19 because a Binance touch-style trigger with spot already within about 0.5% of the threshold is favorable to Yes, but the market's 92.35% price remains too aggressive for a threshold that had not yet been verified as hit on the governing source during reviewed checks, so the disciplined posture is watch-only rather than chasing Yes.",
+    "notes": "This packet keeps the directional Yes stance while refusing to follow the market to near-certainty; the remaining disagreement is almost entirely about short-horizon path-failure risk, not the contract's basic mechanics.",
+    "structured_handoff_primary_used": true,
+    "prose_fallback_used": true,
+    "verification_mode_used": "targeted_escalation",
+    "additional_verification_performed": true,
+    "additional_verification_notes": "targeted_pack"
+  }
+}

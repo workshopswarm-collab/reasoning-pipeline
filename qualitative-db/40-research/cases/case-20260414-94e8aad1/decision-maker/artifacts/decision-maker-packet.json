@@ -1,0 +1,154 @@
+{
+  "schema_version": "decision-packet/v1",
+  "generated_at": "2026-04-14T14:00:00-04:00",
+  "context": {
+    "case_key": "case-20260414-94e8aad1",
+    "dispatch_id": "dispatch-case-20260414-94e8aad1-20260414T175223Z",
+    "question": "Will the price of Bitcoin be above $70,000 on April 16?",
+    "market_id": "b5021d2c-0b79-403b-a5df-3221dc962905",
+    "external_market_id": "0x24c9d39348a3ca9f3464ac85ac14826cd40c25fb2f4baf545602f1208baaf16c",
+    "market_slug": "bitcoin-above-70k-on-april-16",
+    "platform": "polymarket",
+    "primary_market_url": "https://polymarket.com/event/bitcoin-above-70k-on-april-16",
+    "market_title": "Will the price of Bitcoin be above $70,000 on April 16?",
+    "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260414-94e8aad1/synthesizer-agent/decision-handoff.md",
+    "source_syndicated_finding_path": "qualitative-db/40-research/cases/case-20260414-94e8aad1/synthesizer-agent/syndicated-finding.md",
+    "source_light_refresh_brief_path": "",
+    "refresh_mode": "",
+    "decision_maker_agent": "decision-maker",
+    "canonical_markdown_path": "decision-maker-packet.md",
+    "canonical_json_path": "artifacts/decision-maker-packet.json"
+  },
+  "decision": {
+    "side": "yes",
+    "trade_authorization": "watch_only",
+    "position_policy": "hold_only",
+    "decision_readiness": "ready",
+    "primary_crux": "BTC is still very likely to finish above $70,000 on the April 16 noon ET Binance minute because same-venue spot remains around 74.7k with recent lows above 72k, but the market's 95.95% Yes price still looks slightly too aggressive for a single-minute, single-venue settlement with roughly 36-42 hours of crypto downside and wick risk left.",
+    "secondary_cruxes": [
+      "The disagreement with market is modest and mostly about calibrating exact-minute settlement fragility rather than BTC direction.",
+      "No strong independent downside-tail model was built beyond direct exchange context, so confidence should not be pushed to near-certainty.",
+      "Minor Binance UI-versus-practical-candle-surface ambiguity remains but is not the main driver of the view."
+    ],
+    "thesis_class": "price_not_good_enough"
+  },
+  "valuation": {
+    "fair_value_low": 0.92,
+    "fair_value_high": 0.95,
+    "fair_value_mid": 0.935,
+    "independent_verification_quality": "medium",
+    "compressed_toward_market_applied": false,
+    "compression_reason": "Current Binance BTC/USDT trading materially above $70k supports a high-probability Yes view, but exact-minute settlement mechanics and plausible 1-2 day crypto downside tail keep fair value below the market.",
+    "market_reference_price": 0.9595,
+    "edge_mid_vs_market_pct_points": -2.4
+  },
+  "execution_semantics": {
+    "price_source": "market_snapshot_quote",
+    "price_axis": "market_implied_true_prob",
+    "rebalance_threshold_fraction": 0.1,
+    "allow_auto_reversal": false,
+    "quote_staleness_seconds": 300,
+    "valid_until": "2026-04-15T18:00:57.156794+00:00"
+  },
+  "risk_controls": {
+    "confidence_level": "medium",
+    "portfolio_constraints": [
+      "Do not initiate fresh exposure from this packet because the market is already above bounded fair value.",
+      "Refresh if BTC weakens toward 72k or below, or if a macro or crypto-specific shock emerges before settlement.",
+      "Treat this as an exact-minute Binance-close contract rather than a generic next-day BTC direction view."
+    ],
+    "liquidity_caution": "low",
+    "max_position_size_pct_bankroll": 0.02,
+    "max_additional_exposure_pct_bankroll": 0.01,
+    "max_single_order_pct_bankroll": 0.005,
+    "slippage_tolerance_bps": 100,
+    "liquidity_min_depth": 0,
+    "correlation_bucket_limit_pct_bankroll": 0.05
+  },
+  "bands": [
+    {
+      "name": "max_enter",
+      "min_p": 0,
+      "max_p": 0.86,
+      "target_exposure_fraction": 0,
+      "notes": "No autonomous entry from this packet; materially cheaper pricing would require a fresh venue and path-risk check."
+    },
+    {
+      "name": "scaled_enter",
+      "min_p": 0.86,
+      "max_p": 0.92,
+      "target_exposure_fraction": 0,
+      "notes": "No entry authorized because the current packet sees only a modest below-market valuation gap."
+    },
+    {
+      "name": "hold",
+      "min_p": 0.92,
+      "max_p": 0.95,
+      "target_exposure_fraction": 0,
+      "notes": "Hold zone consistent with bounded fair value for a high-probability Yes outcome."
+    },
+    {
+      "name": "trim",
+      "min_p": 0.95,
+      "max_p": 0.985,
+      "target_exposure_fraction": 0,
+      "notes": "Trim or avoid increasing as price rises above fair value and exact-minute risk dominates."
+    },
+    {
+      "name": "exit",
+      "min_p": 0.985,
+      "max_p": 1,
+      "target_exposure_fraction": 0,
+      "notes": "Exit or avoid at extreme prices because remaining uncertainty is almost entirely timing, wick, and venue-specific."
+    }
+  ],
+  "invalidation": {
+    "thesis_breakers": [
+      "BTC falls materially toward or below 72k on Binance before the April 16 noon ET minute.",
+      "A macro or crypto-specific shock materially raises short-horizon downside risk before settlement.",
+      "Evidence emerges of a Binance-specific print, timestamp, or operational anomaly affecting the governing minute."
+    ],
+    "time_breakers": [
+      "The exact April 16 12:00 ET Binance candle should supersede this packet once observed.",
+      "Confidence should be reduced if the cushion compresses meaningfully during the final pre-settlement window."
+    ],
+    "market_structure_breakers": [
+      "The current quote becomes stale relative to a materially changed Binance state.",
+      "The ET-labeled settlement minute fails to map cleanly to the operative Binance candle surface."
+    ],
+    "reversal_conditions": [
+      "Move modestly higher only on a fresh packet if BTC remains firmly above roughly 73k into final hours while price remains favorable.",
+      "Move materially lower on a fresh packet if BTC drifts toward the threshold or Binance-specific anomalies appear.",
+      "Do not auto-reverse from this packet."
+    ]
+  },
+  "epistemic_status": {
+    "key_uncertainties": [
+      "The true 36-42 hour downside tail for BTC into the exact fixing minute.",
+      "Whether any Binance-specific wick or microstructure event matters at settlement.",
+      "How much of the remaining minute-specific fragility the market is already pricing."
+    ],
+    "what_would_change_my_mind": [
+      "A fresh same-venue check closer to settlement showing BTC still comfortably above 73k-74k would move me slightly toward the market.",
+      "A drop toward 72k or below would reduce fair value materially.",
+      "Evidence of Binance-specific operational or settlement-surface anomalies would lower confidence despite current spot being well above strike."
+    ],
+    "reasons_to_pass": [
+      "The market already prices a very high Yes probability and leaves limited room for error.",
+      "The residual disagreement versus market is small and depends mostly on settlement fragility rather than a strong factual misread."
+    ],
+    "decision_quality": "good_not_clean"
+  },
+  "audit": {
+    "one_sentence_rationale": "Bitcoin is likely to finish above $70,000 on the April 16 noon ET Binance minute because current same-venue pricing remains materially above the strike, but the market's 95.95% price is still slightly too confident for a one-minute single-venue settlement with meaningful short-horizon crypto tail risk left.",
+    "notes": "Directional belief remains Yes, but execution discipline still points to watch-only because the remaining edge versus market is modest and fragile.",
+    "market_baseline_respected": true,
+    "action_bias_check_passed": true,
+    "self_preservation_bias_check_passed": true,
+    "structured_handoff_primary_used": true,
+    "prose_fallback_used": true,
+    "verification_mode_used": "targeted_escalation",
+    "additional_verification_performed": true,
+    "additional_verification_notes": "targeted_pack"
+  }
+}

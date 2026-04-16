@@ -1,0 +1,77 @@
+{
+  "artifact_type": "targeted_verification_pack",
+  "schema_version": "decision-targeted-verification-pack/v1",
+  "case_key": "case-20260414-60e5e883",
+  "dispatch_id": "refresh-case-20260414-60e5e883-20260414T192844Z",
+  "required": true,
+  "verification_mode": "targeted_escalation",
+  "pack_purpose": "Deterministic narrow follow-up pack for targeted escalation. It defines the crux questions and operational budgets, while source choice may remain model-driven within runtime-enforced tool guardrails.",
+  "verification_questions": [
+    "Does the latest available information materially change the decision, given: BTC can reprice several percent in under three days and the contract resolves on one exact Apr 17 noon ET minute?",
+    "How decision-relevant is the remaining contract/source-of-truth ambiguity: narrow minute-close/timezone/venue mechanics create small operational interpretation risk but rules are mostly explicit?",
+    "Are the current blockers still material to final judgment: No fresh synthesis-stage live price/ladder refresh beyond upstream checks?",
+    "Is the main verification gap still decision-material: No fresh independent live market or volatility check beyond upstream lane verification was obtained in synthesis.?"
+  ],
+  "structured_handoff_focus": {
+    "contract_ambiguity_level": "minor",
+    "contract_ambiguity_reason": "narrow minute-close/timezone/venue mechanics create small operational interpretation risk but rules are mostly explicit",
+    "verification_gap_summary": "No fresh independent live market or volatility check beyond upstream lane verification was obtained in synthesis.",
+    "best_countercase_summary": "A normal crypto selloff or badly timed noon-minute wick on Binance can still flip this narrow contract despite spot being comfortably above 70k now.",
+    "main_reason_for_disagreement": "how much probability discount to apply for exact-minute Binance settlement and ordinary 3-day BTC volatility",
+    "resolution_mechanics_summary": "Yes requires the Binance BTC/USDT 1-minute candle closing at 12:00 PM ET on Apr 17 to finish strictly above 70000.",
+    "freshness_sensitive": "yes",
+    "freshness_driver": "BTC can reprice several percent in under three days and the contract resolves on one exact Apr 17 noon ET minute",
+    "decision_blockers": [
+      "No fresh synthesis-stage live price/ladder refresh beyond upstream checks",
+      "Exact-minute Binance settlement structure leaves residual path and venue-specific risk",
+      "Apparent edge versus market is modest and not strongly independently verified"
+    ],
+    "disagreement_type": "market_pricing"
+  },
+  "supporting_persona_summaries": [
+    {
+      "persona": "market-implied",
+      "recommended_weight": "high",
+      "own_probability": 0.89,
+      "main_thesis": "The market's high-probability Yes view is broadly efficient because Binance BTC/USDT is currently well above 70k, but the 93% price is slightly rich once short-horizon volatility and the single-minute settlement rule are fully accounted for.",
+      "main_logical_chain": [
+        "Start from the market's 92.5%-93% Yes prior because the strike ladder contains information about the expected BTC distribution.",
+        "Check the governing source directly: Binance spot and recent klines show BTC materially above 70000 and trading in a regime where 70000 is below the recent center of price action.",
+        "Apply a modest discount for ordinary crypto volatility and the narrow single-minute settlement mechanic, yielding an 89% Yes estimate rather than the full market price."
+      ],
+      "strongest_supports": [
+        "Binance BTCUSDT spot was about 74293.57, roughly 6.1% above the 70000 threshold.",
+        "Recent Binance daily closes were mostly above 70000, with recent highs above 76000."
+      ],
+      "strongest_disconfirmers": [
+        "BTC can fall more than 6% in three days.",
+        "The contract settles on a single Binance 1-minute close at noon ET, adding timing/path risk."
+      ],
+      "unresolved_ambiguities": [
+        "Whether short-horizon macro or crypto-specific news hits before the Apr 17 noon ET settlement window.",
+        "How much extra probability mass the market is assigning to current regime persistence versus pure spot anchoring."
+      ],
+      "what_would_change_view": "I would move materially lower if Binance BTCUSDT fell back toward or below 72k, if neighboring strikes repriced sharply lower, or if Binance-specific settlement-risk issues emerged.",
+      "timing_relevance": "Very high: the contract resolves on the Binance BTC/USDT 1-minute candle close at 12:00 PM ET on 2026-04-17, so both timezone and single-minute timing matter materially.",
+      "source_quality_view": "High-quality direct evidence from Binance plus clear contract mechanics from Polymarket; independence is medium because sources reflect the same underlying BTC market, with CoinGecko adding only a modest contextual cross-check.",
+      "persona_finding_path": "qualitative-db/40-research/cases/case-20260414-60e5e883/researcher-analyses/2026-04-14/dispatch-case-20260414-60e5e883-20260414T190542Z/personas/market-implied.md",
+      "assumption_artifact_paths": [
+        "qualitative-db/40-research/cases/case-20260414-60e5e883/researcher-analyses/2026-04-14/dispatch-case-20260414-60e5e883-20260414T190542Z/assumptions/market-implied.md"
+      ],
+      "evidence_artifact_paths": [
+        "qualitative-db/40-research/cases/case-20260414-60e5e883/researcher-analyses/2026-04-14/dispatch-case-20260414-60e5e883-20260414T190542Z/evidence/market-implied.md"
+      ]
+    }
+  ],
+  "selected_assumption_snippets": [],
+  "selected_evidence_snippets": [],
+  "selected_supporting_note_snippets": [],
+  "pack_budget": {
+    "max_chars": 6000,
+    "actual_chars_before_trim": 8206,
+    "actual_chars_after_trim": 5584,
+    "approx_tokens_before_trim": 2051,
+    "approx_tokens_after_trim": 1396,
+    "trim_applied": true
+  }
+}

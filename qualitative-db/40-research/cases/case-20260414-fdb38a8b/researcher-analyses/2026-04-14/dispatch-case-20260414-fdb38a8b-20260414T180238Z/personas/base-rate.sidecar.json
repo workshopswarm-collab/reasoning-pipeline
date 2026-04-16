@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A broad crypto selloff before Friday noon ET would cut the estimate quickly.",
+    "Single-minute resolution structure creates extra path dependence versus daily-close framing."
+  ],
+  "key_assumptions": [
+    "Recent BTC trading regime broadly persists through Apr 17 noon ET.",
+    "No major macro or crypto-specific shock drives BTC back below 72k before the resolving minute.",
+    "Binance remains the reliable governing source for the relevant candle."
+  ],
+  "main_logical_chain": [
+    "Check contract wording and market-implied probability from Polymarket.",
+    "Check Binance current BTCUSDT level and recent realized ranges.",
+    "Anchor on outside-view fact that spot is already above strike with a meaningful but not enormous buffer.",
+    "Discount confidence because the contract depends on one specific minute close rather than a broader daily condition.",
+    "Conclude Yes is favored but only slightly less than market implies."
+  ],
+  "main_thesis": "BTC is currently comfortably above 72k on Binance and recent realized trading has mostly held above the strike, so Yes remains favored for Apr 17 noon ET, but the market is slightly rich because resolution depends on one narrow minute close.",
+  "own_probability": 0.79,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "final 'Close' price higher than the price specified",
+    "Binance BTC/USDT 1 minute candle for 12:00 in the ET timezone"
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "market_anchor",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-fdb38a8b",
+    "dispatch_id": "dispatch-case-20260414-fdb38a8b-20260414T180238Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "bf85c0ac-7de4-4015-9892-a3bc716af4e0",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-fdb38a8b/researcher-analyses/2026-04-14/dispatch-case-20260414-fdb38a8b-20260414T180238Z/personas/base-rate.md",
+    "source_persona_sha256": "6c41cf2d396d2815b08b575a677916c712dccdbc36622439791309165b212f87"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Good quality overall: Polymarket for explicit contract mechanics and Binance for the governing exchange price context; independence is medium and source-of-truth ambiguity is low-to-medium because the contract is narrow but explicit.",
+  "strongest_disconfirmers": [
+    "The contract resolves on a single 12:00 PM ET 1-minute close, so narrow timing risk matters.",
+    "BTC can move several percent quickly and one recent sampled daily close was below 72k."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT traded around 74.8k during the run, leaving roughly a 3.9% buffer above 72k.",
+    "Recent Binance daily closes were mostly near or above 72k.",
+    "Short-dated threshold markets usually track current spot buffer and realized volatility more than narrative headlines."
+  ],
+  "timing_relevance": "Apr 17, 2026 noon ET corresponds to 16:00 UTC, and the contract depends specifically on that minute candle close.",
+  "unresolved_ambiguities": [
+    "Exact settlement depends on the final Binance minute candle print at the specified time.",
+    "No direct forward-looking catalyst evidence was needed, so the memo is intentionally regime-based rather than narrative-heavy."
+  ],
+  "what_would_change_view": "Persistent trading back below 73k, repeated retests of 72k before resolution, or a fresh macro/crypto shock would move the estimate down materially; continued 74k+ trading into Apr 16-17 would increase confidence somewhat."
+}

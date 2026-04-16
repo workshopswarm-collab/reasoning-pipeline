@@ -1,0 +1,56 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "High-beta crypto can move more than 6% in a short window.",
+    "A Solana outage, exploit, or exchange/liquidity issue would matter disproportionately near settlement."
+  ],
+  "key_assumptions": [
+    "No sharp negative crypto or Solana-specific catalyst hits before the April 19 noon ET print.",
+    "Binance remains a stable usable resolution surface and the EDT-to-16:00-UTC mapping is correct."
+  ],
+  "main_logical_chain": [
+    "The contract settles on the Binance SOL/USDT 12:00 ET one-minute close on April 19.",
+    "Current and recent direct Binance prices are above 80, so Yes is favored absent a fresh downside catalyst.",
+    "Because the market is pricing about 91.5% and the outcome depends on one exact minute, residual timing risk keeps my estimate lower at 84%."
+  ],
+  "main_thesis": "SOL is likely to finish above $80 on the relevant Binance noon-ET minute candle, but the market overstates certainty because one-minute timing risk still matters.",
+  "own_probability": 0.84,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "SOLUSDT = 85.38 at assignment-time Binance check",
+    "Apr 13/14/15 noon-ET-equivalent closes: 82.74 / 85.97 / 83.94",
+    "Yes requires the final Binance SOL/USDT 12:00 ET 1m close to be strictly greater than 80"
+  ],
+  "reasoning_mode": [
+    "catalyst_analysis",
+    "market_anchor",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-d529376c",
+    "dispatch_id": "dispatch-case-20260416-d529376c-20260416T030247Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "0e1fdde8-9be7-4ec2-83ed-4d9bf9160bea",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-d529376c/researcher-analyses/2026-04-16/dispatch-case-20260416-d529376c-20260416T030247Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "0a1705eb830a02fe4f823d9a970a63e0295402daad35493e33de9b009a3a34fd"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality direct resolution evidence from Binance, with limited but appropriate independence because Binance is the governing settlement source; source-of-truth ambiguity is low after timezone verification.",
+  "strongest_disconfirmers": [
+    "The contract resolves on one exact minute candle, so a weekend selloff or Solana-specific shock could still push the close below 80.",
+    "The current cushion above 80 is meaningful but not so large that downside volatility can be ignored."
+  ],
+  "strongest_supports": [
+    "Binance spot check at assignment time showed SOLUSDT at 85.38, already above the threshold.",
+    "Recent noon-ET-equivalent Binance 1m candles on Apr 13-15 all closed above 80."
+  ],
+  "timing_relevance": "This is mainly a timing-risk case: the key repricing catalyst is any downside shock before the exact noon ET print, not a bullish information release.",
+  "unresolved_ambiguities": [
+    "No single identified scheduled catalyst dominates; the broader crypto tape remains the main near-term driver.",
+    "Exact weekend risk sentiment before settlement is inherently uncertain."
+  ],
+  "what_would_change_view": "A drop back toward or below 80, a broad crypto risk-off move, or credible Solana/Binance operational issues before settlement would push the estimate lower."
+}

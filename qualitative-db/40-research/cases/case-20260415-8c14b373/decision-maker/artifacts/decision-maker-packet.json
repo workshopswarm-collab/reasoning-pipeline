@@ -1,0 +1,156 @@
+{
+  "schema_version": "decision-packet/v1",
+  "generated_at": "2026-04-15T09:19:00-04:00",
+  "context": {
+    "case_key": "case-20260415-8c14b373",
+    "dispatch_id": "dispatch-case-20260415-8c14b373-20260415T130923Z",
+    "question": "Will claude-opus-4-6-thinking be the best AI model on April 17, 2026?",
+    "market_id": "ce2b1666-0fc3-474e-ab2a-54cbcef61401",
+    "external_market_id": "0x0ba105316e67d13cc2e5ec1aea9a404f0d36ec5bf188d591069f5655014de3fe",
+    "market_slug": "will-claude-opus-4-6-thinking-be-the-best-ai-model-on-april-17-2026",
+    "platform": "polymarket",
+    "primary_market_url": "https://polymarket.com/event/will-claude-opus-4-6-thinking-be-the-best-ai-model-on-april-17-2026",
+    "market_title": "Will claude-opus-4-6-thinking be the best AI model on April 17, 2026?",
+    "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260415-8c14b373/synthesizer-agent/decision-handoff.md",
+    "source_syndicated_finding_path": "qualitative-db/40-research/cases/case-20260415-8c14b373/synthesizer-agent/syndicated-finding.md",
+    "source_light_refresh_brief_path": "",
+    "refresh_mode": "",
+    "decision_maker_agent": "decision-maker",
+    "canonical_markdown_path": "decision-maker-packet.md",
+    "canonical_json_path": "artifacts/decision-maker-packet.json"
+  },
+  "decision": {
+    "side": "yes",
+    "trade_authorization": "forbidden",
+    "position_policy": "flat",
+    "decision_readiness": "needs_more_research",
+    "primary_crux": "claude-opus-4-6-thinking is still the directional favorite under the bounded package, but a 0.931 market price is too high when the core unresolved issue is not small noise but conflicting reads of the governing live leaderboard itself, plus future-snapshot and tie-break fragility.",
+    "secondary_cruxes": [
+      "The most important disagreement is factual extraction of the live governing surface, not merely confidence calibration.",
+      "If the dissenting read placing the target in 4th is even plausibly correct, the current market is massively too high and the case is not execution-ready.",
+      "Even if the target is currently first, the contract resolves on a future snapshot and an exact tie is adverse versus claude-opus-4-6."
+    ],
+    "thesis_class": "not_decision_ready"
+  },
+  "valuation": {
+    "fair_value_low": 0.84,
+    "fair_value_high": 0.9,
+    "fair_value_mid": 0.87,
+    "independent_verification_quality": "medium",
+    "compressed_toward_market_applied": false,
+    "compression_reason": "The bounded evidence supports a real Yes lean if the market-implied live-rank read is correct, but unresolved leaderboard extraction conflict and near-resolution tie sensitivity keep fair value materially below market and below execution-ready confidence.",
+    "market_reference_price": 0.931,
+    "edge_mid_vs_market_pct_points": -6.1
+  },
+  "execution_semantics": {
+    "price_source": "market_snapshot_quote",
+    "price_axis": "market_implied_true_prob",
+    "rebalance_threshold_fraction": 0.1,
+    "allow_auto_reversal": false,
+    "quote_staleness_seconds": 300,
+    "valid_until": "2026-04-16T13:19:47.393769+00:00"
+  },
+  "risk_controls": {
+    "confidence_level": "low",
+    "portfolio_constraints": [
+      "Do not enter from this packet; reopen only after a clean near-resolution verification of the exact governing leaderboard rows and ordering.",
+      "Treat dynamic leaderboard markets as highly sensitive to extraction errors, row-label mismatch, and tie mechanics.",
+      "Require exact top-row model-string and margin confirmation rather than family-level or cluster-level leadership before treating any edge as executable."
+    ],
+    "liquidity_caution": "high",
+    "max_position_size_pct_bankroll": 0.02,
+    "max_additional_exposure_pct_bankroll": 0.01,
+    "max_single_order_pct_bankroll": 0.005,
+    "slippage_tolerance_bps": 100,
+    "liquidity_min_depth": 0,
+    "correlation_bucket_limit_pct_bankroll": 0.05
+  },
+  "bands": [
+    {
+      "name": "max_enter",
+      "min_p": 0.0,
+      "max_p": 0.75,
+      "target_exposure_fraction": 0.0,
+      "notes": "No entry authorized from this packet because the case is not factually clean enough."
+    },
+    {
+      "name": "scaled_enter",
+      "min_p": 0.75,
+      "max_p": 0.84,
+      "target_exposure_fraction": 0.0,
+      "notes": "Even substantially cheaper pricing would still require a clean near-resolution read of the governing surface."
+    },
+    {
+      "name": "hold",
+      "min_p": 0.84,
+      "max_p": 0.9,
+      "target_exposure_fraction": 0.0,
+      "notes": "Bounded fair-value zone under the optimistic extraction read, but not actionable while row-order facts remain contested."
+    },
+    {
+      "name": "trim",
+      "min_p": 0.9,
+      "max_p": 0.97,
+      "target_exposure_fraction": 0.0,
+      "notes": "Above fair value while exact ordering, margin, and tie risk remain unresolved."
+    },
+    {
+      "name": "exit",
+      "min_p": 0.97,
+      "max_p": 1.0,
+      "target_exposure_fraction": 0.0,
+      "notes": "Avoid or exit at extreme prices because extraction conflict and tie sensitivity still matter."
+    }
+  ],
+  "invalidation": {
+    "thesis_breakers": [
+      "A clean near-resolution leaderboard check shows another model first or shows claude-opus-4-6-thinking not actually leading.",
+      "A tie or near-tie develops with claude-opus-4-6 or another alphabetically advantaged rival.",
+      "Cleaner extraction confirms the dissenting lower-rank interpretation was correct."
+    ],
+    "time_breakers": [
+      "A fresh near-resolution read of the exact governing leaderboard should supersede this packet before any action.",
+      "The actual April 17, 2026 12:00 PM ET leaderboard check fully resolves and obsoletes this judgment."
+    ],
+    "market_structure_breakers": [
+      "Leaderboard rendering, style-control-off interpretation, or fallback-source behavior changes materially before the check.",
+      "Arena updates in a way that makes row extraction or ordering interpretation materially different from current assumptions."
+    ],
+    "reversal_conditions": [
+      "Move from forbidden to watch-only or authorized only after exact leaderboard ordering and margin are cleanly verified near resolution.",
+      "Move materially higher if later snapshots consistently show the target clearly first with visible margin and no tie risk.",
+      "Move materially lower if another model is first, if the target sits outside the top spot, or if the gap compresses toward tie territory.",
+      "Do not auto-reverse from this packet."
+    ]
+  },
+  "epistemic_status": {
+    "key_uncertainties": [
+      "Whether the governing style-control-off leaderboard currently has claude-opus-4-6-thinking in first or materially lower due to extraction noise.",
+      "How stable the live top ordering will remain into the April 17 noon ET check.",
+      "How close the top cluster is, given the adverse alphabetical tiebreak against claude-opus-4-6-thinking."
+    ],
+    "what_would_change_my_mind": [
+      "A clean near-resolution leaderboard read showing the target clearly first would improve readiness and confidence.",
+      "A clean read showing the target not first, or effectively tied with an alphabetically advantaged rival, would sharply lower the estimate.",
+      "Repeated consistent snapshots from the governing surface would reduce extraction-risk enough to reconsider execution posture."
+    ],
+    "reasons_to_pass": [
+      "The current market price is materially above bounded fair value.",
+      "The main unresolved issue is a factual leaderboard extraction conflict, not a small modeling refinement.",
+      "Future-snapshot and tie-break sensitivity make this a poor contract to force from an ambiguous live surface."
+    ],
+    "decision_quality": "not_ready"
+  },
+  "audit": {
+    "one_sentence_rationale": "claude-opus-4-6-thinking is still the directional favorite under the optimistic read of the governing leaderboard, but because the bounded package contains a live-surface extraction conflict about whether it is actually first and because a future snapshot plus adverse tie mechanics remain live, the disciplined output is forbidden and needs-more-research rather than paying 0.931 for Yes.",
+    "notes": "This is a classic case where source-of-truth cleanliness, not narrative confidence, carries the trade/no-trade decision.",
+    "market_baseline_respected": true,
+    "action_bias_check_passed": true,
+    "self_preservation_bias_check_passed": true,
+    "structured_handoff_primary_used": true,
+    "prose_fallback_used": false,
+    "verification_mode_used": "not_ready_reopen_recommended",
+    "additional_verification_performed": false,
+    "additional_verification_notes": ""
+  }
+}

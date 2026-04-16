@@ -1,0 +1,124 @@
+{
+  "artifact_type": "targeted_verification_pack",
+  "schema_version": "decision-targeted-verification-pack/v1",
+  "case_key": "case-20260415-cd803ba3",
+  "dispatch_id": "refresh-case-20260415-cd803ba3-20260415T224048Z",
+  "required": true,
+  "verification_mode": "targeted_escalation",
+  "pack_purpose": "Deterministic narrow follow-up pack for targeted escalation. It defines the crux questions and operational budgets, while source choice may remain model-driven within runtime-enforced tool guardrails.",
+  "verification_questions": [
+    "Does the latest available information materially change the decision, given: BTC level relative to 74000 heading into the Apr 17 noon ET settlement minute?",
+    "How decision-relevant is the remaining contract/source-of-truth ambiguity: Binance UI candle named as source while verification used Binance API proxy?",
+    "Are the current blockers still material to final judgment: Exact-minute timing fragility with only a modest price cushion above 74000?",
+    "Is the main verification gap still decision-material: The main remaining gap is not contract wording but whether BTC can retain a small above-strike cushion into one exact future minute.?"
+  ],
+  "structured_handoff_focus": {
+    "contract_ambiguity_level": "minor",
+    "contract_ambiguity_reason": "Binance UI candle named as source while verification used Binance API proxy",
+    "verification_gap_summary": "The main remaining gap is not contract wording but whether BTC can retain a small above-strike cushion into one exact future minute.",
+    "best_countercase_summary": "A routine sub-1.5% selloff into the settlement minute would still flip this to No despite current above-strike spot.",
+    "main_reason_for_disagreement": "Remaining disagreement is mostly about how much weight to place on exact-minute volatility versus the fact that the strike is already cleared.",
+    "resolution_mechanics_summary": "Yes resolves only if the Binance BTC/USDT 12:00 ET Apr 17 1-minute candle final close is strictly above 74000.",
+    "freshness_sensitive": "yes",
+    "freshness_driver": "BTC level relative to 74000 heading into the Apr 17 noon ET settlement minute",
+    "decision_blockers": [
+      "Exact-minute timing fragility with only a modest price cushion above 74000",
+      "No strong independent verification that the current cushion will persist through settlement",
+      "Minor operational ambiguity between Binance UI settlement surface and API-based verification"
+    ],
+    "disagreement_type": "timing"
+  },
+  "supporting_persona_summaries": [
+    {
+      "persona": "market-implied",
+      "recommended_weight": "medium",
+      "own_probability": 0.66,
+      "main_thesis": "The market is broadly efficient: BTC is already above 74000 on Binance, so Yes is reasonably favored, but the exact-minute settlement keeps confidence below the market's roughly 70% level.",
+      "main_logical_chain": [
+        "Start from the market prior near 70% Yes.",
+        "Check the rules and confirm the governing source is the Binance BTCUSDT 12:00 ET 1-minute close on April 17.",
+        "Verify current settlement-venue spot is already above 74000.",
+        "Cross-check broader spot references to make sure Binance is not an isolated anomaly."
+      ],
+      "strongest_supports": [
+        "Binance BTCUSDT 1m prices were already above 74000 during the verification pass.",
+        "CoinGecko and Coinbase spot checks were tightly aligned with Binance around 74.7k."
+      ],
+      "strongest_disconfirmers": [
+        "The contract settles on one exact future minute, so a routine ~1% BTC pullback could flip the outcome to No.",
+        "Current cushion above 74000 is modest rather than overwhelming."
+      ],
+      "unresolved_ambiguities": [
+        "Polymarket page scrape showed 63% while assignment metadata gave 70%, so live price should be treated as a mid-60s to 70% range.",
+        "There is still uncertainty about overnight BTC volatility before the settlement minute."
+      ],
+      "what_would_change_view": "I would cut the estimate if BTC loses 74000 across Binance and major spot venues and fails to reclaim it before noon ET April 17; I would raise it if Binance remains comfortably above 74000 in additional checks closer to settlement.",
+      "timing_relevance": "High: the market resolves on the Binance 12:00 ET one-minute close on April 17, so persistence into one exact future minute matters more than general bullishness.",
+      "source_quality_view": "Good for a medium-difficulty short-horizon crypto case: one primary contract/rules source plus direct settlement-venue price data and contextual cross-venue confirmation; source-of-truth ambiguity is low.",
+      "persona_finding_path": "qualitative-db/40-research/cases/case-20260415-cd803ba3/researcher-analyses/2026-04-15/dispatch-case-20260415-cd803ba3-20260415T203927Z/personas/market-implied.md",
+      "assumption_artifact_paths": [
+        "qualitative-db/40-research/cases/case-20260415-cd803ba3/researcher-analyses/2026-04-15/dispatch-case-20260415-cd803ba3-20260415T203927Z/assumptions/market-implied.md"
+      ],
+      "evidence_artifact_paths": [
+        "qualitative-db/40-research/cases/case-20260415-cd803ba3/researcher-analyses/2026-04-15/dispatch-case-20260415-cd803ba3-20260415T203927Z/evidence/market-implied.md"
+      ]
+    }
+  ],
+  "selected_assumption_snippets": [
+    {
+      "path": "qualitative-db/40-research/cases/case-20260415-cd803ba3/researcher-analyses/2026-04-15/dispatch-case-20260415-cd803ba3-20260415T203927Z/assumptions/base-rate.md",
+      "frontmatter": {
+        "type": "assumption_note",
+        "case_key": "case-20260415-cd803ba3",
+        "dispatch_id": "dispatch-case-20260415-cd803ba3-20260415T203927Z",
+        "research_run_id": "16593736-e3eb-4b4f-89a6-08afcd9874df",
+        "analysis_date": "2026-04-15",
+        "persona": "base-rate",
+        "domain": "crypto",
+        "subdomain": "bitcoin",
+        "entity": "bitcoin",
+        "topic": "will-the-price-of-bitcoin-be-above-74-000-on-april-17",
+        "question": "Will the price of Bitcoin be above $74,000 on April 17?",
+        "driver": "operational-risk",
+        "date_created": "2026-04-15",
+        "agent": "Orchestrator",
+        "status": "active",
+        "certainty": "medium",
+        "importance": "high",
+        "time_horizon": "short",
+        "related_entities": [
+          "bitcoin"
+        ],
+        "related_drivers": [
+          "operational-risk",
+          "reliability"
+        ],
+        "proposed_entities": [],
+        "proposed_drivers": [],
+        "upstream_inputs": [],
+        "downstream_uses": [
+          "qualitative-db/40-research/cases/case-20260415-cd803ba3/researcher-analyses/2026-04-15/dispatch-case-20260415-cd803ba3-20260415T203927Z/personas/base-rate.md"
+        ],
+        "tags": [
+          "assumption",
+          "bitcoin",
+          "intraday-threshold",
+          "base-rate"
+        ]
+      },
+      "snippet": "# Assumption\nThe best outside-view approximation is that, absent a new major catalyst, Bitcoin will remain within its recent short-horizon trading regime through the April 17 noon ET resolution window.\n## Why this assumption matters\nThe probability of finishing above 74,000 depends less on long-run Bitcoin fundamentals than on whether the next roughly 44 hours resemble recent realized volatility and level behavior.\n## What this assumption supports\n- A moderate Yes lean rather than an extreme conviction view.\n- Treating recent Binance price distribution around the threshold as more informative than narrative headlines.\n- Discounting vivid but unsupported stories that imply a very large directional move before resolution.\n## Evidence or logic behind the assumption\nRecent Binance daily data show BTC repeatedly moving through the upper-60k to mid-70k region, with current price modestly above the strike. That makes a stable-regime extrapolation more reasonable than assuming an imminent breakout or crash without fresh evidence.\n## What would falsify it\n- A large macro or crypto-specific catalyst producing a clear regime shift before April 17 noon ET.\n- Sharp movement well outside the recent realized range.\n- Exchange-specific disruption affecting Binance BTC/USDT pricing or data availability.\n## Early warning signs\n- Rapid expansion in intraday realized volatility.\n- Sustained move several thousand dollars away from 74,000 before the final day.\n- Strong cross-exchange dislocations or Binance-specific operational issues.\n## What changes if this assumption fails\nIf the regime chang …",
+      "full_char_count": 1976,
+      "snippet_char_count": 1602
+    }
+  ],
+  "selected_evidence_snippets": [],
+  "selected_supporting_note_snippets": [],
+  "pack_budget": {
+    "max_chars": 6000,
+    "actual_chars_before_trim": 10315,
+    "actual_chars_after_trim": 8223,
+    "approx_tokens_before_trim": 2578,
+    "approx_tokens_after_trim": 2055,
+    "trim_applied": true
+  }
+}

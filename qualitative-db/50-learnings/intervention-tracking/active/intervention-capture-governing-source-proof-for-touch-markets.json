@@ -1,0 +1,32 @@
+{
+  "artifact_type": "learning_intervention",
+  "schema_version": "v1",
+  "intervention_key": "capture-governing-source-proof-for-touch-markets",
+  "status": "active",
+  "activated_at": "2026-04-15T02:40:00-04:00",
+  "application_surface": "researcher_prompt",
+  "change_kind": "verification_rule",
+  "target_selector": {
+    "platforms": ["polymarket"],
+    "source_of_truth_classes": ["authoritative_direct", "authoritative_with_fallback"],
+    "question_mechanics": ["threshold-touch", "intraperiod-high-low"],
+    "categories": ["crypto"]
+  },
+  "change_payload": {
+    "required_checks": [
+      "identify_primary_governing_source",
+      "capture_governing_source_proof_when_event_near_complete",
+      "label_unverified_vs_not_occurred_distinctly"
+    ],
+    "checklist_mode": "append"
+  },
+  "hypothesis": "In touch/high-style markets with source-sensitive settlement, explicitly requiring governing-source proof capture and distinguishing \"not yet verified\" from \"not yet occurred\" should reduce unnecessary probability discounting without weakening settlement discipline.",
+  "metric_definition": {
+    "primary_metric": "latest_forecast_brier",
+    "secondary_metrics": ["directional_accuracy", "underconfidence_rate"],
+    "evaluation_note": "Use matched touch/source-sensitive cohorts and later treatment/control logging once LMD assignment exists."
+  },
+  "evidence_paths": [
+    "qualitative-db/50-learnings/case-reviews/case-20260414-4e668883/review.md"
+  ]
+}

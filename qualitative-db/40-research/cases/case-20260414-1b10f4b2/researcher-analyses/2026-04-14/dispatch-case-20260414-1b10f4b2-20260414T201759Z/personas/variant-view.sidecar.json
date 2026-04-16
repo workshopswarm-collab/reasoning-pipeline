@@ -1,0 +1,63 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A fast drop toward 70k would compress the cushion quickly.",
+    "Minute-specific Binance dislocation could decide the contract.",
+    "This estimate is sensitive to short-horizon crypto volatility."
+  ],
+  "key_assumptions": [
+    "Current BTC/USDT cushion above 68000 remains broadly intact through April 20.",
+    "No macro or crypto-specific shock produces a roughly 8-9% drawdown before noon ET on April 20.",
+    "Binance trading conditions remain normal enough that venue-specific minute dislocation does not dominate settlement."
+  ],
+  "main_logical_chain": [
+    "Market implies about 93.5% Yes and current Binance BTC/USDT is materially above 68000.",
+    "Direct Binance context supports Yes as the base case because recent closes have mostly been well above threshold.",
+    "But the contract is narrow: exact Binance pair, exact noon ET minute, strict higher-than test.",
+    "That makes the crowd's high-confidence Yes view directionally right but a bit overconfident.",
+    "So the best variant view is not No, but Yes at a modest discount to market confidence."
+  ],
+  "main_thesis": "BTC/USDT on Binance is likely to stay above 68000 by April 20 noon ET, but the market is somewhat overconfident because narrow Binance-minute settlement mechanics still leave meaningful tail risk.",
+  "own_probability": 0.88,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone",
+    "ticker price about 74306.58 on 2026-04-14",
+    "market-implied probability about 93.5%"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation",
+    "variant_hypothesis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-1b10f4b2",
+    "dispatch_id": "dispatch-case-20260414-1b10f4b2-20260414T201759Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "6d1b180e-86d9-42ca-810c-0a177f79f8da",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-1b10f4b2/researcher-analyses/2026-04-14/dispatch-case-20260414-1b10f4b2-20260414T201759Z/personas/variant-view.md",
+    "source_persona_sha256": "823a50cf55296a3be5f9d1148ff65186bd201f72a05b9d4315869b56e23e0ea8"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Good enough for a medium-difficulty narrow-resolution case: direct Binance venue data plus exact Polymarket contract wording, with medium evidence independence and low-to-medium source-of-truth ambiguity.",
+  "strongest_disconfirmers": [
+    "The contract resolves on one exact Binance minute with a strict greater-than test, which raises tail-risk versus a generic daily-price intuition.",
+    "BTC can move several thousand dollars over a few days, so an 8-9% drawdown by April 20 is plausible in crypto terms.",
+    "Binance-specific wick or operational anomalies could matter more than broad market narrative."
+  ],
+  "strongest_supports": [
+    "Binance BTC/USDT spot was about 74.3k on April 14, leaving a sizeable cushion above 68k.",
+    "Recent Binance daily closes were mostly above 70k and all closes after April 4 in the retrieved window were above 68k.",
+    "The contract only requires one specific noon ET minute close to be above 68k, not continued upside."
+  ],
+  "timing_relevance": "High: this is a date-, timezone-, and minute-sensitive contract resolving at noon ET on 2026-04-20.",
+  "unresolved_ambiguities": [
+    "Exact UI/time-label handling for the noon ET minute still carries some practical interpretation risk.",
+    "No direct April 20 minute-level pre-settlement evidence exists yet; current evidence is contextual rather than dispositive."
+  ],
+  "what_would_change_view": "A breakdown toward or below 70k before April 20, evidence of Binance-specific anomalies, or new shock evidence implying materially higher odds of a >8% drawdown would lower the estimate."
+}

@@ -1,0 +1,155 @@
+{
+  "schema_version": "decision-packet/v1",
+  "generated_at": "2026-04-15T17:49:00-04:00",
+  "context": {
+    "case_key": "case-20260415-33c2f26e",
+    "dispatch_id": "dispatch-case-20260415-33c2f26e-20260415T211658Z",
+    "question": "Will Al Nassr Saudi Club win on 2026-04-24?",
+    "market_id": "582d73c0-f48c-4a83-ade9-60f2e5f69f6d",
+    "external_market_id": "0x3c868c63869036d68a224d1321dcfaec415c672bacee771e42113d3267b48e1a",
+    "market_slug": "spl-nsr-ett-2026-04-24-nsr",
+    "platform": "polymarket",
+    "primary_market_url": "https://polymarket.com/event/spl-nsr-ett-2026-04-24-nsr",
+    "market_title": "Will Al Nassr Saudi Club win on 2026-04-24?",
+    "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260415-33c2f26e/synthesizer-agent/decision-handoff.md",
+    "source_syndicated_finding_path": "qualitative-db/40-research/cases/case-20260415-33c2f26e/synthesizer-agent/syndicated-finding.md",
+    "source_light_refresh_brief_path": "",
+    "refresh_mode": "",
+    "decision_maker_agent": "decision-maker",
+    "canonical_markdown_path": "decision-maker-packet.md",
+    "canonical_json_path": "artifacts/decision-maker-packet.json"
+  },
+  "decision": {
+    "side": "yes",
+    "trade_authorization": "forbidden",
+    "position_policy": "flat",
+    "decision_readiness": "needs_more_research",
+    "primary_crux": "Al Nassr is the deserved favorite on baseline strength, but a 0.915 regulation-win market is too extreme to trade against or with confidence without a clean bookmaker 1X2 consensus and fixture-specific lineup confirmation, especially because ordinary soccer draw risk alone keeps high-80s fair value plausible.",
+    "secondary_cruxes": [
+      "This is not a contract-ambiguity problem; it is a calibration and freshness problem.",
+      "The apparent below-market edge is modest-to-moderate but rests mostly on skepticism of an extreme favorite price rather than on a discovered negative catalyst.",
+      "The package itself flags blockers_require_new_research as yes, which is decisive when the claimed edge depends on precise calibration rather than unique factual discovery."
+    ],
+    "thesis_class": "not_decision_ready"
+  },
+  "valuation": {
+    "fair_value_low": 0.85,
+    "fair_value_high": 0.89,
+    "fair_value_mid": 0.87,
+    "independent_verification_quality": "medium",
+    "compressed_toward_market_applied": true,
+    "compression_reason": "Baseline team-strength evidence supports Al Nassr as a strong favorite, but no independent near-kickoff odds or lineup confirmation was secured to justify a stronger conclusion about whether 0.915 is too rich.",
+    "market_reference_price": 0.915,
+    "edge_mid_vs_market_pct_points": -4.5
+  },
+  "execution_semantics": {
+    "price_source": "market_snapshot_quote",
+    "price_axis": "market_implied_true_prob",
+    "rebalance_threshold_fraction": 0.1,
+    "allow_auto_reversal": false,
+    "quote_staleness_seconds": 300,
+    "valid_until": "2026-04-16T21:50:27.943861+00:00"
+  },
+  "risk_controls": {
+    "confidence_level": "medium",
+    "portfolio_constraints": [
+      "Do not add exposure at the current price.",
+      "Require a fresh bookmaker 1X2 consensus and lineup/injury confirmation before reconsidering action.",
+      "Treat regulation-only draw variance as a binding constraint when pricing extreme soccer favorites."
+    ],
+    "liquidity_caution": "low",
+    "max_position_size_pct_bankroll": 0.02,
+    "max_additional_exposure_pct_bankroll": 0.01,
+    "max_single_order_pct_bankroll": 0.005,
+    "slippage_tolerance_bps": 100,
+    "liquidity_min_depth": 0,
+    "correlation_bucket_limit_pct_bankroll": 0.05
+  },
+  "bands": [
+    {
+      "name": "max_enter",
+      "min_p": 0.0,
+      "max_p": 0.78,
+      "target_exposure_fraction": 0.0,
+      "notes": "Would require a much cheaper price plus fresh lineup and market validation."
+    },
+    {
+      "name": "scaled_enter",
+      "min_p": 0.78,
+      "max_p": 0.85,
+      "target_exposure_fraction": 0.0,
+      "notes": "Potential value zone only if late team news remains favorable and independent consensus supports Al Nassr strongly."
+    },
+    {
+      "name": "hold",
+      "min_p": 0.85,
+      "max_p": 0.89,
+      "target_exposure_fraction": 0.0,
+      "notes": "Bounded fair-value zone from current reasoning, but current packet remains non-actionable due freshness and validation gaps."
+    },
+    {
+      "name": "trim",
+      "min_p": 0.89,
+      "max_p": 0.95,
+      "target_exposure_fraction": 0.0,
+      "notes": "Above fair value for a regulation-only soccer favorite with unresolved lineup and pricing validation."
+    },
+    {
+      "name": "exit",
+      "min_p": 0.95,
+      "max_p": 1.0,
+      "target_exposure_fraction": 0.0,
+      "notes": "Avoid entirely at very rich prices unless late information becomes unusually favorable and independently confirmed."
+    }
+  ],
+  "invalidation": {
+    "thesis_breakers": [
+      "Confirmed adverse Al Nassr lineup, absences, or motivational weakness before kickoff.",
+      "A strong independent bookmaker consensus materially above or below the current valuation range.",
+      "Material pre-match news changing expected team strength or match context."
+    ],
+    "time_breakers": [
+      "A fresh close-to-kickoff lineup and sharp-consensus check should supersede this packet before any action.",
+      "The official full-time result of the scheduled match fully resolves and obsoletes this judgment."
+    ],
+    "market_structure_breakers": [
+      "Market reprices materially after team news, changing the value comparison.",
+      "Evidence emerges that the expected fixture or full-time settlement framing differs from the assumed standard regulation-only win market."
+    ],
+    "reversal_conditions": [
+      "Upgrade from forbidden only if fresh lineup/injury and bookmaker-consensus checks materially improve confidence or the market cheapens enough to create a clear edge.",
+      "Downgrade directional confidence if Al Nassr lineup strength or motivation is weaker than baseline.",
+      "Do not auto-reverse from this packet."
+    ]
+  },
+  "epistemic_status": {
+    "key_uncertainties": [
+      "Al Nassr's actual lineup strength and availability close to kickoff.",
+      "Whether bookmaker or sharp consensus validates or contradicts a 91.5% regulation-win price.",
+      "How much regulation-only draw risk should be charged in this exact fixture context."
+    ],
+    "what_would_change_my_mind": [
+      "A verified strong Al Nassr lineup and consensus odds near the market would move me materially closer to market.",
+      "A verified weakened lineup or materially lower bookmaker consensus would strengthen the below-market view.",
+      "A materially cheaper market price with unchanged favorable team news would create a cleaner edge."
+    ],
+    "reasons_to_pass": [
+      "The market is already above bounded fair value.",
+      "No independently verified bookmaker 1X2 consensus near kickoff was obtained.",
+      "No clean fixture-specific lineup/injury confirmation was obtained, and the edge is too fragile to survive ordinary soccer uncertainty."
+    ],
+    "decision_quality": "not_ready"
+  },
+  "audit": {
+    "one_sentence_rationale": "Al Nassr should be favored, but with fair value centered near 0.87 versus a 0.915 market and no fresh bookmaker or lineup validation, the correct packet is forbidden and needs_more_research rather than a trade on a regulation-only soccer favorite.",
+    "notes": "This case is a calibration-sensitive favorite-price question where missing late-market and lineup evidence is economically decisive.",
+    "market_baseline_respected": true,
+    "action_bias_check_passed": true,
+    "self_preservation_bias_check_passed": true,
+    "structured_handoff_primary_used": true,
+    "prose_fallback_used": true,
+    "verification_mode_used": "not_ready_reopen_recommended",
+    "additional_verification_performed": false,
+    "additional_verification_notes": ""
+  }
+}

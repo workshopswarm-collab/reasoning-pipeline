@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Single-venue dependence on Binance for settlement.",
+    "Exact-minute close risk rather than broader daily price direction.",
+    "Exposure to unscheduled negative headlines overnight."
+  ],
+  "key_assumptions": [
+    "No major macro or crypto-specific negative shock arrives before noon ET April 15.",
+    "Binance BTC/USDT remains broadly aligned with other major venues into the settlement minute.",
+    "A roughly 7-8% drawdown does not occur before settlement."
+  ],
+  "main_logical_chain": [
+    "The contract resolves on a specific Binance BTC/USDT 1m close at 12:00 ET on April 15 and requires a strict close above 70000.",
+    "Current Binance BTC/USDT is about 75.5k, giving a material cushion above the threshold.",
+    "Because no fresh upside catalyst is needed, the main path to No is a sufficiently large negative shock before settlement.",
+    "That shock path is possible but not likely enough to outweigh the current cushion, so Yes remains the clear base case."
+  ],
+  "main_thesis": "BTC/USDT on Binance is likely to remain above 70000 through the April 15 12:00 ET settling minute because spot is currently around 75.5k and the main catalyst needed to flip the market is an unscheduled negative shock.",
+  "own_probability": 0.95,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "final Close strictly greater than 70,000 required for Yes",
+    "BTCUSDT = 75,521.40 at check time",
+    "market-implied baseline 97.9% Yes vs own 95% Yes"
+  ],
+  "reasoning_mode": [
+    "catalyst_analysis",
+    "market_anchor",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260414-8dcead65",
+    "dispatch_id": "dispatch-case-20260414-8dcead65-20260414T160342Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "a19b9805-ee7a-45fd-a276-1f288589808e",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-8dcead65/researcher-analyses/2026-04-14/dispatch-case-20260414-8dcead65-20260414T160342Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "150bd39b3cce6527b48dac114cac02c7c98644381224bd3e41f86523bb843b30"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality direct contract and exchange sources were checked, with medium evidence independence because the contract still depends on Binance alone.",
+  "strongest_disconfirmers": [
+    "This is a narrow exact-minute venue-specific contract, so a sharp selloff or Binance-specific print anomaly could still flip it.",
+    "A sub-24h 7-8% BTC drop is uncommon but not impossible in crypto."
+  ],
+  "strongest_supports": [
+    "Polymarket rules explicitly point to the Binance BTC/USDT 1m candle at 12:00 ET on April 15.",
+    "Binance spot and recent 1m closes were around 75.5k at verification, well above 70k.",
+    "Coinbase and Kraken spot checks were directionally consistent, reducing concern that Binance was an obvious outlier at check time."
+  ],
+  "timing_relevance": "The relevant timing is the April 15, 2026 12:00 PM ET 1-minute Binance BTC/USDT candle; the key near-term catalyst is whether any negative shock emerges before that exact minute.",
+  "unresolved_ambiguities": [
+    "No major wording ambiguity remains, but operational dependence on Binance creates some residual settlement-surface risk."
+  ],
+  "what_would_change_view": "I would cut the Yes probability if BTC trades persistently toward 71k-72k, if a major risk-off headline hits crypto, or if Binance diverges materially from Coinbase/Kraken into settlement."
+}

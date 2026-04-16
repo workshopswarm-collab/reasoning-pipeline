@@ -1,0 +1,61 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "medium",
+  "fragility_points": [
+    "Estimate is sensitive to exact settlement mechanics if they differ from a touch-style interpretation.",
+    "Empirical calibration used a rough recent-history heuristic rather than a large formal sample.",
+    "Short-horizon crypto markets can reprice quickly on macro risk swings."
+  ],
+  "key_assumptions": [
+    "The contract is effectively a threshold-touch market rather than a weekly close-above market.",
+    "Recent ETH realized volatility is informative for the next six days.",
+    "No major negative crypto regime shock arrives before the window ends."
+  ],
+  "main_logical_chain": [
+    "Start with market-implied probability of 76%.",
+    "Check current ETH spot relative to the 2400 threshold and note the hurdle is only about 2%.",
+    "Check recent realized ETH history and see that 2400 is inside recent range rather than a fresh breakout level.",
+    "Conclude the outside view supports a high probability and puts fair odds slightly above market, but not by much."
+  ],
+  "main_thesis": "Ethereum reaching $2,400 during April 13-19 is slightly more likely than the market implies because the threshold is only about 2% above current spot and sits inside recent realized ETH range.",
+  "own_probability": 0.79,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "Current price is 0.76, implying a 76% market probability",
+    "My own estimate is 79%.",
+    "the contract is about whether ETH hits the 2,400 threshold during April 13-19"
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "market_anchor",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260413-639ecb3f",
+    "dispatch_id": "dispatch-case-20260413-639ecb3f-20260413T225424Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "1254c21e-a2cb-4b07-86a9-f78680bcbc40",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260413-639ecb3f/researcher-analyses/2026-04-13/dispatch-case-20260413-639ecb3f-20260413T225424Z/personas/base-rate.md",
+    "source_persona_sha256": "87528b1a95bbb1125405a0ff88462a985b4361b8c7d7e2bc2d3c087e6ed1f10a"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is adequate for a low-difficulty threshold market: Polymarket is strong for current pricing, while CoinGecko and CryptoCompare provide decent independent contextual price history, though exact settlement-feed precision was not fully recovered.",
+  "strongest_disconfirmers": [
+    "The empirical outside-view calibration is rough and may overstate the true hit probability.",
+    "If the exact Polymarket settlement rules are more restrictive than a simple touch interpretation, true probability could be lower.",
+    "A short-dated negative crypto sentiment shift could keep ETH below the threshold."
+  ],
+  "strongest_supports": [
+    "ETH spot was already in the mid-2300s, leaving only about a 2% move to reach 2400.",
+    "Recent realized ETH prices had already reached or exceeded 2400 within the prior month.",
+    "Weekly touch-style threshold markets should clear more often than close-above framings at the same level."
+  ],
+  "timing_relevance": "High; this is a six-day threshold market and both spot distance and realized volatility matter immediately.",
+  "unresolved_ambiguities": [
+    "Exact Polymarket settlement feed / rule text was not fully visible in the fetched snippet.",
+    "How representative recent realized volatility is for the coming week."
+  ],
+  "what_would_change_view": "Cleaner restrictive rule text, a sharp ETH selloff away from 2400, or better empirical calibration showing materially lower comparable hit rates would move me down; cleaner permissive touch rules or sustained proximity to 2400 would move me up."
+}

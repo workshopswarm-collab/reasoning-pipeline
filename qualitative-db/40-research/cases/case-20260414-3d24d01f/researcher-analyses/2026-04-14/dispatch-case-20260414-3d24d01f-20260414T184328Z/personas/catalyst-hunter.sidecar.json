@@ -1,0 +1,58 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A weekend macro shock could erase the current cushion quickly.",
+    "One-minute resolution creates more path sensitivity than broader price questions."
+  ],
+  "key_assumptions": [
+    "Current ~4k cushion versus 70k is enough to absorb ordinary volatility through Sunday noon ET.",
+    "No major macro or crypto-specific downside catalyst lands before the resolution minute.",
+    "Binance settlement mechanics remain operationally straightforward."
+  ],
+  "main_logical_chain": [
+    "Verify the governing contract mechanics and source of truth.",
+    "Measure current Binance BTCUSDT spot versus the 70k threshold.",
+    "Check whether recent realized trading gives real cushion or only a marginal buffer.",
+    "Conclude that only a concentrated downside catalyst is likely to flip the outcome before resolution."
+  ],
+  "main_thesis": "BTC is likely to stay above 70k for the April 19 Binance noon-ET settlement candle because current spot is around 74k and the main remaining risk is a sharp weekend downside catalyst.",
+  "own_probability": 0.91,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone ... has a final 'Close' price higher than ... 70,000.",
+    "Final verification spot: BTCUSDT 74022.72 on Binance."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "catalyst_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-3d24d01f",
+    "dispatch_id": "dispatch-case-20260414-3d24d01f-20260414T184328Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "5b5364e2-e3e1-46e8-9324-e7b529b98197",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-3d24d01f/researcher-analyses/2026-04-14/dispatch-case-20260414-3d24d01f-20260414T184328Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "c4914f1ea6d0d8a8a0e8fb7ff1a201391da72fa1d403aee965a159fc325471b1"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High for settlement mechanics, medium for broader causal inference because most evidence comes from Binance-linked sources rather than independent reporting.",
+  "strongest_disconfirmers": [
+    "The market resolves on one exact Binance 1-minute close, so timing risk is higher than a daily-close framing.",
+    "BTC can still move several thousand dollars over a few days, especially into a weekend."
+  ],
+  "strongest_supports": [
+    "Binance spot during final verification was about 74,022.72.",
+    "Recent 24h Binance low was still 72,298.93, above the threshold.",
+    "Prior 7 Binance daily closes were all above 70k."
+  ],
+  "timing_relevance": "The case is almost entirely about whether BTC can avoid a sharp downside move in the next ~4.9 days before the single noon-ET settlement candle.",
+  "unresolved_ambiguities": [
+    "No certainty about weekend catalyst flow between now and Sunday noon ET.",
+    "UI/API alignment is likely fine but still an operational detail rather than a fully separate source."
+  ],
+  "what_would_change_view": "A sustained move below 72k, a clear weekend risk-off catalyst, or new ambiguity around Binance candle interpretation would lower the estimate materially."
+}

@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Exact-minute resolution mechanics increase tail-risk sensitivity.",
+    "The estimate depends more on absence of a sharp downside catalyst than on a positive catalyst appearing."
+  ],
+  "key_assumptions": [
+    "No overnight or morning catalyst triggers a >5% ETH selloff before the noon ET candle.",
+    "Binance market/data operations remain normal near resolution.",
+    "The relevant candle maps to Apr. 17 12:00 ET / 16:00 UTC as interpreted."
+  ],
+  "main_logical_chain": [
+    "Verify the governing contract source and exact conditions for Yes.",
+    "Check direct Binance ETHUSDT 1m data to measure current distance from the 2200 strike.",
+    "Ask whether any credible near-term catalyst is likely to erase that cushion before noon ET Apr. 17.",
+    "Conclude Yes remains highly likely, but keep a small discount versus the market for exact-minute tail risk."
+  ],
+  "main_thesis": "ETH is likely to stay above 2200 on the governing Binance noon-ET minute because current direct Binance pricing sits materially above the threshold and no clearly identified near-term catalyst looks likely to force a large enough downside break before resolution.",
+  "own_probability": 0.96,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "The final Close for that candle must be strictly greater than 2200.",
+    "Direct Binance data sampled on Apr. 16 showed recent 1-minute closes roughly 2320.92 to 2343.74."
+  ],
+  "reasoning_mode": [
+    "catalyst_analysis",
+    "contract_interpretation",
+    "technical_reference",
+    "market_anchor"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260416-305ed3c4",
+    "dispatch_id": "dispatch-case-20260416-305ed3c4-20260416T190054Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "6623071e-5bcd-4364-8607-47e94578db40",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-305ed3c4/researcher-analyses/2026-04-16/dispatch-case-20260416-305ed3c4-20260416T190054Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "817286e51a61506900ea781c13af26861dc09585d80f6026453bf4282be51b0a"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is solid for this case because the contract rules are explicit and the price check used a direct Binance surface; independence is only medium because the evidence is intentionally concentrated on source-of-truth mechanics rather than many independent sources.",
+  "strongest_disconfirmers": [
+    "A single-minute exact-time contract can fail on a sharp temporary selloff even if the broader trend stays bullish.",
+    "A macro, crypto-specific, or Binance-specific shock could still push the relevant close below 2200."
+  ],
+  "strongest_supports": [
+    "Direct Binance spot data showed recent 1m closes around 2320.92-2343.74, well above 2200.",
+    "Binance 24h low in the sampled check was 2285.10, still above the threshold.",
+    "Polymarket rules explicitly make this a single Binance ETH/USDT 1m close at noon ET question."
+  ],
+  "timing_relevance": "Resolution is less than 24 hours away and turns on one exact Binance noon-ET minute, so timing dominates broader medium-term ETH narratives.",
+  "unresolved_ambiguities": [
+    "Minor residual ambiguity remains around final chart/API presentation of the governing minute close, though it appears low-risk here.",
+    "No exhaustive catalyst calendar was built because the remaining time window and strike cushion made additional search low expected value."
+  ],
+  "what_would_change_view": "I would cut the Yes probability if ETH/USDT loses its cushion toward 2200, if a material negative catalyst appears before noon ET, or if a better timing/mechanics check shows the relevant candle mapping is different."
+}

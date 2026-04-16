@@ -1,0 +1,57 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A sharp pre-noon selloff.",
+    "Settlement-minute exchange-specific distortion on Binance."
+  ],
+  "key_assumptions": [
+    "Binance remains the operative settlement source without a material anomaly.",
+    "BTC does not fall more than roughly 7% before the 12:00 ET settlement candle closes."
+  ],
+  "main_logical_chain": [
+    "The contract settles on the Binance BTC/USDT 12:00 ET 1-minute candle close, not broad BTC trading.",
+    "Observed Binance price during the run was about 7.9% above the strike.",
+    "With little time remaining, only a large intraday drop or exchange-specific problem is likely to flip the outcome.",
+    "Therefore Yes remains highly likely, but not literally certain."
+  ],
+  "main_thesis": "Binance BTC/USDT is far enough above 70000 shortly before noon ET that only a sharp selloff or Binance-specific settlement anomaly is likely to stop a Yes resolution.",
+  "own_probability": 0.988,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "current_price = 0.9995",
+    "ticker showed BTCUSDT at 75,553.40",
+    "12:00 ET corresponds to 16:00 UTC"
+  ],
+  "reasoning_mode": [
+    "catalyst_analysis",
+    "contract_interpretation",
+    "technical_reference"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260414-d5888900",
+    "dispatch_id": "dispatch-case-20260414-d5888900-20260414T143228Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "8e5c8a23-5527-47a5-8e86-06fa917f5d4c",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-d5888900/researcher-analyses/2026-04-14/dispatch-case-20260414-d5888900-20260414T143228Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "242b856577b3f47c911361825addb35f15347a69d7bb9029b58db92d81baed63"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Good for a medium-difficulty narrow-resolution case: explicit contract rules plus direct exchange-specific verification, with low rule ambiguity but only medium source independence.",
+  "strongest_disconfirmers": [
+    "Single-minute settlement creates residual path risk.",
+    "A Binance-specific wick, outage, or anomalous print could still decide the contract."
+  ],
+  "strongest_supports": [
+    "Direct Binance ticker showed BTCUSDT around 75553, well above 70000.",
+    "Recent Binance 1-minute klines also closed in the mid-75k range, confirming distance from strike.",
+    "Only about 90 minutes remained at assignment time, limiting the window for a threshold-breaking move."
+  ],
+  "timing_relevance": "This is primarily a countdown-to-settlement case; the key catalyst is the remaining intraday price path into the 12:00 ET candle.",
+  "unresolved_ambiguities": [
+    "No direct read of the final settlement candle yet because the run occurs before noon ET."
+  ],
+  "what_would_change_view": "A fast selloff toward 70000, evidence the noon ET candle mapping is being interpreted differently, or a Binance-specific operational anomaly."
+}

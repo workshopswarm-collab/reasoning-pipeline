@@ -1,0 +1,58 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "BTC can move several thousand dollars within days.",
+    "Exact-timestamp settlement adds path and timing risk.",
+    "A macro risk-off shock could quickly invalidate the current cushion."
+  ],
+  "key_assumptions": [
+    "The current low/mid-70k BTC regime broadly persists through April 20.",
+    "No major macro or crypto-specific shock pushes BTC back below 70k by the resolving minute.",
+    "Binance BTC/USDT noon-time pricing behaves normally and remains the operative settlement surface."
+  ],
+  "main_logical_chain": [
+    "The market settles on Binance BTC/USDT's 12:00 PM ET one-minute close on April 20 and requires a strict close above 70,000.",
+    "BTC is currently about 4.25k above the line, so the outside view favors Yes with six days left.",
+    "Recent volatility shows the cushion is meaningful but not large enough for near-certainty.",
+    "Therefore Yes is the right lean, but fair probability is below the market's mid/high-80s pricing."
+  ],
+  "main_thesis": "BTC being around 74.25k with six days left makes a >70k noon-ET Binance close on April 20 more likely than not, but the market overstates confidence because this is an exact one-minute threshold contract and BTC has recently traded back into the upper 60s.",
+  "own_probability": 0.78,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone ... has a final 'Close' price higher than ... 70,000.",
+    "Own probability estimate: 78% Yes."
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "market_anchor",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-3ae5a275",
+    "dispatch_id": "dispatch-case-20260414-3ae5a275-20260414T202946Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "c73bb5d9-ba6e-4fea-89d0-8275a757335d",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-3ae5a275/researcher-analyses/2026-04-14/dispatch-case-20260414-3ae5a275-20260414T202946Z/personas/base-rate.md",
+    "source_persona_sha256": "c1159c1abc904271ab0542967a008cfae003749808bebf3087adc6fb6b3713d8"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary quality is good because Binance is both the relevant market venue and price source; Polymarket clearly defines the contract; CoinGecko provides medium-independence contextual verification.",
+  "strongest_disconfirmers": [
+    "Within the same 30-day window BTC also closed in the mid-to-high 60k range, so a sub-70k April 20 noon close is still plausible.",
+    "The contract resolves on one exact Binance one-minute close, not on general bullishness through the week."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT was around 74,250 at analysis time, already well above the threshold.",
+    "Recent Binance daily closes repeatedly printed above 70,000.",
+    "CoinGecko independently confirms a similar recent BTC price regime."
+  ],
+  "timing_relevance": "This is a six-day horizon contract with an exact noon-ET settlement minute, so current level matters a lot but timestamp-specific volatility still matters.",
+  "unresolved_ambiguities": [
+    "Exact operational mapping of the Binance minute to 12:00 PM ET deserves care, though the contract wording is otherwise explicit."
+  ],
+  "what_would_change_view": "Repeated closes back below 72k then 70k, a major macro/crypto shock, or evidence of Binance-specific noon-minute quirks would make me materially less bullish; sustained holding above 74k-75k would move me closer to the market."
+}

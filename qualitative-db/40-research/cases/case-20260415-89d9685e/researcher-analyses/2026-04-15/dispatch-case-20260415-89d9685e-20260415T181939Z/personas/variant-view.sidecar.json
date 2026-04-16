@@ -1,0 +1,58 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A sharp sub-24-hour selloff could erase the cushion.",
+    "The evidence stack is strong on mechanics and current state but not highly independent."
+  ],
+  "key_assumptions": [
+    "The roughly 2.2k cushion above 72000 remains mostly intact into the resolving minute.",
+    "There is no unusual Binance-specific dislocation before the 16:00 UTC settlement candle.",
+    "No new event materially raises sub-24-hour downside volatility."
+  ],
+  "main_logical_chain": [
+    "Read the contract mechanics and identify the governing source of truth as the Binance BTC/USDT 1-minute close at noon ET.",
+    "Verify that noon ET on 2026-04-16 maps to 16:00 UTC.",
+    "Check Binance direct price surfaces and observe BTC trading materially above the 72k strike on 2026-04-15.",
+    "Discount the market slightly because single-minute settlement mechanics leave meaningful short-horizon volatility risk despite the current cushion."
+  ],
+  "main_thesis": "Yes remains more likely than No, but the market is slightly overconfident because a single exact Binance 1-minute close can still be flipped by ordinary sub-24-hour BTC volatility.",
+  "own_probability": 0.88,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "the market may be slightly overconfident because it is pricing current level more than the precise one-minute resolution mechanic",
+    "the strongest disconfirming consideration is simple: BTC only needs to trade down about 3% from current levels by the exact resolving minute for No to win"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation",
+    "variant_hypothesis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-89d9685e",
+    "dispatch_id": "dispatch-case-20260415-89d9685e-20260415T181939Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "866ce06e-afcd-4265-812e-3f11b134d2d9",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-89d9685e/researcher-analyses/2026-04-15/dispatch-case-20260415-89d9685e-20260415T181939Z/personas/variant-view.md",
+    "source_persona_sha256": "f99438e4ffabbd5b5fd9e496cc15495e45d41a41beaece0d35b0d31cdd384666"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High quality on contract interpretation and current exchange state, with medium-low independence because both core sources are tightly linked to the same settlement setup.",
+  "strongest_disconfirmers": [
+    "BTC only needs about a 3% drop by the exact resolving minute for No to win, which is plausible in crypto within a day.",
+    "The contract is decided by one exact minute close rather than broad daily trading range."
+  ],
+  "strongest_supports": [
+    "Polymarket rules clearly specify Binance BTC/USDT 1-minute close at 12:00 PM ET as the governing source.",
+    "Binance spot and recent sampled 1-minute closes were around 74.2k to 74.35k on 2026-04-15, comfortably above 72k.",
+    "The threshold is not marginally above current spot, so BTC can weaken somewhat and still resolve Yes."
+  ],
+  "timing_relevance": "This is a narrow timestamp contract: the relevant candle is 2026-04-16 12:00 PM ET, which equals 16:00 UTC.",
+  "unresolved_ambiguities": [
+    "No major source-of-truth ambiguity remains, but the future price path into the exact settlement minute is inherently uncertain."
+  ],
+  "what_would_change_view": "I would move lower if the cushion compresses quickly or volatility rises into settlement; I would move closer to the market if BTC stays comfortably above roughly 73.5k into late April 16 morning."
+}

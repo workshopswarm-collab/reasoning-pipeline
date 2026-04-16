@@ -1,0 +1,57 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Weekend or broad crypto risk-off move could erase the cushion quickly.",
+    "Small residual UI-versus-API settlement-surface ambiguity remains."
+  ],
+  "key_assumptions": [
+    "The current SOL trading regime broadly persists into the April 19 noon ET settlement window.",
+    "Binance UI settlement candle should track the same underlying kline mechanics verified through Binance documentation/API."
+  ],
+  "main_logical_chain": [
+    "Polymarket rules define the outcome by the Binance SOL/USDT 12:00 ET one-minute close on April 19.",
+    "Current Binance price context shows SOL already above 80 by a meaningful cushion.",
+    "For a short-dated threshold market already in the money, base rates favor persistence unless a specific downside catalyst appears.",
+    "Therefore Yes is more likely than not, with residual risk driven mainly by short-horizon volatility and exact-minute settlement mechanics."
+  ],
+  "main_thesis": "SOL is already trading comfortably above 80 on Binance with only a short horizon remaining, so the outside-view favors a Yes resolution unless a meaningful downside shock hits before the exact noon-ET settlement minute.",
+  "own_probability": 0.93,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for SOL/USDT 12:00 in the ET timezone (noon) on the date specified in the title has a final 'Close' price higher than the price specified in the title.",
+    "Klines are uniquely identified by their open time."
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "market_anchor",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-540d9abf",
+    "dispatch_id": "dispatch-case-20260415-540d9abf-20260415T234706Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "90e5e042-8b55-46e3-948e-dce0ba2214a4",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-540d9abf/researcher-analyses/2026-04-15/dispatch-case-20260415-540d9abf-20260415T234706Z/personas/base-rate.md",
+    "source_persona_sha256": "e85e29a456650f47ec17c524856a458f1a6f3fd48f4fa00ff398feaf0d9333c1"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality contract and mechanics sources with medium evidence independence; source-of-truth ambiguity is low-to-medium because Polymarket explicitly names Binance UI while verification used Binance docs/API in parallel.",
+  "strongest_disconfirmers": [
+    "A roughly 5% crypto drawdown before the exact settlement minute would put the contract at risk.",
+    "The market resolves on one exact Binance one-minute close, so transient timing volatility matters."
+  ],
+  "strongest_supports": [
+    "Direct Binance checks during the run showed SOLUSDT around 84.84, several dollars above the 80 threshold.",
+    "Recent observed Binance daily closes were all above 80.",
+    "Only a few days remain, so this is mostly a stay-above threshold question rather than a fresh upside-breakout question."
+  ],
+  "timing_relevance": "Settlement is narrow and date-sensitive: April 19, 2026 12:00 ET equals 16:00 UTC, and only the exact one-minute Binance close matters.",
+  "unresolved_ambiguities": [
+    "Whether Binance UI presentation could differ in any edge case from API-verified kline data, though no such divergence was found.",
+    "How much short-horizon crypto volatility will materialize before April 19 noon ET."
+  ],
+  "what_would_change_view": "A move of SOL back near or below 80 before settlement, SOL-specific negative news, or evidence of meaningful Binance UI/API divergence would reduce confidence materially."
+}

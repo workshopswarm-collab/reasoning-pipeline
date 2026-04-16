@@ -1,0 +1,58 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Timestamp/path dependence is unusually high for a single-minute settlement.",
+    "Venue-specific operational or pricing anomalies would matter more than usual.",
+    "A late macro risk-off move could erase the current cushion quickly."
+  ],
+  "key_assumptions": [
+    "BTC avoids a sustained break below 72k into the Apr 17 noon ET Binance close.",
+    "No Binance-specific anomaly distorts the settlement-minute candle.",
+    "The straightforward ET-based candle mapping is correct."
+  ],
+  "main_logical_chain": [
+    "The contract resolves on a narrow Binance BTC/USDT 1-minute close at noon ET on Apr 17.",
+    "Current Binance spot and recent realized range are already above the 72k strike.",
+    "Therefore the base case is yes unless a near-term negative catalyst forces a fast drawdown before the exact settlement minute."
+  ],
+  "main_thesis": "BTC is already materially above 72k on Binance, so yes is more likely than not unless a sharp downside move hits the narrow Apr 17 noon ET settlement minute.",
+  "own_probability": 0.84,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "Binance BTC/USDT 1-minute candle labeled 12:00 ET on Apr 17",
+    "84% Yes"
+  ],
+  "reasoning_mode": [
+    "catalyst_analysis",
+    "market_anchor",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-fdb38a8b",
+    "dispatch_id": "dispatch-case-20260414-fdb38a8b-20260414T180238Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "172af86e-057f-4c48-bf01-9922ca09943d",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-fdb38a8b/researcher-analyses/2026-04-14/dispatch-case-20260414-fdb38a8b-20260414T180238Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "26090dcbd3816cf1c70a265445fe11eafa93984c343b56c1d9b469765c2552b7"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary evidence quality is high because it comes from the named governing venue and contract text; secondary sentiment evidence is independent but only contextual.",
+  "strongest_disconfirmers": [
+    "A single sharp drop near the settlement minute can flip the outcome despite current cushion.",
+    "Extreme Fear sentiment implies downside-shock fragility remains real."
+  ],
+  "strongest_supports": [
+    "Binance spot during the run was around 74.7k, giving roughly 3.8% cushion above strike.",
+    "Recent Binance daily closes repeatedly printed above 72k.",
+    "The contract only needs the specific noon ET 1-minute close above 72k, not a full-day average."
+  ],
+  "timing_relevance": "This is primarily a timing/path market now: the key question is whether BTC can stay above 72k through the specific Apr 17 noon ET Binance close, not whether it can reach 72k in general.",
+  "unresolved_ambiguities": [
+    "Whether any meaningful macro catalyst lands immediately before Friday noon ET.",
+    "How much weight to put on API live checks versus the chart surface named in the rules."
+  ],
+  "what_would_change_view": "A decisive move back toward or below 72k on Binance before Apr 17, a new macro shock near the settlement window, or evidence that the candle/timing interpretation is wrong would lower the estimate."
+}

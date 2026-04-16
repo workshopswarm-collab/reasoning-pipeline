@@ -1,0 +1,58 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A sudden macro risk-off event could erase the cushion quickly.",
+    "Crypto-specific stress or Binance operational issues could create venue-specific downside."
+  ],
+  "key_assumptions": [
+    "Absent a discrete shock, BTC is likely to remain above 70000 because spot is already around 74038 with only about 2.5 days left.",
+    "No Binance-specific operational or pricing issue emerges near the resolution window.",
+    "No single scheduled catalyst before resolution is more likely than not to force a >5% downside move."
+  ],
+  "main_logical_chain": [
+    "Polymarket rules make Binance BTC/USDT 12:00 ET one-minute close the governing settlement print.",
+    "Current Binance spot and recent minute closes are materially above 70000.",
+    "Therefore the market mainly hinges on whether a downside shock arrives before Friday noon ET.",
+    "Absent such a shock, Yes remains the base case, but extreme pricing slightly overstates certainty."
+  ],
+  "main_thesis": "BTC/USDT on Binance is likely to stay above 70000 through the specific April 17 noon ET one-minute close, with downside shock risk the main threat rather than lack of bullish catalysts.",
+  "own_probability": 0.91,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "This market will resolve to Yes if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone has a final Close price higher than the price specified.",
+    "Live Binance spot during this run was about 74,038, giving roughly a 5.5% cushion over the strike."
+  ],
+  "reasoning_mode": [
+    "catalyst_analysis",
+    "contract_interpretation",
+    "market_anchor"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260414-f6393095",
+    "dispatch_id": "dispatch-case-20260414-f6393095-20260414T222237Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "1edca8ef-6887-4d84-b264-516b4724f4a8",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-f6393095/researcher-analyses/2026-04-14/dispatch-case-20260414-f6393095-20260414T222237Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "8e73d2f47a6347ca492261de1d4a603304c2a5739f3243210a5d2f61819fdcc7"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary contract wording and governing venue data are strong, but independence is only medium because both resolution and live verification rely on Binance-related surfaces.",
+  "strongest_disconfirmers": [
+    "Short-dated crypto can move >5% quickly on adverse macro or crypto-specific news.",
+    "The contract is venue-specific, so Binance-specific disruption or dislocation could matter disproportionately."
+  ],
+  "strongest_supports": [
+    "Live Binance BTCUSDT during the run was about 74038, roughly 5.5% above the threshold.",
+    "Binance 24h low during the run was still about 73795, above 70000.",
+    "The contract only requires the specific noon ET one-minute close to be above 70000, not a sustained hold all day."
+  ],
+  "timing_relevance": "This is a short-dated, noon-ET, one-minute-close contract, so path and intraday timing matter almost as much as terminal direction.",
+  "unresolved_ambiguities": [
+    "Edge-case ambiguity remains around exact Binance UI/API presentation if an operational anomaly occurs.",
+    "No single dominant scheduled catalyst was identified, so residual event risk is more diffuse than scheduled."
+  ],
+  "what_would_change_view": "A sharp move toward 71k-72k, broad macro risk-off selling, crypto-specific stress, or Binance-specific reliability concerns before Friday noon ET would make me materially less confident."
+}

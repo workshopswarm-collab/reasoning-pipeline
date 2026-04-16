@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A normal crypto drawdown could erase the current buffer before settlement.",
+    "A discrete macro, regulatory, or exchange shock would undermine the base-rate estimate quickly."
+  ],
+  "key_assumptions": [
+    "No major exogenous shock materially worsens BTC's volatility regime before Apr 21 noon ET.",
+    "Recent one-month BTC path is a reasonable outside-view anchor for the next six days.",
+    "Binance remains a reliable settlement surface for the relevant BTC/USDT 1m close."
+  ],
+  "main_logical_chain": [
+    "The contract resolves on the Binance BTC/USDT 12:00 ET 1-minute close on Apr 21, strictly above 72,000.",
+    "Current spot is already above the strike, so Yes starts as the outside-view favorite.",
+    "Recent BTC volatility shows the existing cushion is meaningful but not decisive.",
+    "Therefore Yes is more likely than No, but slightly less likely than the market's ~80% pricing implies."
+  ],
+  "main_thesis": "BTC is already above 72k, so Yes is favored, but the market is slightly overpricing the line because a single-minute Binance settlement and ordinary crypto volatility keep downside risk meaningful.",
+  "own_probability": 0.73,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "Binance BTC/USDT 12:00 ET 1-minute close",
+    "73% Yes vs market 80-81% Yes",
+    "current spot around 74,962"
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "market_anchor",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-7253c25f",
+    "dispatch_id": "dispatch-case-20260415-7253c25f-20260415T220737Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "0981b568-e42d-472c-bc87-0ca181a194b5",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-7253c25f/researcher-analyses/2026-04-15/dispatch-case-20260415-7253c25f-20260415T220737Z/personas/base-rate.md",
+    "source_persona_sha256": "ecdd3be3cee17ff9cf641b9975f7baaeba60afc151ac0b069a76077f9b853843"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Good enough for a medium difficulty case: direct rules check, direct Binance price-context check, and one contextual CoinGecko cross-check; independence is medium and source-of-truth ambiguity is low to medium.",
+  "strongest_disconfirmers": [
+    "BTC made 4%+ multi-day moves repeatedly over the prior month, including closes below 72,000 in late March and early April.",
+    "Settlement depends on one exact minute, so ordinary short-horizon volatility matters more than broad trend language suggests."
+  ],
+  "strongest_supports": [
+    "Binance spot during research was about 74,962, roughly 4% above the 72,000 strike.",
+    "Recent BTC path recovered back into the mid-70,000s by mid-April.",
+    "No additional rule wrinkle was found that would broaden the settlement source beyond the specified Binance BTC/USDT 12:00 ET 1m close."
+  ],
+  "timing_relevance": "High: the market settles on one specific 12:00 ET minute on Apr 21, so short-horizon path dependence matters.",
+  "unresolved_ambiguities": [
+    "Exact UI labeling/details for the Binance noon ET candle were not directly inspected in the live chart interface.",
+    "No dedicated implied-volatility series was used, so probability remains partly heuristic."
+  ],
+  "what_would_change_view": "A sustained move back below 72,000, evidence of a specific dominant negative catalyst, or alternatively a durable push above roughly 76,000 into the last 24-48 hours would materially change the estimate."
+}

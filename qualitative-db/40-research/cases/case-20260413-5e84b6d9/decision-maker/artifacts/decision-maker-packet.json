@@ -1,0 +1,157 @@
+{
+  "schema_version": "decision-packet/v1",
+  "generated_at": "2026-04-13T17:16:00-04:00",
+  "context": {
+    "case_key": "case-20260413-5e84b6d9",
+    "dispatch_id": "dispatch-case-20260413-5e84b6d9-20260413T210605Z",
+    "question": "Will Rumen Radev be the next prime minister of Bulgaria after the 2026 parliamentary election?",
+    "market_id": "case-20260413-5e84b6d9",
+    "market_title": "Will Rumen Radev be the next prime minister of Bulgaria after the 2026 parliamentary election?",
+    "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260413-5e84b6d9/synthesizer-agent/decision-handoff.md",
+    "source_syndicated_finding_path": "qualitative-db/40-research/cases/case-20260413-5e84b6d9/synthesizer-agent/syndicated-finding.md",
+    "decision_maker_agent": "decision-maker",
+    "canonical_markdown_path": "decision-maker-packet.md",
+    "canonical_json_path": "artifacts/decision-maker-packet.json",
+    "external_market_id": "0xd75a9de8f60669a0b891d713902dcfee64dcf88471c49dd76f39fd1ac34c016b",
+    "market_slug": "will-rumen-radev-be-the-next-prime-minister-of-bulgaria-after-the-2026-parliamentary-election",
+    "platform": "polymarket",
+    "primary_market_url": "https://polymarket.com/event/will-rumen-radev-be-the-next-prime-minister-of-bulgaria-after-the-2026-parliamentary-election",
+    "source_light_refresh_brief_path": "",
+    "refresh_mode": ""
+  },
+  "decision": {
+    "side": "yes",
+    "trade_authorization": "forbidden",
+    "position_policy": "flat",
+    "decision_readiness": "needs_more_research",
+    "primary_crux": "Radev is a plausible favorite to become the next non-caretaker PM, but the market's 90.35% price is far too confident relative to the publicly auditable evidence because no independently verified coalition whip-count or partner commitment shows he is already near-locked for formal investiture.",
+    "secondary_cruxes": [
+      "This contract resolves on the first officially sworn non-caretaker PM, so coalition arithmetic and formal investiture contingencies remain central.",
+      "The bounded package supports Radev as a real contender, not a category error, but does not justify collapsing the large residual risk that another coalition leader, compromise PM, or delay resolves the market differently.",
+      "The package itself flags that missing coalition-path verification is the decisive blocker, which is exactly the kind of blocker that should stop action against an apparently informed market."
+    ],
+    "thesis_class": "not_decision_ready"
+  },
+  "valuation": {
+    "fair_value_low": 0.5,
+    "fair_value_high": 0.72,
+    "fair_value_mid": 0.61,
+    "market_reference_price": 0.9035,
+    "edge_mid_vs_market_pct_points": -29.3,
+    "independent_verification_quality": "medium",
+    "compressed_toward_market_applied": true,
+    "compression_reason": "Although the bounded synthesis midpoint is 0.68, the lack of directly verified coalition-path evidence and the possibility that the market embeds stronger local information justify a cautious downward but not aggressively maximal anti-market valuation."
+  },
+  "execution_semantics": {
+    "price_axis": "market_implied_true_prob",
+    "price_source": "market_snapshot_quote",
+    "rebalance_threshold_fraction": 0.15,
+    "allow_auto_reversal": false,
+    "valid_until": "2026-04-17T23:59:00-04:00",
+    "quote_staleness_seconds": 14400,
+    "time_horizon": "Post-election coalition formation through first formal non-caretaker PM swearing-in"
+  },
+  "risk_controls": {
+    "max_position_size_pct_bankroll": 0.0,
+    "max_additional_exposure_pct_bankroll": 0.0,
+    "max_single_order_pct_bankroll": 0.0,
+    "slippage_tolerance_bps": 100,
+    "liquidity_min_depth": 1000,
+    "correlation_bucket_limit_pct_bankroll": 0.03,
+    "confidence_level": "low",
+    "portfolio_constraints": [
+      "No new exposure is authorized from this packet because the decisive coalition-path evidence is missing.",
+      "Reopen only after direct evidence on coalition arithmetic, partner commitments, or authoritative post-election government-formation reporting is available.",
+      "Do not treat a large gap versus market as sufficient when the market may embed local information on elite bargaining not visible in the bounded package."
+    ],
+    "liquidity_caution": "high"
+  },
+  "bands": [
+    {
+      "name": "max_enter",
+      "min_p": 0,
+      "max_p": 0.2,
+      "target_exposure_fraction": 0,
+      "notes": "No entry authorized because the case is not decision-ready."
+    },
+    {
+      "name": "scaled_enter",
+      "min_p": 0.2,
+      "max_p": 0.5,
+      "target_exposure_fraction": 0,
+      "notes": "No entry authorized until coalition-path evidence is directly verified."
+    },
+    {
+      "name": "hold",
+      "min_p": 0.5,
+      "max_p": 0.7,
+      "target_exposure_fraction": 0,
+      "notes": "Flat while Radev remains plausible but not sufficiently verified as the dominant investiture path."
+    },
+    {
+      "name": "trim",
+      "min_p": 0.7,
+      "max_p": 0.85,
+      "target_exposure_fraction": 0,
+      "notes": "Flat; avoid leaning against high confidence without cleaner coalition evidence."
+    },
+    {
+      "name": "exit",
+      "min_p": 0.85,
+      "max_p": 1,
+      "target_exposure_fraction": 0,
+      "notes": "Flat/forbidden at extreme prices because public evidence does not support near-certainty, but verification is too incomplete for execution."
+    }
+  ],
+  "invalidation": {
+    "thesis_breakers": [
+      "Authoritative Bulgarian reporting or official party statements show Radev has secured a governing coalition or dominant support for investiture.",
+      "Another leader emerges with a clearer coalition path than Radev.",
+      "Evidence shows Radev is not the operative PM candidate for the relevant bloc or compromise coalition."
+    ],
+    "market_structure_breakers": [
+      "The market is embedding local coalition intelligence not present in the bounded package.",
+      "Thin liquidity or event-driven speculation is distorting the displayed 0.9035 quote.",
+      "Resolution timing or interpretation around swearing-in versus pre-resolution reporting changes the effective executable meaning of the market."
+    ],
+    "time_breakers": [
+      "Election results and immediate coalition negotiations can change this probability rapidly.",
+      "Any post-election seat distribution or formal coalition announcement should replace this packet rather than merely update it."
+    ],
+    "reversal_conditions": [
+      "Move toward authorized yes only after direct coalition-path verification materially improves.",
+      "Move toward no if verified evidence shows another leader has the clearer path to formal swearing-in.",
+      "Do not auto-reverse from this packet."
+    ]
+  },
+  "epistemic_status": {
+    "key_uncertainties": [
+      "Whether Radev actually has a secured or near-secured governing coalition.",
+      "Which parties would back or block a Radev-led government after the election.",
+      "How much the 90.35% market price reflects local information on coalition bargaining unavailable in the bounded package."
+    ],
+    "reasons_to_pass": [
+      "The package explicitly says blockers require new research and coalition arithmetic is unresolved.",
+      "At 90%+, the market is pricing near-lock confidence that is not publicly auditable from the bounded evidence.",
+      "This is a coalition-formation contract, so hidden elite bargaining information can matter more than generic public narratives."
+    ],
+    "what_would_change_my_mind": [
+      "Authoritative post-election reporting or party statements showing Radev has the numbers for investiture.",
+      "Verified seat distribution and coalition commitments making Radev the dominant formal swearing-in path.",
+      "Evidence that another coalition leader or compromise candidate is more likely to become the first non-caretaker sworn PM."
+    ],
+    "decision_quality": "not_ready"
+  },
+  "audit": {
+    "market_baseline_respected": true,
+    "action_bias_check_passed": true,
+    "self_preservation_bias_check_passed": true,
+    "one_sentence_rationale": "Radev may well be the favorite, but because the 90.35% market price is not supported by independently verified coalition-path evidence and the contract hinges on formal non-caretaker investiture, the disciplined output is forbidden and needs-more-research rather than an executable anti-market trade.",
+    "notes": "This packet intentionally separates directional disagreement with the market from trade authorization: the public case against 90%+ is meaningful, but not yet clean enough to overcome the explicit coalition-path verification gap.",
+    "structured_handoff_primary_used": true,
+    "prose_fallback_used": false,
+    "verification_mode_used": "not_ready_reopen_recommended",
+    "additional_verification_performed": false,
+    "additional_verification_notes": ""
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Short-horizon BTC volatility before Apr. 17 noon ET.",
+    "Binance-specific print risk because the market is venue-specific."
+  ],
+  "key_assumptions": [
+    "The current Binance BTC/USDT above-70k regime persists through Apr. 17 noon ET.",
+    "No major shock or Binance-specific dislocation pushes the one-minute close below 70,000."
+  ],
+  "main_logical_chain": [
+    "Check governing contract mechanics and market-implied baseline.",
+    "Use same-venue Binance BTC/USDT history to judge whether the threshold is currently in or out of the money.",
+    "Apply an outside-view discount because exact-minute threshold markets are more fragile than daily-close intuition suggests.",
+    "Conclude Yes is highly likely but not as close to certainty as the market implies."
+  ],
+  "main_thesis": "BTC is already trading comfortably above 70k on Binance, so Yes is the clear base-rate favorite for Apr. 17 noon ET, but the market slightly underprices exact-minute volatility risk.",
+  "own_probability": 0.88,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone ... has a final 'Close' price higher than the price specified in the title.",
+    "Apr. 7 through Apr. 14 daily Binance closes all remained above 70,000."
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "contract_interpretation",
+    "market_anchor"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-f6393095",
+    "dispatch_id": "dispatch-case-20260414-f6393095-20260414T222237Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "e8efd8ac-ffdc-46b6-9bb9-5573d72e6844",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-f6393095/researcher-analyses/2026-04-14/dispatch-case-20260414-f6393095-20260414T222237Z/personas/base-rate.md",
+    "source_persona_sha256": "da56b095c97255590d1372cdccb58d87a6ee388cf9df519850d7908748cb8d94"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary evidence quality is high because Binance is the same venue/pair as settlement, but the direct price-history check used daily candles rather than the eventual exact one-minute settlement candle; Polymarket rules provide necessary contract interpretation.",
+  "strongest_disconfirmers": [
+    "The contract settles on one exact Binance one-minute close, so a brief sharp selloff can still produce No.",
+    "BTC can move several percent within a few days, making sub-70k by settlement unlikely but not rare enough to ignore."
+  ],
+  "strongest_supports": [
+    "Binance daily data shows eight straight daily closes above 70k from Apr. 7 through Apr. 14.",
+    "Recent closes and lows stayed above the threshold, indicating some cushion rather than a knife-edge setup.",
+    "Polymarket ladder shape is broadly consistent with spot trading in the mid-70k area."
+  ],
+  "timing_relevance": "Resolution depends on the Binance BTC/USDT 12:00 ET one-minute close on Apr. 17, 2026; 12:00 ET maps to 16:00 UTC during EDT.",
+  "unresolved_ambiguities": [
+    "Exact operational representation of the noon ET candle on Binance UI/API should still be checked near settlement.",
+    "Any new macro or crypto shock before settlement could quickly compress the threshold cushion."
+  ],
+  "what_would_change_view": "I would cut the estimate if BTC trades back toward 71k or below before settlement, if repeated threshold tests appear, or if Binance-specific anomalies emerge."
+}

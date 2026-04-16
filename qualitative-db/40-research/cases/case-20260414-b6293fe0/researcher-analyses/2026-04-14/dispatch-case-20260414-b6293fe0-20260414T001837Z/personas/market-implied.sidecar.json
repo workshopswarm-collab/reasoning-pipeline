@@ -1,0 +1,57 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A designated settlement feed could differ from Binance/Kraken enough to negate the apparent hit.",
+    "The extracted Polymarket page did not expose full rules text."
+  ],
+  "key_assumptions": [
+    "The contract resolves on an any-touch threshold or weekly-high basis.",
+    "The designated source of truth tracks major spot venues closely enough that observed exchange prints are a strong proxy."
+  ],
+  "main_logical_chain": [
+    "Start from the market's 89% implied probability as an information-rich prior.",
+    "Check whether BTC is actually near or above the threshold on live major venues.",
+    "Late-session Binance and Kraken data show BTC around or above $74,000, making the high market probability plausible.",
+    "Residual uncertainty is mostly about whether the official Polymarket resolution source matches those observed prints."
+  ],
+  "main_thesis": "The 89% market price looks broadly efficient because BTC was already trading around or above $74,000 on major venues, leaving resolution-source mechanics as the main residual risk.",
+  "own_probability": 0.92,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "Kraken last trade ~74409.80; high ~74529.90",
+    "Binance BTCUSDT ~74378.15",
+    "Fortune 9 a.m. ET snapshot: $71,188.84"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "technical_reference",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260414-b6293fe0",
+    "dispatch_id": "dispatch-case-20260414-b6293fe0-20260414T001837Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "e4d5bcc4-b1aa-4554-a91a-462ed42aa0d2",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-b6293fe0/researcher-analyses/2026-04-14/dispatch-case-20260414-b6293fe0-20260414T001837Z/personas/market-implied.md",
+    "source_persona_sha256": "9f6dfb33d683be0a4c02d11572bc0222f56f9812019dac014ea2b68af348b7b6"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Good enough for a low-difficulty case: two meaningful direct venue sources plus contextual confirmation, with remaining uncertainty concentrated in contract rules rather than price evidence.",
+  "strongest_disconfirmers": [
+    "Polymarket's exact governing rules/source feed were not fully retrievable, so a source-of-truth mismatch could still matter."
+  ],
+  "strongest_supports": [
+    "Kraken showed a last trade above $74,000 and session high above $74,500.",
+    "Binance simultaneously showed BTC trading around $74,378, corroborating threshold-neighborhood pricing.",
+    "Fortune's morning snapshot at about $71.2k implies the threshold was within normal BTC daily range."
+  ],
+  "timing_relevance": "Very high; this is a short-dated weekly threshold market where contemporaneous spot prints dominate the analysis.",
+  "unresolved_ambiguities": [
+    "Exact official resolution source/feed for the contract.",
+    "Whether the assigned 0.89 price was captured before or after the threshold became visibly hit on venues."
+  ],
+  "what_would_change_view": "I would cut the estimate materially if the Polymarket rules designated a source that never printed $74,000 or if the contract mechanics were narrower than any-touch weekly high."
+}

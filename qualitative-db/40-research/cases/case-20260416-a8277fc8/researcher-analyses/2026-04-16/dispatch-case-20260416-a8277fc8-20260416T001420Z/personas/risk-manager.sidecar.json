@@ -1,0 +1,61 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "The market may be pricing current spot as if it nearly guarantees the settlement-minute close.",
+    "A ~5.8% cushion is meaningful but not decisive in a short-dated crypto market.",
+    "Source independence is limited because contextual evidence and settlement source are both Binance-linked."
+  ],
+  "key_assumptions": [
+    "The current above-80 cushion on Binance largely persists through Apr. 19 noon ET.",
+    "Weekend crypto volatility does not produce a >5% downside move into the qualifying minute.",
+    "Binance SOL/USDT does not show exchange-specific weakness or operational distortion near settlement."
+  ],
+  "main_logical_chain": [
+    "Polymarket rules explicitly define settlement as the Binance SOL/USDT 1-minute candle close at 12:00 ET on Apr. 19 being above 80.",
+    "Current Binance SOL/USDT price and recent range are comfortably above 80, so Yes is the directional base case.",
+    "Because the market settles on one exact future minute, residual timing and volatility risk still justify a discount versus the 88.5% market price."
+  ],
+  "main_thesis": "Yes is still more likely than No because Binance SOL/USDT is already comfortably above 80, but the market is somewhat overconfident because settlement depends on one exact noon ET one-minute close on Apr. 19.",
+  "own_probability": 0.81,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "Yes if the Binance 1 minute candle for SOL/USDT 12:00 ET has a final Close higher than 80.",
+    "Binance SOL/USDT ticker at collection time: 84.67."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "risk_management",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-a8277fc8",
+    "dispatch_id": "dispatch-case-20260416-a8277fc8-20260416T001420Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "384a5d37-1aab-4d46-9b7a-604a712b4e3c",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-a8277fc8/researcher-analyses/2026-04-16/dispatch-case-20260416-a8277fc8-20260416T001420Z/personas/risk-manager.md",
+    "source_persona_sha256": "5afd68a29467829ebcd0c03ea2580da31b520061b5d28da6f300be83cdafd086"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Mechanism clarity is strong because the rules explicitly name Binance SOL/USDT 1m close; contextual evidence quality is high but source independence is only low-to-medium.",
+  "strongest_disconfirmers": [
+    "The contract resolves on one exact 12:00 ET one-minute close, not on any trade before then.",
+    "A weekend crypto selloff or Binance-specific wobble could still push SOL below 80 at the qualifying minute.",
+    "The final governing candle cannot yet be verified because it has not occurred."
+  ],
+  "strongest_supports": [
+    "Binance SOL/USDT was about 84.67 at collection time, already above the threshold on the governing venue.",
+    "Recent Binance 24h and daily ranges remained above 80, so the threshold is not being cleared only by a fleeting spike.",
+    "The contextual price evidence comes from the same exchange and pair named in the rules."
+  ],
+  "timing_relevance": "High: the event resolves on a single exact 12:00 ET one-minute close on Apr. 19, so path dependence and timing risk are central.",
+  "unresolved_ambiguities": [
+    "How much weekend downside risk should be assigned over the remaining horizon.",
+    "Whether Binance-specific microstructure at the settlement minute could matter.",
+    "No final governing-source proof exists yet because the event is still in the future."
+  ],
+  "what_would_change_view": "I would move toward the market if SOL stays comfortably above 80 on Binance closer to settlement, and away from it if the cushion compresses toward 80 or broader crypto turns risk-off."
+}

@@ -48,7 +48,7 @@ Promote research-layer information into a canonical dossier only when:
 4. write canonical entity update proposal or equivalent promotion note in the research layer
 5. let the decision-maker or orchestrator review the proposal
 6. only then update the canonical dossier
-7. if the case produces methodology or conflict lessons, capture them in `qualitative-db/50-retrospectives/`
+7. if the case produces methodology or conflict lessons, capture them in `qualitative-db/50-learnings/`
 
 ## Canonical sections most likely to change
 

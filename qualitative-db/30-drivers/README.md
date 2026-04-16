@@ -2,7 +2,7 @@
 type: system_guide
 domain: drivers
 status: active
-last_updated: 2026-03-25
+last_updated: 2026-04-14
 owner: orchestrator
 tags: [drivers/guide, qualitative-db/30-drivers, workflow]
 ---
@@ -42,7 +42,7 @@ Driver notes may also carry an optional `aliases` field for high-confidence syno
 `30-drivers/` is the causal layer between:
 - `20-entities/` = what the objects are
 - `40-research/` = what happened in this case
-- `50-retrospectives/` = what was learned after the case resolved
+- `50-learnings/` = what was learned after the case resolved
 
 Use `30-drivers/` to improve the pipeline in four ways:
 
@@ -55,7 +55,7 @@ Use `30-drivers/` to improve the pipeline in four ways:
 3. **Improve retrieval and comparison**
    - notes linked to the same driver can be retrieved, compared, and reviewed together later
 
-4. **Support retrospectives and quant review**
+4. **Support learnings and quant review**
    - driver labels make it easier to analyze which recurring mechanisms were present in good or bad calls
 
 ## Authority rule
@@ -64,11 +64,11 @@ Researchers **read from** `30-drivers/`.
 
 Researchers do **not** directly amend `30-drivers/` during ordinary case work.
 
-The **decision-maker** is the normal writer to `30-drivers/`, and it should update driver files only when a durable lesson has survived case-specific research and retrospective review.
+The **decision-maker** is the normal writer to `30-drivers/`, and it should update driver files only when a durable lesson has survived case-specific research and learning review.
 
 In practice:
 - researchers write case-specific material into `40-research/`
-- the decision-maker reviews completed research and retrospectives
+- the decision-maker reviews completed research and learning notes
 - the decision-maker updates `30-drivers/` only when a lesson is generalizable across cases
 
 ## Core rule
@@ -77,19 +77,19 @@ In practice:
 
 `40-research/` is for **case-specific evidence, reasoning, updates, and judgments**.
 
-`50-retrospectives/` is for **after-the-fact evaluation of what worked, what failed, and what should change**.
+`50-learnings/` is for **after-the-fact evaluation of what worked, what failed, and what should change**.
 
 Rule of thumb:
 - if it is about **how this mechanism usually works** -> `30-drivers/`
 - if it is about **how this mechanism appears in this case right now** -> `40-research/`
-- if it is about **what the resolved case taught us afterward** -> `50-retrospectives/`
+- if it is about **what the resolved case taught us afterward** -> `50-learnings/`
 
 ## What belongs here
 
 Write to `30-drivers/` only when the lesson is:
 - **generalizable** across cases
 - **durable** over time
-- useful for future reasoning, retrieval, or retrospective evaluation
+- useful for future reasoning, retrieval, or learning evaluation
 
 Good content:
 - what the driver is
@@ -99,7 +99,7 @@ Good content:
 - common failure modes
 - common market misreads
 - interactions with other drivers
-- durable lessons promoted from repeated retrospective evidence
+- durable lessons promoted from repeated learning evidence
 
 ## What does NOT belong here
 
@@ -115,7 +115,7 @@ Keep these in `qualitative-db/40-research/` instead:
 - investigation logs
 - single-case conclusions that have not yet generalized
 
-Keep these in `qualitative-db/50-retrospectives/` instead:
+Keep these in `qualitative-db/50-learnings/` instead:
 - postmortems of specific predictions or investigations
 - agent-performance evaluations
 - false-signal notes
@@ -160,7 +160,7 @@ A strong evidence map should make it clear not just **what happened**, but **whi
 ### After the research pass
 
 Researchers should:
-- keep the durable lesson candidate inside `40-research/` or `50-retrospectives/`
+- keep the durable lesson candidate inside `40-research/` or `50-learnings/`
 - make the lesson explicit enough that the decision-maker can decide whether to promote it into `30-drivers/`
 
 Researchers should **not** directly rewrite `30-drivers/` during ordinary pipeline operation.
@@ -172,13 +172,13 @@ The decision-maker should use `30-drivers/` as the place to store **promoted cau
 Update `30-drivers/` only after reviewing:
 - the completed `40-research/` record
 - the resolved outcome where available
-- the relevant `50-retrospectives/` notes
+- the relevant `50-learnings/` notes
 
 A `30-drivers/` update is justified when the lesson is:
 - durable
 - cross-case
 - likely to improve future research or weighting
-- supported by more than one case or by one very strong retrospective lesson
+- supported by more than one case or by one very strong learning note
 
 Good promoted updates:
 - a repeated market misread
@@ -187,7 +187,7 @@ Good promoted updates:
 - a reliable warning about false signals
 - a clear interaction between two drivers that repeatedly matters
 
-## Exact instructions for quant / retrospective use
+## Exact instructions for quant / learning use
 
 Treat driver names as **stable categorical identifiers**.
 
@@ -218,7 +218,7 @@ Avoid:
 - overly narrow event names
 - duplicate synonyms for the same mechanism
 
-If a new mechanism is only relevant to one case so far, keep it in `40-research/` or `50-retrospectives/` first and promote it to `30-drivers/` only after durable retrospective value is clear.
+If a new mechanism is only relevant to one case so far, keep it in `40-research/` or `50-learnings/` first and promote it to `30-drivers/` only after durable learning value is clear.
 
 ## Structure rule
 
@@ -259,7 +259,7 @@ Good target:
 
 1. Researchers read relevant drivers first
 2. Researchers collect source notes and produce case work in `40-research/`
-3. Resolved cases and evaluation lessons are written into `50-retrospectives/`
+3. Resolved cases and evaluation lessons are written into `50-learnings/`
 4. The decision-maker promotes durable causal lessons into `30-drivers/`
 
 ## Fast mental model
@@ -267,7 +267,7 @@ Good target:
 - `20-entities/` = what is the thing?
 - `30-drivers/` = what recurring force moves outcomes?
 - `40-research/` = what happened in this case?
-- `50-retrospectives/` = what did the resolved case teach us?
+- `50-learnings/` = what did the resolved case teach us?
 
 ## Template
 

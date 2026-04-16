@@ -1,0 +1,61 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A normal crypto-sized drawdown could still push BTC below the strike by the deciding minute.",
+    "The estimate depends on recent price persistence remaining informative over a short horizon.",
+    "Contextual ETF-flow support is not a direct guarantee for the exact settlement print."
+  ],
+  "key_assumptions": [
+    "Recent Binance trading above 70k remains informative over the next five days.",
+    "No major macro or crypto-specific shock causes a 6%+ downside move into the settlement window.",
+    "Single-minute Binance close mechanics deserve a discount versus broad daily-price intuition."
+  ],
+  "main_logical_chain": [
+    "Check contract mechanics: Binance BTC/USDT 1-minute close at noon ET on April 20 must be strictly above 70,000.",
+    "Check current governing-market context: Binance spot is already around 74.3k and recent closes are above 70k.",
+    "Apply variant weighting: because this is a single-minute timestamped threshold market, crypto volatility still leaves meaningful downside paths.",
+    "Conclusion: Yes remains favored, but high-80s market confidence looks somewhat too high; estimate 80%."
+  ],
+  "main_thesis": "BTC is likely to finish above 70k on Binance at noon ET on April 20, but the market is somewhat overconfident because a single-minute threshold contract remains exposed to ordinary crypto volatility.",
+  "own_probability": 0.8,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "Binance BTC/USDT 12:00 PM ET 1-minute candle close must be strictly greater than 70,000.",
+    "Own probability estimate: 80% Yes."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation",
+    "variant_hypothesis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-84fdc62d",
+    "dispatch_id": "dispatch-case-20260415-84fdc62d-20260415T125809Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "b39c2794-8a1f-4f2a-acb5-b5b497724ec6",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-84fdc62d/researcher-analyses/2026-04-15/dispatch-case-20260415-84fdc62d-20260415T125809Z/personas/variant-view.md",
+    "source_persona_sha256": "9b729efcf58e826a4d46a31dc19c72cde72f1df2e924eb3354e803422f8139d2"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Strong on contract mechanics and current exchange data; only moderate on broader mechanism context because ETF-flow support came from secondary reporting.",
+  "strongest_disconfirmers": [
+    "BTC is only about 6% above the strike and recent daily ranges are large enough to traverse that distance.",
+    "The contract resolves on one exact noon ET Binance minute close, so temporary drawdowns count.",
+    "Supportive flow context does not guarantee a smooth path into resolution."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT was around 74.3k on April 15, already well above the strike.",
+    "Recent daily closes on Binance have stayed above 70k since April 6.",
+    "ETF-flow context suggests real underlying demand support."
+  ],
+  "timing_relevance": "High: this is a date-sensitive, timezone-specific, single-minute contract, so resolution mechanics and short-horizon volatility are central.",
+  "unresolved_ambiguities": [
+    "Whether short-horizon volatility compresses or expands into April 19-20.",
+    "Whether the market has already adequately priced the single-minute resolution fragility."
+  ],
+  "what_would_change_view": "I would move toward or above the market if BTC remains materially above 70k into April 19-20 with lower realized volatility; I would cut materially if BTC loses 72k or revisits the high-60s before settlement."
+}

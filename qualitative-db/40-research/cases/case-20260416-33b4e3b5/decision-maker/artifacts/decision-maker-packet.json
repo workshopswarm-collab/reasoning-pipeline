@@ -1,0 +1,155 @@
+{
+  "schema_version": "decision-packet/v1",
+  "generated_at": "2026-04-15T22:24:00-04:00",
+  "context": {
+    "case_key": "case-20260416-33b4e3b5",
+    "dispatch_id": "dispatch-case-20260416-33b4e3b5-20260416T021538Z",
+    "question": "Will the price of Solana be above $80 on April 19?",
+    "market_id": "139f80d9-bf3b-4b6b-9dea-031313b6ae5b",
+    "external_market_id": "0x00b28e37776a7f2f56ceec3bc4cf4f49d832b1c9db1ddd1cb597fb4438918f95",
+    "market_slug": "solana-above-80-on-april-19",
+    "platform": "polymarket",
+    "primary_market_url": "https://polymarket.com/event/solana-above-80-on-april-19",
+    "market_title": "Will the price of Solana be above $80 on April 19?",
+    "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260416-33b4e3b5/synthesizer-agent/decision-handoff.md",
+    "source_syndicated_finding_path": "qualitative-db/40-research/cases/case-20260416-33b4e3b5/synthesizer-agent/syndicated-finding.md",
+    "source_light_refresh_brief_path": "",
+    "refresh_mode": "",
+    "decision_maker_agent": "decision-maker",
+    "canonical_markdown_path": "decision-maker-packet.md",
+    "canonical_json_path": "artifacts/decision-maker-packet.json"
+  },
+  "decision": {
+    "side": "yes",
+    "trade_authorization": "watch_only",
+    "position_policy": "hold_only",
+    "decision_readiness": "ready",
+    "primary_crux": "SOL above $80 on the April 19 noon ET Binance minute remains the base case because spot is in the mid-84s and recent completed hourly closes have stayed above 80, but the market at 0.895 still looks too confident for a single-minute crypto threshold contract with weekend path risk and only medium-strength verification of the anti-market case.",
+    "secondary_cruxes": [
+      "The key dispute is how much exact-minute path risk to charge, not broad direction.",
+      "Current cushion supports Yes, but not enough to trust a large anti-market edge against a high market price.",
+      "Minor Binance settlement-surface ambiguity and medium independent verification quality cap actionability even if the market may be somewhat rich."
+    ],
+    "thesis_class": "price_not_good_enough"
+  },
+  "valuation": {
+    "fair_value_low": 0.81,
+    "fair_value_high": 0.86,
+    "fair_value_mid": 0.835,
+    "independent_verification_quality": "medium",
+    "compressed_toward_market_applied": false,
+    "compression_reason": "Current SOL/USDT context supports a strong Yes lean, but bounded verification does not justify paying high-80s pricing for a single-minute weekend settlement with residual volatility uncertainty.",
+    "market_reference_price": 0.895,
+    "edge_mid_vs_market_pct_points": -6.0
+  },
+  "execution_semantics": {
+    "price_source": "market_snapshot_quote",
+    "price_axis": "market_implied_true_prob",
+    "rebalance_threshold_fraction": 0.1,
+    "allow_auto_reversal": false,
+    "quote_staleness_seconds": 300,
+    "valid_until": "2026-04-17T02:24:57.874386+00:00"
+  },
+  "risk_controls": {
+    "confidence_level": "medium",
+    "portfolio_constraints": [
+      "Do not add fresh exposure at the current market price.",
+      "Treat exact-minute Binance settlement risk as the dominant execution constraint.",
+      "Reopen only if market cheapens materially or if near-settlement Binance checks still show SOL comfortably above 80 with stable conditions."
+    ],
+    "liquidity_caution": "low",
+    "max_position_size_pct_bankroll": 0.02,
+    "max_additional_exposure_pct_bankroll": 0.01,
+    "max_single_order_pct_bankroll": 0.005,
+    "slippage_tolerance_bps": 100,
+    "liquidity_min_depth": 0,
+    "correlation_bucket_limit_pct_bankroll": 0.05
+  },
+  "bands": [
+    {
+      "name": "max_enter",
+      "min_p": 0,
+      "max_p": 0.74,
+      "target_exposure_fraction": 0,
+      "notes": "Would require a very large dislocation versus this packet's Yes-leaning base case."
+    },
+    {
+      "name": "scaled_enter",
+      "min_p": 0.74,
+      "max_p": 0.81,
+      "target_exposure_fraction": 0,
+      "notes": "Potential value zone only if current above-80 regime persists and no new settlement-surface issues appear."
+    },
+    {
+      "name": "hold",
+      "min_p": 0.81,
+      "max_p": 0.86,
+      "target_exposure_fraction": 0,
+      "notes": "Bounded fair-value zone; maintain watch-only hold posture."
+    },
+    {
+      "name": "trim",
+      "min_p": 0.86,
+      "max_p": 0.92,
+      "target_exposure_fraction": 0,
+      "notes": "Above fair value for a one-minute crypto settlement with weekend path risk."
+    },
+    {
+      "name": "exit",
+      "min_p": 0.92,
+      "max_p": 1,
+      "target_exposure_fraction": 0,
+      "notes": "Avoid or exit at near-certainty pricing because a brief weekend drawdown can still flip the result."
+    }
+  ],
+  "invalidation": {
+    "thesis_breakers": [
+      "SOL/USDT loses substantial cushion and trades back toward 80 before the Apr 19 fixing window.",
+      "A broad crypto selloff or Solana-specific shock materially raises the probability of a sub-80 settlement minute.",
+      "Binance-specific pricing, liquidity, or display-surface issues emerge near resolution."
+    ],
+    "time_breakers": [
+      "A fresh direct Binance observation closer to Apr 19 12:00 ET should supersede this packet before any action.",
+      "The actual Apr 19 12:00 ET Binance 1-minute close fully resolves and obsoletes this judgment."
+    ],
+    "market_structure_breakers": [
+      "Market reprices materially after fresh spot or volatility changes, altering the value comparison.",
+      "Unexpected Binance-specific minute-close behavior appears near the fixing window."
+    ],
+    "reversal_conditions": [
+      "Upgrade only if later pre-fix Binance checks still show SOL comfortably above 80 and the market price cheapens below fair value.",
+      "Downgrade if SOL loses cushion or weekend volatility rises materially.",
+      "Do not auto-reverse from this packet."
+    ]
+  },
+  "epistemic_status": {
+    "key_uncertainties": [
+      "How much weekend path volatility should be charged for one exact settlement minute.",
+      "Whether a broad crypto drawdown emerges before the Apr 19 fixing window.",
+      "How much residual Binance implementation ambiguity matters in practice at this price level."
+    ],
+    "what_would_change_my_mind": [
+      "A fresh near-settlement Binance check still showing SOL comfortably above 80 with calm conditions would modestly improve confidence.",
+      "A materially cheaper market price with unchanged cushion would improve the execution case.",
+      "A move down toward 80-81 would reduce directional confidence materially."
+    ],
+    "reasons_to_pass": [
+      "The market price is above bounded fair value.",
+      "Independent verification of the anti-market case is only medium.",
+      "The contract resolves on one exact Binance minute rather than broad daily direction."
+    ],
+    "decision_quality": "good_not_clean"
+  },
+  "audit": {
+    "one_sentence_rationale": "SOL above $80 on the April 19 Binance noon minute is still the base case, but with fair value around 0.835 and the market at 0.895, the disciplined output remains watch-only because high-80s pricing overstates confidence in a single-minute weekend crypto settlement.",
+    "notes": "This is a strong directional Yes with weak execution economics; the package's internal spread across personas reinforces caution rather than authorization.",
+    "market_baseline_respected": true,
+    "action_bias_check_passed": true,
+    "self_preservation_bias_check_passed": true,
+    "structured_handoff_primary_used": true,
+    "prose_fallback_used": true,
+    "verification_mode_used": "targeted_escalation",
+    "additional_verification_performed": true,
+    "additional_verification_notes": "targeted_pack"
+  }
+}

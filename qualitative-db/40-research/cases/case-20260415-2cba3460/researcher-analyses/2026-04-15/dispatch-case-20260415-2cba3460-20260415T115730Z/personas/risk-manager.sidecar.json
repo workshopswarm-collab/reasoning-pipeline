@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Single-minute timestamp risk.",
+    "Venue-specific Binance print risk.",
+    "Short-horizon BTC volatility can erase the current cushion quickly."
+  ],
+  "key_assumptions": [
+    "The current roughly 2.2k cushion above 72000 survives until the exact April 16 12:00 ET Binance close.",
+    "No macro or crypto-specific shock causes a fast selloff before settlement.",
+    "Binance does not show a venue-specific dislocation at the decisive minute."
+  ],
+  "main_logical_chain": [
+    "Polymarket rules make Binance BTC/USDT 12:00 ET 1m close the governing datapoint.",
+    "Current Binance BTC/USDT pricing is materially above 72000, so Yes is the directional base case.",
+    "Because the contract is timestamp-specific and crypto is volatile, current spot should not be treated as near-certain settlement.",
+    "That supports a Yes view with a modest confidence discount versus the market."
+  ],
+  "main_thesis": "Yes is still more likely than No because Binance BTC/USDT is trading materially above 72000, but the market likely overstates confidence because resolution depends on a single Binance 12:00 ET one-minute close.",
+  "own_probability": 0.82,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "The governing source of truth is explicitly Binance BTC/USDT.",
+    "This market resolves on one specific Binance 1-minute close at noon ET tomorrow."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "risk_management",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-2cba3460",
+    "dispatch_id": "dispatch-case-20260415-2cba3460-20260415T115730Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "924c074f-b1ba-4512-be1f-5b5656b3d320",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-2cba3460/researcher-analyses/2026-04-15/dispatch-case-20260415-2cba3460-20260415T115730Z/personas/risk-manager.md",
+    "source_persona_sha256": "a7733c71803aa180b697e77c80be43967a14cef1ab67eded42a0a31fcfcbb58c"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality direct sources for mechanics and venue context, with medium evidence independence and low source-of-truth ambiguity.",
+  "strongest_disconfirmers": [
+    "The contract resolves on one specific Binance 12:00 ET one-minute close, so a sharp selloff or wick at the exact minute can flip the result.",
+    "A roughly 3 percent downside move from current levels would be enough to make Yes fail."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT was around 74194 during the run.",
+    "Observed Binance 24h low was 73514, still above 72000.",
+    "Recent sampled Binance 1m closes were all well above 72000."
+  ],
+  "timing_relevance": "This is a less-than-24-hour market resolved by the Binance BTC/USDT 12:00 ET one-minute close on April 16, so timing mechanics are central rather than incidental.",
+  "unresolved_ambiguities": [
+    "Whether the market is slightly underpricing noon-ET path risk.",
+    "How stable BTC risk sentiment remains into the final hours before settlement."
+  ],
+  "what_would_change_view": "A sustained move toward or below 72000 on Binance before the settlement window, or visible volatility/dislocation into late morning ET, would push the estimate down; stable holding above roughly 73.5k to 74k into the final hours would push it up."
+}

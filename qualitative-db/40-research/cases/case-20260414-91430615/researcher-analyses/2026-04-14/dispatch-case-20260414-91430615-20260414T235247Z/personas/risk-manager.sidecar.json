@@ -1,0 +1,62 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "single venue resolution",
+    "single minute resolution",
+    "moderate rather than overwhelming cushion above strike",
+    "weekend and short-horizon volatility risk"
+  ],
+  "key_assumptions": [
+    "BTC remains above 70000 on Binance into the April 19 12:00 ET settlement minute.",
+    "Binance venue-specific pricing does not show unusual weakness near settlement.",
+    "No major macro or crypto-specific shock produces a >5% drawdown before settlement."
+  ],
+  "main_logical_chain": [
+    "Polymarket resolves this market from the Binance BTC/USDT 12:00 ET 1-minute close on April 19.",
+    "Binance direct data shows BTC currently trading around 74k, materially above the 70k threshold.",
+    "That makes Yes the directional base case, but the market's 90% confidence appears a bit too high because a normal crypto pullback could still flip a single-minute threshold outcome."
+  ],
+  "main_thesis": "Yes is still the base case because Binance BTC/USDT is currently around 74k, but 90% looks somewhat too confident for a five-day single-minute single-venue threshold contract.",
+  "own_probability": 0.82,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "Binance BTCUSDT around 74071.99 at assignment time",
+    "12:00 ET Binance 1-minute close is the governing resolution object",
+    "82% Yes vs market-implied 90%"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "risk_management",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-91430615",
+    "dispatch_id": "dispatch-case-20260414-91430615-20260414T235247Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "5e09052c-7609-4bfc-87a8-f73b342eef8f",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-91430615/researcher-analyses/2026-04-14/dispatch-case-20260414-91430615-20260414T235247Z/personas/risk-manager.md",
+    "source_persona_sha256": "030c42551740d1d514e3443b1f0161a958cf229b4ec5cbf26459366a5c597b91"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality primary evidence for mechanics and current price from Polymarket and Binance, plus moderate-quality independent context from CoinDesk; overall source-of-truth ambiguity is low-to-medium.",
+  "strongest_disconfirmers": [
+    "The contract resolves on one exact Binance 1-minute close at 12:00 ET, so timing and venue microstructure matter.",
+    "BTC's cushion versus 70000 is only about 5.8%, which is not huge for a five-day crypto window.",
+    "CoinDesk coverage highlighted failed-breakout and hold-risk concerns."
+  ],
+  "strongest_supports": [
+    "Live Binance BTCUSDT price was about 74071.99 at assignment time.",
+    "Recent Binance 1-minute klines also closed near 74072, matching the contract's settlement object.",
+    "Secondary market coverage placed BTC above 75000 recently, confirming spot is well above the strike regime."
+  ],
+  "timing_relevance": "This is highly timing-sensitive because resolution depends on the Binance BTC/USDT one-minute close at exactly 12:00 ET on April 19, 2026.",
+  "unresolved_ambiguities": [
+    "Polymarket points to the Binance UI candle, leaving small implementation ambiguity versus API representation.",
+    "Short-term BTC path risk over the next five days remains uncertain."
+  ],
+  "what_would_change_view": "Sustained trading above 74k-75k into late April 18/19 would push confidence up; a break toward 72k or lower, or Binance-specific weakness near settlement, would push confidence down materially."
+}

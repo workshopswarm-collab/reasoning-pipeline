@@ -1,0 +1,58 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A quick selloff toward 70k or below would compress the cushion fast.",
+    "Any Binance-specific print anomaly near the settlement minute could matter disproportionately."
+  ],
+  "key_assumptions": [
+    "Current Binance spot and recent range are informative for the next six days.",
+    "No major shock or Binance-specific dislocation occurs before the settlement minute.",
+    "The market is more likely mildly overconfident than directionally wrong."
+  ],
+  "main_logical_chain": [
+    "Market implies about 93.5-94% Yes because current Binance spot is comfortably above 68k.",
+    "Direct Binance data supports a strong Yes lean because recent spot and range have stayed above the strike.",
+    "But the contract is narrow and short-horizon crypto downside tails are not negligible.",
+    "So the correct update is high-probability Yes, but modestly below market at 88%."
+  ],
+  "main_thesis": "Market is directionally right that >68k is likely, but 93.5-94% looks somewhat overconfident given six-day BTC volatility and the exact Binance noon-ET minute-close condition.",
+  "own_probability": 0.88,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone ... has a final 'Close' price higher than ... 68,000.",
+    "BTCUSDT price snapshot during run: 74230.01000000"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-4d440738",
+    "dispatch_id": "dispatch-case-20260414-4d440738-20260414T195302Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "89ce95f4-22f2-44ac-ba39-4e52cfbb381b",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-4d440738/researcher-analyses/2026-04-14/dispatch-case-20260414-4d440738-20260414T195302Z/personas/market-implied.md",
+    "source_persona_sha256": "3522e4b301ada5085198b8077ac47b203ab2eb09296de32b1f053169f1d87861"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary contract source and settlement venue data are strong, but evidence independence is only medium and no authoritative future-settling source exists yet.",
+  "strongest_disconfirmers": [
+    "BTC can still move 8-10% in six days.",
+    "Resolution depends on one exact Binance 1-minute close at noon ET, adding timing and venue-specific risk."
+  ],
+  "strongest_supports": [
+    "Binance BTC/USDT traded around 74.2k during the run, about 9.2% above the 68k strike.",
+    "Recent Binance daily lows in the sampled week stayed above roughly 70.5k.",
+    "Polymarket strike ladder is internally coherent, supporting an efficient-summary interpretation."
+  ],
+  "timing_relevance": "High: the market resolves on April 20, 2026 at the Binance BTC/USDT 12:00 ET 1-minute close, so date/time precision is material.",
+  "unresolved_ambiguities": [
+    "Exact short-horizon downside-tail frequency was not quantified in a formal base-rate study.",
+    "Noon-ET candle operational mapping appears clear from rules but still matters mechanically."
+  ],
+  "what_would_change_view": "A move of Binance BTC/USDT back near 70k, a new macro/crypto shock, or evidence of Binance-specific settlement noise would lower the estimate; continued stable trading above 72k would raise it."
+}

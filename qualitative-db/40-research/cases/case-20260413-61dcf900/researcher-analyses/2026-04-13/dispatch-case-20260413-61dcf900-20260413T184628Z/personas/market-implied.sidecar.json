@@ -1,0 +1,58 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Same-day LA loss plus Nashville win could erase the edge quickly.",
+    "Late-season tiebreak or schedule-path nuances could matter more than the surface standings imply."
+  ],
+  "key_assumptions": [
+    "Current official WC2 position plus one game in hand is the main thing the market is pricing.",
+    "Nashville is the principal threat and no hidden information materially worsens LA's outlook.",
+    "Official NHL qualification rules remain the effective resolution source of truth."
+  ],
+  "main_logical_chain": [
+    "Start from the 73.5% market prior and ask what must be true for that price to make sense.",
+    "Official NHL standings confirm LA is already in the final Western wild-card spot with a one-point edge and one extra game remaining over the nearest chaser.",
+    "An independent public model puts playoff odds near 80%, supporting the idea that the market is directionally right.",
+    "Thin margin and weak season-long goal differential keep the fair price below certainty, yielding an estimate around 76%."
+  ],
+  "main_thesis": "The Kings are a real but fragile playoff favorite; the 73.5% market price looks broadly efficient and slightly conservative versus public evidence.",
+  "own_probability": 0.76,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "Los Angeles is already sitting in the second Western wild-card slot on the official NHL standings, one point ahead of Nashville with a game in hand",
+    "MoneyPuck) is a bit higher at about 80%"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260413-61dcf900",
+    "dispatch_id": "dispatch-case-20260413-61dcf900-20260413T184628Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "8f71aa55-fb6c-4f4b-a0a7-f8e42180fe08",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260413-61dcf900/researcher-analyses/2026-04-13/dispatch-case-20260413-61dcf900-20260413T184628Z/personas/market-implied.md",
+    "source_persona_sha256": "5d5dbe2de3861fac38095969ec2e5d96b7393b0bb1494a5cbeb515a5701df3ce"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality official standings/schedule plus a medium-high-quality independent model benchmark; low source-of-truth ambiguity and medium evidence independence.",
+  "strongest_disconfirmers": [
+    "LA's margin is only one point over Nashville, so one result slate can flip the race.",
+    "The Kings have a -21 goal differential, which is weak for a playoff favorite.",
+    "Even MoneyPuck leaves about a 20% miss path."
+  ],
+  "strongest_supports": [
+    "Official NHL standings show LA in WC2 at 87 points through 79 games, one point ahead of Nashville with a game in hand.",
+    "MoneyPuck's current simulation gives LA a 79.95% playoff probability.",
+    "LA has three games left while Nashville has two, preserving extra path equity."
+  ],
+  "timing_relevance": "High; with only a few games left, each slate can move fair value materially.",
+  "unresolved_ambiguities": [
+    "Exact live clinch/elimination paths were not independently enumerated from the official league site.",
+    "Team-level canonical entity slugs were not verified in the vault."
+  ],
+  "what_would_change_view": "I would move down if LA falls out of WC2 or another strong model comes in materially below the high 60s; I would move up if LA widens the gap or official clinch paths narrow the failure set."
+}

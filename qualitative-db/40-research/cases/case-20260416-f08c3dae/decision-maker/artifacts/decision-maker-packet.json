@@ -1,0 +1,153 @@
+{
+  "schema_version": "decision-packet/v1",
+  "generated_at": "2026-04-16T04:29:00Z",
+  "context": {
+    "case_key": "case-20260416-f08c3dae",
+    "dispatch_id": "dispatch-case-20260416-f08c3dae-20260416T041907Z",
+    "question": "Will CD Tolima win on 2026-04-18?",
+    "market_id": "c036c6a6-fbcc-4e08-bbe4-b272b1151012",
+    "external_market_id": "0x56bfed9ce09dd557dc6f98d19d390f3390fc2d24212b1de03b2000e804fa3d32",
+    "market_slug": "col1-cdt-dep-2026-04-18-cdt",
+    "platform": "polymarket",
+    "primary_market_url": "https://polymarket.com/event/col1-cdt-dep-2026-04-18-cdt",
+    "market_title": "Will CD Tolima win on 2026-04-18?",
+    "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260416-f08c3dae/synthesizer-agent/decision-handoff.md",
+    "source_syndicated_finding_path": "qualitative-db/40-research/cases/case-20260416-f08c3dae/synthesizer-agent/syndicated-finding.md",
+    "source_light_refresh_brief_path": "",
+    "refresh_mode": "",
+    "decision_maker_agent": "decision-maker",
+    "canonical_markdown_path": "decision-maker-packet.md",
+    "canonical_json_path": "artifacts/decision-maker-packet.json"
+  },
+  "decision": {
+    "side": "none",
+    "trade_authorization": "watch_only",
+    "position_policy": "flat",
+    "decision_readiness": "needs_more_research",
+    "primary_crux": "Current fair value appears below the 0.76 market price, but the edge call is too sensitive to fresh lineup/rotation news and still lacks clean independent pre-kickoff price confirmation.",
+    "secondary_cruxes": [
+      "This is a regulation-only win market, so normal soccer draw risk materially caps true win probability even for a strong home favorite.",
+      "The bounded verification supports Tolima as the favorite, but not strongly enough to justify paying a mid-70s implied probability.",
+      "The market may already incorporate fresher squad information than the verified bundle does."
+    ],
+    "thesis_class": "not_decision_ready"
+  },
+  "valuation": {
+    "fair_value_low": 0.69,
+    "fair_value_high": 0.73,
+    "fair_value_mid": 0.71,
+    "independent_verification_quality": "medium",
+    "compressed_toward_market_applied": false,
+    "compression_reason": "Held below market because the verified evidence supports Tolima as a real favorite but does not justify paying 0.76 without fresh squad confirmation or a cleaner independent odds cross-check.",
+    "market_reference_price": 0.76,
+    "edge_mid_vs_market_pct_points": -5.0
+  },
+  "execution_semantics": {
+    "price_source": "market_snapshot_quote",
+    "price_axis": "market_implied_true_prob",
+    "rebalance_threshold_fraction": 0.1,
+    "allow_auto_reversal": false,
+    "quote_staleness_seconds": 300,
+    "valid_until": "2026-04-17T04:29:58.535336+00:00"
+  },
+  "risk_controls": {
+    "max_position_size_pct_bankroll": 0.02,
+    "max_additional_exposure_pct_bankroll": 0.01,
+    "max_single_order_pct_bankroll": 0.005,
+    "slippage_tolerance_bps": 100,
+    "liquidity_min_depth": 0,
+    "correlation_bucket_limit_pct_bankroll": 0.05,
+    "confidence_level": "medium",
+    "portfolio_constraints": [],
+    "liquidity_caution": "medium"
+  },
+  "bands": [
+    {
+      "name": "max_enter",
+      "min_p": 0.0,
+      "max_p": 0.2,
+      "target_exposure_fraction": 0.0,
+      "notes": "default fallback band"
+    },
+    {
+      "name": "scaled_enter",
+      "min_p": 0.2,
+      "max_p": 0.4,
+      "target_exposure_fraction": 0.0,
+      "notes": "default fallback band"
+    },
+    {
+      "name": "hold",
+      "min_p": 0.4,
+      "max_p": 0.6,
+      "target_exposure_fraction": 0.0,
+      "notes": "default fallback band"
+    },
+    {
+      "name": "trim",
+      "min_p": 0.6,
+      "max_p": 0.8,
+      "target_exposure_fraction": 0.0,
+      "notes": "default fallback band"
+    },
+    {
+      "name": "exit",
+      "min_p": 0.8,
+      "max_p": 1.0,
+      "target_exposure_fraction": 0.0,
+      "notes": "default fallback band"
+    }
+  ],
+  "invalidation": {
+    "thesis_breakers": [
+      "Fresh credible lineup or injury news indicating Tolima is materially stronger than assumed.",
+      "A clean independent pre-kickoff odds source supporting win probability at or above roughly 0.75.",
+      "Meaningful adverse squad or rotation news for Tolima that pushes fair value clearly below the high-60s."
+    ],
+    "time_breakers": [
+      "No position should be authorized off this packet without a refreshed pre-kickoff verification pass.",
+      "Any material market move after lineup or news release invalidates this snapshot judgment."
+    ],
+    "market_structure_breakers": [
+      "If settlement guidance changes away from standard regulation-plus-stoppage-time win resolution, re-evaluate immediately."
+    ],
+    "reversal_conditions": [
+      "Upgrade to authorized yes only if refreshed verification both removes the lineup uncertainty and confirms fair value above the executable price by a meaningful margin.",
+      "Maintain no-trade or pass if late information lowers fair value further or if price remains rich versus refreshed estimates."
+    ]
+  },
+  "epistemic_status": {
+    "key_uncertainties": [
+      "Tolima lineup, rotation, and injury status after the Apr 14 Libertadores match.",
+      "Whether the market already embeds fresher team news unavailable in the verified bundle.",
+      "Absence of a clean second independent odds source near decision time."
+    ],
+    "what_would_change_my_mind": [
+      "Verified starting lineup and team-news clarity with no material negative surprise for Tolima.",
+      "Independent market or odds confirmation showing true win probability materially closer to or above 0.76.",
+      "A meaningful pre-kickoff repricing downward that creates a clear cushion versus refreshed fair value."
+    ],
+    "reasons_to_pass": [
+      "Negative edge versus current market reference price.",
+      "Freshness-sensitive catalyst unresolved.",
+      "Evidence quality is sufficient for directional judgment but not for execution confidence at this price."
+    ],
+    "decision_quality": "not_ready"
+  },
+  "audit": {
+    "one_sentence_rationale": "Tolima is probably the right side directionally, but with fair value around 0.71 and unresolved late-news risk, paying 0.76 is not justified, so this should remain watch-only pending refreshed verification.",
+    "notes": [
+      "Upstream synthesis points below market and I agree on the direction of disagreement.",
+      "This is primarily a price-and-freshness problem, not a thesis that Tolima is unlikely to win.",
+      "Economically, the correct output is no trade until either price improves or late verification closes the information gap."
+    ],
+    "market_baseline_respected": true,
+    "action_bias_check_passed": true,
+    "self_preservation_bias_check_passed": true,
+    "structured_handoff_primary_used": true,
+    "prose_fallback_used": false,
+    "verification_mode_used": "not_ready_reopen_recommended",
+    "additional_verification_performed": false,
+    "additional_verification_notes": ""
+  }
+}

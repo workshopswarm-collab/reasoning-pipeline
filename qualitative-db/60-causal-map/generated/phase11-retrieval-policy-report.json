@@ -1,0 +1,2961 @@
+{
+  "summary": {
+    "generated_at": "2026-04-16T19:15:00.140687+00:00",
+    "comparison_mode": "default_normalized_priors_vs_normalized_plus_learned_overrides",
+    "policy_path": "/Users/agent2/.openclaw/orchestrator/qualitative-db/60-causal-map/generated/phase11-retrieval-policy.json",
+    "case_count": 5,
+    "cases_with_any_top1_change": 0,
+    "cases_with_any_surface_change": 5,
+    "top1_change_counts": {
+      "case_reviews": 0,
+      "active_interventions": 0,
+      "aggregate_notes": 0,
+      "trial_overlay": 0,
+      "live_nodes": 0,
+      "live_edges": 0
+    },
+    "any_change_counts": {
+      "case_reviews": 5,
+      "active_interventions": 4,
+      "aggregate_notes": 4,
+      "trial_overlay": 5,
+      "live_nodes": 5,
+      "live_edges": 1
+    }
+  },
+  "cases": [
+    {
+      "case_key": "case-20260416-143465dc",
+      "title": "Will Solana reach $90 April 13-19?",
+      "platform": "polymarket",
+      "market_id": "5eb0bc41-de41-400e-8a17-4393d1a9d2bb",
+      "input_context": {
+        "case_key": "case-20260416-143465dc",
+        "market_id": "5eb0bc41-de41-400e-8a17-4393d1a9d2bb",
+        "title": "Will Solana reach $90 April 13-19?",
+        "description": "What price will Solana hit April 13-19?",
+        "category": "",
+        "platform": "polymarket",
+        "current_price": "0.74",
+        "closes_at": "2026-04-20T00:00:00-04:00",
+        "resolves_at": "2026-04-20T00:00:00-04:00",
+        "run_kind": "novel",
+        "rerun_scope": "",
+        "difficulty_class": "",
+        "resolution_risk": "",
+        "source_of_truth_class": "",
+        "focus_hints_json": "[]",
+        "extra_verification_required": "",
+        "experiment_arm": "control",
+        "light_refresh_brief_path": null,
+        "case_md_path": "qualitative-db/40-research/cases/case-20260416-143465dc/case.md"
+      },
+      "comparison": {
+        "case_reviews": {
+          "baseline_top1": "case-20260414-4e668883",
+          "learned_top1": "case-20260414-4e668883",
+          "top1_changed": false,
+          "baseline_count": 1,
+          "learned_count": 1,
+          "top_n": 3,
+          "top_n_overlap_count": 1,
+          "top_n_overlap_keys": [
+            "case-20260414-4e668883"
+          ],
+          "shifts": [
+            {
+              "key": "case-20260414-4e668883",
+              "baseline_rank": 1,
+              "learned_rank": 1,
+              "rank_delta": 0,
+              "baseline_score": 14.744,
+              "learned_score": 14.776,
+              "score_delta": 0.032,
+              "entered": false,
+              "dropped": false,
+              "baseline_breakdown": {
+                "mechanism_overlap": 10.0,
+                "source_overlap": 0.0,
+                "mechanic_overlap": 4.0,
+                "category_overlap": 0.0,
+                "semantic_similarity": 0.0,
+                "node_weight_bonus": 0.04,
+                "edge_weight_bonus": 0.19,
+                "phase11_node_bonus": 0.268,
+                "phase11_edge_bonus": 0.246,
+                "candidate_bonus": 0.0,
+                "generic_penalty": 0.0
+              },
+              "learned_breakdown": {
+                "mechanism_overlap": 10.0,
+                "source_overlap": 0.0,
+                "mechanic_overlap": 4.0,
+                "category_overlap": 0.0,
+                "semantic_similarity": 0.0,
+                "node_weight_bonus": 0.04,
+                "edge_weight_bonus": 0.19,
+                "phase11_node_bonus": 0.29,
+                "phase11_edge_bonus": 0.256,
+                "candidate_bonus": 0.0,
+                "generic_penalty": 0.0
+              },
+              "baseline_why": "shared nodes: time-remaining-nontrivial, touch-probability; shared edges: time-remaining-nontrivial__increases__touch-probability; shared mechanics: threshold-touch, intraperiod-high-low; learned node-weight bonus: 0.04; learned edge-weight bonus: 0.19; phase11 live-graph bonus: 0.51",
+              "learned_why": "shared nodes: time-remaining-nontrivial, touch-probability; shared edges: time-remaining-nontrivial__increases__touch-probability; shared mechanics: threshold-touch, intraperiod-high-low; learned node-weight bonus: 0.04; learned edge-weight bonus: 0.19; phase11 live-graph bonus: 0.55"
+            }
+          ]
+        },
+        "active_interventions": {
+          "baseline_top1": "capture-governing-source-proof-for-touch-markets",
+          "learned_top1": "capture-governing-source-proof-for-touch-markets",
+          "top1_changed": false,
+          "baseline_count": 1,
+          "learned_count": 1,
+          "top_n": 3,
+          "top_n_overlap_count": 1,
+          "top_n_overlap_keys": [
+            "capture-governing-source-proof-for-touch-markets"
+          ],
+          "shifts": [
+            {
+              "key": "capture-governing-source-proof-for-touch-markets",
+              "baseline_rank": 1,
+              "learned_rank": 1,
+              "rank_delta": 0,
+              "baseline_score": 4.55,
+              "learned_score": 4.468,
+              "score_delta": -0.082,
+              "entered": false,
+              "dropped": false,
+              "baseline_breakdown": {
+                "selector_match_score": 4.0,
+                "candidate_bonus": 0.0,
+                "required_check_bonus": 0.0,
+                "phase11_mechanic_live_bonus": 0.55,
+                "phase11_source_live_bonus": 0.0,
+                "phase11_workflow_live_bonus": 0.0
+              },
+              "learned_breakdown": {
+                "selector_match_score": 4.0,
+                "candidate_bonus": 0.0,
+                "required_check_bonus": 0.0,
+                "phase11_mechanic_live_bonus": 0.468,
+                "phase11_source_live_bonus": 0.0,
+                "phase11_workflow_live_bonus": 0.0
+              },
+              "baseline_why": "active selector match: platform=polymarket; mechanics=threshold-touch, intraperiod-high-low; phase11 live-context bonus: 0.55",
+              "learned_why": "active selector match: platform=polymarket; mechanics=threshold-touch, intraperiod-high-low; phase11 live-context bonus: 0.47"
+            }
+          ]
+        },
+        "aggregate_notes": {
+          "baseline_top1": "qualitative-db/50-learnings/workflow-performance/generated-index.md",
+          "learned_top1": "qualitative-db/50-learnings/workflow-performance/generated-index.md",
+          "top1_changed": false,
+          "baseline_count": 1,
+          "learned_count": 1,
+          "top_n": 3,
+          "top_n_overlap_count": 1,
+          "top_n_overlap_keys": [
+            "qualitative-db/50-learnings/workflow-performance/generated-index.md"
+          ],
+          "shifts": [
+            {
+              "key": "qualitative-db/50-learnings/workflow-performance/generated-index.md",
+              "baseline_rank": 1,
+              "learned_rank": 1,
+              "rank_delta": 0,
+              "baseline_score": 0.55,
+              "learned_score": 0.468,
+              "score_delta": -0.082,
+              "entered": false,
+              "dropped": false,
+              "baseline_breakdown": {
+                "shared_contested_workflow_edge": 0.0,
+                "threshold_workflow_family": 0.55,
+                "phase11_workflow_live_bonus": 0.0,
+                "candidate_bonus": 0.0
+              },
+              "learned_breakdown": {
+                "shared_contested_workflow_edge": 0.0,
+                "threshold_workflow_family": 0.468,
+                "phase11_workflow_live_bonus": 0.0,
+                "candidate_bonus": 0.0
+              },
+              "baseline_why": "shared threshold-touch workflow family",
+              "learned_why": "shared threshold-touch workflow family"
+            }
+          ]
+        },
+        "trial_overlay": {
+          "baseline_top1": "verification-state-separation",
+          "learned_top1": "verification-state-separation",
+          "top1_changed": false,
+          "baseline_count": 1,
+          "learned_count": 1,
+          "top_n": 3,
+          "top_n_overlap_count": 1,
+          "top_n_overlap_keys": [
+            "verification-state-separation"
+          ],
+          "shifts": [
+            {
+              "key": "verification-state-separation",
+              "baseline_rank": 1,
+              "learned_rank": 1,
+              "rank_delta": 0,
+              "baseline_score": 1.669,
+              "learned_score": 1.43,
+              "score_delta": -0.239,
+              "entered": false,
+              "dropped": false,
+              "baseline_breakdown": {
+                "active_nodes": 0.0,
+                "candidate_edges": 0.0,
+                "contested_edges": 0.0,
+                "required_checks": 0.0,
+                "question_mechanics": 0.7,
+                "source_of_truth_class": 0.0,
+                "platforms": 0.2,
+                "categories": 0.0,
+                "shadow_trial_score": 0.0,
+                "trial_shrunken_utility": 0.0,
+                "trial_helpful": 0.0,
+                "shadow_helpful": 0.0,
+                "non_intervention_support": 0.55,
+                "distinct_cases": 0.32,
+                "rank_bonus": 0.0,
+                "genericity_penalty": -0.101,
+                "harmful_shadow_penalty": -0.0,
+                "trial_harmful_rate_penalty": -0.0,
+                "family_crowding_penalty": -0.0,
+                "merge_penalty": 0.0
+              },
+              "learned_breakdown": {
+                "active_nodes": 0.0,
+                "candidate_edges": 0.0,
+                "contested_edges": 0.0,
+                "required_checks": 0.0,
+                "question_mechanics": 0.7,
+                "source_of_truth_class": 0.0,
+                "platforms": 0.2,
+                "categories": 0.0,
+                "shadow_trial_score": 0.0,
+                "trial_shrunken_utility": 0.0,
+                "trial_helpful": 0.0,
+                "shadow_helpful": 0.0,
+                "non_intervention_support": 0.413,
+                "distinct_cases": 0.24,
+                "rank_bonus": 0.0,
+                "genericity_penalty": -0.123,
+                "harmful_shadow_penalty": -0.0,
+                "trial_harmful_rate_penalty": -0.0,
+                "family_crowding_penalty": -0.0,
+                "merge_penalty": 0.0
+              },
+              "baseline_why": null,
+              "learned_why": null
+            }
+          ]
+        },
+        "live_nodes": {
+          "baseline_top1": "time-remaining-nontrivial",
+          "learned_top1": "time-remaining-nontrivial",
+          "top1_changed": false,
+          "baseline_count": 2,
+          "learned_count": 2,
+          "top_n": 3,
+          "top_n_overlap_count": 2,
+          "top_n_overlap_keys": [
+            "time-remaining-nontrivial",
+            "touch-probability"
+          ],
+          "shifts": [
+            {
+              "key": "time-remaining-nontrivial",
+              "baseline_rank": 1,
+              "learned_rank": 1,
+              "rank_delta": 0,
+              "baseline_score": 0.67,
+              "learned_score": 0.725,
+              "score_delta": 0.055,
+              "entered": false,
+              "dropped": false,
+              "baseline_breakdown": {
+                "learned_weight_bonus": 0.0,
+                "negative_weight_penalty": 0.0,
+                "uplift_bonus": 0.0,
+                "negative_uplift_penalty": 0.0,
+                "support_bonus": 0.14,
+                "helpful_bonus": 0.0,
+                "trust_tier_bonus": 0.45,
+                "family_priority_bonus": 0.08,
+                "contestation_penalty": 0.0,
+                "decay_penalty": 0.0,
+                "family_crowding_penalty": 0.0,
+                "family_risk_penalty": 0.0,
+                "status_penalty": 0.0
+              },
+              "learned_breakdown": {
+                "learned_weight_bonus": 0.0,
+                "negative_weight_penalty": 0.0,
+                "uplift_bonus": 0.0,
+                "negative_uplift_penalty": 0.0,
+                "support_bonus": 0.123,
+                "helpful_bonus": 0.0,
+                "trust_tier_bonus": 0.522,
+                "family_priority_bonus": 0.08,
+                "contestation_penalty": 0.0,
+                "decay_penalty": 0.0,
+                "family_crowding_penalty": 0.0,
+                "family_risk_penalty": 0.0,
+                "status_penalty": 0.0
+              },
+              "baseline_why": null,
+              "learned_why": null
+            },
+            {
+              "key": "touch-probability",
+              "baseline_rank": 2,
+              "learned_rank": 2,
+              "rank_delta": 0,
+              "baseline_score": 0.67,
+              "learned_score": 0.725,
+              "score_delta": 0.055,
+              "entered": false,
+              "dropped": false,
+              "baseline_breakdown": {
+                "learned_weight_bonus": 0.0,
+                "negative_weight_penalty": 0.0,
+                "uplift_bonus": 0.0,
+                "negative_uplift_penalty": 0.0,
+                "support_bonus": 0.14,
+                "helpful_bonus": 0.0,
+                "trust_tier_bonus": 0.45,
+                "family_priority_bonus": 0.08,
+                "contestation_penalty": 0.0,
+                "decay_penalty": 0.0,
+                "family_crowding_penalty": 0.0,
+                "family_risk_penalty": 0.0,
+                "status_penalty": 0.0
+              },
+              "learned_breakdown": {
+                "learned_weight_bonus": 0.0,
+                "negative_weight_penalty": 0.0,
+                "uplift_bonus": 0.0,
+                "negative_uplift_penalty": 0.0,
+                "support_bonus": 0.123,
+                "helpful_bonus": 0.0,
+                "trust_tier_bonus": 0.522,
+                "family_priority_bonus": 0.08,
+                "contestation_penalty": 0.0,
+                "decay_penalty": 0.0,
+                "family_crowding_penalty": 0.0,
+                "family_risk_penalty": 0.0,
+                "status_penalty": 0.0
+              },
+              "baseline_why": null,
+              "learned_why": null
+            }
+          ]
+        },
+        "live_edges": {
+          "baseline_top1": "time-remaining-nontrivial__increases__touch-probability",
+          "learned_top1": "time-remaining-nontrivial__increases__touch-probability",
+          "top1_changed": false,
+          "baseline_count": 1,
+          "learned_count": 1,
+          "top_n": 3,
+          "top_n_overlap_count": 1,
+          "top_n_overlap_keys": [
+            "time-remaining-nontrivial__increases__touch-probability"
+          ],
+          "shifts": [
+            {
+              "key": "time-remaining-nontrivial__increases__touch-probability",
+              "baseline_rank": 1,
+              "learned_rank": 1,
+              "rank_delta": 0,
+              "baseline_score": 1.23,
+              "learned_score": 1.279,
+              "score_delta": 0.049,
+              "entered": false,
+              "dropped": false,
+              "baseline_breakdown": {
+                "learned_weight_bonus": 0.0,
+                "negative_weight_penalty": 0.0,
+                "uplift_bonus": 0.0,
+                "negative_uplift_penalty": 0.0,
+                "support_bonus": 0.7,
+                "helpful_bonus": 0.0,
+                "trust_tier_bonus": 0.45,
+                "family_priority_bonus": 0.08,
+                "contestation_penalty": 0.0,
+                "decay_penalty": 0.0,
+                "family_crowding_penalty": 0.0,
+                "family_risk_penalty": 0.0,
+                "status_penalty": 0.0
+              },
+              "learned_breakdown": {
+                "learned_weight_bonus": 0.0,
+                "negative_weight_penalty": 0.0,
+                "uplift_bonus": 0.0,
+                "negative_uplift_penalty": 0.0,
+                "support_bonus": 0.735,
+                "helpful_bonus": 0.0,
+                "trust_tier_bonus": 0.464,
+                "family_priority_bonus": 0.08,
+                "contestation_penalty": 0.0,
+                "decay_penalty": 0.0,
+                "family_crowding_penalty": 0.0,
+                "family_risk_penalty": 0.0,
+                "status_penalty": 0.0
+              },
+              "baseline_why": null,
+              "learned_why": null
+            }
+          ]
+        }
+      },
+      "baseline": {
+        "status": "control_preview",
+        "case_reviews": [
+          {
+            "key": "case-20260414-4e668883",
+            "rank": 1,
+            "score": 14.744,
+            "score_breakdown": {
+              "mechanism_overlap": 10.0,
+              "source_overlap": 0.0,
+              "mechanic_overlap": 4.0,
+              "category_overlap": 0.0,
+              "semantic_similarity": 0.0,
+              "node_weight_bonus": 0.04,
+              "edge_weight_bonus": 0.19,
+              "phase11_node_bonus": 0.268,
+              "phase11_edge_bonus": 0.246,
+              "candidate_bonus": 0.0,
+              "generic_penalty": 0.0
+            },
+            "why": "shared nodes: time-remaining-nontrivial, touch-probability; shared edges: time-remaining-nontrivial__increases__touch-probability; shared mechanics: threshold-touch, intraperiod-high-low; learned node-weight bonus: 0.04; learned edge-weight bonus: 0.19; phase11 live-graph bonus: 0.51"
+          }
+        ],
+        "active_interventions": [
+          {
+            "key": "capture-governing-source-proof-for-touch-markets",
+            "rank": 1,
+            "score": 4.55,
+            "score_breakdown": {
+              "selector_match_score": 4.0,
+              "candidate_bonus": 0.0,
+              "required_check_bonus": 0.0,
+              "phase11_mechanic_live_bonus": 0.55,
+              "phase11_source_live_bonus": 0.0,
+              "phase11_workflow_live_bonus": 0.0
+            },
+            "why": "active selector match: platform=polymarket; mechanics=threshold-touch, intraperiod-high-low; phase11 live-context bonus: 0.55"
+          }
+        ],
+        "aggregate_notes": [
+          {
+            "key": "qualitative-db/50-learnings/workflow-performance/generated-index.md",
+            "rank": 1,
+            "score": 0.55,
+            "score_breakdown": {
+              "shared_contested_workflow_edge": 0.0,
+              "threshold_workflow_family": 0.55,
+              "phase11_workflow_live_bonus": 0.0,
+              "candidate_bonus": 0.0
+            },
+            "why": "shared threshold-touch workflow family"
+          }
+        ],
+        "trial_overlay": [
+          {
+            "key": "verification-state-separation",
+            "rank": 1,
+            "score": 1.669,
+            "score_breakdown": {
+              "active_nodes": 0.0,
+              "candidate_edges": 0.0,
+              "contested_edges": 0.0,
+              "required_checks": 0.0,
+              "question_mechanics": 0.7,
+              "source_of_truth_class": 0.0,
+              "platforms": 0.2,
+              "categories": 0.0,
+              "shadow_trial_score": 0.0,
+              "trial_shrunken_utility": 0.0,
+              "trial_helpful": 0.0,
+              "shadow_helpful": 0.0,
+              "non_intervention_support": 0.55,
+              "distinct_cases": 0.32,
+              "rank_bonus": 0.0,
+              "genericity_penalty": -0.101,
+              "harmful_shadow_penalty": -0.0,
+              "trial_harmful_rate_penalty": -0.0,
+              "family_crowding_penalty": -0.0,
+              "merge_penalty": 0.0
+            }
+          }
+        ],
+        "live_nodes": [
+          {
+            "key": "time-remaining-nontrivial",
+            "rank": 1,
+            "score": 0.67,
+            "score_breakdown": {
+              "learned_weight_bonus": 0.0,
+              "negative_weight_penalty": 0.0,
+              "uplift_bonus": 0.0,
+              "negative_uplift_penalty": 0.0,
+              "support_bonus": 0.14,
+              "helpful_bonus": 0.0,
+              "trust_tier_bonus": 0.45,
+              "family_priority_bonus": 0.08,
+              "contestation_penalty": 0.0,
+              "decay_penalty": 0.0,
+              "family_crowding_penalty": 0.0,
+              "family_risk_penalty": 0.0,
+              "status_penalty": 0.0
+            }
+          },
+          {
+            "key": "touch-probability",
+            "rank": 2,
+            "score": 0.67,
+            "score_breakdown": {
+              "learned_weight_bonus": 0.0,
+              "negative_weight_penalty": 0.0,
+              "uplift_bonus": 0.0,
+              "negative_uplift_penalty": 0.0,
+              "support_bonus": 0.14,
+              "helpful_bonus": 0.0,
+              "trust_tier_bonus": 0.45,
+              "family_priority_bonus": 0.08,
+              "contestation_penalty": 0.0,
+              "decay_penalty": 0.0,
+              "family_crowding_penalty": 0.0,
+              "family_risk_penalty": 0.0,
+              "status_penalty": 0.0
+            }
+          }
+        ],
+        "live_edges": [
+          {
+            "key": "time-remaining-nontrivial__increases__touch-probability",
+            "rank": 1,
+            "score": 1.23,
+            "score_breakdown": {
+              "learned_weight_bonus": 0.0,
+              "negative_weight_penalty": 0.0,
+              "uplift_bonus": 0.0,
+              "negative_uplift_penalty": 0.0,
+              "support_bonus": 0.7,
+              "helpful_bonus": 0.0,
+              "trust_tier_bonus": 0.45,
+              "family_priority_bonus": 0.08,
+              "contestation_penalty": 0.0,
+              "decay_penalty": 0.0,
+              "family_crowding_penalty": 0.0,
+              "family_risk_penalty": 0.0,
+              "status_penalty": 0.0
+            }
+          }
+        ]
+      },
+      "learned": {
+        "status": "control_preview",
+        "case_reviews": [
+          {
+            "key": "case-20260414-4e668883",
+            "rank": 1,
+            "score": 14.776,
+            "score_breakdown": {
+              "mechanism_overlap": 10.0,
+              "source_overlap": 0.0,
+              "mechanic_overlap": 4.0,
+              "category_overlap": 0.0,
+              "semantic_similarity": 0.0,
+              "node_weight_bonus": 0.04,
+              "edge_weight_bonus": 0.19,
+              "phase11_node_bonus": 0.29,
+              "phase11_edge_bonus": 0.256,
+              "candidate_bonus": 0.0,
+              "generic_penalty": 0.0
+            },
+            "why": "shared nodes: time-remaining-nontrivial, touch-probability; shared edges: time-remaining-nontrivial__increases__touch-probability; shared mechanics: threshold-touch, intraperiod-high-low; learned node-weight bonus: 0.04; learned edge-weight bonus: 0.19; phase11 live-graph bonus: 0.55"
+          }
+        ],
+        "active_interventions": [
+          {
+            "key": "capture-governing-source-proof-for-touch-markets",
+            "rank": 1,
+            "score": 4.468,
+            "score_breakdown": {
+              "selector_match_score": 4.0,
+              "candidate_bonus": 0.0,
+              "required_check_bonus": 0.0,
+              "phase11_mechanic_live_bonus": 0.468,
+              "phase11_source_live_bonus": 0.0,
+              "phase11_workflow_live_bonus": 0.0
+            },
+            "why": "active selector match: platform=polymarket; mechanics=threshold-touch, intraperiod-high-low; phase11 live-context bonus: 0.47"
+          }
+        ],
+        "aggregate_notes": [
+          {
+            "key": "qualitative-db/50-learnings/workflow-performance/generated-index.md",
+            "rank": 1,
+            "score": 0.468,
+            "score_breakdown": {
+              "shared_contested_workflow_edge": 0.0,
+              "threshold_workflow_family": 0.468,
+              "phase11_workflow_live_bonus": 0.0,
+              "candidate_bonus": 0.0
+            },
+            "why": "shared threshold-touch workflow family"
+          }
+        ],
+        "trial_overlay": [
+          {
+            "key": "verification-state-separation",
+            "rank": 1,
+            "score": 1.43,
+            "score_breakdown": {
+              "active_nodes": 0.0,
+              "candidate_edges": 0.0,
+              "contested_edges": 0.0,
+              "required_checks": 0.0,
+              "question_mechanics": 0.7,
+              "source_of_truth_class": 0.0,
+              "platforms": 0.2,
+              "categories": 0.0,
+              "shadow_trial_score": 0.0,
+              "trial_shrunken_utility": 0.0,
+              "trial_helpful": 0.0,
+              "shadow_helpful": 0.0,
+              "non_intervention_support": 0.413,
+              "distinct_cases": 0.24,
+              "rank_bonus": 0.0,
+              "genericity_penalty": -0.123,
+              "harmful_shadow_penalty": -0.0,
+              "trial_harmful_rate_penalty": -0.0,
+              "family_crowding_penalty": -0.0,
+              "merge_penalty": 0.0
+            }
+          }
+        ],
+        "live_nodes": [
+          {
+            "key": "time-remaining-nontrivial",
+            "rank": 1,
+            "score": 0.725,
+            "score_breakdown": {
+              "learned_weight_bonus": 0.0,
+              "negative_weight_penalty": 0.0,
+              "uplift_bonus": 0.0,
+              "negative_uplift_penalty": 0.0,
+              "support_bonus": 0.123,
+              "helpful_bonus": 0.0,
+              "trust_tier_bonus": 0.522,
+              "family_priority_bonus": 0.08,
+              "contestation_penalty": 0.0,
+              "decay_penalty": 0.0,
+              "family_crowding_penalty": 0.0,
+              "family_risk_penalty": 0.0,
+              "status_penalty": 0.0
+            }
+          },
+          {
+            "key": "touch-probability",
+            "rank": 2,
+            "score": 0.725,
+            "score_breakdown": {
+              "learned_weight_bonus": 0.0,
+              "negative_weight_penalty": 0.0,
+              "uplift_bonus": 0.0,
+              "negative_uplift_penalty": 0.0,
+              "support_bonus": 0.123,
+              "helpful_bonus": 0.0,
+              "trust_tier_bonus": 0.522,
+              "family_priority_bonus": 0.08,
+              "contestation_penalty": 0.0,
+              "decay_penalty": 0.0,
+              "family_crowding_penalty": 0.0,
+              "family_risk_penalty": 0.0,
+              "status_penalty": 0.0
+            }
+          }
+        ],
+        "live_edges": [
+          {
+            "key": "time-remaining-nontrivial__increases__touch-probability",
+            "rank": 1,
+            "score": 1.279,
+            "score_breakdown": {
+              "learned_weight_bonus": 0.0,
+              "negative_weight_penalty": 0.0,
+              "uplift_bonus": 0.0,
+              "negative_uplift_penalty": 0.0,
+              "support_bonus": 0.735,
+              "helpful_bonus": 0.0,
+              "trust_tier_bonus": 0.464,
+              "family_priority_bonus": 0.08,
+              "contestation_penalty": 0.0,
+              "decay_penalty": 0.0,
+              "family_crowding_penalty": 0.0,
+              "family_risk_penalty": 0.0,
+              "status_penalty": 0.0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "case_key": "case-20260416-305ed3c4",
+      "title": "Will the price of Ethereum be above $2,200 on April 17?",
+      "platform": "polymarket",
+      "market_id": "30172bb7-9f35-4ca6-93a4-adb8544ba07a",
+      "input_context": {
+        "case_key": "case-20260416-305ed3c4",
+        "market_id": "30172bb7-9f35-4ca6-93a4-adb8544ba07a",
+        "title": "Will the price of Ethereum be above $2,200 on April 17?",
+        "description": "This market will resolve to \"Yes\" if the Binance 1 minute candle for ETH/USDT 12:00 in the ET timezone (noon) on the date specified in the title has a final \"Close\" price higher than the price specified in the title. Otherwise, this market will resolve to \"No\".\n\nThe resolution source for this market is Binance, specifically the ETH/USDT \"Close\" prices currently available at https://www.binance.com/en/trade/ETH_USDT with \"1m\" and \"Candles\" selected on the top bar.\n\nPlease note that this market is about the price according to Binance ETH/USDT, not according to other exchanges or trading pairs.\n\nPrice precision is determined by the number of decimal places in the source.",
+        "category": "",
+        "platform": "polymarket",
+        "current_price": "0.975",
+        "closes_at": "2026-04-17T12:00:00-04:00",
+        "resolves_at": "2026-04-17T12:00:00-04:00",
+        "run_kind": "novel",
+        "rerun_scope": "",
+        "difficulty_class": "",
+        "resolution_risk": "",
+        "source_of_truth_class": "",
+        "focus_hints_json": "[]",
+        "extra_verification_required": "",
+        "experiment_arm": "control",
+        "light_refresh_brief_path": null,
+        "case_md_path": "qualitative-db/40-research/cases/case-20260416-305ed3c4/case.md"
+      },
+      "comparison": {
+        "case_reviews": {
+          "baseline_top1": "case-20260414-4e668883",
+          "learned_top1": "case-20260414-4e668883",
+          "top1_changed": false,
+          "baseline_count": 1,
+          "learned_count": 1,
+          "top_n": 3,
+          "top_n_overlap_count": 1,
+          "top_n_overlap_keys": [
+            "case-20260414-4e668883"
+          ],
+          "shifts": [
+            {
+              "key": "case-20260414-4e668883",
+              "baseline_rank": 1,
+              "learned_rank": 1,
+              "rank_delta": 0,
+              "baseline_score": 7.656,
+              "learned_score": 7.64,
+              "score_delta": -0.016,
+              "entered": false,
+              "dropped": false,
+              "baseline_breakdown": {
+                "mechanism_overlap": 6.0,
+                "source_overlap": 0.0,
+                "mechanic_overlap": 0.0,
+                "category_overlap": 0.0,
+                "semantic_similarity": 0.786,
+                "node_weight_bonus": 0.24,
+                "edge_weight_bonus": 0,
+                "phase11_node_bonus": 0.63,
+                "phase11_edge_bonus": 0,
+                "candidate_bonus": 0.0,
+                "generic_penalty": 0.0
+              },
+              "learned_breakdown": {
+                "mechanism_overlap": 6.0,
+                "source_overlap": 0.0,
+                "mechanic_overlap": 0.0,
+                "category_overlap": 0.0,
+                "semantic_similarity": 0.786,
+                "node_weight_bonus": 0.24,
+                "edge_weight_bonus": 0,
+                "phase11_node_bonus": 0.614,
+                "phase11_edge_bonus": 0,
+                "candidate_bonus": 0.0,
+                "generic_penalty": 0.0
+              },
+              "baseline_why": "shared nodes: settlement-source-specificity, time-remaining-nontrivial; semantic overlap in title/review summary; learned node-weight bonus: 0.24; phase11 live-graph bonus: 0.63",
+              "learned_why": "shared nodes: settlement-source-specificity, time-remaining-nontrivial; semantic overlap in title/review summary; learned node-weight bonus: 0.24; phase11 live-graph bonus: 0.61"
+            }
+          ]
+        },
+        "active_interventions": {
+          "baseline_top1": "capture-governing-source-proof-for-touch-markets",
+          "learned_top1": "capture-governing-source-proof-for-touch-markets",
+          "top1_changed": false,
+          "baseline_count": 1,
+          "learned_count": 1,
+          "top_n": 3,
+          "top_n_overlap_count": 1,
+          "top_n_overlap_keys": [
+            "capture-governing-source-proof-for-touch-markets"
+          ],
+          "shifts": [
+            {
+              "key": "capture-governing-source-proof-for-touch-markets",
+              "baseline_rank": 1,
+              "learned_rank": 1,
+              "rank_delta": 0,
+              "baseline_score": 1.65,
+              "learned_score": 1.628,
+              "score_delta": -0.022,
+              "entered": false,
+              "dropped": false,
+              "baseline_breakdown": {
+                "selector_match_score": 1.5,
+                "candidate_bonus": 0.0,
+                "required_check_bonus": 0.15,
+                "phase11_mechanic_live_bonus": 0.0,
+                "phase11_source_live_bonus": 0.0,
+                "phase11_workflow_live_bonus": 0.0
+              },
+              "learned_breakdown": {
+                "selector_match_score": 1.5,
+                "candidate_bonus": 0.0,
+                "required_check_bonus": 0.128,
+                "phase11_mechanic_live_bonus": 0.0,
+                "phase11_source_live_bonus": 0.0,
+                "phase11_workflow_live_bonus": 0.0
+              },
+              "baseline_why": "active selector match: platform=polymarket; matched required checks: capture_governing_source_proof_when_event_near_complete",
+              "learned_why": "active selector match: platform=polymarket; matched required checks: capture_governing_source_proof_when_event_near_complete"
+            }
+          ]
+        },
+        "aggregate_notes": {
+          "baseline_top1": "qualitative-db/50-learnings/source-performance/generated-index.md",
+          "learned_top1": "qualitative-db/50-learnings/source-performance/generated-index.md",
+          "top1_changed": false,
+          "baseline_count": 1,
+          "learned_count": 1,
+          "top_n": 3,
+          "top_n_overlap_count": 1,
+          "top_n_overlap_keys": [
+            "qualitative-db/50-learnings/source-performance/generated-index.md"
+          ],
+          "shifts": [
+            {
+              "key": "qualitative-db/50-learnings/source-performance/generated-index.md",
+              "baseline_rank": 1,
+              "learned_rank": 1,
+              "rank_delta": 0,
+              "baseline_score": 1.75,
+              "learned_score": 1.487,
+              "score_delta": -0.263,
+              "entered": false,
+              "dropped": false,
+              "baseline_breakdown": {
+                "shared_source_family": 0.9,
+                "phase11_source_live_bonus": 0.85,
+                "candidate_bonus": 0.0
+              },
+              "learned_breakdown": {
+                "shared_source_family": 0.765,
+                "phase11_source_live_bonus": 0.722,
+                "candidate_bonus": 0.0
+              },
+              "baseline_why": "shared source-of-truth / settlement ambiguity family; phase11 source-family live bonus: 0.85",
+              "learned_why": "shared source-of-truth / settlement ambiguity family; phase11 source-family live bonus: 0.72"
+            }
+          ]
+        },
+        "trial_overlay": {
+          "baseline_top1": "verification-state-separation",
+          "learned_top1": "verification-state-separation",
+          "top1_changed": false,
+          "baseline_count": 1,
+          "learned_count": 1,
+          "top_n": 3,
+          "top_n_overlap_count": 1,
+          "top_n_overlap_keys": [
+            "verification-state-separation"
+          ],
+          "shifts": [
+            {
+              "key": "verification-state-separation",
+              "baseline_rank": 1,
+              "learned_rank": 1,
+              "rank_delta": 0,
+              "baseline_score": 1.719,
+              "learned_score": 1.48,
+              "score_delta": -0.239,
+              "entered": false,
+              "dropped": false,
+              "baseline_breakdown": {
+                "active_nodes": 0.0,
+                "candidate_edges": 0.0,
+                "contested_edges": 0.0,
+                "required_checks": 0.75,
+                "question_mechanics": 0.0,
+                "source_of_truth_class": 0.0,
+                "platforms": 0.2,
+                "categories": 0.0,
+                "shadow_trial_score": 0.0,
+                "trial_shrunken_utility": 0.0,
+                "trial_helpful": 0.0,
+                "shadow_helpful": 0.0,
+                "non_intervention_support": 0.55,
+                "distinct_cases": 0.32,
+                "rank_bonus": 0.0,
+                "genericity_penalty": -0.101,
+                "harmful_shadow_penalty": -0.0,
+                "trial_harmful_rate_penalty": -0.0,
+                "family_crowding_penalty": -0.0,
+                "merge_penalty": 0.0
+              },
+              "learned_breakdown": {
+                "active_nodes": 0.0,
+                "candidate_edges": 0.0,
+                "contested_edges": 0.0,
+                "required_checks": 0.75,
+                "question_mechanics": 0.0,
+                "source_of_truth_class": 0.0,
+                "platforms": 0.2,
+                "categories": 0.0,
+                "shadow_trial_score": 0.0,
+                "trial_shrunken_utility": 0.0,
+                "trial_helpful": 0.0,
+                "shadow_helpful": 0.0,
+                "non_intervention_support": 0.413,
+                "distinct_cases": 0.24,
+                "rank_bonus": 0.0,
+                "genericity_penalty": -0.123,
+                "harmful_shadow_penalty": -0.0,
+                "trial_harmful_rate_penalty": -0.0,
+                "family_crowding_penalty": -0.0,
+                "merge_penalty": 0.0
+              },
+              "baseline_why": null,
+              "learned_why": null
+            }
+          ]
+        },
+        "live_nodes": {
+          "baseline_top1": "settlement-source-specificity",
+          "learned_top1": "settlement-source-specificity",
+          "top1_changed": false,
+          "baseline_count": 2,
+          "learned_count": 2,
+          "top_n": 3,
+          "top_n_overlap_count": 2,
+          "top_n_overlap_keys": [
+            "settlement-source-specificity",
+            "time-remaining-nontrivial"
+          ],
+          "shifts": [
+            {
+              "key": "settlement-source-specificity",
+              "baseline_rank": 1,
+              "learned_rank": 1,
+              "rank_delta": 0,
+              "baseline_score": 2.48,
+              "learned_score": 2.346,
+              "score_delta": -0.134,
+              "entered": false,
+              "dropped": false,
+              "baseline_breakdown": {
+                "learned_weight_bonus": 1.25,
+                "negative_weight_penalty": 0.0,
+                "uplift_bonus": 0.0,
+                "negative_uplift_penalty": 0.0,
+                "support_bonus": 0.7,
+                "helpful_bonus": 0.0,
+                "trust_tier_bonus": 0.45,
+                "family_priority_bonus": 0.08,
+                "contestation_penalty": 0.0,
+                "decay_penalty": 0.0,
+                "family_crowding_penalty": 0.0,
+                "family_risk_penalty": 0.0,
+                "status_penalty": 0.0
+              },
+              "learned_breakdown": {
+                "learned_weight_bonus": 1.13,
+                "negative_weight_penalty": 0.0,
+                "uplift_bonus": 0.0,
+                "negative_uplift_penalty": 0.0,
+                "support_bonus": 0.614,
+                "helpful_bonus": 0.0,
+                "trust_tier_bonus": 0.522,
+                "family_priority_bonus": 0.08,
+                "contestation_penalty": 0.0,
+                "decay_penalty": 0.0,
+                "family_crowding_penalty": 0.0,
+                "family_risk_penalty": 0.0,
+                "status_penalty": 0.0
+              },
+              "baseline_why": null,
+              "learned_why": null
+            },
+            {
+              "key": "time-remaining-nontrivial",
+              "baseline_rank": 2,
+              "learned_rank": 2,
+              "rank_delta": 0,
+              "baseline_score": 0.67,
+              "learned_score": 0.725,
+              "score_delta": 0.055,
+              "entered": false,
+              "dropped": false,
+              "baseline_breakdown": {
+                "learned_weight_bonus": 0.0,
+                "negative_weight_penalty": 0.0,
+                "uplift_bonus": 0.0,
+                "negative_uplift_penalty": 0.0,
+                "support_bonus": 0.14,
+                "helpful_bonus": 0.0,
+                "trust_tier_bonus": 0.45,
+                "family_priority_bonus": 0.08,
+                "contestation_penalty": 0.0,
+                "decay_penalty": 0.0,
+                "family_crowding_penalty": 0.0,
+                "family_risk_penalty": 0.0,
+                "status_penalty": 0.0
+              },
+              "learned_breakdown": {
+                "learned_weight_bonus": 0.0,
+                "negative_weight_penalty": 0.0,
+                "uplift_bonus": 0.0,
+                "negative_uplift_penalty": 0.0,
+                "support_bonus": 0.123,
+                "helpful_bonus": 0.0,
+                "trust_tier_bonus": 0.522,
+                "family_priority_bonus": 0.08,
+                "contestation_penalty": 0.0,
+                "decay_penalty": 0.0,
+                "family_crowding_penalty": 0.0,
+                "family_risk_penalty": 0.0,
+                "status_penalty": 0.0
+              },
+              "baseline_why": null,
+              "learned_why": null
+            }
+          ]
+        },
+        "live_edges": {
+          "baseline_top1": null,
+          "learned_top1": null,
+          "top1_changed": false,
+          "baseline_count": 0,
+          "learned_count": 0,
+          "top_n": 3,
+          "top_n_overlap_count": 0,
+          "top_n_overlap_keys": [],
+          "shifts": []
+        }
+      },
+      "baseline": {
+        "status": "control_preview",
+        "case_reviews": [
+          {
+            "key": "case-20260414-4e668883",
+            "rank": 1,
+            "score": 7.656,
+            "score_breakdown": {
+              "mechanism_overlap": 6.0,
+              "source_overlap": 0.0,
+              "mechanic_overlap": 0.0,
+              "category_overlap": 0.0,
+              "semantic_similarity": 0.786,
+              "node_weight_bonus": 0.24,
+              "edge_weight_bonus": 0,
+              "phase11_node_bonus": 0.63,
+              "phase11_edge_bonus": 0,
+              "candidate_bonus": 0.0,
+              "generic_penalty": 0.0
+            },
+            "why": "shared nodes: settlement-source-specificity, time-remaining-nontrivial; semantic overlap in title/review summary; learned node-weight bonus: 0.24; phase11 live-graph bonus: 0.63"
+          }
+        ],
+        "active_interventions": [
+          {
+            "key": "capture-governing-source-proof-for-touch-markets",
+            "rank": 1,
+            "score": 1.65,
+            "score_breakdown": {
+              "selector_match_score": 1.5,
+              "candidate_bonus": 0.0,
+              "required_check_bonus": 0.15,
+              "phase11_mechanic_live_bonus": 0.0,
+              "phase11_source_live_bonus": 0.0,
+              "phase11_workflow_live_bonus": 0.0
+            },
+            "why": "active selector match: platform=polymarket; matched required checks: capture_governing_source_proof_when_event_near_complete"
+          }
+        ],
+        "aggregate_notes": [
+          {
+            "key": "qualitative-db/50-learnings/source-performance/generated-index.md",
+            "rank": 1,
+            "score": 1.75,
+            "score_breakdown": {
+              "shared_source_family": 0.9,
+              "phase11_source_live_bonus": 0.85,
+              "candidate_bonus": 0.0
+            },
+            "why": "shared source-of-truth / settlement ambiguity family; phase11 source-family live bonus: 0.85"
+          }
+        ],
+        "trial_overlay": [
+          {
+            "key": "verification-state-separation",
+            "rank": 1,
+            "score": 1.719,
+            "score_breakdown": {
+              "active_nodes": 0.0,
+              "candidate_edges": 0.0,
+              "contested_edges": 0.0,
+              "required_checks": 0.75,
+              "question_mechanics": 0.0,
+              "source_of_truth_class": 0.0,
+              "platforms": 0.2,
+              "categories": 0.0,
+              "shadow_trial_score": 0.0,
+              "trial_shrunken_utility": 0.0,
+              "trial_helpful": 0.0,
+              "shadow_helpful": 0.0,
+              "non_intervention_support": 0.55,
+              "distinct_cases": 0.32,
+              "rank_bonus": 0.0,
+              "genericity_penalty": -0.101,
+              "harmful_shadow_penalty": -0.0,
+              "trial_harmful_rate_penalty": -0.0,
+              "family_crowding_penalty": -0.0,
+              "merge_penalty": 0.0
+            }
+          }
+        ],
+        "live_nodes": [
+          {
+            "key": "settlement-source-specificity",
+            "rank": 1,
+            "score": 2.48,
+            "score_breakdown": {
+              "learned_weight_bonus": 1.25,
+              "negative_weight_penalty": 0.0,
+              "uplift_bonus": 0.0,
+              "negative_uplift_penalty": 0.0,
+              "support_bonus": 0.7,
+              "helpful_bonus": 0.0,
+              "trust_tier_bonus": 0.45,
+              "family_priority_bonus": 0.08,
+              "contestation_penalty": 0.0,
+              "decay_penalty": 0.0,
+              "family_crowding_penalty": 0.0,
+              "family_risk_penalty": 0.0,
+              "status_penalty": 0.0
+            }
+          },
+          {
+            "key": "time-remaining-nontrivial",
+            "rank": 2,
+            "score": 0.67,
+            "score_breakdown": {
+              "learned_weight_bonus": 0.0,
+              "negative_weight_penalty": 0.0,
+              "uplift_bonus": 0.0,
+              "negative_uplift_penalty": 0.0,
+              "support_bonus": 0.14,
+              "helpful_bonus": 0.0,
+              "trust_tier_bonus": 0.45,
+              "family_priority_bonus": 0.08,
+              "contestation_penalty": 0.0,
+              "decay_penalty": 0.0,
+              "family_crowding_penalty": 0.0,
+              "family_risk_penalty": 0.0,
+              "status_penalty": 0.0
+            }
+          }
+        ],
+        "live_edges": []
+      },
+      "learned": {
+        "status": "control_preview",
+        "case_reviews": [
+          {
+            "key": "case-20260414-4e668883",
+            "rank": 1,
+            "score": 7.64,
+            "score_breakdown": {
+              "mechanism_overlap": 6.0,
+              "source_overlap": 0.0,
+              "mechanic_overlap": 0.0,
+              "category_overlap": 0.0,
+              "semantic_similarity": 0.786,
+              "node_weight_bonus": 0.24,
+              "edge_weight_bonus": 0,
+              "phase11_node_bonus": 0.614,
+              "phase11_edge_bonus": 0,
+              "candidate_bonus": 0.0,
+              "generic_penalty": 0.0
+            },
+            "why": "shared nodes: settlement-source-specificity, time-remaining-nontrivial; semantic overlap in title/review summary; learned node-weight bonus: 0.24; phase11 live-graph bonus: 0.61"
+          }
+        ],
+        "active_interventions": [
+          {
+            "key": "capture-governing-source-proof-for-touch-markets",
+            "rank": 1,
+            "score": 1.628,
+            "score_breakdown": {
+              "selector_match_score": 1.5,
+              "candidate_bonus": 0.0,
+              "required_check_bonus": 0.128,
+              "phase11_mechanic_live_bonus": 0.0,
+              "phase11_source_live_bonus": 0.0,
+              "phase11_workflow_live_bonus": 0.0
+            },
+            "why": "active selector match: platform=polymarket; matched required checks: capture_governing_source_proof_when_event_near_complete"
+          }
+        ],
+        "aggregate_notes": [
+          {
+            "key": "qualitative-db/50-learnings/source-performance/generated-index.md",
+            "rank": 1,
+            "score": 1.487,
+            "score_breakdown": {
+              "shared_source_family": 0.765,
+              "phase11_source_live_bonus": 0.722,
+              "candidate_bonus": 0.0
+            },
+            "why": "shared source-of-truth / settlement ambiguity family; phase11 source-family live bonus: 0.72"
+          }
+        ],
+        "trial_overlay": [
+          {
+            "key": "verification-state-separation",
+            "rank": 1,
+            "score": 1.48,
+            "score_breakdown": {
+              "active_nodes": 0.0,
+              "candidate_edges": 0.0,
+              "contested_edges": 0.0,
+              "required_checks": 0.75,
+              "question_mechanics": 0.0,
+              "source_of_truth_class": 0.0,
+              "platforms": 0.2,
+              "categories": 0.0,
+              "shadow_trial_score": 0.0,
+              "trial_shrunken_utility": 0.0,
+              "trial_helpful": 0.0,
+              "shadow_helpful": 0.0,
+              "non_intervention_support": 0.413,
+              "distinct_cases": 0.24,
+              "rank_bonus": 0.0,
+              "genericity_penalty": -0.123,
+              "harmful_shadow_penalty": -0.0,
+              "trial_harmful_rate_penalty": -0.0,
+              "family_crowding_penalty": -0.0,
+              "merge_penalty": 0.0
+            }
+          }
+        ],
+        "live_nodes": [
+          {
+            "key": "settlement-source-specificity",
+            "rank": 1,
+            "score": 2.346,
+            "score_breakdown": {
+              "learned_weight_bonus": 1.13,
+              "negative_weight_penalty": 0.0,
+              "uplift_bonus": 0.0,
+              "negative_uplift_penalty": 0.0,
+              "support_bonus": 0.614,
+              "helpful_bonus": 0.0,
+              "trust_tier_bonus": 0.522,
+              "family_priority_bonus": 0.08,
+              "contestation_penalty": 0.0,
+              "decay_penalty": 0.0,
+              "family_crowding_penalty": 0.0,
+              "family_risk_penalty": 0.0,
+              "status_penalty": 0.0
+            }
+          },
+          {
+            "key": "time-remaining-nontrivial",
+            "rank": 2,
+            "score": 0.725,
+            "score_breakdown": {
+              "learned_weight_bonus": 0.0,
+              "negative_weight_penalty": 0.0,
+              "uplift_bonus": 0.0,
+              "negative_uplift_penalty": 0.0,
+              "support_bonus": 0.123,
+              "helpful_bonus": 0.0,
+              "trust_tier_bonus": 0.522,
+              "family_priority_bonus": 0.08,
+              "contestation_penalty": 0.0,
+              "decay_penalty": 0.0,
+              "family_crowding_penalty": 0.0,
+              "family_risk_penalty": 0.0,
+              "status_penalty": 0.0
+            }
+          }
+        ],
+        "live_edges": []
+      }
+    },
+    {
+      "case_key": "case-20260416-8fa68833",
+      "title": "Will FC Barcelona win on 2026-04-22?",
+      "platform": "polymarket",
+      "market_id": "15ebbfc2-b83f-4d83-a357-9dd21644ccf3",
+      "input_context": {
+        "case_key": "case-20260416-8fa68833",
+        "market_id": "15ebbfc2-b83f-4d83-a357-9dd21644ccf3",
+        "title": "Will FC Barcelona win on 2026-04-22?",
+        "description": "This event is for the upcoming La Liga game, scheduled for Wednesday, April 22, 2026 between FC Barcelona and RC Celta de Vigo.",
+        "category": "",
+        "platform": "polymarket",
+        "current_price": "0.775",
+        "closes_at": "2026-04-22T15:30:00-04:00",
+        "resolves_at": "2026-04-22T15:30:00-04:00",
+        "run_kind": "novel",
+        "rerun_scope": "",
+        "difficulty_class": "",
+        "resolution_risk": "",
+        "source_of_truth_class": "",
+        "focus_hints_json": "[]",
+        "extra_verification_required": "",
+        "experiment_arm": "control",
+        "light_refresh_brief_path": null,
+        "case_md_path": "qualitative-db/40-research/cases/case-20260416-8fa68833/case.md"
+      },
+      "comparison": {
+        "case_reviews": {
+          "baseline_top1": "case-20260414-4e668883",
+          "learned_top1": "case-20260414-4e668883",
+          "top1_changed": false,
+          "baseline_count": 1,
+          "learned_count": 1,
+          "top_n": 3,
+          "top_n_overlap_count": 1,
+          "top_n_overlap_keys": [
+            "case-20260414-4e668883"
+          ],
+          "shifts": [
+            {
+              "key": "case-20260414-4e668883",
+              "baseline_rank": 1,
+              "learned_rank": 1,
+              "rank_delta": 0,
+              "baseline_score": 3.154,
+              "learned_score": 3.165,
+              "score_delta": 0.011,
+              "entered": false,
+              "dropped": false,
+              "baseline_breakdown": {
+                "mechanism_overlap": 3.0,
+                "source_overlap": 0.0,
+                "mechanic_overlap": 0.0,
+                "category_overlap": 0.0,
+                "semantic_similarity": 0.0,
+                "node_weight_bonus": 0.02,
+                "edge_weight_bonus": 0,
+                "phase11_node_bonus": 0.134,
+                "phase11_edge_bonus": 0,
+                "candidate_bonus": 0.0,
+                "generic_penalty": 0.0
+              },
+              "learned_breakdown": {
+                "mechanism_overlap": 3.0,
+                "source_overlap": 0.0,
+                "mechanic_overlap": 0.0,
+                "category_overlap": 0.0,
+                "semantic_similarity": 0.0,
+                "node_weight_bonus": 0.02,
+                "edge_weight_bonus": 0,
+                "phase11_node_bonus": 0.145,
+                "phase11_edge_bonus": 0,
+                "candidate_bonus": 0.0,
+                "generic_penalty": 0.0
+              },
+              "baseline_why": "shared nodes: time-remaining-nontrivial; learned node-weight bonus: 0.02; phase11 live-graph bonus: 0.13",
+              "learned_why": "shared nodes: time-remaining-nontrivial; learned node-weight bonus: 0.02; phase11 live-graph bonus: 0.14"
+            }
+          ]
+        },
+        "active_interventions": {
+          "baseline_top1": "capture-governing-source-proof-for-touch-markets",
+          "learned_top1": "capture-governing-source-proof-for-touch-markets",
+          "top1_changed": false,
+          "baseline_count": 1,
+          "learned_count": 1,
+          "top_n": 3,
+          "top_n_overlap_count": 1,
+          "top_n_overlap_keys": [
+            "capture-governing-source-proof-for-touch-markets"
+          ],
+          "shifts": [
+            {
+              "key": "capture-governing-source-proof-for-touch-markets",
+              "baseline_rank": 1,
+              "learned_rank": 1,
+              "rank_delta": 0,
+              "baseline_score": 1.5,
+              "learned_score": 1.5,
+              "score_delta": 0.0,
+              "entered": false,
+              "dropped": false,
+              "baseline_breakdown": {
+                "selector_match_score": 1.5,
+                "candidate_bonus": 0.0,
+                "required_check_bonus": 0.0,
+                "phase11_mechanic_live_bonus": 0.0,
+                "phase11_source_live_bonus": 0.0,
+                "phase11_workflow_live_bonus": 0.0
+              },
+              "learned_breakdown": {
+                "selector_match_score": 1.5,
+                "candidate_bonus": 0.0,
+                "required_check_bonus": 0.0,
+                "phase11_mechanic_live_bonus": 0.0,
+                "phase11_source_live_bonus": 0.0,
+                "phase11_workflow_live_bonus": 0.0
+              },
+              "baseline_why": "active selector match: platform=polymarket",
+              "learned_why": "active selector match: platform=polymarket"
+            }
+          ]
+        },
+        "aggregate_notes": {
+          "baseline_top1": null,
+          "learned_top1": null,
+          "top1_changed": false,
+          "baseline_count": 0,
+          "learned_count": 0,
+          "top_n": 3,
+          "top_n_overlap_count": 0,
+          "top_n_overlap_keys": [],
+          "shifts": []
+        },
+        "trial_overlay": {
+          "baseline_top1": "verification-state-separation",
+          "learned_top1": "verification-state-separation",
+          "top1_changed": false,
+          "baseline_count": 1,
+          "learned_count": 1,
+          "top_n": 3,
+          "top_n_overlap_count": 1,
+          "top_n_overlap_keys": [
+            "verification-state-separation"
+          ],
+          "shifts": [
+            {
+              "key": "verification-state-separation",
+              "baseline_rank": 1,
+              "learned_rank": 1,
+              "rank_delta": 0,
+              "baseline_score": 1.719,
+              "learned_score": 1.48,
+              "score_delta": -0.239,
+              "entered": false,
+              "dropped": false,
+              "baseline_breakdown": {
+                "active_nodes": 0.0,
+                "candidate_edges": 0.0,
+                "contested_edges": 0.0,
+                "required_checks": 0.75,
+                "question_mechanics": 0.0,
+                "source_of_truth_class": 0.0,
+                "platforms": 0.2,
+                "categories": 0.0,
+                "shadow_trial_score": 0.0,
+                "trial_shrunken_utility": 0.0,
+                "trial_helpful": 0.0,
+                "shadow_helpful": 0.0,
+                "non_intervention_support": 0.55,
+                "distinct_cases": 0.32,
+                "rank_bonus": 0.0,
+                "genericity_penalty": -0.101,
+                "harmful_shadow_penalty": -0.0,
+                "trial_harmful_rate_penalty": -0.0,
+                "family_crowding_penalty": -0.0,
+                "merge_penalty": 0.0
+              },
+              "learned_breakdown": {
+                "active_nodes": 0.0,
+                "candidate_edges": 0.0,
+                "contested_edges": 0.0,
+                "required_checks": 0.75,
+                "question_mechanics": 0.0,
+                "source_of_truth_class": 0.0,
+                "platforms": 0.2,
+                "categories": 0.0,
+                "shadow_trial_score": 0.0,
+                "trial_shrunken_utility": 0.0,
+                "trial_helpful": 0.0,
+                "shadow_helpful": 0.0,
+                "non_intervention_support": 0.413,
+                "distinct_cases": 0.24,
+                "rank_bonus": 0.0,
+                "genericity_penalty": -0.123,
+                "harmful_shadow_penalty": -0.0,
+                "trial_harmful_rate_penalty": -0.0,
+                "family_crowding_penalty": -0.0,
+                "merge_penalty": 0.0
+              },
+              "baseline_why": null,
+              "learned_why": null
+            }
+          ]
+        },
+        "live_nodes": {
+          "baseline_top1": "time-remaining-nontrivial",
+          "learned_top1": "time-remaining-nontrivial",
+          "top1_changed": false,
+          "baseline_count": 1,
+          "learned_count": 1,
+          "top_n": 3,
+          "top_n_overlap_count": 1,
+          "top_n_overlap_keys": [
+            "time-remaining-nontrivial"
+          ],
+          "shifts": [
+            {
+              "key": "time-remaining-nontrivial",
+              "baseline_rank": 1,
+              "learned_rank": 1,
+              "rank_delta": 0,
+              "baseline_score": 0.67,
+              "learned_score": 0.725,
+              "score_delta": 0.055,
+              "entered": false,
+              "dropped": false,
+              "baseline_breakdown": {
+                "learned_weight_bonus": 0.0,
+                "negative_weight_penalty": 0.0,
+                "uplift_bonus": 0.0,
+                "negative_uplift_penalty": 0.0,
+                "support_bonus": 0.14,
+                "helpful_bonus": 0.0,
+                "trust_tier_bonus": 0.45,
+                "family_priority_bonus": 0.08,
+                "contestation_penalty": 0.0,
+                "decay_penalty": 0.0,
+                "family_crowding_penalty": 0.0,
+                "family_risk_penalty": 0.0,
+                "status_penalty": 0.0
+              },
+              "learned_breakdown": {
+                "learned_weight_bonus": 0.0,
+                "negative_weight_penalty": 0.0,
+                "uplift_bonus": 0.0,
+                "negative_uplift_penalty": 0.0,
+                "support_bonus": 0.123,
+                "helpful_bonus": 0.0,
+                "trust_tier_bonus": 0.522,
+                "family_priority_bonus": 0.08,
+                "contestation_penalty": 0.0,
+                "decay_penalty": 0.0,
+                "family_crowding_penalty": 0.0,
+                "family_risk_penalty": 0.0,
+                "status_penalty": 0.0
+              },
+              "baseline_why": null,
+              "learned_why": null
+            }
+          ]
+        },
+        "live_edges": {
+          "baseline_top1": null,
+          "learned_top1": null,
+          "top1_changed": false,
+          "baseline_count": 0,
+          "learned_count": 0,
+          "top_n": 3,
+          "top_n_overlap_count": 0,
+          "top_n_overlap_keys": [],
+          "shifts": []
+        }
+      },
+      "baseline": {
+        "status": "control_preview",
+        "case_reviews": [
+          {
+            "key": "case-20260414-4e668883",
+            "rank": 1,
+            "score": 3.154,
+            "score_breakdown": {
+              "mechanism_overlap": 3.0,
+              "source_overlap": 0.0,
+              "mechanic_overlap": 0.0,
+              "category_overlap": 0.0,
+              "semantic_similarity": 0.0,
+              "node_weight_bonus": 0.02,
+              "edge_weight_bonus": 0,
+              "phase11_node_bonus": 0.134,
+              "phase11_edge_bonus": 0,
+              "candidate_bonus": 0.0,
+              "generic_penalty": 0.0
+            },
+            "why": "shared nodes: time-remaining-nontrivial; learned node-weight bonus: 0.02; phase11 live-graph bonus: 0.13"
+          }
+        ],
+        "active_interventions": [
+          {
+            "key": "capture-governing-source-proof-for-touch-markets",
+            "rank": 1,
+            "score": 1.5,
+            "score_breakdown": {
+              "selector_match_score": 1.5,
+              "candidate_bonus": 0.0,
+              "required_check_bonus": 0.0,
+              "phase11_mechanic_live_bonus": 0.0,
+              "phase11_source_live_bonus": 0.0,
+              "phase11_workflow_live_bonus": 0.0
+            },
+            "why": "active selector match: platform=polymarket"
+          }
+        ],
+        "aggregate_notes": [],
+        "trial_overlay": [
+          {
+            "key": "verification-state-separation",
+            "rank": 1,
+            "score": 1.719,
+            "score_breakdown": {
+              "active_nodes": 0.0,
+              "candidate_edges": 0.0,
+              "contested_edges": 0.0,
+              "required_checks": 0.75,
+              "question_mechanics": 0.0,
+              "source_of_truth_class": 0.0,
+              "platforms": 0.2,
+              "categories": 0.0,
+              "shadow_trial_score": 0.0,
+              "trial_shrunken_utility": 0.0,
+              "trial_helpful": 0.0,
+              "shadow_helpful": 0.0,
+              "non_intervention_support": 0.55,
+              "distinct_cases": 0.32,
+              "rank_bonus": 0.0,
+              "genericity_penalty": -0.101,
+              "harmful_shadow_penalty": -0.0,
+              "trial_harmful_rate_penalty": -0.0,
+              "family_crowding_penalty": -0.0,
+              "merge_penalty": 0.0
+            }
+          }
+        ],
+        "live_nodes": [
+          {
+            "key": "time-remaining-nontrivial",
+            "rank": 1,
+            "score": 0.67,
+            "score_breakdown": {
+              "learned_weight_bonus": 0.0,
+              "negative_weight_penalty": 0.0,
+              "uplift_bonus": 0.0,
+              "negative_uplift_penalty": 0.0,
+              "support_bonus": 0.14,
+              "helpful_bonus": 0.0,
+              "trust_tier_bonus": 0.45,
+              "family_priority_bonus": 0.08,
+              "contestation_penalty": 0.0,
+              "decay_penalty": 0.0,
+              "family_crowding_penalty": 0.0,
+              "family_risk_penalty": 0.0,
+              "status_penalty": 0.0
+            }
+          }
+        ],
+        "live_edges": []
+      },
+      "learned": {
+        "status": "control_preview",
+        "case_reviews": [
+          {
+            "key": "case-20260414-4e668883",
+            "rank": 1,
+            "score": 3.165,
+            "score_breakdown": {
+              "mechanism_overlap": 3.0,
+              "source_overlap": 0.0,
+              "mechanic_overlap": 0.0,
+              "category_overlap": 0.0,
+              "semantic_similarity": 0.0,
+              "node_weight_bonus": 0.02,
+              "edge_weight_bonus": 0,
+              "phase11_node_bonus": 0.145,
+              "phase11_edge_bonus": 0,
+              "candidate_bonus": 0.0,
+              "generic_penalty": 0.0
+            },
+            "why": "shared nodes: time-remaining-nontrivial; learned node-weight bonus: 0.02; phase11 live-graph bonus: 0.14"
+          }
+        ],
+        "active_interventions": [
+          {
+            "key": "capture-governing-source-proof-for-touch-markets",
+            "rank": 1,
+            "score": 1.5,
+            "score_breakdown": {
+              "selector_match_score": 1.5,
+              "candidate_bonus": 0.0,
+              "required_check_bonus": 0.0,
+              "phase11_mechanic_live_bonus": 0.0,
+              "phase11_source_live_bonus": 0.0,
+              "phase11_workflow_live_bonus": 0.0
+            },
+            "why": "active selector match: platform=polymarket"
+          }
+        ],
+        "aggregate_notes": [],
+        "trial_overlay": [
+          {
+            "key": "verification-state-separation",
+            "rank": 1,
+            "score": 1.48,
+            "score_breakdown": {
+              "active_nodes": 0.0,
+              "candidate_edges": 0.0,
+              "contested_edges": 0.0,
+              "required_checks": 0.75,
+              "question_mechanics": 0.0,
+              "source_of_truth_class": 0.0,
+              "platforms": 0.2,
+              "categories": 0.0,
+              "shadow_trial_score": 0.0,
+              "trial_shrunken_utility": 0.0,
+              "trial_helpful": 0.0,
+              "shadow_helpful": 0.0,
+              "non_intervention_support": 0.413,
+              "distinct_cases": 0.24,
+              "rank_bonus": 0.0,
+              "genericity_penalty": -0.123,
+              "harmful_shadow_penalty": -0.0,
+              "trial_harmful_rate_penalty": -0.0,
+              "family_crowding_penalty": -0.0,
+              "merge_penalty": 0.0
+            }
+          }
+        ],
+        "live_nodes": [
+          {
+            "key": "time-remaining-nontrivial",
+            "rank": 1,
+            "score": 0.725,
+            "score_breakdown": {
+              "learned_weight_bonus": 0.0,
+              "negative_weight_penalty": 0.0,
+              "uplift_bonus": 0.0,
+              "negative_uplift_penalty": 0.0,
+              "support_bonus": 0.123,
+              "helpful_bonus": 0.0,
+              "trust_tier_bonus": 0.522,
+              "family_priority_bonus": 0.08,
+              "contestation_penalty": 0.0,
+              "decay_penalty": 0.0,
+              "family_crowding_penalty": 0.0,
+              "family_risk_penalty": 0.0,
+              "status_penalty": 0.0
+            }
+          }
+        ],
+        "live_edges": []
+      }
+    },
+    {
+      "case_key": "case-20260416-cc34f737",
+      "title": "Will the price of Ethereum be above $2,300 on April 17?",
+      "platform": "polymarket",
+      "market_id": "b7a0f9a1-95a0-48be-a965-a36923e72e1b",
+      "input_context": {
+        "case_key": "case-20260416-cc34f737",
+        "market_id": "b7a0f9a1-95a0-48be-a965-a36923e72e1b",
+        "title": "Will the price of Ethereum be above $2,300 on April 17?",
+        "description": "This market will resolve to \"Yes\" if the Binance 1 minute candle for ETH/USDT 12:00 in the ET timezone (noon) on the date specified in the title has a final \"Close\" price higher than the price specified in the title. Otherwise, this market will resolve to \"No\".\n\nThe resolution source for this market is Binance, specifically the ETH/USDT \"Close\" prices currently available at https://www.binance.com/en/trade/ETH_USDT with \"1m\" and \"Candles\" selected on the top bar.\n\nPlease note that this market is about the price according to Binance ETH/USDT, not according to other exchanges or trading pairs.\n\nPrice precision is determined by the number of decimal places in the source.",
+        "category": "",
+        "platform": "polymarket",
+        "current_price": "0.72",
+        "closes_at": "2026-04-17T12:00:00-04:00",
+        "resolves_at": "2026-04-17T12:00:00-04:00",
+        "run_kind": "novel",
+        "rerun_scope": "",
+        "difficulty_class": "",
+        "resolution_risk": "",
+        "source_of_truth_class": "",
+        "focus_hints_json": "[]",
+        "extra_verification_required": "",
+        "experiment_arm": "control",
+        "light_refresh_brief_path": null,
+        "case_md_path": "qualitative-db/40-research/cases/case-20260416-cc34f737/case.md"
+      },
+      "comparison": {
+        "case_reviews": {
+          "baseline_top1": "case-20260414-4e668883",
+          "learned_top1": "case-20260414-4e668883",
+          "top1_changed": false,
+          "baseline_count": 1,
+          "learned_count": 1,
+          "top_n": 3,
+          "top_n_overlap_count": 1,
+          "top_n_overlap_keys": [
+            "case-20260414-4e668883"
+          ],
+          "shifts": [
+            {
+              "key": "case-20260414-4e668883",
+              "baseline_rank": 1,
+              "learned_rank": 1,
+              "rank_delta": 0,
+              "baseline_score": 7.656,
+              "learned_score": 7.64,
+              "score_delta": -0.016,
+              "entered": false,
+              "dropped": false,
+              "baseline_breakdown": {
+                "mechanism_overlap": 6.0,
+                "source_overlap": 0.0,
+                "mechanic_overlap": 0.0,
+                "category_overlap": 0.0,
+                "semantic_similarity": 0.786,
+                "node_weight_bonus": 0.24,
+                "edge_weight_bonus": 0,
+                "phase11_node_bonus": 0.63,
+                "phase11_edge_bonus": 0,
+                "candidate_bonus": 0.0,
+                "generic_penalty": 0.0
+              },
+              "learned_breakdown": {
+                "mechanism_overlap": 6.0,
+                "source_overlap": 0.0,
+                "mechanic_overlap": 0.0,
+                "category_overlap": 0.0,
+                "semantic_similarity": 0.786,
+                "node_weight_bonus": 0.24,
+                "edge_weight_bonus": 0,
+                "phase11_node_bonus": 0.614,
+                "phase11_edge_bonus": 0,
+                "candidate_bonus": 0.0,
+                "generic_penalty": 0.0
+              },
+              "baseline_why": "shared nodes: settlement-source-specificity, time-remaining-nontrivial; semantic overlap in title/review summary; learned node-weight bonus: 0.24; phase11 live-graph bonus: 0.63",
+              "learned_why": "shared nodes: settlement-source-specificity, time-remaining-nontrivial; semantic overlap in title/review summary; learned node-weight bonus: 0.24; phase11 live-graph bonus: 0.61"
+            }
+          ]
+        },
+        "active_interventions": {
+          "baseline_top1": "capture-governing-source-proof-for-touch-markets",
+          "learned_top1": "capture-governing-source-proof-for-touch-markets",
+          "top1_changed": false,
+          "baseline_count": 1,
+          "learned_count": 1,
+          "top_n": 3,
+          "top_n_overlap_count": 1,
+          "top_n_overlap_keys": [
+            "capture-governing-source-proof-for-touch-markets"
+          ],
+          "shifts": [
+            {
+              "key": "capture-governing-source-proof-for-touch-markets",
+              "baseline_rank": 1,
+              "learned_rank": 1,
+              "rank_delta": 0,
+              "baseline_score": 1.65,
+              "learned_score": 1.628,
+              "score_delta": -0.022,
+              "entered": false,
+              "dropped": false,
+              "baseline_breakdown": {
+                "selector_match_score": 1.5,
+                "candidate_bonus": 0.0,
+                "required_check_bonus": 0.15,
+                "phase11_mechanic_live_bonus": 0.0,
+                "phase11_source_live_bonus": 0.0,
+                "phase11_workflow_live_bonus": 0.0
+              },
+              "learned_breakdown": {
+                "selector_match_score": 1.5,
+                "candidate_bonus": 0.0,
+                "required_check_bonus": 0.128,
+                "phase11_mechanic_live_bonus": 0.0,
+                "phase11_source_live_bonus": 0.0,
+                "phase11_workflow_live_bonus": 0.0
+              },
+              "baseline_why": "active selector match: platform=polymarket; matched required checks: capture_governing_source_proof_when_event_near_complete",
+              "learned_why": "active selector match: platform=polymarket; matched required checks: capture_governing_source_proof_when_event_near_complete"
+            }
+          ]
+        },
+        "aggregate_notes": {
+          "baseline_top1": "qualitative-db/50-learnings/source-performance/generated-index.md",
+          "learned_top1": "qualitative-db/50-learnings/source-performance/generated-index.md",
+          "top1_changed": false,
+          "baseline_count": 1,
+          "learned_count": 1,
+          "top_n": 3,
+          "top_n_overlap_count": 1,
+          "top_n_overlap_keys": [
+            "qualitative-db/50-learnings/source-performance/generated-index.md"
+          ],
+          "shifts": [
+            {
+              "key": "qualitative-db/50-learnings/source-performance/generated-index.md",
+              "baseline_rank": 1,
+              "learned_rank": 1,
+              "rank_delta": 0,
+              "baseline_score": 1.75,
+              "learned_score": 1.487,
+              "score_delta": -0.263,
+              "entered": false,
+              "dropped": false,
+              "baseline_breakdown": {
+                "shared_source_family": 0.9,
+                "phase11_source_live_bonus": 0.85,
+                "candidate_bonus": 0.0
+              },
+              "learned_breakdown": {
+                "shared_source_family": 0.765,
+                "phase11_source_live_bonus": 0.722,
+                "candidate_bonus": 0.0
+              },
+              "baseline_why": "shared source-of-truth / settlement ambiguity family; phase11 source-family live bonus: 0.85",
+              "learned_why": "shared source-of-truth / settlement ambiguity family; phase11 source-family live bonus: 0.72"
+            }
+          ]
+        },
+        "trial_overlay": {
+          "baseline_top1": "verification-state-separation",
+          "learned_top1": "verification-state-separation",
+          "top1_changed": false,
+          "baseline_count": 1,
+          "learned_count": 1,
+          "top_n": 3,
+          "top_n_overlap_count": 1,
+          "top_n_overlap_keys": [
+            "verification-state-separation"
+          ],
+          "shifts": [
+            {
+              "key": "verification-state-separation",
+              "baseline_rank": 1,
+              "learned_rank": 1,
+              "rank_delta": 0,
+              "baseline_score": 1.719,
+              "learned_score": 1.48,
+              "score_delta": -0.239,
+              "entered": false,
+              "dropped": false,
+              "baseline_breakdown": {
+                "active_nodes": 0.0,
+                "candidate_edges": 0.0,
+                "contested_edges": 0.0,
+                "required_checks": 0.75,
+                "question_mechanics": 0.0,
+                "source_of_truth_class": 0.0,
+                "platforms": 0.2,
+                "categories": 0.0,
+                "shadow_trial_score": 0.0,
+                "trial_shrunken_utility": 0.0,
+                "trial_helpful": 0.0,
+                "shadow_helpful": 0.0,
+                "non_intervention_support": 0.55,
+                "distinct_cases": 0.32,
+                "rank_bonus": 0.0,
+                "genericity_penalty": -0.101,
+                "harmful_shadow_penalty": -0.0,
+                "trial_harmful_rate_penalty": -0.0,
+                "family_crowding_penalty": -0.0,
+                "merge_penalty": 0.0
+              },
+              "learned_breakdown": {
+                "active_nodes": 0.0,
+                "candidate_edges": 0.0,
+                "contested_edges": 0.0,
+                "required_checks": 0.75,
+                "question_mechanics": 0.0,
+                "source_of_truth_class": 0.0,
+                "platforms": 0.2,
+                "categories": 0.0,
+                "shadow_trial_score": 0.0,
+                "trial_shrunken_utility": 0.0,
+                "trial_helpful": 0.0,
+                "shadow_helpful": 0.0,
+                "non_intervention_support": 0.413,
+                "distinct_cases": 0.24,
+                "rank_bonus": 0.0,
+                "genericity_penalty": -0.123,
+                "harmful_shadow_penalty": -0.0,
+                "trial_harmful_rate_penalty": -0.0,
+                "family_crowding_penalty": -0.0,
+                "merge_penalty": 0.0
+              },
+              "baseline_why": null,
+              "learned_why": null
+            }
+          ]
+        },
+        "live_nodes": {
+          "baseline_top1": "settlement-source-specificity",
+          "learned_top1": "settlement-source-specificity",
+          "top1_changed": false,
+          "baseline_count": 2,
+          "learned_count": 2,
+          "top_n": 3,
+          "top_n_overlap_count": 2,
+          "top_n_overlap_keys": [
+            "settlement-source-specificity",
+            "time-remaining-nontrivial"
+          ],
+          "shifts": [
+            {
+              "key": "settlement-source-specificity",
+              "baseline_rank": 1,
+              "learned_rank": 1,
+              "rank_delta": 0,
+              "baseline_score": 2.48,
+              "learned_score": 2.346,
+              "score_delta": -0.134,
+              "entered": false,
+              "dropped": false,
+              "baseline_breakdown": {
+                "learned_weight_bonus": 1.25,
+                "negative_weight_penalty": 0.0,
+                "uplift_bonus": 0.0,
+                "negative_uplift_penalty": 0.0,
+                "support_bonus": 0.7,
+                "helpful_bonus": 0.0,
+                "trust_tier_bonus": 0.45,
+                "family_priority_bonus": 0.08,
+                "contestation_penalty": 0.0,
+                "decay_penalty": 0.0,
+                "family_crowding_penalty": 0.0,
+                "family_risk_penalty": 0.0,
+                "status_penalty": 0.0
+              },
+              "learned_breakdown": {
+                "learned_weight_bonus": 1.13,
+                "negative_weight_penalty": 0.0,
+                "uplift_bonus": 0.0,
+                "negative_uplift_penalty": 0.0,
+                "support_bonus": 0.614,
+                "helpful_bonus": 0.0,
+                "trust_tier_bonus": 0.522,
+                "family_priority_bonus": 0.08,
+                "contestation_penalty": 0.0,
+                "decay_penalty": 0.0,
+                "family_crowding_penalty": 0.0,
+                "family_risk_penalty": 0.0,
+                "status_penalty": 0.0
+              },
+              "baseline_why": null,
+              "learned_why": null
+            },
+            {
+              "key": "time-remaining-nontrivial",
+              "baseline_rank": 2,
+              "learned_rank": 2,
+              "rank_delta": 0,
+              "baseline_score": 0.67,
+              "learned_score": 0.725,
+              "score_delta": 0.055,
+              "entered": false,
+              "dropped": false,
+              "baseline_breakdown": {
+                "learned_weight_bonus": 0.0,
+                "negative_weight_penalty": 0.0,
+                "uplift_bonus": 0.0,
+                "negative_uplift_penalty": 0.0,
+                "support_bonus": 0.14,
+                "helpful_bonus": 0.0,
+                "trust_tier_bonus": 0.45,
+                "family_priority_bonus": 0.08,
+                "contestation_penalty": 0.0,
+                "decay_penalty": 0.0,
+                "family_crowding_penalty": 0.0,
+                "family_risk_penalty": 0.0,
+                "status_penalty": 0.0
+              },
+              "learned_breakdown": {
+                "learned_weight_bonus": 0.0,
+                "negative_weight_penalty": 0.0,
+                "uplift_bonus": 0.0,
+                "negative_uplift_penalty": 0.0,
+                "support_bonus": 0.123,
+                "helpful_bonus": 0.0,
+                "trust_tier_bonus": 0.522,
+                "family_priority_bonus": 0.08,
+                "contestation_penalty": 0.0,
+                "decay_penalty": 0.0,
+                "family_crowding_penalty": 0.0,
+                "family_risk_penalty": 0.0,
+                "status_penalty": 0.0
+              },
+              "baseline_why": null,
+              "learned_why": null
+            }
+          ]
+        },
+        "live_edges": {
+          "baseline_top1": null,
+          "learned_top1": null,
+          "top1_changed": false,
+          "baseline_count": 0,
+          "learned_count": 0,
+          "top_n": 3,
+          "top_n_overlap_count": 0,
+          "top_n_overlap_keys": [],
+          "shifts": []
+        }
+      },
+      "baseline": {
+        "status": "control_preview",
+        "case_reviews": [
+          {
+            "key": "case-20260414-4e668883",
+            "rank": 1,
+            "score": 7.656,
+            "score_breakdown": {
+              "mechanism_overlap": 6.0,
+              "source_overlap": 0.0,
+              "mechanic_overlap": 0.0,
+              "category_overlap": 0.0,
+              "semantic_similarity": 0.786,
+              "node_weight_bonus": 0.24,
+              "edge_weight_bonus": 0,
+              "phase11_node_bonus": 0.63,
+              "phase11_edge_bonus": 0,
+              "candidate_bonus": 0.0,
+              "generic_penalty": 0.0
+            },
+            "why": "shared nodes: settlement-source-specificity, time-remaining-nontrivial; semantic overlap in title/review summary; learned node-weight bonus: 0.24; phase11 live-graph bonus: 0.63"
+          }
+        ],
+        "active_interventions": [
+          {
+            "key": "capture-governing-source-proof-for-touch-markets",
+            "rank": 1,
+            "score": 1.65,
+            "score_breakdown": {
+              "selector_match_score": 1.5,
+              "candidate_bonus": 0.0,
+              "required_check_bonus": 0.15,
+              "phase11_mechanic_live_bonus": 0.0,
+              "phase11_source_live_bonus": 0.0,
+              "phase11_workflow_live_bonus": 0.0
+            },
+            "why": "active selector match: platform=polymarket; matched required checks: capture_governing_source_proof_when_event_near_complete"
+          }
+        ],
+        "aggregate_notes": [
+          {
+            "key": "qualitative-db/50-learnings/source-performance/generated-index.md",
+            "rank": 1,
+            "score": 1.75,
+            "score_breakdown": {
+              "shared_source_family": 0.9,
+              "phase11_source_live_bonus": 0.85,
+              "candidate_bonus": 0.0
+            },
+            "why": "shared source-of-truth / settlement ambiguity family; phase11 source-family live bonus: 0.85"
+          }
+        ],
+        "trial_overlay": [
+          {
+            "key": "verification-state-separation",
+            "rank": 1,
+            "score": 1.719,
+            "score_breakdown": {
+              "active_nodes": 0.0,
+              "candidate_edges": 0.0,
+              "contested_edges": 0.0,
+              "required_checks": 0.75,
+              "question_mechanics": 0.0,
+              "source_of_truth_class": 0.0,
+              "platforms": 0.2,
+              "categories": 0.0,
+              "shadow_trial_score": 0.0,
+              "trial_shrunken_utility": 0.0,
+              "trial_helpful": 0.0,
+              "shadow_helpful": 0.0,
+              "non_intervention_support": 0.55,
+              "distinct_cases": 0.32,
+              "rank_bonus": 0.0,
+              "genericity_penalty": -0.101,
+              "harmful_shadow_penalty": -0.0,
+              "trial_harmful_rate_penalty": -0.0,
+              "family_crowding_penalty": -0.0,
+              "merge_penalty": 0.0
+            }
+          }
+        ],
+        "live_nodes": [
+          {
+            "key": "settlement-source-specificity",
+            "rank": 1,
+            "score": 2.48,
+            "score_breakdown": {
+              "learned_weight_bonus": 1.25,
+              "negative_weight_penalty": 0.0,
+              "uplift_bonus": 0.0,
+              "negative_uplift_penalty": 0.0,
+              "support_bonus": 0.7,
+              "helpful_bonus": 0.0,
+              "trust_tier_bonus": 0.45,
+              "family_priority_bonus": 0.08,
+              "contestation_penalty": 0.0,
+              "decay_penalty": 0.0,
+              "family_crowding_penalty": 0.0,
+              "family_risk_penalty": 0.0,
+              "status_penalty": 0.0
+            }
+          },
+          {
+            "key": "time-remaining-nontrivial",
+            "rank": 2,
+            "score": 0.67,
+            "score_breakdown": {
+              "learned_weight_bonus": 0.0,
+              "negative_weight_penalty": 0.0,
+              "uplift_bonus": 0.0,
+              "negative_uplift_penalty": 0.0,
+              "support_bonus": 0.14,
+              "helpful_bonus": 0.0,
+              "trust_tier_bonus": 0.45,
+              "family_priority_bonus": 0.08,
+              "contestation_penalty": 0.0,
+              "decay_penalty": 0.0,
+              "family_crowding_penalty": 0.0,
+              "family_risk_penalty": 0.0,
+              "status_penalty": 0.0
+            }
+          }
+        ],
+        "live_edges": []
+      },
+      "learned": {
+        "status": "control_preview",
+        "case_reviews": [
+          {
+            "key": "case-20260414-4e668883",
+            "rank": 1,
+            "score": 7.64,
+            "score_breakdown": {
+              "mechanism_overlap": 6.0,
+              "source_overlap": 0.0,
+              "mechanic_overlap": 0.0,
+              "category_overlap": 0.0,
+              "semantic_similarity": 0.786,
+              "node_weight_bonus": 0.24,
+              "edge_weight_bonus": 0,
+              "phase11_node_bonus": 0.614,
+              "phase11_edge_bonus": 0,
+              "candidate_bonus": 0.0,
+              "generic_penalty": 0.0
+            },
+            "why": "shared nodes: settlement-source-specificity, time-remaining-nontrivial; semantic overlap in title/review summary; learned node-weight bonus: 0.24; phase11 live-graph bonus: 0.61"
+          }
+        ],
+        "active_interventions": [
+          {
+            "key": "capture-governing-source-proof-for-touch-markets",
+            "rank": 1,
+            "score": 1.628,
+            "score_breakdown": {
+              "selector_match_score": 1.5,
+              "candidate_bonus": 0.0,
+              "required_check_bonus": 0.128,
+              "phase11_mechanic_live_bonus": 0.0,
+              "phase11_source_live_bonus": 0.0,
+              "phase11_workflow_live_bonus": 0.0
+            },
+            "why": "active selector match: platform=polymarket; matched required checks: capture_governing_source_proof_when_event_near_complete"
+          }
+        ],
+        "aggregate_notes": [
+          {
+            "key": "qualitative-db/50-learnings/source-performance/generated-index.md",
+            "rank": 1,
+            "score": 1.487,
+            "score_breakdown": {
+              "shared_source_family": 0.765,
+              "phase11_source_live_bonus": 0.722,
+              "candidate_bonus": 0.0
+            },
+            "why": "shared source-of-truth / settlement ambiguity family; phase11 source-family live bonus: 0.72"
+          }
+        ],
+        "trial_overlay": [
+          {
+            "key": "verification-state-separation",
+            "rank": 1,
+            "score": 1.48,
+            "score_breakdown": {
+              "active_nodes": 0.0,
+              "candidate_edges": 0.0,
+              "contested_edges": 0.0,
+              "required_checks": 0.75,
+              "question_mechanics": 0.0,
+              "source_of_truth_class": 0.0,
+              "platforms": 0.2,
+              "categories": 0.0,
+              "shadow_trial_score": 0.0,
+              "trial_shrunken_utility": 0.0,
+              "trial_helpful": 0.0,
+              "shadow_helpful": 0.0,
+              "non_intervention_support": 0.413,
+              "distinct_cases": 0.24,
+              "rank_bonus": 0.0,
+              "genericity_penalty": -0.123,
+              "harmful_shadow_penalty": -0.0,
+              "trial_harmful_rate_penalty": -0.0,
+              "family_crowding_penalty": -0.0,
+              "merge_penalty": 0.0
+            }
+          }
+        ],
+        "live_nodes": [
+          {
+            "key": "settlement-source-specificity",
+            "rank": 1,
+            "score": 2.346,
+            "score_breakdown": {
+              "learned_weight_bonus": 1.13,
+              "negative_weight_penalty": 0.0,
+              "uplift_bonus": 0.0,
+              "negative_uplift_penalty": 0.0,
+              "support_bonus": 0.614,
+              "helpful_bonus": 0.0,
+              "trust_tier_bonus": 0.522,
+              "family_priority_bonus": 0.08,
+              "contestation_penalty": 0.0,
+              "decay_penalty": 0.0,
+              "family_crowding_penalty": 0.0,
+              "family_risk_penalty": 0.0,
+              "status_penalty": 0.0
+            }
+          },
+          {
+            "key": "time-remaining-nontrivial",
+            "rank": 2,
+            "score": 0.725,
+            "score_breakdown": {
+              "learned_weight_bonus": 0.0,
+              "negative_weight_penalty": 0.0,
+              "uplift_bonus": 0.0,
+              "negative_uplift_penalty": 0.0,
+              "support_bonus": 0.123,
+              "helpful_bonus": 0.0,
+              "trust_tier_bonus": 0.522,
+              "family_priority_bonus": 0.08,
+              "contestation_penalty": 0.0,
+              "decay_penalty": 0.0,
+              "family_crowding_penalty": 0.0,
+              "family_risk_penalty": 0.0,
+              "status_penalty": 0.0
+            }
+          }
+        ],
+        "live_edges": []
+      }
+    },
+    {
+      "case_key": "case-20260416-243d5bed",
+      "title": "Will the price of Ethereum be above $2,300 on April 17?",
+      "platform": "polymarket",
+      "market_id": "b7a0f9a1-95a0-48be-a965-a36923e72e1b",
+      "input_context": {
+        "case_key": "case-20260416-243d5bed",
+        "market_id": "b7a0f9a1-95a0-48be-a965-a36923e72e1b",
+        "title": "Will the price of Ethereum be above $2,300 on April 17?",
+        "description": "This market will resolve to \"Yes\" if the Binance 1 minute candle for ETH/USDT 12:00 in the ET timezone (noon) on the date specified in the title has a final \"Close\" price higher than the price specified in the title. Otherwise, this market will resolve to \"No\".\n\nThe resolution source for this market is Binance, specifically the ETH/USDT \"Close\" prices currently available at https://www.binance.com/en/trade/ETH_USDT with \"1m\" and \"Candles\" selected on the top bar.\n\nPlease note that this market is about the price according to Binance ETH/USDT, not according to other exchanges or trading pairs.\n\nPrice precision is determined by the number of decimal places in the source.",
+        "category": "",
+        "platform": "polymarket",
+        "current_price": "0.745",
+        "closes_at": "2026-04-17T12:00:00-04:00",
+        "resolves_at": "2026-04-17T12:00:00-04:00",
+        "run_kind": "novel",
+        "rerun_scope": "",
+        "difficulty_class": "",
+        "resolution_risk": "",
+        "source_of_truth_class": "",
+        "focus_hints_json": "[]",
+        "extra_verification_required": "",
+        "experiment_arm": "control",
+        "light_refresh_brief_path": null,
+        "case_md_path": "qualitative-db/40-research/cases/case-20260416-243d5bed/case.md"
+      },
+      "comparison": {
+        "case_reviews": {
+          "baseline_top1": "case-20260414-4e668883",
+          "learned_top1": "case-20260414-4e668883",
+          "top1_changed": false,
+          "baseline_count": 1,
+          "learned_count": 1,
+          "top_n": 3,
+          "top_n_overlap_count": 1,
+          "top_n_overlap_keys": [
+            "case-20260414-4e668883"
+          ],
+          "shifts": [
+            {
+              "key": "case-20260414-4e668883",
+              "baseline_rank": 1,
+              "learned_rank": 1,
+              "rank_delta": 0,
+              "baseline_score": 7.656,
+              "learned_score": 7.64,
+              "score_delta": -0.016,
+              "entered": false,
+              "dropped": false,
+              "baseline_breakdown": {
+                "mechanism_overlap": 6.0,
+                "source_overlap": 0.0,
+                "mechanic_overlap": 0.0,
+                "category_overlap": 0.0,
+                "semantic_similarity": 0.786,
+                "node_weight_bonus": 0.24,
+                "edge_weight_bonus": 0,
+                "phase11_node_bonus": 0.63,
+                "phase11_edge_bonus": 0,
+                "candidate_bonus": 0.0,
+                "generic_penalty": 0.0
+              },
+              "learned_breakdown": {
+                "mechanism_overlap": 6.0,
+                "source_overlap": 0.0,
+                "mechanic_overlap": 0.0,
+                "category_overlap": 0.0,
+                "semantic_similarity": 0.786,
+                "node_weight_bonus": 0.24,
+                "edge_weight_bonus": 0,
+                "phase11_node_bonus": 0.614,
+                "phase11_edge_bonus": 0,
+                "candidate_bonus": 0.0,
+                "generic_penalty": 0.0
+              },
+              "baseline_why": "shared nodes: settlement-source-specificity, time-remaining-nontrivial; semantic overlap in title/review summary; learned node-weight bonus: 0.24; phase11 live-graph bonus: 0.63",
+              "learned_why": "shared nodes: settlement-source-specificity, time-remaining-nontrivial; semantic overlap in title/review summary; learned node-weight bonus: 0.24; phase11 live-graph bonus: 0.61"
+            }
+          ]
+        },
+        "active_interventions": {
+          "baseline_top1": "capture-governing-source-proof-for-touch-markets",
+          "learned_top1": "capture-governing-source-proof-for-touch-markets",
+          "top1_changed": false,
+          "baseline_count": 1,
+          "learned_count": 1,
+          "top_n": 3,
+          "top_n_overlap_count": 1,
+          "top_n_overlap_keys": [
+            "capture-governing-source-proof-for-touch-markets"
+          ],
+          "shifts": [
+            {
+              "key": "capture-governing-source-proof-for-touch-markets",
+              "baseline_rank": 1,
+              "learned_rank": 1,
+              "rank_delta": 0,
+              "baseline_score": 1.65,
+              "learned_score": 1.628,
+              "score_delta": -0.022,
+              "entered": false,
+              "dropped": false,
+              "baseline_breakdown": {
+                "selector_match_score": 1.5,
+                "candidate_bonus": 0.0,
+                "required_check_bonus": 0.15,
+                "phase11_mechanic_live_bonus": 0.0,
+                "phase11_source_live_bonus": 0.0,
+                "phase11_workflow_live_bonus": 0.0
+              },
+              "learned_breakdown": {
+                "selector_match_score": 1.5,
+                "candidate_bonus": 0.0,
+                "required_check_bonus": 0.128,
+                "phase11_mechanic_live_bonus": 0.0,
+                "phase11_source_live_bonus": 0.0,
+                "phase11_workflow_live_bonus": 0.0
+              },
+              "baseline_why": "active selector match: platform=polymarket; matched required checks: capture_governing_source_proof_when_event_near_complete",
+              "learned_why": "active selector match: platform=polymarket; matched required checks: capture_governing_source_proof_when_event_near_complete"
+            }
+          ]
+        },
+        "aggregate_notes": {
+          "baseline_top1": "qualitative-db/50-learnings/source-performance/generated-index.md",
+          "learned_top1": "qualitative-db/50-learnings/source-performance/generated-index.md",
+          "top1_changed": false,
+          "baseline_count": 1,
+          "learned_count": 1,
+          "top_n": 3,
+          "top_n_overlap_count": 1,
+          "top_n_overlap_keys": [
+            "qualitative-db/50-learnings/source-performance/generated-index.md"
+          ],
+          "shifts": [
+            {
+              "key": "qualitative-db/50-learnings/source-performance/generated-index.md",
+              "baseline_rank": 1,
+              "learned_rank": 1,
+              "rank_delta": 0,
+              "baseline_score": 1.75,
+              "learned_score": 1.487,
+              "score_delta": -0.263,
+              "entered": false,
+              "dropped": false,
+              "baseline_breakdown": {
+                "shared_source_family": 0.9,
+                "phase11_source_live_bonus": 0.85,
+                "candidate_bonus": 0.0
+              },
+              "learned_breakdown": {
+                "shared_source_family": 0.765,
+                "phase11_source_live_bonus": 0.722,
+                "candidate_bonus": 0.0
+              },
+              "baseline_why": "shared source-of-truth / settlement ambiguity family; phase11 source-family live bonus: 0.85",
+              "learned_why": "shared source-of-truth / settlement ambiguity family; phase11 source-family live bonus: 0.72"
+            }
+          ]
+        },
+        "trial_overlay": {
+          "baseline_top1": "verification-state-separation",
+          "learned_top1": "verification-state-separation",
+          "top1_changed": false,
+          "baseline_count": 1,
+          "learned_count": 1,
+          "top_n": 3,
+          "top_n_overlap_count": 1,
+          "top_n_overlap_keys": [
+            "verification-state-separation"
+          ],
+          "shifts": [
+            {
+              "key": "verification-state-separation",
+              "baseline_rank": 1,
+              "learned_rank": 1,
+              "rank_delta": 0,
+              "baseline_score": 1.719,
+              "learned_score": 1.48,
+              "score_delta": -0.239,
+              "entered": false,
+              "dropped": false,
+              "baseline_breakdown": {
+                "active_nodes": 0.0,
+                "candidate_edges": 0.0,
+                "contested_edges": 0.0,
+                "required_checks": 0.75,
+                "question_mechanics": 0.0,
+                "source_of_truth_class": 0.0,
+                "platforms": 0.2,
+                "categories": 0.0,
+                "shadow_trial_score": 0.0,
+                "trial_shrunken_utility": 0.0,
+                "trial_helpful": 0.0,
+                "shadow_helpful": 0.0,
+                "non_intervention_support": 0.55,
+                "distinct_cases": 0.32,
+                "rank_bonus": 0.0,
+                "genericity_penalty": -0.101,
+                "harmful_shadow_penalty": -0.0,
+                "trial_harmful_rate_penalty": -0.0,
+                "family_crowding_penalty": -0.0,
+                "merge_penalty": 0.0
+              },
+              "learned_breakdown": {
+                "active_nodes": 0.0,
+                "candidate_edges": 0.0,
+                "contested_edges": 0.0,
+                "required_checks": 0.75,
+                "question_mechanics": 0.0,
+                "source_of_truth_class": 0.0,
+                "platforms": 0.2,
+                "categories": 0.0,
+                "shadow_trial_score": 0.0,
+                "trial_shrunken_utility": 0.0,
+                "trial_helpful": 0.0,
+                "shadow_helpful": 0.0,
+                "non_intervention_support": 0.413,
+                "distinct_cases": 0.24,
+                "rank_bonus": 0.0,
+                "genericity_penalty": -0.123,
+                "harmful_shadow_penalty": -0.0,
+                "trial_harmful_rate_penalty": -0.0,
+                "family_crowding_penalty": -0.0,
+                "merge_penalty": 0.0
+              },
+              "baseline_why": null,
+              "learned_why": null
+            }
+          ]
+        },
+        "live_nodes": {
+          "baseline_top1": "settlement-source-specificity",
+          "learned_top1": "settlement-source-specificity",
+          "top1_changed": false,
+          "baseline_count": 2,
+          "learned_count": 2,
+          "top_n": 3,
+          "top_n_overlap_count": 2,
+          "top_n_overlap_keys": [
+            "settlement-source-specificity",
+            "time-remaining-nontrivial"
+          ],
+          "shifts": [
+            {
+              "key": "settlement-source-specificity",
+              "baseline_rank": 1,
+              "learned_rank": 1,
+              "rank_delta": 0,
+              "baseline_score": 2.48,
+              "learned_score": 2.346,
+              "score_delta": -0.134,
+              "entered": false,
+              "dropped": false,
+              "baseline_breakdown": {
+                "learned_weight_bonus": 1.25,
+                "negative_weight_penalty": 0.0,
+                "uplift_bonus": 0.0,
+                "negative_uplift_penalty": 0.0,
+                "support_bonus": 0.7,
+                "helpful_bonus": 0.0,
+                "trust_tier_bonus": 0.45,
+                "family_priority_bonus": 0.08,
+                "contestation_penalty": 0.0,
+                "decay_penalty": 0.0,
+                "family_crowding_penalty": 0.0,
+                "family_risk_penalty": 0.0,
+                "status_penalty": 0.0
+              },
+              "learned_breakdown": {
+                "learned_weight_bonus": 1.13,
+                "negative_weight_penalty": 0.0,
+                "uplift_bonus": 0.0,
+                "negative_uplift_penalty": 0.0,
+                "support_bonus": 0.614,
+                "helpful_bonus": 0.0,
+                "trust_tier_bonus": 0.522,
+                "family_priority_bonus": 0.08,
+                "contestation_penalty": 0.0,
+                "decay_penalty": 0.0,
+                "family_crowding_penalty": 0.0,
+                "family_risk_penalty": 0.0,
+                "status_penalty": 0.0
+              },
+              "baseline_why": null,
+              "learned_why": null
+            },
+            {
+              "key": "time-remaining-nontrivial",
+              "baseline_rank": 2,
+              "learned_rank": 2,
+              "rank_delta": 0,
+              "baseline_score": 0.67,
+              "learned_score": 0.725,
+              "score_delta": 0.055,
+              "entered": false,
+              "dropped": false,
+              "baseline_breakdown": {
+                "learned_weight_bonus": 0.0,
+                "negative_weight_penalty": 0.0,
+                "uplift_bonus": 0.0,
+                "negative_uplift_penalty": 0.0,
+                "support_bonus": 0.14,
+                "helpful_bonus": 0.0,
+                "trust_tier_bonus": 0.45,
+                "family_priority_bonus": 0.08,
+                "contestation_penalty": 0.0,
+                "decay_penalty": 0.0,
+                "family_crowding_penalty": 0.0,
+                "family_risk_penalty": 0.0,
+                "status_penalty": 0.0
+              },
+              "learned_breakdown": {
+                "learned_weight_bonus": 0.0,
+                "negative_weight_penalty": 0.0,
+                "uplift_bonus": 0.0,
+                "negative_uplift_penalty": 0.0,
+                "support_bonus": 0.123,
+                "helpful_bonus": 0.0,
+                "trust_tier_bonus": 0.522,
+                "family_priority_bonus": 0.08,
+                "contestation_penalty": 0.0,
+                "decay_penalty": 0.0,
+                "family_crowding_penalty": 0.0,
+                "family_risk_penalty": 0.0,
+                "status_penalty": 0.0
+              },
+              "baseline_why": null,
+              "learned_why": null
+            }
+          ]
+        },
+        "live_edges": {
+          "baseline_top1": null,
+          "learned_top1": null,
+          "top1_changed": false,
+          "baseline_count": 0,
+          "learned_count": 0,
+          "top_n": 3,
+          "top_n_overlap_count": 0,
+          "top_n_overlap_keys": [],
+          "shifts": []
+        }
+      },
+      "baseline": {
+        "status": "control_preview",
+        "case_reviews": [
+          {
+            "key": "case-20260414-4e668883",
+            "rank": 1,
+            "score": 7.656,
+            "score_breakdown": {
+              "mechanism_overlap": 6.0,
+              "source_overlap": 0.0,
+              "mechanic_overlap": 0.0,
+              "category_overlap": 0.0,
+              "semantic_similarity": 0.786,
+              "node_weight_bonus": 0.24,
+              "edge_weight_bonus": 0,
+              "phase11_node_bonus": 0.63,
+              "phase11_edge_bonus": 0,
+              "candidate_bonus": 0.0,
+              "generic_penalty": 0.0
+            },
+            "why": "shared nodes: settlement-source-specificity, time-remaining-nontrivial; semantic overlap in title/review summary; learned node-weight bonus: 0.24; phase11 live-graph bonus: 0.63"
+          }
+        ],
+        "active_interventions": [
+          {
+            "key": "capture-governing-source-proof-for-touch-markets",
+            "rank": 1,
+            "score": 1.65,
+            "score_breakdown": {
+              "selector_match_score": 1.5,
+              "candidate_bonus": 0.0,
+              "required_check_bonus": 0.15,
+              "phase11_mechanic_live_bonus": 0.0,
+              "phase11_source_live_bonus": 0.0,
+              "phase11_workflow_live_bonus": 0.0
+            },
+            "why": "active selector match: platform=polymarket; matched required checks: capture_governing_source_proof_when_event_near_complete"
+          }
+        ],
+        "aggregate_notes": [
+          {
+            "key": "qualitative-db/50-learnings/source-performance/generated-index.md",
+            "rank": 1,
+            "score": 1.75,
+            "score_breakdown": {
+              "shared_source_family": 0.9,
+              "phase11_source_live_bonus": 0.85,
+              "candidate_bonus": 0.0
+            },
+            "why": "shared source-of-truth / settlement ambiguity family; phase11 source-family live bonus: 0.85"
+          }
+        ],
+        "trial_overlay": [
+          {
+            "key": "verification-state-separation",
+            "rank": 1,
+            "score": 1.719,
+            "score_breakdown": {
+              "active_nodes": 0.0,
+              "candidate_edges": 0.0,
+              "contested_edges": 0.0,
+              "required_checks": 0.75,
+              "question_mechanics": 0.0,
+              "source_of_truth_class": 0.0,
+              "platforms": 0.2,
+              "categories": 0.0,
+              "shadow_trial_score": 0.0,
+              "trial_shrunken_utility": 0.0,
+              "trial_helpful": 0.0,
+              "shadow_helpful": 0.0,
+              "non_intervention_support": 0.55,
+              "distinct_cases": 0.32,
+              "rank_bonus": 0.0,
+              "genericity_penalty": -0.101,
+              "harmful_shadow_penalty": -0.0,
+              "trial_harmful_rate_penalty": -0.0,
+              "family_crowding_penalty": -0.0,
+              "merge_penalty": 0.0
+            }
+          }
+        ],
+        "live_nodes": [
+          {
+            "key": "settlement-source-specificity",
+            "rank": 1,
+            "score": 2.48,
+            "score_breakdown": {
+              "learned_weight_bonus": 1.25,
+              "negative_weight_penalty": 0.0,
+              "uplift_bonus": 0.0,
+              "negative_uplift_penalty": 0.0,
+              "support_bonus": 0.7,
+              "helpful_bonus": 0.0,
+              "trust_tier_bonus": 0.45,
+              "family_priority_bonus": 0.08,
+              "contestation_penalty": 0.0,
+              "decay_penalty": 0.0,
+              "family_crowding_penalty": 0.0,
+              "family_risk_penalty": 0.0,
+              "status_penalty": 0.0
+            }
+          },
+          {
+            "key": "time-remaining-nontrivial",
+            "rank": 2,
+            "score": 0.67,
+            "score_breakdown": {
+              "learned_weight_bonus": 0.0,
+              "negative_weight_penalty": 0.0,
+              "uplift_bonus": 0.0,
+              "negative_uplift_penalty": 0.0,
+              "support_bonus": 0.14,
+              "helpful_bonus": 0.0,
+              "trust_tier_bonus": 0.45,
+              "family_priority_bonus": 0.08,
+              "contestation_penalty": 0.0,
+              "decay_penalty": 0.0,
+              "family_crowding_penalty": 0.0,
+              "family_risk_penalty": 0.0,
+              "status_penalty": 0.0
+            }
+          }
+        ],
+        "live_edges": []
+      },
+      "learned": {
+        "status": "control_preview",
+        "case_reviews": [
+          {
+            "key": "case-20260414-4e668883",
+            "rank": 1,
+            "score": 7.64,
+            "score_breakdown": {
+              "mechanism_overlap": 6.0,
+              "source_overlap": 0.0,
+              "mechanic_overlap": 0.0,
+              "category_overlap": 0.0,
+              "semantic_similarity": 0.786,
+              "node_weight_bonus": 0.24,
+              "edge_weight_bonus": 0,
+              "phase11_node_bonus": 0.614,
+              "phase11_edge_bonus": 0,
+              "candidate_bonus": 0.0,
+              "generic_penalty": 0.0
+            },
+            "why": "shared nodes: settlement-source-specificity, time-remaining-nontrivial; semantic overlap in title/review summary; learned node-weight bonus: 0.24; phase11 live-graph bonus: 0.61"
+          }
+        ],
+        "active_interventions": [
+          {
+            "key": "capture-governing-source-proof-for-touch-markets",
+            "rank": 1,
+            "score": 1.628,
+            "score_breakdown": {
+              "selector_match_score": 1.5,
+              "candidate_bonus": 0.0,
+              "required_check_bonus": 0.128,
+              "phase11_mechanic_live_bonus": 0.0,
+              "phase11_source_live_bonus": 0.0,
+              "phase11_workflow_live_bonus": 0.0
+            },
+            "why": "active selector match: platform=polymarket; matched required checks: capture_governing_source_proof_when_event_near_complete"
+          }
+        ],
+        "aggregate_notes": [
+          {
+            "key": "qualitative-db/50-learnings/source-performance/generated-index.md",
+            "rank": 1,
+            "score": 1.487,
+            "score_breakdown": {
+              "shared_source_family": 0.765,
+              "phase11_source_live_bonus": 0.722,
+              "candidate_bonus": 0.0
+            },
+            "why": "shared source-of-truth / settlement ambiguity family; phase11 source-family live bonus: 0.72"
+          }
+        ],
+        "trial_overlay": [
+          {
+            "key": "verification-state-separation",
+            "rank": 1,
+            "score": 1.48,
+            "score_breakdown": {
+              "active_nodes": 0.0,
+              "candidate_edges": 0.0,
+              "contested_edges": 0.0,
+              "required_checks": 0.75,
+              "question_mechanics": 0.0,
+              "source_of_truth_class": 0.0,
+              "platforms": 0.2,
+              "categories": 0.0,
+              "shadow_trial_score": 0.0,
+              "trial_shrunken_utility": 0.0,
+              "trial_helpful": 0.0,
+              "shadow_helpful": 0.0,
+              "non_intervention_support": 0.413,
+              "distinct_cases": 0.24,
+              "rank_bonus": 0.0,
+              "genericity_penalty": -0.123,
+              "harmful_shadow_penalty": -0.0,
+              "trial_harmful_rate_penalty": -0.0,
+              "family_crowding_penalty": -0.0,
+              "merge_penalty": 0.0
+            }
+          }
+        ],
+        "live_nodes": [
+          {
+            "key": "settlement-source-specificity",
+            "rank": 1,
+            "score": 2.346,
+            "score_breakdown": {
+              "learned_weight_bonus": 1.13,
+              "negative_weight_penalty": 0.0,
+              "uplift_bonus": 0.0,
+              "negative_uplift_penalty": 0.0,
+              "support_bonus": 0.614,
+              "helpful_bonus": 0.0,
+              "trust_tier_bonus": 0.522,
+              "family_priority_bonus": 0.08,
+              "contestation_penalty": 0.0,
+              "decay_penalty": 0.0,
+              "family_crowding_penalty": 0.0,
+              "family_risk_penalty": 0.0,
+              "status_penalty": 0.0
+            }
+          },
+          {
+            "key": "time-remaining-nontrivial",
+            "rank": 2,
+            "score": 0.725,
+            "score_breakdown": {
+              "learned_weight_bonus": 0.0,
+              "negative_weight_penalty": 0.0,
+              "uplift_bonus": 0.0,
+              "negative_uplift_penalty": 0.0,
+              "support_bonus": 0.123,
+              "helpful_bonus": 0.0,
+              "trust_tier_bonus": 0.522,
+              "family_priority_bonus": 0.08,
+              "contestation_penalty": 0.0,
+              "decay_penalty": 0.0,
+              "family_crowding_penalty": 0.0,
+              "family_risk_penalty": 0.0,
+              "status_penalty": 0.0
+            }
+          }
+        ],
+        "live_edges": []
+      }
+    }
+  ]
+}

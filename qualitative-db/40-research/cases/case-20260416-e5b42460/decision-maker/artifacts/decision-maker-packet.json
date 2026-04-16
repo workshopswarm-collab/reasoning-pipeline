@@ -1,0 +1,152 @@
+{
+  "schema_version": "decision-packet/v1",
+  "generated_at": "2026-04-16T05:27:00Z",
+  "context": {
+    "case_key": "case-20260416-e5b42460",
+    "dispatch_id": "dispatch-case-20260416-e5b42460-20260416T051736Z",
+    "question": "Will Fenerbahçe SK win on 2026-04-17?",
+    "market_id": "fd214855-86a1-4909-a660-be10263feddf",
+    "external_market_id": "0x3e97c6825371a370daa512a29d59ea1b233e04fd3348e8801c9b31fad1f9fea6",
+    "market_slug": "tur-fen-riz-2026-04-17-fen",
+    "platform": "polymarket",
+    "primary_market_url": "https://polymarket.com/event/tur-fen-riz-2026-04-17-fen",
+    "market_title": "Will Fenerbahçe SK win on 2026-04-17?",
+    "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260416-e5b42460/synthesizer-agent/decision-handoff.md",
+    "source_syndicated_finding_path": "qualitative-db/40-research/cases/case-20260416-e5b42460/synthesizer-agent/syndicated-finding.md",
+    "source_light_refresh_brief_path": "",
+    "refresh_mode": "",
+    "decision_maker_agent": "decision-maker",
+    "canonical_markdown_path": "decision-maker-packet.md",
+    "canonical_json_path": "artifacts/decision-maker-packet.json"
+  },
+  "decision": {
+    "side": "none",
+    "trade_authorization": "watch_only",
+    "position_policy": "flat",
+    "decision_readiness": "needs_more_research",
+    "thesis_class": "not_decision_ready",
+    "primary_crux": "The market sits above the bounded independent estimate, but the case is too freshness-sensitive to act without late lineup, injury, and bookmaker-consensus verification.",
+    "secondary_cruxes": [
+      "Season-strength and home advantage support Fenerbahçe as a deserved favorite, but the current 0.745 price is not clearly cheap on verified evidence.",
+      "The decisive disagreement is whether broad season signals alone justify a mid-70s regulation-win probability.",
+      "There is unresolved risk that the market already reflects team news or sharper pricing not independently captured in the bounded bundle."
+    ]
+  },
+  "valuation": {
+    "fair_value_low": 0.69,
+    "fair_value_high": 0.74,
+    "fair_value_mid": 0.715,
+    "independent_verification_quality": "medium",
+    "compressed_toward_market_applied": false,
+    "compression_reason": "The bounded evidence already implies a range centered near 0.715; the larger issue is insufficient fresh verification, which argues for no-trade rather than discretionary upward compression.",
+    "market_reference_price": 0.745,
+    "edge_mid_vs_market_pct_points": -3.0
+  },
+  "execution_semantics": {
+    "price_source": "market_snapshot_quote",
+    "price_axis": "market_implied_true_prob",
+    "rebalance_threshold_fraction": 0.1,
+    "allow_auto_reversal": false,
+    "quote_staleness_seconds": 300,
+    "valid_until": "2026-04-17T05:27:29.026177+00:00"
+  },
+  "risk_controls": {
+    "max_position_size_pct_bankroll": 0.02,
+    "max_additional_exposure_pct_bankroll": 0.01,
+    "max_single_order_pct_bankroll": 0.005,
+    "slippage_tolerance_bps": 100,
+    "liquidity_min_depth": 0,
+    "correlation_bucket_limit_pct_bankroll": 0.05,
+    "confidence_level": "medium",
+    "portfolio_constraints": [],
+    "liquidity_caution": "medium"
+  },
+  "bands": [
+    {
+      "name": "max_enter",
+      "min_p": 0.0,
+      "max_p": 0.2,
+      "target_exposure_fraction": 0.0,
+      "notes": "default fallback band"
+    },
+    {
+      "name": "scaled_enter",
+      "min_p": 0.2,
+      "max_p": 0.4,
+      "target_exposure_fraction": 0.0,
+      "notes": "default fallback band"
+    },
+    {
+      "name": "hold",
+      "min_p": 0.4,
+      "max_p": 0.6,
+      "target_exposure_fraction": 0.0,
+      "notes": "default fallback band"
+    },
+    {
+      "name": "trim",
+      "min_p": 0.6,
+      "max_p": 0.8,
+      "target_exposure_fraction": 0.0,
+      "notes": "default fallback band"
+    },
+    {
+      "name": "exit",
+      "min_p": 0.8,
+      "max_p": 1.0,
+      "target_exposure_fraction": 0.0,
+      "notes": "default fallback band"
+    }
+  ],
+  "invalidation": {
+    "thesis_breakers": [
+      "Verified starting lineups or injury news materially improve Fenerbahçe's outlook relative to the current estimate.",
+      "A high-quality near-kickoff bookmaker-consensus check supports a true win probability at or above the market.",
+      "New verified information shows the market was efficiently incorporating team news absent from the bounded bundle."
+    ],
+    "time_breakers": [
+      "If no fresh verification arrives before near kickoff, the packet should remain non-actionable.",
+      "Any meaningful pre-kickoff price move should trigger reassessment because the case is highly freshness-sensitive."
+    ],
+    "market_structure_breakers": [
+      "If settlement mechanics differ materially from the assumed standard regulation-time win interpretation, reassess before trading."
+    ],
+    "reversal_conditions": [
+      "Upgrade to authorized Yes only if fresh independent verification lifts fair value clearly above executable price with sufficient margin over uncertainty.",
+      "Consider a No stance only if verified adverse team news emerges and the market does not fully adjust."
+    ]
+  },
+  "epistemic_status": {
+    "decision_quality": "not_ready",
+    "key_uncertainties": [
+      "Late lineup and injury status for both teams.",
+      "Whether sharper bookmaker pricing agrees with or contradicts the current market.",
+      "How much uncaptured pre-match information is already embedded in the market price."
+    ],
+    "what_would_change_my_mind": [
+      "A trustworthy near-kickoff lineup or team-news check.",
+      "A directly captured bookmaker-consensus odds screen close to kickoff.",
+      "A material market move that creates a clearer discrepancy versus newly verified information."
+    ],
+    "reasons_to_pass": [
+      "Current bounded estimate is slightly below market.",
+      "The match is freshness-sensitive with unresolved decision blockers.",
+      "Verification quality is not high enough for a confident execution decision."
+    ]
+  },
+  "audit": {
+    "one_sentence_rationale": "Fenerbahçe should be favored, but with bounded fair value around 0.715 versus a 0.745 market and no strong late team-news or odds verification, the disciplined decision is watch-only and flat rather than forcing a trade.",
+    "notes": [
+      "Upstream views broadly agree on favoritism but do not establish a verified positive edge at the current price.",
+      "This is a no-trade because uncertainty is concentrated in exactly the late information most likely to move a soccer favorite by several points."
+    ],
+    "market_baseline_respected": true,
+    "action_bias_check_passed": true,
+    "self_preservation_bias_check_passed": true,
+    "structured_handoff_primary_used": true,
+    "prose_fallback_used": false,
+    "verification_mode_used": "not_ready_reopen_recommended",
+    "additional_verification_performed": false,
+    "additional_verification_notes": ""
+  }
+}

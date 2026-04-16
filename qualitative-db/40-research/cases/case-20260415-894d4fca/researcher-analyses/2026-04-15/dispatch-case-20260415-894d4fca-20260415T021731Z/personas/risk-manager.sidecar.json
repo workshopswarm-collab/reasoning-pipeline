@@ -1,0 +1,61 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "medium",
+  "fragility_points": [
+    "Core thesis depends heavily on one piece of contract text.",
+    "Official primary resolution source was not directly accessible during the run.",
+    "A clarification excluding prior enacted law would break the thesis quickly."
+  ],
+  "key_assumptions": [
+    "Public Law 118-49 is a qualifying reauthorization under the contract as written.",
+    "No later clarification narrows the market to future legislation only.",
+    "The official source-of-truth surfaces would align with the market's explicit wording."
+  ],
+  "main_logical_chain": [
+    "Read the market contract literally.",
+    "Notice that qualifying legislation explicitly includes Public Law 118-49.",
+    "Infer that if Public Law 118-49 reauthorized Section 702, the substantive event may already be satisfied.",
+    "Conclude that remaining downside is mainly contract-interpretation and source-of-truth risk.",
+    "Set probability above market but below certainty because direct official confirmation was blocked."
+  ],
+  "main_thesis": "The contract text appears to make Yes highly likely already because it explicitly says qualifying legislation includes Public Law 118-49, so the main remaining risk is interpretation or settlement handling rather than fresh congressional failure.",
+  "own_probability": 0.92,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "Qualifying legislation includes Public Law 118-49.",
+    "Primary resolution sources ... Congress.gov ... and other official information from the government of the United States."
+  ],
+  "reasoning_mode": [
+    "contract_interpretation",
+    "risk_management",
+    "scenario_analysis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-894d4fca",
+    "dispatch_id": "dispatch-case-20260415-894d4fca-20260415T021731Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "d9488839-5348-438a-955c-ce9898505e22",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-894d4fca/researcher-analyses/2026-04-15/dispatch-case-20260415-894d4fca-20260415T021731Z/personas/risk-manager.md",
+    "source_persona_sha256": "b7cca60b47a7c77313d6b03f80f59eed2da1ce75c58b49a61673062d662b7107"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High relevance primary rule text, but only medium overall confidence because external corroboration was contextual and the named official source-of-truth surface could not be fetched directly.",
+  "strongest_disconfirmers": [
+    "Congress.gov could not be fetched live during the run, leaving a real official-source verification gap.",
+    "The 78.5% market price suggests nontrivial interpretation or settlement uncertainty remains.",
+    "Multi-condition legal markets can fail on wording or source-mapping ambiguity rather than substance."
+  ],
+  "strongest_supports": [
+    "Market text explicitly states that qualifying legislation includes Public Law 118-49.",
+    "A Public Law has already passed both chambers and become law, satisfying the contract path if it qualifies.",
+    "Contextual statutory history supports that Section 702 was extended in 2024."
+  ],
+  "timing_relevance": "Deadline is April 19, 2026 11:59 PM ET, but timing risk matters less if qualifying legislation already exists; then the key timing issue becomes when and how official settlement interpretation catches up.",
+  "unresolved_ambiguities": [
+    "Whether Congress.gov cleanly maps H.R. 22 / Public Law 118-49 to the qualifying-legislation language.",
+    "Whether the market creator intended the contract to include already-enacted qualifying law in the straightforward literal way."
+  ],
+  "what_would_change_view": "Direct official evidence that Public Law 118-49 does not qualify, or a market clarification excluding prior enacted law, would push the estimate materially lower."
+}

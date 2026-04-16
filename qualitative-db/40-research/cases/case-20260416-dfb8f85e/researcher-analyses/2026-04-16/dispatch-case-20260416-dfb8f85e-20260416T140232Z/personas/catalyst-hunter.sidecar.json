@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Single-minute settlement mechanics make this more fragile than a daily-close or average-price market.",
+    "BTC is near visible resistance rather than in a clean breakout regime.",
+    "Any sudden risk-off macro move could quickly erase the spot cushion."
+  ],
+  "key_assumptions": [
+    "No fresh macro or crypto-specific shock forces BTC below 72k into the exact governing minute.",
+    "Binance BTC/USDT remains operational and behaves normally at settlement.",
+    "Current support is not immediately overwhelmed by profit-taking or resistance rejection."
+  ],
+  "main_logical_chain": [
+    "The contract resolves on a specific Binance BTC/USDT 1-minute close at 12:00 ET on April 21.",
+    "Current Binance spot is about 1.8k above the 72k threshold, so Yes starts with a cushion.",
+    "Without a concrete bearish catalyst inside five days, threshold retention is more likely than a decisive breakdown.",
+    "Therefore Yes is favored, but only moderately because a small selloff could still invalidate it."
+  ],
+  "main_thesis": "BTC is more likely than not to stay above 72000 on the April 21 noon ET Binance 1-minute close because spot is already around 73.8k and no clearly identified near-term bearish catalyst currently looks strong enough to force a sub-72k settlement print.",
+  "own_probability": 0.76,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone (noon) ... has a final 'Close' price higher than ... 72,000.",
+    "Binance BTCUSDT last traded around 73,797 during the run."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "catalyst_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-dfb8f85e",
+    "dispatch_id": "dispatch-case-20260416-dfb8f85e-20260416T140232Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "3fac7db5-85e1-4269-b254-7ddf2a679b7c",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-dfb8f85e/researcher-analyses/2026-04-16/dispatch-case-20260416-dfb8f85e-20260416T140232Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "137481705a87da996831ee3caf67130ac94461ee0b67ad3d2fbc09cefd5a570a"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is medium-high overall because Binance is the direct settlement venue and CoinDesk adds recent contextual independence, though only one contextual source was used.",
+  "strongest_disconfirmers": [
+    "A roughly 2.4% drawdown is enough to flip the market to No.",
+    "CoinDesk context points to supply from short-term holders and downside hedging.",
+    "This is a single-minute, date-specific Binance close, so timing fragility is high."
+  ],
+  "strongest_supports": [
+    "Binance spot was around 73.8k during the run, already above the threshold.",
+    "Recent 24h Binance high near 75.4k shows BTC has recently traded materially above 72k.",
+    "The contract only requires threshold retention, not a fresh upside breakout."
+  ],
+  "timing_relevance": "This is primarily a five-day catalyst-absence question: the key issue is whether any near-term event can push BTC below 72k exactly into the governing noon ET minute.",
+  "unresolved_ambiguities": [
+    "No strong direct evidence was found for the exact macro calendar catalyst most likely to matter before April 21.",
+    "Binance UI versus API display specifics are not fully documented in the finding, though venue/pair/time rules are clear."
+  ],
+  "what_would_change_view": "A decisive move back toward or below 72k, a concrete bearish macro catalyst before settlement, or a Binance-specific disruption would lower the estimate materially."
+}

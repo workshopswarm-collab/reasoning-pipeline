@@ -1,0 +1,156 @@
+{
+  "schema_version": "decision-packet/v1",
+  "generated_at": "2026-04-15T08:26:00-04:00",
+  "context": {
+    "case_key": "case-20260415-ba1899b5",
+    "dispatch_id": "dispatch-case-20260415-ba1899b5-20260415T121723Z",
+    "question": "Will Netflix Inc (NFLX) beat quarterly earnings?",
+    "market_id": "f4307377-9cd2-46fb-b820-eea6b442c45f",
+    "external_market_id": "0xd7457afe5329090292c32bc5bde74b9b005426aadc09fc530da5b696b2655bba",
+    "market_slug": "nflx-quarterly-earnings-gaap-eps-04-16-2026-0pt76",
+    "platform": "polymarket",
+    "primary_market_url": "https://polymarket.com/event/nflx-quarterly-earnings-gaap-eps-04-16-2026-0pt76",
+    "market_title": "Will Netflix Inc (NFLX) beat quarterly earnings?",
+    "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260415-ba1899b5/synthesizer-agent/decision-handoff.md",
+    "source_syndicated_finding_path": "qualitative-db/40-research/cases/case-20260415-ba1899b5/synthesizer-agent/syndicated-finding.md",
+    "source_light_refresh_brief_path": "",
+    "refresh_mode": "",
+    "decision_maker_agent": "decision-maker",
+    "canonical_markdown_path": "decision-maker-packet.md",
+    "canonical_json_path": "artifacts/decision-maker-packet.json"
+  },
+  "decision": {
+    "side": "yes",
+    "trade_authorization": "forbidden",
+    "position_policy": "flat",
+    "decision_readiness": "needs_more_research",
+    "primary_crux": "Netflix is still more likely than not to beat the contract threshold, but a 0.945 market price is too aggressive when the strike exactly matches the company's prior $0.76 guide and the bounded package does not cleanly verify final pre-release consensus above that strict beat line.",
+    "secondary_cruxes": [
+      "This contract is about a strict GAAP EPS beat, not broad business strength or narrative momentum.",
+      "If official rounded GAAP EPS prints exactly $0.76, the market resolves No, so guide-equals-strike risk is economically decisive.",
+      "The most important missing information is a clean independently verified final consensus EPS source immediately before the print."
+    ],
+    "thesis_class": "not_decision_ready"
+  },
+  "valuation": {
+    "fair_value_low": 0.78,
+    "fair_value_high": 0.86,
+    "fair_value_mid": 0.82,
+    "independent_verification_quality": "medium",
+    "compressed_toward_market_applied": true,
+    "compression_reason": "Business momentum and the market prior support a real Yes lean, but missing fresh consensus confirmation and exact-guide threshold risk keep fair value materially below the market and below execution-ready confidence.",
+    "market_reference_price": 0.945,
+    "edge_mid_vs_market_pct_points": -12.5
+  },
+  "execution_semantics": {
+    "price_source": "market_snapshot_quote",
+    "price_axis": "market_implied_true_prob",
+    "rebalance_threshold_fraction": 0.1,
+    "allow_auto_reversal": false,
+    "quote_staleness_seconds": 300,
+    "valid_until": "2026-04-16T12:27:17.365234+00:00"
+  },
+  "risk_controls": {
+    "confidence_level": "low",
+    "portfolio_constraints": [
+      "Do not enter from this packet; reopen only after clean final consensus verification or the official earnings release is available.",
+      "Treat exact-threshold earnings contracts as highly sensitive to rounding and guidance-equals-strike cases.",
+      "Require direct confirmation of the operative GAAP EPS field in official Netflix earnings materials before treating any edge as executable."
+    ],
+    "liquidity_caution": "high",
+    "max_position_size_pct_bankroll": 0.02,
+    "max_additional_exposure_pct_bankroll": 0.01,
+    "max_single_order_pct_bankroll": 0.005,
+    "slippage_tolerance_bps": 100,
+    "liquidity_min_depth": 0,
+    "correlation_bucket_limit_pct_bankroll": 0.05
+  },
+  "bands": [
+    {
+      "name": "max_enter",
+      "min_p": 0.0,
+      "max_p": 0.65,
+      "target_exposure_fraction": 0.0,
+      "notes": "No entry authorized from this packet because the case is not execution-ready."
+    },
+    {
+      "name": "scaled_enter",
+      "min_p": 0.65,
+      "max_p": 0.78,
+      "target_exposure_fraction": 0.0,
+      "notes": "Even much cheaper pricing would still require a clean pre-release consensus or official print confirmation."
+    },
+    {
+      "name": "hold",
+      "min_p": 0.78,
+      "max_p": 0.86,
+      "target_exposure_fraction": 0.0,
+      "notes": "Bounded fair-value zone under current evidence, but not actionable under present verification gaps."
+    },
+    {
+      "name": "trim",
+      "min_p": 0.86,
+      "max_p": 0.95,
+      "target_exposure_fraction": 0.0,
+      "notes": "Above fair value while exact-print and final-consensus uncertainty remain unresolved."
+    },
+    {
+      "name": "exit",
+      "min_p": 0.95,
+      "max_p": 1.0,
+      "target_exposure_fraction": 0.0,
+      "notes": "Avoid or exit at extreme prices because strict-beat and rounding risk remain live."
+    }
+  ],
+  "invalidation": {
+    "thesis_breakers": [
+      "A clean final consensus source shows the street is still at or below $0.76, reducing the Yes probability materially.",
+      "The official Netflix earnings release reports rounded GAAP EPS of exactly $0.76 or lower.",
+      "The official release omits usable GAAP EPS in a way that changes expected resolver behavior under the fallback hierarchy."
+    ],
+    "time_breakers": [
+      "A clean immediately pre-release consensus verification should supersede this packet before any action.",
+      "The official Netflix earnings document fully resolves and obsoletes this judgment once published."
+    ],
+    "market_structure_breakers": [
+      "Resolver guidance or source hierarchy interpretation changes materially before the print.",
+      "Consensus sources or official timing change in a way that alters expected market behavior before release."
+    ],
+    "reversal_conditions": [
+      "Move from forbidden to watch-only or authorized only after clean final consensus verification above $0.76 or after official results materially de-risk the threshold.",
+      "Move materially higher if a reputable final consensus source clearly shows $0.77+ GAAP EPS expectation.",
+      "Move materially lower if accessible consensus remains pinned at $0.76 or if release-format ambiguity increases.",
+      "Do not auto-reverse from this packet."
+    ]
+  },
+  "epistemic_status": {
+    "key_uncertainties": [
+      "The final pre-release street consensus for rounded GAAP EPS.",
+      "Whether Netflix's official reported GAAP EPS will clear the strict greater-than-$0.76 threshold after rounding.",
+      "Whether official release format or timing introduces any fallback-source complication."
+    ],
+    "what_would_change_my_mind": [
+      "A directly verified reputable consensus source showing current expectation comfortably above $0.76 would raise confidence and readiness.",
+      "The official Netflix earnings materials themselves would collapse most uncertainty immediately.",
+      "Evidence that consensus remained exactly at $0.76 would make the market's 0.945 look far too rich."
+    ],
+    "reasons_to_pass": [
+      "The current market price is materially above bounded fair value.",
+      "This is a strict-threshold earnings contract where exact print and rounding dominate broad narrative strength.",
+      "The most important missing input is final consensus verification, not more general company optimism."
+    ],
+    "decision_quality": "not_ready"
+  },
+  "audit": {
+    "one_sentence_rationale": "Netflix is still the directional favorite to beat, but because the strike exactly matches the company's prior $0.76 guide and the bounded package lacks a clean final consensus source proving the street moved safely above that line, the disciplined output is forbidden and needs-more-research rather than paying 0.945 for Yes.",
+    "notes": "This is a classic exact-threshold earnings case where business strength does not translate directly into executable certainty.",
+    "market_baseline_respected": true,
+    "action_bias_check_passed": true,
+    "self_preservation_bias_check_passed": true,
+    "structured_handoff_primary_used": true,
+    "prose_fallback_used": false,
+    "verification_mode_used": "not_ready_reopen_recommended",
+    "additional_verification_performed": false,
+    "additional_verification_notes": ""
+  }
+}

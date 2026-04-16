@@ -1,0 +1,58 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A fast drawdown toward or below 70000 before settlement would make 94% look stale.",
+    "API verification is direct but not the exact chart UI named in the rule text."
+  ],
+  "key_assumptions": [
+    "Current Binance spot distance above 70000 is the main statistic the market should price.",
+    "No major downside shock or Binance-specific dislocation hits before April 20 noon ET.",
+    "Binance API readings are a valid direct verification proxy for the Binance settlement surface."
+  ],
+  "main_logical_chain": [
+    "Start from the 94% market prior on a simple near-dated threshold contract.",
+    "Check the exact contract mechanics and governing source of truth on Polymarket.",
+    "Verify current Binance BTCUSDT spot and recent 1-minute closes directly.",
+    "Observe that current price is about 7% above the threshold with only four days left.",
+    "Keep a modest discount to market because short-horizon crypto tail risk remains meaningful."
+  ],
+  "main_thesis": "The market is directionally right that Yes is favored because Binance BTC/USDT is currently well above 70000 and the contract is a narrow short-horizon minute-close check, but 94% looks slightly overconfident versus still-real four-day crypto tail risk.",
+  "own_probability": 0.9,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "Binance BTC/USDT was around 75,029.99 during this run, about 7% above the 70,000 line.",
+    "The final close must be strictly higher than 70,000; equal to 70,000 is not enough."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260416-5baa54ee",
+    "dispatch_id": "dispatch-case-20260416-5baa54ee-20260416T032738Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "d30938f4-aed6-4194-8db0-0f62386de149",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-5baa54ee/researcher-analyses/2026-04-16/dispatch-case-20260416-5baa54ee-20260416T032738Z/personas/market-implied.md",
+    "source_persona_sha256": "dbcf7bb31b182363aedb477fd39b58290f0b408b96e1d1a4e893409d41529630"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Good for this contract: direct Binance venue-family data plus clear Polymarket rule text, with only modest independence limitations because settlement is venue-specific.",
+  "strongest_disconfirmers": [
+    "BTC can still drop more than 7% in four days, especially over a weekend or on a macro/crypto shock.",
+    "The contract settles on one exact Binance minute, so venue-specific print or operational issues can matter."
+  ],
+  "strongest_supports": [
+    "Binance ticker API showed BTCUSDT at 75029.99 during the run.",
+    "Recent Binance 1-minute closes were all above 75000.",
+    "Polymarket rules clearly define Binance BTC/USDT 12:00 ET 1-minute close as the governing source of truth."
+  ],
+  "timing_relevance": "High; the contract resolves at 12:00 PM ET on 2026-04-20 and this run occurred about four days before settlement.",
+  "unresolved_ambiguities": [
+    "How much weekend/event volatility should be priced into a one-minute threshold check over the remaining four days."
+  ],
+  "what_would_change_view": "A later Binance check showing BTC much closer to 70000, a major downside catalyst before settlement, or evidence of Binance-specific stress would lower the estimate."
+}

@@ -1,0 +1,58 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "If Polymarket names a narrower settlement source that stayed below $76,000, the view weakens materially.",
+    "If the Binance high were deemed erroneous or non-qualifying, confidence would fall."
+  ],
+  "key_assumptions": [
+    "Polymarket will use a settlement methodology that recognizes a major-market print above $76,000 during April 13-19.",
+    "The Binance $76,038 high is a valid qualifying print rather than an excluded anomaly."
+  ],
+  "main_logical_chain": [
+    "Market implies 99.95% YES.",
+    "Direct Binance data shows BTC crossed $76,000 during the relevant week.",
+    "Independent contextual data shows the broader market was genuinely near the threshold.",
+    "Therefore the event is overwhelmingly likely to qualify, with residual risk concentrated in contract-source ambiguity."
+  ],
+  "main_thesis": "A major exchange already printed above $76,000 during the relevant week, so YES is overwhelmingly likely, but the tiny remaining risk is settlement-source ambiguity rather than price action.",
+  "own_probability": 0.98,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "2026-04-14 Binance high = 76,038",
+    "market-implied probability = 99.95%",
+    "own probability = 98% YES"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "contract_interpretation",
+    "variant_hypothesis",
+    "technical_reference"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260414-669935fa",
+    "dispatch_id": "dispatch-case-20260414-669935fa-20260414T172940Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "ddb797ea-2a2d-494b-8a17-dedaad196826",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-669935fa/researcher-analyses/2026-04-14/dispatch-case-20260414-669935fa-20260414T172940Z/personas/variant-view.md",
+    "source_persona_sha256": "4d8ad5de684ccdc59f4f66dddcc3647480de12c7136ff18c1acc113d20b0a5cb"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality direct exchange evidence plus a useful contextual cross-check, but only medium confidence on source-of-truth mechanics because the exact rules feed was not fully inspected.",
+  "strongest_disconfirmers": [
+    "CoinGecko composite data in the pulled range peaked below $76,000.",
+    "The exact Polymarket governing settlement source was not fully visible in the fetched page extract."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT daily candle for 2026-04-14 shows a high of $76,038.",
+    "CoinGecko range data independently shows BTC trading in the upper-$75k area during the same window."
+  ],
+  "timing_relevance": "The threshold appears to have been crossed early in the April 13-19 window, which sharply reduces remaining path risk.",
+  "unresolved_ambiguities": [
+    "Exact authoritative settlement feed for this Polymarket market.",
+    "Whether any governing composite source diverged enough from Binance to matter."
+  ],
+  "what_would_change_view": "I would reduce confidence if the market rules explicitly reference a source that did not print at or above $76,000, or if the Binance high were shown to be non-qualifying."
+}

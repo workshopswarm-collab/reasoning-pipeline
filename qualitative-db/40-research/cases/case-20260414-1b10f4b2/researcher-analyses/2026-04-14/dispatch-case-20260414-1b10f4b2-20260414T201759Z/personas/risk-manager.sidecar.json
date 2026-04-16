@@ -1,0 +1,61 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Single-minute settlement timing.",
+    "Exchange-specific source dependence.",
+    "Potential short-horizon BTC volatility over the next six days."
+  ],
+  "key_assumptions": [
+    "Binance remains the operationally usable and unambiguous settlement source.",
+    "BTCUSDT does not draw down enough by Apr 20 noon ET to print a close at or below 68000.",
+    "No Binance-specific anomaly materially distorts the settlement minute close."
+  ],
+  "main_logical_chain": [
+    "Polymarket resolves from the Binance BTCUSDT 12:00 ET 1-minute candle close on Apr 20.",
+    "Current Binance spot is materially above 68k, so base direction remains Yes.",
+    "Because settlement is narrow in time and venue, residual downside is timing-specific and exchange-specific.",
+    "That narrows the disagreement to confidence rather than direction, yielding 89% vs market 93.5%."
+  ],
+  "main_thesis": "Yes is still the likelier outcome, but the market is somewhat too confident because settlement depends on one exact Binance BTCUSDT 1-minute close at noon ET on April 20.",
+  "own_probability": 0.89,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone (noon) ... has a final 'Close' price higher than the price specified in the title.",
+    "Kline/candlestick bars for a symbol. Klines are uniquely identified by their open time."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "risk_management",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-1b10f4b2",
+    "dispatch_id": "dispatch-case-20260414-1b10f4b2-20260414T201759Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "5e806b7a-4c64-46ed-89de-158fa54d80c5",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-1b10f4b2/researcher-analyses/2026-04-14/dispatch-case-20260414-1b10f4b2-20260414T201759Z/personas/risk-manager.md",
+    "source_persona_sha256": "3865c1e6b0bbe13a132fb8c99db7654c2ece40f3ad9dfecca9b1cd1b17a1c320"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary contract source quality is high; contextual Binance docs and live API checks are strong, but evidence independence is only medium because key surfaces ultimately depend on Binance.",
+  "strongest_disconfirmers": [
+    "Resolution depends on one exact 12:00 PM ET one-minute close six days from now, not a broad daily or weekly level.",
+    "Binance-specific microstructure or wick behavior could matter even if cross-venue BTC remains firmer.",
+    "Extreme market pricing may be underweighting residual tail risk."
+  ],
+  "strongest_supports": [
+    "Current Binance BTCUSDT is around 74.3k, leaving roughly a 6.3k cushion above the threshold.",
+    "Observed 24h Binance range around 73.0k-76.0k keeps spot well above 68k at assignment time.",
+    "Contract mechanics are straightforward once the correct candle is identified."
+  ],
+  "timing_relevance": "High: Apr 20 12:00 PM ET was explicitly verified as 16:00 UTC, and the contract resolves on that exact minute close.",
+  "unresolved_ambiguities": [
+    "Polymarket references Binance UI chart language while verification used Binance API/docs for candle interpretation.",
+    "No future settlement candle exists yet, so final operational behavior cannot be directly observed today."
+  ],
+  "what_would_change_view": "A sustained move toward or below 70k, a volatility shock, or Binance-specific operational/wick issues would push the estimate down; stable trading well above 70k into Apr 19-20 would move it upward toward the market."
+}

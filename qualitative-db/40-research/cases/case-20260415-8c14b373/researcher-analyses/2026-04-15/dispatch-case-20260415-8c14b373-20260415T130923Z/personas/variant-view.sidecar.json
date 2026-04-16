@@ -1,0 +1,61 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "medium",
+  "fragility_points": [
+    "The leaderboard extraction is imperfect and does not cleanly expose all model labels.",
+    "If the current lead is wider than the extraction suggests, the estimate is too low.",
+    "Operational details around source availability can matter because trading ends before the final check."
+  ],
+  "key_assumptions": [
+    "The current top-of-leaderboard margin is real but not wide enough to justify a 93.1% price.",
+    "At least one rival remains close enough that a late refresh or score move could flip first place.",
+    "The extracted leaderboard text is noisy but directionally correct about current Anthropic leadership."
+  ],
+  "main_logical_chain": [
+    "The market resolves on a specific future leaderboard snapshot rather than on generic model reputation.",
+    "Current evidence suggests the favorite is leading now, so it remains the base case.",
+    "But the race appears compressed enough that short-horizon instability and refresh risk are still live.",
+    "Therefore the favorite should be priced below near-certainty even if it remains the likeliest outcome."
+  ],
+  "main_thesis": "claude-opus-4-6-thinking is still the likeliest winner, but the market is too confident because a short-horizon future leaderboard check with compressed top scores is not a near-certainty event.",
+  "own_probability": 0.82,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "favorite, but not lock",
+    "the market looks too confident",
+    "governing source of truth: the Chatbot Arena / Arena AI leaderboard page"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "contract_interpretation",
+    "variant_hypothesis",
+    "risk_management"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-8c14b373",
+    "dispatch_id": "dispatch-case-20260415-8c14b373-20260415T130923Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "83ffaac8-fa11-4bef-bcb0-178100b349a2",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-8c14b373/researcher-analyses/2026-04-15/dispatch-case-20260415-8c14b373-20260415T130923Z/personas/variant-view.md",
+    "source_persona_sha256": "9b5eeaf76214728531527fc9941aa5c294c4e3c638f90d4bd21bba583172c704"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary source-of-truth quality is high in principle, but extraction quality of the live leaderboard is only moderate; evidence independence is medium-low because the contract source points directly to the leaderboard source.",
+  "strongest_disconfirmers": [
+    "If the leaderboard is effectively stable over the next ~48 hours and claude-opus-4-6-thinking is already cleanly first, the 93.1% market price may be roughly fair."
+  ],
+  "strongest_supports": [
+    "The contract resolves at a future spot check on April 17 at noon ET, not immediately.",
+    "The live leaderboard extraction indicates an Anthropic model is first but the top cluster remains close.",
+    "The contract includes fallback behavior if the named leaderboard source is unavailable."
+  ],
+  "timing_relevance": "The case is highly timing-sensitive because the contract resolves from a noon ET leaderboard check on April 17 while market trading closes earlier on April 16.",
+  "unresolved_ambiguities": [
+    "Exact current margin between claude-opus-4-6-thinking and the nearest eligible rival from the market group.",
+    "How likely leaderboard movement is before April 17 noon ET.",
+    "Whether any close rival has underweighted late-update potential."
+  ],
+  "what_would_change_view": "A cleaner direct leaderboard read showing a clearly wider and stable claude-opus-4-6-thinking lead would move me up toward the market; a cleaner read showing a razor-thin lead or imminent refresh risk would move me down."
+}

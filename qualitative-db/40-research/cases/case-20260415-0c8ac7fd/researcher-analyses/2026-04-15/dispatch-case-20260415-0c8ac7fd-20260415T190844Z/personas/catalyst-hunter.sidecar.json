@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A sharp risk-off move before Friday noon ET could erase the cushion.",
+    "Exact fixing-minute exposure matters more if BTC drifts back toward the threshold."
+  ],
+  "key_assumptions": [
+    "BTC does not suffer a roughly 3.6%-3.8% drawdown into the governing minute.",
+    "Recent mid-74k Binance trading is representative rather than a one-off spike.",
+    "No Binance-specific operational issue distorts the resolution print."
+  ],
+  "main_logical_chain": [
+    "The contract resolves on the Binance BTC/USDT 12:00 ET one-minute close on Apr 17.",
+    "BTC is currently around 74.7k on Binance, materially above the 72k threshold.",
+    "That leaves a meaningful cushion, so absent a negative shock the default path favors Yes.",
+    "Because timing still matters at one specific minute, probability should be high but not near certainty."
+  ],
+  "main_thesis": "BTC is already trading materially above 72,000 on Binance, so this market is more about preserving cushion into the Apr 17 noon ET close than needing a new upside catalyst.",
+  "own_probability": 0.91,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "Binance BTC/USDT 12:00 ET one-minute candle close",
+    "BTCUSDT = 74,704.00",
+    "current cushion is about $2,704 above 72,000"
+  ],
+  "reasoning_mode": [
+    "catalyst_analysis",
+    "scenario_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260415-0c8ac7fd",
+    "dispatch_id": "dispatch-case-20260415-0c8ac7fd-20260415T190844Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "08fcb1c4-d320-4fe6-ac85-1daa5dfcf062",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-0c8ac7fd/researcher-analyses/2026-04-15/dispatch-case-20260415-0c8ac7fd-20260415T190844Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "233bc537492228ceed8f44f99b0e3571b8dc966a1ff6c1837302b9db3a153dc7"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality direct mechanics and exchange data, plus one contextual secondary source; source-of-truth ambiguity is low.",
+  "strongest_disconfirmers": [
+    "This is a specific Apr 17 12:00 ET one-minute close, not a touch market.",
+    "BTC can move several percent in 48 hours on macro or crypto-specific shocks."
+  ],
+  "strongest_supports": [
+    "Direct Binance ticker check showed BTCUSDT at 74,704.",
+    "Recent Binance 1-minute klines were clustered in the mid-74k range.",
+    "Polymarket rules make the governing source explicit and low-ambiguity."
+  ],
+  "timing_relevance": "The key catalyst is time decay with BTC still above 72k; each hour that passes without a downside shock strengthens the Yes path.",
+  "unresolved_ambiguities": [
+    "No strong independent macro-news catalyst source was obtained in this run due fetch limits.",
+    "Need rerun-time confirmation if BTC compresses close to 72k before settlement."
+  ],
+  "what_would_change_view": "A decisive Binance move back toward or below 72k before the Apr 17 noon ET close, or new evidence of unusual fixing-minute/operational risk, would cut the estimate materially."
+}

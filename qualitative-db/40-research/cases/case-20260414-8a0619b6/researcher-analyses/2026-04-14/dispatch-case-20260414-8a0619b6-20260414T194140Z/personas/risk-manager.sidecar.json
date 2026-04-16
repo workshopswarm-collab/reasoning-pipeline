@@ -1,0 +1,61 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Point-in-time settlement fragility.",
+    "Venue-specific microstructure risk.",
+    "Short-horizon BTC volatility could compress the cushion quickly."
+  ],
+  "key_assumptions": [
+    "BTC stays comfortably above 70k into the settlement window.",
+    "Binance pricing remains broadly aligned with major peer venues.",
+    "No Binance-specific anomaly dominates the noon ET settlement candle."
+  ],
+  "main_logical_chain": [
+    "The contract resolves from Binance BTC/USDT 12:00 ET April 18 final 1-minute close.",
+    "Current verified Binance spot is materially above 70k, so Yes is favored.",
+    "But single-minute single-venue settlement means the remaining risk is higher than a simple spot snapshot suggests.",
+    "That keeps the estimate high but below the market's ~89-90% confidence."
+  ],
+  "main_thesis": "BTC above 70k on Binance at April 18 noon ET is still favored, but the market is a bit too confident because single-minute single-venue settlement leaves meaningful path and wick risk.",
+  "own_probability": 0.84,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "Binance BTC/USDT 1-minute candle for 12:00 ET on April 18, final Close.",
+    "My risk-manager view is Yes ~84% rather than the market-implied ~89-90%."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "risk_management",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-8a0619b6",
+    "dispatch_id": "dispatch-case-20260414-8a0619b6-20260414T194140Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "dde761bd-86a8-487f-a7bf-29465ad9253a",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-8a0619b6/researcher-analyses/2026-04-14/dispatch-case-20260414-8a0619b6-20260414T194140Z/personas/risk-manager.md",
+    "source_persona_sha256": "18002a843ab8b14eee6243b9433a7812368a1fb174e110c97228fdb68d2962e0"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Low ambiguity on governing source of truth, good direct verification from Binance, medium independence overall due to limited external source retrieval in runtime.",
+  "strongest_disconfirmers": [
+    "The contract resolves on one exact 1-minute close, so timing/path risk matters more than average price comfort.",
+    "A roughly 5.5% downside move over four days is plausible for BTC.",
+    "A Binance-specific wick or basis dislocation could decide the market."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT spot verified near 74,110.63, leaving about a 4.1k cushion over the threshold.",
+    "Recent Binance 1-minute klines sampled in the run were consistently above 74k.",
+    "Coinbase spot near 74,166.545 cross-checked the broad BTC level."
+  ],
+  "timing_relevance": "High: the contract resolves at noon ET on April 18 from a single Binance 1-minute close, so date, timezone, and exact minute are central.",
+  "unresolved_ambiguities": [
+    "No broad independent volatility dataset was retrieved in this run because web search failed.",
+    "Exact settlement-minute market conditions remain unknowable four days early."
+  ],
+  "what_would_change_view": "I would move higher if BTC stays firmly above 73k-74k into late April 17/early April 18 with calm Binance basis; I would move lower if BTC slips toward 71k-72k or Binance-specific downside wicks intensify."
+}

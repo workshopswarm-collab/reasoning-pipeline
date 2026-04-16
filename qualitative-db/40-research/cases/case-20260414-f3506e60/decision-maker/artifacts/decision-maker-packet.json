@@ -1,0 +1,157 @@
+{
+  "schema_version": "decision-packet/v1",
+  "generated_at": "2026-04-13T22:32:00-04:00",
+  "context": {
+    "case_key": "case-20260414-f3506e60",
+    "dispatch_id": "dispatch-case-20260414-f3506e60-20260414T022039Z",
+    "question": "Will the Dravida Munnetra Kazhagam (DMK) win the most seats in the 2026 Tamil Nadu Legislative Assembly election?",
+    "market_id": "case-20260414-f3506e60",
+    "market_title": "Will the Dravida Munnetra Kazhagam (DMK) win the most seats in the 2026 Tamil Nadu Legislative Assembly election?",
+    "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260414-f3506e60/synthesizer-agent/decision-handoff.md",
+    "source_syndicated_finding_path": "qualitative-db/40-research/cases/case-20260414-f3506e60/synthesizer-agent/syndicated-finding.md",
+    "decision_maker_agent": "decision-maker",
+    "canonical_markdown_path": "decision-maker-packet.md",
+    "canonical_json_path": "artifacts/decision-maker-packet.json",
+    "external_market_id": "0x33403f2501afbeafa3372043080e5360d714a9323b264cb76c3aaafc335304a5",
+    "market_slug": "will-the-dravida-munnetra-kazhagam-dmk-win-the-most-seats-in-the-2026-tamil-nadu-legislative-assembly-election",
+    "platform": "polymarket",
+    "primary_market_url": "https://polymarket.com/event/will-the-dravida-munnetra-kazhagam-dmk-win-the-most-seats-in-the-2026-tamil-nadu-legislative-assembly-election",
+    "source_light_refresh_brief_path": "",
+    "refresh_mode": ""
+  },
+  "decision": {
+    "side": "yes",
+    "trade_authorization": "watch_only",
+    "position_policy": "hold_only",
+    "decision_readiness": "needs_more_research",
+    "primary_crux": "DMK remains the likeliest single party to win the most seats because it has the strongest verified structural baseline and the contract settles on party seat count, not alliance narrative, but the market already prices a fairly strong favorite and the current bundle lacks enough late-cycle seat evidence to justify action.",
+    "secondary_cruxes": [
+      "The biggest unresolved issue is seat conversion under a multi-cornered race, especially how TVK and broader opposition fragmentation affect constituency outcomes.",
+      "The market closes before the reported polling date, which increases the value of late campaign information that is not directly verified in this bundle.",
+      "The current market is close to the bounded fair-value range, so missing constituency-level evidence matters more than usual."
+    ],
+    "thesis_class": "not_decision_ready"
+  },
+  "valuation": {
+    "fair_value_low": 0.67,
+    "fair_value_high": 0.74,
+    "fair_value_mid": 0.705,
+    "market_reference_price": 0.735,
+    "edge_mid_vs_market_pct_points": -3.0,
+    "independent_verification_quality": "medium",
+    "compressed_toward_market_applied": true,
+    "compression_reason": "DMK's 2021 seat dominance and incumbency justify favoritism, but thin current-cycle seat evidence and uncertainty around opposition coordination keep fair value near, but slightly below, the market."
+  },
+  "execution_semantics": {
+    "price_axis": "market_implied_true_prob",
+    "price_source": "market_snapshot_quote",
+    "rebalance_threshold_fraction": 0.1,
+    "allow_auto_reversal": false,
+    "valid_until": "2026-04-18T23:59:00-04:00",
+    "quote_staleness_seconds": 21600,
+    "time_horizon": "Through market close and late pre-poll seat-conversion evidence"
+  },
+  "risk_controls": {
+    "max_position_size_pct_bankroll": 0.005,
+    "max_additional_exposure_pct_bankroll": 0.0,
+    "max_single_order_pct_bankroll": 0.0,
+    "slippage_tolerance_bps": 80,
+    "liquidity_min_depth": 1000,
+    "correlation_bucket_limit_pct_bankroll": 0.03,
+    "confidence_level": "low",
+    "portfolio_constraints": [
+      "Do not initiate new exposure from this packet because the case remains seat-conversion-sensitive and research-incomplete.",
+      "Reopen only after stronger late polling, constituency-level seat projections, or credible evidence on opposition coordination and TVK vote splitting.",
+      "Treat alliance narrative and statewide mood as secondary to single-party seat mechanics in this contract."
+    ],
+    "liquidity_caution": "medium"
+  },
+  "bands": [
+    {
+      "name": "max_enter",
+      "min_p": 0,
+      "max_p": 0.3,
+      "target_exposure_fraction": 0,
+      "notes": "No entry authorized because the case is not decision-ready."
+    },
+    {
+      "name": "scaled_enter",
+      "min_p": 0.3,
+      "max_p": 0.55,
+      "target_exposure_fraction": 0,
+      "notes": "No entry authorized until seat-conversion evidence improves materially."
+    },
+    {
+      "name": "hold",
+      "min_p": 0.55,
+      "max_p": 0.72,
+      "target_exposure_fraction": 0,
+      "notes": "Hold/watch zone; DMK is favored but not cleanly enough verified for fresh adds."
+    },
+    {
+      "name": "trim",
+      "min_p": 0.72,
+      "max_p": 0.85,
+      "target_exposure_fraction": 0,
+      "notes": "Avoid increasing above roughly fair value given unresolved opposition-fragmentation dynamics."
+    },
+    {
+      "name": "exit",
+      "min_p": 0.85,
+      "max_p": 1,
+      "target_exposure_fraction": 0,
+      "notes": "Exit/avoid at expensive prices because current-cycle constituency evidence is too thin to support near-certainty."
+    }
+  ],
+  "invalidation": {
+    "thesis_breakers": [
+      "Credible late polling or seat projections show cleaner-than-expected anti-DMK coordination or AIADMK-led seat efficiency.",
+      "Strong evidence emerges that TVK harms DMK more than AIADMK in constituency-level conversion.",
+      "Late campaign reporting materially strengthens DMK's seat-conversion edge beyond the current bounded view."
+    ],
+    "market_structure_breakers": [
+      "The market is incorporating stronger local polling or field intelligence unavailable in the bounded package.",
+      "Thin liquidity or narrative momentum is overstating or understating the displayed 0.735 quote.",
+      "Late alliance or candidate shocks materially alter constituency-level seat conversion before market close."
+    ],
+    "time_breakers": [
+      "Because the market closes before the reported polling date, late campaign information can quickly dominate current reasoning.",
+      "Any credible late seat projection or polling wave should replace this packet rather than merely update it."
+    ],
+    "reversal_conditions": [
+      "Move toward authorized yes only after stronger late evidence confirms DMK's seat-conversion edge while price remains favorable.",
+      "Move lower if opposition coordination or TVK effects look more damaging to DMK than currently assumed.",
+      "Do not auto-reverse from this packet."
+    ]
+  },
+  "epistemic_status": {
+    "key_uncertainties": [
+      "How TVK vote share translates into constituency-level seat effects.",
+      "Whether anti-DMK forces coordinate efficiently enough to narrow or overturn DMK's seat edge.",
+      "What late pre-poll evidence emerges before or near market close."
+    ],
+    "reasons_to_pass": [
+      "The bundle explicitly says blockers require new research, especially on current-cycle seat evidence.",
+      "The market is near the bounded fair-value range, so there is not enough cushion to compensate for missing constituency-level information.",
+      "This contract depends on seat conversion, not broad narrative momentum, and that is where the current evidence is weakest."
+    ],
+    "what_would_change_my_mind": [
+      "Credible late polling or seat models showing DMK clearly ahead in single-party seat count would improve readiness and raise fair value modestly.",
+      "Strong evidence of opposition consolidation or damaging TVK vote-splitting effects on DMK would lower fair value.",
+      "Any late campaign shock materially changing constituency math would require a new packet."
+    ],
+    "decision_quality": "not_ready"
+  },
+  "audit": {
+    "market_baseline_respected": true,
+    "action_bias_check_passed": true,
+    "self_preservation_bias_check_passed": true,
+    "one_sentence_rationale": "DMK is still the likeliest single party to win the most seats, but because the market is already near the bounded fair-value range and the decisive uncertainty is unresolved constituency-level seat conversion under a fragmented opposition, the disciplined output is watch-only and needs-more-research rather than an authorized trade.",
+    "notes": "This packet intentionally separates a mild Yes lean from execution readiness: the structural DMK case is real, but the current bundle lacks the late-cycle seat evidence needed to treat 73.5% as clearly wrong or clearly attractive.",
+    "structured_handoff_primary_used": true,
+    "prose_fallback_used": false,
+    "verification_mode_used": "not_ready_reopen_recommended",
+    "additional_verification_performed": false,
+    "additional_verification_notes": ""
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Exact-minute settlement can punish a view even if BTC spends most of the window above 70k.",
+    "A sudden downside shock could rapidly erase the current cushion."
+  ],
+  "key_assumptions": [
+    "No major unscheduled macro or crypto-specific shock drives BTC down more than roughly 5.7% before settlement.",
+    "Binance BTC/USDT remains a reliable settlement surface into the April 20 noon ET minute.",
+    "The visible scheduled macro calendar is too light to force a large repricing by itself."
+  ],
+  "main_logical_chain": [
+    "The contract is governed by the Binance BTC/USDT 12:00 ET one-minute close on April 20.",
+    "BTC spot is currently around 74.2k, clearly above the 70k threshold.",
+    "The remaining visible scheduled macro calendar before settlement looks relatively light.",
+    "Therefore No likely requires an unscheduled shock or crypto-native liquidation event rather than an obvious calendar catalyst.",
+    "That supports a high but not near-certain Yes probability, slightly below market."
+  ],
+  "main_thesis": "BTC is already materially above 70k and the remaining scheduled catalyst calendar before April 20 noon ET looks light, so Yes is more likely unless an unscheduled shock or liquidation event hits.",
+  "own_probability": 0.82,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone (noon) ... has a final 'Close' price higher than the price specified.",
+    "Binance API spot during run: ~74203 to 74221 BTCUSDT.",
+    "BLS CPI schedule: March 2026 CPI released Apr. 10, 2026 at 08:30 AM."
+  ],
+  "reasoning_mode": [
+    "catalyst_analysis",
+    "contract_interpretation",
+    "market_anchor"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260415-04e7318a",
+    "dispatch_id": "dispatch-case-20260415-04e7318a-20260415T145259Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "3d789e6b-a4c0-46f8-baad-a17a1097eae2",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-04e7318a/researcher-analyses/2026-04-15/dispatch-case-20260415-04e7318a-20260415T145259Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "8233407986d4b8606bbc8bf03fff9c5727934c7833de1426fe32ab6b4f47da2c"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High on contract mechanics and current price because the run used Polymarket rules plus direct Binance API checks; medium on broader catalyst mapping because contextual calendar coverage was good but not exhaustive.",
+  "strongest_disconfirmers": [
+    "BTC can still fall 5-6% within days without a scheduled catalyst, especially on weekend or leverage-driven stress.",
+    "The contract resolves on one exact minute close, which adds timestamp/path fragility."
+  ],
+  "strongest_supports": [
+    "Direct Binance spot during the run was about 74.2k, leaving a roughly 6% cushion above the strike.",
+    "Polymarket rules explicitly settle on the Binance BTC/USDT 12:00 ET one-minute close.",
+    "BLS and BEA schedules indicate the biggest obvious early-April macro release already passed and the next BEA macro cluster is after resolution."
+  ],
+  "timing_relevance": "The key timing fact is that only about five days remain and no major scheduled macro catalyst was clearly identified inside the remaining window, so path risk is mainly unscheduled.",
+  "unresolved_ambiguities": [
+    "Smaller macro events between April 15 and April 20 were not exhaustively enumerated from fetched sources.",
+    "Operational candle-labeling details always matter more in exact-minute contracts than in broader end-of-day contracts."
+  ],
+  "what_would_change_view": "A drop toward the low-71k/high-69k area, evidence of leverage stress or a major exchange incident, or a meaningful macro/geopolitical risk-off shock before settlement would lower the Yes estimate."
+}

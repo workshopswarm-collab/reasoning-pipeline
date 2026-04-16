@@ -1,0 +1,62 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A sharp BTC selloff before April 20 could erase the current distance-from-strike cushion.",
+    "Exact-minute settlement introduces more fragility than a broader daily price condition.",
+    "Evidence independence is limited because the most relevant contextual source is also the settlement venue."
+  ],
+  "key_assumptions": [
+    "BTC remains in roughly the current above-70k regime into April 20.",
+    "No Binance-specific anomaly dominates the settlement minute.",
+    "Current spot distance from strike remains informative over the six-day horizon."
+  ],
+  "main_logical_chain": [
+    "Start from the market prior of 85.5% Yes.",
+    "Check the governing contract mechanics and confirm settlement is Binance BTC/USDT 12:00 ET 1-minute close on April 20.",
+    "Check current and recent Binance price context; BTC is already materially above 70k and has recently persisted there.",
+    "Discount modestly for exact-minute volatility and exchange-specific path risk.",
+    "Land slightly below market at 81% Yes while still broadly agreeing with the market."
+  ],
+  "main_thesis": "The market's high Yes price is broadly justified because Binance BTC/USDT is already well above 70,000 and has recently held above that threshold, though exact-minute settlement risk makes the true probability slightly lower than market.",
+  "own_probability": 0.81,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "Current market-implied probability: 85.5% Yes",
+    "Own probability estimate: 81% Yes",
+    "Governing source of truth for eventual settlement: Binance BTC/USDT close for the 1-minute candle at 12:00 ET on April 20"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation",
+    "technical_reference"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-3ae5a275",
+    "dispatch_id": "dispatch-case-20260414-3ae5a275-20260414T202946Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "aba2b3ed-314f-4205-8682-609e33f2bd99",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-3ae5a275/researcher-analyses/2026-04-14/dispatch-case-20260414-3ae5a275-20260414T202946Z/personas/market-implied.md",
+    "source_persona_sha256": "1ba2e55ed7478ea7fe656175212901e5b8a122982aa99198329e56d4ccb55759"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary contract wording and primary Binance venue data are strong and highly relevant; independence is only medium-low, with CoinGecko adding a modest secondary cross-check.",
+  "strongest_disconfirmers": [
+    "The contract settles on one exact 1-minute close, so path risk matters more than for a daily-close style question.",
+    "Binance data showed a recent downside test near 70,505.88, proving a move back toward the threshold is plausible within days."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT spot was 74,258.65 during the run, comfortably above 70,000.",
+    "Recent Binance daily closes were mostly above 70,000, indicating persistence rather than a one-off spike.",
+    "The contract wording is explicit about Binance BTC/USDT and the exact noon-ET minute close."
+  ],
+  "timing_relevance": "Very high: the case resolves on the Binance BTC/USDT 1-minute close at 12:00 ET on 2026-04-20, not on a daily close or broad trading range.",
+  "unresolved_ambiguities": [
+    "The JS-gated Binance UI was not directly inspectable in-session, though the assignment text was explicit enough for contract interpretation.",
+    "No near-term catalyst analysis was needed; the remaining uncertainty is mostly short-horizon path risk."
+  ],
+  "what_would_change_view": "A renewed drop toward or below 70k on Binance before April 20, repeated tests near the threshold, or Binance-specific pricing issues would lower the estimate materially."
+}

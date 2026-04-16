@@ -1,0 +1,61 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A sustained move into the upper 80s would weaken the disagreement quickly.",
+    "This view is mostly a confidence discount, not a strong bearish catalyst thesis.",
+    "Settlement depends on a single minute, so path-dependent volatility remains important."
+  ],
+  "key_assumptions": [
+    "Current Binance API outputs are a faithful operational proxy for the settlement surface named in the contract.",
+    "A roughly $4.87 cushion above 80 is not enough to justify a 90% probability over four days in a volatile asset.",
+    "The one-minute noon ET settlement mechanic is narrower than broad directional intuition and is underweighted by the market."
+  ],
+  "main_logical_chain": [
+    "The contract resolves on one exact Binance SOL/USDT 1-minute close at noon ET on April 19.",
+    "Current spot is above 80, so Yes is favored.",
+    "But the current cushion is modest and recent trading has stayed near the threshold rather than far above it.",
+    "Therefore Yes should be favored, but not at the market's 90% confidence level."
+  ],
+  "main_thesis": "Yes remains more likely than No, but the market is overconfident because a mid-80s current spot price does not make a single noon-ET Binance 1-minute close above 80 nearly certain four days out.",
+  "own_probability": 0.78,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "Binance 1 minute candle for SOL/USDT 12:00 in the ET timezone",
+    "higher than the price specified in the title",
+    "price precision is determined by the number of decimal places in the source"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation",
+    "variant_hypothesis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-540d9abf",
+    "dispatch_id": "dispatch-case-20260415-540d9abf-20260415T234706Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "e6ff1349-5573-4614-906b-8f9154c8f4a7",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-540d9abf/researcher-analyses/2026-04-15/dispatch-case-20260415-540d9abf-20260415T234706Z/personas/variant-view.md",
+    "source_persona_sha256": "35c0dac2bc06867b9078f88ed89b4a8630c193706214b892ca4ea8ab41c5a50f"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality for mechanics because Binance is the governing settlement surface and Polymarket defines the contract wording; evidence independence is moderate-low but appropriate for this case.",
+  "strongest_disconfirmers": [
+    "Recent four-day daily closes all remained above 80, so continued regime stability could make 90% closer to fair than this estimate.",
+    "The market's strongest case is simply that SOL already has several dollars of cushion above the threshold."
+  ],
+  "strongest_supports": [
+    "Binance spot was about 84.87 at research time, so Yes is currently favored.",
+    "Recent daily Binance closes on Apr 12-15 were all above 80.",
+    "Direct 1-minute kline verification confirmed the noon-ET candle mapping and reinforced the narrow settlement mechanics."
+  ],
+  "timing_relevance": "High: the market settles on the 2026-04-19 12:00 ET / 16:00 UTC Binance 1-minute candle close, so timezone and candle labeling were explicitly verified.",
+  "unresolved_ambiguities": [
+    "Polymarket references the Binance chart interface, while this run used Binance API surfaces to mirror the same instrument and timing logic.",
+    "No catalyst-specific bearish driver was established beyond threshold fragility and normal crypto volatility."
+  ],
+  "what_would_change_view": "I would move closer to the market if SOL builds a materially wider cushion above 80 into settlement; I would move lower if SOL revisits low-80s or downside volatility increases."
+}

@@ -1,0 +1,56 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A risk-off macro or crypto-specific shock could quickly invalidate the recent occupancy base rate.",
+    "Single-venue, single-minute settlement creates exchange-specific operational fragility."
+  ],
+  "key_assumptions": [
+    "BTC stays in roughly the current trading regime through April 21 rather than suffering a fresh shock.",
+    "Binance remains operationally normal and the relevant noon ET candle is cleanly observable."
+  ],
+  "main_logical_chain": [
+    "The governing contract uses Binance BTC/USDT 12:00 ET 1-minute close on April 21 and requires a strict close above 72000.",
+    "BTC is already above the strike and has recently occupied that zone often enough that Yes should be favored on outside-view grounds.",
+    "But because the settlement window is only one minute and BTC volatility remains meaningful, the market's 71% looks somewhat too high.",
+    "That yields a moderate Yes estimate rather than an aggressive endorsement of the market price."
+  ],
+  "main_thesis": "Yes is somewhat more likely than No because BTC is already above 72000 and has recently spent substantial time there, but the market overstates the edge for a single-minute Binance settlement five days out.",
+  "own_probability": 0.64,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone has a final 'Close' price higher than the price specified.",
+    "I estimate 64% that the Binance BTC/USDT 12:00 ET 1-minute candle on April 21 closes above 72,000."
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "market_anchor",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-dfb8f85e",
+    "dispatch_id": "dispatch-case-20260416-dfb8f85e-20260416T140232Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "d5585701-1b23-429c-ac38-a259926f9266",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-dfb8f85e/researcher-analyses/2026-04-16/dispatch-case-20260416-dfb8f85e-20260416T140232Z/personas/base-rate.md",
+    "source_persona_sha256": "531abe3fdddf5114cea0ca19cef8e65b00537991feaada089aceadaeef381edc"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary source quality is high because the contract directly names Binance and Binance docs define the candle mechanics; contextual source quality is medium-high; independence is medium; source-of-truth ambiguity is low to medium due to single-minute operational sensitivity.",
+  "strongest_disconfirmers": [
+    "The contract resolves on one specific 1-minute candle, so modest current spot cushion can be erased by ordinary BTC volatility.",
+    "BTC still posted recent completed daily closes below 72000 during the same broader bullish regime."
+  ],
+  "strongest_supports": [
+    "Live Binance BTCUSDT spot was around 73730 on April 16, already above the 72000 strike.",
+    "Recent Binance daily closes were above 72000 on most completed days from April 7-16."
+  ],
+  "timing_relevance": "High: the market resolves at noon ET on April 21 using one exact 1-minute Binance candle, so timezone and timestamp precision matter materially.",
+  "unresolved_ambiguities": [
+    "How much traders should discount potential Binance UI/API edge cases near the resolution minute.",
+    "Whether any near-term catalyst emerges that changes the current BTC regime before April 21."
+  ],
+  "what_would_change_view": "I would turn more bullish if BTC built a larger cushion and held clearly above 72k into April 21, and more bearish if BTC lost 72k, risk assets rolled over, or Binance showed operational irregularity near the cut time."
+}

@@ -1,0 +1,154 @@
+{
+  "schema_version": "decision-packet/v1",
+  "generated_at": "2026-04-16T19:10:00Z",
+  "context": {
+    "case_key": "case-20260416-305ed3c4",
+    "dispatch_id": "dispatch-case-20260416-305ed3c4-20260416T190054Z",
+    "question": "Will the price of Ethereum be above $2,200 on April 17?",
+    "market_id": "30172bb7-9f35-4ca6-93a4-adb8544ba07a",
+    "external_market_id": "0x99eb86c2cf41bbf90f3df2f839525c317790ad8b8024f55a80c997255e8787f7",
+    "market_slug": "ethereum-above-2200-on-april-17",
+    "platform": "polymarket",
+    "primary_market_url": "https://polymarket.com/event/ethereum-above-2200-on-april-17",
+    "market_title": "Will the price of Ethereum be above $2,200 on April 17?",
+    "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260416-305ed3c4/synthesizer-agent/decision-handoff.md",
+    "source_syndicated_finding_path": "qualitative-db/40-research/cases/case-20260416-305ed3c4/synthesizer-agent/syndicated-finding.md",
+    "source_light_refresh_brief_path": "",
+    "refresh_mode": "",
+    "decision_maker_agent": "decision-maker",
+    "canonical_markdown_path": "decision-maker-packet.md",
+    "canonical_json_path": "artifacts/decision-maker-packet.json"
+  },
+  "decision": {
+    "side": "no",
+    "trade_authorization": "watch_only",
+    "position_policy": "flat",
+    "decision_readiness": "ready",
+    "thesis_class": "price_not_good_enough",
+    "primary_crux": "ETH is still very likely to finish above 2200 at the governing Binance minute, but a 97.5% market leaves too little room for the remaining single-minute and venue-specific tail risk plus the unresolved near-resolution verification gap.",
+    "secondary_cruxes": [
+      "The contract resolves on one Binance ETH/USDT 1-minute close, so transient downside wick risk remains real even if spot stays comfortably above 2200 most of the time.",
+      "The residual rules-versus-source ambiguity appears minor, but there was no direct morning-of check of the formal Binance website settlement surface in the bounded verification window.",
+      "Independent targeted verification did not produce materially stronger evidence than the handoff; with freshness-sensitive crypto markets, stale confidence should be discounted rather than chased."
+    ]
+  },
+  "valuation": {
+    "fair_value_low": 0.93,
+    "fair_value_high": 0.96,
+    "fair_value_mid": 0.945,
+    "independent_verification_quality": "medium",
+    "compressed_toward_market_applied": false,
+    "compression_reason": "Current bounded evidence supports a high Yes probability, but not enough to justify paying 0.975 into a single-minute crypto settlement with residual venue-specific tail risk.",
+    "market_reference_price": 0.975,
+    "edge_mid_vs_market_pct_points": -3.0
+  },
+  "execution_semantics": {
+    "price_source": "market_snapshot_quote",
+    "price_axis": "market_implied_true_prob",
+    "rebalance_threshold_fraction": 0.1,
+    "allow_auto_reversal": false,
+    "quote_staleness_seconds": 300,
+    "valid_until": "2026-04-17T19:10:28.384686+00:00"
+  },
+  "risk_controls": {
+    "max_position_size_pct_bankroll": 0.02,
+    "max_additional_exposure_pct_bankroll": 0.01,
+    "max_single_order_pct_bankroll": 0.005,
+    "slippage_tolerance_bps": 100,
+    "liquidity_min_depth": 0,
+    "correlation_bucket_limit_pct_bankroll": 0.05,
+    "confidence_level": "medium",
+    "portfolio_constraints": [],
+    "liquidity_caution": "medium"
+  },
+  "bands": [
+    {
+      "name": "max_enter",
+      "min_p": 0.0,
+      "max_p": 0.2,
+      "target_exposure_fraction": 0.0,
+      "notes": "default fallback band"
+    },
+    {
+      "name": "scaled_enter",
+      "min_p": 0.2,
+      "max_p": 0.4,
+      "target_exposure_fraction": 0.15,
+      "notes": "default fallback band"
+    },
+    {
+      "name": "hold",
+      "min_p": 0.4,
+      "max_p": 0.6,
+      "target_exposure_fraction": 0.35,
+      "notes": "default fallback band"
+    },
+    {
+      "name": "trim",
+      "min_p": 0.6,
+      "max_p": 0.8,
+      "target_exposure_fraction": 0.65,
+      "notes": "default fallback band"
+    },
+    {
+      "name": "exit",
+      "min_p": 0.8,
+      "max_p": 1.0,
+      "target_exposure_fraction": 1.0,
+      "notes": "default fallback band"
+    }
+  ],
+  "invalidation": {
+    "thesis_breakers": [
+      "A direct near-resolution Binance website candle check showing stable pricing comfortably above 2200 into the final hour would shrink the remaining tail-risk discount and move fair value closer to market.",
+      "A large adverse move compressing ETH toward the threshold before settlement would make even the current 0.945 midpoint too high.",
+      "Evidence that the contract's actual source-of-truth minute differs materially from the assumed Binance ETH/USDT close mechanics would invalidate the current framing."
+    ],
+    "time_breakers": [
+      "This judgment is specifically pre-resolution and loses force once fresh morning-of Binance data is available on Apr 17.",
+      "If market price falls materially below the low end of fair value before settlement, the pass conclusion no longer holds."
+    ],
+    "market_structure_breakers": [
+      "Exchange-specific outage, wick, or chart/print anomaly on Binance around the settlement minute.",
+      "A sudden broad crypto selloff driven by macro or crypto-specific news before 16:00 UTC."
+    ],
+    "reversal_conditions": [
+      "Reconsider toward authorized Yes only if executable price drops below roughly 0.95 with no new adverse catalyst and ETH retains a clear cushion above 2200 near resolution.",
+      "Reconsider toward stronger No only if ETH meaningfully loses cushion or venue-specific settlement concerns intensify."
+    ]
+  },
+  "epistemic_status": {
+    "key_uncertainties": [
+      "How much probability mass to assign to a one-minute Binance-specific failure despite an approximately 6% cushion.",
+      "Whether the formal Binance website settlement surface could differ in any meaningful way from API or proxy observations.",
+      "What overnight and late-morning crypto volatility will look like heading into the settlement minute."
+    ],
+    "what_would_change_my_mind": [
+      "Fresh direct Binance website verification near settlement showing the relevant minute likely to print safely above 2200.",
+      "A material price drop toward the strike or emergence of a clear negative catalyst before noon ET.",
+      "A materially better market entry price that compensates for the remaining tail risk."
+    ],
+    "reasons_to_pass": [
+      "Negative edge versus the 0.975 market.",
+      "Freshness sensitivity is high and bounded verification could not remove the main near-resolution gap.",
+      "This is a high-probability Yes outcome but not an attractive trade at current price."
+    ],
+    "decision_quality": "good_not_clean"
+  },
+  "audit": {
+    "one_sentence_rationale": "Yes is still the most likely outcome, but at a 97.5% implied probability the market appears slightly too confident for a single-minute Binance settlement with residual late-move and venue-specific tail risk, so the correct decision is no trade.",
+    "notes": [
+      "Upstream syndicated range of 0.93 to 0.96 is plausible and I did not find bounded evidence strong enough to raise fair value to market.",
+      "Failed live verification attempts did not add positive information; they mainly reinforced that the remaining uncertainty is freshness and settlement-surface specific, not broad directional thesis.",
+      "This is a pricing disagreement, not a directional call that ETH is likely below 2200."
+    ],
+    "market_baseline_respected": true,
+    "action_bias_check_passed": true,
+    "self_preservation_bias_check_passed": true,
+    "structured_handoff_primary_used": true,
+    "prose_fallback_used": true,
+    "verification_mode_used": "targeted_escalation",
+    "additional_verification_performed": true,
+    "additional_verification_notes": "targeted_pack; tools:q=2,f=2,fam=2; web_search, web_fetch"
+  }
+}

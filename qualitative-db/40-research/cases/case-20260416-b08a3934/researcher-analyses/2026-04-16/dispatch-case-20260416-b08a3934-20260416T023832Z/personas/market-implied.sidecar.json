@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A sharp overnight or morning selloff toward 73k-74k would materially weaken the Yes case.",
+    "A Binance-specific anomaly could matter because the contract is exchange-specific."
+  ],
+  "key_assumptions": [
+    "The current ~3.1k buffer above 72,000 is the dominant input over the remaining ~13 hours.",
+    "Binance API prices are a reliable proxy for the Binance UI candle source named in the contract.",
+    "No exchange-specific disruption materially alters the noon ET fixing read."
+  ],
+  "main_logical_chain": [
+    "Polymarket rules make Binance BTC/USDT 12:00 ET 1-minute close the governing condition.",
+    "Direct Binance data during research placed BTC around 75.1k, materially above the 72k threshold.",
+    "Therefore the market is mostly pricing maintenance of an existing cushion, not an additional upside move.",
+    "Residual downside volatility and exchange-specific source-surface risk justify a modest discount to the 93% market price."
+  ],
+  "main_thesis": "The market's 93% Yes price is broadly justified because BTC is already materially above 72,000 on Binance, but I discount slightly for the risk of a 4%+ selloff before the single noon ET fixing minute.",
+  "own_probability": 0.88,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "My own probability estimate is 88% Yes.",
+    "The market-implied probability is 93% Yes.",
+    "BTC can absolutely sell off by 4%+ in 13 hours."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-b08a3934",
+    "dispatch_id": "dispatch-case-20260416-b08a3934-20260416T023832Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "2d0e1712-4bcf-4772-9a2a-1b4309a6898b",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-b08a3934/researcher-analyses/2026-04-16/dispatch-case-20260416-b08a3934-20260416T023832Z/personas/market-implied.md",
+    "source_persona_sha256": "ccbc531cf93352ffc4e6f8e721aae62a9892e6784ec93cac121535e67d48ba29"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary mechanics source is clear and authoritative, direct exchange pricing was verified, evidence independence is medium, and source-of-truth ambiguity is low-to-medium due to the UI/API surface gap.",
+  "strongest_disconfirmers": [
+    "BTC can still sell off by 4%+ in 13 hours.",
+    "The market resolves on a single 1-minute close, so timing risk is real.",
+    "The exact named Binance UI settlement surface could not be rendered directly in this environment."
+  ],
+  "strongest_supports": [
+    "Direct Binance ticker read during the run showed BTCUSDT at 75080.70.",
+    "Recent 1-minute Binance closes during the run stayed near 75.0k-75.1k.",
+    "The contract only requires BTC/USDT to remain above 72,000 at one specific minute rather than rally further."
+  ],
+  "timing_relevance": "High: settlement is tied to the single 12:00 ET Binance 1-minute close on April 17, and about 13 hours remained at the time of research.",
+  "unresolved_ambiguities": [
+    "The contract names the Binance web UI candle surface, while this run verified pricing through Binance public API because the UI was challenge-protected.",
+    "No fresh pre-settlement candle check exists yet for the final morning window."
+  ],
+  "what_would_change_view": "A move of BTC materially closer to 72,000 before noon ET, evidence of Binance-specific pricing divergence, or a clearer mechanics mismatch on the exact settlement surface would make me more bearish; stable pre-settlement Binance candles well above 72,000 would make me more aligned with the market."
+}

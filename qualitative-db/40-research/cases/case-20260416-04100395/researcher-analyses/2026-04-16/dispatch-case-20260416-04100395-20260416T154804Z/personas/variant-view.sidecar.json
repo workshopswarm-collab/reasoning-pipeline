@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A modest rally into April 17 morning would erase most of the variant edge",
+    "This thesis is mainly about narrow-settlement structure rather than a deep bearish ETH call"
+  ],
+  "key_assumptions": [
+    "Traders may underweight exact-minute settlement risk relative to general ETH direction",
+    "ETH's cushion above 2300 remains modest enough that normal volatility can matter",
+    "Binance spot context is the relevant guide because the contract is Binance ETHUSDT-specific"
+  ],
+  "main_logical_chain": [
+    "The contract resolves on the final close of one exact Binance ETHUSDT one-minute candle at noon ET on April 17",
+    "Current spot and recent trading context favor Yes because ETH is already above 2300",
+    "But the threshold cushion is not large relative to normal ETH volatility over roughly one day",
+    "Therefore Yes remains favored, but less strongly than a generic directional ETH framing would suggest"
+  ],
+  "main_thesis": "Yes is still more likely than No, but the market appears modestly overconfident because the contract depends on the exact Binance ETHUSDT noon-ET one-minute close, not broad ETH direction.",
+  "own_probability": 0.66,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "Binance 1 minute candle for ETH/USDT 12:00 in the ET timezone",
+    "final Close price higher than 2300"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation",
+    "variant_hypothesis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-04100395",
+    "dispatch_id": "dispatch-case-20260416-04100395-20260416T154804Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "2f7665f0-8dff-46dd-8f82-e52e3a557d15",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-04100395/researcher-analyses/2026-04-16/dispatch-case-20260416-04100395-20260416T154804Z/personas/variant-view.md",
+    "source_persona_sha256": "4980287d9505bbd0237e0b6319f93f195e90e79b802fc73902a7ae0f6acf128d"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary contract wording from Polymarket plus direct Binance exchange data gives low rule ambiguity and medium overall evidence independence.",
+  "strongest_disconfirmers": [
+    "If ETH simply remains in its current regime, the narrow timestamp risk may not matter and Yes should resolve",
+    "Recent Binance price action has often held above or near 2300"
+  ],
+  "strongest_supports": [
+    "Binance spot during the run was around 2333, already above 2300",
+    "Recent Binance daily candles show ETH has repeatedly traded in the 2300 area or higher",
+    "Contract wording is explicit enough to isolate the main variant risk as timestamp fragility rather than rule ambiguity"
+  ],
+  "timing_relevance": "Noon ET on 2026-04-17 maps to 16:00 UTC; exact-minute timing is central because only that candle's final close counts.",
+  "unresolved_ambiguities": [
+    "Visible Polymarket page pricing snapshot differed from assignment metadata during the run",
+    "The decisive candle does not exist yet, so all price context is necessarily pre-resolution"
+  ],
+  "what_would_change_view": "I would move closer to or above the market if ETH builds a larger stable cushion above 2300 into April 17 morning ET; I would turn more bearish if ETH repeatedly loses 2300 before resolution."
+}

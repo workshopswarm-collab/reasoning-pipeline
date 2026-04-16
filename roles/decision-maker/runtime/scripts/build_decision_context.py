@@ -18,6 +18,7 @@ from common import (  # noqa: E402
     case_syndicated_finding_path,
     case_syndicated_runtime_path,
     coerce_string,
+    default_decision_agent_session_key,
     find_case_dir_for_dispatch,
     find_synthesis_stage_status_path,
     load_json,
@@ -333,7 +334,7 @@ def main() -> None:
             "allow_auto_reversal": False,
             "rebalance_threshold_fraction": 0.1,
             "price_source": "market_snapshot_quote",
-            "decision_agent_session_key": "agent:decision-maker:main",
+            "decision_agent_session_key": default_decision_agent_session_key(case_key),
         },
         "source_excerpt": {
             "decision_handoff_frontmatter": handoff_frontmatter,

@@ -1,0 +1,58 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "If BTC rallies and builds a larger cushion before noon ET, the disagreement shrinks quickly.",
+    "Residual UI-versus-API source-of-truth ambiguity is small but not zero."
+  ],
+  "key_assumptions": [
+    "Traders may be pricing broad next-day BTC direction more than the exact settlement-minute mechanics.",
+    "A roughly 1.4% cushion above 74000 is not especially safe over a full day for BTC.",
+    "Binance public API surfaces are a practical proxy for the same underlying market data referenced by the rules."
+  ],
+  "main_logical_chain": [
+    "Polymarket resolves from the Binance BTC/USDT 12:00 ET one-minute close, not a broad daily BTC level.",
+    "Current BTCUSDT is only modestly above 74000, so routine intraday volatility could still flip the exact settlement minute below the line.",
+    "That makes yes more likely than no, but less secure than a low-70s implied probability suggests."
+  ],
+  "main_thesis": "Market yes lean is reasonable but somewhat overconfident because this settles on a single Binance BTC/USDT noon ET one-minute close and the current cushion over 74000 is modest.",
+  "own_probability": 0.64,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone has a final 'Close' price higher than the price specified.",
+    "ticker/price returned BTCUSDT 75042.98 at review time."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation",
+    "variant_hypothesis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-bac9c8f2",
+    "dispatch_id": "dispatch-case-20260416-bac9c8f2-20260416T033803Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "739d0aeb-5d06-409a-8fa5-2c911a2593c5",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-bac9c8f2/researcher-analyses/2026-04-16/dispatch-case-20260416-bac9c8f2-20260416T033803Z/personas/variant-view.md",
+    "source_persona_sha256": "151548a302edd2f529c6d7f65bb370e4c7ed3f485742ea81c70481219eb988da"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary sources are strong for rules and venue pricing, but evidence independence is only medium-low because multiple direct checks come from Binance-linked surfaces.",
+  "strongest_disconfirmers": [
+    "BTC is already above the threshold and could stay there or move higher into settlement.",
+    "There is no current direct evidence from Binance of weakening below the line."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT was around 75043 at review time, so yes is favored.",
+    "Recent Binance one-minute closes were above 74000.",
+    "CoinGecko spot cross-check was broadly consistent with Binance, reducing concern about a venue-specific anomaly."
+  ],
+  "timing_relevance": "High: resolution depends on a single April 17 12:00 ET minute close on Binance BTC/USDT.",
+  "unresolved_ambiguities": [
+    "Whether traders have already fully arbitraged the exact settlement-minute risk.",
+    "How much realized intraday volatility will compress or expand before the noon ET print."
+  ],
+  "what_would_change_view": "A materially larger pre-resolution cushion above 74000, especially sustained trade around 75500-76000+, would move the estimate closer to or above market."
+}

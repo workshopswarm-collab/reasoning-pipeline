@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Small buffer above threshold.",
+    "Weekend or Monday volatility could erase the edge quickly.",
+    "A Binance-specific operational issue could matter more than in a broader price-view market."
+  ],
+  "key_assumptions": [
+    "No new macro or crypto shock before Apr 21 noon ET pushes BTC decisively below 72k.",
+    "Recent Binance spot range is informative for the remaining four-day window.",
+    "Binance remains the reliable governing source at settlement."
+  ],
+  "main_logical_chain": [
+    "Verify the governing source and exact contract mechanics on Polymarket.",
+    "Check Binance BTCUSDT current price and recent range on the governing venue.",
+    "Check whether obvious scheduled macro catalysts fall before Apr 21 noon ET.",
+    "Conclude that ordinary spot persistence is the main path to Yes, but timestamp-specific close risk keeps probability below market."
+  ],
+  "main_thesis": "BTC is already above 72k on Binance and the scheduled macro calendar before Apr 21 noon ET looks light, so Yes is more likely than No, but only moderately because this resolves on one exact 1-minute close rather than a touch.",
+  "own_probability": 0.66,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "Binance BTC/USDT 1-minute candle for 12:00 ET on Apr 21",
+    "final Close above 72000",
+    "Binance spot fetched at 73608.41"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "catalyst_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-66f6f47e",
+    "dispatch_id": "dispatch-case-20260416-66f6f47e-20260416T141457Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "0d922415-b733-427b-8a17-e364db4f1539",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-66f6f47e/researcher-analyses/2026-04-16/dispatch-case-20260416-66f6f47e-20260416T141457Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "6af8aef7ae3a01edf163bf96015624eb92d7cf6e163c0dd48b2f890e907a62ea"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality direct mechanism evidence from Polymarket rules and Binance venue data; contextual catalyst evidence is adequate but lighter.",
+  "strongest_disconfirmers": [
+    "This is a single-minute close-above contract, so a routine ~2% drawdown could still flip it.",
+    "Crypto can move that much without a headline over a weekend or risk-off session."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT spot fetched at 73608.41, already above the 72000 threshold.",
+    "Recent Binance daily candles show several closes and highs above 72k.",
+    "BLS and BEA schedules place major visible macro releases after the market resolves."
+  ],
+  "timing_relevance": "Very high: this is a fixed Apr 21 12:00 ET Binance 1-minute close, so near-term stability matters more than medium-term BTC direction.",
+  "unresolved_ambiguities": [
+    "Whether an unscheduled macro, geopolitical, or crypto-specific shock emerges before settlement.",
+    "How sticky the 72k area remains if BTC retests it."
+  ],
+  "what_would_change_view": "A clean loss of 72k on Binance, a new risk-off catalyst before Apr 21, or conversely a sustained move back above roughly 74.5k-75k into Monday would change the estimate."
+}

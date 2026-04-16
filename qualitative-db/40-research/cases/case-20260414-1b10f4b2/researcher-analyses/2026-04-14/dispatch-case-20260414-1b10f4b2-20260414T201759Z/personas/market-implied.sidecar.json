@@ -1,0 +1,57 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A macro or crypto-specific selloff before April 20 could quickly erode the cushion.",
+    "A Binance-specific pricing or operational issue could matter because settlement is venue-specific."
+  ],
+  "key_assumptions": [
+    "BTC can absorb normal six-day volatility without falling roughly 8-9% from current Binance spot by settlement.",
+    "Binance remains a reliable settlement venue without a material venue-specific dislocation."
+  ],
+  "main_logical_chain": [
+    "The contract settles on Binance BTC/USDT at exactly 12:00 ET on April 20.",
+    "Current Binance spot and recent closes place BTC comfortably above 68,000.",
+    "That makes the market's high Yes probability mostly a cushion-preservation view rather than a fresh upside call.",
+    "Because crypto downside volatility can still be sharp over six days, the market looks reasonable but slightly rich at 93.5% versus a 91% estimate."
+  ],
+  "main_thesis": "The market's ~93.5% Yes price is broadly justified because Binance BTC/USDT is currently far above 68,000 and the contract mostly asks whether that cushion survives to one exact noon ET minute on April 20.",
+  "own_probability": 0.91,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "Binance BTC/USDT 12:00 ET one-minute candle final close above 68,000",
+    "current_price: 0.935",
+    "Binance spot during run: 74306.57"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "contract_interpretation",
+    "technical_reference"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260414-1b10f4b2",
+    "dispatch_id": "dispatch-case-20260414-1b10f4b2-20260414T201759Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "1c72951e-b103-4e66-9a1d-c68cbbafb7e2",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-1b10f4b2/researcher-analyses/2026-04-14/dispatch-case-20260414-1b10f4b2-20260414T201759Z/personas/market-implied.md",
+    "source_persona_sha256": "146956ec49e9027dcf3253ece9e109681520f2589b65c447b10fda213e79d1bd"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is medium-high overall: Polymarket rules define the contract, Binance provides the governing venue data, and CoinGecko offers an independent contextual cross-check; independence is medium because the key evidence still centers on Binance.",
+  "strongest_disconfirmers": [
+    "This is still a six-day crypto market with one exact one-minute settlement timestamp, so a fast 8-9% drawdown could flip the result.",
+    "Venue-specific settlement on Binance creates some operational and basis risk versus broader spot references."
+  ],
+  "strongest_supports": [
+    "Binance spot was about 74.3k during the run, more than 6k above the threshold.",
+    "Recent Binance daily closes from April 5 to April 14 were all above 68,000.",
+    "The market ladder is internally coherent, with 74k near coin-flip and lower thresholds priced progressively higher."
+  ],
+  "timing_relevance": "The market resolves at 12:00 PM ET on April 20, and the ET-to-UTC minute-candle mapping was explicitly verified because the contract is date- and timestamp-sensitive.",
+  "unresolved_ambiguities": [
+    "No major source-of-truth ambiguity remains after timezone and candle mapping checks, but future volatility remains inherently unresolved."
+  ],
+  "what_would_change_view": "A sharp drop toward the high-60s, elevated event risk before April 20, or evidence of Binance-specific dislocation would make me materially less confident in Yes."
+}

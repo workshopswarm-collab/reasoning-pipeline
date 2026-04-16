@@ -1,0 +1,62 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Short-dated BTC volatility could compress the current cushion quickly.",
+    "Single-venue exact-minute settlement creates tail risk disproportionate to a near-certainty price.",
+    "ET-to-UTC candle mapping and Binance display/API handling are operational details that still matter."
+  ],
+  "key_assumptions": [
+    "BTC/USDT remains comfortably above 68000 through the exact April 20 12:00 ET resolution minute.",
+    "Binance BTC/USDT remains representative of broad BTC spot pricing into settlement.",
+    "No Binance-specific operational or candle-interpretation issue appears near settlement."
+  ],
+  "main_logical_chain": [
+    "The governing source is Binance BTC/USDT 1-minute candle close at 12:00 ET on April 20.",
+    "Current Binance prices are materially above 68000, so the directional base case favors Yes.",
+    "A secondary cross-check shows the cushion is broadly real rather than a clear venue artifact.",
+    "Because the market is already at an extreme probability, residual path and operational risk should still be discounted.",
+    "That supports a Yes view, but at lower confidence than the market implies."
+  ],
+  "main_thesis": "BTC is still likely to finish above 68000 on the relevant Binance noon ET candle, but the market is modestly overconfident because short-dated crypto path risk and single-venue exact-minute settlement risk remain real.",
+  "own_probability": 0.93,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone (noon) ... has a final 'Close' price higher than the price specified in the title.",
+    "current_price = 0.9715",
+    "Binance ticker: 74853.01"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "risk_management",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-79281f9a",
+    "dispatch_id": "dispatch-case-20260415-79281f9a-20260415T202526Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "2b563fa8-d430-4236-92b5-644c8c8bbed0",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-79281f9a/researcher-analyses/2026-04-15/dispatch-case-20260415-79281f9a-20260415T202526Z/personas/risk-manager.md",
+    "source_persona_sha256": "fd11b2b20a11d4b65800ea5e89bcb1fa01ea1fea7e42925b9a392ca7ba620b98"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary source quality is high because the rules and governing venue are explicit; contextual verification quality is decent but only moderately independent because crypto spot markets are tightly correlated.",
+  "strongest_disconfirmers": [
+    "A 97.15% market price leaves little room for residual short-horizon crypto volatility and exact-minute settlement risk.",
+    "This contract settles on one exact minute on one venue, so a sharp temporary flush or Binance-specific anomaly could still flip the outcome."
+  ],
+  "strongest_supports": [
+    "Binance spot and recent 1-minute candles were around 74.6k-74.9k, leaving a large cushion over 68k.",
+    "CoinGecko cross-check also showed BTC around 74.75k, reducing concern about a single-venue anomaly at review time.",
+    "The contract wording is narrow and explicit once the venue, pair, and timing are verified."
+  ],
+  "timing_relevance": "High: the contract resolves on the Binance BTC/USDT 12:00 ET 1-minute candle on 2026-04-20, which corresponds to 16:00 UTC.",
+  "unresolved_ambiguities": [
+    "Whether any Binance-specific anomaly emerges close to the resolution minute.",
+    "How much tail risk is appropriate to assign to a four-day crypto window versus the current cushion."
+  ],
+  "what_would_change_view": "I would move toward the market if BTC stays firmly above low-70k with clean Binance data into April 19-20; I would move away if BTC compresses toward 68k, if volatility spikes, or if Binance shows operational or pricing anomalies."
+}

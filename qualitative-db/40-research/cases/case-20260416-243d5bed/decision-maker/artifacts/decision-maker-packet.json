@@ -1,0 +1,153 @@
+{
+  "schema_version": "decision-packet/v1",
+  "generated_at": "2026-04-16T16:24:00Z",
+  "context": {
+    "case_key": "case-20260416-243d5bed",
+    "dispatch_id": "dispatch-case-20260416-243d5bed-20260416T161511Z",
+    "question": "Will the price of Ethereum be above $2,300 on April 17?",
+    "market_id": "b7a0f9a1-95a0-48be-a965-a36923e72e1b",
+    "external_market_id": "0xcd0c4035e9811bdcaa8c86056d93c4c953513b912103dc12439ac23034bd3f70",
+    "market_slug": "ethereum-above-2300-on-april-17",
+    "platform": "polymarket",
+    "primary_market_url": "https://polymarket.com/event/ethereum-above-2300-on-april-17",
+    "market_title": "Will the price of Ethereum be above $2,300 on April 17?",
+    "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260416-243d5bed/synthesizer-agent/decision-handoff.md",
+    "source_syndicated_finding_path": "qualitative-db/40-research/cases/case-20260416-243d5bed/synthesizer-agent/syndicated-finding.md",
+    "source_light_refresh_brief_path": "",
+    "refresh_mode": "",
+    "decision_maker_agent": "decision-maker",
+    "canonical_markdown_path": "decision-maker-packet.md",
+    "canonical_json_path": "artifacts/decision-maker-packet.json"
+  },
+  "decision": {
+    "side": "none",
+    "trade_authorization": "watch_only",
+    "position_policy": "flat",
+    "decision_readiness": "needs_more_research",
+    "primary_crux": "The market is pricing a high-probability Yes while the bounded verification package does not provide a trustworthy independent estimate of the probability that Binance ETH/USDT finishes above 2300 at the exact settlement minute, and that single-minute path dependence is the decisive economic variable.",
+    "secondary_cruxes": [
+      "Current spot being modestly above strike is supportive but not sufficient because recent realized range already includes sub-2300 prints.",
+      "The apparent negative edge versus market is not robust because it depends on incomplete remaining-window volatility verification rather than a clean independent model.",
+      "Minor implementation ambiguity is not the main issue, but it marginally increases the cost of being wrong on a thin timing edge."
+    ],
+    "thesis_class": "not_decision_ready"
+  },
+  "valuation": {
+    "fair_value_low": 0.67,
+    "fair_value_high": 0.74,
+    "fair_value_mid": 0.705,
+    "independent_verification_quality": "medium",
+    "compressed_toward_market_applied": true,
+    "compression_reason": "The bundle supports a mild below-market estimate, but uncertainty around remaining-window volatility and exact-minute settlement fragility is high enough that I compress toward the market and do not treat the residual gap as actionable.",
+    "market_reference_price": 0.745,
+    "edge_mid_vs_market_pct_points": -4.0
+  },
+  "execution_semantics": {
+    "price_axis": "market_implied_true_prob",
+    "price_source": "market_snapshot_quote",
+    "rebalance_threshold_fraction": 0.1,
+    "allow_auto_reversal": false,
+    "quote_staleness_seconds": 300,
+    "valid_until": "2026-04-17T16:24:22.621723+00:00"
+  },
+  "risk_controls": {
+    "max_position_size_pct_bankroll": 0.02,
+    "max_additional_exposure_pct_bankroll": 0.01,
+    "max_single_order_pct_bankroll": 0.005,
+    "slippage_tolerance_bps": 100,
+    "liquidity_min_depth": 0,
+    "correlation_bucket_limit_pct_bankroll": 0.05,
+    "confidence_level": "medium",
+    "portfolio_constraints": [],
+    "liquidity_caution": "medium"
+  },
+  "bands": [
+    {
+      "name": "max_enter",
+      "min_p": 0.0,
+      "max_p": 0.2,
+      "target_exposure_fraction": 0.0,
+      "notes": "default fallback band"
+    },
+    {
+      "name": "scaled_enter",
+      "min_p": 0.2,
+      "max_p": 0.4,
+      "target_exposure_fraction": 0.0,
+      "notes": "default fallback band"
+    },
+    {
+      "name": "hold",
+      "min_p": 0.4,
+      "max_p": 0.6,
+      "target_exposure_fraction": 0.0,
+      "notes": "default fallback band"
+    },
+    {
+      "name": "trim",
+      "min_p": 0.6,
+      "max_p": 0.8,
+      "target_exposure_fraction": 0.0,
+      "notes": "default fallback band"
+    },
+    {
+      "name": "exit",
+      "min_p": 0.8,
+      "max_p": 1.0,
+      "target_exposure_fraction": 0.0,
+      "notes": "default fallback band"
+    }
+  ],
+  "invalidation": {
+    "thesis_breakers": [
+      "A credible independent estimate showing the remaining-window probability of a >2300 noon close is materially above 0.74 would eliminate the tentative below-market lean.",
+      "A materially larger cushion above 2300 sustained into late morning ET would weaken the fragility thesis.",
+      "Evidence that recent realized volatility is overstating downside risk for the remaining window would reduce the case for passing."
+    ],
+    "time_breakers": [
+      "Fresh market data closer to settlement is required because this contract is highly time-sensitive.",
+      "Any significant overnight or morning ETH move would change the probability enough that the current judgment should not be traded stale."
+    ],
+    "market_structure_breakers": [
+      "Any clarification that changes how the Binance close is operationally read for resolution.",
+      "Sharp market repricing into the compressed fair range would remove any residual edge."
+    ],
+    "reversal_conditions": [
+      "Only consider authorizing a side after refreshed near-settlement data resolves the remaining-window volatility and path-dependence gap."
+    ]
+  },
+  "epistemic_status": {
+    "key_uncertainties": [
+      "The true distribution of Binance ETH/USDT at the exact Apr 17 12:00 ET minute.",
+      "Whether the recent 24h range is a good proxy for downside risk over the remaining window.",
+      "How much weight to place on the current above-strike cushion versus exact-minute settlement fragility."
+    ],
+    "what_would_change_my_mind": [
+      "A clean independent volatility or path model for the remaining hours.",
+      "Fresh near-settlement price action showing either durable cushion above 2300 or loss of the level.",
+      "Improved operational clarity if the small implementation ambiguity proves nontrivial."
+    ],
+    "reasons_to_pass": [
+      "The apparent edge versus market is small to moderate and not independently well-verified.",
+      "Settlement depends on one exact minute, making stale analysis especially dangerous.",
+      "The stated verification blockers are directly tied to the decisive variable rather than peripheral details."
+    ],
+    "decision_quality": "not_ready"
+  },
+  "audit": {
+    "one_sentence_rationale": "I lean slightly below the market on true Yes probability, but because the bounded evidence does not independently resolve the exact-minute volatility question that dominates settlement, the risk-disciplined action is no trade and reopen with fresher data.",
+    "notes": [
+      "The upstream package points to a midpoint below market, but it also explicitly flags unresolved volatility and path-dependence blockers.",
+      "A plausible directional lean is not the same as a decision-ready edge in a single-minute settlement market.",
+      "Passing is the economically cleaner choice given freshness sensitivity and incomplete independent verification."
+    ],
+    "market_baseline_respected": true,
+    "action_bias_check_passed": true,
+    "self_preservation_bias_check_passed": true,
+    "structured_handoff_primary_used": true,
+    "prose_fallback_used": false,
+    "verification_mode_used": "not_ready_reopen_recommended",
+    "additional_verification_performed": false,
+    "additional_verification_notes": ""
+  }
+}

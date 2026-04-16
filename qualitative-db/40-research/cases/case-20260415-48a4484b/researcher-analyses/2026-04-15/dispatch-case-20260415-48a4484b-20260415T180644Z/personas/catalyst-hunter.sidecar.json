@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Overnight macro or geopolitical shock.",
+    "Crypto liquidation cascade or venue-specific dislocation.",
+    "Rapid drift toward 73000 or lower before the relevant minute-close."
+  ],
+  "key_assumptions": [
+    "The roughly 3% cushion above 72000 is sufficient to survive ordinary volatility through noon ET tomorrow.",
+    "No fresh macro, geopolitical, or crypto-specific shock hits before the settlement minute.",
+    "Binance BTC/USDT remains operational and representative into the relevant close."
+  ],
+  "main_logical_chain": [
+    "Read the contract rules and confirm the exact venue, pair, time, field, and strict-greater-than condition.",
+    "Check current Binance BTC/USDT pricing and recent 1-minute closes against the 72000 threshold.",
+    "Assess whether any near-term catalyst is likely to move the market more than the current cushion before noon ET tomorrow.",
+    "Conclude Yes remains favored, but with slightly lower confidence than the market implies because shock risk is still nontrivial in a narrow-window crypto market."
+  ],
+  "main_thesis": "BTC is still more likely than not to close above 72000 on Binance at noon ET on April 16 because spot is around 74.2k and there is no obvious scheduled bearish catalyst, though the market is somewhat too confident for a single-minute crypto threshold contract.",
+  "own_probability": 0.89,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "final Close price higher than 72000",
+    "Binance BTC/USDT 1-minute candle for 12:00 in ET timezone",
+    "market-implied probability 93.5% vs own estimate 89%"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "catalyst_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-48a4484b",
+    "dispatch_id": "dispatch-case-20260415-48a4484b-20260415T180644Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "79098270-924d-48c7-9303-0563a9426472",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-48a4484b/researcher-analyses/2026-04-15/dispatch-case-20260415-48a4484b-20260415T180644Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "25ba0c43424ac9f4c9aabbfc638ed60286bacf49e0620a192290aa467cc5eb26"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary contract wording and direct Binance venue data were strong; contextual reporting was useful but secondary. Overall source quality is good with low source-of-truth ambiguity and medium independence.",
+  "strongest_disconfirmers": [
+    "This is a single-minute threshold market, so a fast 3% downside move can still break Yes despite current cushion.",
+    "Recent reporting also framed 75000 as a ceiling, so momentum is not runaway bullish."
+  ],
+  "strongest_supports": [
+    "Direct Binance spot check showed BTC/USDT around 74236 during the run.",
+    "Recent Binance 1-minute closes were all well above 72000.",
+    "Same-day context suggested bitcoin was fighting 75000 resistance, implying 72000 is still a lower support-like threshold."
+  ],
+  "timing_relevance": "This case is mostly about whether BTC can hold its cushion for less than one day rather than whether long-run bitcoin fundamentals are bullish.",
+  "unresolved_ambiguities": [
+    "No direct view into overnight catalysts beyond currently available public context.",
+    "Exact realized volatility between now and noon ET tomorrow remains unknowable."
+  ],
+  "what_would_change_view": "A decisive break below 73k, a fresh macro/geopolitical shock, or Binance-specific disruption before noon ET would push the estimate materially lower."
+}

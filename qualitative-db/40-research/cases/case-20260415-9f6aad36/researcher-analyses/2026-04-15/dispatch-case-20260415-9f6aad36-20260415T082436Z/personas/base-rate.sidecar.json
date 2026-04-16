@@ -1,0 +1,58 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A late macro or crypto-specific shock could erase the cushion quickly.",
+    "The exact one-minute close matters; being above 72,000 at nearby times is insufficient."
+  ],
+  "key_assumptions": [
+    "BTC remains in roughly its current trading regime through settlement without a sudden >2.5%-3% downside move.",
+    "Binance remains the operative venue and the plain reading of the settlement mechanics holds."
+  ],
+  "main_logical_chain": [
+    "Read Polymarket rules to identify the governing source, field, pair, and timestamp.",
+    "Verify the settlement minute timing as 12:00 ET = 16:00 UTC on 2026-04-16.",
+    "Check direct Binance BTCUSDT venue data to see whether BTC currently has meaningful cushion above 72,000.",
+    "Apply an outside-view prior that liquid BTC more often than not holds a modest cushion over about one day absent a new shock, while discounting for short-horizon volatility and single-minute settlement fragility.",
+    "Conclude Yes is likely but only slightly less favorable than the market implies."
+  ],
+  "main_thesis": "BTC is already materially above 72,000, so this is mainly a short-horizon threshold-retention question; Yes is likely but not certain because a single-minute settlement print leaves room for a late volatility-driven break below the line.",
+  "own_probability": 0.82,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone (noon) on the date specified in the title has a final 'Close' price higher than the price specified in the title.",
+    "ET noon on 2026-04-16 converts to 16:00 UTC."
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "contract_interpretation",
+    "market_anchor"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-9f6aad36",
+    "dispatch_id": "dispatch-case-20260415-9f6aad36-20260415T082436Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "a953ab64-fbfc-4a32-888c-31ba74f1e105",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-9f6aad36/researcher-analyses/2026-04-15/dispatch-case-20260415-9f6aad36-20260415T082436Z/personas/base-rate.md",
+    "source_persona_sha256": "c3b19a52ea19a3e5badb1e16eecb128009d51ea023a9b4bf4ab06ad91dec4cc3"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is good for a medium-difficulty case: Polymarket rules are direct for mechanics and Binance API is direct for venue-state verification; independence is medium and source-of-truth ambiguity is low to medium.",
+  "strongest_disconfirmers": [
+    "BTC can still move several percent in a day, and a brief selloff into the exact settlement minute would be enough for No.",
+    "Single-minute settlement makes the contract more fragile than a broader daily-close framing."
+  ],
+  "strongest_supports": [
+    "Binance spot during the run was around 73,977, leaving roughly a 2.7% cushion above the 72,000 threshold.",
+    "A direct Binance 1-minute kline pull showed all sampled recent closes above 72,000.",
+    "The contract only requires staying above the line at one specific settlement minute, and BTC is already above it."
+  ],
+  "timing_relevance": "The market resolves off one exact Binance BTC/USDT 1-minute close at 12:00 ET on 2026-04-16, making the ET-to-UTC conversion and remaining time-to-settlement central to the analysis.",
+  "unresolved_ambiguities": [
+    "No material contract ambiguity remains, but UI timestamp labeling on exchange candles always merits care.",
+    "The actual settlement print is still in the future, so current venue checks cannot settle the case directly."
+  ],
+  "what_would_change_view": "A move toward the low-72k area, a spike in realized volatility, a fresh market-moving shock, or any credible clarification changing which candle/timestamp/field governs would move the estimate."
+}

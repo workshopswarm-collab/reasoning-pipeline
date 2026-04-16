@@ -1,0 +1,249 @@
+{
+  "actor": "decision-maker",
+  "agent_tool_use_allowed": false,
+  "artifact_type": "decision_stage_status",
+  "case_key": "case-20260414-625be8a3",
+  "decision_context_path": "roles/decision-maker/runtime/artifacts/case-20260414-625be8a3/decision-context-dispatch-case-20260414-625be8a3-20260414T002740Z.json",
+  "decision_lane": {
+    "topic_id": "1593",
+    "topic_title": "case-20260414-625be8a3 | decision | T002740Z",
+    "session_key": "agent:main:telegram:group:-1003846500961:topic:1593"
+  },
+  "decision_launch_claim": {
+    "claimed_at": "2026-04-14T02:07:06.376554Z",
+    "decision_context_path": "roles/decision-maker/runtime/artifacts/case-20260414-625be8a3/decision-context-dispatch-case-20260414-625be8a3-20260414T002740Z.json",
+    "launch_log_path": "scripts/.runtime-state/decision-maker-launches/case-20260414-625be8a3-20260414T020706Z.log",
+    "launcher": "pipeline_automation_actions.launch_decision_maker",
+    "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260414-625be8a3/decision-prompt-dispatch-case-20260414-625be8a3-20260414T002740Z.md",
+    "runner_pid": 921
+  },
+  "decision_prompt_path": "roles/decision-maker/runtime/artifacts/case-20260414-625be8a3/decision-prompt-dispatch-case-20260414-625be8a3-20260414T002740Z.md",
+  "decision_readiness": "needs_more_research",
+  "decision_target_chat_id": "-1003846500961",
+  "decision_target_session_key": "agent:main:telegram:group:-1003846500961:topic:1593",
+  "decision_visible_finish_marker": "DECISION-MAKING COMPLETED, DECISION PACKAGE CREATED | market=Will the Virginia redistricting referendum pass? | dispatch_id=dispatch-case-20260414-625be8a3-20260414T002740Z | packet_path=qualitative-db/40-research/cases/case-20260414-625be8a3/decision-maker/decision-maker-packet.md",
+  "decision_visible_receipt_marker": "SYNTHESIS RECEIVED | market=Will the Virginia redistricting referendum pass? | dispatch_id=dispatch-case-20260414-625be8a3-20260414T002740Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260414-625be8a3/decision-context-dispatch-case-20260414-625be8a3-20260414T002740Z.json",
+  "decision_visible_start_marker": "DECISION-MAKING ANALYSIS UNDERWAY | market=Will the Virginia redistricting referendum pass? | dispatch_id=dispatch-case-20260414-625be8a3-20260414T002740Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260414-625be8a3/decision-context-dispatch-case-20260414-625be8a3-20260414T002740Z.json",
+  "dispatch_id": "dispatch-case-20260414-625be8a3-20260414T002740Z",
+  "last_stage_event": {
+    "at": "2026-04-14T02:07:53.125040Z",
+    "stage": "decision_execution",
+    "state": "visible_marker_sent",
+    "message": "DECISION-MAKING COMPLETED, DECISION PACKAGE CREATED | market=Will the Virginia redistricting referendum pass? | dispatch_id=dispatch-case-20260414-625be8a3-20260414T002740Z | packet_path=qualitative-db/40-research/cases/case-20260414-625be8a3/decision-maker/decision-maker-packet.md"
+  },
+  "packet_json_path": "qualitative-db/40-research/cases/case-20260414-625be8a3/decision-maker/artifacts/decision-maker-packet.json",
+  "packet_markdown_path": "qualitative-db/40-research/cases/case-20260414-625be8a3/decision-maker/decision-maker-packet.md",
+  "position_policy": "flat",
+  "question": "Will the Virginia redistricting referendum pass?",
+  "recommended_side": "yes",
+  "schema_version": "decision-stage-status/v1",
+  "selected_input_bundle_estimated_tokens": 2881,
+  "selected_input_bundle_mode": "not_ready_reopen_recommended",
+  "selected_input_bundle_path": "roles/decision-maker/runtime/artifacts/case-20260414-625be8a3/selected-inputs-dispatch-case-20260414-625be8a3-20260414T002740Z.json",
+  "stage_events": [
+    {
+      "at": "2026-04-14T02:07:06.239878Z",
+      "message": "Decision-Maker stage initialized from synthesis handoff",
+      "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260414-625be8a3/synthesizer-agent/decision-handoff.md",
+      "stage": "kickoff",
+      "state": "decision_ready_for_receipt"
+    },
+    {
+      "agent_tool_use_allowed": false,
+      "approx_tokens_after_trim": 2881,
+      "at": "2026-04-14T02:07:06.367772Z",
+      "message": "Built deterministic Decision-Maker selected-input bundle",
+      "selected_input_bundle_path": "roles/decision-maker/runtime/artifacts/case-20260414-625be8a3/selected-inputs-dispatch-case-20260414-625be8a3-20260414T002740Z.json",
+      "stage": "decision_input_selection",
+      "state": "built",
+      "verification_mode": "not_ready_reopen_recommended",
+      "verification_mode_path": "roles/decision-maker/runtime/artifacts/case-20260414-625be8a3/verification-mode-dispatch-case-20260414-625be8a3-20260414T002740Z.json"
+    },
+    {
+      "at": "2026-04-14T02:07:06.367822Z",
+      "message": "Built Decision-Maker prompt from compact selected-input bundle",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260414-625be8a3/decision-prompt-dispatch-case-20260414-625be8a3-20260414T002740Z.md",
+      "stage": "decision_prompt",
+      "state": "built"
+    },
+    {
+      "at": "2026-04-14T02:07:06.368132Z",
+      "message": "Decision-Maker inputs prepared; awaiting launch claim",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260414-625be8a3/decision-prompt-dispatch-case-20260414-625be8a3-20260414T002740Z.md",
+      "stage": "decision_prepare",
+      "state": "handoff_prepared"
+    },
+    {
+      "at": "2026-04-14T02:07:06.376554Z",
+      "decision_context_path": "roles/decision-maker/runtime/artifacts/case-20260414-625be8a3/decision-context-dispatch-case-20260414-625be8a3-20260414T002740Z.json",
+      "launch_log_path": "scripts/.runtime-state/decision-maker-launches/case-20260414-625be8a3-20260414T020706Z.log",
+      "message": "Decision-Maker launch claimed by automation controller",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260414-625be8a3/decision-prompt-dispatch-case-20260414-625be8a3-20260414T002740Z.md",
+      "runner_pid": 921,
+      "stage": "decision_receipt",
+      "state": "handoff_sent"
+    },
+    {
+      "at": "2026-04-14T02:07:06.414535Z",
+      "stage": "kickoff",
+      "state": "reentered",
+      "message": "Decision-Maker executor resumed from existing prepared/running state",
+      "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260414-625be8a3/synthesizer-agent/decision-handoff.md"
+    },
+    {
+      "at": "2026-04-14T02:07:06.522626Z",
+      "stage": "decision_input_selection",
+      "state": "built",
+      "message": "Built deterministic Decision-Maker selected-input bundle",
+      "verification_mode_path": "roles/decision-maker/runtime/artifacts/case-20260414-625be8a3/verification-mode-dispatch-case-20260414-625be8a3-20260414T002740Z.json",
+      "selected_input_bundle_path": "roles/decision-maker/runtime/artifacts/case-20260414-625be8a3/selected-inputs-dispatch-case-20260414-625be8a3-20260414T002740Z.json",
+      "verification_mode": "not_ready_reopen_recommended",
+      "approx_tokens_after_trim": 2881,
+      "agent_tool_use_allowed": false
+    },
+    {
+      "at": "2026-04-14T02:07:06.522679Z",
+      "stage": "decision_prompt",
+      "state": "built",
+      "message": "Built Decision-Maker prompt from compact selected-input bundle",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260414-625be8a3/decision-prompt-dispatch-case-20260414-625be8a3-20260414T002740Z.md"
+    },
+    {
+      "at": "2026-04-14T02:07:09.010061Z",
+      "stage": "decision_lane_bootstrap",
+      "state": "created",
+      "message": "Created dedicated Telegram decision lane",
+      "topic_id": "1593",
+      "topic_title": "case-20260414-625be8a3 | decision | T002740Z",
+      "session_key": "agent:main:telegram:group:-1003846500961:topic:1593"
+    },
+    {
+      "at": "2026-04-14T02:07:13.337783Z",
+      "stage": "decision_receipt",
+      "state": "visible_marker_sent",
+      "message": "SYNTHESIS RECEIVED | market=Will the Virginia redistricting referendum pass? | dispatch_id=dispatch-case-20260414-625be8a3-20260414T002740Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260414-625be8a3/decision-context-dispatch-case-20260414-625be8a3-20260414T002740Z.json"
+    },
+    {
+      "at": "2026-04-14T02:07:13.338461Z",
+      "stage": "decision_receipt",
+      "state": "accepted",
+      "message": "Decision-Maker handoff accepted",
+      "session_key": "agent:decision-maker:main",
+      "handoff_status": "started"
+    },
+    {
+      "at": "2026-04-14T02:07:13.338568Z",
+      "stage": "decision_execution",
+      "state": "decision_analysis_running",
+      "message": "Decision-Maker agent invocation accepted and analysis started",
+      "session_key": "agent:decision-maker:main",
+      "prompt_path": "roles/decision-maker/runtime/artifacts/case-20260414-625be8a3/decision-prompt-dispatch-case-20260414-625be8a3-20260414T002740Z.md",
+      "handoff_status": "started"
+    },
+    {
+      "at": "2026-04-14T02:07:15.502637Z",
+      "stage": "decision_execution",
+      "state": "visible_marker_sent",
+      "message": "DECISION-MAKING ANALYSIS UNDERWAY | market=Will the Virginia redistricting referendum pass? | dispatch_id=dispatch-case-20260414-625be8a3-20260414T002740Z | decision_context_path=roles/decision-maker/runtime/artifacts/case-20260414-625be8a3/decision-context-dispatch-case-20260414-625be8a3-20260414T002740Z.json"
+    },
+    {
+      "at": "2026-04-14T02:07:50.988897Z",
+      "stage": "decision_execution",
+      "state": "decision_completed",
+      "message": "Decision-Maker completed and packet rendered",
+      "warnings": [],
+      "forecast_decision_persist_error": ""
+    },
+    {
+      "at": "2026-04-14T02:07:53.125040Z",
+      "stage": "decision_execution",
+      "state": "visible_marker_sent",
+      "message": "DECISION-MAKING COMPLETED, DECISION PACKAGE CREATED | market=Will the Virginia redistricting referendum pass? | dispatch_id=dispatch-case-20260414-625be8a3-20260414T002740Z | packet_path=qualitative-db/40-research/cases/case-20260414-625be8a3/decision-maker/decision-maker-packet.md"
+    }
+  ],
+  "status": "decision_completed",
+  "targeted_verification_pack_path": "",
+  "targeted_verification_pack_required": false,
+  "trade_authorization": "forbidden",
+  "updated_at": "2026-04-14T02:07:53.125053Z",
+  "verification_mode_path": "roles/decision-maker/runtime/artifacts/case-20260414-625be8a3/verification-mode-dispatch-case-20260414-625be8a3-20260414T002740Z.json",
+  "warnings": [],
+  "previous_status": "handoff_sent",
+  "decision_lane_topic_id": "1593",
+  "decision_lane_topic_title": "case-20260414-625be8a3 | decision | T002740Z",
+  "decision_lane_session_key": "agent:main:telegram:group:-1003846500961:topic:1593",
+  "decision_target_topic_id": "1593",
+  "decision_target_topic_title": "case-20260414-625be8a3 | decision | T002740Z",
+  "decision_receipt_marker_sent_at": "2026-04-14T02:07:13.337755+00:00",
+  "decision_analysis_marker_sent_at": "2026-04-14T02:07:15.502609+00:00",
+  "timeline_update": {
+    "appended": true,
+    "case_key": "case-20260414-625be8a3",
+    "dispatch_id": "dispatch-case-20260414-625be8a3-20260414T002740Z",
+    "packet_path": "qualitative-db/40-research/cases/case-20260414-625be8a3/decision-maker/decision-maker-packet.md",
+    "entry": "- 2026-04-14T02:07:50.988361+00:00 — completed decision-making `dispatch-case-20260414-625be8a3-20260414T002740Z` with packet `qualitative-db/40-research/cases/case-20260414-625be8a3/decision-maker/decision-maker-packet.md`."
+  },
+  "forecast_decision_persist": {
+    "ok": true,
+    "packet_json": "qualitative-db/40-research/cases/case-20260414-625be8a3/decision-maker/artifacts/decision-maker-packet.json",
+    "persisted": {
+      "forecast_id": "dispatch-case-20260414-625be8a3-20260414T002740Z",
+      "market_id": "5984405d-73cf-4b9d-ab6b-e959cff2ef1a",
+      "contract_id": "yes",
+      "forecast_prob": 0.78,
+      "decision_status": "void",
+      "decision_packet_path": "qualitative-db/40-research/cases/case-20260414-625be8a3/decision-maker/artifacts/decision-maker-packet.json",
+      "supersedes_forecast_id": null,
+      "superseded_forecast_ids": [],
+      "market_state": {
+        "market_id": "5984405d-73cf-4b9d-ab6b-e959cff2ef1a",
+        "current_price": 0.89,
+        "last_reasoned_price": 0.78,
+        "pipeline_status": "closed"
+      }
+    },
+    "record": {
+      "forecast_id": "dispatch-case-20260414-625be8a3-20260414T002740Z",
+      "decision_ts": "2026-04-13T22:07:00-04:00",
+      "case_id": "case-20260414-625be8a3",
+      "dispatch_id": "dispatch-case-20260414-625be8a3-20260414T002740Z",
+      "market_id": "5984405d-73cf-4b9d-ab6b-e959cff2ef1a",
+      "contract_id": "yes",
+      "platform": "polymarket",
+      "market_slug": "will-the-virginia-redistricting-referendum-pass",
+      "question": "Will the Virginia redistricting referendum pass?",
+      "forecast_prob": "0.78",
+      "forecast_direction": "yes",
+      "confidence_label": "medium",
+      "confidence_score": "",
+      "time_horizon_label": "Through referendum occurrence, late legal/process developments, and official statewide result reporting",
+      "verification_mode": "not_ready_reopen_recommended",
+      "decision_status": "void",
+      "rationale_summary": "The referendum is probably more likely than not to pass because it appears officially scheduled and actively administered, but without directly verified voter-support evidence and fully cleared legal/process risk, the market's 89% confidence is too high to accept or fade aggressively, so the disciplined output is forbidden and needs-more-research.",
+      "decision_packet_path": "qualitative-db/40-research/cases/case-20260414-625be8a3/decision-maker/artifacts/decision-maker-packet.json",
+      "decision_handoff_path": "qualitative-db/40-research/cases/case-20260414-625be8a3/synthesizer-agent/decision-handoff.md",
+      "syndicated_finding_path": "qualitative-db/40-research/cases/case-20260414-625be8a3/synthesizer-agent/syndicated-finding.md"
+    },
+    "warnings": []
+  },
+  "terminal_summary": {
+    "at": "2026-04-14T02:07:53.125059Z",
+    "status": "decision_completed",
+    "decision_lane": {
+      "topic_id": "1593",
+      "topic_title": "case-20260414-625be8a3 | decision | T002740Z",
+      "session_key": "agent:main:telegram:group:-1003846500961:topic:1593"
+    },
+    "packet_json_path": "qualitative-db/40-research/cases/case-20260414-625be8a3/decision-maker/artifacts/decision-maker-packet.json",
+    "packet_markdown_path": "qualitative-db/40-research/cases/case-20260414-625be8a3/decision-maker/decision-maker-packet.md",
+    "trade_authorization": "forbidden",
+    "decision_readiness": "needs_more_research",
+    "last_stage_event": {
+      "at": "2026-04-14T02:07:53.125040Z",
+      "stage": "decision_execution",
+      "state": "visible_marker_sent",
+      "message": "DECISION-MAKING COMPLETED, DECISION PACKAGE CREATED | market=Will the Virginia redistricting referendum pass? | dispatch_id=dispatch-case-20260414-625be8a3-20260414T002740Z | packet_path=qualitative-db/40-research/cases/case-20260414-625be8a3/decision-maker/decision-maker-packet.md"
+    }
+  },
+  "decision_completion_marker_sent_at": "2026-04-14T02:07:53.125021+00:00"
+}

@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A single volatile minute at settlement can dominate the result.",
+    "A macro, regulatory, or exchange-specific shock would overwhelm the current near-threshold framing.",
+    "Direct evidence is concentrated in Binance because Binance is also the settlement source."
+  ],
+  "key_assumptions": [
+    "BTC stays in roughly the current regime through Apr. 17 noon ET rather than experiencing a major shock.",
+    "Binance API-documented candle mechanics reliably proxy the UI candle referenced in the contract.",
+    "Ordinary short-horizon volatility is the main mechanism driving the outcome."
+  ],
+  "main_logical_chain": [
+    "The market resolves strictly on Binance BTC/USDT 12:00 ET 1-minute close on Apr. 17 being above 74,000.",
+    "Current Binance price is only modestly above the threshold, so Yes deserves to be favored but not treated as near-certain.",
+    "Because BTC commonly traverses 1-2% over 1-2 day windows, the outside view discounts the market's 71.5% optimism.",
+    "That yields a mildly Yes estimate around 64%."
+  ],
+  "main_thesis": "BTC is already modestly above 74k on Binance, so Yes is more likely than not, but the market overstates that edge because settlement depends on a single noon ET 1-minute close and ordinary crypto volatility can still flip the result.",
+  "own_probability": 0.64,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone (noon) ... has a final 'Close' price higher than the price specified in the title.",
+    "GET /api/v3/klines ... Kline/candlestick bars for a symbol. Klines are uniquely identified by their open time."
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "contract_interpretation",
+    "market_anchor"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-e4a8d83c",
+    "dispatch_id": "dispatch-case-20260415-e4a8d83c-20260415T230345Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "d0ed0116-902d-4d93-a847-e4e442271783",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-e4a8d83c/researcher-analyses/2026-04-15/dispatch-case-20260415-e4a8d83c-20260415T230345Z/personas/base-rate.md",
+    "source_persona_sha256": "ed1d3050c39a78938e5484f6f0e2b28f9ed17c0260308ef69b98dc541f07013a"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary source quality is high because Binance is the named settlement source; Polymarket rules provide useful contract verification, but independence is only medium-low because direct pricing evidence is concentrated in Binance.",
+  "strongest_disconfirmers": [
+    "Recent 24-hour range already crossed below 74k, and a routine 1-2% move lower would make No correct.",
+    "Settlement uses one specific noon ET 1-minute candle, which increases path fragility relative to a day-close style market."
+  ],
+  "strongest_supports": [
+    "Binance spot price during research was about 74.8k, already above the 74k threshold.",
+    "Binance 24-hour weighted average was about 74.26k, suggesting the threshold is not being cleared by only a transient spike.",
+    "No special structural barrier exists beyond a timestamped 1-minute close."
+  ],
+  "timing_relevance": "Timing is central: the contract resolves on the Apr. 17 12:00 ET one-minute Binance candle close, not on a daily average or end-of-day price.",
+  "unresolved_ambiguities": [
+    "Minor operational ambiguity remains because the rule text cites the Binance UI while verification used API/docs, though this seems low-risk.",
+    "The exact volatility regime over the next ~41 hours remains unknown."
+  ],
+  "what_would_change_view": "A move materially below 74k before settlement would push the view toward No; sustained trade well above roughly 75.5k or a calmer regime would push the estimate higher; exchange-specific anomalies would reduce confidence."
+}

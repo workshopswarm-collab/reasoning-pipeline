@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A sharp risk-off move before April 20 could erase the current cushion.",
+    "Binance-specific basis or weakness could matter near settlement.",
+    "The narrow close-above wording makes the outcome more path-sensitive than current spot alone suggests."
+  ],
+  "key_assumptions": [
+    "BTC stays in roughly the current regime and does not suffer a >6% drawdown into the governing minute.",
+    "Binance BTC/USDT remains close enough to broader BTC spot that current cross-venue checks remain informative.",
+    "No exchange-specific Binance dislocation meaningfully distorts the settlement print."
+  ],
+  "main_logical_chain": [
+    "Read the contract directly and identify Binance BTC/USDT 12:00 ET 1-minute Close on April 20 as the governing source of truth.",
+    "Check current Binance BTC/USDT level and recent 1-minute closes to measure distance from the 70,000 threshold.",
+    "Cross-verify current BTC price region with CoinGecko and Coinbase.",
+    "Apply outside-view logic: a roughly 6.5% cushion with five days left favors Yes, but single-minute-close mechanics justify a discount versus the market."
+  ],
+  "main_thesis": "BTC being roughly 6.5% above 70,000 with five days left makes Yes likely, but the market is somewhat too confident because settlement depends on one exact Binance noon-ET 1-minute close.",
+  "own_probability": 0.86,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone (noon) on the date specified in the title has a final 'Close' price higher than the price specified in the title.",
+    "My estimate is 86% Yes."
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "contract_interpretation",
+    "risk_management"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-0735f476",
+    "dispatch_id": "dispatch-case-20260415-0735f476-20260415T201136Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "f0a4e7fb-4b0c-4950-b281-fe2a4d6335ef",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-0735f476/researcher-analyses/2026-04-15/dispatch-case-20260415-0735f476-20260415T201136Z/personas/base-rate.md",
+    "source_persona_sha256": "fb004f7e744760c8bcd079644f7776845495ffad68242146d01657f8f7acc04b"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is medium-high: Polymarket provides clear contract wording, Binance provides the closest current-state evidence, and CoinGecko/Coinbase provide useful but still market-data-adjacent verification.",
+  "strongest_disconfirmers": [
+    "This is a single exact-minute Binance close, not a broad weekly-above-threshold condition.",
+    "BTC can still move several percent in five days.",
+    "The governing April 20 noon ET close has not yet occurred and therefore cannot yet be directly verified."
+  ],
+  "strongest_supports": [
+    "Binance spot and recent 1-minute closes were in the mid-74k area, comfortably above 70k.",
+    "CoinGecko and Coinbase cross-checks also showed BTC around 74.7k.",
+    "Only about five days remain, so a 6%+ cushion is structurally favorable."
+  ],
+  "timing_relevance": "Timing is central because the market resolves on the Binance BTC/USDT 12:00 PM America/New_York 1-minute close on 2026-04-20, not on current spot or any intraday high.",
+  "unresolved_ambiguities": [
+    "How stable BTC will remain over the next five days.",
+    "Whether Binance prints will stay aligned with broader spot into the exact settlement minute."
+  ],
+  "what_would_change_view": "I would move higher if BTC holds comfortably above 72k-73k into April 19-20 with no Binance-specific weakness; I would move lower if BTC retraces near 71k-72k or volatility/risk-off conditions rise sharply."
+}

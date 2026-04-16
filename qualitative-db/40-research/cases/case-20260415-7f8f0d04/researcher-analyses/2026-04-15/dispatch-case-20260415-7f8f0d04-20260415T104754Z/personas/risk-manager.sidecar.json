@@ -1,0 +1,61 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "medium",
+  "fragility_points": [
+    "Exact-string mapping risk between the current top Anthropic row and the contract model.",
+    "Future-check-time risk rather than current-snapshot risk.",
+    "Tie / narrow-margin risk near the top of the leaderboard."
+  ],
+  "key_assumptions": [
+    "The current top Anthropic leaderboard row is the exact model string claude-opus-4-6-thinking.",
+    "The style-control-on ordering at the April 17 noon ET check will remain broadly similar to the current snapshot.",
+    "No tie or last-day leaderboard movement will flip the winner away from the contract string."
+  ],
+  "main_logical_chain": [
+    "The contract resolves on the style-control-on LM Arena text leaderboard at April 17, 2026 12:00 PM ET.",
+    "Current primary-source evidence suggests an Anthropic model is leading or near-leading that leaderboard.",
+    "But the contract is about an exact model string at a future timestamp, and exact-string verification is incomplete.",
+    "That keeps YES favored but less certain than the market-implied 87.4%."
+  ],
+  "main_thesis": "YES is more likely than not, but the market is overconfident because evidence supports Anthropic leadership more strongly than exact proof that claude-opus-4-6-thinking will be first at the precise check time.",
+  "own_probability": 0.79,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "Results from the Score column under the Text Arena | Overall Leaderboard tab ... with style control on will be used to resolve this market.",
+    "At the time of the fetch, an Anthropic model appears to lead the text leaderboard."
+  ],
+  "reasoning_mode": [
+    "risk_management",
+    "contract_interpretation",
+    "scenario_analysis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-7f8f0d04",
+    "dispatch_id": "dispatch-case-20260415-7f8f0d04-20260415T104754Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "648e92f4-33bd-43e9-be14-3526acd379d5",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-7f8f0d04/researcher-analyses/2026-04-15/dispatch-case-20260415-7f8f0d04-20260415T104754Z/personas/risk-manager.md",
+    "source_persona_sha256": "3aedd433b25d06e2881d21ee47a0c6af62d737f78cb9d1801346eaefad4ac1a1"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary source quality is good on current leaderboard direction but weaker on exact row-name verification in the fetched extract; contract mechanics are clear enough to define the main risks.",
+  "strongest_disconfirmers": [
+    "The fetched leaderboard text did not cleanly verify that the current top row is exactly claude-opus-4-6-thinking.",
+    "Top-of-board scores appear close enough that movement before the April 17 check could matter.",
+    "Alphabetical tie handling can work against a -thinking suffix variant."
+  ],
+  "strongest_supports": [
+    "LM Arena fetch showed an Anthropic model currently ranked first around 1502 \u00b1 5.",
+    "Another Anthropic entry also appeared near the very top, supporting family-level strength.",
+    "Polymarket contract clearly points to the same leaderboard family and score-based resolution mechanics."
+  ],
+  "timing_relevance": "The market resolves on a future noon ET snapshot on April 17, not on the current board; that creates persistence risk over the remaining window.",
+  "unresolved_ambiguities": [
+    "Whether the current #1 row is exactly claude-opus-4-6-thinking.",
+    "How much the top cluster may move before the noon ET check.",
+    "Whether any source fallback would matter if the leaderboard becomes unavailable."
+  ],
+  "what_would_change_view": "A cleaner direct leaderboard capture proving the top row is or is not exactly claude-opus-4-6-thinking would move the estimate most quickly."
+}

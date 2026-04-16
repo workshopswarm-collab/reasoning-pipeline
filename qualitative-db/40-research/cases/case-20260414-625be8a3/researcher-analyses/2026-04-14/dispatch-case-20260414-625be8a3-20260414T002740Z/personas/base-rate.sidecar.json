@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A court ruling or procedural action could delay or cancel the vote.",
+    "Evidence of overwhelming bipartisan or public support could justify a higher estimate.",
+    "Sparse official-page extraction limits detail about the amendment's exact framing."
+  ],
+  "key_assumptions": [
+    "The referendum occurs by the November 3, 2026 contract deadline.",
+    "No hidden strong support evidence exists that would justify a probability in the high 80s.",
+    "Official Virginia election reporting remains the operative fallback source of truth."
+  ],
+  "main_logical_chain": [
+    "Official scheduling and independent confirmation make a real referendum more likely than not to occur and produce a vote.",
+    "But the contract has two hurdles: occurrence within deadline and majority approval.",
+    "Because legal/timing risk and ordinary referendum failure risk remain material, the fair estimate is below the market's 89%."
+  ],
+  "main_thesis": "The Virginia redistricting referendum is more likely than not to pass, but the market overstates confidence because legal/timing risk and ordinary ballot-measure failure risk are not close to zero.",
+  "own_probability": 0.7,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "Pending legal challenges, Virginia is scheduled to vote in a special election on April 21, 2026",
+    "In case of ambiguity, this market will resolve solely based on the official referendum results reported by the State of Virginia"
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-625be8a3",
+    "dispatch_id": "dispatch-case-20260414-625be8a3-20260414T002740Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "1519c8fa-902d-4474-aa3a-ea3d4da47b07",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-625be8a3/researcher-analyses/2026-04-14/dispatch-case-20260414-625be8a3-20260414T002740Z/personas/base-rate.md",
+    "source_persona_sha256": "e1c91ccc27c72d3105cede04335b2a0b7749544c6c14968e019a138a41d62cca"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary source quality is high because the Virginia Department of Elections is the named official authority; contextual confirmation is medium quality and medium independence via Ballotpedia; source-of-truth ambiguity is low to medium because official fallback logic is clear but legal/timing status still matters.",
+  "strongest_disconfirmers": [
+    "The market description explicitly says the vote is pending legal challenges.",
+    "The contract resolves No if the referendum never occurs by November 3, 2026, 11:59 PM ET.",
+    "No strong independent evidence surfaced in this run to justify an 89% passage probability."
+  ],
+  "strongest_supports": [
+    "Virginia Department of Elections has an official amendment page tied to the April 2026 special election.",
+    "Ballotpedia independently reports one statewide measure certified for the April 21, 2026 special election and identifies the redistricting amendment.",
+    "The contract allows postponement before November 3, 2026 without automatically killing a Yes outcome."
+  ],
+  "timing_relevance": "April 21, 2026 is the scheduled special-election date, but the contract deadline is November 3, 2026 at 11:59 PM ET, so postponement before then does not automatically negate Yes.",
+  "unresolved_ambiguities": [
+    "How strong the pending legal challenges really are.",
+    "Whether there is unpublished or not-yet-surfaced polling/support evidence.",
+    "Whether the amendment text is framed in a voter-friendly way that raises approval odds."
+  ],
+  "what_would_change_view": "I would raise the estimate with strong evidence legal challenges are weak and support is broad; I would cut it materially if official or credible reporting showed serious risk the vote will not occur by the deadline."
+}

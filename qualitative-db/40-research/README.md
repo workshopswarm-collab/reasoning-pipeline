@@ -2,7 +2,7 @@
 type: system_guide
 domain: research
 status: active
-last_updated: 2026-03-25
+last_updated: 2026-04-14
 owner: orchestrator
 tags: [research/guide, qualitative-db/40-research, workflow]
 ---
@@ -57,7 +57,7 @@ Important authority rule:
 - researchers read from `30-drivers/`
 - researchers write case-specific work into `40-research/`
 - the decision-maker, not ordinary researchers, is the normal writer to `30-drivers/`
-- durable promoted lessons should usually flow through `50-retrospectives/` as part of the final review loop
+- durable promoted lessons should usually flow through `50-learnings/` as part of the final review loop
 
 Researchers may also use `40-research/` to flag:
 - missing canonical links
@@ -91,7 +91,7 @@ The default workflow is:
 1. preserve both views in `40-research/`
 2. make the disagreement explicit in findings, evidence maps, or syntheses
 3. let the decision-maker adjudicate the conflict
-4. record resolved-case lessons in `qualitative-db/50-retrospectives/`
+4. record resolved-case lessons in `qualitative-db/50-learnings/`
 5. promote durable lessons into stable layers only after final review
 
 ---
@@ -329,23 +329,23 @@ See:
 
 ---
 
-# How 40-research interacts with 30-drivers and 50-retrospectives
+# How 40-research interacts with 30-drivers and 50-learnings
 
 `30-drivers/` stores reusable causal mechanisms.
 
 `40-research/` stores case-specific evidence, reasoning, and updates.
 
-`50-retrospectives/` stores after-the-fact evaluation of resolved cases, including missed signals, false signals, methodology changes, and performance review.
+`50-learnings/` stores after-the-fact evaluation of resolved cases, including missed signals, false signals, methodology changes, and performance review.
 
 Use this distinction:
 - if the note is about **how a mechanism usually works across many cases** -> `30-drivers/`
 - if the note is about **how that mechanism appears in this case right now** -> `40-research/`
-- if the note is about **what the resolved case taught us afterward** -> `50-retrospectives/`
+- if the note is about **what the resolved case taught us afterward** -> `50-learnings/`
 
 Default workflow:
 1. read relevant drivers first
 2. collect source notes and other research outputs in `40-research/`
-3. resolve the case and review outcomes in `50-retrospectives/`
+3. resolve the case and review outcomes in `50-learnings/`
 4. let the decision-maker update `30-drivers/` only when a durable cross-case lesson emerges
 
 ---
@@ -374,8 +374,8 @@ A good default research workflow looks like this:
 5. **Write syntheses**
    - compress multiple notes into a reusable view for downstream forecasting or memory updates
 
-6. **Hand off durable lesson candidates and conflict lessons to retrospectives and final review**
-   - if a research pass suggests a durable lesson, make it explicit in `40-research/` and/or `50-retrospectives/`
+6. **Hand off durable lesson candidates and conflict lessons to the learnings layer and final review**
+   - if a research pass suggests a durable lesson, make it explicit in `40-research/` and/or `50-learnings/`
    - if researchers conflicted, make the conflict type and strongest unresolved issue explicit before handoff
    - the decision-maker decides whether that lesson should update `30-drivers/`, `20-entities/`, or `10-domains/`
 
@@ -414,6 +414,6 @@ Avoid:
 - `evidence-maps/` = how does the evidence push the claim up or down?
 - `product-notes/` = what changed in this specific release/version?
 - `syntheses/` = what is the distilled take after reviewing many inputs?
-- `50-retrospectives/` = what did the resolved case teach us?
+- `50-learnings/` = what did the resolved case teach us?
 
 If uncertain, preserve provenance first and canonize later.

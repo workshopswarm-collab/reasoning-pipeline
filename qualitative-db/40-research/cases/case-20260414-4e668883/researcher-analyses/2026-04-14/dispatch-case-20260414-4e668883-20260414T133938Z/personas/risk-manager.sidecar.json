@@ -1,0 +1,58 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Round-number rejection or short-term reversal could prevent the touch.",
+    "A stricter-than-assumed settlement methodology could lower true hit probability."
+  ],
+  "key_assumptions": [
+    "A qualifying result is based on an intraperiod hit/touch rather than a close.",
+    "The official settlement source will behave similarly to checked market-data sources.",
+    "No sharp downside interruption prevents a brief wick above $2,400."
+  ],
+  "main_logical_chain": [
+    "Market implies 92.35% for the $2,400 bucket.",
+    "Independent price verification showed ETH near but still below $2,400.",
+    "Because this is a short-window path event, near-threshold status is bullish but not equivalent to settlement.",
+    "Therefore yes remains the base case, but probability should be discounted below the market."
+  ],
+  "main_thesis": "ETH likely reaches $2,400 during April 13-19, but the market is modestly overconfident because the threshold had not yet been printed in checked independent sources and short-window path risk remains real.",
+  "own_probability": 0.86,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "market-implied probability 92.35%",
+    "CoinGecko max_7d around 2392.57",
+    "Binance max_high_sample around 2396.03"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "risk_management",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-4e668883",
+    "dispatch_id": "dispatch-case-20260414-4e668883-20260414T133938Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "2f051581-1b36-4b8c-bd55-908c914853d8",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-4e668883/researcher-analyses/2026-04-14/dispatch-case-20260414-4e668883-20260414T133938Z/personas/risk-manager.md",
+    "source_persona_sha256": "eac43bdd8f8729f0c15533a7c37c07671d88a72c3d1412464c20abb8a4105cfb"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary market surface plus two independent contextual price checks gave adequate low-difficulty coverage, but full settlement-text verification remained slightly incomplete.",
+  "strongest_disconfirmers": [
+    "CoinGecko and Binance checks did not show a verified 2400+ print yet.",
+    "The exact settlement-source mechanics were not fully visible in the fetched public rules extract."
+  ],
+  "strongest_supports": [
+    "ETH was already trading just below the threshold, making a qualifying touch plausible within the window.",
+    "Independent checks placed ETH in the low-to-mid 2390s, so only a small move was needed."
+  ],
+  "timing_relevance": "High; this is a date-bounded threshold-hit market where path and wick timing matter more than medium-term ETH direction.",
+  "unresolved_ambiguities": [
+    "Full exact Polymarket rules wording/source was not captured in the extracted page text."
+  ],
+  "what_would_change_view": "A verified official-source print above $2,400 would move the estimate toward the market; repeated rejection below 2400 or stricter rule wording would move it lower."
+}

@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A sub-1% move lower before the noon ET candle would likely resolve No.",
+    "Any Binance-specific divergence or operational issue could matter disproportionately."
+  ],
+  "key_assumptions": [
+    "Binance BTCUSDT spot is broadly representative rather than venue-distorted.",
+    "No major catalyst before noon ET overwhelms ordinary overnight BTC volatility.",
+    "Current Polymarket pricing is informative rather than stale."
+  ],
+  "main_logical_chain": [
+    "Start from the 62% market-implied probability as an information-rich prior.",
+    "Check whether the source-of-truth venue is already above the threshold.",
+    "Verify broader BTC spot is directionally consistent with Binance.",
+    "Weight the small above-threshold cushion against single-minute settlement risk.",
+    "Conclude the market is roughly right, with a slight lean to Yes at 65%."
+  ],
+  "main_thesis": "The market's roughly 62% Yes price looks broadly efficient; BTC is already above 74k on Binance, but the buffer is small and the one-minute noon ET settlement close keeps downside path risk meaningful.",
+  "own_probability": 0.65,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone has a final 'Close' price higher than 74,000.",
+    "Binance BTCUSDT spot check: 74,589.27.",
+    "Own probability estimate: 65% Yes."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-2ab48f50",
+    "dispatch_id": "dispatch-case-20260416-2ab48f50-20260416T002737Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "0de08f8c-11d2-43fb-9216-f99ed04303e0",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-2ab48f50/researcher-analyses/2026-04-16/dispatch-case-20260416-2ab48f50-20260416T002737Z/personas/market-implied.md",
+    "source_persona_sha256": "99b376c907fb3a5e5f07d2d3cf34f11a8be7ac3050ee524ea6300db389f74946"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source-of-truth ambiguity is low because the contract names Binance clearly; evidence independence is medium because all checks still reference the same underlying BTC market.",
+  "strongest_disconfirmers": [
+    "The cushion above 74,000 is under 1%, so ordinary BTC volatility can flip the outcome.",
+    "Settlement depends on one specific Binance one-minute close at 12:00 ET, increasing path dependence."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT spot check was above 74,000 at 74,589.27.",
+    "CoinGecko independently showed BTC above 74,000 as contextual confirmation.",
+    "The Polymarket nearby-strike ladder is smooth and coherent around 74k."
+  ],
+  "timing_relevance": "This is a date-sensitive, one-minute-candle contract; exact venue, timezone, and noon ET close mechanics are central.",
+  "unresolved_ambiguities": [
+    "Whether any scheduled macro or crypto catalyst before settlement could raise volatility materially.",
+    "How persistent the above-74k cushion remains into the exact settlement minute."
+  ],
+  "what_would_change_view": "I would cut the estimate if Binance BTCUSDT moved decisively below 74k, if Binance diverged from broader spot, or if a meaningful pre-settlement catalyst raised downside volatility; I would raise it if BTC held a wider cushion above 74k into settlement."
+}

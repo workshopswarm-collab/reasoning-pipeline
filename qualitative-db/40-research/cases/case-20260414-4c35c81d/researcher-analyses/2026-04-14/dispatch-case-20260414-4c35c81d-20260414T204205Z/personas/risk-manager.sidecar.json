@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Date mismatch between assignment text and external evidence.",
+    "Governing settlement source was not fully explicit in the assignment.",
+    "Both sources could theoretically point to the wrong fixture, though that seems unlikely."
+  ],
+  "key_assumptions": [
+    "The market slug and ESPN fixture refer to the same underlying Saudi Pro League match.",
+    "The 2-2 result is final and not subject to administrative reversal.",
+    "The contract does not actually refer to a separate future fixture on 2026-04-23."
+  ],
+  "main_logical_chain": [
+    "Market price of 0.83 implies heavy confidence in a Qadisiyah win.",
+    "Direct evidence from market metadata and ESPN indicates the relevant matchup already finished 2-2.",
+    "If the underlying match already drew, the win outcome should resolve no unless the contract is tied to a different event.",
+    "Therefore most residual probability belongs to source-of-truth mismatch rather than match-performance uncertainty."
+  ],
+  "main_thesis": "The market appears badly overpriced on Al Qadisiyah win because the most relevant evidence indicates the match tied to this contract already ended 2-2, leaving only source-misalignment risk as the main yes path.",
+  "own_probability": 0.05,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "ended in a 2-2 draw",
+    "Al Qadsiah 2 - 2 Al Shabab FT",
+    "current_price: 0.83"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "risk_management",
+    "contract_interpretation",
+    "scenario_analysis"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260414-4c35c81d",
+    "dispatch_id": "dispatch-case-20260414-4c35c81d-20260414T204205Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "02719a2b-735e-4389-83a6-a04c37a7db57",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-4c35c81d/researcher-analyses/2026-04-14/dispatch-case-20260414-4c35c81d-20260414T204205Z/personas/risk-manager.md",
+    "source_persona_sha256": "364a19ee5e72e80e4983f18cb91e06dbcc7b855ac3e95e1bc71794e147a851bd"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Medium overall: strong direct relevance from Polymarket slug metadata plus an independent ESPN scoreboard cross-check, but only medium-to-high confidence until the governing settlement source is made explicit.",
+  "strongest_disconfirmers": [
+    "The assignment text says the game is scheduled for 2026-04-23, so the contract could refer to a different future fixture."
+  ],
+  "strongest_supports": [
+    "Polymarket metadata for the exact slug says the Round 29 matchup ended 2-2.",
+    "ESPN fixtures independently show Al Qadsiah 2-2 Al Shabab FT on 2026-04-14.",
+    "ESPN standings explain why Qadisiyah was a strong favorite on team quality before result/timestamp risk dominated."
+  ],
+  "timing_relevance": "Timing is central: the whole view depends on whether the contract refers to an already completed 2026-04-14 draw or a future 2026-04-23 match.",
+  "unresolved_ambiguities": [
+    "Whether 2026-04-23 is a stale field or the true intended fixture date.",
+    "Which explicit provider or official page governs market settlement."
+  ],
+  "what_would_change_view": "An official league or market-settlement source showing the relevant fixture is actually on 2026-04-23 and unplayed would move the estimate sharply upward toward a standard favorite view."
+}

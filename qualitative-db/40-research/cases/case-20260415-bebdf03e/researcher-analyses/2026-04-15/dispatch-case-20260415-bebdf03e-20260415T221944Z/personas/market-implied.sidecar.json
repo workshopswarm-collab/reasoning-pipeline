@@ -1,0 +1,58 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A fast BTC drawdown toward or below 72000 before April 21 would materially weaken the view.",
+    "Binance-specific pricing or candle-interpretation issues could matter because the contract is venue- and minute-specific."
+  ],
+  "key_assumptions": [
+    "Current BTCUSDT levels in the mid-70k range persist enough that the April 21 noon ET Binance candle is likely to close above 72000.",
+    "Binance-specific pricing remains broadly aligned with general BTC market context through resolution."
+  ],
+  "main_logical_chain": [
+    "Start from market-implied probability of 81.5% as an information-rich prior.",
+    "Check governing contract mechanics and confirm source of truth is Binance BTCUSDT noon ET 1-minute close.",
+    "Verify current Binance price context and recent closes are materially above 72000.",
+    "Discount somewhat for six-day volatility and narrow settlement mechanics.",
+    "Land at 76%, roughly agreeing with market but modestly below it."
+  ],
+  "main_thesis": "Market is directionally right that Yes is favored, but 81.5% looks slightly rich versus the remaining six-day volatility and narrow Binance noon-candle resolution mechanics.",
+  "own_probability": 0.76,
+  "persona": "market-implied",
+  "quote_anchors": [
+    "Binance BTC/USDT, 1-minute candles, final Close price for the 12:00 ET candle on April 21, 2026.",
+    "The market's ~81.5% Yes price is directionally reasonable but slightly rich."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-bebdf03e",
+    "dispatch_id": "dispatch-case-20260415-bebdf03e-20260415T221944Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "88788cee-ad24-4514-b421-c040018a82f6",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-bebdf03e/researcher-analyses/2026-04-15/dispatch-case-20260415-bebdf03e-20260415T221944Z/personas/market-implied.md",
+    "source_persona_sha256": "1717e20759dbc11b389f4d22dc318e3d96307b1a5ad18e55e411b64976de040c"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Good enough for a medium case: contract/rules source plus exchange-native Binance data, with medium evidence independence and low-to-medium source-of-truth ambiguity.",
+  "strongest_disconfirmers": [
+    "BTC volatility makes a >4% drawdown over six days plausible.",
+    "Contract resolves on one exact Binance 12:00 ET 1-minute close, not a broader average or daily close."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT traded around 75012 during the run, more than 4% above the threshold.",
+    "Recent Binance daily closes were mostly above 72000.",
+    "Nearby Polymarket strike pricing looked internally coherent rather than stale."
+  ],
+  "timing_relevance": "Resolution is six days away and depends on the April 21 12:00 ET Binance 1-minute candle close, so short-horizon volatility still matters materially.",
+  "unresolved_ambiguities": [
+    "Exact noon ET candle behavior cannot be known yet.",
+    "A weak external contextual cross-check did not add much beyond venue-native data."
+  ],
+  "what_would_change_view": "I would cut the estimate if BTCUSDT loses the 74k area and starts spending sustained time near or below 72k, or if Binance-specific settlement mechanics look fragile; I would gain confidence if BTC holds 73k-74k into April 20 with lower volatility."
+}

@@ -1,0 +1,58 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Single-timestamp settlement creates path dependence.",
+    "Crypto weekend liquidity can amplify moves quickly.",
+    "Confidence would drop fast if SOL starts clustering near 80 on hourly closes."
+  ],
+  "key_assumptions": [
+    "No major crypto-wide risk-off move hits before Sunday noon ET.",
+    "No Solana-specific outage, exploit, or Binance trading disruption emerges before resolution.",
+    "Recent Binance hourly support above 80 remains informative over the next 72 hours."
+  ],
+  "main_logical_chain": [
+    "Market implies about 92% Yes and direct Binance spot already sits well above 80.",
+    "Since the contract settles on one Sunday noon ET Binance minute, recent hourly structure and downside catalyst risk matter more than medium-term fundamentals.",
+    "Recent Binance daily and hourly data show sustained trading above 80, so absent a fresh negative catalyst Yes is slightly more likely than the market already implies."
+  ],
+  "main_thesis": "SOL is already trading comfortably above 80 on Binance, so the main near-term catalyst question is whether any negative shock arrives before the Sunday noon ET resolution candle; absent that, Yes remains highly likely.",
+  "own_probability": 0.95,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for SOL/USDT 12:00 in the ET timezone ... has a final 'Close' price higher than ... 80.",
+    "72 recent hourly closes were all above 80."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "catalyst_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "high",
+  "runtime_metadata": {
+    "case_key": "case-20260416-07c415fe",
+    "dispatch_id": "dispatch-case-20260416-07c415fe-20260416T031541Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "4f457ed3-7982-427a-9eed-6d9dd9cdb104",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-07c415fe/researcher-analyses/2026-04-16/dispatch-case-20260416-07c415fe-20260416T031541Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "c6fc21b8c28b8850c24d828b90e520aafdf534e1bfe28d0f17e5eb7023adc6c2"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality direct evidence from Binance for price and settlement mechanics, plus solid Polymarket contract wording; contextual independence is only medium because crypto price sources are correlated.",
+  "strongest_disconfirmers": [
+    "Weekend crypto volatility could still push SOL below 80 at the exact one-minute resolution print.",
+    "A BTC-led selloff or Solana-specific operational issue would matter more than lack of bullish catalysts."
+  ],
+  "strongest_supports": [
+    "Binance SOLUSDT spot was about 85.43 at retrieval, several dollars above the strike.",
+    "The last 72 sampled Binance hourly closes were all above 80.",
+    "Contract wording is explicit and low-ambiguity: Binance SOL/USDT, 1-minute candle, 12:00 ET, strictly above 80."
+  ],
+  "timing_relevance": "The case is mostly about whether SOL can preserve its current cushion through the weekend to the exact Sunday 12:00 ET Binance one-minute close.",
+  "unresolved_ambiguities": [
+    "Exact market baseline moved between assignment metadata and live page retrieval.",
+    "No source can directly settle the future noon ET Binance close before resolution."
+  ],
+  "what_would_change_view": "I would cut the estimate if SOL loses the low-80s on Binance hourly closes, BTC breaks down sharply, or a Solana/Binance operational issue appears before Sunday noon ET."
+}

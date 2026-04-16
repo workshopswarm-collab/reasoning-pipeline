@@ -1,0 +1,57 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A broad crypto selloff before April 19 could erase the current cushion.",
+    "A Binance-specific downward dislocation at the settlement minute would matter even if other venues stay stronger."
+  ],
+  "key_assumptions": [
+    "SOL does not fall roughly 6% from the mid-84s area into the April 19 12:00 ET settlement minute.",
+    "Binance SOL/USDT remains a representative and functioning settlement surface."
+  ],
+  "main_logical_chain": [
+    "Verify the governing source and exact settlement mechanic from Polymarket rules.",
+    "Check Binance directly to measure current distance from the threshold on the governing venue.",
+    "Use outside-view short-dated crypto volatility logic to judge whether a roughly 6% drop by settlement is more likely than not.",
+    "Conclude Yes is favored but not close to certain because close-only mechanics preserve tail risk."
+  ],
+  "main_thesis": "SOL is already trading materially above 80 on the governing venue, so the outside view favors a Yes resolution, though single-minute close mechanics preserve meaningful downside tail risk.",
+  "own_probability": 0.91,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "The market resolves Yes only if the final close price for that exact minute is higher than 80.",
+    "My estimate is 91% Yes."
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "market_anchor",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-a8277fc8",
+    "dispatch_id": "dispatch-case-20260416-a8277fc8-20260416T001420Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "e8526594-b409-4185-951b-611d87cde68a",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-a8277fc8/researcher-analyses/2026-04-16/dispatch-case-20260416-a8277fc8-20260416T001420Z/personas/base-rate.md",
+    "source_persona_sha256": "8490e9182b176250f38f07a5c22ce1b05ff4c047df575565ff0767f6832b2098"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is fairly strong for a medium case: low ambiguity on settlement source, direct governing-venue verification, plus independent contextual spot checks.",
+  "strongest_disconfirmers": [
+    "Crypto can move 6% in a few days without a special catalyst.",
+    "This contract depends on one exact 1-minute close, not an anytime touch or average price."
+  ],
+  "strongest_supports": [
+    "Direct Binance spot was about 84.72, roughly 5.9% above the 80 threshold.",
+    "Recent Binance 1-minute closes were clustered around 84.67-84.75.",
+    "CoinGecko and Coinbase spot checks closely matched Binance, supporting the current cushion."
+  ],
+  "timing_relevance": "This is a short-dated, timezone-sensitive contract tied to the April 19, 2026 12:00 ET Binance 1-minute close.",
+  "unresolved_ambiguities": [
+    "No explicit historical volatility study was done for analogous SOL close-above contracts.",
+    "Threshold-close mechanics are not yet represented by a clean canonical driver slug."
+  ],
+  "what_would_change_view": "A move back toward 80-81 on Binance, a broad crypto risk-off drop, or evidence of Binance-specific weakness would lower the estimate materially."
+}

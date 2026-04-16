@@ -1,0 +1,62 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Single-minute settlement timing",
+    "Single-exchange source of truth",
+    "Short-horizon BTC volatility",
+    "Potential Binance-specific operational or candle-close anomalies"
+  ],
+  "key_assumptions": [
+    "BTC/USDT on Binance remains above 70,000 through the exact April 17 12:00 ET minute close.",
+    "No venue-specific candle or operational anomaly distorts the final Binance close used for resolution.",
+    "The current roughly 6% buffer above 70,000 is not erased by short-horizon BTC volatility before settlement."
+  ],
+  "main_logical_chain": [
+    "The governing contract uses the Binance BTC/USDT 12:00 ET one-minute candle close on April 17.",
+    "Current Binance spot and recent 1-minute candles are materially above 70,000, supporting a Yes base case.",
+    "But the contract is narrow and path-dependent, so current spot does not justify near-certainty.",
+    "Therefore the market is directionally right but modestly overconfident; 88% better reflects remaining timing and venue risk."
+  ],
+  "main_thesis": "Yes is still the base case, but the 92.5%-93% market price looks slightly too confident for a narrow Binance-specific noon ET minute-close contract; 88% is a better estimate.",
+  "own_probability": 0.88,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "The key risk-manager point is that this is a narrow path-dependent contract: one exchange, one pair, one exact minute, one final close.",
+    "Base case is still Yes, but the market looks a bit too confident."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "risk_management",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-60e5e883",
+    "dispatch_id": "dispatch-case-20260414-60e5e883-20260414T190542Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "6eb83b2f-9214-4416-a989-6741c98e7c7f",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-60e5e883/researcher-analyses/2026-04-14/dispatch-case-20260414-60e5e883-20260414T190542Z/personas/risk-manager.md",
+    "source_persona_sha256": "1f65aa1f9725a6c81d4ce65fa0e17ad346e05c2589f0667351e155cca4161ce6"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary sources for contract and venue are strong enough for a medium-difficulty short-horizon case; independence is medium because contextual confirmation beyond Binance is limited to a secondary spot check.",
+  "strongest_disconfirmers": [
+    "The contract resolves on one exact Binance minute close, so a brief but badly timed drawdown could still settle No.",
+    "A 92.5%-93% market price may underweight normal crypto volatility over roughly three remaining days.",
+    "Exchange-specific candle finalization or display quirks remain a residual operational risk."
+  ],
+  "strongest_supports": [
+    "Binance direct ticker check showed BTCUSDT around 74,163, comfortably above 70,000.",
+    "Recent Binance 1-minute klines also closed around 74.2k-74.3k.",
+    "CoinGecko BTC/USD around 74,274 corroborated the broader spot level."
+  ],
+  "timing_relevance": "Timing is central: resolution depends on the exact April 17, 2026 12:00 PM ET Binance 1-minute candle close, not on general daily trading levels.",
+  "unresolved_ambiguities": [
+    "Whether any close-to-settlement Binance display/finalization quirk could matter in practice.",
+    "How much ordinary BTC volatility over the next three days should be priced into a one-minute threshold contract."
+  ],
+  "what_would_change_view": "I would move toward the market if BTC stays comfortably above the mid-74k area into late April 16 with clean Binance prints; I would move lower if BTC compresses toward 71k-72k, Binance diverges from broader spot, or timezone/candle-finalization ambiguity emerges."
+}

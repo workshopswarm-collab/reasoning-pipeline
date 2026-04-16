@@ -1,0 +1,157 @@
+{
+  "schema_version": "decision-packet/v1",
+  "generated_at": "2026-04-13T17:08:00-04:00",
+  "context": {
+    "case_key": "case-20260413-ac4c8995",
+    "dispatch_id": "dispatch-case-20260413-ac4c8995-20260413T204806Z",
+    "question": "Will United Left (BSP) win at least one seat in the 2026 Bulgarian parliamentary election?",
+    "market_id": "case-20260413-ac4c8995",
+    "market_title": "Will United Left (BSP) win at least one seat in the 2026 Bulgarian parliamentary election?",
+    "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260413-ac4c8995/synthesizer-agent/decision-handoff.md",
+    "source_syndicated_finding_path": "qualitative-db/40-research/cases/case-20260413-ac4c8995/synthesizer-agent/syndicated-finding.md",
+    "decision_maker_agent": "decision-maker",
+    "canonical_markdown_path": "decision-maker-packet.md",
+    "canonical_json_path": "artifacts/decision-maker-packet.json",
+    "external_market_id": "0x18a6cd68c80f4838ed7916ef826f5cab501aba0c30588cf06c9a44fac018e84d",
+    "market_slug": "will-united-left-bsp-win-at-least-one-seat-in-the-2026-bulgarian-parliamentary-election",
+    "platform": "polymarket",
+    "primary_market_url": "https://polymarket.com/event/will-united-left-bsp-win-at-least-one-seat-in-the-2026-bulgarian-parliamentary-election",
+    "source_light_refresh_brief_path": "",
+    "refresh_mode": ""
+  },
+  "decision": {
+    "side": "yes",
+    "trade_authorization": "watch_only",
+    "position_policy": "hold_only",
+    "decision_readiness": "needs_more_research",
+    "primary_crux": "United Left (BSP) is still more likely than not to win at least one seat because it is described as an existing parliamentary bloc that previously cleared the 4% threshold, but the unresolved CIK entity-mapping issue and lack of fresh threshold-sensitive polling make the case too fragile and too close to market for authorization.",
+    "secondary_cruxes": [
+      "The contract is threshold-driven, so even small late vote-share deterioration can flip a likely-yes outcome to zero seats.",
+      "The market price of 0.735 sits near the bounded fair-value range, so there is no meaningful valuation cushion against verification gaps.",
+      "The key unresolved issue is not broad direction but whether the market-relevant BSP/United Left entity is cleanly mapped and still safely above threshold."
+    ],
+    "thesis_class": "not_decision_ready"
+  },
+  "valuation": {
+    "fair_value_low": 0.64,
+    "fair_value_high": 0.74,
+    "fair_value_mid": 0.69,
+    "market_reference_price": 0.735,
+    "edge_mid_vs_market_pct_points": -4.5,
+    "independent_verification_quality": "medium",
+    "compressed_toward_market_applied": false,
+    "compression_reason": "The bounded evidence already clusters close to the market, and the dominant problem is unresolved verification on threshold survival and entity mapping rather than a large valuation disagreement."
+  },
+  "execution_semantics": {
+    "price_axis": "market_implied_true_prob",
+    "price_source": "market_snapshot_quote",
+    "rebalance_threshold_fraction": 0.12,
+    "allow_auto_reversal": false,
+    "valid_until": "2026-04-16T23:59:00-04:00",
+    "quote_staleness_seconds": 21600,
+    "time_horizon": "Through election day and official seat allocation"
+  },
+  "risk_controls": {
+    "max_position_size_pct_bankroll": 0.005,
+    "max_additional_exposure_pct_bankroll": 0.0,
+    "max_single_order_pct_bankroll": 0.0,
+    "slippage_tolerance_bps": 100,
+    "liquidity_min_depth": 800,
+    "correlation_bucket_limit_pct_bankroll": 0.03,
+    "confidence_level": "low",
+    "portfolio_constraints": [
+      "Do not initiate new exposure from this packet because the case remains threshold-fragile and research-incomplete.",
+      "Only reassess after direct CIK entity/ballot mapping confirmation and fresher polling or reporting around the 4% threshold.",
+      "Treat naming or coalition-registration ambiguity as a hard blocker because a mapping mistake can invalidate the contract interpretation."
+    ],
+    "liquidity_caution": "high"
+  },
+  "bands": [
+    {
+      "name": "max_enter",
+      "min_p": 0,
+      "max_p": 0.2,
+      "target_exposure_fraction": 0,
+      "notes": "No entry authorized because the case is not decision-ready despite a directional yes lean."
+    },
+    {
+      "name": "scaled_enter",
+      "min_p": 0.2,
+      "max_p": 0.5,
+      "target_exposure_fraction": 0,
+      "notes": "No entry authorized until entity mapping and threshold verification improve."
+    },
+    {
+      "name": "hold",
+      "min_p": 0.5,
+      "max_p": 0.72,
+      "target_exposure_fraction": 0,
+      "notes": "Hold/watch zone; directionally yes but not clean enough for fresh adds."
+    },
+    {
+      "name": "trim",
+      "min_p": 0.72,
+      "max_p": 0.85,
+      "target_exposure_fraction": 0,
+      "notes": "Avoid adding above roughly fair value given threshold fragility and unresolved mapping risk."
+    },
+    {
+      "name": "exit",
+      "min_p": 0.85,
+      "max_p": 1,
+      "target_exposure_fraction": 0,
+      "notes": "Exit/avoid at expensive prices because small late moves can still produce a zero-seat outcome."
+    }
+  ],
+  "invalidation": {
+    "thesis_breakers": [
+      "Credible fresh polling shows the market-relevant BSP/United Left entity below or clearly near-below the 4% threshold.",
+      "Direct CIK registration or ballot materials show the market-relevant entity is not the expected BSP–United Left formation.",
+      "Evidence of coalition fracture, de-registration, or naming mismatch materially weakens seat eligibility."
+    ],
+    "market_structure_breakers": [
+      "The market is incorporating fresher local threshold polling unavailable in the bounded package.",
+      "Thin liquidity or naming confusion is distorting the displayed 0.735 quote.",
+      "Official reporting on ballot registration or seat eligibility changes the executable interpretation of the contract."
+    ],
+    "time_breakers": [
+      "Late threshold polling before 19 April can move this probability materially.",
+      "Election-night counts and official allocation will quickly dominate current pre-election reasoning."
+    ],
+    "reversal_conditions": [
+      "Move toward authorized yes only after direct CIK mapping and stronger threshold evidence are verified.",
+      "Shift toward no if credible sub-threshold polling or official mapping problems appear.",
+      "Do not auto-reverse from this packet."
+    ]
+  },
+  "epistemic_status": {
+    "key_uncertainties": [
+      "Direct official CIK confirmation that the market-relevant entity is the expected BSP/United Left formation.",
+      "Fresh independent evidence on current vote share relative to the 4% threshold.",
+      "How much late-cycle threshold risk is already embedded in the market price."
+    ],
+    "reasons_to_pass": [
+      "The case is threshold-fragile, so small factual errors have discontinuous consequences.",
+      "The market is near the bounded fair-value range, so there is little valuation cushion to compensate for verification gaps.",
+      "The bundle explicitly says blockers require new research, especially on CIK mapping and fresh polling."
+    ],
+    "what_would_change_my_mind": [
+      "Direct CIK ballot or registration confirmation cleanly matching the contract subject to BSP–United Left.",
+      "Fresh polling or credible reporting showing the bloc safely above 4%, which would strengthen the yes case and possibly improve readiness.",
+      "Fresh polling or official evidence showing sub-threshold risk or naming problems, which would move the estimate materially lower."
+    ],
+    "decision_quality": "not_ready"
+  },
+  "audit": {
+    "market_baseline_respected": true,
+    "action_bias_check_passed": true,
+    "self_preservation_bias_check_passed": true,
+    "one_sentence_rationale": "United Left (BSP) is probably more likely than not to win at least one seat, but because the case sits close to market and remains highly sensitive to unresolved CIK entity mapping and late threshold evidence, the disciplined output is watch-only and needs-more-research rather than an authorized trade.",
+    "notes": "This packet intentionally separates directional judgment from execution readiness: the bounded evidence supports a modest yes lean, but not a clean, auditable, threshold-safe authorization.",
+    "structured_handoff_primary_used": true,
+    "prose_fallback_used": false,
+    "verification_mode_used": "not_ready_reopen_recommended",
+    "additional_verification_performed": false,
+    "additional_verification_notes": ""
+  }
+}

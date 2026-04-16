@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A sharp downside catalyst before Sunday noon ET could flip the contract despite generally strong BTC trading.",
+    "General web search failed, so catalyst-calendar coverage is less complete than ideal.",
+    "Polymarket references the Binance web chart UI while verification used Binance API docs and endpoints."
+  ],
+  "key_assumptions": [
+    "No major downside macro or crypto shock hits before the April 19 noon ET observation minute.",
+    "Binance BTCUSDT remains a reliable settlement surface without abnormal dislocation.",
+    "The current ~4.3k cushion above 70000 remains informative into the final weekend."
+  ],
+  "main_logical_chain": [
+    "The contract resolves on one exact Binance BTCUSDT minute close at noon ET on April 19.",
+    "Current Binance spot and recent 24h range sit materially above 70000.",
+    "Therefore Yes is favored absent a discrete downside catalyst or Binance-specific issue.",
+    "Because the market is already at 89.5%, single-minute settlement fragility justifies a modest discount versus market pricing."
+  ],
+  "main_thesis": "Yes is favored because Binance BTCUSDT is materially above 70000, but the market slightly overstates certainty because a single-minute Sunday noon ET close can still be knocked below threshold by a sharp downside catalyst.",
+  "own_probability": 0.84,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone (noon) on the date specified in the title has a final 'Close' price higher than the price specified in the title.",
+    "Kline/candlestick bars for a symbol. Klines are uniquely identified by their open time."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "catalyst_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-e495c9da",
+    "dispatch_id": "dispatch-case-20260414-e495c9da-20260414T191806Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "ddc2c912-7662-421b-a988-702b790c0ee0",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-e495c9da/researcher-analyses/2026-04-14/dispatch-case-20260414-e495c9da-20260414T191806Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "c85712b90fa0cffa8dff075fc810d03a6016fc8391359e67d77a06df45801ee3"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is good on contract mechanics and current market state: Polymarket supplies the governing rule, Binance docs define kline mechanics, and live Binance endpoints verify present price context; independence is medium rather than high.",
+  "strongest_disconfirmers": [
+    "BTC can move 5% to 6% in a few days or less, enough to erase the cushion.",
+    "The contract is path-insensitive except for one exact minute close, which increases timing fragility."
+  ],
+  "strongest_supports": [
+    "Live Binance BTCUSDT spot was about 74267 during the run.",
+    "Binance 24h low was about 72599.9, still above 70000.",
+    "Polymarket rules clearly define Binance BTCUSDT 12:00 ET 1-minute close as the governing source of truth."
+  ],
+  "timing_relevance": "Timing is central because the contract depends on a single Sunday noon ET minute close, so downside catalyst timing matters more than broad BTC direction.",
+  "unresolved_ambiguities": [
+    "Whether any specific scheduled macro or crypto event falls close enough to resolution to matter materially.",
+    "Whether weekend liquidity will amplify downside move risk into the exact observation minute."
+  ],
+  "what_would_change_view": "I would move lower if BTC starts testing 71k-70k before April 19 or if a concrete downside catalyst or Binance-specific issue appears; I would move higher if BTC remains comfortably above 72k into late April 18 or early April 19."
+}

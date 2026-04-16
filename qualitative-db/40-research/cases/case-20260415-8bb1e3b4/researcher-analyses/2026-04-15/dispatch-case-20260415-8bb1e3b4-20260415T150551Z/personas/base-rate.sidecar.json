@@ -1,0 +1,62 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A normal intraday downswing at the exact settlement minute could flip the outcome.",
+    "The estimate depends on regime persistence over the next five days.",
+    "The analysis uses daily-candle context as a proxy for a one-minute settlement event."
+  ],
+  "key_assumptions": [
+    "BTC stays in roughly the current 70k-plus regime through April 20.",
+    "Binance prints a normal representative BTCUSDT settlement candle at noon ET.",
+    "No major macro or crypto-specific selloff erases the current price cushion."
+  ],
+  "main_logical_chain": [
+    "Start from the outside view that a five-day-ahead BTC threshold market should not be treated as near-certain without strong cushion and stable conditions.",
+    "Observe that Binance spot is currently around 74066 and recent trading has frequently stayed above 70000, moving the baseline clearly toward Yes.",
+    "Apply a haircut because settlement depends on one exact Binance BTCUSDT one-minute close at noon ET on April 20 rather than on broader price strength.",
+    "Conclude that Yes is favored but less strongly than the market's 88% price implies."
+  ],
+  "main_thesis": "Yes is more likely than No because BTC is currently well above 70000 and has recently spent substantial time above that level, but the market is somewhat too confident because settlement depends on one exact Binance one-minute close at noon ET on April 20.",
+  "own_probability": 0.8,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "My estimate is 80%.",
+    "Governing source of truth: Binance BTC/USDT.",
+    "The strongest disconfirming consideration is contract narrowness plus ordinary BTC volatility."
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "market_anchor",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260415-8bb1e3b4",
+    "dispatch_id": "dispatch-case-20260415-8bb1e3b4-20260415T150551Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "3eab7d72-befe-4af0-8b7b-4a47e2c13916",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260415-8bb1e3b4/researcher-analyses/2026-04-15/dispatch-case-20260415-8bb1e3b4-20260415T150551Z/personas/base-rate.md",
+    "source_persona_sha256": "7a1c8f393028370a9c77a3596b38f66c4623f1d0b9991ffcae5e6ca7e8f1ac58"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary source quality is high because Binance is the governing settlement source and current spot source; Polymarket rules are high quality for contract interpretation and market baseline. Independence is medium and source-of-truth ambiguity is low.",
+  "strongest_disconfirmers": [
+    "The contract settles on one exact one-minute close at noon ET, so a localized dip can produce No.",
+    "BTC volatility is still large enough that a 5-6% cushion over five days is useful but not decisive.",
+    "Binance-specific operational or pricing irregularity could matter because settlement is exchange-specific."
+  ],
+  "strongest_supports": [
+    "Binance spot on 2026-04-15 was about 74066, roughly 5.8% above the threshold.",
+    "Recent Binance daily closes were mostly above 70000.",
+    "In the last 90 Binance daily candles, 46 closes were above 70000 and 59 highs were above 70000."
+  ],
+  "timing_relevance": "High. The market is date-sensitive, timezone-sensitive, and resolves on the Binance BTCUSDT 12:00 ET one-minute close on 2026-04-20.",
+  "unresolved_ambiguities": [
+    "How volatile BTC will be near the weekend and into April 20.",
+    "Whether the noon ET print will be benign or coincide with a local dip.",
+    "Residual Binance-specific operational risk at settlement time."
+  ],
+  "what_would_change_view": "I would raise the estimate if BTC keeps closing comfortably above 72-73k into April 19-20, and lower it if BTC loses 70k on daily closes, volatility increases, or Binance-specific irregularities appear."
+}

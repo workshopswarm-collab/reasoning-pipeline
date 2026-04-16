@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Single-timestamp settlement risk is doing most of the bearish work.",
+    "A late weekend crypto downdraft could materially change the setup."
+  ],
+  "key_assumptions": [
+    "Current roughly 5.8% cushion above $80 survives ordinary weekend volatility.",
+    "Binance SOL/USDT does not show a meaningful venue-specific dip at the resolving minute.",
+    "No major risk-off catalyst hits SOL before Sunday noon ET."
+  ],
+  "main_logical_chain": [
+    "Verify the governing source and exact contract mechanic first.",
+    "Check current Binance SOL/USDT price and recent 1-minute candles directly.",
+    "Observe that SOL is currently about 5.8% above the threshold.",
+    "Net that cushion against timestamp-specific Sunday noon close risk.",
+    "Conclude Yes remains likely, but less certain than the 88.5% market implies."
+  ],
+  "main_thesis": "SOL is already trading comfortably above $80, so Yes is more likely than not, but the single Binance noon-ET minute close keeps this below near-certainty.",
+  "own_probability": 0.84,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for SOL/USDT 12:00 in the ET timezone has a final 'Close' price higher than the price specified.",
+    "Direct Binance verification showed SOL/USDT around 84.67."
+  ],
+  "reasoning_mode": [
+    "catalyst_analysis",
+    "scenario_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-a8277fc8",
+    "dispatch_id": "dispatch-case-20260416-a8277fc8-20260416T001420Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "bb273820-bcdd-4521-8c8d-c966f1df5f00",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-a8277fc8/researcher-analyses/2026-04-16/dispatch-case-20260416-a8277fc8-20260416T001420Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "f2bdef30067cc07bcaf4788bf40cdb11956fc024c3d489d616dc8f1d78d763aa"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary contract mechanics are strong and direct; current price verification is also direct via Binance API; independence is medium and source-of-truth ambiguity is low-to-medium.",
+  "strongest_disconfirmers": [
+    "This is a single-minute close market, so a badly timed dip at Sunday 12:00 ET can still resolve No.",
+    "Weekend altcoin volatility could erase a several-percent cushion quickly."
+  ],
+  "strongest_supports": [
+    "Direct Binance verification showed SOLUSDT around 84.67-84.74, clearly above $80.",
+    "Polymarket rules confirm this is a Binance SOL/USDT close-above market, so current cushion is directly relevant.",
+    "No further upside is required if current regime broadly persists."
+  ],
+  "timing_relevance": "The main catalyst is time passing without SOL losing the $80 buffer; the highest-information next check is a closer-to-resolution Binance verification pass.",
+  "unresolved_ambiguities": [
+    "No final governing-source print exists yet because the relevant minute has not occurred.",
+    "Rules name the Binance interface candle display rather than an API endpoint."
+  ],
+  "what_would_change_view": "I would turn more bearish if SOL fell toward or below 81 before Sunday or if a closer pass showed the cushion nearly gone; more bullish if late Saturday or Sunday checks still show a comfortable margin above $80."
+}

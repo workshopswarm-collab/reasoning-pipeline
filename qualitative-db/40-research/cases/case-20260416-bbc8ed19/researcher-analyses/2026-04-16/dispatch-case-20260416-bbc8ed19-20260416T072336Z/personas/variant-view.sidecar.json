@@ -1,0 +1,61 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "A sustained rise in BTC before April 20 would quickly erase the variant edge.",
+    "Evidence independence is limited because the direct evidence set is tied closely to the contract-resolution chain.",
+    "The estimate is sensitive to short-horizon realized volatility."
+  ],
+  "key_assumptions": [
+    "A single-minute Binance settlement surface deserves a discount versus a naive spot-level interpretation.",
+    "A roughly 4% cushion above 72000 is meaningful but not overwhelming for a four-day crypto horizon.",
+    "Timezone/candle interpretation is straightforward enough that ET-noon maps cleanly to the governing Binance minute."
+  ],
+  "main_logical_chain": [
+    "Market implies 84.5% Yes from current_price 0.845.",
+    "Direct rules verification shows settlement depends on a single Binance BTC/USDT 1-minute close at 12:00 ET on April 20.",
+    "Direct Binance data verification shows BTC currently above 72000, so Yes is still favored.",
+    "But the buffer is only about 4% and recent 96-hour context still contains many sub-72000 hourly closes.",
+    "Therefore the consensus direction is likely right, while the confidence level looks modestly too high."
+  ],
+  "main_thesis": "Yes is still more likely than No, but the market likely overstates confidence because this contract settles on a single Binance BTC/USDT 1-minute close at noon ET four days out.",
+  "own_probability": 0.77,
+  "persona": "variant-view",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone (noon) on the date specified in the title has a final 'Close' price higher than the price specified in the title.",
+    "My estimate is 77% Yes."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "scenario_analysis",
+    "contract_interpretation",
+    "variant_hypothesis"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-bbc8ed19",
+    "dispatch_id": "dispatch-case-20260416-bbc8ed19-20260416T072336Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "36f21ccc-97e3-45cd-b482-de3c7bfc3111",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-bbc8ed19/researcher-analyses/2026-04-16/dispatch-case-20260416-bbc8ed19-20260416T072336Z/personas/variant-view.md",
+    "source_persona_sha256": "d75c152b0bd837d22cfd74a9538200759b01e02c9e8270d570f3d620ee597fbc"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High-quality direct sources for rules and settlement surface; medium-low evidence independence; low-to-medium source-of-truth ambiguity.",
+  "strongest_disconfirmers": [
+    "The strongest case against the variant fade is that BTC has recent support above 72000 and the last 24 hourly closes sampled were all above the threshold.",
+    "If that regime persists through April 20, the market's 84.5% may not be overconfident."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT was around 74909.73 on 2026-04-16, above the 72000 threshold.",
+    "Recent daily closes and the last 24 hourly closes were above 72000.",
+    "The contract resolves on one exact Binance 1-minute close, which makes path and microstructure risk more relevant than a broad daily-price narrative."
+  ],
+  "timing_relevance": "This is a four-day, narrow-time-window contract, so minute-level settlement mechanics matter more than they would in a broad daily-close question.",
+  "unresolved_ambiguities": [
+    "Exact operational mapping of ET noon to the displayed Binance candle should be treated as 16:00 UTC during EDT, though the contract wording itself governs.",
+    "No broader implied-volatility source was added, so the volatility discount is judgmental rather than fully modeled."
+  ],
+  "what_would_change_view": "A materially larger cushion above 72000, continued low volatility into April 20, or evidence that noon-minute settlement risk is usually negligible would push the estimate closer to the market."
+}

@@ -1,0 +1,58 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Estimate depends more on structural contract mechanics than on a strong directional thesis.",
+    "Daily candle context is not the exact 1-minute settlement series."
+  ],
+  "key_assumptions": [
+    "Touch-based contracts resolve more often than equivalent close-based contracts.",
+    "Recent BTC volatility remains sufficient for a brief wick through 76000.",
+    "No sharp risk-off regime break pushes BTC materially away from the threshold."
+  ],
+  "main_logical_chain": [
+    "Clarify that settlement is based on Binance 1-minute highs, not weekly close.",
+    "Note BTC is already within about 1% of the threshold.",
+    "Apply outside-view that nearby threshold-touch events over multiple remaining days are usually likely but not certain.",
+    "Conclude Yes is favored, but slightly less than market pricing implies."
+  ],
+  "main_thesis": "BTC is more likely than not to touch 76000 on Binance during Apr 13-19 because the contract is a threshold-touch market and BTC is already trading within about 1% of target, but the market looks somewhat too optimistic.",
+  "own_probability": 0.76,
+  "persona": "base-rate",
+  "quote_anchors": [
+    "The resolution source for this market is Binance, specifically the BTC/USDT High prices",
+    "outcomePrices [0.825, 0.175] for the exact 76k contract"
+  ],
+  "reasoning_mode": [
+    "base_rate",
+    "market_anchor",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260414-9c18e804",
+    "dispatch_id": "dispatch-case-20260414-9c18e804-20260414T135145Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "30bb7de4-3878-4aee-8cbe-953f9f737bbd",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260414-9c18e804/researcher-analyses/2026-04-14/dispatch-case-20260414-9c18e804-20260414T135145Z/personas/base-rate.md",
+    "source_persona_sha256": "5cd499d81ce122cacc1377c572dae96a609f4011256db65e2dfaa3d49ccc84ab"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "High quality for rules/pricing from Polymarket and strong recent price context from Binance plus Coinbase, with medium evidence independence and low source-of-truth ambiguity after verification.",
+  "strongest_disconfirmers": [
+    "BTC had not yet clearly touched 76000 in the current window when checked despite already trading near it.",
+    "Near-threshold setups can fail through repeated rejection and stall."
+  ],
+  "strongest_supports": [
+    "Polymarket rules settle on any Binance BTC/USDT 1-minute high at or above 76000.",
+    "Recent Binance and Coinbase data put BTC highs around 75.4k-75.5k, only about 1% below target.",
+    "Nearly six days remained in the window when checked."
+  ],
+  "timing_relevance": "Short-dated weekly market with nearly six days remaining from the time checked; remaining time is a major part of the Yes case.",
+  "unresolved_ambiguities": [
+    "Exact intraday Binance wick path after the time checked was not directly sampled.",
+    "Generic Polymarket FAQ copy was noisy, though embedded rules text was explicit."
+  ],
+  "what_would_change_view": "I would move down on clear momentum failure or a selloff away from the threshold, and up on repeated tests near 75.8k-75.9k or stronger direct Binance intraday evidence."
+}

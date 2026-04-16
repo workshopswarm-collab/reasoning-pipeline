@@ -1,0 +1,44 @@
+{
+  "artifact_type": "causal_edge",
+  "schema_version": "v1",
+  "edge_key": "price-near-threshold__increases__touch-probability",
+  "source_node_key": "price-near-threshold",
+  "target_node_key": "touch-probability",
+  "effect_sign": "increases",
+  "contexts": {
+    "question_mechanics": [
+      "threshold-touch",
+      "intraperiod-high-low"
+    ],
+    "categories": [
+      "crypto"
+    ],
+    "time_horizon_labels": [
+      "short",
+      "medium"
+    ]
+  },
+  "linked_intervention_keys": [
+    "require-touch-mechanics-check-before-resistance-discount"
+  ],
+  "evidence_paths": [
+    "qualitative-db/50-learnings/case-reviews/case-20260414-4e668883/review.md"
+  ],
+  "evidence_rows": [
+    {
+      "case_key": "case-20260414-4e668883",
+      "review_path": "qualitative-db/50-learnings/case-reviews/case-20260414-4e668883/review.md",
+      "evidence_path": "qualitative-db/50-learnings/case-reviews/case-20260414-4e668883/review.md",
+      "support_direction": "supports",
+      "confidence": 0.74,
+      "notes": {
+        "source": "reviewed_case",
+        "summary": "ETH was only about $8-$13 below the threshold with days left, and the review judged threshold proximity highly informative."
+      }
+    }
+  ],
+  "mechanism_family": "threshold_touch",
+  "source_kind": "seed",
+  "lifecycle_stage": "active",
+  "superseded_by_key": ""
+}

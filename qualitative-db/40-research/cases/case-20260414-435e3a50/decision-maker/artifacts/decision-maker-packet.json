@@ -1,0 +1,157 @@
+{
+  "schema_version": "decision-packet/v1",
+  "generated_at": "2026-04-13T22:44:00-04:00",
+  "context": {
+    "case_key": "case-20260414-435e3a50",
+    "dispatch_id": "dispatch-case-20260414-435e3a50-20260414T023540Z",
+    "question": "Will the Bank of Russia decrease the key rate after the April Meeting?",
+    "market_id": "case-20260414-435e3a50",
+    "market_title": "Will the Bank of Russia decrease the key rate after the April Meeting?",
+    "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260414-435e3a50/synthesizer-agent/decision-handoff.md",
+    "source_syndicated_finding_path": "qualitative-db/40-research/cases/case-20260414-435e3a50/synthesizer-agent/syndicated-finding.md",
+    "decision_maker_agent": "decision-maker",
+    "canonical_markdown_path": "decision-maker-packet.md",
+    "canonical_json_path": "artifacts/decision-maker-packet.json",
+    "external_market_id": "0x1448b6fb6823233b69a6f1226bddb952542c794059f94b720b30ae36fe702c28",
+    "market_slug": "will-the-bank-of-russia-decrease-the-key-rate-after-the-april-meeting",
+    "platform": "polymarket",
+    "primary_market_url": "https://polymarket.com/event/will-the-bank-of-russia-decrease-the-key-rate-after-the-april-meeting",
+    "source_light_refresh_brief_path": "",
+    "refresh_mode": ""
+  },
+  "decision": {
+    "side": "yes",
+    "trade_authorization": "watch_only",
+    "position_policy": "hold_only",
+    "decision_readiness": "needs_more_research",
+    "primary_crux": "Another Bank of Russia cut on April 24 remains the base case because easing is already underway and official communication keeps further cuts live, but the market's 91.5% price is too confident given the still-explicit official pause branch and the possibility of late hawkish data or guidance.",
+    "secondary_cruxes": [
+      "The official March cut and accompanying language support continued easing, but they did not pre-commit to an April move.",
+      "The strongest surviving No case is not broad regime reversal but a one-meeting pause driven by inflation, FX, fiscal, or uncertainty concerns that the Bank itself continues to emphasize.",
+      "The current below-market edge is modest and fragile because the evidence is high quality but concentrated in one institution and thinly cross-validated elsewhere."
+    ],
+    "thesis_class": "not_decision_ready"
+  },
+  "valuation": {
+    "fair_value_low": 0.82,
+    "fair_value_high": 0.88,
+    "fair_value_mid": 0.85,
+    "market_reference_price": 0.915,
+    "edge_mid_vs_market_pct_points": -6.5,
+    "independent_verification_quality": "medium",
+    "compressed_toward_market_applied": true,
+    "compression_reason": "Official evidence supports another cut as the base case, but because the same official source preserves a live conditional pause path, fair value is pulled below the market rather than aggressively faded."
+  },
+  "execution_semantics": {
+    "price_axis": "market_implied_true_prob",
+    "price_source": "market_snapshot_quote",
+    "rebalance_threshold_fraction": 0.06,
+    "allow_auto_reversal": false,
+    "valid_until": "2026-04-23T23:59:00-04:00",
+    "quote_staleness_seconds": 43200,
+    "time_horizon": "Through the Apr. 24 Bank of Russia meeting and official decision release"
+  },
+  "risk_controls": {
+    "max_position_size_pct_bankroll": 0.005,
+    "max_additional_exposure_pct_bankroll": 0.0,
+    "max_single_order_pct_bankroll": 0.0,
+    "slippage_tolerance_bps": 40,
+    "liquidity_min_depth": 1000,
+    "correlation_bucket_limit_pct_bankroll": 0.03,
+    "confidence_level": "low",
+    "portfolio_constraints": [
+      "Do not initiate new exposure from this packet because the below-market edge is modest and dependent on late official signals.",
+      "Refresh on any new official inflation, expectations, FX, fiscal, or governor guidance before acting.",
+      "Treat this as a one-meeting policy timing contract, not a broad easing-cycle trade."
+    ],
+    "liquidity_caution": "medium"
+  },
+  "bands": [
+    {
+      "name": "max_enter",
+      "min_p": 0,
+      "max_p": 0.55,
+      "target_exposure_fraction": 0,
+      "notes": "No entry authorized because the case is not clean enough for fresh execution."
+    },
+    {
+      "name": "scaled_enter",
+      "min_p": 0.55,
+      "max_p": 0.75,
+      "target_exposure_fraction": 0,
+      "notes": "No entry authorized until stronger independent validation or fresher official guidance emerges."
+    },
+    {
+      "name": "hold",
+      "min_p": 0.75,
+      "max_p": 0.87,
+      "target_exposure_fraction": 0,
+      "notes": "Hold/watch zone; a cut is favored, but the evidence does not justify high-conviction fresh adds."
+    },
+    {
+      "name": "trim",
+      "min_p": 0.87,
+      "max_p": 0.95,
+      "target_exposure_fraction": 0,
+      "notes": "Avoid increasing above fair value because a one-meeting pause remains plausible."
+    },
+    {
+      "name": "exit",
+      "min_p": 0.95,
+      "max_p": 1,
+      "target_exposure_fraction": 0,
+      "notes": "Exit/avoid at extreme prices because residual pause risk still matters economically."
+    }
+  ],
+  "invalidation": {
+    "thesis_breakers": [
+      "Fresh official Bank of Russia communication clearly signals a pause or heightened concern about inflation, FX, or fiscal risks.",
+      "Hotter inflation, higher expectations, ruble weakness, or proinflationary fiscal news materially raise the chance of a one-meeting pause.",
+      "Strong quasi-official or analyst-consensus evidence indicates another cut is effectively pre-committed, which would raise fair value."
+    ],
+    "market_structure_breakers": [
+      "The market is incorporating stronger local policy intelligence unavailable in the bounded package.",
+      "Thin liquidity or narrative extrapolation is distorting the displayed 0.915 quote.",
+      "A pre-meeting official communication materially changes the interpretation of the March conditional guidance."
+    ],
+    "time_breakers": [
+      "Any fresh official data release or guidance before Apr. 24 can quickly dominate current reasoning.",
+      "Once the official Apr. 24 decision is released, this packet should be replaced immediately."
+    ],
+    "reversal_conditions": [
+      "Move toward authorized yes only after fresher official or strong independent evidence confirms another cut as the default while price remains favorable.",
+      "Move materially lower if new official signals or data strengthen the pause branch.",
+      "Do not auto-reverse from this packet."
+    ]
+  },
+  "epistemic_status": {
+    "key_uncertainties": [
+      "How much weight the Bank of Russia will place on external and fiscal uncertainty by the April meeting.",
+      "Whether fresh inflation, expectations, FX, or fiscal data before Apr. 24 strengthen or weaken the pause branch.",
+      "How much hidden analyst or policy-consensus information the market is already pricing."
+    ],
+    "reasons_to_pass": [
+      "The current below-market edge is modest and fragile rather than robust.",
+      "The evidence is high quality but concentrated in one institution, limiting independent confirmation of a large fade to the market.",
+      "This is a one-meeting timing contract, so late official signals can move the true probability materially."
+    ],
+    "what_would_change_my_mind": [
+      "A fresh official pause signal or hotter data would push fair value lower.",
+      "Explicit renewed easing language or strong consensus evidence that another cut is expected would push fair value higher.",
+      "A materially cheaper market price with no deterioration in official signals would improve actionability."
+    ],
+    "decision_quality": "not_ready"
+  },
+  "audit": {
+    "market_baseline_respected": true,
+    "action_bias_check_passed": true,
+    "self_preservation_bias_check_passed": true,
+    "one_sentence_rationale": "Another April cut remains the base case, but because Bank of Russia communication still preserves a live one-meeting pause path and the 91.5% market price leaves little room for late hawkish data or guidance, the disciplined output is watch-only and needs-more-research rather than an authorized trade.",
+    "notes": "This packet intentionally distinguishes directional policy bias from trade readiness: the official easing sequence matters, but the market is pricing that sequence too close to certainty for the current evidence quality.",
+    "structured_handoff_primary_used": true,
+    "prose_fallback_used": true,
+    "verification_mode_used": "not_ready_reopen_recommended",
+    "additional_verification_performed": false,
+    "additional_verification_notes": ""
+  }
+}

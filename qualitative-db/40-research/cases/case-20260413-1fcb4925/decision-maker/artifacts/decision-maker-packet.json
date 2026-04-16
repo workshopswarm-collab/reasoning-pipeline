@@ -1,0 +1,157 @@
+{
+  "schema_version": "decision-packet/v1",
+  "generated_at": "2026-04-13T17:36:00-04:00",
+  "context": {
+    "case_key": "case-20260413-1fcb4925",
+    "dispatch_id": "dispatch-case-20260413-1fcb4925-20260413T212655Z",
+    "question": "Will Progressive Bulgaria (PB) win the most seats in the 2026 Bulgarian parliamentary election?",
+    "market_id": "case-20260413-1fcb4925",
+    "market_title": "Will Progressive Bulgaria (PB) win the most seats in the 2026 Bulgarian parliamentary election?",
+    "source_decision_handoff_path": "qualitative-db/40-research/cases/case-20260413-1fcb4925/synthesizer-agent/decision-handoff.md",
+    "source_syndicated_finding_path": "qualitative-db/40-research/cases/case-20260413-1fcb4925/synthesizer-agent/syndicated-finding.md",
+    "decision_maker_agent": "decision-maker",
+    "canonical_markdown_path": "decision-maker-packet.md",
+    "canonical_json_path": "artifacts/decision-maker-packet.json",
+    "external_market_id": "0x0437f06a0b6a6d461042738182a8120ca0fa1edf534447df4cc7bac9833f838f",
+    "market_slug": "will-progressive-bulgaria-pb-win-the-most-seats-in-the-2026-bulgarian-parliamentary-election",
+    "platform": "polymarket",
+    "primary_market_url": "https://polymarket.com/event/will-progressive-bulgaria-pb-win-the-most-seats-in-the-2026-bulgarian-parliamentary-election",
+    "source_light_refresh_brief_path": "",
+    "refresh_mode": ""
+  },
+  "decision": {
+    "side": "yes",
+    "trade_authorization": "forbidden",
+    "position_policy": "flat",
+    "decision_readiness": "needs_more_research",
+    "primary_crux": "PB may be the favorite to win the most seats, but the market's 95.95% price is far too confident relative to the bounded public evidence because there is no strong direct final-week polling or seat-model verification showing PB near-locked over GERB-SDS in a fragmented threshold-based election.",
+    "secondary_cruxes": [
+      "The contract resolves on most seats, not narrative momentum or coalition formation, so seat-efficiency and threshold effects matter materially.",
+      "PB is a real ballot-valid coalition rather than a naming artifact, but that only establishes plausibility, not near-certainty.",
+      "The decisive blocker is exactly the evidence needed to support an extreme price: high-quality late polling, seat models, or early official projections quantifying PB's lead over GERB-SDS."
+    ],
+    "thesis_class": "not_decision_ready"
+  },
+  "valuation": {
+    "fair_value_low": 0.58,
+    "fair_value_high": 0.78,
+    "fair_value_mid": 0.68,
+    "market_reference_price": 0.9595,
+    "edge_mid_vs_market_pct_points": -27.9,
+    "independent_verification_quality": "medium",
+    "compressed_toward_market_applied": true,
+    "compression_reason": "The market may contain fresher local information than the bounded package, but the public evidence recovered here is far too thin to justify a 95%+ lock, so valuation is pulled well below market while remaining conservative versus the most bearish outside view."
+  },
+  "execution_semantics": {
+    "price_axis": "market_implied_true_prob",
+    "price_source": "market_snapshot_quote",
+    "rebalance_threshold_fraction": 0.15,
+    "allow_auto_reversal": false,
+    "valid_until": "2026-04-17T23:59:00-04:00",
+    "quote_staleness_seconds": 14400,
+    "time_horizon": "Final-week polling through election-night seat projections and official CIK allocation"
+  },
+  "risk_controls": {
+    "max_position_size_pct_bankroll": 0.0,
+    "max_additional_exposure_pct_bankroll": 0.0,
+    "max_single_order_pct_bankroll": 0.0,
+    "slippage_tolerance_bps": 100,
+    "liquidity_min_depth": 1000,
+    "correlation_bucket_limit_pct_bankroll": 0.03,
+    "confidence_level": "low",
+    "portfolio_constraints": [
+      "No new exposure is authorized from this packet because the decisive late-polling and seat-model verification is missing.",
+      "Reopen only after direct final-week polling, exit polling, early seat projections, or official CIK reporting materially improves evidence quality.",
+      "Do not treat a very large gap versus market as sufficient when the market may embed local information and the contract is seat-based rather than vote-share based."
+    ],
+    "liquidity_caution": "high"
+  },
+  "bands": [
+    {
+      "name": "max_enter",
+      "min_p": 0,
+      "max_p": 0.2,
+      "target_exposure_fraction": 0,
+      "notes": "No entry authorized because the case is not decision-ready."
+    },
+    {
+      "name": "scaled_enter",
+      "min_p": 0.2,
+      "max_p": 0.5,
+      "target_exposure_fraction": 0,
+      "notes": "No entry authorized until direct late polling or seat-model evidence is verified."
+    },
+    {
+      "name": "hold",
+      "min_p": 0.5,
+      "max_p": 0.75,
+      "target_exposure_fraction": 0,
+      "notes": "Flat while PB remains plausible favorite but not sufficiently verified as a near-lock."
+    },
+    {
+      "name": "trim",
+      "min_p": 0.75,
+      "max_p": 0.9,
+      "target_exposure_fraction": 0,
+      "notes": "Flat; avoid leaning on incomplete evidence in a fragmented seat-conversion environment."
+    },
+    {
+      "name": "exit",
+      "min_p": 0.9,
+      "max_p": 1,
+      "target_exposure_fraction": 0,
+      "notes": "Flat/forbidden at extreme prices because public evidence does not support near-certainty."
+    }
+  ],
+  "invalidation": {
+    "thesis_breakers": [
+      "Multiple independent final-week polls or seat models show PB clearly first with a dominant seat lead.",
+      "Credible late polling or projections show GERB-SDS ahead or PB's lead too narrow to justify favoritism.",
+      "Early official or consensus election-night seat reporting contradicts the current PB-favorite view."
+    ],
+    "market_structure_breakers": [
+      "The market is incorporating stronger local polling or elite information unavailable in the bounded package.",
+      "Thin liquidity or headline-driven speculation is distorting the displayed 0.9595 quote.",
+      "Seat-allocation dynamics or threshold effects materially change the relationship between topline vote share and most-seats probability."
+    ],
+    "time_breakers": [
+      "Final-week polling, exit polls, and first credible seat projections can rapidly overwhelm current reasoning.",
+      "Once election-night seat reporting or official CIK allocation becomes available, this packet should be replaced immediately."
+    ],
+    "reversal_conditions": [
+      "Move toward authorized yes only after direct late polling or seat-model verification materially improves.",
+      "Move toward no if credible evidence shows GERB-SDS or another bloc has the stronger most-seats path.",
+      "Do not auto-reverse from this packet."
+    ]
+  },
+  "epistemic_status": {
+    "key_uncertainties": [
+      "Whether high-quality final-week polling or seat models would validate PB as overwhelmingly likely to finish first in seats.",
+      "How much the market price reflects local information unavailable in the bounded package.",
+      "How seat conversion in a fragmented threshold-based system will translate from topline support to most-seats probability."
+    ],
+    "reasons_to_pass": [
+      "The package explicitly says blockers require new research and the key missing evidence is exactly what would justify an extreme price.",
+      "A 95.95% market requires stronger proof than is present here.",
+      "The strongest alternative winner, GERB-SDS, remains live enough that thin public evidence should not be stretched into near-certainty."
+    ],
+    "what_would_change_my_mind": [
+      "Multiple independent final-week polls or seat models clearly showing PB first with a robust margin.",
+      "Credible exit polls, early seat projections, or official CIK reporting indicating PB is decisively ahead in seats.",
+      "Verified evidence that PB's support is softer, less seat-efficient, or behind GERB-SDS would move the estimate materially lower."
+    ],
+    "decision_quality": "not_ready"
+  },
+  "audit": {
+    "market_baseline_respected": true,
+    "action_bias_check_passed": true,
+    "self_preservation_bias_check_passed": true,
+    "one_sentence_rationale": "PB may be a real favorite, but because the 95.95% market price is unsupported by strong direct final-week polling or seat-model evidence and the election's fragmented seat-conversion dynamics leave GERB-SDS as a meaningful alternative, the disciplined output is forbidden and needs-more-research rather than an executable anti-market trade.",
+    "notes": "This packet intentionally separates directional skepticism of the extreme market price from trade authorization: the apparent mispricing is large, but the evidence gap sits exactly on the decisive crux and is too material to ignore.",
+    "structured_handoff_primary_used": true,
+    "prose_fallback_used": false,
+    "verification_mode_used": "not_ready_reopen_recommended",
+    "additional_verification_performed": false,
+    "additional_verification_notes": ""
+  }
+}

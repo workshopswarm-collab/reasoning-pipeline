@@ -1,0 +1,59 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "high",
+  "fragility_points": [
+    "Single-minute settlement makes the contract highly path-dependent.",
+    "A modest drawdown from current levels is enough to break the threshold.",
+    "ET wording versus Binance UTC candle timestamps requires careful operational mapping."
+  ],
+  "key_assumptions": [
+    "No surprise macro, regulatory, exchange, or security shock pushes BTC down roughly 4% before April 20 noon ET.",
+    "Current BTC support above 72k is not purely fleeting momentum.",
+    "The ET-to-UTC mapping for the Binance 1-minute candle is operationally straightforward at settlement."
+  ],
+  "main_logical_chain": [
+    "The contract settles on a single Binance BTC/USDT 1-minute close above 72,000 at noon ET on April 20.",
+    "Current Binance spot is materially above the strike, so the key risk is not needing upside but avoiding a moderate downside move.",
+    "A verification pass found no obvious scheduled macro catalyst before resolution, so residual risk is mostly unscheduled shock risk.",
+    "That leaves Yes somewhat more likely than the market-implied 84.5%, but not near-certain because path dependence is high."
+  ],
+  "main_thesis": "BTC is already comfortably above 72k on Binance and no major scheduled macro catalyst appears before resolution, so Yes remains more likely unless an unscheduled downside shock hits the exact settlement window.",
+  "own_probability": 0.88,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "This market will resolve to 'Yes' if the Binance 1 minute candle for BTC/USDT 12:00 in the ET timezone ... has a final 'Close' price higher than the price specified.",
+    "BTCUSDT price snapshot near 74864.10 on Binance research pass."
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "catalyst_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260416-ec675d33",
+    "dispatch_id": "dispatch-case-20260416-ec675d33-20260416T073538Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "ec18eed9-69cd-4a29-a24e-5b00cba59485",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260416-ec675d33/researcher-analyses/2026-04-16/dispatch-case-20260416-ec675d33-20260416T073538Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "2f631120065d8d53c077c45f87e70220635cf3374fbaa09d4e2b6612e1ec5737"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Source quality is solid: Polymarket rules define the contract, Binance API provides direct venue-matching price context, and official Fed/BLS calendars provide an independent catalyst check; only mild ET-versus-UTC mechanics ambiguity remains.",
+  "strongest_disconfirmers": [
+    "The market resolves off one exact Binance 1-minute close, so a temporary selloff at the wrong moment can flip the result.",
+    "BTC can move more than 4% over a weekend or on a surprise headline."
+  ],
+  "strongest_supports": [
+    "Binance BTCUSDT traded near 74.86k at research time, leaving about a 2.9k cushion over the strike.",
+    "Recent Binance daily closes mostly remained above 72k.",
+    "No major scheduled FOMC or CPI catalyst falls inside the remaining window before resolution."
+  ],
+  "timing_relevance": "Timing is central because the contract resolves on one exact minute-close; the main catalyst is the absence of a major scheduled event before that window, leaving weekend/headline risk as the principal threat.",
+  "unresolved_ambiguities": [
+    "Whether BTC support above 72k is durable or momentum-fragile over the weekend.",
+    "Whether any unscheduled macro or crypto-specific headline emerges before settlement."
+  ],
+  "what_would_change_view": "A decisive move back toward or below 72k on Binance, or a material negative macro/crypto headline before April 20, would reduce the Yes probability meaningfully."
+}

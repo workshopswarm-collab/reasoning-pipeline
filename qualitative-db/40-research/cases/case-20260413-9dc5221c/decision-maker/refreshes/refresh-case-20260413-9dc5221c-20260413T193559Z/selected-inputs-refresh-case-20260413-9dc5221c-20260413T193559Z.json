@@ -1,0 +1,288 @@
+{
+  "artifact_type": "decision_selected_inputs",
+  "schema_version": "decision-selected-inputs/v1",
+  "case_key": "case-20260413-9dc5221c",
+  "dispatch_id": "refresh-case-20260413-9dc5221c-20260413T193559Z",
+  "verification_mode": "targeted_escalation",
+  "verification_triggers": [
+    "large_apparent_edge_vs_market",
+    "freshness_sensitive_catalyst",
+    "decision_blockers_present",
+    "internal_inconsistency_in_package"
+  ],
+  "core_case": {
+    "question": "Will Javokhir Sindarov win the 2026 FIDE Candidates Tournament?",
+    "market_title": "Will Javokhir Sindarov win the 2026 FIDE Candidates Tournament?",
+    "market_reference_price": 0.9905,
+    "market_quote_timestamp": "2026-04-13T19:16:47.787022+00:00",
+    "syndicated_probability_low": 0.89,
+    "syndicated_probability_high": 0.94,
+    "syndicated_probability_midpoint": 0.915,
+    "edge_mid_vs_market_pct_points": -7.6,
+    "relation_to_market": "below_market",
+    "edge_independent_verification_quality": "medium",
+    "contract_ambiguity_level": "minor",
+    "contract_ambiguity_reason": "official winner not yet declared; current confidence relies partly on contextual live-standings reporting rather than a clean official standings capture",
+    "freshness_sensitive": "yes",
+    "freshness_driver": "Round 13 and any official FIDE standings/result update can move the probability materially.",
+    "decision_blockers": [
+      "No clean official FIDE standings/clinch page was captured directly in the synthesis pass",
+      "The tournament was not yet officially finished at analysis time"
+    ],
+    "blockers_require_new_research": "no",
+    "disagreement_type": "mixed",
+    "follow_up_needed": "yes"
+  },
+  "required_upstream_inputs": {
+    "decision_handoff_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/synthesizer-agent/decision-handoff.md",
+    "syndicated_runtime_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/synthesizer-agent/syndicated-finding.runtime.json",
+    "syndicated_finding_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/synthesizer-agent/syndicated-finding.md",
+    "sidecar_synthesis_bundle_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/researcher-analyses/2026-04-13/dispatch-case-20260413-9dc5221c-20260413T190728Z/sidecar-synthesis-bundle.json",
+    "synthesis_sidecar_readiness": {
+      "ready_sidecar_count": 5,
+      "pending_sidecar_count": 0,
+      "sidecar_bundle_sidecar_count": 5,
+      "sidecar_bundle_coverage_status": "complete"
+    },
+    "syndicated_runtime_summary": {
+      "artifact_type": "syndicated_finding_runtime_metadata",
+      "market_snapshot_time": "2026-04-13T19:07:28.677088+00:00",
+      "source_persona_count": 0,
+      "supporting_artifact_count": 0
+    }
+  },
+  "structured_handoff_primary": {
+    "relation_to_market": "below_market",
+    "edge_quality": "moderate",
+    "edge_independent_verification_quality": "medium",
+    "compressed_toward_market_due_to_verification": "no",
+    "contract_ambiguity_level": "minor",
+    "contract_ambiguity_reason": "official winner not yet declared; current confidence relies partly on contextual live-standings reporting rather than a clean official standings capture",
+    "independently_verified_points": [
+      "FIDE is the governing resolution source",
+      "Sindarov was reported two points clear after round 12 with two rounds left",
+      "Chess.com reported Sindarov was guaranteed at least a playoff",
+      "Round 13 vs Giri was the main remaining swing catalyst"
+    ],
+    "verification_gap_summary": "I did not obtain a clean official FIDE live standings or clinch page directly in the synthesis pass.",
+    "best_countercase_summary": "If the live-state interpretation is overstated or Sindarov loses round 13, the race can reopen quickly and 95% was too high.",
+    "main_reason_for_disagreement": "Different weighting of missing direct official standings verification versus strong contextual late-stage lead evidence.",
+    "resolution_mechanics_summary": "Resolve to the official FIDE-declared winner, with consensus credible reporting only as fallback.",
+    "disagreement_intensity": "",
+    "freshness_sensitive": "yes",
+    "freshness_driver": "Round 13 and any official FIDE standings/result update can move the probability materially.",
+    "decision_blockers": [
+      "No clean official FIDE standings/clinch page was captured directly in the synthesis pass",
+      "The tournament was not yet officially finished at analysis time"
+    ],
+    "blockers_require_new_research": "no",
+    "disagreement_type": "mixed",
+    "follow_up_needed": "yes"
+  },
+  "structured_handoff_policy": {
+    "structured_handoff_is_primary_starting_point": true,
+    "prose_is_fallback_only": true,
+    "structured_handoff_complete": true,
+    "missing_structured_fields": []
+  },
+  "verification_enforcement": {
+    "agent_tool_use_allowed": true,
+    "allowed_agent_tools": [
+      "web_search",
+      "web_fetch"
+    ],
+    "enforcement_method": "session_message_inspection",
+    "violation_action": "fail_run",
+    "rationale": "Decision-Maker may perform bounded independent source discovery/search during targeted escalation, but only within runtime-enforced tool/query/fetch budgets."
+  },
+  "verification_budget": {
+    "search_queries_allowed": 5,
+    "source_fetches_allowed": 4,
+    "minimum_distinct_source_families": 3,
+    "preferred_distinct_source_families": 4
+  },
+  "prose_fallback": {
+    "included": true,
+    "reason": "targeted_escalation_context",
+    "decision_handoff_excerpt": "# Decision summary\n\nJavokhir Sindarov is very likely to win the 2026 FIDE Candidates Tournament, but the best post-synthesis estimate is still slightly below the 95.05% market because the strongest independently checked evidence supports an overwhelming late lead rather than a fully settled official result.\n\n## Why this may matter now\n\nMarket-implied probability is 0.9505. My syndicated range is 0.89 to 0.94. That is still a strong yes view, but the edge versus market is marginal-to-negative rather than actionable. The market may be a touch rich because it is pricing a near-converted lead almost like an already-declared win.\n\n## Shift versus swarm baseline\n\nThis is not a large move from the swarm-implied center around 0.91. I stay close to it because the strongest lanes were broadly right: the visible state is not generic player-strength optimism but a specific late-event lead. I lean slightly toward the upper half of the swarm because the synthesis-stage check supported the key catalyst-hunter claim that Sindarov was two points clear and at least playoff-secured. I do not move up to market because direct official standings verification remained imperfect.\n\n## Edge verification sta …"
+  },
+  "selected_persona_sidecars": [
+    {
+      "persona": "market-implied",
+      "recommended_weight": "medium",
+      "own_probability": 0.91,
+      "main_thesis": "The market is directionally right because Sindarov appears to have an almost decisive late-stage lead, but 95.05% is slightly too high given residual two-round, tiebreak, and official-live-verification risk.",
+      "main_logical_chain": [
+        "Start from the 95.05% market price as a serious prior.",
+        "Ask what would justify that price: an overwhelming late-stage live lead rather than generic pre-event dominance.",
+        "Contextual standings indicate exactly that state, with Sindarov on 9/12 and nearest chaser on 7/12 after 12 rounds.",
+        "Because FIDE is the resolution authority and two rounds remain, trim modestly for residual conversion and verification risk."
+      ],
+      "strongest_supports": [
+        "Contextual live standings show Sindarov leading by two points with two rounds left.",
+        "The tournament is only 14 rounds, so there are few remaining opportunities for the field to catch up."
+      ],
+      "strongest_disconfirmers": [
+        "Two rounds plus possible tie-breaks still leave a nonzero failure path.",
+        "Official FIDE live standings were not cleanly extracted in this run, so some confidence relies on contextual sources."
+      ],
+      "unresolved_ambiguities": [
+        "Exact official live standings were not directly captured from a clean FIDE page in this run.",
+        "Residual tie scenarios depend on remaining round outcomes not yet played."
+      ],
+      "what_would_change_view": "A clean official FIDE standings/result update showing a smaller lead, a round-13 stumble, or any procedural dispute would push the estimate down materially.",
+      "timing_relevance": "Very high; this is a late-stage in-progress tournament market where one round can change the entire tail-risk profile.",
+      "source_quality_view": "Resolution authority is high-quality and clear via FIDE, while the live-state evidence is strong but more contextual than ideal, so overall source quality is medium-high rather than fully high.",
+      "persona_finding_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/researcher-analyses/2026-04-13/dispatch-case-20260413-9dc5221c-20260413T190728Z/personas/market-implied.md",
+      "assumption_artifact_paths": [
+        "qualitative-db/40-research/cases/case-20260413-9dc5221c/researcher-analyses/2026-04-13/dispatch-case-20260413-9dc5221c-20260413T190728Z/assumptions/market-implied.md"
+      ],
+      "evidence_artifact_paths": [
+        "qualitative-db/40-research/cases/case-20260413-9dc5221c/researcher-analyses/2026-04-13/dispatch-case-20260413-9dc5221c-20260413T190728Z/evidence/market-implied.md"
+      ]
+    },
+    {
+      "persona": "risk-manager",
+      "recommended_weight": "medium",
+      "own_probability": 0.58,
+      "main_thesis": "Sindarov is a real contender, but the visible evidence does not justify the market's 95.05% near-certainty absent hidden live-state context.",
+      "main_logical_chain": [
+        "Official FIDE source confirms Sindarov is legitimately qualified and the event format/winner logic are clear.",
+        "That same source shows a deep field and long format, so baseline tournament uncertainty remains substantial.",
+        "Because the market is pricing 95.05%, extra verification is required.",
+        "Extra verification did not uncover public evidence in this run that makes the outcome nearly settled."
+      ],
+      "strongest_supports": [
+        "FIDE officially lists Sindarov in the 2026 Candidates field and as 2025 World Cup winner.",
+        "Polymarket rules designate official FIDE information as primary resolution source."
+      ],
+      "strongest_disconfirmers": [
+        "The same FIDE page shows a full elite eight-player double round-robin, which is hard to square with 95% for one player absent hidden context.",
+        "This run did not verify standings or rival ineligibility that would rationalize near-certainty."
+      ],
+      "unresolved_ambiguities": [
+        "Whether the market snapshot reflects late-event state not visible in fetched sources.",
+        "Whether cross-runner pricing is coherent or structurally distorted."
+      ],
+      "what_would_change_view": "Official FIDE standings showing Sindarov with a commanding late lead, rival ineligibility, or strong independent odds near 95% would move me toward the market.",
+      "timing_relevance": "High; if the event is already underway or nearly finished, standings could materially change the interpretation of the 95.05% price.",
+      "source_quality_view": "Authoritative source-of-truth on field and rules is strong, but independent contextual verification was weaker than ideal due to search-tool failure.",
+      "persona_finding_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/researcher-analyses/2026-04-13/dispatch-case-20260413-9dc5221c-20260413T190728Z/personas/risk-manager.md",
+      "assumption_artifact_paths": [
+        "qualitative-db/40-research/cases/case-20260413-9dc5221c/researcher-analyses/2026-04-13/dispatch-case-20260413-9dc5221c-20260413T190728Z/assumptions/risk-manager.md"
+      ],
+      "evidence_artifact_paths": [
+        "qualitative-db/40-research/cases/case-20260413-9dc5221c/researcher-analyses/2026-04-13/dispatch-case-20260413-9dc5221c-20260413T190728Z/evidence/risk-manager.md"
+      ]
+    },
+    {
+      "persona": "variant-view",
+      "recommended_weight": "medium",
+      "own_probability": 0.92,
+      "main_thesis": "Sindarov is very likely to win, but the market is slightly overconfident because the tournament is not yet officially settled and residual tiebreak/admin tails still exist.",
+      "main_logical_chain": [
+        "The contract resolves on an actual FIDE-declared winner, not merely on a dominant in-progress position.",
+        "Secondary sources indicate Sindarov is in a hugely favorable late-stage position.",
+        "Because two rounds and possible tiebreaks still remain, residual competitive and administrative tails are not zero.",
+        "Therefore the right view is strongly yes, but slightly below the 95.05% market price."
+      ],
+      "strongest_supports": [
+        "Contextual standings show Sindarov leading 9/12 by two points with two rounds left.",
+        "Chess.com round-12 coverage says he is guaranteed at least a playoff."
+      ],
+      "strongest_disconfirmers": [
+        "A two-point lead with two rounds left in this format may make 95% entirely fair or even slightly low if standings are accurate.",
+        "The bearish case is mostly about tail-risk pricing rather than a plausible mainline loss narrative."
+      ],
+      "unresolved_ambiguities": [
+        "Exact official live standings/tiebreak math were not reconstructed from a primary FIDE event page.",
+        "Low-probability off-board complications remain hard to rule out completely."
+      ],
+      "what_would_change_view": "An official FIDE confirmation that Sindarov has clinched or clean official standings with no complications would push the estimate up; contradictory official reporting or a sharply narrowed lead would push it down.",
+      "timing_relevance": "Very high; this is a late-stage tournament market where each remaining round can move the probability sharply.",
+      "source_quality_view": "Good enough for a high-confidence directional yes, but not perfect for a 95%+ certainty claim because live-state verification relied mainly on secondary reporting.",
+      "persona_finding_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/researcher-analyses/2026-04-13/dispatch-case-20260413-9dc5221c-20260413T190728Z/personas/variant-view.md",
+      "assumption_artifact_paths": [
+        "qualitative-db/40-research/cases/case-20260413-9dc5221c/researcher-analyses/2026-04-13/dispatch-case-20260413-9dc5221c-20260413T190728Z/assumptions/variant-view.md"
+      ],
+      "evidence_artifact_paths": []
+    }
+  ],
+  "selected_assumption_snippets": [
+    {
+      "path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/researcher-analyses/2026-04-13/dispatch-case-20260413-9dc5221c-20260413T190728Z/assumptions/risk-manager.md",
+      "frontmatter": {
+        "type": "assumption_note",
+        "case_key": "case-20260413-9dc5221c",
+        "dispatch_id": "dispatch-case-20260413-9dc5221c-20260413T190728Z",
+        "research_run_id": "bd3e8feb-325d-46e4-8577-8a8ce849732b",
+        "analysis_date": "2026-04-13",
+        "persona": "risk-manager",
+        "domain": "sports",
+        "subdomain": "chess",
+        "entity": "",
+        "topic": "market confidence versus field strength in 2026 FIDE Candidates",
+        "question": "Will Javokhir Sindarov win the 2026 FIDE Candidates Tournament?",
+        "driver": "reliability",
+        "date_created": "2026-04-13",
+        "agent": "Orchestrator",
+        "status": "active",
+        "certainty": "medium",
+        "importance": "high",
+        "time_horizon": "through 2026-04-16 resolution window",
+        "related_entities": [],
+        "related_drivers": [
+          "reliability",
+          "operational-risk"
+        ],
+        "proposed_entities": [
+          "javokhir-sindarov",
+          "fide-candidates-tournament"
+        ],
+        "proposed_drivers": [],
+        "upstream_inputs": [],
+        "downstream_uses": [
+          "qualitative-db/40-research/cases/case-20260413-9dc5221c/researcher-analyses/2026-04-13/dispatch-case-20260413-9dc5221c-20260413T190728Z/personas/risk-manager.md"
+        ],
+        "tags": [
+          "fragility",
+          "assumption",
+          "chess"
+        ]
+      },
+      "snippet": "# Assumption\nThe market's 95.05% price is implicitly assuming either that Javokhir Sindarov is an overwhelming pre-tournament favorite versus seven elite qualifiers or that substantial contract/listing context outside the visible rules makes his victory close to settled.\n## Why this assumption matters\nWithout that assumption, a pre-event price above 95% in an eight-player double round-robin is extremely hard to justify. The whole risk-manager view turns on whether this confidence comes from real hidden information or from market mispricing / market-structure distortion.\n## What this assumption supports\n- A view that the displayed market price is likely too confident.\n- A probability estimate materially below the market-implied baseline.\n- Elevated concern about hidden assumptions, field-strength underweighting, or book-structure issues.\n## Evidence or logic behind the assumption\n- Official FIDE page confirms a full eight-player field rather than a one-opponent match.\n- The format is long and variance-exposed: 14 rounds plus playoff if tied.\n- The official field includes multiple world-class players, so the base-rate path to 95% for any one player appears implausible absent extraordinary form or unseen disqualifying constraints.\n- Polymarket rules do not show any special shortcut that would make Sindarov nearly locked absent actual tournament play.\n## What would falsify it\n- Evidence that this market is being quoted after the tournament has largely been played and Sindarov already leads by an almost insurmountable margin.\n- Official evidence that several listed rivals are no …",
+      "full_char_count": 2465,
+      "snippet_char_count": 1602
+    }
+  ],
+  "selected_evidence_snippets": [],
+  "selected_supporting_note_snippets": [],
+  "bundle_budget": {
+    "max_chars": 18000,
+    "approx_tokens_before_trim": 5472,
+    "approx_tokens_after_trim": 4429,
+    "actual_chars_before_trim": 21890,
+    "actual_chars_after_trim": 17716,
+    "trim_applied": true
+  },
+  "enforcement_summary": {
+    "full_case_tree_excluded": true,
+    "full_persona_markdown_excluded": true,
+    "unbounded_research_excluded_from_default_bundle": true,
+    "structured_handoff_primary_enforced": true,
+    "prose_fallback_only": true,
+    "agent_tool_use_allowed": true,
+    "selected_persona_count": 3,
+    "selected_assumption_count": 1,
+    "selected_evidence_count": 0,
+    "selected_supporting_note_count": 0
+  },
+  "sidecar_selection_guardrail": {
+    "expected_nonzero_sidecars": true,
+    "violation": false,
+    "message": "",
+    "resolved_sidecar_bundle_path": "qualitative-db/40-research/cases/case-20260413-9dc5221c/researcher-analyses/2026-04-13/dispatch-case-20260413-9dc5221c-20260413T190728Z/sidecar-synthesis-bundle.json",
+    "resolved_sidecar_bundle_sidecar_count": 5,
+    "selected_persona_count": 3
+  }
+}

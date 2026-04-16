@@ -30,7 +30,7 @@ Use this template for the Decision-Maker's final executable recommendation after
 Pipeline position:
 - upstream = researcher swarm -> synthesis -> `decision-handoff.md`
 - this artifact = Decision-Maker's final commitment object
-- downstream = isolated execution, accounting, evaluator, retrospective review
+- downstream = isolated execution, accounting, evaluator, learning review
 
 Purpose:
 - convert uncertain research into explicit action / no-action thresholds
@@ -43,7 +43,7 @@ Canonical machine-readable contract:
 
 Recommended usage:
 - keep the JSON packet as the canonical machine-readable execution contract
-- use this markdown file as the human-readable twin for operators, audits, and retrospectives
+- use this markdown file as the human-readable twin for operators, audits, and learning review
 
 ## Authoring rules
 

@@ -2,7 +2,7 @@
 type: system_guide
 domain: templates
 status: active
-last_updated: 2026-03-26
+last_updated: 2026-04-14
 owner: orchestrator
 tags: [templates/guide, qualitative-db/00-system/templates]
 ---
@@ -26,7 +26,7 @@ These templates support the quant-research pipeline:
 1. researchers create source notes, findings, assumption notes, evidence maps, investigations, product notes, and syntheses in `40-research/`
 2. the orchestrator consolidates research and presents it to the decision-maker
 3. the decision-maker may write a final recommendation artifact when a persistent decision record is actually needed
-4. resolved cases are reviewed in `50-retrospectives/`
+4. resolved cases are reviewed in `50-learnings/`
 5. durable lessons may later be promoted into stable layers by authorized roles
 
 ## Primary folder-to-template map
@@ -57,21 +57,23 @@ Conceptual / optional artifact types:
 
 Note: the current dispatch-scoped orchestrator synthesis path does not have the model write markdown directly. The synthesis worker returns JSON, runtime validates and renders markdown, `syndicated-finding-template.md` is the primary live contract for that authored synthesis output, and `decision-handoff.md` is derived separately by the synthesis runtime.
 
-### `qualitative-db/50-retrospectives/`
+### `qualitative-db/50-learnings/`
 
-- all current retrospective subfolders -> `retrospective-note-template.md`
+- all current learning subfolders -> `learning-note-template.md`
 
-Current retrospective subfolders covered by the shared template:
-- `agent-performance/`
-- `false-signals/`
+Current learning subfolders covered by the shared template:
+- `case-reviews/`
+- `driver-learning/`
+- `error-patterns/false-signals/`
+- `error-patterns/missed-signals/`
 - `input-quality/`
-- `methodology-adjustments/`
-- `missed-signals/`
+- `intervention-tracking/`
 - `source-performance/`
+- `workflow-performance/`
 
 ## Stable-layer and supporting templates
 
-These templates are useful outside the default `40-research/` and `50-retrospectives/` folder map.
+These templates are useful outside the default `40-research/` and `50-learnings/` folder map.
 
 ### Stable-layer templates
 
@@ -128,7 +130,7 @@ These templates are useful outside the default `40-research/` and `50-retrospect
   - JSON sidecar template for machine-heavy runtime/provenance metadata paired with syndicated findings
 - `decision-note-template.md`
   - final decision-maker recommendation template when a persistent decision record is needed
-- `retrospective-note-template.md`
+- `learning-note-template.md`
   - evaluate what worked, what failed, and what durable lessons emerged after resolution
 - `domain-overview-template.md`
   - standardize canonical domain overviews in `10-domains/`

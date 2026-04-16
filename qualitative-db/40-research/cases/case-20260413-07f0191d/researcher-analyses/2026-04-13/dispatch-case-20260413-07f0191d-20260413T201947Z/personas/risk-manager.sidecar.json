@@ -1,0 +1,64 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "medium",
+  "fragility_points": [
+    "Exact-rank rather than generic top-two exposure.",
+    "Multiple meaningful rivals in a fragmented field.",
+    "Weak direct polling confirmation in this run.",
+    "Date-sensitive pre-election resolution risk."
+  ],
+  "key_assumptions": [
+    "Current parliamentary ordering is an imperfect but relevant prior for exact-rank risk.",
+    "The market may be overpricing second-place specificity rather than top-two strength.",
+    "No major coalition rupture or campaign shock materially changes GERB-SDS before the vote."
+  ],
+  "main_logical_chain": [
+    "The contract resolves on exact second place by seats, with explicit tie-breaks and CIK fallback.",
+    "GERB-SDS is strong enough to be a plausible top-two finisher.",
+    "But exact-rank outcomes in a fragmented parliamentary system are fragile because GERB-SDS can finish first, second, or potentially below second.",
+    "Recovered evidence was too contextual and too thin to justify the market's extreme certainty.",
+    "Therefore GERB-SDS second remains plausible but materially overpriced at 0.96."
+  ],
+  "main_thesis": "GERB-SDS finishing second is plausible but materially less certain than the market's 96% price implies because exact-rank risk remains high in a fragmented Bulgarian parliamentary field.",
+  "own_probability": 0.58,
+  "persona": "risk-manager",
+  "quote_anchors": [
+    "current price is 0.96",
+    "own estimate: 58%",
+    "the contextual election-overview source shows GERB-SDS as the current first-place parliamentary coalition"
+  ],
+  "reasoning_mode": [
+    "risk_management",
+    "scenario_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260413-07f0191d",
+    "dispatch_id": "dispatch-case-20260413-07f0191d-20260413T201947Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "7193f87b-1ac8-4e02-8e83-58e04bae3a49",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260413-07f0191d/researcher-analyses/2026-04-13/dispatch-case-20260413-07f0191d-20260413T201947Z/personas/risk-manager.md",
+    "source_persona_sha256": "8b1f956801a71e166f54502aab6f2766592e10ded978d406b0816502ab96b78c"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Resolution mechanics are well-specified by the contract, but current probability estimation relied on contextual secondary sources with low-to-medium independence and lacked strong polling confirmation.",
+  "strongest_disconfirmers": [
+    "The contextual election overview shows GERB-SDS as the current largest parliamentary bloc, so first place is a live alternative outcome.",
+    "PP-DB and Revival are meaningful competitors, increasing exact-rank volatility.",
+    "No strong independent polling or authoritative reporting was recovered to justify a 96% exact-rank probability."
+  ],
+  "strongest_supports": [
+    "GERB-SDS is a major established coalition and clearly belongs in the top-tier competitive set.",
+    "A fragmented field makes a GERB-SDS second-place finish a realistic scenario.",
+    "The contract's seat-based resolution and tie-break rules are clear."
+  ],
+  "timing_relevance": "Election day is 19 April 2026 per both contract and contextual election overview, while the market closes on 18 April 2026 ET, so this is a date-sensitive pre-event exact-rank market.",
+  "unresolved_ambiguities": [
+    "Latest independent Bulgarian national polling was not robustly recovered.",
+    "Whether one challenger is clearly ahead of GERB-SDS remains unresolved.",
+    "The exact answer-option display on the market UI was not independently recovered from fetch output."
+  ],
+  "what_would_change_view": "I would move toward the market if multiple recent independent polls or strong Bulgarian reporting consistently showed GERB-SDS specifically in second; I would move further away if GERB-SDS looked clearly first or vulnerable to slipping below two rivals."
+}

@@ -1,0 +1,60 @@
+{
+  "artifact_type": "persona_reasoning_sidecar",
+  "confidence_in_extract": "medium",
+  "fragility_points": [
+    "Explicit oracle / settlement venue was not fully legible from lightweight review.",
+    "A single strong risk-on day could invalidate the under-market lean quickly."
+  ],
+  "key_assumptions": [
+    "Short-window touch probability is driven mainly by distance-to-strike and realized volatility.",
+    "No single clearly dominant scheduled catalyst materially resets odds upward during Apr 13-19.",
+    "Working contract interpretation is that any touch at or above $76,000 counts."
+  ],
+  "main_logical_chain": [
+    "This is a one-week threshold-touch contract.",
+    "Such contracts depend mostly on strike distance, volatility, and trend persistence.",
+    "Reviewed evidence did not reveal one decisive scheduled catalyst.",
+    "Therefore bullish odds remain above 50%, but below the 75% market price."
+  ],
+  "main_thesis": "BTC can still tag $76k on momentum, but 75% looks somewhat rich absent a clearly identified hard catalyst.",
+  "own_probability": 0.62,
+  "persona": "catalyst-hunter",
+  "quote_anchors": [
+    "market-implied probability is 75%",
+    "my estimate is 62%",
+    "mostly driven by short-window momentum and volatility"
+  ],
+  "reasoning_mode": [
+    "market_anchor",
+    "catalyst_analysis",
+    "scenario_analysis",
+    "contract_interpretation"
+  ],
+  "recommended_weight": "medium",
+  "runtime_metadata": {
+    "case_key": "case-20260413-600f720f",
+    "dispatch_id": "dispatch-case-20260413-600f720f-20260413T233138Z",
+    "generation_mode": "researcher_sidecar_v1",
+    "prompt_contract_version": "researcher-sidecar-v1",
+    "research_run_id": "b853809c-bcbc-4ba6-8a1d-987041382776",
+    "source_persona_finding_path": "qualitative-db/40-research/cases/case-20260413-600f720f/researcher-analyses/2026-04-13/dispatch-case-20260413-600f720f-20260413T233138Z/personas/catalyst-hunter.md",
+    "source_persona_sha256": "381aa6cb2cf609d57af4605a15907900e21c669046fcd84009329503f639f57e"
+  },
+  "schema_version": "v1",
+  "source_quality_view": "Primary contract framing is solid, but explicit source-of-truth detail was only partially legible; secondary spot context is useful but not definitive for settlement.",
+  "strongest_disconfirmers": [
+    "BTC only needs one intrawindow touch, so 75% may simply reflect structural ease of a one-time print.",
+    "Settlement-source ambiguity could make actual touch odds differ from broad spot context."
+  ],
+  "strongest_supports": [
+    "Touch markets are easier than close-above markets.",
+    "Crypto volatility can bridge a few percent quickly.",
+    "BTC was below but plausibly within range, preserving a real yes path."
+  ],
+  "timing_relevance": "The key issue is whether momentum persists long enough within Apr 13-19 for a one-time threshold touch.",
+  "unresolved_ambiguities": [
+    "Exact settlement source / benchmark on Polymarket contract page.",
+    "How close BTC spot was to $76k on the governing feed versus aggregator context."
+  ],
+  "what_would_change_view": "I would move up with confirmation of a nearer strike, a more favorable settlement feed, or a clearly dated catalyst; I would move down with stricter settlement rules or an early risk-off reversal."
+}
