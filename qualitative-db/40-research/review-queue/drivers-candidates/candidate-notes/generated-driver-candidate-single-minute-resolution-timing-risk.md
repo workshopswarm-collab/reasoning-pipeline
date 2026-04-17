@@ -1,0 +1,59 @@
+---
+type: proposed_driver_candidate
+candidate_slug: single-minute-resolution-timing-risk
+candidate_label: "single-minute-resolution-timing-risk"
+label_variants: ["single-minute-resolution-timing-risk"]
+normalized_driver_family: publication-timing
+normalized_driver_family_label: "publication timing"
+canonical_coverage_status: novel
+canonical_coverage_driver: 
+generated_by: proposed_driver_candidate_aggregator
+generated_at: 2026-04-17T01:46:58Z
+status: active
+total_occurrences: 3
+distinct_cases: 1
+distinct_personas: 1
+artifact_kinds: {"assumption": 1, "evidence": 1, "persona": 1}
+source_mix: {"db": 3}
+first_seen: 2026-04-16T17:00:58.222881-04:00
+last_seen: 2026-04-16T17:00:58.319028-04:00
+---
+
+# Proposed driver candidate: single-minute-resolution-timing-risk
+
+## Why this candidate exists
+This generated note tracks repeated use of the unresolved proposed driver label `single-minute-resolution-timing-risk` across case research artifacts.
+
+## Frequency snapshot
+- total occurrences: **3**
+- distinct cases: **1**
+- distinct personas: **1**
+- artifact kinds: `{'evidence': 1, 'assumption': 1, 'persona': 1}`
+- source mix: `{'db': 3}`
+
+## Normalized driver family
+- family: `publication timing` (`publication-timing`)
+
+## Label variants observed
+- `single-minute-resolution-timing-risk`
+
+## Cases observed
+- `case-20260416-f811e0b8`
+
+## Personas observed
+- `risk-manager`
+
+## Common co-mentioned entities
+- `bitcoin` (3)
+
+## Common co-mentioned canonical drivers
+- `operational-risk` (3)
+- `reliability` (3)
+
+## Example occurrences
+- `single-minute-resolution-timing-risk` -> `qualitative-db/40-research/cases/case-20260416-f811e0b8/researcher-analyses/2026-04-16/dispatch-case-20260416-f811e0b8-20260416T205554Z/assumptions/risk-manager.md` (case `case-20260416-f811e0b8`, persona `risk-manager`, kind `assumption`, source `db`)
+- `single-minute-resolution-timing-risk` -> `qualitative-db/40-research/cases/case-20260416-f811e0b8/researcher-analyses/2026-04-16/dispatch-case-20260416-f811e0b8-20260416T205554Z/evidence/risk-manager.md` (case `case-20260416-f811e0b8`, persona `risk-manager`, kind `evidence`, source `db`)
+- `single-minute-resolution-timing-risk` -> `qualitative-db/40-research/cases/case-20260416-f811e0b8/researcher-analyses/2026-04-16/dispatch-case-20260416-f811e0b8-20260416T205554Z/personas/risk-manager.md` (case `case-20260416-f811e0b8`, persona `risk-manager`, kind `persona`, source `db`)
+
+## Promotion review guidance
+Consider promotion when this candidate recurs across multiple cases/personas and represents a durable causal mechanism rather than a case-local phrasing artifact.

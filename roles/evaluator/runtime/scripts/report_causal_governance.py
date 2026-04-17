@@ -14,7 +14,7 @@ RUNTIME_ROOT = SCRIPT_PATH.parents[1]
 if str(RUNTIME_ROOT) not in sys.path:
     sys.path.append(str(RUNTIME_ROOT))
 
-from lib.causal_family_policy import load_family_policies  # noqa: E402
+from lib.causal_family_policy import load_effective_family_policies  # noqa: E402
 from lib.db import DEFAULT_PSQL, exec_sql, resolve_db_url, table_exists  # noqa: E402
 from lib.io import write_json  # noqa: E402
 from lib.lmd_causal_runtime import GOVERNANCE_JSON, coerce_string  # noqa: E402
@@ -165,7 +165,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
 def main() -> int:
     args = parse_args()
     db_url = resolve_db_url(args.db_url)
-    family_policies = load_family_policies()
+    family_policies = load_effective_family_policies(db_url=db_url, psql_bin=args.psql)
     merges = fetch_rows(args.psql, db_url, 'proposed_causal_candidate_stats', MERGE_RECOMMENDATIONS_SQL) if db_url else []
     hold_nodes = fetch_rows(args.psql, db_url, 'causal_nodes', HOLD_NODES_SQL) if db_url else []
     hold_edges = fetch_rows(args.psql, db_url, 'causal_edges', HOLD_EDGES_SQL) if db_url else []

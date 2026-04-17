@@ -13,7 +13,7 @@ RUNTIME_ROOT = SCRIPT_PATH.parents[1]
 if str(RUNTIME_ROOT) not in sys.path:
     sys.path.append(str(RUNTIME_ROOT))
 
-from lib.causal_family_policy import load_family_policies  # noqa: E402
+from lib.causal_family_policy import load_effective_family_policies  # noqa: E402
 from lib.causal_map import build_edge_record, build_node_record, edge_note_paths, node_note_paths  # noqa: E402
 from lib.db import DEFAULT_PSQL, exec_sql, resolve_db_url, table_exists  # noqa: E402
 from lib.io import parse_frontmatter, read_json, read_text, strip_frontmatter, write_json  # noqa: E402
@@ -730,8 +730,8 @@ def main() -> int:
         raise SystemExit('--max-actions must be positive when --apply is set')
 
     entries = load_entries(args)
-    policies = load_family_policies()
     resolved_db_url = resolve_db_url(args.db_url)
+    policies = load_effective_family_policies(db_url=resolved_db_url, psql_bin=args.psql)
     node_stats_present = bool(resolved_db_url) and table_exists('causal_node_stats', db_url=resolved_db_url, psql_bin=args.psql)
     edge_stats_present = bool(resolved_db_url) and table_exists('causal_edge_stats', db_url=resolved_db_url, psql_bin=args.psql)
     health_present = bool(resolved_db_url) and table_exists('causal_graph_health_violations', db_url=resolved_db_url, psql_bin=args.psql)

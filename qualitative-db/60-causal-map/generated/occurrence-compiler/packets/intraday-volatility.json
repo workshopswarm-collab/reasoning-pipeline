@@ -1,0 +1,756 @@
+{
+  "packet_type": "occurrence_backed_mechanism_packet",
+  "compiler_version": "2026-04-16-occurrence-v1",
+  "proposal_source": "driver_occurrence_compiler",
+  "packet_key": "occurrence-packet:intraday-volatility",
+  "proposal_key": "driver-mechanism:intraday-volatility",
+  "candidate_type": "packet",
+  "candidate_slug": "intraday-volatility",
+  "candidate_label": "intraday-volatility",
+  "normalized_family": "resolution-mechanics",
+  "family_assignment_source": "generated_index",
+  "candidate_note_path": "candidate-notes/generated-driver-candidate-intraday-volatility.md",
+  "source_lane": "public.proposed_driver_occurrences",
+  "routing": {
+    "mode": "packet_only",
+    "shadow_eligible": false,
+    "trial_eligible": false,
+    "promotion_eligible": false,
+    "next_step": "materialize_provisional_families"
+  },
+  "source_summary": {
+    "source_occurrence_count": 27,
+    "distinct_case_count": 10,
+    "distinct_persona_count": 3,
+    "distinct_dispatch_count": 10,
+    "source_mix": {
+      "db": 27
+    },
+    "artifact_kind_counts": {
+      "assumption": 10,
+      "evidence": 7,
+      "persona": 10
+    },
+    "difficulty_classes": [
+      "medium"
+    ],
+    "source_of_truth_classes": [
+      "authoritative_direct",
+      "multi_source_ambiguous"
+    ],
+    "first_observed_at": "2026-04-06T22:36:34.927561-04:00",
+    "last_observed_at": "2026-04-16T15:06:11.684337-04:00"
+  },
+  "support": {
+    "case_keys": [
+      "case-20260407-56d31eea",
+      "case-20260415-572502e1",
+      "case-20260415-6580bcd8",
+      "case-20260415-75a50190",
+      "case-20260415-868fc947",
+      "case-20260415-9a9c8ea3",
+      "case-20260415-9f6aad36",
+      "case-20260415-e4a8d83c",
+      "case-20260415-fc70b9f6",
+      "case-20260416-305ed3c4"
+    ],
+    "personas": [
+      "catalyst-hunter",
+      "market-implied",
+      "risk-manager"
+    ],
+    "dispatch_ids": [
+      "dispatch-case-20260407-56d31eea-20260407T023203Z",
+      "dispatch-case-20260415-572502e1-20260415T124520Z",
+      "dispatch-case-20260415-6580bcd8-20260415T081158Z",
+      "dispatch-case-20260415-75a50190-20260415T205116Z",
+      "dispatch-case-20260415-868fc947-20260415T090047Z",
+      "dispatch-case-20260415-9a9c8ea3-20260415T192028Z",
+      "dispatch-case-20260415-9f6aad36-20260415T082436Z",
+      "dispatch-case-20260415-e4a8d83c-20260415T230345Z",
+      "dispatch-case-20260415-fc70b9f6-20260415T072610Z",
+      "dispatch-case-20260416-305ed3c4-20260416T190054Z"
+    ],
+    "related_entities": [
+      "binance",
+      "bitcoin",
+      "ethereum"
+    ],
+    "related_canonical_drivers": [
+      "operational-risk",
+      "reliability"
+    ],
+    "canonical_driver_suggestions": [],
+    "top_related_entities": [
+      {
+        "value": "binance",
+        "count": 1
+      },
+      {
+        "value": "bitcoin",
+        "count": 1
+      },
+      {
+        "value": "ethereum",
+        "count": 1
+      }
+    ],
+    "top_related_canonical_drivers": [
+      {
+        "value": "operational-risk",
+        "count": 1
+      },
+      {
+        "value": "reliability",
+        "count": 1
+      }
+    ],
+    "top_canonical_driver_suggestions": []
+  },
+  "seed_hints": {
+    "node_seed": {
+      "candidate_key": "intraday-volatility",
+      "candidate_label": "intraday-volatility",
+      "mechanism_family": "resolution-mechanics",
+      "status": "shadow_only_provisional_seed"
+    },
+    "edge_seeds": []
+  },
+  "compiler_metadata": {
+    "generated_index_present": true,
+    "hint_source_path": "qualitative-db/40-research/review-queue/drivers-candidates/generated-index.json",
+    "hint_canon_coverage_status": "novel",
+    "hint_canon_coverage_driver": "",
+    "hint_occurrence_count": 27,
+    "hint_distinct_case_count": 10,
+    "hint_distinct_persona_count": 3,
+    "occurrence_paths": [
+      "qualitative-db/40-research/cases/case-20260407-56d31eea/researcher-analyses/2026-04-07/dispatch-case-20260407-56d31eea-20260407T023203Z/assumptions/catalyst-hunter.md",
+      "qualitative-db/40-research/cases/case-20260407-56d31eea/researcher-analyses/2026-04-07/dispatch-case-20260407-56d31eea-20260407T023203Z/personas/catalyst-hunter.md",
+      "qualitative-db/40-research/cases/case-20260415-572502e1/researcher-analyses/2026-04-15/dispatch-case-20260415-572502e1-20260415T124520Z/assumptions/catalyst-hunter.md",
+      "qualitative-db/40-research/cases/case-20260415-572502e1/researcher-analyses/2026-04-15/dispatch-case-20260415-572502e1-20260415T124520Z/evidence/catalyst-hunter.md",
+      "qualitative-db/40-research/cases/case-20260415-572502e1/researcher-analyses/2026-04-15/dispatch-case-20260415-572502e1-20260415T124520Z/personas/catalyst-hunter.md",
+      "qualitative-db/40-research/cases/case-20260415-6580bcd8/researcher-analyses/2026-04-15/dispatch-case-20260415-6580bcd8-20260415T081158Z/assumptions/catalyst-hunter.md",
+      "qualitative-db/40-research/cases/case-20260415-6580bcd8/researcher-analyses/2026-04-15/dispatch-case-20260415-6580bcd8-20260415T081158Z/personas/catalyst-hunter.md",
+      "qualitative-db/40-research/cases/case-20260415-75a50190/researcher-analyses/2026-04-15/dispatch-case-20260415-75a50190-20260415T205116Z/assumptions/risk-manager.md",
+      "qualitative-db/40-research/cases/case-20260415-75a50190/researcher-analyses/2026-04-15/dispatch-case-20260415-75a50190-20260415T205116Z/evidence/risk-manager.md",
+      "qualitative-db/40-research/cases/case-20260415-75a50190/researcher-analyses/2026-04-15/dispatch-case-20260415-75a50190-20260415T205116Z/personas/risk-manager.md",
+      "qualitative-db/40-research/cases/case-20260415-868fc947/researcher-analyses/2026-04-15/dispatch-case-20260415-868fc947-20260415T090047Z/assumptions/market-implied.md",
+      "qualitative-db/40-research/cases/case-20260415-868fc947/researcher-analyses/2026-04-15/dispatch-case-20260415-868fc947-20260415T090047Z/evidence/market-implied.md",
+      "qualitative-db/40-research/cases/case-20260415-868fc947/researcher-analyses/2026-04-15/dispatch-case-20260415-868fc947-20260415T090047Z/personas/market-implied.md",
+      "qualitative-db/40-research/cases/case-20260415-9a9c8ea3/researcher-analyses/2026-04-15/dispatch-case-20260415-9a9c8ea3-20260415T192028Z/assumptions/catalyst-hunter.md",
+      "qualitative-db/40-research/cases/case-20260415-9a9c8ea3/researcher-analyses/2026-04-15/dispatch-case-20260415-9a9c8ea3-20260415T192028Z/evidence/catalyst-hunter.md",
+      "qualitative-db/40-research/cases/case-20260415-9a9c8ea3/researcher-analyses/2026-04-15/dispatch-case-20260415-9a9c8ea3-20260415T192028Z/personas/catalyst-hunter.md",
+      "qualitative-db/40-research/cases/case-20260415-9f6aad36/researcher-analyses/2026-04-15/dispatch-case-20260415-9f6aad36-20260415T082436Z/assumptions/risk-manager.md",
+      "qualitative-db/40-research/cases/case-20260415-9f6aad36/researcher-analyses/2026-04-15/dispatch-case-20260415-9f6aad36-20260415T082436Z/evidence/risk-manager.md",
+      "qualitative-db/40-research/cases/case-20260415-9f6aad36/researcher-analyses/2026-04-15/dispatch-case-20260415-9f6aad36-20260415T082436Z/personas/risk-manager.md",
+      "qualitative-db/40-research/cases/case-20260415-e4a8d83c/researcher-analyses/2026-04-15/dispatch-case-20260415-e4a8d83c-20260415T230345Z/assumptions/catalyst-hunter.md",
+      "qualitative-db/40-research/cases/case-20260415-e4a8d83c/researcher-analyses/2026-04-15/dispatch-case-20260415-e4a8d83c-20260415T230345Z/personas/catalyst-hunter.md",
+      "qualitative-db/40-research/cases/case-20260415-fc70b9f6/researcher-analyses/2026-04-15/dispatch-case-20260415-fc70b9f6-20260415T072610Z/assumptions/market-implied.md",
+      "qualitative-db/40-research/cases/case-20260415-fc70b9f6/researcher-analyses/2026-04-15/dispatch-case-20260415-fc70b9f6-20260415T072610Z/evidence/market-implied.md",
+      "qualitative-db/40-research/cases/case-20260415-fc70b9f6/researcher-analyses/2026-04-15/dispatch-case-20260415-fc70b9f6-20260415T072610Z/personas/market-implied.md",
+      "qualitative-db/40-research/cases/case-20260416-305ed3c4/researcher-analyses/2026-04-16/dispatch-case-20260416-305ed3c4-20260416T190054Z/assumptions/risk-manager.md",
+      "qualitative-db/40-research/cases/case-20260416-305ed3c4/researcher-analyses/2026-04-16/dispatch-case-20260416-305ed3c4-20260416T190054Z/evidence/risk-manager.md",
+      "qualitative-db/40-research/cases/case-20260416-305ed3c4/researcher-analyses/2026-04-16/dispatch-case-20260416-305ed3c4-20260416T190054Z/personas/risk-manager.md"
+    ]
+  },
+  "source_occurrences": [
+    {
+      "artifact_path": "qualitative-db/40-research/cases/case-20260407-56d31eea/researcher-analyses/2026-04-07/dispatch-case-20260407-56d31eea-20260407T023203Z/assumptions/catalyst-hunter.md",
+      "proposed_driver_label": "intraday-volatility",
+      "proposed_driver_slug": "intraday-volatility",
+      "case_key": "case-20260407-56d31eea",
+      "dispatch_id": "dispatch-case-20260407-56d31eea-20260407T023203Z",
+      "research_run_id": "e2d9592f-d9f9-4040-a4d4-1618eb88a927",
+      "persona": "catalyst-hunter",
+      "artifact_kind": "assumption",
+      "related_entities": [
+        "binance",
+        "bitcoin"
+      ],
+      "related_canonical_drivers": [
+        "operational-risk",
+        "reliability"
+      ],
+      "canonical_driver_suggestions": [],
+      "difficulty_class": "medium",
+      "source_of_truth_class": "authoritative_direct",
+      "occurred_at": "2026-04-06T22:36:34.967972-04:00",
+      "status": "active"
+    },
+    {
+      "artifact_path": "qualitative-db/40-research/cases/case-20260407-56d31eea/researcher-analyses/2026-04-07/dispatch-case-20260407-56d31eea-20260407T023203Z/personas/catalyst-hunter.md",
+      "proposed_driver_label": "intraday-volatility",
+      "proposed_driver_slug": "intraday-volatility",
+      "case_key": "case-20260407-56d31eea",
+      "dispatch_id": "dispatch-case-20260407-56d31eea-20260407T023203Z",
+      "research_run_id": "e2d9592f-d9f9-4040-a4d4-1618eb88a927",
+      "persona": "catalyst-hunter",
+      "artifact_kind": "persona",
+      "related_entities": [
+        "binance",
+        "bitcoin"
+      ],
+      "related_canonical_drivers": [
+        "operational-risk",
+        "reliability"
+      ],
+      "canonical_driver_suggestions": [],
+      "difficulty_class": "medium",
+      "source_of_truth_class": "authoritative_direct",
+      "occurred_at": "2026-04-06T22:36:34.927561-04:00",
+      "status": "active"
+    },
+    {
+      "artifact_path": "qualitative-db/40-research/cases/case-20260415-572502e1/researcher-analyses/2026-04-15/dispatch-case-20260415-572502e1-20260415T124520Z/assumptions/catalyst-hunter.md",
+      "proposed_driver_label": "intraday-volatility",
+      "proposed_driver_slug": "intraday-volatility",
+      "case_key": "case-20260415-572502e1",
+      "dispatch_id": "dispatch-case-20260415-572502e1-20260415T124520Z",
+      "research_run_id": "8fa2c2d2-82e7-4d01-8498-27e678f08607",
+      "persona": "catalyst-hunter",
+      "artifact_kind": "assumption",
+      "related_entities": [
+        "bitcoin"
+      ],
+      "related_canonical_drivers": [
+        "operational-risk",
+        "reliability"
+      ],
+      "canonical_driver_suggestions": [],
+      "difficulty_class": "medium",
+      "source_of_truth_class": "multi_source_ambiguous",
+      "occurred_at": "2026-04-15T08:52:41.443931-04:00",
+      "status": "active"
+    },
+    {
+      "artifact_path": "qualitative-db/40-research/cases/case-20260415-572502e1/researcher-analyses/2026-04-15/dispatch-case-20260415-572502e1-20260415T124520Z/evidence/catalyst-hunter.md",
+      "proposed_driver_label": "intraday-volatility",
+      "proposed_driver_slug": "intraday-volatility",
+      "case_key": "case-20260415-572502e1",
+      "dispatch_id": "dispatch-case-20260415-572502e1-20260415T124520Z",
+      "research_run_id": "8fa2c2d2-82e7-4d01-8498-27e678f08607",
+      "persona": "catalyst-hunter",
+      "artifact_kind": "evidence",
+      "related_entities": [
+        "bitcoin"
+      ],
+      "related_canonical_drivers": [
+        "operational-risk",
+        "reliability"
+      ],
+      "canonical_driver_suggestions": [],
+      "difficulty_class": "medium",
+      "source_of_truth_class": "multi_source_ambiguous",
+      "occurred_at": "2026-04-15T08:52:41.489441-04:00",
+      "status": "active"
+    },
+    {
+      "artifact_path": "qualitative-db/40-research/cases/case-20260415-572502e1/researcher-analyses/2026-04-15/dispatch-case-20260415-572502e1-20260415T124520Z/personas/catalyst-hunter.md",
+      "proposed_driver_label": "intraday-volatility",
+      "proposed_driver_slug": "intraday-volatility",
+      "case_key": "case-20260415-572502e1",
+      "dispatch_id": "dispatch-case-20260415-572502e1-20260415T124520Z",
+      "research_run_id": "8fa2c2d2-82e7-4d01-8498-27e678f08607",
+      "persona": "catalyst-hunter",
+      "artifact_kind": "persona",
+      "related_entities": [
+        "bitcoin"
+      ],
+      "related_canonical_drivers": [
+        "operational-risk",
+        "reliability"
+      ],
+      "canonical_driver_suggestions": [],
+      "difficulty_class": "medium",
+      "source_of_truth_class": "multi_source_ambiguous",
+      "occurred_at": "2026-04-15T08:52:41.399496-04:00",
+      "status": "active"
+    },
+    {
+      "artifact_path": "qualitative-db/40-research/cases/case-20260415-6580bcd8/researcher-analyses/2026-04-15/dispatch-case-20260415-6580bcd8-20260415T081158Z/assumptions/catalyst-hunter.md",
+      "proposed_driver_label": "intraday-volatility",
+      "proposed_driver_slug": "intraday-volatility",
+      "case_key": "case-20260415-6580bcd8",
+      "dispatch_id": "dispatch-case-20260415-6580bcd8-20260415T081158Z",
+      "research_run_id": "0cd77c0e-171e-4209-9ee8-57c3fc3b0593",
+      "persona": "catalyst-hunter",
+      "artifact_kind": "assumption",
+      "related_entities": [
+        "bitcoin"
+      ],
+      "related_canonical_drivers": [
+        "reliability"
+      ],
+      "canonical_driver_suggestions": [],
+      "difficulty_class": "medium",
+      "source_of_truth_class": "authoritative_direct",
+      "occurred_at": "2026-04-15T04:18:09.183177-04:00",
+      "status": "active"
+    },
+    {
+      "artifact_path": "qualitative-db/40-research/cases/case-20260415-6580bcd8/researcher-analyses/2026-04-15/dispatch-case-20260415-6580bcd8-20260415T081158Z/personas/catalyst-hunter.md",
+      "proposed_driver_label": "intraday-volatility",
+      "proposed_driver_slug": "intraday-volatility",
+      "case_key": "case-20260415-6580bcd8",
+      "dispatch_id": "dispatch-case-20260415-6580bcd8-20260415T081158Z",
+      "research_run_id": "0cd77c0e-171e-4209-9ee8-57c3fc3b0593",
+      "persona": "catalyst-hunter",
+      "artifact_kind": "persona",
+      "related_entities": [
+        "binance",
+        "bitcoin"
+      ],
+      "related_canonical_drivers": [
+        "reliability"
+      ],
+      "canonical_driver_suggestions": [],
+      "difficulty_class": "medium",
+      "source_of_truth_class": "authoritative_direct",
+      "occurred_at": "2026-04-15T04:18:09.133826-04:00",
+      "status": "active"
+    },
+    {
+      "artifact_path": "qualitative-db/40-research/cases/case-20260415-75a50190/researcher-analyses/2026-04-15/dispatch-case-20260415-75a50190-20260415T205116Z/assumptions/risk-manager.md",
+      "proposed_driver_label": "intraday-volatility",
+      "proposed_driver_slug": "intraday-volatility",
+      "case_key": "case-20260415-75a50190",
+      "dispatch_id": "dispatch-case-20260415-75a50190-20260415T205116Z",
+      "research_run_id": "c7169e08-0c23-4d70-bf66-da4e6120c82d",
+      "persona": "risk-manager",
+      "artifact_kind": "assumption",
+      "related_entities": [
+        "bitcoin"
+      ],
+      "related_canonical_drivers": [
+        "operational-risk",
+        "reliability"
+      ],
+      "canonical_driver_suggestions": [],
+      "difficulty_class": "medium",
+      "source_of_truth_class": "authoritative_direct",
+      "occurred_at": "2026-04-15T16:58:08.56262-04:00",
+      "status": "active"
+    },
+    {
+      "artifact_path": "qualitative-db/40-research/cases/case-20260415-75a50190/researcher-analyses/2026-04-15/dispatch-case-20260415-75a50190-20260415T205116Z/evidence/risk-manager.md",
+      "proposed_driver_label": "intraday-volatility",
+      "proposed_driver_slug": "intraday-volatility",
+      "case_key": "case-20260415-75a50190",
+      "dispatch_id": "dispatch-case-20260415-75a50190-20260415T205116Z",
+      "research_run_id": "c7169e08-0c23-4d70-bf66-da4e6120c82d",
+      "persona": "risk-manager",
+      "artifact_kind": "evidence",
+      "related_entities": [
+        "bitcoin"
+      ],
+      "related_canonical_drivers": [
+        "operational-risk",
+        "reliability"
+      ],
+      "canonical_driver_suggestions": [],
+      "difficulty_class": "medium",
+      "source_of_truth_class": "authoritative_direct",
+      "occurred_at": "2026-04-15T16:58:08.607747-04:00",
+      "status": "active"
+    },
+    {
+      "artifact_path": "qualitative-db/40-research/cases/case-20260415-75a50190/researcher-analyses/2026-04-15/dispatch-case-20260415-75a50190-20260415T205116Z/personas/risk-manager.md",
+      "proposed_driver_label": "intraday-volatility",
+      "proposed_driver_slug": "intraday-volatility",
+      "case_key": "case-20260415-75a50190",
+      "dispatch_id": "dispatch-case-20260415-75a50190-20260415T205116Z",
+      "research_run_id": "c7169e08-0c23-4d70-bf66-da4e6120c82d",
+      "persona": "risk-manager",
+      "artifact_kind": "persona",
+      "related_entities": [
+        "bitcoin"
+      ],
+      "related_canonical_drivers": [
+        "operational-risk",
+        "reliability"
+      ],
+      "canonical_driver_suggestions": [],
+      "difficulty_class": "medium",
+      "source_of_truth_class": "authoritative_direct",
+      "occurred_at": "2026-04-15T16:58:08.51482-04:00",
+      "status": "active"
+    },
+    {
+      "artifact_path": "qualitative-db/40-research/cases/case-20260415-868fc947/researcher-analyses/2026-04-15/dispatch-case-20260415-868fc947-20260415T090047Z/assumptions/market-implied.md",
+      "proposed_driver_label": "intraday-volatility",
+      "proposed_driver_slug": "intraday-volatility",
+      "case_key": "case-20260415-868fc947",
+      "dispatch_id": "dispatch-case-20260415-868fc947-20260415T090047Z",
+      "research_run_id": "08951c6e-3c4f-45d9-9d90-3ee87055fa93",
+      "persona": "market-implied",
+      "artifact_kind": "assumption",
+      "related_entities": [
+        "bitcoin"
+      ],
+      "related_canonical_drivers": [
+        "reliability"
+      ],
+      "canonical_driver_suggestions": [],
+      "difficulty_class": "medium",
+      "source_of_truth_class": "multi_source_ambiguous",
+      "occurred_at": "2026-04-15T05:05:30.526006-04:00",
+      "status": "active"
+    },
+    {
+      "artifact_path": "qualitative-db/40-research/cases/case-20260415-868fc947/researcher-analyses/2026-04-15/dispatch-case-20260415-868fc947-20260415T090047Z/evidence/market-implied.md",
+      "proposed_driver_label": "intraday-volatility",
+      "proposed_driver_slug": "intraday-volatility",
+      "case_key": "case-20260415-868fc947",
+      "dispatch_id": "dispatch-case-20260415-868fc947-20260415T090047Z",
+      "research_run_id": "08951c6e-3c4f-45d9-9d90-3ee87055fa93",
+      "persona": "market-implied",
+      "artifact_kind": "evidence",
+      "related_entities": [
+        "bitcoin"
+      ],
+      "related_canonical_drivers": [
+        "operational-risk",
+        "reliability"
+      ],
+      "canonical_driver_suggestions": [],
+      "difficulty_class": "medium",
+      "source_of_truth_class": "multi_source_ambiguous",
+      "occurred_at": "2026-04-15T05:05:30.569807-04:00",
+      "status": "active"
+    },
+    {
+      "artifact_path": "qualitative-db/40-research/cases/case-20260415-868fc947/researcher-analyses/2026-04-15/dispatch-case-20260415-868fc947-20260415T090047Z/personas/market-implied.md",
+      "proposed_driver_label": "intraday-volatility",
+      "proposed_driver_slug": "intraday-volatility",
+      "case_key": "case-20260415-868fc947",
+      "dispatch_id": "dispatch-case-20260415-868fc947-20260415T090047Z",
+      "research_run_id": "08951c6e-3c4f-45d9-9d90-3ee87055fa93",
+      "persona": "market-implied",
+      "artifact_kind": "persona",
+      "related_entities": [
+        "bitcoin"
+      ],
+      "related_canonical_drivers": [
+        "operational-risk",
+        "reliability"
+      ],
+      "canonical_driver_suggestions": [],
+      "difficulty_class": "medium",
+      "source_of_truth_class": "multi_source_ambiguous",
+      "occurred_at": "2026-04-15T05:05:30.480886-04:00",
+      "status": "active"
+    },
+    {
+      "artifact_path": "qualitative-db/40-research/cases/case-20260415-9a9c8ea3/researcher-analyses/2026-04-15/dispatch-case-20260415-9a9c8ea3-20260415T192028Z/assumptions/catalyst-hunter.md",
+      "proposed_driver_label": "intraday-volatility",
+      "proposed_driver_slug": "intraday-volatility",
+      "case_key": "case-20260415-9a9c8ea3",
+      "dispatch_id": "dispatch-case-20260415-9a9c8ea3-20260415T192028Z",
+      "research_run_id": "bcc74157-37b0-48a8-b04a-9097384605e3",
+      "persona": "catalyst-hunter",
+      "artifact_kind": "assumption",
+      "related_entities": [
+        "bitcoin"
+      ],
+      "related_canonical_drivers": [
+        "operational-risk",
+        "reliability"
+      ],
+      "canonical_driver_suggestions": [],
+      "difficulty_class": "medium",
+      "source_of_truth_class": "authoritative_direct",
+      "occurred_at": "2026-04-15T15:27:41.364118-04:00",
+      "status": "active"
+    },
+    {
+      "artifact_path": "qualitative-db/40-research/cases/case-20260415-9a9c8ea3/researcher-analyses/2026-04-15/dispatch-case-20260415-9a9c8ea3-20260415T192028Z/evidence/catalyst-hunter.md",
+      "proposed_driver_label": "intraday-volatility",
+      "proposed_driver_slug": "intraday-volatility",
+      "case_key": "case-20260415-9a9c8ea3",
+      "dispatch_id": "dispatch-case-20260415-9a9c8ea3-20260415T192028Z",
+      "research_run_id": "bcc74157-37b0-48a8-b04a-9097384605e3",
+      "persona": "catalyst-hunter",
+      "artifact_kind": "evidence",
+      "related_entities": [
+        "bitcoin"
+      ],
+      "related_canonical_drivers": [
+        "operational-risk",
+        "reliability"
+      ],
+      "canonical_driver_suggestions": [],
+      "difficulty_class": "medium",
+      "source_of_truth_class": "authoritative_direct",
+      "occurred_at": "2026-04-15T15:27:41.416616-04:00",
+      "status": "active"
+    },
+    {
+      "artifact_path": "qualitative-db/40-research/cases/case-20260415-9a9c8ea3/researcher-analyses/2026-04-15/dispatch-case-20260415-9a9c8ea3-20260415T192028Z/personas/catalyst-hunter.md",
+      "proposed_driver_label": "intraday-volatility",
+      "proposed_driver_slug": "intraday-volatility",
+      "case_key": "case-20260415-9a9c8ea3",
+      "dispatch_id": "dispatch-case-20260415-9a9c8ea3-20260415T192028Z",
+      "research_run_id": "bcc74157-37b0-48a8-b04a-9097384605e3",
+      "persona": "catalyst-hunter",
+      "artifact_kind": "persona",
+      "related_entities": [
+        "bitcoin"
+      ],
+      "related_canonical_drivers": [
+        "operational-risk",
+        "reliability"
+      ],
+      "canonical_driver_suggestions": [],
+      "difficulty_class": "medium",
+      "source_of_truth_class": "authoritative_direct",
+      "occurred_at": "2026-04-15T15:27:41.312859-04:00",
+      "status": "active"
+    },
+    {
+      "artifact_path": "qualitative-db/40-research/cases/case-20260415-9f6aad36/researcher-analyses/2026-04-15/dispatch-case-20260415-9f6aad36-20260415T082436Z/assumptions/risk-manager.md",
+      "proposed_driver_label": "intraday-volatility",
+      "proposed_driver_slug": "intraday-volatility",
+      "case_key": "case-20260415-9f6aad36",
+      "dispatch_id": "dispatch-case-20260415-9f6aad36-20260415T082436Z",
+      "research_run_id": "4632dceb-1076-4409-8cc2-52bedc2e938d",
+      "persona": "risk-manager",
+      "artifact_kind": "assumption",
+      "related_entities": [
+        "bitcoin"
+      ],
+      "related_canonical_drivers": [
+        "operational-risk",
+        "reliability"
+      ],
+      "canonical_driver_suggestions": [],
+      "difficulty_class": "medium",
+      "source_of_truth_class": "authoritative_direct",
+      "occurred_at": "2026-04-15T04:28:52.159526-04:00",
+      "status": "active"
+    },
+    {
+      "artifact_path": "qualitative-db/40-research/cases/case-20260415-9f6aad36/researcher-analyses/2026-04-15/dispatch-case-20260415-9f6aad36-20260415T082436Z/evidence/risk-manager.md",
+      "proposed_driver_label": "intraday-volatility",
+      "proposed_driver_slug": "intraday-volatility",
+      "case_key": "case-20260415-9f6aad36",
+      "dispatch_id": "dispatch-case-20260415-9f6aad36-20260415T082436Z",
+      "research_run_id": "4632dceb-1076-4409-8cc2-52bedc2e938d",
+      "persona": "risk-manager",
+      "artifact_kind": "evidence",
+      "related_entities": [
+        "bitcoin"
+      ],
+      "related_canonical_drivers": [
+        "operational-risk",
+        "reliability"
+      ],
+      "canonical_driver_suggestions": [],
+      "difficulty_class": "medium",
+      "source_of_truth_class": "authoritative_direct",
+      "occurred_at": "2026-04-15T04:28:52.202959-04:00",
+      "status": "active"
+    },
+    {
+      "artifact_path": "qualitative-db/40-research/cases/case-20260415-9f6aad36/researcher-analyses/2026-04-15/dispatch-case-20260415-9f6aad36-20260415T082436Z/personas/risk-manager.md",
+      "proposed_driver_label": "intraday-volatility",
+      "proposed_driver_slug": "intraday-volatility",
+      "case_key": "case-20260415-9f6aad36",
+      "dispatch_id": "dispatch-case-20260415-9f6aad36-20260415T082436Z",
+      "research_run_id": "4632dceb-1076-4409-8cc2-52bedc2e938d",
+      "persona": "risk-manager",
+      "artifact_kind": "persona",
+      "related_entities": [
+        "bitcoin"
+      ],
+      "related_canonical_drivers": [
+        "operational-risk",
+        "reliability"
+      ],
+      "canonical_driver_suggestions": [],
+      "difficulty_class": "medium",
+      "source_of_truth_class": "authoritative_direct",
+      "occurred_at": "2026-04-15T04:28:52.116518-04:00",
+      "status": "active"
+    },
+    {
+      "artifact_path": "qualitative-db/40-research/cases/case-20260415-e4a8d83c/researcher-analyses/2026-04-15/dispatch-case-20260415-e4a8d83c-20260415T230345Z/assumptions/catalyst-hunter.md",
+      "proposed_driver_label": "intraday-volatility",
+      "proposed_driver_slug": "intraday-volatility",
+      "case_key": "case-20260415-e4a8d83c",
+      "dispatch_id": "dispatch-case-20260415-e4a8d83c-20260415T230345Z",
+      "research_run_id": "8faa9e5b-a08c-410f-b408-68833a0c2d60",
+      "persona": "catalyst-hunter",
+      "artifact_kind": "assumption",
+      "related_entities": [
+        "bitcoin"
+      ],
+      "related_canonical_drivers": [
+        "operational-risk",
+        "reliability"
+      ],
+      "canonical_driver_suggestions": [],
+      "difficulty_class": "medium",
+      "source_of_truth_class": "authoritative_direct",
+      "occurred_at": "2026-04-15T19:09:54.617196-04:00",
+      "status": "active"
+    },
+    {
+      "artifact_path": "qualitative-db/40-research/cases/case-20260415-e4a8d83c/researcher-analyses/2026-04-15/dispatch-case-20260415-e4a8d83c-20260415T230345Z/personas/catalyst-hunter.md",
+      "proposed_driver_label": "intraday-volatility",
+      "proposed_driver_slug": "intraday-volatility",
+      "case_key": "case-20260415-e4a8d83c",
+      "dispatch_id": "dispatch-case-20260415-e4a8d83c-20260415T230345Z",
+      "research_run_id": "8faa9e5b-a08c-410f-b408-68833a0c2d60",
+      "persona": "catalyst-hunter",
+      "artifact_kind": "persona",
+      "related_entities": [
+        "bitcoin"
+      ],
+      "related_canonical_drivers": [
+        "operational-risk",
+        "reliability"
+      ],
+      "canonical_driver_suggestions": [],
+      "difficulty_class": "medium",
+      "source_of_truth_class": "authoritative_direct",
+      "occurred_at": "2026-04-15T19:09:54.567042-04:00",
+      "status": "active"
+    },
+    {
+      "artifact_path": "qualitative-db/40-research/cases/case-20260415-fc70b9f6/researcher-analyses/2026-04-15/dispatch-case-20260415-fc70b9f6-20260415T072610Z/assumptions/market-implied.md",
+      "proposed_driver_label": "intraday-volatility",
+      "proposed_driver_slug": "intraday-volatility",
+      "case_key": "case-20260415-fc70b9f6",
+      "dispatch_id": "dispatch-case-20260415-fc70b9f6-20260415T072610Z",
+      "research_run_id": "4035e113-f94b-43a3-8191-9737827ba1a0",
+      "persona": "market-implied",
+      "artifact_kind": "assumption",
+      "related_entities": [
+        "bitcoin"
+      ],
+      "related_canonical_drivers": [
+        "reliability"
+      ],
+      "canonical_driver_suggestions": [],
+      "difficulty_class": "medium",
+      "source_of_truth_class": "authoritative_direct",
+      "occurred_at": "2026-04-15T03:30:06.288786-04:00",
+      "status": "active"
+    },
+    {
+      "artifact_path": "qualitative-db/40-research/cases/case-20260415-fc70b9f6/researcher-analyses/2026-04-15/dispatch-case-20260415-fc70b9f6-20260415T072610Z/evidence/market-implied.md",
+      "proposed_driver_label": "intraday-volatility",
+      "proposed_driver_slug": "intraday-volatility",
+      "case_key": "case-20260415-fc70b9f6",
+      "dispatch_id": "dispatch-case-20260415-fc70b9f6-20260415T072610Z",
+      "research_run_id": "4035e113-f94b-43a3-8191-9737827ba1a0",
+      "persona": "market-implied",
+      "artifact_kind": "evidence",
+      "related_entities": [
+        "bitcoin"
+      ],
+      "related_canonical_drivers": [
+        "operational-risk",
+        "reliability"
+      ],
+      "canonical_driver_suggestions": [],
+      "difficulty_class": "medium",
+      "source_of_truth_class": "authoritative_direct",
+      "occurred_at": "2026-04-15T03:30:06.335706-04:00",
+      "status": "active"
+    },
+    {
+      "artifact_path": "qualitative-db/40-research/cases/case-20260415-fc70b9f6/researcher-analyses/2026-04-15/dispatch-case-20260415-fc70b9f6-20260415T072610Z/personas/market-implied.md",
+      "proposed_driver_label": "intraday-volatility",
+      "proposed_driver_slug": "intraday-volatility",
+      "case_key": "case-20260415-fc70b9f6",
+      "dispatch_id": "dispatch-case-20260415-fc70b9f6-20260415T072610Z",
+      "research_run_id": "4035e113-f94b-43a3-8191-9737827ba1a0",
+      "persona": "market-implied",
+      "artifact_kind": "persona",
+      "related_entities": [
+        "bitcoin"
+      ],
+      "related_canonical_drivers": [
+        "operational-risk",
+        "reliability"
+      ],
+      "canonical_driver_suggestions": [],
+      "difficulty_class": "medium",
+      "source_of_truth_class": "authoritative_direct",
+      "occurred_at": "2026-04-15T03:30:06.242981-04:00",
+      "status": "active"
+    },
+    {
+      "artifact_path": "qualitative-db/40-research/cases/case-20260416-305ed3c4/researcher-analyses/2026-04-16/dispatch-case-20260416-305ed3c4-20260416T190054Z/assumptions/risk-manager.md",
+      "proposed_driver_label": "intraday-volatility",
+      "proposed_driver_slug": "intraday-volatility",
+      "case_key": "case-20260416-305ed3c4",
+      "dispatch_id": "dispatch-case-20260416-305ed3c4-20260416T190054Z",
+      "research_run_id": "8adf7e65-044c-4c3f-b33c-1a3dccf75a17",
+      "persona": "risk-manager",
+      "artifact_kind": "assumption",
+      "related_entities": [
+        "binance",
+        "ethereum"
+      ],
+      "related_canonical_drivers": [
+        "operational-risk",
+        "reliability"
+      ],
+      "canonical_driver_suggestions": [],
+      "difficulty_class": "medium",
+      "source_of_truth_class": "authoritative_direct",
+      "occurred_at": "2026-04-16T15:06:11.643397-04:00",
+      "status": "active"
+    },
+    {
+      "artifact_path": "qualitative-db/40-research/cases/case-20260416-305ed3c4/researcher-analyses/2026-04-16/dispatch-case-20260416-305ed3c4-20260416T190054Z/evidence/risk-manager.md",
+      "proposed_driver_label": "intraday-volatility",
+      "proposed_driver_slug": "intraday-volatility",
+      "case_key": "case-20260416-305ed3c4",
+      "dispatch_id": "dispatch-case-20260416-305ed3c4-20260416T190054Z",
+      "research_run_id": "8adf7e65-044c-4c3f-b33c-1a3dccf75a17",
+      "persona": "risk-manager",
+      "artifact_kind": "evidence",
+      "related_entities": [
+        "binance",
+        "ethereum"
+      ],
+      "related_canonical_drivers": [
+        "operational-risk",
+        "reliability"
+      ],
+      "canonical_driver_suggestions": [],
+      "difficulty_class": "medium",
+      "source_of_truth_class": "authoritative_direct",
+      "occurred_at": "2026-04-16T15:06:11.684337-04:00",
+      "status": "active"
+    },
+    {
+      "artifact_path": "qualitative-db/40-research/cases/case-20260416-305ed3c4/researcher-analyses/2026-04-16/dispatch-case-20260416-305ed3c4-20260416T190054Z/personas/risk-manager.md",
+      "proposed_driver_label": "intraday-volatility",
+      "proposed_driver_slug": "intraday-volatility",
+      "case_key": "case-20260416-305ed3c4",
+      "dispatch_id": "dispatch-case-20260416-305ed3c4-20260416T190054Z",
+      "research_run_id": "8adf7e65-044c-4c3f-b33c-1a3dccf75a17",
+      "persona": "risk-manager",
+      "artifact_kind": "persona",
+      "related_entities": [
+        "binance",
+        "ethereum"
+      ],
+      "related_canonical_drivers": [
+        "operational-risk",
+        "reliability"
+      ],
+      "canonical_driver_suggestions": [],
+      "difficulty_class": "medium",
+      "source_of_truth_class": "authoritative_direct",
+      "occurred_at": "2026-04-16T15:06:11.600825-04:00",
+      "status": "active"
+    }
+  ],
+  "packet_hash": "1e143f1978ef4d44fc3db517ef84e8e623ad51458166f6398a9b5d6f97b3e313"
+}

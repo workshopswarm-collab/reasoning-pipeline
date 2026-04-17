@@ -25,6 +25,11 @@ REPORT_RUNTIME_STATUS = SCRIPTS_DIR / 'report_lmd_causal_runtime_status.py'
 REPORT_CAUSAL_GOVERNANCE = SCRIPTS_DIR / 'report_causal_governance.py'
 REPORT_TRIAL_PACKETS = SCRIPTS_DIR / 'report_proposed_causal_trial_packets.py'
 REPORT_SHADOW_VS_LIVE = SCRIPTS_DIR / 'report_shadow_vs_live_proposals.py'
+RUN_OCCURRENCE_COMPILER = SCRIPTS_DIR / 'run_occurrence_compiler_cycle.py'
+MATERIALIZE_PROVISIONAL_FAMILIES = SCRIPTS_DIR / 'materialize_provisional_causal_families.py'
+GENERATE_PROVISIONAL_FAMILY_POLICIES = SCRIPTS_DIR / 'generate_provisional_family_policies.py'
+BRIDGE_OCCURRENCE_PACKETS = SCRIPTS_DIR / 'bridge_occurrence_packets_to_proposed_candidates.py'
+RUN_OCCURRENCE_SHADOW_FEEDBACK = SCRIPTS_DIR / 'run_occurrence_shadow_feedback_cycle.py'
 DEFAULT_EXPERIMENT_ID = 'researcher-lmd-v1'
 DEFAULT_RECENT_TREATMENT_CASES = 50
 
@@ -38,6 +43,9 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument('--psql', default=DEFAULT_PSQL)
     parser.add_argument('--skip-post-treatment', action='store_true')
     parser.add_argument('--skip-retry-queue', action='store_true')
+    parser.add_argument('--enable-occurrence-backed-causal-compiler', action='store_true')
+    parser.add_argument('--enable-occurrence-backed-shadow-bridge', action='store_true')
+    parser.add_argument('--enable-occurrence-backed-shadow-feedback', action='store_true')
     parser.add_argument('--dry-run', action='store_true')
     parser.add_argument('--pretty', action='store_true')
     return parser.parse_args()
@@ -129,6 +137,34 @@ def main() -> int:
         if args.dry_run:
             command.append('--dry-run')
         steps.append({'step': 'run_post_treatment_causal_feedback_cycle', **run_json_command(command)})
+
+    if args.enable_occurrence_backed_causal_compiler:
+        command = [
+            sys.executable,
+            str(RUN_OCCURRENCE_COMPILER),
+            *common_db_args(args),
+        ]
+        if args.dry_run:
+            command.append('--dry-run')
+        steps.append({'step': 'run_occurrence_compiler_cycle', **run_json_command(command)})
+
+    if args.enable_occurrence_backed_shadow_bridge:
+        bridge_scripts = [
+            ('materialize_provisional_causal_families', MATERIALIZE_PROVISIONAL_FAMILIES),
+            ('generate_provisional_family_policies', GENERATE_PROVISIONAL_FAMILY_POLICIES),
+            ('bridge_occurrence_packets_to_proposed_candidates', BRIDGE_OCCURRENCE_PACKETS),
+        ]
+        for step_name, script_path in bridge_scripts:
+            command = [sys.executable, str(script_path), *common_db_args(args)]
+            if args.dry_run:
+                command.append('--dry-run')
+            steps.append({'step': step_name, **run_json_command(command)})
+
+    if args.enable_occurrence_backed_shadow_feedback:
+        command = [sys.executable, str(RUN_OCCURRENCE_SHADOW_FEEDBACK), *common_db_args(args)]
+        if args.dry_run:
+            command.append('--dry-run')
+        steps.append({'step': 'run_occurrence_shadow_feedback_cycle', **run_json_command(command)})
 
     report_scripts = [
         ('backfill_lmd_causal_dispatch_audits', BACKFILL_DISPATCH_AUDITS, ['--experiment-id', args.experiment_id, '--recent-treatment-cases', str(args.recent_treatment_cases)]),

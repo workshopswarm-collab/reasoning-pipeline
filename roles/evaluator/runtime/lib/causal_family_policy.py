@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from typing import Any
 
+from .db import DEFAULT_PSQL, exec_sql, resolve_db_url, table_exists
 from .io import read_json
 from .paths import CAUSAL_MAP_ROOT
 
@@ -40,6 +41,14 @@ DEFAULT_EXPLORATORY_TRIAL = {
     'min_shadow_trial_score': 0.0,
 }
 
+FAMILY_POLICIES_SQL = r'''
+SELECT COALESCE(json_agg(row_to_json(t) ORDER BY mechanism_family), '[]'::json)::text
+FROM (
+  SELECT *
+  FROM public.causal_family_policies
+) t;
+'''
+
 
 
 def normalize_family_policy(policy: dict[str, Any], *, mechanism_family: str | None = None) -> dict[str, Any]:
@@ -74,6 +83,15 @@ def normalize_family_policy(policy: dict[str, Any], *, mechanism_family: str | N
         row[key] = float(row.get(key, DEFAULT_POLICY[key]) or 0.0)
     notes = row.get('notes') or {}
     row['notes'] = notes if isinstance(notes, dict) else {'raw': notes}
+    policy_notes = row.get('policy_notes') or {}
+    row['policy_notes'] = policy_notes if isinstance(policy_notes, dict) else {'raw': policy_notes}
+    row['policy_source'] = str(row.get('policy_source') or 'file_bootstrap').strip() or 'file_bootstrap'
+    row['policy_generated_at'] = str(row.get('policy_generated_at') or '').strip()
+    row['family_state'] = str(row.get('family_state') or 'manual_seed').strip() or 'manual_seed'
+    row['health_score'] = float(row.get('health_score') or 0.0)
+    row['evidence_mass'] = float(row.get('evidence_mass') or 0.0)
+    row['quarantine_until'] = str(row.get('quarantine_until') or '').strip()
+    row['decay_half_life_days'] = max(1, int(row.get('decay_half_life_days', 30) or 30))
     return row
 
 
@@ -98,6 +116,37 @@ def load_family_policies() -> dict[str, dict[str, Any]]:
     for policy in payload['policies']:
         normalized = normalize_family_policy(policy)
         rows[normalized['mechanism_family']] = normalized
+    if 'unassigned' not in rows:
+        rows['unassigned'] = normalize_family_policy({'enabled': False}, mechanism_family='unassigned')
+    return rows
+
+
+
+def load_db_family_policies(*, db_url: str | None = None, psql_bin: str = DEFAULT_PSQL) -> dict[str, dict[str, Any]]:
+    resolved_db_url = resolve_db_url(db_url)
+    if not resolved_db_url or not table_exists('causal_family_policies', db_url=resolved_db_url, psql_bin=psql_bin):
+        return {}
+    try:
+        rows = exec_sql(psql_bin, resolved_db_url, FAMILY_POLICIES_SQL, {}) or []
+    except Exception:
+        return {}
+    out: dict[str, dict[str, Any]] = {}
+    if not isinstance(rows, list):
+        return out
+    for row in rows:
+        if not isinstance(row, dict):
+            continue
+        family = str(row.get('mechanism_family') or '').strip()
+        if not family:
+            continue
+        out[family] = normalize_family_policy(row, mechanism_family=family)
+    return out
+
+
+
+def load_effective_family_policies(*, db_url: str | None = None, psql_bin: str = DEFAULT_PSQL) -> dict[str, dict[str, Any]]:
+    rows = dict(load_family_policies())
+    rows.update(load_db_family_policies(db_url=db_url, psql_bin=psql_bin))
     if 'unassigned' not in rows:
         rows['unassigned'] = normalize_family_policy({'enabled': False}, mechanism_family='unassigned')
     return rows

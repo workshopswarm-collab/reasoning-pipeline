@@ -50,6 +50,7 @@ QUEUE_DIR = WORKSPACE_ROOT / "qualitative-db" / "40-research" / "review-queue" /
 CANDIDATE_NOTES_DIR = QUEUE_DIR / "candidate-notes"
 FAMILY_REVIEW_DIR = QUEUE_DIR / "surfaced-family-review"
 INDEX_PATH = QUEUE_DIR / "generated-index.md"
+INDEX_JSON_PATH = QUEUE_DIR / "generated-index.json"
 GENERATED_PREFIX = "generated-driver-candidate-"
 NOW_UTC = datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
 MAX_EXAMPLES = 12
@@ -564,12 +565,86 @@ def render_index(grouped: dict[str, list[Occurrence]], source_counts: dict[str, 
     return "\n".join(lines)
 
 
-def sync_generated_files(grouped: dict[str, list[Occurrence]], source_counts: dict[str, int], driver_slugs: list[str]) -> dict[str, int]:
+def build_family_summary_rows(family_groups: dict[str, dict[str, Any]]) -> list[dict[str, Any]]:
+    rows: list[dict[str, Any]] = []
+    for family_slug, info in sorted(family_groups.items(), key=lambda item: (-len(item[1]['occurrences']), item[0])):
+        occurrences = info['occurrences']
+        rows.append(
+            {
+                'family_slug': family_slug,
+                'family_label': info['family'].label,
+                'canon_coverage_status': info['canon_coverage'].status,
+                'canon_coverage_driver': info['canon_coverage'].canonical_slug,
+                'occurrences': len(occurrences),
+                'distinct_cases': len({o.case_key for o in occurrences if o.case_key}),
+                'distinct_personas': len({o.persona for o in occurrences if o.persona}),
+                'raw_candidate_count': len(set(info['candidate_slugs'])),
+                'raw_candidate_labels': [label for label, _ in Counter(info['candidate_labels']).most_common()],
+                'candidate_slugs': sorted(set(info['candidate_slugs'])),
+            }
+        )
+    return rows
+
+
+
+def build_candidate_summary_rows(grouped: dict[str, list[Occurrence]], driver_slugs: list[str]) -> list[dict[str, Any]]:
+    rows: list[dict[str, Any]] = []
+    for slug, occurrences in sorted(grouped.items(), key=lambda item: (-len(item[1]), item[0])):
+        primary_label = Counter(o.label for o in occurrences).most_common(1)[0][0]
+        family = choose_family(primary_label, [s for o in occurrences for s in o.suggestions], [d for o in occurrences for d in o.related_drivers])
+        coverage = assess_canon_coverage(family, occurrences, driver_slugs)
+        rows.append(
+            {
+                'candidate_slug': slug,
+                'candidate_label': primary_label,
+                'candidate_note_path': f"candidate-notes/{GENERATED_PREFIX}{slug}.md",
+                'normalized_family': family.slug,
+                'canon_coverage_status': coverage.status,
+                'canon_coverage_driver': coverage.canonical_slug,
+                'occurrences': len(occurrences),
+                'distinct_cases': len({o.case_key for o in occurrences if o.case_key}),
+                'distinct_personas': len({o.persona for o in occurrences if o.persona}),
+                'source_mix': dict(Counter(o.source for o in occurrences)),
+                'case_keys': sorted({o.case_key for o in occurrences if o.case_key}),
+                'personas': sorted({o.persona for o in occurrences if o.persona}),
+                'related_drivers': sorted({driver for o in occurrences for driver in o.related_drivers}),
+                'canonical_driver_suggestions': sorted({suggestion for o in occurrences for suggestion in o.suggestions}),
+            }
+        )
+    return rows
+
+
+
+def build_generated_index_payload(
+    grouped: dict[str, list[Occurrence]],
+    source_counts: dict[str, int],
+    driver_slugs: list[str],
+    family_groups: dict[str, dict[str, Any]],
+) -> dict[str, Any]:
+    family_rows = build_family_summary_rows(family_groups)
+    candidate_rows = build_candidate_summary_rows(grouped, driver_slugs)
+    return {
+        'type': 'proposed_driver_generated_index',
+        'generated_at': NOW_UTC,
+        'queue_root': str(QUEUE_DIR.relative_to(WORKSPACE_ROOT)),
+        'source_counts': dict(source_counts),
+        'summary': {
+            'generated_candidate_count': len(grouped),
+            'normalized_family_count': len(family_groups),
+            'total_proposed_driver_occurrences': sum(len(v) for v in grouped.values()),
+        },
+        'families': family_rows,
+        'candidates': candidate_rows,
+    }
+
+
+
+def sync_generated_files(grouped: dict[str, list[Occurrence]], source_counts: dict[str, int], driver_slugs: list[str], family_groups: dict[str, dict[str, Any]]) -> tuple[dict[str, int], dict[str, Any]]:
     QUEUE_DIR.mkdir(parents=True, exist_ok=True)
     CANDIDATE_NOTES_DIR.mkdir(parents=True, exist_ok=True)
     FAMILY_REVIEW_DIR.mkdir(parents=True, exist_ok=True)
     outcomes = Counter()
-    expected_files = {INDEX_PATH.name}
+    expected_files = {INDEX_PATH.name, INDEX_JSON_PATH.name}
     expected_candidate_files: set[str] = set()
 
     index_content = render_index(grouped, source_counts, driver_slugs)
@@ -578,6 +653,14 @@ def sync_generated_files(grouped: dict[str, list[Occurrence]], source_counts: di
     else:
         INDEX_PATH.write_text(index_content)
         outcomes["index_written"] += 1
+
+    index_payload = build_generated_index_payload(grouped, source_counts, driver_slugs, family_groups)
+    index_json_content = json.dumps(index_payload, indent=2, sort_keys=False)
+    if INDEX_JSON_PATH.exists() and INDEX_JSON_PATH.read_text() == index_json_content + "\n":
+        outcomes["index_json_unchanged"] += 1
+    else:
+        INDEX_JSON_PATH.write_text(index_json_content + "\n")
+        outcomes["index_json_written"] += 1
 
     for slug, occurrences in grouped.items():
         name = f"{GENERATED_PREFIX}{slug}.md"
@@ -600,7 +683,7 @@ def sync_generated_files(grouped: dict[str, list[Occurrence]], source_counts: di
         path.unlink()
         outcomes["legacy_candidate_removed"] += 1
 
-    return dict(outcomes)
+    return dict(outcomes), index_payload
 
 
 def main() -> int:
@@ -608,7 +691,7 @@ def main() -> int:
     grouped, source_counts = collect_occurrences(args.psql, args.db_url)
     _, driver_slugs = load_catalog(DRIVER_ROOT, kind='driver')
     family_groups = build_family_groups(grouped, driver_slugs)
-    outcomes = sync_generated_files(grouped, source_counts, driver_slugs)
+    outcomes, index_payload = sync_generated_files(grouped, source_counts, driver_slugs, family_groups)
     summary = {
         "status": "ok",
         "generated_candidate_count": len(grouped),
@@ -616,54 +699,8 @@ def main() -> int:
         "total_proposed_driver_occurrences": sum(len(v) for v in grouped.values()),
         "db_occurrence_count": source_counts.get("db_occurrence_count", 0),
         "markdown_fallback_occurrence_count": source_counts.get("markdown_fallback_occurrence_count", 0),
-        "top_families": [
-            {
-                "family_slug": family_slug,
-                "family_label": info['family'].label,
-                "canon_coverage_status": info['canon_coverage'].status,
-                "canon_coverage_driver": info['canon_coverage'].canonical_slug,
-                "occurrences": len(info['occurrences']),
-                "distinct_cases": len({o.case_key for o in info['occurrences'] if o.case_key}),
-                "distinct_personas": len({o.persona for o in info['occurrences'] if o.persona}),
-                "raw_candidate_count": len(set(info['candidate_slugs'])),
-                "raw_candidate_labels": [label for label, _ in Counter(info['candidate_labels']).most_common()[:6]],
-            }
-            for family_slug, info in sorted(family_groups.items(), key=lambda item: (-len(item[1]['occurrences']), item[0]))[:10]
-        ],
-        "top_candidates": [
-            {
-                "candidate_slug": slug,
-                "candidate_label": Counter(o.label for o in occurrences).most_common(1)[0][0],
-                "normalized_family": choose_family(
-                    Counter(o.label for o in occurrences).most_common(1)[0][0],
-                    [s for o in occurrences for s in o.suggestions],
-                    [d for o in occurrences for d in o.related_drivers],
-                ).slug,
-                "canon_coverage_status": assess_canon_coverage(
-                    choose_family(
-                        Counter(o.label for o in occurrences).most_common(1)[0][0],
-                        [s for o in occurrences for s in o.suggestions],
-                        [d for o in occurrences for d in o.related_drivers],
-                    ),
-                    occurrences,
-                    driver_slugs,
-                ).status,
-                "canon_coverage_driver": assess_canon_coverage(
-                    choose_family(
-                        Counter(o.label for o in occurrences).most_common(1)[0][0],
-                        [s for o in occurrences for s in o.suggestions],
-                        [d for o in occurrences for d in o.related_drivers],
-                    ),
-                    occurrences,
-                    driver_slugs,
-                ).canonical_slug,
-                "occurrences": len(occurrences),
-                "distinct_cases": len({o.case_key for o in occurrences if o.case_key}),
-                "distinct_personas": len({o.persona for o in occurrences if o.persona}),
-                "source_mix": dict(Counter(o.source for o in occurrences)),
-            }
-            for slug, occurrences in sorted(grouped.items(), key=lambda item: (-len(item[1]), item[0]))[:10]
-        ],
+        "top_families": index_payload.get("families", [])[:10],
+        "top_candidates": index_payload.get("candidates", [])[:10],
         "write_outcomes": outcomes,
     }
     if args.pretty:

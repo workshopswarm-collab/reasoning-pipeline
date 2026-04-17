@@ -13,7 +13,7 @@ from .paths import (
 )
 from .proposed_causal_metadata import INTERVENTION_CHANNELS, NON_INTERVENTION_CHANNELS, WEAK_CHANNELS
 
-JUDGE_VERSION = 'proposed-causal-shadow-v1'
+JUDGE_VERSION = 'proposed-causal-shadow-v2'
 
 OUTCOME_THRESHOLDS = {
     'helpful_min_score': 3.0,
@@ -181,11 +181,150 @@ def _projection_overlap_profile(shadow_row: dict[str, Any], projection: dict[str
 
 
 
+FAMILY_EVIDENCE_PHRASES: dict[str, list[tuple[str, float]]] = {
+    'threshold_touch': [
+        ('threshold', 1.2),
+        ('touch', 1.0),
+        ('volatility', 0.8),
+        ('barrier', 0.8),
+        ('wick', 0.8),
+        ('intraday', 0.6),
+        ('price path', 1.0),
+        ('proximity', 0.7),
+        ('close', 0.4),
+        ('range', 0.4),
+        ('liquidation', 0.6),
+    ],
+    'publication_timing': [
+        ('publication', 1.2),
+        ('release', 1.0),
+        ('timing', 1.0),
+        ('schedule', 0.8),
+        ('deadline', 0.8),
+        ('reporting', 0.8),
+        ('calendar', 0.8),
+        ('window', 0.7),
+        ('announcement', 0.7),
+        ('data release', 1.0),
+        ('report', 0.4),
+    ],
+    'source_resolution': [
+        ('source of truth', 1.4),
+        ('resolution', 1.2),
+        ('verification', 1.1),
+        ('settlement', 1.1),
+        ('timestamp', 0.9),
+        ('official', 0.7),
+        ('benchmark', 0.7),
+        ('criteria', 0.6),
+        ('mapping', 0.6),
+        ('methodology', 0.6),
+        ('governing surface', 1.0),
+    ],
+}
+
+
+
+def _shadow_collect_strings(value: Any, out: list[str]) -> None:
+    if value is None:
+        return
+    if isinstance(value, str):
+        text = value.strip()
+        if text:
+            out.append(text)
+        return
+    if isinstance(value, dict):
+        for nested in value.values():
+            _shadow_collect_strings(nested, out)
+        return
+    if isinstance(value, (list, tuple, set)):
+        for nested in value:
+            _shadow_collect_strings(nested, out)
+        return
+
+
+
+def _shadow_normalize_text(value: str) -> str:
+    return ' '.join(str(value).lower().replace('-', ' ').replace('_', ' ').split())
+
+
+
+def _canonical_family_for_occurrence_rows(occurrence_rows: list[dict[str, Any]]) -> str:
+    for row in occurrence_rows:
+        if not isinstance(row, dict):
+            continue
+        proposal_metadata = row.get('proposal_metadata') or {}
+        if isinstance(proposal_metadata, dict):
+            family = str(proposal_metadata.get('canonical_family') or '').strip()
+            if family:
+                return family
+        context_snapshot = row.get('context_snapshot') or {}
+        if isinstance(context_snapshot, dict):
+            question_mechanics = context_snapshot.get('question_mechanics') or []
+            for item in question_mechanics:
+                family = str(item or '').strip()
+                if family in FAMILY_EVIDENCE_PHRASES:
+                    return family
+    return ''
+
+
+
+def _build_family_specific_signal(
+    shadow_row: dict[str, Any],
+    *,
+    occurrence_rows: list[dict[str, Any]],
+    case_artifacts: dict[str, Any],
+) -> dict[str, Any]:
+    canonical_family = _canonical_family_for_occurrence_rows(occurrence_rows)
+    if canonical_family not in FAMILY_EVIDENCE_PHRASES:
+        return {
+            'canonical_family': canonical_family or '',
+            'score_boost': 0.0,
+            'neutral_gate': False,
+            'helpful_gate': False,
+            'hit_weight': 0.0,
+            'phrase_hits': [],
+            'text_preview': '',
+        }
+    strings: list[str] = []
+    _shadow_collect_strings(case_artifacts.get('review_summary') or {}, strings)
+    _shadow_collect_strings(case_artifacts.get('projection') or {}, strings)
+    _shadow_collect_strings(case_artifacts.get('canonical_suggestions') or {}, strings)
+    joined_text = _shadow_normalize_text(' | '.join(strings))
+    hits: list[str] = []
+    hit_weight = 0.0
+    for phrase, weight in FAMILY_EVIDENCE_PHRASES[canonical_family]:
+        normalized_phrase = _shadow_normalize_text(phrase)
+        if normalized_phrase and normalized_phrase in joined_text:
+            hits.append(phrase)
+            hit_weight += float(weight)
+    retrieval_score = float(shadow_row.get('retrieval_score') or 0.0)
+    would_inject = bool(shadow_row.get('would_inject'))
+    neutral_gate = bool(hits) and hit_weight >= 1.0 and (would_inject or retrieval_score >= 0.88)
+    helpful_gate = hit_weight >= 2.6 and (would_inject or retrieval_score >= 0.96)
+    score_boost = 0.0
+    if neutral_gate:
+        score_boost += min(1.4, 0.4 + 0.25 * hit_weight)
+    if helpful_gate:
+        score_boost += 0.35
+    return {
+        'canonical_family': canonical_family,
+        'score_boost': round(score_boost, 4),
+        'neutral_gate': neutral_gate,
+        'helpful_gate': helpful_gate,
+        'hit_weight': round(hit_weight, 4),
+        'phrase_hits': hits,
+        'text_preview': joined_text[:400],
+    }
+
+
+
 def judge_shadow_row(
     shadow_row: dict[str, Any],
     *,
     occurrence_rows: list[dict[str, Any]] | None = None,
     case_artifacts: dict[str, Any] | None = None,
+    occurrence_scope: str = 'same_case',
 ) -> dict[str, Any]:
     case_key = str(shadow_row.get('case_key') or '').strip()
     occurrence_rows = occurrence_rows or []
@@ -246,14 +385,15 @@ def judge_shadow_row(
     reasons: list[str] = []
     if not review_artifacts_present:
         reasons.append('no_review_artifacts')
+    support_prefix = 'same_case' if occurrence_scope == 'same_case' else 'cross_case'
     if occurrence_profile['non_intervention_support_count'] > 0:
-        reasons.append('same_case_non_intervention_support')
+        reasons.append(f'{support_prefix}_non_intervention_support')
     if occurrence_profile['mixed_support_count'] > 0:
-        reasons.append('same_case_mixed_support')
+        reasons.append(f'{support_prefix}_mixed_support')
     if occurrence_profile['weak_support_count'] > 0:
-        reasons.append('same_case_weak_support')
+        reasons.append(f'{support_prefix}_weak_support')
     if occurrence_profile['contest_count'] > 0:
-        reasons.append('same_case_contest')
+        reasons.append(f'{support_prefix}_contest')
     if canonical_profile['exact_support_count'] > 0:
         reasons.append('canonical_exact_support')
     if canonical_profile['merge_support_count'] > 0:
@@ -285,6 +425,7 @@ def judge_shadow_row(
             'projection_path': to_repo_relative(case_artifacts['projection_path']) if case_artifacts.get('projection_path') and case_artifacts['projection_path'].exists() else None,
             'canonical_suggestions_path': to_repo_relative(case_artifacts['canonical_suggestions_path']) if case_artifacts.get('canonical_suggestions_path') and case_artifacts['canonical_suggestions_path'].exists() else None,
             'occurrence_profile': occurrence_profile,
+            'occurrence_scope': occurrence_scope,
             'canonical_profile': canonical_profile,
             'projection_profile': projection_profile,
             'positive_breakdown': positive_breakdown,
