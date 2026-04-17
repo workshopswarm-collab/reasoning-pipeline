@@ -4,16 +4,18 @@ from pathlib import Path
 from typing import Any
 
 from .causal_projection import projection_significance
+from .contract_surface import family_signals_from_contract_surface, parse_case_contract_surface_text
 from .io import read_json
 from .paths import (
     case_canonical_causal_suggestions_path,
     case_causal_projection_path,
+    case_dir,
     case_review_markdown_path,
     to_repo_relative,
 )
 from .proposed_causal_metadata import INTERVENTION_CHANNELS, NON_INTERVENTION_CHANNELS, WEAK_CHANNELS
 
-JUDGE_VERSION = 'proposed-causal-shadow-v2'
+JUDGE_VERSION = 'proposed-causal-shadow-v4'
 
 OUTCOME_THRESHOLDS = {
     'helpful_min_score': 3.0,
@@ -45,7 +47,9 @@ def _to_set(values: Any) -> set[str]:
 
 
 def _review_artifact_paths(case_key: str) -> dict[str, Path]:
+    case_root = case_dir(case_key)
     return {
+        'case_markdown_path': case_root / 'case.md',
         'review_path': case_review_markdown_path(case_key),
         'projection_path': case_causal_projection_path(case_key),
         'canonical_suggestions_path': case_canonical_causal_suggestions_path(case_key),
@@ -55,11 +59,30 @@ def _review_artifact_paths(case_key: str) -> dict[str, Path]:
 
 def load_case_artifacts(case_key: str) -> dict[str, Any]:
     paths = _review_artifact_paths(case_key)
+    case_markdown_exists = paths['case_markdown_path'].exists()
+    review_exists = paths['review_path'].exists()
     projection = read_json(paths['projection_path'], default={}) if paths['projection_path'].exists() else {}
     canonical = read_json(paths['canonical_suggestions_path'], default={}) if paths['canonical_suggestions_path'].exists() else {}
+    case_markdown_text = ''
+    if case_markdown_exists:
+        try:
+            case_markdown_text = paths['case_markdown_path'].read_text(encoding='utf-8')
+        except Exception:
+            case_markdown_text = ''
+    review_text = ''
+    if review_exists:
+        try:
+            review_text = paths['review_path'].read_text(encoding='utf-8')
+        except Exception:
+            review_text = ''
     return {
-        'review_exists': paths['review_path'].exists(),
+        'case_markdown_exists': case_markdown_exists,
+        'case_markdown_path': paths['case_markdown_path'],
+        'case_markdown_text': case_markdown_text,
+        'case_contract_surface': parse_case_contract_surface_text(case_markdown_text),
+        'review_exists': review_exists,
         'review_path': paths['review_path'],
+        'review_text': review_text,
         'projection': projection or {},
         'projection_path': paths['projection_path'],
         'canonical_suggestions': canonical or {},
@@ -288,32 +311,44 @@ def _build_family_specific_signal(
         }
     strings: list[str] = []
     _shadow_collect_strings(case_artifacts.get('review_summary') or {}, strings)
+    _shadow_collect_strings(case_artifacts.get('case_markdown_text') or '', strings)
+    _shadow_collect_strings(case_artifacts.get('review_text') or '', strings)
     _shadow_collect_strings(case_artifacts.get('projection') or {}, strings)
     _shadow_collect_strings(case_artifacts.get('canonical_suggestions') or {}, strings)
     joined_text = _shadow_normalize_text(' | '.join(strings))
     hits: list[str] = []
-    hit_weight = 0.0
+    phrase_hit_weight = 0.0
     for phrase, weight in FAMILY_EVIDENCE_PHRASES[canonical_family]:
         normalized_phrase = _shadow_normalize_text(phrase)
         if normalized_phrase and normalized_phrase in joined_text:
             hits.append(phrase)
-            hit_weight += float(weight)
+            phrase_hit_weight += float(weight)
+    case_contract_surface = case_artifacts.get('case_contract_surface')
+    if not isinstance(case_contract_surface, dict):
+        case_contract_surface = parse_case_contract_surface_text(case_artifacts.get('case_markdown_text') or '')
+    structured_hits = family_signals_from_contract_surface(case_contract_surface).get(canonical_family, [])
+    structured_hit_names = [name for name, _ in structured_hits]
+    structured_hit_weight = sum(weight for _, weight in structured_hits)
+    combined_hit_weight = phrase_hit_weight + structured_hit_weight
     retrieval_score = float(shadow_row.get('retrieval_score') or 0.0)
     would_inject = bool(shadow_row.get('would_inject'))
-    neutral_gate = bool(hits) and hit_weight >= 1.0 and (would_inject or retrieval_score >= 0.88)
-    helpful_gate = hit_weight >= 2.6 and (would_inject or retrieval_score >= 0.96)
+    neutral_gate = bool(hits or structured_hits) and combined_hit_weight >= 1.0 and (would_inject or retrieval_score >= 0.88)
+    helpful_gate = combined_hit_weight >= 3.4 and len(structured_hits) >= 2 and (would_inject or retrieval_score >= 0.96)
     score_boost = 0.0
     if neutral_gate:
-        score_boost += min(1.4, 0.4 + 0.25 * hit_weight)
+        score_boost += min(1.6, 0.35 + 0.18 * combined_hit_weight)
     if helpful_gate:
-        score_boost += 0.35
+        score_boost += 0.25
     return {
         'canonical_family': canonical_family,
         'score_boost': round(score_boost, 4),
         'neutral_gate': neutral_gate,
         'helpful_gate': helpful_gate,
-        'hit_weight': round(hit_weight, 4),
+        'hit_weight': round(combined_hit_weight, 4),
+        'phrase_hit_weight': round(phrase_hit_weight, 4),
+        'structured_hit_weight': round(structured_hit_weight, 4),
         'phrase_hits': hits,
+        'structured_hits': structured_hit_names,
         'text_preview': joined_text[:400],
     }
 
@@ -332,22 +367,32 @@ def judge_shadow_row(
 
     projection = case_artifacts.get('projection') or {}
     canonical = case_artifacts.get('canonical_suggestions') or {}
+    case_markdown_text = str(case_artifacts.get('case_markdown_text') or '').strip()
     review_exists = bool(case_artifacts.get('review_exists'))
-    review_artifacts_present = review_exists or bool(projection) or bool(canonical)
+    review_text = str(case_artifacts.get('review_text') or '').strip()
+    review_summary = case_artifacts.get('review_summary') or {}
+    review_artifacts_present = review_exists or bool(case_markdown_text) or bool(review_text) or bool(review_summary) or bool(projection) or bool(canonical)
 
     occurrence_profile = _occurrence_support_profile(occurrence_rows)
     canonical_profile = _canonical_support_profile(shadow_row, canonical)
     projection_profile = _projection_overlap_profile(shadow_row, projection)
+    family_signal = _build_family_specific_signal(
+        shadow_row,
+        occurrence_rows=occurrence_rows,
+        case_artifacts=case_artifacts,
+    )
 
+    cross_case_support_multiplier = 0.45 if occurrence_scope != 'same_case' else 1.0
     positive_breakdown = {
-        'direct_non_intervention_support': WEIGHTS['direct_non_intervention_support'] if occurrence_profile['non_intervention_support_count'] > 0 else 0.0,
-        'direct_mixed_support': WEIGHTS['direct_mixed_support'] if occurrence_profile['support_count'] > 0 and occurrence_profile['non_intervention_support_count'] <= 0 and occurrence_profile['mixed_support_count'] > 0 else 0.0,
-        'direct_weak_support': WEIGHTS['direct_weak_support'] if occurrence_profile['support_count'] > 0 and occurrence_profile['non_intervention_support_count'] <= 0 and occurrence_profile['mixed_support_count'] <= 0 and occurrence_profile['weak_support_count'] > 0 else 0.0,
+        'direct_non_intervention_support': round((WEIGHTS['direct_non_intervention_support'] * cross_case_support_multiplier) if occurrence_profile['non_intervention_support_count'] > 0 else 0.0, 6),
+        'direct_mixed_support': round((WEIGHTS['direct_mixed_support'] * cross_case_support_multiplier) if occurrence_profile['support_count'] > 0 and occurrence_profile['non_intervention_support_count'] <= 0 and occurrence_profile['mixed_support_count'] > 0 else 0.0, 6),
+        'direct_weak_support': round((WEIGHTS['direct_weak_support'] * cross_case_support_multiplier) if occurrence_profile['support_count'] > 0 and occurrence_profile['non_intervention_support_count'] <= 0 and occurrence_profile['mixed_support_count'] <= 0 and occurrence_profile['weak_support_count'] > 0 else 0.0, 6),
         'canonical_exact_support': round(min(2, canonical_profile['exact_support_count']) * WEIGHTS['canonical_exact_support'], 6),
         'canonical_merge_support': round(min(2, canonical_profile['merge_support_count']) * WEIGHTS['canonical_merge_support'], 6),
         'required_check_overlap': round(min(2, projection_profile['required_check_overlap_count']) * WEIGHTS['required_check_overlap'], 6),
         'active_node_overlap': round(min(3, projection_profile['active_node_overlap_count']) * WEIGHTS['active_node_overlap'], 6),
         'edge_overlap': round(min(3, projection_profile['edge_overlap_count']) * WEIGHTS['edge_overlap'], 6),
+        'family_specific_signal': float(family_signal.get('score_boost') or 0.0),
     }
 
     negative_breakdown = {
@@ -362,7 +407,8 @@ def judge_shadow_row(
 
     outcome_score = round(sum(positive_breakdown.values()) + sum(negative_breakdown.values()), 6)
     helpful_gate = (
-        occurrence_profile['non_intervention_support_count'] > 0
+        (occurrence_scope == 'same_case' and occurrence_profile['non_intervention_support_count'] > 0)
+        or (occurrence_scope == 'same_case' and bool(family_signal.get('helpful_gate')))
         or (
             occurrence_profile['support_count'] > 0
             and (
@@ -371,13 +417,19 @@ def judge_shadow_row(
             )
         )
     )
+    cross_case_neutral_override = (
+        occurrence_scope != 'same_case'
+        and occurrence_profile['non_intervention_support_count'] > 0
+        and bool(family_signal.get('neutral_gate'))
+        and outcome_score >= OUTCOME_THRESHOLDS['neutral_min_score']
+    )
 
     label = 'unclear'
     if occurrence_profile['contest_count'] > 0 or outcome_score <= OUTCOME_THRESHOLDS['harmful_max_score']:
         label = 'harmful'
     elif review_artifacts_present and outcome_score >= OUTCOME_THRESHOLDS['helpful_min_score'] and helpful_gate:
         label = 'helpful'
-    elif review_artifacts_present and outcome_score >= OUTCOME_THRESHOLDS['neutral_min_score']:
+    elif (review_artifacts_present and outcome_score >= OUTCOME_THRESHOLDS['neutral_min_score']) or cross_case_neutral_override:
         label = 'neutral'
     else:
         label = 'unclear'
@@ -408,6 +460,14 @@ def judge_shadow_row(
         reasons.append('significant_case_no_signal')
     if negative_breakdown['merge_ambiguity_penalty'] < 0:
         reasons.append('merge_ambiguity_penalty')
+    if float(family_signal.get('score_boost') or 0.0) > 0:
+        reasons.append(f"family_specific_signal:{family_signal.get('canonical_family') or 'unknown'}")
+    if bool(family_signal.get('neutral_gate')):
+        reasons.append('family_specific_neutral_gate')
+    if bool(family_signal.get('helpful_gate')) and helpful_gate:
+        reasons.append('family_specific_helpful_gate')
+    if cross_case_neutral_override:
+        reasons.append('cross_case_neutral_override')
 
     return {
         'outcome_label': label,
@@ -421,6 +481,8 @@ def judge_shadow_row(
             'reasons': reasons,
             'review_artifacts_present': review_artifacts_present,
             'review_exists': review_exists,
+            'case_markdown_path': to_repo_relative(case_artifacts['case_markdown_path']) if case_artifacts.get('case_markdown_path') and case_artifacts['case_markdown_path'].exists() else None,
+            'case_contract_surface': case_artifacts.get('case_contract_surface') if isinstance(case_artifacts.get('case_contract_surface'), dict) else None,
             'review_path': to_repo_relative(case_artifacts['review_path']) if case_artifacts.get('review_path') else None,
             'projection_path': to_repo_relative(case_artifacts['projection_path']) if case_artifacts.get('projection_path') and case_artifacts['projection_path'].exists() else None,
             'canonical_suggestions_path': to_repo_relative(case_artifacts['canonical_suggestions_path']) if case_artifacts.get('canonical_suggestions_path') and case_artifacts['canonical_suggestions_path'].exists() else None,
@@ -431,5 +493,7 @@ def judge_shadow_row(
             'positive_breakdown': positive_breakdown,
             'negative_breakdown': negative_breakdown,
             'helpful_gate': helpful_gate,
+            'cross_case_neutral_override': cross_case_neutral_override,
+            'family_signal': family_signal,
         },
     }

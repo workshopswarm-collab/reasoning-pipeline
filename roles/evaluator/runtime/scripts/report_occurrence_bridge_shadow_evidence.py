@@ -4,6 +4,7 @@ from __future__ import annotations
 import argparse
 import json
 import sys
+from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Mapping
@@ -84,6 +85,27 @@ FROM (
 ) t;
 '''
 
+EXTRACTOR_ROWS_SQL = r'''
+WITH bridge AS (
+  SELECT DISTINCT o.proposal_id
+  FROM public.proposed_causal_candidate_occurrences o
+  WHERE o.proposal_source = :'proposal_source'
+    AND COALESCE(o.proposal_metadata->>'bridge_source', '') = :'bridge_source'
+)
+SELECT COALESCE(json_agg(row_to_json(t) ORDER BY proposal_id, id), '[]'::json)::text
+FROM (
+  SELECT
+    s.id,
+    s.proposal_id,
+    s.outcome_label,
+    s.outcome_favored,
+    s.outcome_metadata
+  FROM public.proposed_causal_shadow_matches s
+  JOIN bridge b USING (proposal_id)
+  WHERE NULLIF(s.outcome_label, '') IS NOT NULL
+) t;
+'''
+
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description='Report shadow-evidence health for occurrence-bridge proposals')
@@ -141,6 +163,96 @@ def screening_state(record: Mapping[str, Any]) -> str:
 
 
 
+def _top_counter_items(counter: Counter[str], limit: int = 4) -> list[str]:
+    return [f"{key}×{count}" for key, count in counter.most_common(limit)]
+
+
+
+def aggregate_extractor_summaries(rows: list[dict[str, Any]]) -> dict[str, dict[str, Any]]:
+    per_proposal: dict[str, dict[str, Any]] = {}
+    for row in rows:
+        if not isinstance(row, dict):
+            continue
+        proposal_id = str(row.get('proposal_id') or '').strip()
+        if not proposal_id:
+            continue
+        summary = per_proposal.setdefault(
+            proposal_id,
+            {
+                'family_counts': Counter(),
+                'phrase_hits': Counter(),
+                'structured_hits': Counter(),
+                'cross_case_neutral_override_count': 0,
+                'helpful_gate_count': 0,
+                'signaled_row_count': 0,
+            },
+        )
+        meta = row.get('outcome_metadata') or {}
+        if not isinstance(meta, dict):
+            continue
+        family_signal = meta.get('family_signal') or {}
+        if not isinstance(family_signal, dict):
+            family_signal = {}
+        canonical_family = str(family_signal.get('canonical_family') or '').strip()
+        if canonical_family:
+            summary['family_counts'][canonical_family] += 1
+        phrase_hits = family_signal.get('phrase_hits') or []
+        if isinstance(phrase_hits, list):
+            for hit in phrase_hits:
+                value = str(hit or '').strip()
+                if value:
+                    summary['phrase_hits'][value] += 1
+        structured_hits = family_signal.get('structured_hits') or []
+        if isinstance(structured_hits, list):
+            for hit in structured_hits:
+                value = str(hit or '').strip()
+                if value:
+                    summary['structured_hits'][value] += 1
+        if float(family_signal.get('hit_weight') or 0.0) > 0:
+            summary['signaled_row_count'] += 1
+        if bool(meta.get('cross_case_neutral_override')):
+            summary['cross_case_neutral_override_count'] += 1
+        if bool(meta.get('helpful_gate')):
+            summary['helpful_gate_count'] += 1
+
+    output: dict[str, dict[str, Any]] = {}
+    for proposal_id, summary in per_proposal.items():
+        family_counts: Counter[str] = summary['family_counts']
+        phrase_hits: Counter[str] = summary['phrase_hits']
+        structured_hits: Counter[str] = summary['structured_hits']
+        output[proposal_id] = {
+            'dominant_family': family_counts.most_common(1)[0][0] if family_counts else '',
+            'family_counts': dict(family_counts),
+            'phrase_hit_counts': dict(phrase_hits),
+            'structured_hit_counts': dict(structured_hits),
+            'top_phrase_hits': _top_counter_items(phrase_hits),
+            'top_structured_hits': _top_counter_items(structured_hits),
+            'cross_case_neutral_override_count': int(summary['cross_case_neutral_override_count']),
+            'helpful_gate_count': int(summary['helpful_gate_count']),
+            'signaled_row_count': int(summary['signaled_row_count']),
+        }
+    return output
+
+
+
+def extractor_summary_text(summary: Mapping[str, Any]) -> str:
+    dominant_family = str(summary.get('dominant_family') or '').strip()
+    structured = ', '.join(summary.get('top_structured_hits') or [])
+    phrases = ', '.join(summary.get('top_phrase_hits') or [])
+    neutral_override_count = int(summary.get('cross_case_neutral_override_count') or 0)
+    parts = []
+    if dominant_family:
+        parts.append(f"family={dominant_family}")
+    if structured:
+        parts.append(f"structured={structured}")
+    if phrases:
+        parts.append(f"phrases={phrases}")
+    if neutral_override_count > 0:
+        parts.append(f"neutral_overrides={neutral_override_count}")
+    return '; '.join(parts)
+
+
+
 def render_markdown(payload: dict[str, Any]) -> str:
     summary = payload.get('summary') or {}
     lines = [
@@ -158,6 +270,9 @@ def render_markdown(payload: dict[str, Any]) -> str:
         f"- shadow_helpful_count: `{summary.get('shadow_helpful_count')}`",
         f"- shadow_harmful_count: `{summary.get('shadow_harmful_count')}`",
         f"- bridge_membership_counts: `{summary.get('bridge_membership_counts')}`",
+        f"- extractor_family_counts: `{summary.get('extractor_family_counts')}`",
+        f"- extractor_phrase_hit_counts: `{summary.get('extractor_phrase_hit_counts')}`",
+        f"- extractor_structured_hit_counts: `{summary.get('extractor_structured_hit_counts')}`",
         f"- lifecycle_stage_counts: `{summary.get('lifecycle_stage_counts')}`",
         f"- screening_state_counts: `{summary.get('screening_state_counts')}`",
         '',
@@ -175,6 +290,9 @@ def render_markdown(payload: dict[str, Any]) -> str:
             blockers = row.get('promotion_blockers') or []
             if blockers:
                 lines.append(f"  - blockers: {', '.join(blockers[:6])}")
+            extractor_summary = extractor_summary_text(row.get('extractor_summary') or {})
+            if extractor_summary:
+                lines.append(f"  - extractor: {extractor_summary}")
     suppressed_rows = payload.get('suppressed_rows') or []
     if suppressed_rows:
         lines.extend([
@@ -186,6 +304,9 @@ def render_markdown(payload: dict[str, Any]) -> str:
             lines.append(
                 f"- `{row.get('proposal_key')}` — dominant=`{row.get('dominant_proposal_source')}`; bridge=`{row.get('bridge_membership')}`; stage=`{row.get('lifecycle_stage')}`; promotion=`{row.get('promotion_status')}`"
             )
+            extractor_summary = extractor_summary_text(row.get('extractor_summary') or {})
+            if extractor_summary:
+                lines.append(f"  - extractor: {extractor_summary}")
     lines.append('')
     return '\n'.join(lines)
 
@@ -195,6 +316,7 @@ def main() -> int:
     args = parse_args()
     db_url = resolve_db_url(args.db_url)
     rows: list[dict[str, Any]] = []
+    extractor_rows: list[dict[str, Any]] = []
     warning: str | None = None
     if not db_url:
         warning = 'db_url_unavailable'
@@ -205,19 +327,29 @@ def main() -> int:
     elif not table_exists('proposed_causal_candidate_stats', db_url=db_url, psql_bin=args.psql):
         warning = 'proposed_causal_candidate_stats table missing'
     else:
+        params = {'proposal_source': PROPOSAL_SOURCE, 'bridge_source': BRIDGE_SOURCE}
         result = exec_sql(
             args.psql,
             db_url,
             REPORT_SQL,
-            {'proposal_source': PROPOSAL_SOURCE, 'bridge_source': BRIDGE_SOURCE},
+            params,
         ) or []
         rows = result if isinstance(result, list) else []
+        extractor_result = exec_sql(
+            args.psql,
+            db_url,
+            EXTRACTOR_ROWS_SQL,
+            params,
+        ) or []
+        extractor_rows = extractor_result if isinstance(extractor_result, list) else []
 
+    extractor_summaries = aggregate_extractor_summaries(extractor_rows)
     normalized = []
     for raw_row in sort_rows([row for row in rows if isinstance(row, dict)]):
         row = dict(raw_row)
         row['bridge_membership'] = bridge_membership(row)
         row['screening_state'] = screening_state(row)
+        row['extractor_summary'] = extractor_summaries.get(str(row.get('proposal_id') or '').strip(), {})
         normalized.append(row)
 
     reported_rows = normalized if args.include_mixed_source else [
@@ -230,6 +362,9 @@ def main() -> int:
     lifecycle_stage_counts: dict[str, int] = {}
     screening_state_counts: dict[str, int] = {}
     bridge_membership_counts: dict[str, int] = {}
+    extractor_family_counts: Counter[str] = Counter()
+    extractor_phrase_hit_counts: Counter[str] = Counter()
+    extractor_structured_hit_counts: Counter[str] = Counter()
     shadow_match_count = 0
     shadow_judged_count = 0
     shadow_helpful_count = 0
@@ -245,6 +380,13 @@ def main() -> int:
         shadow_harmful_count += int(row.get('shadow_harmful_count') or 0)
         current_screening_state = str(row.get('screening_state') or 'unknown')
         screening_state_counts[current_screening_state] = screening_state_counts.get(current_screening_state, 0) + 1
+        extractor_summary = row.get('extractor_summary') or {}
+        for family, count in (extractor_summary.get('family_counts') or {}).items():
+            extractor_family_counts[str(family)] += int(count or 0)
+        for hit, count in (extractor_summary.get('phrase_hit_counts') or {}).items():
+            extractor_phrase_hit_counts[str(hit)] += int(count or 0)
+        for hit, count in (extractor_summary.get('structured_hit_counts') or {}).items():
+            extractor_structured_hit_counts[str(hit)] += int(count or 0)
 
     all_bridge_membership_counts: dict[str, int] = {}
     for row in normalized:
@@ -266,6 +408,9 @@ def main() -> int:
             'shadow_harmful_count': shadow_harmful_count,
             'bridge_membership_counts': all_bridge_membership_counts,
             'reported_bridge_membership_counts': bridge_membership_counts,
+            'extractor_family_counts': dict(extractor_family_counts),
+            'extractor_phrase_hit_counts': dict(extractor_phrase_hit_counts),
+            'extractor_structured_hit_counts': dict(extractor_structured_hit_counts),
             'lifecycle_stage_counts': lifecycle_stage_counts,
             'screening_state_counts': screening_state_counts,
         },

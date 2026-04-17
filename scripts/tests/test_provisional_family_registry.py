@@ -87,6 +87,117 @@ class ProvisionalFamilyRegistryTests(unittest.TestCase):
         self.assertEqual(bridge['family_key'], 'prov:novel:team-strength-gap')
         self.assertEqual(bridge['lineage_parent_family_key'], 'unassigned')
 
+    def test_threshold_touch_contract_surface_can_map_ambiguous_candidate(self) -> None:
+        packet = make_packet(
+            slug='short-horizon-crypto-volatility',
+            label='short horizon crypto volatility',
+            family='resolution-mechanics',
+            occurrences=9,
+            cases=['case-threshold'],
+            personas=['base'],
+        )
+        bridge = registry.bridge_packet_to_provisional_family(
+            packet,
+            loaded_policies=POLICY_ROWS,
+            case_surface_cache={
+                'case-threshold': {
+                    'comparator': 'above',
+                    'threshold_value': '74000',
+                    'source_references': ['binance'],
+                    'settlement_fields': ['close'],
+                    'time_resolution': '1m_candle',
+                    'publication_markers': [],
+                    'timing_constraint': False,
+                    'dated_window': False,
+                }
+            },
+        )
+        self.assertEqual(bridge['canonical_family'], 'threshold_touch')
+        self.assertEqual(bridge['family_key'], 'prov:threshold_touch:resolution-mechanics')
+
+    def test_publication_timing_contract_surface_can_map_ambiguous_candidate(self) -> None:
+        packet = make_packet(
+            slug='attendance-surge',
+            label='attendance surge',
+            family='resolution-mechanics',
+            occurrences=6,
+            cases=['case-pub'],
+            personas=['base'],
+        )
+        bridge = registry.bridge_packet_to_provisional_family(
+            packet,
+            loaded_policies=POLICY_ROWS,
+            case_surface_cache={
+                'case-pub': {
+                    'comparator': '',
+                    'threshold_value': '',
+                    'source_references': ['official'],
+                    'settlement_fields': [],
+                    'time_resolution': '',
+                    'publication_markers': ['opening_weekend', 'box_office'],
+                    'timing_constraint': True,
+                    'dated_window': True,
+                }
+            },
+        )
+        self.assertEqual(bridge['canonical_family'], 'publication_timing')
+        self.assertEqual(bridge['family_key'], 'prov:publication_timing:resolution-mechanics')
+
+    def test_generic_scheduled_event_does_not_map_to_publication_timing(self) -> None:
+        packet = make_packet(
+            slug='team-strength-gap',
+            label='team strength gap',
+            family='resolution-mechanics',
+            occurrences=7,
+            cases=['case-sports'],
+            personas=['base'],
+        )
+        bridge = registry.bridge_packet_to_provisional_family(
+            packet,
+            loaded_policies=POLICY_ROWS,
+            case_surface_cache={
+                'case-sports': {
+                    'comparator': '',
+                    'threshold_value': '',
+                    'source_references': [],
+                    'settlement_fields': [],
+                    'time_resolution': '',
+                    'publication_markers': [],
+                    'timing_constraint': True,
+                    'dated_window': True,
+                }
+            },
+        )
+        self.assertEqual(bridge['canonical_family'], 'unassigned')
+        self.assertEqual(bridge['family_key'], 'prov:novel:resolution-mechanics')
+
+    def test_generic_official_results_language_does_not_create_source_resolution_signal(self) -> None:
+        packet = make_packet(
+            slug='alliance-cohesion',
+            label='alliance cohesion',
+            family='elections',
+            occurrences=3,
+            cases=['case-election'],
+            personas=['base'],
+        )
+        scores = registry.score_packet_against_canonical_families(
+            packet,
+            case_surface_cache={
+                'case-election': {
+                    'comparator': '',
+                    'threshold_value': '',
+                    'source_references': ['official'],
+                    'settlement_fields': [],
+                    'time_resolution': '',
+                    'publication_markers': [],
+                    'timing_constraint': True,
+                    'dated_window': True,
+                }
+            },
+        )
+        self.assertEqual(scores['source_resolution']['structured_score'], 0.0)
+        self.assertEqual(scores['source_resolution']['structured_hits'], [])
+
     def test_build_registry_groups_candidates_by_bridged_family_key(self) -> None:
         packets = [
             make_packet(

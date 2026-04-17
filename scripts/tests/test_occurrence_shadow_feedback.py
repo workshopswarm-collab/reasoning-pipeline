@@ -66,6 +66,144 @@ class OccurrenceShadowFeedbackTests(unittest.TestCase):
         self.assertGreater(judgment['outcome_metadata']['family_signal']['hit_weight'], 0)
         self.assertEqual(judgment['outcome_metadata']['occurrence_scope'], 'cross_case')
 
+    def test_cross_case_case_markdown_signal_stays_neutral_without_helpful_gate(self) -> None:
+        judgment = shadow_outcomes.judge_shadow_row(
+            {
+                'case_key': 'case-y',
+                'proposal_key': 'threshold-proximity',
+                'would_inject': True,
+                'retrieval_score': 0.92,
+                'notes': {'candidate_notes': {}},
+                'matched_active_nodes': [],
+                'matched_candidate_edges': [],
+                'matched_contested_edges': [],
+                'matched_required_checks': [],
+            },
+            occurrence_rows=[
+                {
+                    'evidence_channels': ['signal_packet'],
+                    'intervention_dependency': 'none',
+                    'support_direction': 'supports',
+                    'proposal_metadata': {'canonical_family': 'threshold_touch'},
+                }
+            ],
+            case_artifacts={
+                'case_markdown_text': 'This threshold market resolves from the Binance 1 minute candle close price.',
+                'review_exists': False,
+                'projection': {},
+                'canonical_suggestions': {},
+            },
+            occurrence_scope='cross_case',
+        )
+        self.assertEqual(judgment['outcome_label'], 'neutral')
+        self.assertTrue(judgment['outcome_metadata']['cross_case_neutral_override'])
+
+    def test_threshold_touch_case_markdown_records_structured_hits(self) -> None:
+        judgment = shadow_outcomes.judge_shadow_row(
+            {
+                'case_key': 'case-z',
+                'proposal_key': 'threshold-proximity',
+                'would_inject': True,
+                'retrieval_score': 1.02,
+                'notes': {'candidate_notes': {}},
+                'matched_active_nodes': [],
+                'matched_candidate_edges': [],
+                'matched_contested_edges': [],
+                'matched_required_checks': [],
+            },
+            occurrence_rows=[
+                {
+                    'evidence_channels': ['signal_packet'],
+                    'intervention_dependency': 'none',
+                    'support_direction': 'supports',
+                    'proposal_metadata': {'canonical_family': 'threshold_touch'},
+                }
+            ],
+            case_artifacts={
+                'case_markdown_text': 'Will Bitcoin be above $74,000? The resolution source is Binance using the 1 minute candle close price.',
+                'review_exists': False,
+                'projection': {},
+                'canonical_suggestions': {},
+            },
+            occurrence_scope='cross_case',
+        )
+        family_signal = judgment['outcome_metadata']['family_signal']
+        self.assertEqual(judgment['outcome_label'], 'neutral')
+        self.assertIn('threshold_contract_surface', family_signal['structured_hits'])
+        self.assertIn('minute_candle_surface', family_signal['structured_hits'])
+        self.assertIn('candle_resolution_surface', family_signal['structured_hits'])
+        self.assertGreater(family_signal['structured_hit_weight'], 0)
+
+    def test_publication_timing_case_markdown_records_structured_hits(self) -> None:
+        judgment = shadow_outcomes.judge_shadow_row(
+            {
+                'case_key': 'case-pub',
+                'proposal_key': 'release-window-demand',
+                'would_inject': True,
+                'retrieval_score': 0.94,
+                'notes': {'candidate_notes': {}},
+                'matched_active_nodes': [],
+                'matched_candidate_edges': [],
+                'matched_contested_edges': [],
+                'matched_required_checks': [],
+            },
+            occurrence_rows=[
+                {
+                    'evidence_channels': ['signal_packet'],
+                    'intervention_dependency': 'none',
+                    'support_direction': 'supports',
+                    'proposal_metadata': {'canonical_family': 'publication_timing'},
+                }
+            ],
+            case_artifacts={
+                'case_markdown_text': 'This opening weekend box office market resolves by Sunday based on the official release schedule.',
+                'review_exists': False,
+                'projection': {},
+                'canonical_suggestions': {},
+            },
+            occurrence_scope='cross_case',
+        )
+        family_signal = judgment['outcome_metadata']['family_signal']
+        self.assertEqual(judgment['outcome_label'], 'neutral')
+        self.assertIn('scheduled_event_surface', family_signal['structured_hits'])
+        self.assertIn('timing_constraint_language', family_signal['structured_hits'])
+        self.assertIn('timed_information_event', family_signal['structured_hits'])
+
+    def test_report_aggregates_extractor_summaries(self) -> None:
+        summaries = report_script.aggregate_extractor_summaries([
+            {
+                'proposal_id': 'node:threshold-proximity',
+                'outcome_metadata': {
+                    'cross_case_neutral_override': True,
+                    'helpful_gate': False,
+                    'family_signal': {
+                        'canonical_family': 'threshold_touch',
+                        'hit_weight': 3.0,
+                        'phrase_hits': ['close'],
+                        'structured_hits': ['minute_candle_surface', 'benchmark_exchange_reference'],
+                    },
+                },
+            },
+            {
+                'proposal_id': 'node:threshold-proximity',
+                'outcome_metadata': {
+                    'cross_case_neutral_override': True,
+                    'helpful_gate': False,
+                    'family_signal': {
+                        'canonical_family': 'threshold_touch',
+                        'hit_weight': 2.0,
+                        'phrase_hits': ['close'],
+                        'structured_hits': ['minute_candle_surface'],
+                    },
+                },
+            },
+        ])
+        summary = summaries['node:threshold-proximity']
+        self.assertEqual(summary['dominant_family'], 'threshold_touch')
+        self.assertEqual(summary['cross_case_neutral_override_count'], 2)
+        self.assertEqual(summary['phrase_hit_counts']['close'], 2)
+        self.assertEqual(summary['structured_hit_counts']['minute_candle_surface'], 2)
+
     def test_occurrence_rows_match_filters_respects_proposal_and_bridge_source(self) -> None:
         args = argparse.Namespace(
             case_key='',

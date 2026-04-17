@@ -7,6 +7,7 @@ from pathlib import Path
 from typing import Any
 
 from .causal_family_policy import family_policy_for, load_family_policies
+from .contract_surface import family_signals_from_contract_surface, load_case_contract_surface
 from .io import write_json
 from .paths import CAUSAL_MAP_ROOT, ensure_parent, to_repo_relative
 from .proposed_driver_occurrence_compiler import packet_json_path
@@ -165,21 +166,65 @@ def build_packet_signal_text(packet: dict[str, Any]) -> str:
 
 
 
-def score_packet_against_canonical_families(packet: dict[str, Any]) -> dict[str, dict[str, Any]]:
+def summarize_packet_contract_surface_signals(
+    packet: dict[str, Any],
+    *,
+    case_surface_cache: dict[str, dict[str, Any]] | None = None,
+) -> dict[str, Any]:
+    support = packet.get('support') or {}
+    case_keys = [str(value).strip() for value in (support.get('case_keys') or []) if str(value).strip()]
+    cache = case_surface_cache if isinstance(case_surface_cache, dict) else {}
+    family_hits: dict[str, list[str]] = defaultdict(list)
+    family_weights: dict[str, float] = defaultdict(float)
+    reviewed_case_count = 0
+    for case_key in case_keys:
+        surface = cache.get(case_key)
+        if not isinstance(surface, dict):
+            surface = load_case_contract_surface(case_key)
+            cache[case_key] = surface
+        signals = family_signals_from_contract_surface(surface)
+        if signals:
+            reviewed_case_count += 1
+        for family_key, hits in signals.items():
+            for hit_name, weight in hits:
+                family_hits[family_key].append(hit_name)
+                family_weights[family_key] += float(weight)
+    return {
+        'reviewed_case_count': reviewed_case_count,
+        'family_hit_counts': {family: dict(Counter(hits)) for family, hits in family_hits.items()},
+        'family_weight_sums': {family: round(weight, 3) for family, weight in family_weights.items()},
+    }
+
+
+
+def score_packet_against_canonical_families(
+    packet: dict[str, Any],
+    *,
+    case_surface_cache: dict[str, dict[str, Any]] | None = None,
+) -> dict[str, dict[str, Any]]:
     signal_text = build_packet_signal_text(packet)
+    contract_surface_summary = summarize_packet_contract_surface_signals(packet, case_surface_cache=case_surface_cache)
     scores: dict[str, dict[str, Any]] = {}
     for family_key, phrases in CANONICAL_FAMILY_SIGNAL_WEIGHTS.items():
-        hits: list[str] = []
-        score = 0
+        phrase_hits: list[str] = []
+        phrase_score = 0.0
         for phrase, weight in phrases:
             normalized_phrase = normalize_text(phrase)
             if normalized_phrase and normalized_phrase in signal_text:
-                hits.append(phrase)
-                score += weight
+                phrase_hits.append(phrase)
+                phrase_score += float(weight)
+        structured_hit_counts = (contract_surface_summary.get('family_hit_counts') or {}).get(family_key, {})
+        structured_hits = list(structured_hit_counts.keys()) if isinstance(structured_hit_counts, dict) else []
+        structured_score = float((contract_surface_summary.get('family_weight_sums') or {}).get(family_key, 0.0) or 0.0)
         scores[family_key] = {
-            'score': score,
-            'hits': hits,
+            'score': round(phrase_score + structured_score, 3),
+            'phrase_score': round(phrase_score, 3),
+            'structured_score': round(structured_score, 3),
+            'hits': phrase_hits + structured_hits,
+            'phrase_hits': phrase_hits,
+            'structured_hits': structured_hits,
             'signal_text': signal_text,
+            'contract_surface_summary': contract_surface_summary,
         }
     return scores
 
@@ -189,6 +234,7 @@ def bridge_packet_to_provisional_family(
     packet: dict[str, Any],
     *,
     loaded_policies: dict[str, dict[str, Any]] | None = None,
+    case_surface_cache: dict[str, dict[str, Any]] | None = None,
 ) -> dict[str, Any]:
     policy_rows = loaded_policies or load_family_policies()
     raw_family_slug = normalize_slug(packet.get('normalized_family'))
@@ -199,7 +245,7 @@ def bridge_packet_to_provisional_family(
     bridge_status = 'novel_provisional'
     bridge_confidence = 0.15
     bridge_reason = ['no_strong_canonical_match']
-    score_breakdown = score_packet_against_canonical_families(packet)
+    score_breakdown = score_packet_against_canonical_families(packet, case_surface_cache=case_surface_cache)
 
     if raw_family_key in policy_rows and raw_family_key != 'unassigned':
         canonical_family = raw_family_key
@@ -216,12 +262,12 @@ def bridge_packet_to_provisional_family(
         else:
             ranked = sorted(
                 score_breakdown.items(),
-                key=lambda item: (-int(item[1].get('score') or 0), item[0]),
+                key=lambda item: (-float(item[1].get('score') or 0.0), item[0]),
             )
             top_family, top_payload = ranked[0]
-            second_score = int(ranked[1][1].get('score') or 0) if len(ranked) > 1 else 0
-            top_score = int(top_payload.get('score') or 0)
-            if top_score >= 3 and top_score >= second_score + 1:
+            second_score = float(ranked[1][1].get('score') or 0.0) if len(ranked) > 1 else 0.0
+            top_score = float(top_payload.get('score') or 0.0)
+            if top_score >= 3.0 and top_score >= second_score + 1.0:
                 canonical_family = top_family
                 bridge_status = 'mapped_provisional'
                 bridge_confidence = min(0.9, 0.55 + 0.05 * top_score)
@@ -269,8 +315,10 @@ def build_provisional_family_registry(
     packets: list[dict[str, Any]],
     *,
     loaded_policies: dict[str, dict[str, Any]] | None = None,
+    case_surface_cache: dict[str, dict[str, Any]] | None = None,
 ) -> dict[str, Any]:
     policy_rows = loaded_policies or load_family_policies()
+    resolved_case_surface_cache = case_surface_cache if isinstance(case_surface_cache, dict) else {}
     grouped: dict[str, dict[str, Any]] = {}
     members: list[dict[str, Any]] = []
     canonical_summary: dict[str, dict[str, Any]] = defaultdict(lambda: {
@@ -283,7 +331,11 @@ def build_provisional_family_registry(
     })
 
     for packet in sort_packets_by_support(packets):
-        bridge = bridge_packet_to_provisional_family(packet, loaded_policies=policy_rows)
+        bridge = bridge_packet_to_provisional_family(
+            packet,
+            loaded_policies=policy_rows,
+            case_surface_cache=resolved_case_surface_cache,
+        )
         family_key = bridge['family_key']
         source_summary = packet.get('source_summary') or {}
         support = packet.get('support') or {}
