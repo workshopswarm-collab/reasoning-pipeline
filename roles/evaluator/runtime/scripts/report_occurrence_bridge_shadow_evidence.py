@@ -6,7 +6,7 @@ import json
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any
+from typing import Any, Mapping
 
 SCRIPT_PATH = Path(__file__).resolve()
 RUNTIME_ROOT = SCRIPT_PATH.parents[1]
@@ -60,6 +60,7 @@ FROM (
     stats.lifecycle_stage,
     stats.promotion_status,
     stats.dominant_proposal_source,
+    stats.proposal_source_mix,
     stats.promotion_score,
     stats.distinct_case_count,
     stats.non_intervention_support_case_count,
@@ -89,6 +90,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument('--db-url', default='')
     parser.add_argument('--psql', default=DEFAULT_PSQL)
     parser.add_argument('--dry-run', action='store_true')
+    parser.add_argument('--include-mixed-source', action='store_true', help='include mixed-source bridge participants in the main reported rows')
     parser.add_argument('--pretty', action='store_true')
     return parser.parse_args()
 
@@ -112,6 +114,33 @@ def sort_rows(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
 
 
 
+def bridge_membership(record: Mapping[str, Any]) -> str:
+    dominant_source = str(record.get('dominant_proposal_source') or '').strip()
+    if dominant_source == PROPOSAL_SOURCE:
+        return 'bridge_dominant'
+    raw_mix = record.get('proposal_source_mix')
+    mix = raw_mix if isinstance(raw_mix, dict) else {}
+    try:
+        bridge_count = int(mix.get(PROPOSAL_SOURCE) or 0)
+    except Exception:
+        bridge_count = 0
+    if bridge_count > 0:
+        return 'bridge_participant'
+    return 'bridge_unclassified'
+
+
+
+def screening_state(record: Mapping[str, Any]) -> str:
+    if int(record.get('shadow_positive_count') or 0) > 0:
+        return 'positive_shadow_validated'
+    if int(record.get('shadow_judged_count') or 0) > 0:
+        return 'judged_but_not_positive'
+    if int(record.get('shadow_match_count') or 0) > 0:
+        return 'pending_positive_shadow_validation'
+    return 'no_shadow_matches'
+
+
+
 def render_markdown(payload: dict[str, Any]) -> str:
     summary = payload.get('summary') or {}
     lines = [
@@ -121,11 +150,14 @@ def render_markdown(payload: dict[str, Any]) -> str:
         '',
         f"- generated_at: `{summary.get('generated_at')}`",
         f"- proposal_count: `{summary.get('proposal_count')}`",
+        f"- bridge_linked_proposal_count: `{summary.get('bridge_linked_proposal_count')}`",
+        f"- suppressed_bridge_participant_count: `{summary.get('suppressed_bridge_participant_count')}`",
         f"- judged_proposal_count: `{summary.get('judged_proposal_count')}`",
         f"- shadow_match_count: `{summary.get('shadow_match_count')}`",
         f"- shadow_judged_count: `{summary.get('shadow_judged_count')}`",
         f"- shadow_helpful_count: `{summary.get('shadow_helpful_count')}`",
         f"- shadow_harmful_count: `{summary.get('shadow_harmful_count')}`",
+        f"- bridge_membership_counts: `{summary.get('bridge_membership_counts')}`",
         f"- lifecycle_stage_counts: `{summary.get('lifecycle_stage_counts')}`",
         f"- screening_state_counts: `{summary.get('screening_state_counts')}`",
         '',
@@ -138,11 +170,22 @@ def render_markdown(payload: dict[str, Any]) -> str:
     else:
         for row in rows[:40]:
             lines.append(
-                f"- `{row.get('proposal_key')}` [{row.get('mechanism_family')}] — stage=`{row.get('lifecycle_stage')}`; promotion=`{row.get('promotion_status')}`; screening=`{row.get('screening_state')}`; shadow={row.get('shadow_match_count')}/{row.get('shadow_judged_count')}; helpful=`{row.get('shadow_helpful_count')}`; harmful=`{row.get('shadow_harmful_count')}`; mean=`{row.get('shadow_mean_score')}`"
+                f"- `{row.get('proposal_key')}` [{row.get('mechanism_family')}] — bridge=`{row.get('bridge_membership')}`; stage=`{row.get('lifecycle_stage')}`; promotion=`{row.get('promotion_status')}`; screening=`{row.get('screening_state')}`; shadow={row.get('shadow_match_count')}/{row.get('shadow_judged_count')}; helpful=`{row.get('shadow_helpful_count')}`; harmful=`{row.get('shadow_harmful_count')}`; mean=`{row.get('shadow_mean_score')}`"
             )
             blockers = row.get('promotion_blockers') or []
             if blockers:
                 lines.append(f"  - blockers: {', '.join(blockers[:6])}")
+    suppressed_rows = payload.get('suppressed_rows') or []
+    if suppressed_rows:
+        lines.extend([
+            '',
+            '## Suppressed mixed-source bridge participants',
+            '',
+        ])
+        for row in suppressed_rows[:20]:
+            lines.append(
+                f"- `{row.get('proposal_key')}` — dominant=`{row.get('dominant_proposal_source')}`; bridge=`{row.get('bridge_membership')}`; stage=`{row.get('lifecycle_stage')}`; promotion=`{row.get('promotion_status')}`"
+            )
     lines.append('')
     return '\n'.join(lines)
 
@@ -171,47 +214,63 @@ def main() -> int:
         rows = result if isinstance(result, list) else []
 
     normalized = []
+    for raw_row in sort_rows([row for row in rows if isinstance(row, dict)]):
+        row = dict(raw_row)
+        row['bridge_membership'] = bridge_membership(row)
+        row['screening_state'] = screening_state(row)
+        normalized.append(row)
+
+    reported_rows = normalized if args.include_mixed_source else [
+        row for row in normalized if row.get('bridge_membership') == 'bridge_dominant'
+    ]
+    suppressed_rows = [] if args.include_mixed_source else [
+        row for row in normalized if row.get('bridge_membership') == 'bridge_participant'
+    ]
+
     lifecycle_stage_counts: dict[str, int] = {}
     screening_state_counts: dict[str, int] = {}
+    bridge_membership_counts: dict[str, int] = {}
     shadow_match_count = 0
     shadow_judged_count = 0
     shadow_helpful_count = 0
     shadow_harmful_count = 0
-    for raw_row in sort_rows([row for row in rows if isinstance(row, dict)]):
-        row = dict(raw_row)
+    for row in reported_rows:
         lifecycle = str(row.get('lifecycle_stage') or 'unknown')
         lifecycle_stage_counts[lifecycle] = lifecycle_stage_counts.get(lifecycle, 0) + 1
+        membership = str(row.get('bridge_membership') or 'bridge_unclassified')
+        bridge_membership_counts[membership] = bridge_membership_counts.get(membership, 0) + 1
         shadow_match_count += int(row.get('shadow_match_count') or 0)
         shadow_judged_count += int(row.get('shadow_judged_count') or 0)
         shadow_helpful_count += int(row.get('shadow_helpful_count') or 0)
         shadow_harmful_count += int(row.get('shadow_harmful_count') or 0)
-        if int(row.get('shadow_positive_count') or 0) > 0:
-            screening_state = 'positive_shadow_validated'
-        elif int(row.get('shadow_judged_count') or 0) > 0:
-            screening_state = 'judged_but_not_positive'
-        elif int(row.get('shadow_match_count') or 0) > 0:
-            screening_state = 'pending_positive_shadow_validation'
-        else:
-            screening_state = 'no_shadow_matches'
-        row['screening_state'] = screening_state
-        screening_state_counts[screening_state] = screening_state_counts.get(screening_state, 0) + 1
-        normalized.append(row)
+        current_screening_state = str(row.get('screening_state') or 'unknown')
+        screening_state_counts[current_screening_state] = screening_state_counts.get(current_screening_state, 0) + 1
+
+    all_bridge_membership_counts: dict[str, int] = {}
+    for row in normalized:
+        membership = str(row.get('bridge_membership') or 'bridge_unclassified')
+        all_bridge_membership_counts[membership] = all_bridge_membership_counts.get(membership, 0) + 1
 
     payload = {
         'summary': {
             'generated_at': now_iso(),
             'proposal_source': PROPOSAL_SOURCE,
             'bridge_source': BRIDGE_SOURCE,
-            'proposal_count': len(normalized),
-            'judged_proposal_count': sum(1 for row in normalized if int(row.get('shadow_judged_count') or 0) > 0),
+            'proposal_count': len(reported_rows),
+            'bridge_linked_proposal_count': len(normalized),
+            'suppressed_bridge_participant_count': len(suppressed_rows),
+            'judged_proposal_count': sum(1 for row in reported_rows if int(row.get('shadow_judged_count') or 0) > 0),
             'shadow_match_count': shadow_match_count,
             'shadow_judged_count': shadow_judged_count,
             'shadow_helpful_count': shadow_helpful_count,
             'shadow_harmful_count': shadow_harmful_count,
+            'bridge_membership_counts': all_bridge_membership_counts,
+            'reported_bridge_membership_counts': bridge_membership_counts,
             'lifecycle_stage_counts': lifecycle_stage_counts,
             'screening_state_counts': screening_state_counts,
         },
-        'rows': normalized,
+        'rows': reported_rows,
+        'suppressed_rows': suppressed_rows[:25],
     }
     if warning:
         payload['warning'] = warning

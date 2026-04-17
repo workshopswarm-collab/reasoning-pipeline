@@ -2,63 +2,68 @@
 
 ## Summary
 
-- generated_at: `2026-04-17T01:46:54Z`
-- proposal_count: `26`
-- judged_proposal_count: `6`
-- shadow_match_count: `59`
-- shadow_judged_count: `59`
+- generated_at: `2026-04-17T02:10:58Z`
+- proposal_count: `25`
+- bridge_linked_proposal_count: `26`
+- suppressed_bridge_participant_count: `1`
+- judged_proposal_count: `5`
+- shadow_match_count: `16`
+- shadow_judged_count: `16`
 - shadow_helpful_count: `0`
 - shadow_harmful_count: `0`
-- lifecycle_stage_counts: `{'trial_candidate': 1, 'aggregated': 25}`
-- screening_state_counts: `{'judged_but_not_positive': 6, 'no_shadow_matches': 20}`
+- bridge_membership_counts: `{'bridge_participant': 1, 'bridge_dominant': 25}`
+- lifecycle_stage_counts: `{'aggregated': 25}`
+- screening_state_counts: `{'judged_but_not_positive': 5, 'no_shadow_matches': 20}`
 
 ## Proposals
 
-- `verification-state-separation` [source_resolution] — stage=`trial_candidate`; promotion=`proposed`; screening=`judged_but_not_positive`; shadow=49/49; helpful=`0`; harmful=`0`; mean=`3.0`
-  - blockers: below_draft_min_cases
-- `intraday-volatility` [prov:threshold_touch:resolution-mechanics] — stage=`aggregated`; promotion=`not_trial_candidate`; screening=`judged_but_not_positive`; shadow=2/2; helpful=`0`; harmful=`0`; mean=`3.0`
-- `intraday-volatility-window` [prov:publication_timing:release-window-demand] — stage=`aggregated`; promotion=`not_trial_candidate`; screening=`judged_but_not_positive`; shadow=2/2; helpful=`0`; harmful=`0`; mean=`3.0`
-- `short-horizon-crypto-volatility` [prov:novel:resolution-mechanics] — stage=`aggregated`; promotion=`not_trial_candidate`; screening=`judged_but_not_positive`; shadow=2/2; helpful=`0`; harmful=`0`; mean=`3.0`
-- `threshold-close-mechanics` [prov:threshold_touch:resolution-mechanics] — stage=`aggregated`; promotion=`not_trial_candidate`; screening=`judged_but_not_positive`; shadow=2/2; helpful=`0`; harmful=`0`; mean=`3.0`
-- `threshold-proximity` [prov:threshold_touch:resolution-mechanics] — stage=`aggregated`; promotion=`not_trial_candidate`; screening=`judged_but_not_positive`; shadow=2/2; helpful=`0`; harmful=`0`; mean=`3.0`
-- `binance-1m-high-governing-surface-equivalence` [prov:source_resolution:binance-1m-high-governing-surface-equivalence] — stage=`aggregated`; promotion=`not_trial_candidate`; screening=`no_shadow_matches`; shadow=0/0; helpful=`0`; harmful=`0`; mean=`None`
+- `intraday-volatility` [prov:threshold_touch:resolution-mechanics] — bridge=`bridge_dominant`; stage=`aggregated`; promotion=`not_trial_candidate`; screening=`judged_but_not_positive`; shadow=4/4; helpful=`0`; harmful=`0`; mean=`3.0`
+- `short-horizon-crypto-volatility` [prov:novel:resolution-mechanics] — bridge=`bridge_dominant`; stage=`aggregated`; promotion=`not_trial_candidate`; screening=`judged_but_not_positive`; shadow=4/4; helpful=`0`; harmful=`0`; mean=`3.0`
+- `threshold-proximity` [prov:threshold_touch:resolution-mechanics] — bridge=`bridge_dominant`; stage=`aggregated`; promotion=`not_trial_candidate`; screening=`judged_but_not_positive`; shadow=4/4; helpful=`0`; harmful=`0`; mean=`3.0`
+- `intraday-volatility-window` [prov:publication_timing:release-window-demand] — bridge=`bridge_dominant`; stage=`aggregated`; promotion=`not_trial_candidate`; screening=`judged_but_not_positive`; shadow=2/2; helpful=`0`; harmful=`0`; mean=`3.0`
+- `threshold-close-mechanics` [prov:threshold_touch:resolution-mechanics] — bridge=`bridge_dominant`; stage=`aggregated`; promotion=`not_trial_candidate`; screening=`judged_but_not_positive`; shadow=2/2; helpful=`0`; harmful=`0`; mean=`3.0`
+- `binance-1m-high-governing-surface-equivalence` [prov:source_resolution:binance-1m-high-governing-surface-equivalence] — bridge=`bridge_dominant`; stage=`aggregated`; promotion=`not_trial_candidate`; screening=`no_shadow_matches`; shadow=0/0; helpful=`0`; harmful=`0`; mean=`None`
   - blockers: below_draft_min_cases, below_draft_non_intervention_support_cases, below_proposed_min_cases
-- `binance-1m-touch-market-microstructure` [prov:threshold_touch:binance-1m-touch-market-microstructure] — stage=`aggregated`; promotion=`not_trial_candidate`; screening=`no_shadow_matches`; shadow=0/0; helpful=`0`; harmful=`0`; mean=`None`
+- `binance-1m-touch-market-microstructure` [prov:threshold_touch:binance-1m-touch-market-microstructure] — bridge=`bridge_dominant`; stage=`aggregated`; promotion=`not_trial_candidate`; screening=`no_shadow_matches`; shadow=0/0; helpful=`0`; harmful=`0`; mean=`None`
   - blockers: below_draft_min_cases, below_draft_non_intervention_support_cases, below_proposed_min_cases
-- `binance-intraday-wick-risk` [prov:threshold_touch:binance-intraday-wick-risk] — stage=`aggregated`; promotion=`not_trial_candidate`; screening=`no_shadow_matches`; shadow=0/0; helpful=`0`; harmful=`0`; mean=`None`
+- `binance-intraday-wick-risk` [prov:threshold_touch:binance-intraday-wick-risk] — bridge=`bridge_dominant`; stage=`aggregated`; promotion=`not_trial_candidate`; screening=`no_shadow_matches`; shadow=0/0; helpful=`0`; harmful=`0`; mean=`None`
   - blockers: below_draft_min_cases, below_draft_non_intervention_support_cases, below_proposed_min_cases
-- `binance-microstructure-touch-risk` [prov:threshold_touch:binance-microstructure-touch-risk] — stage=`aggregated`; promotion=`not_trial_candidate`; screening=`no_shadow_matches`; shadow=0/0; helpful=`0`; harmful=`0`; mean=`None`
+- `binance-microstructure-touch-risk` [prov:threshold_touch:binance-microstructure-touch-risk] — bridge=`bridge_dominant`; stage=`aggregated`; promotion=`not_trial_candidate`; screening=`no_shadow_matches`; shadow=0/0; helpful=`0`; harmful=`0`; mean=`None`
   - blockers: below_draft_min_cases, below_draft_non_intervention_support_cases, below_proposed_min_cases
-- `box-office-tracking` [prov:workflow_pricing:box-office-tracking] — stage=`aggregated`; promotion=`not_trial_candidate`; screening=`no_shadow_matches`; shadow=0/0; helpful=`0`; harmful=`0`; mean=`None`
+- `box-office-tracking` [prov:workflow_pricing:box-office-tracking] — bridge=`bridge_dominant`; stage=`aggregated`; promotion=`not_trial_candidate`; screening=`no_shadow_matches`; shadow=0/0; helpful=`0`; harmful=`0`; mean=`None`
   - blockers: below_draft_min_cases, below_draft_non_intervention_support_cases, below_proposed_min_cases
-- `chart-label-resolution-mapping` [prov:source_resolution:resolution-mapping] — stage=`aggregated`; promotion=`not_trial_candidate`; screening=`no_shadow_matches`; shadow=0/0; helpful=`0`; harmful=`0`; mean=`None`
+- `chart-label-resolution-mapping` [prov:source_resolution:resolution-mapping] — bridge=`bridge_dominant`; stage=`aggregated`; promotion=`not_trial_candidate`; screening=`no_shadow_matches`; shadow=0/0; helpful=`0`; harmful=`0`; mean=`None`
   - blockers: below_draft_min_cases, below_draft_non_intervention_support_cases, below_proposed_min_cases
-- `consensus-reporting-dependency` [prov:publication_timing:resolution-mechanics] — stage=`aggregated`; promotion=`not_trial_candidate`; screening=`no_shadow_matches`; shadow=0/0; helpful=`0`; harmful=`0`; mean=`None`
+- `consensus-reporting-dependency` [prov:publication_timing:resolution-mechanics] — bridge=`bridge_dominant`; stage=`aggregated`; promotion=`not_trial_candidate`; screening=`no_shadow_matches`; shadow=0/0; helpful=`0`; harmful=`0`; mean=`None`
   - blockers: below_draft_min_cases, below_draft_non_intervention_support_cases, below_proposed_min_cases
-- `contract-resolution-source-ambiguity` [prov:source_resolution:resolution-mechanics] — stage=`aggregated`; promotion=`not_trial_candidate`; screening=`no_shadow_matches`; shadow=0/0; helpful=`0`; harmful=`0`; mean=`None`
+- `contract-resolution-source-ambiguity` [prov:source_resolution:resolution-mechanics] — bridge=`bridge_dominant`; stage=`aggregated`; promotion=`not_trial_candidate`; screening=`no_shadow_matches`; shadow=0/0; helpful=`0`; harmful=`0`; mean=`None`
   - blockers: below_draft_min_cases, below_draft_non_intervention_support_cases, below_proposed_min_cases
-- `contract-settlement-ambiguity` [prov:source_resolution:resolution-mechanics] — stage=`aggregated`; promotion=`not_trial_candidate`; screening=`no_shadow_matches`; shadow=0/0; helpful=`0`; harmful=`0`; mean=`None`
+- `contract-settlement-ambiguity` [prov:source_resolution:resolution-mechanics] — bridge=`bridge_dominant`; stage=`aggregated`; promotion=`not_trial_candidate`; screening=`no_shadow_matches`; shadow=0/0; helpful=`0`; harmful=`0`; mean=`None`
   - blockers: below_draft_min_cases, below_draft_non_intervention_support_cases, below_proposed_min_cases
-- `contract-settlement-risk` [prov:source_resolution:resolution-mechanics] — stage=`aggregated`; promotion=`not_trial_candidate`; screening=`no_shadow_matches`; shadow=0/0; helpful=`0`; harmful=`0`; mean=`None`
+- `contract-settlement-risk` [prov:source_resolution:resolution-mechanics] — bridge=`bridge_dominant`; stage=`aggregated`; promotion=`not_trial_candidate`; screening=`no_shadow_matches`; shadow=0/0; helpful=`0`; harmful=`0`; mean=`None`
   - blockers: below_draft_min_cases, below_draft_non_intervention_support_cases, below_proposed_min_cases
-- `date-window-resolution-risk` [prov:publication_timing:release-window-demand] — stage=`aggregated`; promotion=`not_trial_candidate`; screening=`no_shadow_matches`; shadow=0/0; helpful=`0`; harmful=`0`; mean=`None`
+- `date-window-resolution-risk` [prov:publication_timing:release-window-demand] — bridge=`bridge_dominant`; stage=`aggregated`; promotion=`not_trial_candidate`; screening=`no_shadow_matches`; shadow=0/0; helpful=`0`; harmful=`0`; mean=`None`
   - blockers: below_draft_min_cases, below_draft_non_intervention_support_cases, below_proposed_min_cases
-- `deadline-diplomacy` [prov:publication_timing:deadline-diplomacy] — stage=`aggregated`; promotion=`not_trial_candidate`; screening=`no_shadow_matches`; shadow=0/0; helpful=`0`; harmful=`0`; mean=`None`
+- `deadline-diplomacy` [prov:publication_timing:deadline-diplomacy] — bridge=`bridge_dominant`; stage=`aggregated`; promotion=`not_trial_candidate`; screening=`no_shadow_matches`; shadow=0/0; helpful=`0`; harmful=`0`; mean=`None`
   - blockers: below_draft_min_cases, below_draft_non_intervention_support_cases, below_proposed_min_cases
-- `exchange-specific-wick-risk` [prov:threshold_touch:exchange-specific-wick-risk] — stage=`aggregated`; promotion=`not_trial_candidate`; screening=`no_shadow_matches`; shadow=0/0; helpful=`0`; harmful=`0`; mean=`None`
+- `exchange-specific-wick-risk` [prov:threshold_touch:exchange-specific-wick-risk] — bridge=`bridge_dominant`; stage=`aggregated`; promotion=`not_trial_candidate`; screening=`no_shadow_matches`; shadow=0/0; helpful=`0`; harmful=`0`; mean=`None`
   - blockers: below_draft_min_cases, below_draft_non_intervention_support_cases, below_proposed_min_cases
-- `football-match-outcome-pricing` [prov:workflow_pricing:football-match-outcome-pricing] — stage=`aggregated`; promotion=`not_trial_candidate`; screening=`no_shadow_matches`; shadow=0/0; helpful=`0`; harmful=`0`; mean=`None`
+- `football-match-outcome-pricing` [prov:workflow_pricing:football-match-outcome-pricing] — bridge=`bridge_dominant`; stage=`aggregated`; promotion=`not_trial_candidate`; screening=`no_shadow_matches`; shadow=0/0; helpful=`0`; harmful=`0`; mean=`None`
   - blockers: below_draft_min_cases, below_draft_non_intervention_support_cases, below_proposed_min_cases
-- `horror-opening-demand` [prov:publication_timing:release-window-demand] — stage=`aggregated`; promotion=`not_trial_candidate`; screening=`no_shadow_matches`; shadow=0/0; helpful=`0`; harmful=`0`; mean=`None`
+- `horror-opening-demand` [prov:publication_timing:release-window-demand] — bridge=`bridge_dominant`; stage=`aggregated`; promotion=`not_trial_candidate`; screening=`no_shadow_matches`; shadow=0/0; helpful=`0`; harmful=`0`; mean=`None`
   - blockers: below_draft_min_cases, below_draft_non_intervention_support_cases, below_proposed_min_cases
-- `intraday-crypto-volatility-around-thresholds` [prov:threshold_touch:intraday-crypto-volatility-around-thresholds] — stage=`aggregated`; promotion=`not_trial_candidate`; screening=`no_shadow_matches`; shadow=0/0; helpful=`0`; harmful=`0`; mean=`None`
+- `intraday-crypto-volatility-around-thresholds` [prov:threshold_touch:intraday-crypto-volatility-around-thresholds] — bridge=`bridge_dominant`; stage=`aggregated`; promotion=`not_trial_candidate`; screening=`no_shadow_matches`; shadow=0/0; helpful=`0`; harmful=`0`; mean=`None`
   - blockers: below_draft_min_cases, below_draft_non_intervention_support_cases, below_proposed_min_cases
-- `short-horizon-crypto-price-path-risk` [prov:threshold_touch:short-horizon-crypto-price-path-risk] — stage=`aggregated`; promotion=`not_trial_candidate`; screening=`no_shadow_matches`; shadow=0/0; helpful=`0`; harmful=`0`; mean=`None`
+- `short-horizon-crypto-price-path-risk` [prov:threshold_touch:short-horizon-crypto-price-path-risk] — bridge=`bridge_dominant`; stage=`aggregated`; promotion=`not_trial_candidate`; screening=`no_shadow_matches`; shadow=0/0; helpful=`0`; harmful=`0`; mean=`None`
   - blockers: below_draft_min_cases, below_draft_non_intervention_support_cases, below_proposed_min_cases
-- `short-horizon-crypto-touch-probability` [prov:threshold_touch:short-horizon-crypto-touch-probability] — stage=`aggregated`; promotion=`not_trial_candidate`; screening=`no_shadow_matches`; shadow=0/0; helpful=`0`; harmful=`0`; mean=`None`
+- `short-horizon-crypto-touch-probability` [prov:threshold_touch:short-horizon-crypto-touch-probability] — bridge=`bridge_dominant`; stage=`aggregated`; promotion=`not_trial_candidate`; screening=`no_shadow_matches`; shadow=0/0; helpful=`0`; harmful=`0`; mean=`None`
   - blockers: below_draft_min_cases, below_draft_non_intervention_support_cases, below_proposed_min_cases
-- `short-horizon-price-thresholds` [prov:threshold_touch:short-horizon-price-thresholds] — stage=`aggregated`; promotion=`not_trial_candidate`; screening=`no_shadow_matches`; shadow=0/0; helpful=`0`; harmful=`0`; mean=`None`
+- `short-horizon-price-thresholds` [prov:threshold_touch:short-horizon-price-thresholds] — bridge=`bridge_dominant`; stage=`aggregated`; promotion=`not_trial_candidate`; screening=`no_shadow_matches`; shadow=0/0; helpful=`0`; harmful=`0`; mean=`None`
   - blockers: below_draft_min_cases, below_draft_non_intervention_support_cases, below_proposed_min_cases
-- `verification-surface-caution` [prov:source_resolution:verification-surface-caution] — stage=`aggregated`; promotion=`not_trial_candidate`; screening=`no_shadow_matches`; shadow=0/0; helpful=`0`; harmful=`0`; mean=`None`
+- `verification-surface-caution` [prov:source_resolution:verification-surface-caution] — bridge=`bridge_dominant`; stage=`aggregated`; promotion=`not_trial_candidate`; screening=`no_shadow_matches`; shadow=0/0; helpful=`0`; harmful=`0`; mean=`None`
   - blockers: below_draft_min_cases, below_draft_non_intervention_support_cases, below_proposed_min_cases
+
+## Suppressed mixed-source bridge participants
+
+- `verification-state-separation` — dominant=`case_extractor`; bridge=`bridge_participant`; stage=`trial_candidate`; promotion=`proposed`
 

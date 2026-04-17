@@ -20,6 +20,12 @@ if clamp_spec is None or clamp_spec.loader is None:
     raise RuntimeError(f'could not import clamp script from {CLAMP_SCRIPT}')
 clamp = importlib.util.module_from_spec(clamp_spec)
 clamp_spec.loader.exec_module(clamp)
+REPORT_SCRIPT = REPO_ROOT / 'roles' / 'evaluator' / 'runtime' / 'scripts' / 'report_occurrence_bridge_shadow_evidence.py'
+report_spec = importlib.util.spec_from_file_location('report_occurrence_bridge_shadow_evidence_for_tests', REPORT_SCRIPT)
+if report_spec is None or report_spec.loader is None:
+    raise RuntimeError(f'could not import report script from {REPORT_SCRIPT}')
+report = importlib.util.module_from_spec(report_spec)
+report_spec.loader.exec_module(report)
 
 
 class OccurrenceShadowBridgeTests(unittest.TestCase):
@@ -261,6 +267,26 @@ class OccurrenceShadowBridgeTests(unittest.TestCase):
             'shadow_positive_count': 0,
         }
         self.assertEqual(clamp.clamped_lifecycle_stage(row), 'shadow_candidate')
+
+    def test_report_marks_bridge_dominant_rows(self) -> None:
+        row = {
+            'dominant_proposal_source': report.PROPOSAL_SOURCE,
+            'proposal_source_mix': {
+                report.PROPOSAL_SOURCE: 3,
+                'case_extractor': 1,
+            },
+        }
+        self.assertEqual(report.bridge_membership(row), 'bridge_dominant')
+
+    def test_report_marks_mixed_source_bridge_rows_as_participants(self) -> None:
+        row = {
+            'dominant_proposal_source': 'case_extractor',
+            'proposal_source_mix': {
+                report.PROPOSAL_SOURCE: 1,
+                'case_extractor': 2,
+            },
+        }
+        self.assertEqual(report.bridge_membership(row), 'bridge_participant')
 
 
 if __name__ == '__main__':
